@@ -1,12 +1,12 @@
 # Math Library for CPP
 
-Math Library build in CPP for Game Engine following Eric Lengyel's [Foundations fo Game Engine Development Series](https://foundationsofgameenginedev.com/){:target="\_blank" rel="noopener"}
+Math Library build in CPP for Game Engine following Eric Lengyel's <a href="https://foundationsofgameenginedev.com/" target="_blank">Foundations fo Game Engine Development Series</a>
 
 Project uses CMake as it's build system.
 
 ## How to run
 
-1. [Download and Install CMake](https://cmake.org/download/){:target="\_blank" rel="noopener"} if you don't have it installed.
+1. <a href="https://cmake.org/download/" target="_blank">Download and install CMake</a> if you don't have it installed.
 2. Generate project files using
     ```bash
         cmake -B build
