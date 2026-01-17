@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 3.23)
 project(CPPMathLib)
 
+# Turn on solution folders
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
+include(dependencies.cmake)
+
 add_subdirectory(math-lib)
 add_subdirectory(playground)
 add_subdirectory(math-test)

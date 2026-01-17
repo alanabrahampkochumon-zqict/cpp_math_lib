@@ -432,3 +432,6 @@ build/
 
 # DS_Store (Mac OS)
 .DS_Store
+
+# Vendors Directory(3rd Party Libs -> FetchContent)
+vendors/
