@@ -1,6 +1,12 @@
 #include <gtest/gtest.h>
 
-TEST(SampleTest, OneEqualsOne)
+#include <Vector3D.h>
+
+TEST(Vector3D, EmptyConstructorInitializesUnitVector)
 {
-    EXPECT_EQ(1, 1);
+    math::Vector3D vec;
+
+    EXPECT_FLOAT_EQ(1.0f, vec.v1);
+    EXPECT_FLOAT_EQ(1.0f, vec.v2);
+    EXPECT_FLOAT_EQ(1.0f, vec.v3);
 }
