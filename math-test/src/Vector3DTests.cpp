@@ -144,8 +144,7 @@ TEST(Vector3D, UnitVectorReturnsMagnitudeNotEqualToOne)
     float magnitude = vec.mag();
 
     // Assert
-    EXPECT_GT(1.5f, magnitude);
-    EXPECT_LT(2.0f, magnitude);
+    EXPECT_NE(1.0f, magnitude);
 }
 
 TEST(Vector3D, NonUnitVectorReturnsCorrectMagnitude)
@@ -158,4 +157,60 @@ TEST(Vector3D, NonUnitVectorReturnsCorrectMagnitude)
 
     // Assert
     EXPECT_FLOAT_EQ(7.0f, magnitude);
+}
+
+TEST(Vector3D, VectorTimesZeroIsZero)
+{
+    // Arrange
+    math::Vector3D vec(3.0, 1.0, 6.0);
+
+    // Act
+    math::Vector3D newVec = vec * 0;
+
+    // Assert
+    ASSERT_FLOAT_EQ(0.0f, newVec.x);
+    ASSERT_FLOAT_EQ(0.0f, newVec.y);
+    ASSERT_FLOAT_EQ(0.0f, newVec.z);
+}
+
+TEST(Vector3D, VectorTimesOneIsItself)
+{
+    // Arrange
+    math::Vector3D vec(3.0, 1.0, 6.0);
+
+    // Act
+    math::Vector3D newVec = 1 * vec;
+
+    // Assert
+    ASSERT_FLOAT_EQ(3.0f, newVec.x);
+    ASSERT_FLOAT_EQ(1.0f, newVec.y);
+    ASSERT_FLOAT_EQ(6.0f, newVec.z);
+}
+
+TEST(Vector3D, VectorTimesANumberIsANewVector)
+{
+    // Arrange
+    math::Vector3D vec(3.0, 1.0, 6.0);
+
+    // Act
+    math::Vector3D newVec = vec * 2;
+
+    // Assert
+    ASSERT_FLOAT_EQ(6.0f, newVec.x);
+    ASSERT_FLOAT_EQ(2.0f, newVec.y);
+    ASSERT_FLOAT_EQ(12.0f, newVec.z);
+}
+
+TEST(Vector3D, NumberTimesAVectorIsANewVector)
+{
+    // Arrange
+    math::Vector3D vec(3.0, 1.0, 6.0);
+
+    // Act
+    math::Vector3D newVec = 2 * vec;
+
+    // Assert
+    ASSERT_FLOAT_EQ(6.0f, newVec.x);
+    ASSERT_FLOAT_EQ(2.0f, newVec.y);
+    ASSERT_FLOAT_EQ(12.0f, newVec.z);
 }

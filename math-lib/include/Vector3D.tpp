@@ -19,9 +19,27 @@ namespace math {
 		return Vector3D(x - another.x, y - another.y, z - another.z);
 	}
 
+	Vector3D Vector3D::operator*(const float& scalar) const
+	{
+		return _times(*this, scalar);
+	}
+
+	inline Vector3D operator*(float scalar, const Vector3D& vector)
+	{
+		return _times(vector, scalar);
+	}
+
 	float math::Vector3D::mag() const
 	{
-		
 		return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
+	}
+
+
+	/*
+		PRIVATE FUNCTIONS/HELPERS
+	*/
+	inline Vector3D _times(const Vector3D& vec, const float scalar)
+	{
+		return Vector3D(vec.x * scalar, vec.y * scalar, vec.z * scalar);
 	}
 }

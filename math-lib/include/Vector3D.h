@@ -21,10 +21,16 @@ namespace math
 
         Vector3D operator+(const Vector3D& another) const;
         Vector3D operator-(const Vector3D& another) const;
+        Vector3D operator*(const float& scalar) const;
 
         float mag() const;
         
     };
+
+    inline Vector3D operator*(float scalar, const Vector3D& vector);
+
+    // Helper Functions
+    inline Vector3D _times(const Vector3D& vec, const float scalar);
 
     
 }
