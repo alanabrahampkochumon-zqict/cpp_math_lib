@@ -15,7 +15,15 @@ namespace math
             float elements[3];
         };
 
-        const Vector3D& operator+(const Vector3D& another);
+
+        float& operator[](int i);
+        const float& operator[](int i) const;
+
+        Vector3D operator+(const Vector3D& another) const;
+        Vector3D operator-(const Vector3D& another) const;
+
+        float mag() const;
+        
     };
 
     
