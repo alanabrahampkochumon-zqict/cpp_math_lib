@@ -24,10 +24,39 @@ namespace math {
 		return _times(*this, scalar);
 	}
 
+	Vector3D& Vector3D::operator*=(const float& scalar)
+	{
+		x *= scalar;
+		y *= scalar;
+		z *= scalar;
+		return (*this);
+	}
+
+	Vector3D Vector3D::operator/(const float& scalar) const
+	{
+		float factor = 1.0f / scalar;
+		return _times(*this, factor);
+	}
+
+	Vector3D& Vector3D::operator/=(const float& scalar)
+	{
+		float mFactor = 1.0f / scalar;
+		x *= mFactor;
+		y *= mFactor;
+		z *= mFactor;
+		return (*this);
+	}
+
 	inline Vector3D operator*(float scalar, const Vector3D& vector)
 	{
 		return _times(vector, scalar);
 	}
+
+	/*inline Vector3D operator/(float scalar, const Vector3D& vector)
+	{
+		float factor = 1.0f / scalar;
+		return _times(vector, factor);
+	}*/
 
 	float math::Vector3D::mag() const
 	{

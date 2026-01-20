@@ -179,7 +179,7 @@ TEST(Vector3D, VectorTimesOneIsItself)
     math::Vector3D vec(3.0, 1.0, 6.0);
 
     // Act
-    math::Vector3D newVec = 1 * vec;
+    math::Vector3D newVec = vec * 1;
 
     // Assert
     ASSERT_FLOAT_EQ(3.0f, newVec.x);
@@ -213,4 +213,89 @@ TEST(Vector3D, NumberTimesAVectorIsANewVector)
     ASSERT_FLOAT_EQ(6.0f, newVec.x);
     ASSERT_FLOAT_EQ(2.0f, newVec.y);
     ASSERT_FLOAT_EQ(12.0f, newVec.z);
+}
+
+TEST(Vector3D, VectorTimesEqualAScalarIsSameVectorWithNewValues)
+{
+    // Arrange
+    math::Vector3D vec(3.0, 1.0, 6.0);
+
+    // Act
+    vec *= 2;
+
+    // Assert
+    ASSERT_FLOAT_EQ(6.0f, vec.x);
+    ASSERT_FLOAT_EQ(2.0f, vec.y);
+    ASSERT_FLOAT_EQ(12.0f, vec.z);
+}
+
+
+TEST(Vector3D, VectorDividedByZeroIsInfinity)
+{
+    // Arrange
+    math::Vector3D vec(3.0, 1.0, 6.0);
+
+    // Act
+    math::Vector3D newVec = vec / 0;
+
+    // Assert
+    ASSERT_FLOAT_EQ(INFINITY, newVec.x);
+    ASSERT_FLOAT_EQ(INFINITY, newVec.y);
+    ASSERT_FLOAT_EQ(INFINITY, newVec.z);
+}
+
+TEST(Vector3D, VectorDividedByOneIsItself)
+{
+    // Arrange
+    math::Vector3D vec(3.0, 1.0, 6.0);
+
+    // Act
+    math::Vector3D newVec = vec / 1;
+
+    // Assert
+    ASSERT_FLOAT_EQ(3.0f, newVec.x);
+    ASSERT_FLOAT_EQ(1.0f, newVec.y);
+    ASSERT_FLOAT_EQ(6.0f, newVec.z);
+}
+
+TEST(Vector3D, VectorDividedByANumberIsANewVector)
+{
+    // Arrange
+    math::Vector3D vec(3.0, 1.0, 6.0);
+
+    // Act
+    math::Vector3D newVec = vec / 2;
+
+    // Assert
+    ASSERT_FLOAT_EQ(1.5f, newVec.x);
+    ASSERT_FLOAT_EQ(0.5f, newVec.y);
+    ASSERT_FLOAT_EQ(3.0f, newVec.z);
+}
+
+//TEST(Vector3D, NumberTimesAVectorIsANewVector)
+//{
+//    // Arrange
+//    math::Vector3D vec(3.0, 1.0, 6.0);
+//
+//    // Act
+//    math::Vector3D newVec = 2 * vec;
+//
+//    // Assert
+//    ASSERT_FLOAT_EQ(6.0f, newVec.x);
+//    ASSERT_FLOAT_EQ(2.0f, newVec.y);
+//    ASSERT_FLOAT_EQ(12.0f, newVec.z);
+//}
+
+TEST(Vector3D, VectorDividesEqualAScalarIsSameVectorWithNewValues)
+{
+    // Arrange
+    math::Vector3D vec(3.0, 1.0, 6.0);
+
+    // Act
+    vec /= 2;
+
+    // Assert
+    ASSERT_FLOAT_EQ(1.5f, vec.x);
+    ASSERT_FLOAT_EQ(0.5f, vec.y);
+    ASSERT_FLOAT_EQ(3.0f, vec.z);
 }
