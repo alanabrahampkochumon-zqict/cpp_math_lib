@@ -6,15 +6,15 @@
 * INITIALIZATION AND ACCESS TESTS
 */
 
-TEST(Vector3D, EmptyConstructorInitializesUnitVector)
+TEST(Vector3D, EmptyConstructorInitializesZeroVector)
 {
     // Arrange & Act
     math::Vector3D vec;
 
     // Assert
-    EXPECT_FLOAT_EQ(1.0f, vec.x);
-    EXPECT_FLOAT_EQ(1.0f, vec.y);
-    EXPECT_FLOAT_EQ(1.0f, vec.z);
+    EXPECT_FLOAT_EQ(0.0f, vec.x);
+    EXPECT_FLOAT_EQ(0.0f, vec.y);
+    EXPECT_FLOAT_EQ(0.0f, vec.z);
 }
 
 TEST(Vector3D, ConstructorParametersInitializesVector)
@@ -314,4 +314,18 @@ TEST(Vector3D, VectorDividesEqualAScalarIsSameVectorWithNewValues)
     ASSERT_FLOAT_EQ(1.5f, vec.x);
     ASSERT_FLOAT_EQ(0.5f, vec.y);
     ASSERT_FLOAT_EQ(3.0f, vec.z);
+}
+
+TEST(Vector3D, VectorWhenNormalizedReturnsANormalVector)
+{
+    // Arrange
+    math::Vector3D vec(0.0, 3.0, 4.0);
+
+    // Act
+    math::Vector3D normalized = vec.normalize();
+
+    // Assert
+    ASSERT_FLOAT_EQ(0.0f, normalized.x);
+    ASSERT_FLOAT_EQ(0.6f, normalized.y);
+    ASSERT_FLOAT_EQ(0.8f, normalized.z);
 }
