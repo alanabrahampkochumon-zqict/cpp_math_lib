@@ -14,9 +14,26 @@ namespace math {
 		return Vector3D(x + another.x, y + another.y, z + another.z);
 	}
 
+	Vector3D& Vector3D::operator+=(const Vector3D& another)
+	{
+		x += another.x;
+		y += another.y;
+		z += another.z;
+		return *this;
+	}
+
 	Vector3D math::Vector3D::operator-(const Vector3D& another) const
 	{
+
 		return Vector3D(x - another.x, y - another.y, z - another.z);
+	}
+
+	Vector3D& Vector3D::operator-=(const Vector3D& another)
+	{
+		x -= another.x;
+		y -= another.y;
+		z -= another.z;
+		return *this;
 	}
 
 	Vector3D Vector3D::operator*(const float& scalar) const
@@ -51,12 +68,6 @@ namespace math {
 	{
 		return _times(vector, scalar);
 	}
-
-	/*inline Vector3D operator/(float scalar, const Vector3D& vector)
-	{
-		float factor = 1.0f / scalar;
-		return _times(vector, factor);
-	}*/
 
 	float math::Vector3D::mag() const
 	{

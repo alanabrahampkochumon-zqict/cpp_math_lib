@@ -108,6 +108,21 @@ TEST(Vector3D, VectorAddition)
     EXPECT_FLOAT_EQ(9.0f, result.z);
 }
 
+TEST(Vector3D, VectorPlusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
+{
+    // Arrange
+    math::Vector3D vec1(3.0f, 0.0f, -1.0f);
+    math::Vector3D vec2(9.0f, -5.0f, 10.0f);
+
+    // Act
+   vec1 += vec2;
+
+    // Assert
+    EXPECT_FLOAT_EQ(12.0f, vec1.x);
+    EXPECT_FLOAT_EQ(-5.0f, vec1.y);
+    EXPECT_FLOAT_EQ(9.0f, vec1.z);
+}
+
 TEST(Vector3D, VectorSubtraction)
 {
     // Arrange
@@ -121,6 +136,21 @@ TEST(Vector3D, VectorSubtraction)
     EXPECT_FLOAT_EQ(-6.0f, result.x);
     EXPECT_FLOAT_EQ(5.0f, result.y);
     EXPECT_FLOAT_EQ(-11.0f, result.z);
+}
+
+TEST(Vector3D, VectorMinusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
+{
+    // Arrange
+    math::Vector3D vec1(3.0f, 0.0f, -1.0f);
+    math::Vector3D vec2(9.0f, -5.0f, 10.0f);
+
+    // Act
+    vec1 -= vec2;
+
+    // Assert
+    EXPECT_FLOAT_EQ(-6.0f, vec1.x);
+    EXPECT_FLOAT_EQ(5.0f, vec1.y);
+    EXPECT_FLOAT_EQ(-11.0f, vec1.z);
 }
 
 TEST(Vector3D, ZeroVectorReturnsMagnitudeZero)
@@ -271,20 +301,6 @@ TEST(Vector3D, VectorDividedByANumberIsANewVector)
     ASSERT_FLOAT_EQ(0.5f, newVec.y);
     ASSERT_FLOAT_EQ(3.0f, newVec.z);
 }
-
-//TEST(Vector3D, NumberTimesAVectorIsANewVector)
-//{
-//    // Arrange
-//    math::Vector3D vec(3.0, 1.0, 6.0);
-//
-//    // Act
-//    math::Vector3D newVec = 2 * vec;
-//
-//    // Assert
-//    ASSERT_FLOAT_EQ(6.0f, newVec.x);
-//    ASSERT_FLOAT_EQ(2.0f, newVec.y);
-//    ASSERT_FLOAT_EQ(12.0f, newVec.z);
-//}
 
 TEST(Vector3D, VectorDividesEqualAScalarIsSameVectorWithNewValues)
 {

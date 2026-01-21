@@ -20,7 +20,9 @@ namespace math
         const float& operator[](int i) const;
 
         Vector3D operator+(const Vector3D& another) const;
+        Vector3D& operator+=(const Vector3D& another);
         Vector3D operator-(const Vector3D& another) const;
+        Vector3D& operator-=(const Vector3D& another);
         Vector3D operator*(const float& scalar) const;
         Vector3D& operator*=(const float& scalar);
         Vector3D operator/(const float& scalar) const;
@@ -31,7 +33,6 @@ namespace math
     };
 
     inline Vector3D operator*(float scalar, const Vector3D& vector);
-    //inline Vector3D operator/(float scalar, const Vector3D& vector);
 
     // Helper Functions
     inline Vector3D _times(const Vector3D& vec, const float scalar);
