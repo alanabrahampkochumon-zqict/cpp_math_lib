@@ -9,7 +9,7 @@
 TEST(Vector3D, EmptyConstructorInitializesZeroVector)
 {
     // Arrange & Act
-    math::Vector3D vec;
+    math::Vector3D<float> vec;
 
     // Assert
     EXPECT_FLOAT_EQ(0.0f, vec.x);
@@ -75,7 +75,7 @@ TEST(Vector3D, AccessibleAsArray)
 TEST(Vector3D, IndexBasedAssignmentAndRetrivalSupport)
 {
     // Arrange
-    math::Vector3D vec;
+    math::Vector3D<float> vec;
 
     // Act
     vec[0] = 3.0f;
@@ -168,7 +168,7 @@ TEST(Vector3D, ZeroVectorReturnsMagnitudeZero)
 TEST(Vector3D, UnitVectorReturnsMagnitudeNotEqualToOne)
 {
     // Arrange
-    math::Vector3D vec;
+    math::Vector3D<float> vec;
 
     // Act
     float magnitude = vec.mag();
@@ -231,6 +231,20 @@ TEST(Vector3D, VectorTimesANumberIsANewVector)
     ASSERT_FLOAT_EQ(12.0f, newVec.z);
 }
 
+TEST(Vector3D, VectorTimesAFloatIsANewVector)
+{
+    // Arrange
+    math::Vector3D vec(3.0, 1.0, 6.0);
+
+    // Act
+    math::Vector3D newVec = vec * 2.0;
+
+    // Assert
+    ASSERT_FLOAT_EQ(6.0f, newVec.x);
+    ASSERT_FLOAT_EQ(2.0f, newVec.y);
+    ASSERT_FLOAT_EQ(12.0f, newVec.z);
+}
+
 TEST(Vector3D, NumberTimesAVectorIsANewVector)
 {
     // Arrange
@@ -252,6 +266,20 @@ TEST(Vector3D, VectorTimesEqualAScalarIsSameVectorWithNewValues)
 
     // Act
     vec *= 2;
+
+    // Assert
+    ASSERT_FLOAT_EQ(6.0f, vec.x);
+    ASSERT_FLOAT_EQ(2.0f, vec.y);
+    ASSERT_FLOAT_EQ(12.0f, vec.z);
+}
+
+TEST(Vector3D, VectorTimesEqualAScalarFloatIsSameVectorWithNewValues)
+{
+    // Arrange
+    math::Vector3D vec(3.0, 1.0, 6.0);
+
+    // Act
+    vec *= 2.0;
 
     // Assert
     ASSERT_FLOAT_EQ(6.0f, vec.x);
@@ -302,6 +330,20 @@ TEST(Vector3D, VectorDividedByANumberIsANewVector)
     ASSERT_FLOAT_EQ(3.0f, newVec.z);
 }
 
+TEST(Vector3D, VectorDividedByAFloatIsANewVector)
+{
+    // Arrange
+    math::Vector3D vec(3.0, 1.0, 6.0);
+
+    // Act
+    math::Vector3D newVec = vec / 2.0;
+
+    // Assert
+    ASSERT_FLOAT_EQ(1.5f, newVec.x);
+    ASSERT_FLOAT_EQ(0.5f, newVec.y);
+    ASSERT_FLOAT_EQ(3.0f, newVec.z);
+}
+
 TEST(Vector3D, VectorDividesEqualAScalarIsSameVectorWithNewValues)
 {
     // Arrange
@@ -315,6 +357,21 @@ TEST(Vector3D, VectorDividesEqualAScalarIsSameVectorWithNewValues)
     ASSERT_FLOAT_EQ(0.5f, vec.y);
     ASSERT_FLOAT_EQ(3.0f, vec.z);
 }
+
+TEST(Vector3D, VectorDividesEqualAFloatIsSameVectorWithNewValues)
+{
+    // Arrange
+    math::Vector3D vec(3.0, 1.0, 6.0);
+
+    // Act
+    vec /= 2.0;
+
+    // Assert
+    ASSERT_FLOAT_EQ(1.5f, vec.x);
+    ASSERT_FLOAT_EQ(0.5f, vec.y);
+    ASSERT_FLOAT_EQ(3.0f, vec.z);
+}
+
 
 TEST(Vector3D, VectorWhenNormalizedReturnsANormalVector)
 {

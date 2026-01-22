@@ -1,20 +1,33 @@
+#pragma once
 #include "Vector3D.h"
 
 namespace math {
-	Vector3D::Vector3D() : x(0.0f), y(0.0f), z(0.0f) {}
 
-	Vector3D::Vector3D(float v1, float v2, float v3) : x(v1), y(v2), z(v3) { }
+	template <typename T>
+	Vector3D<T>::Vector3D() : x(T(0)), y(T(0)), z(T(0)) {}
 
-	float& Vector3D::operator[](int i) { return ((&x)[i]); }
 
-	const float& Vector3D::operator[](int i) const { return ((&x)[i]); }
+	template <typename T>
+	Vector3D<T>::Vector3D(T v1, T v2, T v3) : x(v1), y(v2), z(v3) { }
 
-	Vector3D Vector3D::operator+(const Vector3D& another) const
+
+	template <typename T>
+	T& Vector3D<T>::operator[](int i) { return ((&x)[i]); }
+
+
+	template <typename T>
+	const T& Vector3D<T>::operator[](int i) const { return ((&x)[i]); }
+
+
+	template <typename T>
+	Vector3D<T> Vector3D<T>::operator+(const Vector3D& another) const
 	{
-		return Vector3D(x + another.x, y + another.y, z + another.z);
+		return Vector3D<T>(x + another.x, y + another.y, z + another.z);
 	}
 
-	Vector3D& Vector3D::operator+=(const Vector3D& another)
+
+	template <typename T>
+	Vector3D<T>& Vector3D<T>::operator+=(const Vector3D& another)
 	{
 		x += another.x;
 		y += another.y;
@@ -22,13 +35,17 @@ namespace math {
 		return *this;
 	}
 
-	Vector3D Vector3D::operator-(const Vector3D& another) const
+
+	template <typename T>
+	Vector3D<T> Vector3D<T>::operator-(const Vector3D& another) const
 	{
 
-		return Vector3D(x - another.x, y - another.y, z - another.z);
+		return Vector3D<T>(x - another.x, y - another.y, z - another.z);
 	}
 
-	Vector3D& Vector3D::operator-=(const Vector3D& another)
+
+	template <typename T>
+	Vector3D<T>& Vector3D<T>::operator-=(const Vector3D& another)
 	{
 		x -= another.x;
 		y -= another.y;
@@ -36,50 +53,73 @@ namespace math {
 		return *this;
 	}
 
-	Vector3D Vector3D::operator*(const float& scalar) const
+
+	template <typename T>
+	template <typename M>
+	Vector3D<T> Vector3D<T>::operator*(const M& scalar) const
 	{
-		Vector3D copy = *this;
+		static_assert(std::is_arithmetic_v<M>, "You can only perform multiplication with a number");
+		Vector3D<T> copy = *this;
 		copy *= scalar;
 		return copy;
 	}
 
-	Vector3D& Vector3D::operator*=(const float& scalar)
+
+	template <typename T>
+	template <typename M>
+	Vector3D<T>& Vector3D<T>::operator*=(const M& scalar)
 	{
+		static_assert(std::is_arithmetic_v<M>, "You can only perform multiplication with a number");
 		x *= scalar;
 		y *= scalar;
 		z *= scalar;
 		return (*this);
 	}
 
-	Vector3D Vector3D::operator/(const float& scalar) const
+
+	template <typename T>
+	template <typename M>
+	Vector3D<T> Vector3D<T>::operator/(const M& scalar) const
 	{
-		Vector3D copy = *this;
+		static_assert(std::is_arithmetic_v<M>, "You can only perform division with a number");
+		Vector3D<T> copy = *this;
 		copy /= scalar;
 		return copy;
 	}
 
-	Vector3D& Vector3D::operator/=(const float& scalar)
+
+	template <typename T>
+	template <typename M>
+	Vector3D<T>& Vector3D<T>::operator/=(const M& scalar)
 	{
-		float mFactor = 1.0f / scalar;
+		static_assert(std::is_arithmetic_v<M>, "You can only perform division with a number");
+		T mFactor = T(1) / scalar;
 		x *= mFactor;
 		y *= mFactor;
 		z *= mFactor;
 		return (*this);
 	}
 
-	inline Vector3D operator*(float scalar, const Vector3D& vector)
+
+	template <typename T, typename M>
+	Vector3D<T> operator*(M scalar, const Vector3D<T>& vector)
 	{
-		Vector3D copy = vector;
+		static_assert(std::is_arithmetic_v<M>, "You can only perform division with a number");
+		Vector3D<T> copy = vector;
 		copy *= scalar;
 		return copy;
 	}
 
-	float math::Vector3D::mag() const
+
+	template <typename T>
+	T math::Vector3D<T>::mag() const
 	{
 		return sqrt(x*x + y*y + z*z);
 	}
 
-	Vector3D Vector3D::normalize() const
+
+	template <typename T>
+	Vector3D<T> Vector3D<T>::normalize() const
 	{
 		return (*this) / mag();
 	}
