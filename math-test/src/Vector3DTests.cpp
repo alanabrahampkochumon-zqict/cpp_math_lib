@@ -386,3 +386,56 @@ TEST(Vector3D, VectorWhenNormalizedReturnsANormalVector)
     ASSERT_FLOAT_EQ(0.6f, normalized.y);
     ASSERT_FLOAT_EQ(0.8f, normalized.z);
 }
+
+// Dot Product
+TEST(Vector3D, VectorWhenDotWithItselfReturnsOne)
+{
+	// Arrange
+	math::Vector3D<float> vec(1.0, 0.0, 0.0);
+
+    // Act
+    float res = vec.dot(vec);
+
+    // Assert
+    ASSERT_FLOAT_EQ(1.0, res);
+}
+
+TEST(Vector3D, VectorWhenDotWithOrthogonalVectorReturnZero)
+{
+    // Arrange
+    math::Vector3D<float> vec1(1.0, 0.0, 0.0);
+    math::Vector3D<float> vec2(0.0, 1.0, 0.0);
+
+    // Act
+    float res = vec1.dot(vec2);
+
+    // Assert
+    ASSERT_FLOAT_EQ(0.0, res);
+}
+
+TEST(Vector3D, VectorWhenDotWithOppositeParallelVectorReturnsNegativeOne)
+{
+    // Arrange
+    math::Vector3D<float> vec1(1.0, 0.0, 0.0);
+    math::Vector3D<float> vec2(-1.0, 0.0, 0.0);
+
+    // Act
+    float res = vec1.dot(vec2);
+
+    // Assert
+    ASSERT_FLOAT_EQ(-1.0, res);
+}
+
+TEST(Vector3D, VectorWhenDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
+{
+    // Arrange
+    math::Vector3D<float> vec1(1.0, 2.0, 3.0);
+    math::Vector3D<float> vec2(4.0, -5.0, 6.0);
+
+    // Act
+    float res = vec1.dot(vec2);
+
+    // Assert
+    ASSERT_FLOAT_EQ(12.0, res);
+}
+

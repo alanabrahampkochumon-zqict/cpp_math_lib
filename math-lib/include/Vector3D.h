@@ -25,10 +25,10 @@ namespace math
         T& operator[](int i);
         const T& operator[](int i) const;
 
-        Vector3D operator+(const Vector3D& another) const;
-        Vector3D& operator+=(const Vector3D& another);
-        Vector3D operator-(const Vector3D& another) const;
-        Vector3D& operator-=(const Vector3D& another);
+        Vector3D operator+(const Vector3D& other) const;
+        Vector3D& operator+=(const Vector3D& other);
+        Vector3D operator-(const Vector3D& other) const;
+        Vector3D& operator-=(const Vector3D& other);
 		template<typename M>
         Vector3D operator*(const M& scalar) const;
         template<typename M>
@@ -37,6 +37,9 @@ namespace math
         Vector3D operator/(const M& scalar) const;
         template<typename M>
         Vector3D& operator/=(const M& scalar);
+
+        T dot(const Vector3D& other);
+        T cross(const Vector3D& other);
          
         T mag() const;
         Vector3D normalize() const;

@@ -20,36 +20,36 @@ namespace math {
 
 
 	template <typename T>
-	Vector3D<T> Vector3D<T>::operator+(const Vector3D& another) const
+	Vector3D<T> Vector3D<T>::operator+(const Vector3D& other) const
 	{
-		return Vector3D<T>(x + another.x, y + another.y, z + another.z);
+		return Vector3D<T>(x + other.x, y + other.y, z + other.z);
 	}
 
 
 	template <typename T>
-	Vector3D<T>& Vector3D<T>::operator+=(const Vector3D& another)
+	Vector3D<T>& Vector3D<T>::operator+=(const Vector3D& other)
 	{
-		x += another.x;
-		y += another.y;
-		z += another.z;
+		x += other.x;
+		y += other.y;
+		z += other.z;
 		return *this;
 	}
 
 
 	template <typename T>
-	Vector3D<T> Vector3D<T>::operator-(const Vector3D& another) const
+	Vector3D<T> Vector3D<T>::operator-(const Vector3D& other) const
 	{
 
-		return Vector3D<T>(x - another.x, y - another.y, z - another.z);
+		return Vector3D<T>(x - other.x, y - other.y, z - other.z);
 	}
 
 
 	template <typename T>
-	Vector3D<T>& Vector3D<T>::operator-=(const Vector3D& another)
+	Vector3D<T>& Vector3D<T>::operator-=(const Vector3D& other)
 	{
-		x -= another.x;
-		y -= another.y;
-		z -= another.z;
+		x -= other.x;
+		y -= other.y;
+		z -= other.z;
 		return *this;
 	}
 
@@ -98,6 +98,18 @@ namespace math {
 		y *= mFactor;
 		z *= mFactor;
 		return (*this);
+	}
+
+	template <typename T>
+	T Vector3D<T>::dot(const Vector3D& other)
+	{
+		return x * other.x + y * other.y + z * other.z;
+	}
+
+	template <typename T>
+	T Vector3D<T>::cross(const Vector3D& other)
+	{
+		return -1.0;
 	}
 
 
