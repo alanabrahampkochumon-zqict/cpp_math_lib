@@ -439,3 +439,137 @@ TEST(Vector3D, VectorWhenDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
     ASSERT_FLOAT_EQ(12.0, res);
 }
 
+TEST(Vector3D, VectorWhenStaticWrapperDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
+{
+    // Arrange
+    math::Vector3D<float> vec1(1.0, 2.0, 3.0);
+    math::Vector3D<float> vec2(4.0, -5.0, 6.0);
+
+    // Act
+    float res = math::Vector3D<float>::dot(vec1, vec2);
+
+    // Assert
+    ASSERT_FLOAT_EQ(12.0, res);
+}
+
+TEST(Vector3D, UnitXVectorWhenCrossWithUnitYVectorReturnsUnitZVector)
+{
+    // Arrange
+    math::Vector3D<float> vec1(1.0, 0.0, 0.0);
+    math::Vector3D<float> vec2(0.0, 1.0, 0.0);
+
+    math::Vector3D<float> res(0.0, 0.0, 1.0);
+    
+	// Act
+    math::Vector3D<float> ret = vec1.cross(vec2);
+
+    // Assert
+    for (int i = 0; i < 3; i++)
+    {
+        ASSERT_FLOAT_EQ(res[i], ret[i]);
+    }
+    
+}
+
+TEST(Vector3D, UnitYVectorWhenCrossWithUnitXVectorReturnsUnitNegativeZVector)
+{
+    // Arrange
+    math::Vector3D<float> vec1(0.0, 1.0, 0.0);
+    math::Vector3D<float> vec2(1.0, 0.0, 0.0);
+
+    math::Vector3D<float> res(0.0, 0.0, -1.0);
+
+    // Act
+    math::Vector3D<float> ret = vec1.cross(vec2);
+
+    // Assert
+    for (int i = 0; i < 3; i++)
+    {
+        ASSERT_FLOAT_EQ(res[i], ret[i]);
+    }
+}
+
+TEST(Vector3D, UnitZVectorWhenCrossWithUnitYVectorReturnsUnitNegativeVector)
+{
+    // Arrange
+    math::Vector3D<float> vec1(0.0, 0.0, 1.0);
+    math::Vector3D<float> vec2(0.0, 1.0, 0.0);
+
+    math::Vector3D<float> res(-1.0, 0.0, 0.0);
+
+    // Act
+    math::Vector3D<float> ret = vec1.cross(vec2);
+
+    // Assert
+    for (int i = 0; i < 3; i++)
+    {
+        ASSERT_FLOAT_EQ(res[i], ret[i]);
+    }
+}
+
+TEST(Vector3D, UnitVectorCrossWithItselfReturnZeroVector)
+{
+    // Arrange
+    math::Vector3D<float> vec(0.0, 0.0, 1.0);
+
+    math::Vector3D<float> res(0.0, 0.0, 0.0);
+
+    // Act
+    math::Vector3D<float> ret = vec.cross(vec);
+
+    // Assert
+    for (int i = 0; i < 3; i++)
+    {
+        ASSERT_FLOAT_EQ(res[i], ret[i]);
+    }
+}
+
+TEST(Vector3D, VectorCrossWithAnotherNonParallelVectorReturnsNewPerpendicularVector)
+{
+    // Arrange
+    math::Vector3D<float> vec1(2.0, 3.0, 4.0);
+    math::Vector3D<float> vec2(5.0, 6.0, 7.0);
+
+    math::Vector3D<float> res(-3.0, 6.0, -3.0);
+
+    // Act
+    math::Vector3D<float> ret = vec1.cross(vec2);
+
+    // Assert
+    for (int i = 0; i < 3; i++)
+    {
+        ASSERT_FLOAT_EQ(res[i], ret[i]);
+    }
+
+    // Orientation Check: Dot must be zero
+    float dotProduct1 = vec1.dot(ret);
+    float dotProduct2 = vec2.dot(ret);
+
+    ASSERT_FLOAT_EQ(0.0, dotProduct1);
+    ASSERT_FLOAT_EQ(0.0, dotProduct2);
+}
+
+TEST(Vector3D, VectorCrossStaticWrapperWithAnotherNonParallelVectorReturnsNewPerpendicularVector)
+{
+    // Arrange
+    math::Vector3D<float> vec1(2.0, 3.0, 4.0);
+    math::Vector3D<float> vec2(5.0, 6.0, 7.0);
+
+    math::Vector3D<float> res(-3.0, 6.0, -3.0);
+
+    // Act
+    math::Vector3D<float> ret = math::Vector3D<float>::cross(vec1, vec2);
+
+    // Assert
+    for (int i = 0; i < 3; i++)
+    {
+        ASSERT_FLOAT_EQ(res[i], ret[i]);
+    }
+
+    // Orientation Check: Dot must be zero
+    float dotProduct1 = math::Vector3D<float>::dot(vec1, ret);
+    float dotProduct2 = math::Vector3D<float>::dot(vec2, ret);
+
+    ASSERT_FLOAT_EQ(0.0, dotProduct1);
+    ASSERT_FLOAT_EQ(0.0, dotProduct2);
+}

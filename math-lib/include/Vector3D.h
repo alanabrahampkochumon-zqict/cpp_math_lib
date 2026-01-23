@@ -29,27 +29,32 @@ namespace math
         Vector3D& operator+=(const Vector3D& other);
         Vector3D operator-(const Vector3D& other) const;
         Vector3D& operator-=(const Vector3D& other);
+
 		template<typename M>
         Vector3D operator*(const M& scalar) const;
+
         template<typename M>
         Vector3D& operator*=(const M& scalar);
+
         template<typename M>
         Vector3D operator/(const M& scalar) const;
+
         template<typename M>
         Vector3D& operator/=(const M& scalar);
 
-        T dot(const Vector3D& other);
-        T cross(const Vector3D& other);
+        T dot(const Vector3D& other) const;
+        Vector3D cross(const Vector3D& other) const;
          
         T mag() const;
         Vector3D normalize() const;
-        
 
+        static T dot(const Vector3D& vecA, const Vector3D& vecB);
+        static Vector3D cross(const Vector3D& vecA, const Vector3D& vecB);
+        
     };
 
     template<typename T, typename M>
     Vector3D<T> operator*(M scalar, const Vector3D<T>& vector);
-
     
 }
 

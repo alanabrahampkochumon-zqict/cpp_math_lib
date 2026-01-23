@@ -59,11 +59,10 @@ namespace math {
 	Vector3D<T> Vector3D<T>::operator*(const M& scalar) const
 	{
 		static_assert(std::is_arithmetic_v<M>, "You can only perform multiplication with a number");
-		Vector3D<T> copy = *this;
+		Vector3D copy = *this;
 		copy *= scalar;
 		return copy;
 	}
-
 
 	template <typename T>
 	template <typename M>
@@ -82,7 +81,7 @@ namespace math {
 	Vector3D<T> Vector3D<T>::operator/(const M& scalar) const
 	{
 		static_assert(std::is_arithmetic_v<M>, "You can only perform division with a number");
-		Vector3D<T> copy = *this;
+		Vector3D copy = *this;
 		copy /= scalar;
 		return copy;
 	}
@@ -101,15 +100,15 @@ namespace math {
 	}
 
 	template <typename T>
-	T Vector3D<T>::dot(const Vector3D& other)
+	T Vector3D<T>::dot(const Vector3D& other) const
 	{
 		return x * other.x + y * other.y + z * other.z;
 	}
 
 	template <typename T>
-	T Vector3D<T>::cross(const Vector3D& other)
+	Vector3D<T> Vector3D<T>::cross(const Vector3D& other) const
 	{
-		return -1.0;
+		return Vector3D(y * other.z - z * other.y, z * other.x - x * other.z, x * other.y - y * other.x);
 	}
 
 
@@ -124,7 +123,7 @@ namespace math {
 
 
 	template <typename T>
-	T math::Vector3D<T>::mag() const
+	T Vector3D<T>::mag() const
 	{
 		return sqrt(x*x + y*y + z*z);
 	}
@@ -136,4 +135,15 @@ namespace math {
 		return (*this) / mag();
 	}
 
+	template <typename T>
+	T Vector3D<T>::dot(const Vector3D& vecA, const Vector3D& vecB)
+	{
+		return vecA.dot(vecB);
+	}
+
+	template <typename T>
+	Vector3D<T> Vector3D<T>::cross(const Vector3D& vecA, const Vector3D& vecB)
+	{
+		return vecA.cross(vecB);
+	}
 }
