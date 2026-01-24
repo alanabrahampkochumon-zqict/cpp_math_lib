@@ -14,10 +14,9 @@ namespace math
 
 
         union {
-            struct { T x, y; };  // NOLINT(clang-diagnostic-nested-anon-types)
-            struct { T r, g; };  // NOLINT(clang-diagnostic-nested-anon-types)
-            struct { T s, t; };  // NOLINT(clang-diagnostic-nested-anon-types)
-
+            struct { T x, y; };
+            struct { T r, g; };
+            struct { T s, t; };
             T elements[2];
         };
 
