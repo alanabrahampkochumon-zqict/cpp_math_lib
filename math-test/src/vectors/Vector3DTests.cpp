@@ -89,8 +89,26 @@ TEST(Vector3D, IndexBasedAssignmentAndRetrivalSupport)
 
 }
 
+TEST(Vector3D, vec3Return3DFloatVector)
+{
+    // Arrange & Act
+    constexpr bool isCorrectType = std::is_same_v<math::vec3, math::Vector3D<float>>;
+
+    // Assert
+    EXPECT_TRUE(isCorrectType);
+}
+
+TEST(Vector3D, dvec3Return3DDoubleVector)
+{
+    // Arrange & Act
+    constexpr bool isCorrectType = std::is_same_v<math::dvec3, math::Vector3D<double>>;
+
+    // Assert
+    EXPECT_TRUE(isCorrectType);
+}
+
 /*
-    VECTOR OPERATIONS TESTS
+*   VECTOR OPERATIONS TESTS
 */
 
 TEST(Vector3D, VectorAddition)

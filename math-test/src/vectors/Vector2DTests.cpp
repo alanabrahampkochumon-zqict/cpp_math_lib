@@ -90,7 +90,7 @@ TEST(Vector2D, vec2Return2DFloatVector)
     EXPECT_TRUE(isCorrectType);
 }
 
-TEST(Vector2D, ivec2Return2DDoubleVector)
+TEST(Vector2D, dvec2Return2DDoubleVector)
 {
     // Arrange & Act
     constexpr bool isCorrectType = std::is_same_v<math::dvec2, math::Vector2D<double>>;

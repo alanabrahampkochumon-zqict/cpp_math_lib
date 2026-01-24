@@ -52,12 +52,11 @@ namespace math
 
     };
 
-    using vec2 = Vector2D<float>;
-    using dvec2 = Vector2D<double>;
-
     template<typename T, typename M>
     Vector2D<T> operator*(M scalar, const Vector2D<T>& vector);
 
+    using vec2 = Vector2D<float>;
+    using dvec2 = Vector2D<double>;
 }
 
 #include "Vector2D.tpp"

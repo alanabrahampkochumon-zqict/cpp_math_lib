@@ -55,6 +55,10 @@ namespace math
 
     template<typename T, typename M>
     Vector3D<T> operator*(M scalar, const Vector3D<T>& vector);
+
+    // Aliases
+    using vec3 = Vector3D<float>;
+    using dvec3 = Vector3D<float>;
     
 }
 
