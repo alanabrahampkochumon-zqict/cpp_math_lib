@@ -10,13 +10,13 @@ function(AppendDirectoryToFiles DirectoryName FileList ResultList)
 endfunction()
 
 set(HeaderFiles Vector3D.h Vector2D.h)
-set(TemplateDefinitionFiles Vector3D.h Vector2D.h)
+set(TemplateDefinitionFiles Vector3D.tpp Vector2D.tpp)
 
 set(HeaderDirectory "include/")
 set(TemplateDefinitionDirectory "include/")
 
 AppendDirectoryToFiles(${HeaderDirectory} "${HeaderFiles}" HeaderSources)
-AppendDirectoryToFiles(${TemplateDefinitionDirectory} "${TemplateDefintionFiles}" TemplateDefinitionSources)
+AppendDirectoryToFiles(${TemplateDefinitionDirectory} "${TemplateDefinitionFiles}" TemplateDefinitionSources)
 
 target_sources(
     MathLib
@@ -37,6 +37,8 @@ target_include_directories(
     "$<INSTALL_INTERFACE:include"
 
 )
+
+message("${TemplateDefinitionSources}")
 
 add_custom_target(
     Math
