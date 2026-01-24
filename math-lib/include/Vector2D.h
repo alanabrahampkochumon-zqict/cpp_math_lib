@@ -14,9 +14,9 @@ namespace math
 
 
         union {
-            struct { T x, y; };
-            struct { T r, g; };
-            struct { T s, t; };
+            struct { T x, y; };  // NOLINT(clang-diagnostic-nested-anon-types)
+            struct { T r, g; };  // NOLINT(clang-diagnostic-nested-anon-types)
+            struct { T s, t; };  // NOLINT(clang-diagnostic-nested-anon-types)
 
             T elements[2];
         };
@@ -52,6 +52,8 @@ namespace math
         static T cross(const Vector2D& vecA, const Vector2D& vecB);
 
     };
+
+    
 
     template<typename T, typename M>
     Vector2D<T> operator*(M scalar, const Vector2D<T>& vector);

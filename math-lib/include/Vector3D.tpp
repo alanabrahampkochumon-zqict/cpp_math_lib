@@ -1,5 +1,4 @@
 #pragma once
-#include "Vector3D.h"
 
 namespace math {
 
