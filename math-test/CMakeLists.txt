@@ -1,9 +1,26 @@
 add_executable(MathTest)
 
+function(AppendDirectoryToFiles DirectoryName FileList ResultList)
+    set(TempFiles "${${ResultList}}")
+    foreach(_FILE ${FileList})
+        string(CONCAT FileName ${DirectoryName} ${_FILE})
+        list(APPEND TempFiles ${FileName})
+    endforeach()
+    set(${ResultList} "${TempFiles}" PARENT_SCOPE)
+endfunction()
+
+# Vector Test Sources
+set(VectorTestDirectory "src/vectors/")
+set(VectorTestFiles Vector2DTests.cpp Vector3DTests.cpp)
+AppendDirectoryToFiles(${VectorTestDirectory} "${VectorTestFiles}" VectorTestSources)
+
+# message(${VectorTestSources})
+
+
 target_sources(
     MathTest
     PRIVATE
-        src/Vector3DTests.cpp
+        ${VectorTestSources}
 )
 
 target_link_libraries(

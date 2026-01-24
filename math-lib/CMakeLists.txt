@@ -1,12 +1,22 @@
 add_library(MathLib INTERFACE)
 
-set(HEADER_FILES
-    include/Vector3D.h
-)
+function(AppendDirectoryToFiles DirectoryName FileList ResultList)
+    set(TempFiles "${${ResultList}}")
+    foreach(_FILE ${FileList})
+        string(CONCAT FileName ${DirectoryName} ${_FILE})
+        list(APPEND TempFiles ${FileName})
+    endforeach()
+    set(${ResultList} "${TempFiles}" PARENT_SCOPE)
+endfunction()
 
-set(TEMPLATE_FILES
-    include/Vector3D.tpp
-)
+set(HeaderFiles Vector3D.h Vector2D.h)
+set(TemplateDefinitionFiles Vector3D.h Vector2D.h)
+
+set(HeaderDirectory "include/")
+set(TemplateDefinitionDirectory "include/")
+
+AppendDirectoryToFiles(${HeaderDirectory} "${HeaderFiles}" HeaderSources)
+AppendDirectoryToFiles(${TemplateDefinitionDirectory} "${TemplateDefintionFiles}" TemplateDefinitionSources)
 
 target_sources(
     MathLib
@@ -16,7 +26,7 @@ target_sources(
     BASE_DIRS
         include
     FILES
-        ${HEADER_FILES} ${TEMPLATE_FILES}
+        ${HeaderSources} ${TemplateDefinitionSources}
 )
 
 target_include_directories(
@@ -32,7 +42,7 @@ add_custom_target(
     Math
     ALL
     SOURCES
-    ${HEADER_FILES} ${TEMPLATE_FILES}
+    ${HeaderSources} ${TemplateDefinitionSources}
 )
 
-source_group("Templates" FILES ${TEMPLATE_FILES})
+source_group("Templates" FILES ${TemplateDefinitionSources})
