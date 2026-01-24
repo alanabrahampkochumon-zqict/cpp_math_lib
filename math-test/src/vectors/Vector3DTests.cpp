@@ -9,7 +9,7 @@
 TEST(Vector3D, EmptyConstructorInitializesZeroVector)
 {
     // Arrange & Act
-    math::Vector3D<float> vec;
+    const math::Vector3D<float> vec;
 
     // Assert
     EXPECT_FLOAT_EQ(0.0f, vec.x);
@@ -20,7 +20,7 @@ TEST(Vector3D, EmptyConstructorInitializesZeroVector)
 TEST(Vector3D, ConstructorParametersInitializesVector)
 {
     // Arrange & Act
-    math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector3D vec(3.0, 1.0, 6.0);
 
     // Assert
     EXPECT_FLOAT_EQ(3.0f, vec.x);
@@ -31,7 +31,7 @@ TEST(Vector3D, ConstructorParametersInitializesVector)
 TEST(Vector3D, AccessibleAsXYZ)
 {
     // Arrange & Act
-    math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector3D vec(3.0, 1.0, 6.0);
 
     // Assert
     EXPECT_FLOAT_EQ(3.0f, vec.x);
@@ -42,7 +42,7 @@ TEST(Vector3D, AccessibleAsXYZ)
 TEST(Vector3D, AccessibleAsSTP)
 {
     // Arrange & Act
-    math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector3D vec(3.0, 1.0, 6.0);
 
     // Assert
     EXPECT_FLOAT_EQ(3.0f, vec.s);
@@ -53,7 +53,7 @@ TEST(Vector3D, AccessibleAsSTP)
 TEST(Vector3D, AccessibleAsRGB)
 {
     // Arrange & Act
-    math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector3D vec(3.0, 1.0, 6.0);
 
     // Assert
     EXPECT_FLOAT_EQ(3.0f, vec.r);
@@ -64,7 +64,7 @@ TEST(Vector3D, AccessibleAsRGB)
 TEST(Vector3D, AccessibleAsArray)
 {
     // Arrange & Act
-    math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector3D vec(3.0, 1.0, 6.0);
 
     // Assert
     EXPECT_FLOAT_EQ(3.0f, vec.elements[0]);
@@ -96,11 +96,11 @@ TEST(Vector3D, IndexBasedAssignmentAndRetrivalSupport)
 TEST(Vector3D, VectorAddition)
 {
     // Arrange
-    math::Vector3D vec1(3.0f, 0.0f, -1.0f);
-    math::Vector3D vec2(9.0f, -5.0f, 10.0f);
+    const math::Vector3D vec1(3.0f, 0.0f, -1.0f);
+    const math::Vector3D vec2(9.0f, -5.0f, 10.0f);
 
     // Act
-    math::Vector3D result = vec1 + vec2;
+    const math::Vector3D result = vec1 + vec2;
 
     // Assert
     EXPECT_FLOAT_EQ(12.0f, result.x);
@@ -112,7 +112,7 @@ TEST(Vector3D, VectorPlusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
 {
     // Arrange
     math::Vector3D vec1(3.0f, 0.0f, -1.0f);
-    math::Vector3D vec2(9.0f, -5.0f, 10.0f);
+    const math::Vector3D vec2(9.0f, -5.0f, 10.0f);
 
     // Act
    vec1 += vec2;
@@ -126,11 +126,11 @@ TEST(Vector3D, VectorPlusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
 TEST(Vector3D, VectorSubtraction)
 {
     // Arrange
-    math::Vector3D vec1(3.0f, 0.0f, -1.0f);
-    math::Vector3D vec2(9.0f, -5.0f, 10.0f);
+    const math::Vector3D vec1(3.0f, 0.0f, -1.0f);
+    const math::Vector3D vec2(9.0f, -5.0f, 10.0f);
 
     // Act
-    math::Vector3D result = vec1 - vec2;
+    const math::Vector3D result = vec1 - vec2;
 
     // Assert
     EXPECT_FLOAT_EQ(-6.0f, result.x);
@@ -142,7 +142,7 @@ TEST(Vector3D, VectorMinusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues
 {
     // Arrange
     math::Vector3D vec1(3.0f, 0.0f, -1.0f);
-    math::Vector3D vec2(9.0f, -5.0f, 10.0f);
+    const math::Vector3D vec2(9.0f, -5.0f, 10.0f);
 
     // Act
     vec1 -= vec2;
@@ -156,10 +156,10 @@ TEST(Vector3D, VectorMinusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues
 TEST(Vector3D, ZeroVectorReturnsMagnitudeZero)
 {
     // Arrange
-    math::Vector3D vec(0.0f, 0.0f, 0.0f);
+    const math::Vector3D vec(0.0f, 0.0f, 0.0f);
 
     // Act
-    float magnitude = vec.mag();
+    const float magnitude = vec.mag();
 
     // Assert
     EXPECT_FLOAT_EQ(0.0f, magnitude);
@@ -168,10 +168,10 @@ TEST(Vector3D, ZeroVectorReturnsMagnitudeZero)
 TEST(Vector3D, UnitVectorReturnsMagnitudeNotEqualToOne)
 {
     // Arrange
-    math::Vector3D<float> vec;
+    const math::Vector3D<float> vec;
 
     // Act
-    float magnitude = vec.mag();
+    const float magnitude = vec.mag();
 
     // Assert
     EXPECT_NE(1.0f, magnitude);
@@ -180,10 +180,10 @@ TEST(Vector3D, UnitVectorReturnsMagnitudeNotEqualToOne)
 TEST(Vector3D, NonUnitVectorReturnsCorrectMagnitude)
 {
     // Arrange
-    math::Vector3D vec(2.0f, 3.0f, 6.0f);
+    const math::Vector3D vec(2.0f, 3.0f, 6.0f);
 
     // Act
-    float magnitude = vec.mag();
+    const float magnitude = vec.mag();
 
     // Assert
     EXPECT_FLOAT_EQ(7.0f, magnitude);
@@ -192,10 +192,10 @@ TEST(Vector3D, NonUnitVectorReturnsCorrectMagnitude)
 TEST(Vector3D, VectorTimesZeroIsZero)
 {
     // Arrange
-    math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector3D vec(3.0, 1.0, 6.0);
 
     // Act
-    math::Vector3D newVec = vec * 0;
+    const math::Vector3D newVec = vec * 0;
 
     // Assert
     ASSERT_FLOAT_EQ(0.0f, newVec.x);
@@ -206,10 +206,10 @@ TEST(Vector3D, VectorTimesZeroIsZero)
 TEST(Vector3D, VectorTimesOneIsItself)
 {
     // Arrange
-    math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector3D vec(3.0, 1.0, 6.0);
 
     // Act
-    math::Vector3D newVec = vec * 1;
+    const math::Vector3D newVec = vec * 1;
 
     // Assert
     ASSERT_FLOAT_EQ(3.0f, newVec.x);
@@ -220,10 +220,10 @@ TEST(Vector3D, VectorTimesOneIsItself)
 TEST(Vector3D, VectorTimesANumberIsANewVector)
 {
     // Arrange
-    math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector3D vec(3.0, 1.0, 6.0);
 
     // Act
-    math::Vector3D newVec = vec * 2;
+    const math::Vector3D newVec = vec * 2;
 
     // Assert
     ASSERT_FLOAT_EQ(6.0f, newVec.x);
@@ -234,10 +234,10 @@ TEST(Vector3D, VectorTimesANumberIsANewVector)
 TEST(Vector3D, VectorTimesAFloatIsANewVector)
 {
     // Arrange
-    math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector3D vec(3.0, 1.0, 6.0);
 
     // Act
-    math::Vector3D newVec = vec * 2.0;
+    const math::Vector3D newVec = vec * 2.0;
 
     // Assert
     ASSERT_FLOAT_EQ(6.0f, newVec.x);
@@ -248,10 +248,10 @@ TEST(Vector3D, VectorTimesAFloatIsANewVector)
 TEST(Vector3D, NumberTimesAVectorIsANewVector)
 {
     // Arrange
-    math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector3D vec(3.0, 1.0, 6.0);
 
     // Act
-    math::Vector3D newVec = 2 * vec;
+    const math::Vector3D newVec = 2 * vec;
 
     // Assert
     ASSERT_FLOAT_EQ(6.0f, newVec.x);
@@ -291,10 +291,10 @@ TEST(Vector3D, VectorTimesEqualAScalarFloatIsSameVectorWithNewValues)
 TEST(Vector3D, VectorDividedByZeroIsInfinity)
 {
     // Arrange
-    math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector3D vec(3.0, 1.0, 6.0);
 
     // Act
-    math::Vector3D newVec = vec / 0;
+    const math::Vector3D newVec = vec / 0;
 
     // Assert
     ASSERT_FLOAT_EQ(INFINITY, newVec.x);
@@ -305,10 +305,10 @@ TEST(Vector3D, VectorDividedByZeroIsInfinity)
 TEST(Vector3D, VectorDividedByOneIsItself)
 {
     // Arrange
-    math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector3D vec(3.0, 1.0, 6.0);
 
     // Act
-    math::Vector3D newVec = vec / 1;
+    const math::Vector3D newVec = vec / 1;
 
     // Assert
     ASSERT_FLOAT_EQ(3.0f, newVec.x);
@@ -319,10 +319,10 @@ TEST(Vector3D, VectorDividedByOneIsItself)
 TEST(Vector3D, VectorDividedByANumberIsANewVector)
 {
     // Arrange
-    math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector3D vec(3.0, 1.0, 6.0);
 
     // Act
-    math::Vector3D newVec = vec / 2;
+    const math::Vector3D newVec = vec / 2;
 
     // Assert
     ASSERT_FLOAT_EQ(1.5f, newVec.x);
@@ -333,10 +333,10 @@ TEST(Vector3D, VectorDividedByANumberIsANewVector)
 TEST(Vector3D, VectorDividedByAFloatIsANewVector)
 {
     // Arrange
-    math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector3D vec(3.0, 1.0, 6.0);
 
     // Act
-    math::Vector3D newVec = vec / 2.0;
+    const math::Vector3D newVec = vec / 2.0;
 
     // Assert
     ASSERT_FLOAT_EQ(1.5f, newVec.x);
@@ -376,10 +376,10 @@ TEST(Vector3D, VectorDividesEqualAFloatIsSameVectorWithNewValues)
 TEST(Vector3D, VectorWhenNormalizedReturnsANormalVector)
 {
     // Arrange
-    math::Vector3D vec(0.0, 3.0, 4.0);
+    const math::Vector3D vec(0.0, 3.0, 4.0);
 
     // Act
-    math::Vector3D normalized = vec.normalize();
+    const math::Vector3D normalized = vec.normalize();
 
     // Assert
     ASSERT_FLOAT_EQ(0.0f, normalized.x);
@@ -391,10 +391,10 @@ TEST(Vector3D, VectorWhenNormalizedReturnsANormalVector)
 TEST(Vector3D, VectorWhenDotWithItselfReturnsOne)
 {
 	// Arrange
-	math::Vector3D<float> vec(1.0, 0.0, 0.0);
+    const math::Vector3D<float> vec(1.0, 0.0, 0.0);
 
     // Act
-    float res = vec.dot(vec);
+    const float res = vec.dot(vec);
 
     // Assert
     ASSERT_FLOAT_EQ(1.0, res);
@@ -403,11 +403,11 @@ TEST(Vector3D, VectorWhenDotWithItselfReturnsOne)
 TEST(Vector3D, VectorWhenDotWithOrthogonalVectorReturnZero)
 {
     // Arrange
-    math::Vector3D<float> vec1(1.0, 0.0, 0.0);
-    math::Vector3D<float> vec2(0.0, 1.0, 0.0);
+    const math::Vector3D<float> vec1(1.0, 0.0, 0.0);
+    const math::Vector3D<float> vec2(0.0, 1.0, 0.0);
 
     // Act
-    float res = vec1.dot(vec2);
+    const float res = vec1.dot(vec2);
 
     // Assert
     ASSERT_FLOAT_EQ(0.0, res);
@@ -416,11 +416,11 @@ TEST(Vector3D, VectorWhenDotWithOrthogonalVectorReturnZero)
 TEST(Vector3D, VectorWhenDotWithOppositeParallelVectorReturnsNegativeOne)
 {
     // Arrange
-    math::Vector3D<float> vec1(1.0, 0.0, 0.0);
-    math::Vector3D<float> vec2(-1.0, 0.0, 0.0);
+    const math::Vector3D<float> vec1(1.0, 0.0, 0.0);
+    const math::Vector3D<float> vec2(-1.0, 0.0, 0.0);
 
     // Act
-    float res = vec1.dot(vec2);
+    const float res = vec1.dot(vec2);
 
     // Assert
     ASSERT_FLOAT_EQ(-1.0, res);
@@ -429,11 +429,11 @@ TEST(Vector3D, VectorWhenDotWithOppositeParallelVectorReturnsNegativeOne)
 TEST(Vector3D, VectorWhenDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
 {
     // Arrange
-    math::Vector3D<float> vec1(1.0, 2.0, 3.0);
-    math::Vector3D<float> vec2(4.0, -5.0, 6.0);
+    const math::Vector3D<float> vec1(1.0, 2.0, 3.0);
+    const math::Vector3D<float> vec2(4.0, -5.0, 6.0);
 
     // Act
-    float res = vec1.dot(vec2);
+    const float res = vec1.dot(vec2);
 
     // Assert
     ASSERT_FLOAT_EQ(12.0, res);
@@ -442,11 +442,11 @@ TEST(Vector3D, VectorWhenDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
 TEST(Vector3D, VectorWhenStaticWrapperDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
 {
     // Arrange
-    math::Vector3D<float> vec1(1.0, 2.0, 3.0);
-    math::Vector3D<float> vec2(4.0, -5.0, 6.0);
+    const math::Vector3D<float> vec1(1.0, 2.0, 3.0);
+    const math::Vector3D<float> vec2(4.0, -5.0, 6.0);
 
     // Act
-    float res = math::Vector3D<float>::dot(vec1, vec2);
+    const float res = math::Vector3D<float>::dot(vec1, vec2);
 
     // Assert
     ASSERT_FLOAT_EQ(12.0, res);
@@ -455,13 +455,13 @@ TEST(Vector3D, VectorWhenStaticWrapperDotWithAnotherNonOrthogonalVectorReturnsNo
 TEST(Vector3D, UnitXVectorWhenCrossWithUnitYVectorReturnsUnitZVector)
 {
     // Arrange
-    math::Vector3D<float> vec1(1.0, 0.0, 0.0);
-    math::Vector3D<float> vec2(0.0, 1.0, 0.0);
+    const math::Vector3D<float> vec1(1.0, 0.0, 0.0);
+    const math::Vector3D<float> vec2(0.0, 1.0, 0.0);
 
-    math::Vector3D<float> res(0.0, 0.0, 1.0);
+    const math::Vector3D<float> res(0.0, 0.0, 1.0);
     
 	// Act
-    math::Vector3D<float> ret = vec1.cross(vec2);
+    const math::Vector3D<float> ret = vec1.cross(vec2);
 
     // Assert
     for (int i = 0; i < 3; i++)
@@ -474,13 +474,13 @@ TEST(Vector3D, UnitXVectorWhenCrossWithUnitYVectorReturnsUnitZVector)
 TEST(Vector3D, UnitYVectorWhenCrossWithUnitXVectorReturnsUnitNegativeZVector)
 {
     // Arrange
-    math::Vector3D<float> vec1(0.0, 1.0, 0.0);
-    math::Vector3D<float> vec2(1.0, 0.0, 0.0);
+    const math::Vector3D<float> vec1(0.0, 1.0, 0.0);
+    const math::Vector3D<float> vec2(1.0, 0.0, 0.0);
 
-    math::Vector3D<float> res(0.0, 0.0, -1.0);
+    const math::Vector3D<float> res(0.0, 0.0, -1.0);
 
     // Act
-    math::Vector3D<float> ret = vec1.cross(vec2);
+    const  math::Vector3D<float> ret = vec1.cross(vec2);
 
     // Assert
     for (int i = 0; i < 3; i++)
@@ -492,13 +492,13 @@ TEST(Vector3D, UnitYVectorWhenCrossWithUnitXVectorReturnsUnitNegativeZVector)
 TEST(Vector3D, UnitZVectorWhenCrossWithUnitYVectorReturnsUnitNegativeVector)
 {
     // Arrange
-    math::Vector3D<float> vec1(0.0, 0.0, 1.0);
-    math::Vector3D<float> vec2(0.0, 1.0, 0.0);
+    const math::Vector3D<float> vec1(0.0, 0.0, 1.0);
+    const math::Vector3D<float> vec2(0.0, 1.0, 0.0);
 
-    math::Vector3D<float> res(-1.0, 0.0, 0.0);
+    const math::Vector3D<float> res(-1.0, 0.0, 0.0);
 
     // Act
-    math::Vector3D<float> ret = vec1.cross(vec2);
+    const math::Vector3D<float> ret = vec1.cross(vec2);
 
     // Assert
     for (int i = 0; i < 3; i++)
@@ -510,12 +510,12 @@ TEST(Vector3D, UnitZVectorWhenCrossWithUnitYVectorReturnsUnitNegativeVector)
 TEST(Vector3D, UnitVectorCrossWithItselfReturnZeroVector)
 {
     // Arrange
-    math::Vector3D<float> vec(0.0, 0.0, 1.0);
+    const math::Vector3D<float> vec(0.0, 0.0, 1.0);
 
-    math::Vector3D<float> res(0.0, 0.0, 0.0);
+    const math::Vector3D<float> res(0.0, 0.0, 0.0);
 
     // Act
-    math::Vector3D<float> ret = vec.cross(vec);
+    const math::Vector3D<float> ret = vec.cross(vec);
 
     // Assert
     for (int i = 0; i < 3; i++)
@@ -527,13 +527,13 @@ TEST(Vector3D, UnitVectorCrossWithItselfReturnZeroVector)
 TEST(Vector3D, VectorCrossWithAnotherNonParallelVectorReturnsNewPerpendicularVector)
 {
     // Arrange
-    math::Vector3D<float> vec1(2.0, 3.0, 4.0);
-    math::Vector3D<float> vec2(5.0, 6.0, 7.0);
+    const math::Vector3D<float> vec1(2.0, 3.0, 4.0);
+    const math::Vector3D<float> vec2(5.0, 6.0, 7.0);
 
-    math::Vector3D<float> res(-3.0, 6.0, -3.0);
+    const math::Vector3D<float> res(-3.0, 6.0, -3.0);
 
     // Act
-    math::Vector3D<float> ret = vec1.cross(vec2);
+    const math::Vector3D<float> ret = vec1.cross(vec2);
 
     // Assert
     for (int i = 0; i < 3; i++)
@@ -542,8 +542,8 @@ TEST(Vector3D, VectorCrossWithAnotherNonParallelVectorReturnsNewPerpendicularVec
     }
 
     // Orientation Check: Dot must be zero
-    float dotProduct1 = vec1.dot(ret);
-    float dotProduct2 = vec2.dot(ret);
+    const float dotProduct1 = vec1.dot(ret);
+    const float dotProduct2 = vec2.dot(ret);
 
     ASSERT_FLOAT_EQ(0.0, dotProduct1);
     ASSERT_FLOAT_EQ(0.0, dotProduct2);
@@ -552,8 +552,8 @@ TEST(Vector3D, VectorCrossWithAnotherNonParallelVectorReturnsNewPerpendicularVec
 TEST(Vector3D, VectorCrossStaticWrapperWithAnotherNonParallelVectorReturnsNewPerpendicularVector)
 {
     // Arrange
-    math::Vector3D<float> vec1(2.0, 3.0, 4.0);
-    math::Vector3D<float> vec2(5.0, 6.0, 7.0);
+    const math::Vector3D<float> vec1(2.0, 3.0, 4.0);
+    const math::Vector3D<float> vec2(5.0, 6.0, 7.0);
 
     math::Vector3D<float> res(-3.0, 6.0, -3.0);
 
@@ -567,8 +567,8 @@ TEST(Vector3D, VectorCrossStaticWrapperWithAnotherNonParallelVectorReturnsNewPer
     }
 
     // Orientation Check: Dot must be zero
-    float dotProduct1 = math::Vector3D<float>::dot(vec1, ret);
-    float dotProduct2 = math::Vector3D<float>::dot(vec2, ret);
+    const float dotProduct1 = math::Vector3D<float>::dot(vec1, ret);
+    const float dotProduct2 = math::Vector3D<float>::dot(vec2, ret);
 
     ASSERT_FLOAT_EQ(0.0, dotProduct1);
     ASSERT_FLOAT_EQ(0.0, dotProduct2);
