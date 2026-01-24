@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <Vector2D.h>
-
+#include <type_traits>
 /*
 * INITIALIZATION AND ACCESS TESTS
 */
@@ -81,8 +81,27 @@ TEST(Vector2D, IndexBasedAssignmentAndRetrivalSupport)
 
 }
 
+TEST(Vector2D, vec2Return2DFloatVector)
+{
+    // Arrange & Act
+    constexpr bool isCorrectType = std::is_same_v<math::vec2, math::Vector2D<float>>;
+
+    // Assert
+    EXPECT_TRUE(isCorrectType);
+}
+
+TEST(Vector2D, ivec2Return2DDoubleVector)
+{
+    // Arrange & Act
+    constexpr bool isCorrectType = std::is_same_v<math::dvec2, math::Vector2D<double>>;
+
+    // Assert
+    EXPECT_TRUE(isCorrectType);
+}
+
+
 /*
-    VECTOR OPERATIONS TESTS
+*  VECTOR OPERATIONS TESTS
 */
 
 TEST(Vector2D, VectorAddition)
