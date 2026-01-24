@@ -58,7 +58,7 @@ namespace math
 
     // Aliases
     using vec3 = Vector3D<float>;
-    using dvec3 = Vector3D<float>;
+    using dvec3 = Vector3D<double>;
     
 }
 
