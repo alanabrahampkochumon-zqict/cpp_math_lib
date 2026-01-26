@@ -1,15 +1,15 @@
 #include <gtest/gtest.h>
 
-#include <Vector3D.h>
+#include <Vector4D.h>
 
 /*
 * INITIALIZATION AND ACCESS TESTS
 */
 
-TEST(Vector3D, EmptyConstructorInitializesZeroVector)
+TEST(Vector4D, EmptyConstructorInitializesZeroVector)
 {
     // Arrange & Act
-    const math::Vector3D<float> vec;
+    const math::Vector4D<float> vec;
 
     // Assert
     EXPECT_FLOAT_EQ(0.0f, vec.x);
@@ -17,10 +17,10 @@ TEST(Vector3D, EmptyConstructorInitializesZeroVector)
     EXPECT_FLOAT_EQ(0.0f, vec.z);
 }
 
-TEST(Vector3D, ConstructorParametersInitializesVector)
+TEST(Vector4D, ConstructorParametersInitializesVector)
 {
     // Arrange & Act
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector4D vec(3.0, 1.0, 6.0);
 
     // Assert
     EXPECT_FLOAT_EQ(3.0f, vec.x);
@@ -28,10 +28,10 @@ TEST(Vector3D, ConstructorParametersInitializesVector)
     EXPECT_FLOAT_EQ(6.0f, vec.z);
 }
 
-TEST(Vector3D, AccessibleAsXYZ)
+TEST(Vector4D, AccessibleAsXYZ)
 {
     // Arrange & Act
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector4D vec(3.0, 1.0, 6.0);
 
     // Assert
     EXPECT_FLOAT_EQ(3.0f, vec.x);
@@ -39,10 +39,10 @@ TEST(Vector3D, AccessibleAsXYZ)
     EXPECT_FLOAT_EQ(6.0f, vec.z);
 }
 
-TEST(Vector3D, AccessibleAsSTP)
+TEST(Vector4D, AccessibleAsSTP)
 {
     // Arrange & Act
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector4D vec(3.0, 1.0, 6.0);
 
     // Assert
     EXPECT_FLOAT_EQ(3.0f, vec.s);
@@ -50,10 +50,10 @@ TEST(Vector3D, AccessibleAsSTP)
     EXPECT_FLOAT_EQ(6.0f, vec.p);
 }
 
-TEST(Vector3D, AccessibleAsRGB)
+TEST(Vector4D, AccessibleAsRGB)
 {
     // Arrange & Act
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector4D vec(3.0, 1.0, 6.0);
 
     // Assert
     EXPECT_FLOAT_EQ(3.0f, vec.r);
@@ -61,10 +61,10 @@ TEST(Vector3D, AccessibleAsRGB)
     EXPECT_FLOAT_EQ(6.0f, vec.b);
 }
 
-TEST(Vector3D, AccessibleAsArray)
+TEST(Vector4D, AccessibleAsArray)
 {
     // Arrange & Act
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector4D vec(3.0, 1.0, 6.0);
 
     // Assert
     EXPECT_FLOAT_EQ(3.0f, vec.elements[0]);
@@ -72,10 +72,10 @@ TEST(Vector3D, AccessibleAsArray)
     EXPECT_FLOAT_EQ(6.0f, vec.elements[2]);
 }
 
-TEST(Vector3D, IndexBasedAssignmentAndRetrivalSupport)
+TEST(Vector4D, IndexBasedAssignmentAndRetrivalSupport)
 {
     // Arrange
-    math::Vector3D<float> vec;
+    math::Vector4D<float> vec;
 
     // Act
     vec[0] = 3.0f;
@@ -89,19 +89,19 @@ TEST(Vector3D, IndexBasedAssignmentAndRetrivalSupport)
 
 }
 
-TEST(Vector3D, vec3Return3DFloatVector)
+TEST(Vector4D, vec3Return3DFloatVector)
 {
     // Arrange & Act
-    constexpr bool isCorrectType = std::is_same_v<math::vec3, math::Vector3D<float>>;
+    constexpr bool isCorrectType = std::is_same_v<math::vec3, math::Vector4D<float>>;
 
     // Assert
     EXPECT_TRUE(isCorrectType);
 }
 
-TEST(Vector3D, dvec3Return3DDoubleVector)
+TEST(Vector4D, dvec3Return3DDoubleVector)
 {
     // Arrange & Act
-    constexpr bool isCorrectType = std::is_same_v<math::dvec3, math::Vector3D<double>>;
+    constexpr bool isCorrectType = std::is_same_v<math::dvec3, math::Vector4D<double>>;
 
     // Assert
     EXPECT_TRUE(isCorrectType);
@@ -111,14 +111,14 @@ TEST(Vector3D, dvec3Return3DDoubleVector)
 *   VECTOR OPERATIONS TESTS
 */
 
-TEST(Vector3D, VectorAddition)
+TEST(Vector4D, VectorAddition)
 {
     // Arrange
-    const math::Vector3D vec1(3.0f, 0.0f, -1.0f);
-    const math::Vector3D vec2(9.0f, -5.0f, 10.0f);
+    const math::Vector4D vec1(3.0f, 0.0f, -1.0f);
+    const math::Vector4D vec2(9.0f, -5.0f, 10.0f);
 
     // Act
-    const math::Vector3D result = vec1 + vec2;
+    const math::Vector4D result = vec1 + vec2;
 
     // Assert
     EXPECT_FLOAT_EQ(12.0f, result.x);
@@ -126,11 +126,11 @@ TEST(Vector3D, VectorAddition)
     EXPECT_FLOAT_EQ(9.0f, result.z);
 }
 
-TEST(Vector3D, VectorPlusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
+TEST(Vector4D, VectorPlusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
 {
     // Arrange
-    math::Vector3D vec1(3.0f, 0.0f, -1.0f);
-    const math::Vector3D vec2(9.0f, -5.0f, 10.0f);
+    math::Vector4D vec1(3.0f, 0.0f, -1.0f);
+    const math::Vector4D vec2(9.0f, -5.0f, 10.0f);
 
     // Act
    vec1 += vec2;
@@ -141,14 +141,14 @@ TEST(Vector3D, VectorPlusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
     EXPECT_FLOAT_EQ(9.0f, vec1.z);
 }
 
-TEST(Vector3D, VectorSubtraction)
+TEST(Vector4D, VectorSubtraction)
 {
     // Arrange
-    const math::Vector3D vec1(3.0f, 0.0f, -1.0f);
-    const math::Vector3D vec2(9.0f, -5.0f, 10.0f);
+    const math::Vector4D vec1(3.0f, 0.0f, -1.0f);
+    const math::Vector4D vec2(9.0f, -5.0f, 10.0f);
 
     // Act
-    const math::Vector3D result = vec1 - vec2;
+    const math::Vector4D result = vec1 - vec2;
 
     // Assert
     EXPECT_FLOAT_EQ(-6.0f, result.x);
@@ -156,11 +156,11 @@ TEST(Vector3D, VectorSubtraction)
     EXPECT_FLOAT_EQ(-11.0f, result.z);
 }
 
-TEST(Vector3D, VectorMinusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
+TEST(Vector4D, VectorMinusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
 {
     // Arrange
-    math::Vector3D vec1(3.0f, 0.0f, -1.0f);
-    const math::Vector3D vec2(9.0f, -5.0f, 10.0f);
+    math::Vector4D vec1(3.0f, 0.0f, -1.0f);
+    const math::Vector4D vec2(9.0f, -5.0f, 10.0f);
 
     // Act
     vec1 -= vec2;
@@ -171,10 +171,10 @@ TEST(Vector3D, VectorMinusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues
     EXPECT_FLOAT_EQ(-11.0f, vec1.z);
 }
 
-TEST(Vector3D, ZeroVectorReturnsMagnitudeZero)
+TEST(Vector4D, ZeroVectorReturnsMagnitudeZero)
 {
     // Arrange
-    const math::Vector3D vec(0.0f, 0.0f, 0.0f);
+    const math::Vector4D vec(0.0f, 0.0f, 0.0f);
 
     // Act
     const float magnitude = vec.mag();
@@ -183,10 +183,10 @@ TEST(Vector3D, ZeroVectorReturnsMagnitudeZero)
     EXPECT_FLOAT_EQ(0.0f, magnitude);
 }
 
-TEST(Vector3D, UnitVectorReturnsMagnitudeNotEqualToOne)
+TEST(Vector4D, UnitVectorReturnsMagnitudeNotEqualToOne)
 {
     // Arrange
-    const math::Vector3D<float> vec;
+    const math::Vector4D<float> vec;
 
     // Act
     const float magnitude = vec.mag();
@@ -195,10 +195,10 @@ TEST(Vector3D, UnitVectorReturnsMagnitudeNotEqualToOne)
     EXPECT_NE(1.0f, magnitude);
 }
 
-TEST(Vector3D, NonUnitVectorReturnsCorrectMagnitude)
+TEST(Vector4D, NonUnitVectorReturnsCorrectMagnitude)
 {
     // Arrange
-    const math::Vector3D vec(2.0f, 3.0f, 6.0f);
+    const math::Vector4D vec(2.0f, 3.0f, 6.0f);
 
     // Act
     const float magnitude = vec.mag();
@@ -207,13 +207,13 @@ TEST(Vector3D, NonUnitVectorReturnsCorrectMagnitude)
     EXPECT_FLOAT_EQ(7.0f, magnitude);
 }
 
-TEST(Vector3D, VectorTimesZeroIsZero)
+TEST(Vector4D, VectorTimesZeroIsZero)
 {
     // Arrange
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector4D vec(3.0, 1.0, 6.0);
 
     // Act
-    const math::Vector3D newVec = vec * 0;
+    const math::Vector4D newVec = vec * 0;
 
     // Assert
     ASSERT_FLOAT_EQ(0.0f, newVec.x);
@@ -221,13 +221,13 @@ TEST(Vector3D, VectorTimesZeroIsZero)
     ASSERT_FLOAT_EQ(0.0f, newVec.z);
 }
 
-TEST(Vector3D, VectorTimesOneIsItself)
+TEST(Vector4D, VectorTimesOneIsItself)
 {
     // Arrange
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector4D vec(3.0, 1.0, 6.0);
 
     // Act
-    const math::Vector3D newVec = vec * 1;
+    const math::Vector4D newVec = vec * 1;
 
     // Assert
     ASSERT_FLOAT_EQ(3.0f, newVec.x);
@@ -235,13 +235,13 @@ TEST(Vector3D, VectorTimesOneIsItself)
     ASSERT_FLOAT_EQ(6.0f, newVec.z);
 }
 
-TEST(Vector3D, VectorTimesANumberIsANewVector)
+TEST(Vector4D, VectorTimesANumberIsANewVector)
 {
     // Arrange
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector4D vec(3.0, 1.0, 6.0);
 
     // Act
-    const math::Vector3D newVec = vec * 2;
+    const math::Vector4D newVec = vec * 2;
 
     // Assert
     ASSERT_FLOAT_EQ(6.0f, newVec.x);
@@ -249,13 +249,13 @@ TEST(Vector3D, VectorTimesANumberIsANewVector)
     ASSERT_FLOAT_EQ(12.0f, newVec.z);
 }
 
-TEST(Vector3D, VectorTimesAFloatIsANewVector)
+TEST(Vector4D, VectorTimesAFloatIsANewVector)
 {
     // Arrange
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector4D vec(3.0, 1.0, 6.0);
 
     // Act
-    const math::Vector3D newVec = vec * 2.0;
+    const math::Vector4D newVec = vec * 2.0;
 
     // Assert
     ASSERT_FLOAT_EQ(6.0f, newVec.x);
@@ -263,13 +263,13 @@ TEST(Vector3D, VectorTimesAFloatIsANewVector)
     ASSERT_FLOAT_EQ(12.0f, newVec.z);
 }
 
-TEST(Vector3D, NumberTimesAVectorIsANewVector)
+TEST(Vector4D, NumberTimesAVectorIsANewVector)
 {
     // Arrange
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector4D vec(3.0, 1.0, 6.0);
 
     // Act
-    const math::Vector3D newVec = 2 * vec;
+    const math::Vector4D newVec = 2 * vec;
 
     // Assert
     ASSERT_FLOAT_EQ(6.0f, newVec.x);
@@ -277,10 +277,10 @@ TEST(Vector3D, NumberTimesAVectorIsANewVector)
     ASSERT_FLOAT_EQ(12.0f, newVec.z);
 }
 
-TEST(Vector3D, VectorTimesEqualAScalarIsSameVectorWithNewValues)
+TEST(Vector4D, VectorTimesEqualAScalarIsSameVectorWithNewValues)
 {
     // Arrange
-    math::Vector3D vec(3.0, 1.0, 6.0);
+    math::Vector4D vec(3.0, 1.0, 6.0);
 
     // Act
     vec *= 2;
@@ -291,10 +291,10 @@ TEST(Vector3D, VectorTimesEqualAScalarIsSameVectorWithNewValues)
     ASSERT_FLOAT_EQ(12.0f, vec.z);
 }
 
-TEST(Vector3D, VectorTimesEqualAScalarFloatIsSameVectorWithNewValues)
+TEST(Vector4D, VectorTimesEqualAScalarFloatIsSameVectorWithNewValues)
 {
     // Arrange
-    math::Vector3D vec(3.0, 1.0, 6.0);
+    math::Vector4D vec(3.0, 1.0, 6.0);
 
     // Act
     vec *= 2.0;
@@ -306,13 +306,13 @@ TEST(Vector3D, VectorTimesEqualAScalarFloatIsSameVectorWithNewValues)
 }
 
 
-TEST(Vector3D, VectorDividedByZeroIsInfinity)
+TEST(Vector4D, VectorDividedByZeroIsInfinity)
 {
     // Arrange
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector4D vec(3.0, 1.0, 6.0);
 
     // Act
-    const math::Vector3D newVec = vec / 0;
+    const math::Vector4D newVec = vec / 0;
 
     // Assert
     ASSERT_FLOAT_EQ(INFINITY, newVec.x);
@@ -320,13 +320,13 @@ TEST(Vector3D, VectorDividedByZeroIsInfinity)
     ASSERT_FLOAT_EQ(INFINITY, newVec.z);
 }
 
-TEST(Vector3D, VectorDividedByOneIsItself)
+TEST(Vector4D, VectorDividedByOneIsItself)
 {
     // Arrange
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector4D vec(3.0, 1.0, 6.0);
 
     // Act
-    const math::Vector3D newVec = vec / 1;
+    const math::Vector4D newVec = vec / 1;
 
     // Assert
     ASSERT_FLOAT_EQ(3.0f, newVec.x);
@@ -334,13 +334,13 @@ TEST(Vector3D, VectorDividedByOneIsItself)
     ASSERT_FLOAT_EQ(6.0f, newVec.z);
 }
 
-TEST(Vector3D, VectorDividedByANumberIsANewVector)
+TEST(Vector4D, VectorDividedByANumberIsANewVector)
 {
     // Arrange
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector4D vec(3.0, 1.0, 6.0);
 
     // Act
-    const math::Vector3D newVec = vec / 2;
+    const math::Vector4D newVec = vec / 2;
 
     // Assert
     ASSERT_FLOAT_EQ(1.5f, newVec.x);
@@ -348,13 +348,13 @@ TEST(Vector3D, VectorDividedByANumberIsANewVector)
     ASSERT_FLOAT_EQ(3.0f, newVec.z);
 }
 
-TEST(Vector3D, VectorDividedByAFloatIsANewVector)
+TEST(Vector4D, VectorDividedByAFloatIsANewVector)
 {
     // Arrange
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+    const math::Vector4D vec(3.0, 1.0, 6.0);
 
     // Act
-    const math::Vector3D newVec = vec / 2.0;
+    const math::Vector4D newVec = vec / 2.0;
 
     // Assert
     ASSERT_FLOAT_EQ(1.5f, newVec.x);
@@ -362,10 +362,10 @@ TEST(Vector3D, VectorDividedByAFloatIsANewVector)
     ASSERT_FLOAT_EQ(3.0f, newVec.z);
 }
 
-TEST(Vector3D, VectorDividesEqualAScalarIsSameVectorWithNewValues)
+TEST(Vector4D, VectorDividesEqualAScalarIsSameVectorWithNewValues)
 {
     // Arrange
-    math::Vector3D vec(3.0, 1.0, 6.0);
+    math::Vector4D vec(3.0, 1.0, 6.0);
 
     // Act
     vec /= 2;
@@ -376,10 +376,10 @@ TEST(Vector3D, VectorDividesEqualAScalarIsSameVectorWithNewValues)
     ASSERT_FLOAT_EQ(3.0f, vec.z);
 }
 
-TEST(Vector3D, VectorDividesEqualAFloatIsSameVectorWithNewValues)
+TEST(Vector4D, VectorDividesEqualAFloatIsSameVectorWithNewValues)
 {
     // Arrange
-    math::Vector3D vec(3.0, 1.0, 6.0);
+    math::Vector4D vec(3.0, 1.0, 6.0);
 
     // Act
     vec /= 2.0;
@@ -391,13 +391,13 @@ TEST(Vector3D, VectorDividesEqualAFloatIsSameVectorWithNewValues)
 }
 
 
-TEST(Vector3D, VectorWhenNormalizedReturnsANormalVector)
+TEST(Vector4D, VectorWhenNormalizedReturnsANormalVector)
 {
     // Arrange
-    const math::Vector3D vec(0.0, 3.0, 4.0);
+    const math::Vector4D vec(0.0, 3.0, 4.0);
 
     // Act
-    const math::Vector3D normalized = vec.normalize();
+    const math::Vector4D normalized = vec.normalize();
 
     // Assert
     ASSERT_FLOAT_EQ(0.0f, normalized.x);
@@ -406,10 +406,10 @@ TEST(Vector3D, VectorWhenNormalizedReturnsANormalVector)
 }
 
 // Dot Product
-TEST(Vector3D, VectorWhenDotWithItselfReturnsOne)
+TEST(Vector4D, VectorWhenDotWithItselfReturnsOne)
 {
 	// Arrange
-    const math::Vector3D<float> vec(1.0, 0.0, 0.0);
+    const math::Vector4D<float> vec(1.0, 0.0, 0.0);
 
     // Act
     const float res = vec.dot(vec);
@@ -418,11 +418,11 @@ TEST(Vector3D, VectorWhenDotWithItselfReturnsOne)
     ASSERT_FLOAT_EQ(1.0, res);
 }
 
-TEST(Vector3D, VectorWhenDotWithOrthogonalVectorReturnZero)
+TEST(Vector4D, VectorWhenDotWithOrthogonalVectorReturnZero)
 {
     // Arrange
-    const math::Vector3D<float> vec1(1.0, 0.0, 0.0);
-    const math::Vector3D<float> vec2(0.0, 1.0, 0.0);
+    const math::Vector4D<float> vec1(1.0, 0.0, 0.0);
+    const math::Vector4D<float> vec2(0.0, 1.0, 0.0);
 
     // Act
     const float res = vec1.dot(vec2);
@@ -431,11 +431,11 @@ TEST(Vector3D, VectorWhenDotWithOrthogonalVectorReturnZero)
     ASSERT_FLOAT_EQ(0.0, res);
 }
 
-TEST(Vector3D, VectorWhenDotWithOppositeParallelVectorReturnsNegativeOne)
+TEST(Vector4D, VectorWhenDotWithOppositeParallelVectorReturnsNegativeOne)
 {
     // Arrange
-    const math::Vector3D<float> vec1(1.0, 0.0, 0.0);
-    const math::Vector3D<float> vec2(-1.0, 0.0, 0.0);
+    const math::Vector4D<float> vec1(1.0, 0.0, 0.0);
+    const math::Vector4D<float> vec2(-1.0, 0.0, 0.0);
 
     // Act
     const float res = vec1.dot(vec2);
@@ -444,11 +444,11 @@ TEST(Vector3D, VectorWhenDotWithOppositeParallelVectorReturnsNegativeOne)
     ASSERT_FLOAT_EQ(-1.0, res);
 }
 
-TEST(Vector3D, VectorWhenDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
+TEST(Vector4D, VectorWhenDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
 {
     // Arrange
-    const math::Vector3D<float> vec1(1.0, 2.0, 3.0);
-    const math::Vector3D<float> vec2(4.0, -5.0, 6.0);
+    const math::Vector4D<float> vec1(1.0, 2.0, 3.0);
+    const math::Vector4D<float> vec2(4.0, -5.0, 6.0);
 
     // Act
     const float res = vec1.dot(vec2);
@@ -457,29 +457,29 @@ TEST(Vector3D, VectorWhenDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
     ASSERT_FLOAT_EQ(12.0, res);
 }
 
-TEST(Vector3D, VectorWhenStaticWrapperDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
+TEST(Vector4D, VectorWhenStaticWrapperDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
 {
     // Arrange
-    const math::Vector3D<float> vec1(1.0, 2.0, 3.0);
-    const math::Vector3D<float> vec2(4.0, -5.0, 6.0);
+    const math::Vector4D<float> vec1(1.0, 2.0, 3.0);
+    const math::Vector4D<float> vec2(4.0, -5.0, 6.0);
 
     // Act
-    const float res = math::Vector3D<float>::dot(vec1, vec2);
+    const float res = math::Vector4D<float>::dot(vec1, vec2);
 
     // Assert
     ASSERT_FLOAT_EQ(12.0, res);
 }
 
-TEST(Vector3D, UnitXVectorWhenCrossWithUnitYVectorReturnsUnitZVector)
+TEST(Vector4D, UnitXVectorWhenCrossWithUnitYVectorReturnsUnitZVector)
 {
     // Arrange
-    const math::Vector3D<float> vec1(1.0, 0.0, 0.0);
-    const math::Vector3D<float> vec2(0.0, 1.0, 0.0);
+    const math::Vector4D<float> vec1(1.0, 0.0, 0.0);
+    const math::Vector4D<float> vec2(0.0, 1.0, 0.0);
 
-    const math::Vector3D<float> res(0.0, 0.0, 1.0);
+    const math::Vector4D<float> res(0.0, 0.0, 1.0);
     
 	// Act
-    const math::Vector3D<float> ret = vec1.cross(vec2);
+    const math::Vector4D<float> ret = vec1.cross(vec2);
 
     // Assert
     for (int i = 0; i < 3; i++)
@@ -489,16 +489,16 @@ TEST(Vector3D, UnitXVectorWhenCrossWithUnitYVectorReturnsUnitZVector)
     
 }
 
-TEST(Vector3D, UnitYVectorWhenCrossWithUnitXVectorReturnsUnitNegativeZVector)
+TEST(Vector4D, UnitYVectorWhenCrossWithUnitXVectorReturnsUnitNegativeZVector)
 {
     // Arrange
-    const math::Vector3D<float> vec1(0.0, 1.0, 0.0);
-    const math::Vector3D<float> vec2(1.0, 0.0, 0.0);
+    const math::Vector4D<float> vec1(0.0, 1.0, 0.0);
+    const math::Vector4D<float> vec2(1.0, 0.0, 0.0);
 
-    const math::Vector3D<float> res(0.0, 0.0, -1.0);
+    const math::Vector4D<float> res(0.0, 0.0, -1.0);
 
     // Act
-    const  math::Vector3D<float> ret = vec1.cross(vec2);
+    const  math::Vector4D<float> ret = vec1.cross(vec2);
 
     // Assert
     for (int i = 0; i < 3; i++)
@@ -507,16 +507,16 @@ TEST(Vector3D, UnitYVectorWhenCrossWithUnitXVectorReturnsUnitNegativeZVector)
     }
 }
 
-TEST(Vector3D, UnitZVectorWhenCrossWithUnitYVectorReturnsUnitNegativeVector)
+TEST(Vector4D, UnitZVectorWhenCrossWithUnitYVectorReturnsUnitNegativeVector)
 {
     // Arrange
-    const math::Vector3D<float> vec1(0.0, 0.0, 1.0);
-    const math::Vector3D<float> vec2(0.0, 1.0, 0.0);
+    const math::Vector4D<float> vec1(0.0, 0.0, 1.0);
+    const math::Vector4D<float> vec2(0.0, 1.0, 0.0);
 
-    const math::Vector3D<float> res(-1.0, 0.0, 0.0);
+    const math::Vector4D<float> res(-1.0, 0.0, 0.0);
 
     // Act
-    const math::Vector3D<float> ret = vec1.cross(vec2);
+    const math::Vector4D<float> ret = vec1.cross(vec2);
 
     // Assert
     for (int i = 0; i < 3; i++)
@@ -525,15 +525,15 @@ TEST(Vector3D, UnitZVectorWhenCrossWithUnitYVectorReturnsUnitNegativeVector)
     }
 }
 
-TEST(Vector3D, UnitVectorCrossWithItselfReturnZeroVector)
+TEST(Vector4D, UnitVectorCrossWithItselfReturnZeroVector)
 {
     // Arrange
-    const math::Vector3D<float> vec(0.0, 0.0, 1.0);
+    const math::Vector4D<float> vec(0.0, 0.0, 1.0);
 
-    const math::Vector3D<float> res(0.0, 0.0, 0.0);
+    const math::Vector4D<float> res(0.0, 0.0, 0.0);
 
     // Act
-    const math::Vector3D<float> ret = vec.cross(vec);
+    const math::Vector4D<float> ret = vec.cross(vec);
 
     // Assert
     for (int i = 0; i < 3; i++)
@@ -542,16 +542,16 @@ TEST(Vector3D, UnitVectorCrossWithItselfReturnZeroVector)
     }
 }
 
-TEST(Vector3D, VectorCrossWithAnotherNonParallelVectorReturnsNewPerpendicularVector)
+TEST(Vector4D, VectorCrossWithAnotherNonParallelVectorReturnsNewPerpendicularVector)
 {
     // Arrange
-    const math::Vector3D<float> vec1(2.0, 3.0, 4.0);
-    const math::Vector3D<float> vec2(5.0, 6.0, 7.0);
+    const math::Vector4D<float> vec1(2.0, 3.0, 4.0);
+    const math::Vector4D<float> vec2(5.0, 6.0, 7.0);
 
-    const math::Vector3D<float> res(-3.0, 6.0, -3.0);
+    const math::Vector4D<float> res(-3.0, 6.0, -3.0);
 
     // Act
-    const math::Vector3D<float> ret = vec1.cross(vec2);
+    const math::Vector4D<float> ret = vec1.cross(vec2);
 
     // Assert
     for (int i = 0; i < 3; i++)
@@ -567,16 +567,16 @@ TEST(Vector3D, VectorCrossWithAnotherNonParallelVectorReturnsNewPerpendicularVec
     ASSERT_FLOAT_EQ(0.0, dotProduct2);
 }
 
-TEST(Vector3D, VectorCrossStaticWrapperWithAnotherNonParallelVectorReturnsNewPerpendicularVector)
+TEST(Vector4D, VectorCrossStaticWrapperWithAnotherNonParallelVectorReturnsNewPerpendicularVector)
 {
     // Arrange
-    const math::Vector3D<float> vec1(2.0, 3.0, 4.0);
-    const math::Vector3D<float> vec2(5.0, 6.0, 7.0);
+    const math::Vector4D<float> vec1(2.0, 3.0, 4.0);
+    const math::Vector4D<float> vec2(5.0, 6.0, 7.0);
 
-    math::Vector3D<float> res(-3.0, 6.0, -3.0);
+    math::Vector4D<float> res(-3.0, 6.0, -3.0);
 
     // Act
-    math::Vector3D<float> ret = math::Vector3D<float>::cross(vec1, vec2);
+    math::Vector4D<float> ret = math::Vector4D<float>::cross(vec1, vec2);
 
     // Assert
     for (int i = 0; i < 3; i++)
@@ -585,8 +585,8 @@ TEST(Vector3D, VectorCrossStaticWrapperWithAnotherNonParallelVectorReturnsNewPer
     }
 
     // Orientation Check: Dot must be zero
-    const float dotProduct1 = math::Vector3D<float>::dot(vec1, ret);
-    const float dotProduct2 = math::Vector3D<float>::dot(vec2, ret);
+    const float dotProduct1 = math::Vector4D<float>::dot(vec1, ret);
+    const float dotProduct2 = math::Vector4D<float>::dot(vec2, ret);
 
     ASSERT_FLOAT_EQ(0.0, dotProduct1);
     ASSERT_FLOAT_EQ(0.0, dotProduct2);

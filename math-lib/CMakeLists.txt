@@ -33,7 +33,7 @@ target_include_directories(
     MathLib
     INTERFACE
 
-    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SRC_DIR}/include>"
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
     "$<INSTALL_INTERFACE:include>"
 
 )
