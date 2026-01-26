@@ -9,8 +9,8 @@ function(AppendDirectoryToFiles DirectoryName FileList ResultList)
     set(${ResultList} "${TempFiles}" PARENT_SCOPE)
 endfunction()
 
-set(HeaderFiles Vector3D.h Vector2D.h)
-set(TemplateDefinitionFiles Vector3D.tpp Vector2D.tpp)
+set(HeaderFiles Vector3D.h Vector2D.h Vector4D.h)
+set(TemplateDefinitionFiles Vector2D.tpp Vector3D.tpp Vector4D.tpp)
 
 set(HeaderDirectory "include/")
 set(TemplateDefinitionDirectory "include/")

@@ -11,7 +11,7 @@ endfunction()
 
 # Vector Test Sources
 set(VectorTestDirectory "src/vectors/")
-set(VectorTestFiles Vector2DTests.cpp Vector3DTests.cpp)
+set(VectorTestFiles Vector2DTests.cpp Vector3DTests.cpp Vector4DTests.cpp)
 AppendDirectoryToFiles(${VectorTestDirectory} "${VectorTestFiles}" VectorTestSources)
 
 # message(${VectorTestSources})
