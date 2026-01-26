@@ -15,6 +15,7 @@ TEST(Vector4D, EmptyConstructorInitializesZeroVector)
     EXPECT_FLOAT_EQ(0.0f, vec.x);
     EXPECT_FLOAT_EQ(0.0f, vec.y);
     EXPECT_FLOAT_EQ(0.0f, vec.z);
+    // EXPECT_FLOAT_EQ(0.0f, vec.w);
 }
 
 TEST(Vector4D, ConstructorParametersInitializesVector)

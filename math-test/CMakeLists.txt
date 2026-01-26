@@ -1,6 +1,6 @@
 add_executable(MathTest)
 
-function(AppendDirectoryToFiles DirectoryName FileList ResultList)
+function(CreateSourceWithDirectory DirectoryName FileList ResultList)
     set(TempFiles "${${ResultList}}")
     foreach(_FILE ${FileList})
         string(CONCAT FileName ${DirectoryName} ${_FILE})
@@ -12,7 +12,7 @@ endfunction()
 # Vector Test Sources
 set(VectorTestDirectory "src/vectors/")
 set(VectorTestFiles Vector2DTests.cpp Vector3DTests.cpp Vector4DTests.cpp)
-AppendDirectoryToFiles(${VectorTestDirectory} "${VectorTestFiles}" VectorTestSources)
+CreateSourceWithDirectory(${VectorTestDirectory} "${VectorTestFiles}" VectorTestSources)
 
 # message(${VectorTestSources})
 
