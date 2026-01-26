@@ -110,19 +110,19 @@ TEST(Vector3D, dvec3Return3DDoubleVector)
 }
 
 
-// TEST(Vector4D, one2DVectorAndFloatCanInitializeA3DVector)
-// {
-//     // Arrange
-//     math::Vector2D vec1(3.0f, 1.0f);
-//
-//     // Act
-//     math::Vector3D vec(vec1, 6.0f);
-//
-//     // Assert
-//     EXPECT_FLOAT_EQ(3.0f, vec[0]);
-//     EXPECT_FLOAT_EQ(1.0f, vec[1]);
-//     EXPECT_FLOAT_EQ(6.0f, vec[2]);
-// }
+TEST(Vector4D, one2DVectorAndFloatCanInitializeA3DVector)
+{
+    // Arrange
+    math::Vector2D vec1(3.0f, 1.0f);
+
+    // Act
+    math::Vector3D vec(vec1, 6.0f);
+
+    // Assert
+    EXPECT_FLOAT_EQ(3.0f, vec.x);
+    EXPECT_FLOAT_EQ(1.0f, vec.y);
+    EXPECT_FLOAT_EQ(6.0f, vec.z);
+}
 
 
 /*

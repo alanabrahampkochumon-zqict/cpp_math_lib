@@ -9,6 +9,9 @@ namespace math {
 	template <typename T>
 	Vector3D<T>::Vector3D(T v1, T v2, T v3) : x(v1), y(v2), z(v3) { }
 
+	template <typename T>
+	Vector3D<T>::Vector3D(Vector2D<T> vec, T v): x(vec.x), y(vec.y), z(v) { }
+
 
 	template <typename T>
 	T& Vector3D<T>::operator[](int i) { return ((&x)[i]); }

@@ -2,6 +2,8 @@
 
 #include <type_traits>
 
+#include "Vector2D.h"
+
 namespace math
 {
 	template<typename T>
@@ -11,6 +13,7 @@ namespace math
 
         Vector3D();
         Vector3D(T v1, T v2, T v3);
+        Vector3D(Vector2D<T> vec, T v);
 
 
         union {
