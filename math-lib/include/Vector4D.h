@@ -2,23 +2,28 @@
 
 #include <type_traits>
 
+#include "Vector2D.h"
+#include "Vector3D.h"
+
 namespace math
 {
     template<typename T>
     struct Vector4D
     {
-        static_assert(std::is_floating_point_v<T>, "Vector4D can only be instantiated with floats(floats, and numbers)");
+        static_assert(std::is_floating_point_v<T>, "Vector4D can only be instantiated with floats(float and double)");
 
         Vector4D();
-        Vector4D(T v1, T v2, T v3);
+        Vector4D(T v1, T v2, T v3, T v4);
+        Vector4D(Vector2D<T>, Vector2D<T>);
+        Vector4D(Vector3D<T>, T);
 
 
         union {
-            struct { T x, y, z; };
-            struct { T r, g, b; };
-            struct { T s, t, p; };
+            struct { T x, y, z, w; };
+            struct { T r, g, b, a; };
+            struct { T s, t, p, q; };
 
-            T elements[3];
+            T elements[4];
         };
 
 

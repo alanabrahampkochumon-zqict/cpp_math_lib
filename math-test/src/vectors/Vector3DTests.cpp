@@ -2,6 +2,8 @@
 
 #include <Vector3D.h>
 
+#include "Vector2D.h"
+
 /*
 * INITIALIZATION AND ACCESS TESTS
 */
@@ -107,6 +109,22 @@ TEST(Vector3D, dvec3Return3DDoubleVector)
     EXPECT_TRUE(isCorrectType);
 }
 
+
+// TEST(Vector4D, one2DVectorAndFloatCanInitializeA3DVector)
+// {
+//     // Arrange
+//     math::Vector2D vec1(3.0f, 1.0f);
+//
+//     // Act
+//     math::Vector3D vec(vec1, 6.0f);
+//
+//     // Assert
+//     EXPECT_FLOAT_EQ(3.0f, vec[0]);
+//     EXPECT_FLOAT_EQ(1.0f, vec[1]);
+//     EXPECT_FLOAT_EQ(6.0f, vec[2]);
+// }
+
+
 /*
 *   VECTOR OPERATIONS TESTS
 */
@@ -183,10 +201,10 @@ TEST(Vector3D, ZeroVectorReturnsMagnitudeZero)
     EXPECT_FLOAT_EQ(0.0f, magnitude);
 }
 
-TEST(Vector3D, UnitVectorReturnsMagnitudeNotEqualToOne)
+TEST(Vector3D, OneVectorReturnsMagnitudeNotEqualToOne)
 {
     // Arrange
-    const math::Vector3D<float> vec;
+    const math::Vector3D vec(1.0f, 1.0f, 1.0f);
 
     // Act
     const float magnitude = vec.mag();

@@ -7,7 +7,7 @@ namespace math
     template<typename T>
     struct Vector2D
     {
-        static_assert(std::is_floating_point_v<T>, "Vector2D can only be instantiated with floats(floats, and numbers)");
+        static_assert(std::is_floating_point_v<T>, "Vector2D can only be instantiated with floats(float and double)");
 
         Vector2D();
         Vector2D(T v1, T v2);
@@ -34,7 +34,7 @@ namespace math
 
         template<typename M>
         Vector2D& operator*=(const M& scalar);
-
+        
         template<typename M>
         Vector2D operator/(const M& scalar) const;
 

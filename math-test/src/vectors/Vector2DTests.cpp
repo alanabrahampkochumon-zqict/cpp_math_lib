@@ -172,10 +172,10 @@ TEST(Vector2D, ZeroVectorReturnsMagnitudeZero)
     EXPECT_FLOAT_EQ(0.0f, magnitude);
 }
 
-TEST(Vector2D, UnitVectorReturnsMagnitudeNotEqualToOne)
+TEST(Vector2D, OneVectorReturnsMagnitudeNotEqualToOne)
 {
     // Arrange
-    const math::Vector2D<float> vec;
+    const math::Vector2D vec(1.0f, 1.0f);
 
     // Act
     const float magnitude = vec.mag();

@@ -7,7 +7,7 @@ namespace math
 	template<typename T>
     struct Vector3D
     {
-        static_assert(std::is_floating_point_v<T>, "Vector3D can only be instantiated with floats(floats, and numbers)");
+        static_assert(std::is_floating_point_v<T>, "Vector3D can only be instantiated with floats(float and double)");
 
         Vector3D();
         Vector3D(T v1, T v2, T v3);
