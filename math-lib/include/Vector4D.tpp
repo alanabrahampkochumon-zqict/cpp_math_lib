@@ -6,106 +6,125 @@ namespace math
 	Vector4D<T>::Vector4D() : x(T(0)), y(T(0)), z(T(0)), w(T(0)) { }
 
 	template <typename T>
-	Vector4D<T>::Vector4D(T v1, T v2, T v3, T v4)
-	{
-	}
+	Vector4D<T>::Vector4D(T v1, T v2, T v3, T v4): x(v1), y(v2), z(v3), w(v4) { }
 
 	template <typename T>
-	Vector4D<T>::Vector4D(Vector2D<T>, Vector2D<T>)
-	{
-	}
+	Vector4D<T>::Vector4D(Vector2D<T> vec1, Vector2D<T> vec2): x(vec1.x), y(vec1.y), z(vec2.x), w(vec2.y) { }
 
 	template <typename T>
-	Vector4D<T>::Vector4D(Vector3D<T>, T)
-	{
-	}
+	Vector4D<T>::Vector4D(Vector3D<T> vec, T v): x(vec.x), y(vec.y), z(vec.z), w(v)	{ }
 
 	template <typename T>
 	T& Vector4D<T>::operator[](int i)
 	{
+		return (&x)[i];
 	}
 
 	template <typename T>
 	const T& Vector4D<T>::operator[](int i) const
 	{
+		return (&x)[i];
 	}
 
 	template <typename T>
 	Vector4D<T> Vector4D<T>::operator+(const Vector4D& other) const
 	{
+		return Vector4D(x + other.x, y + other.y, z + other.z, w + other.w);
 	}
 
 	template <typename T>
 	Vector4D<T>& Vector4D<T>::operator+=(const Vector4D& other)
 	{
+		x += other.x;
+		y += other.y;
+		z += other.z;
+		w += other.w;
+		return *this;
 	}
 
 	template <typename T>
 	Vector4D<T> Vector4D<T>::operator-(const Vector4D& other) const
 	{
+		return Vector4D(x - other.x, y - other.y, z - other.z, w - other.w);
 	}
 
 	template <typename T>
 	Vector4D<T>& Vector4D<T>::operator-=(const Vector4D& other)
 	{
+		x -= other.x;
+		y -= other.y;
+		z -= other.z;
+		w -= other.w;
+		return *this;
 	}
 
 	template <typename T>
 	template <typename M>
 	Vector4D<T> Vector4D<T>::operator*(const M& scalar) const
 	{
+		return Vector4D(x * scalar, y * scalar, z * scalar, w * scalar);
 	}
 
 	template <typename T>
 	template <typename M>
 	Vector4D<T>& Vector4D<T>::operator*=(const M& scalar)
 	{
+		x *= scalar;
+		y *= scalar;
+		z *= scalar;
+		w *= scalar;
+		return *this;
 	}
 
 	template <typename T>
 	template <typename M>
 	Vector4D<T> Vector4D<T>::operator/(const M& scalar) const
 	{
+		T factor = T(1) / scalar;
+		return Vector4D(x * factor, y * factor, z * factor, w * factor);
 	}
 
 	template <typename T>
 	template <typename M>
 	Vector4D<T>& Vector4D<T>::operator/=(const M& scalar)
 	{
+		T factor = T(1) / scalar;
+
+		x *= factor;
+		y *= factor;
+		z *= factor;
+		w *= factor;
+		
+		return *this;
 	}
 
 	template <typename T>
 	T Vector4D<T>::dot(const Vector4D& other) const
 	{
-	}
-
-	template <typename T>
-	Vector4D<T> Vector4D<T>::cross(const Vector4D& other) const
-	{
+		return x * other.x + y * other.y + z * other.z + w * other.w;
 	}
 
 	template <typename T>
 	T Vector4D<T>::mag() const
 	{
+		return sqrt(x * x + y * y + z * z + w * w);
 	}
 
 	template <typename T>
 	Vector4D<T> Vector4D<T>::normalize() const
 	{
+		return *this / mag();
 	}
 
 	template <typename T>
 	T Vector4D<T>::dot(const Vector4D& vecA, const Vector4D& vecB)
 	{
-	}
-
-	template <typename T>
-	Vector4D<T> Vector4D<T>::cross(const Vector4D& vecA, const Vector4D& vecB)
-	{
+		return vecA.dot(vecB);
 	}
 
 	template <typename T, typename M>
 	Vector4D<T> operator*(M scalar, const Vector4D<T>& vector)
 	{
+		return vector * scalar;
 	}
 }

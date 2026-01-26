@@ -97,7 +97,7 @@ TEST(Vector4D, IndexBasedAssignmentAndRetrivalSupport)
 
 }
 
-TEST(Vector4D, vec3Return3DFloatVector)
+TEST(Vector4D, vec4Return3DFloatVector)
 {
     // Arrange & Act
     constexpr bool isCorrectType = std::is_same_v<math::vec4, math::Vector4D<float>>;
@@ -106,10 +106,10 @@ TEST(Vector4D, vec3Return3DFloatVector)
     EXPECT_TRUE(isCorrectType);
 }
 
-TEST(Vector4D, dvec3Return3DDoubleVector)
+TEST(Vector4D, dvec4Return3DDoubleVector)
 {
     // Arrange & Act
-    constexpr bool isCorrectType = std::is_same_v<math::vec4, math::Vector4D<double>>;
+    constexpr bool isCorrectType = std::is_same_v<math::dvec4, math::Vector4D<double>>;
 
     // Assert
     EXPECT_TRUE(isCorrectType);
@@ -179,7 +179,7 @@ TEST(Vector4D, VectorPlusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
     EXPECT_FLOAT_EQ(12.0f, vec1.x);
     EXPECT_FLOAT_EQ(-5.0f, vec1.y);
     EXPECT_FLOAT_EQ(9.0f, vec1.z);
-    EXPECT_FLOAT_EQ(11.0f, vec1.z);
+    EXPECT_FLOAT_EQ(13.0f, vec1.w);
 }
 
 TEST(Vector4D, VectorSubtraction)
@@ -211,7 +211,7 @@ TEST(Vector4D, VectorMinusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues
     EXPECT_FLOAT_EQ(-6.0f, vec1.x);
     EXPECT_FLOAT_EQ(5.0f, vec1.y);
     EXPECT_FLOAT_EQ(-11.0f, vec1.z);
-    EXPECT_FLOAT_EQ(13.0f, vec1.w);
+    EXPECT_FLOAT_EQ(3.0f, vec1.w);
 }
 
 TEST(Vector4D, ZeroVectorReturnsMagnitudeZero)
@@ -383,7 +383,7 @@ TEST(Vector4D, VectorDividedByOneIsItself)
     ASSERT_FLOAT_EQ(3.0f, newVec.x);
     ASSERT_FLOAT_EQ(1.0f, newVec.y);
     ASSERT_FLOAT_EQ(6.0f, newVec.z);
-    ASSERT_FLOAT_EQ(2.0f, newVec.z);
+    ASSERT_FLOAT_EQ(2.0f, newVec.w);
 }
 
 TEST(Vector4D, VectorDividedByANumberIsANewVector)
@@ -413,7 +413,7 @@ TEST(Vector4D, VectorDividedByAFloatIsANewVector)
     ASSERT_FLOAT_EQ(1.5f, newVec.x);
     ASSERT_FLOAT_EQ(0.5f, newVec.y);
     ASSERT_FLOAT_EQ(3.0f, newVec.z);
-    ASSERT_FLOAT_EQ(1.0f, newVec.z);
+    ASSERT_FLOAT_EQ(1.0f, newVec.w);
 }
 
 TEST(Vector4D, VectorDividesEqualAScalarIsSameVectorWithNewValues)
@@ -428,7 +428,7 @@ TEST(Vector4D, VectorDividesEqualAScalarIsSameVectorWithNewValues)
     ASSERT_FLOAT_EQ(1.5f, vec.x);
     ASSERT_FLOAT_EQ(0.5f, vec.y);
     ASSERT_FLOAT_EQ(3.0f, vec.z);
-    ASSERT_FLOAT_EQ(1.0f, vec.z);
+    ASSERT_FLOAT_EQ(1.0f, vec.w);
 }
 
 TEST(Vector4D, VectorDividesEqualAFloatIsSameVectorWithNewValues)
@@ -443,7 +443,7 @@ TEST(Vector4D, VectorDividesEqualAFloatIsSameVectorWithNewValues)
     ASSERT_FLOAT_EQ(1.5f, vec.x);
     ASSERT_FLOAT_EQ(0.5f, vec.y);
     ASSERT_FLOAT_EQ(3.0f, vec.z);
-    ASSERT_FLOAT_EQ(1.0f, vec.z);
+    ASSERT_FLOAT_EQ(1.0f, vec.w);
 }
 
 

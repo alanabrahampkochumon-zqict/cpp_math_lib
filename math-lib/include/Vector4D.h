@@ -14,8 +14,8 @@ namespace math
 
         Vector4D();
         Vector4D(T v1, T v2, T v3, T v4);
-        Vector4D(Vector2D<T>, Vector2D<T>);
-        Vector4D(Vector3D<T>, T);
+        Vector4D(Vector2D<T> vec1, Vector2D<T> vec2);
+        Vector4D(Vector3D<T> vec, T v);
 
 
         union {
@@ -48,13 +48,11 @@ namespace math
         Vector4D& operator/=(const M& scalar);
 
         T dot(const Vector4D& other) const;
-        Vector4D cross(const Vector4D& other) const;
 
         T mag() const;
         Vector4D normalize() const;
 
         static T dot(const Vector4D& vecA, const Vector4D& vecB);
-        static Vector4D cross(const Vector4D& vecA, const Vector4D& vecB);
 
     };
 
