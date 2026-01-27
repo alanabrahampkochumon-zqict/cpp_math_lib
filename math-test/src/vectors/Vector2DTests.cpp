@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include <Vector2D.h>
+#include <vectors/Vector2D.h>
 #include <type_traits>
 /*
 * INITIALIZATION AND ACCESS TESTS

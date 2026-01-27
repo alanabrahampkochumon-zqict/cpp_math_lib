@@ -1,8 +1,7 @@
 #include <gtest/gtest.h>
 
-#include <Vector3D.h>
-
-#include "Vector2D.h"
+#include <vectors/Vector3D.h>
+#include <vectors/Vector2D.h>
 
 /*
 * INITIALIZATION AND ACCESS TESTS
