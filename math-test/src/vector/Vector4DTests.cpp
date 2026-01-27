@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include <vectors/Vector4D.h>
+#include <vector/Vector4D.h>
 
 /*
 * INITIALIZATION AND ACCESS TESTS

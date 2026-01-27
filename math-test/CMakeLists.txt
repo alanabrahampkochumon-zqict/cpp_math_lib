@@ -1,18 +1,14 @@
 add_executable(MathTest)
 
-function(CreateSourceWithDirectory DirectoryName FileList ResultList)
-    set(TempFiles "${${ResultList}}")
-    foreach(_FILE ${FileList})
-        string(CONCAT FileName ${DirectoryName} ${_FILE})
-        list(APPEND TempFiles ${FileName})
-    endforeach()
-    set(${ResultList} "${TempFiles}" PARENT_SCOPE)
-endfunction()
-
 # Vector Test Sources
-set(VectorTestDirectory "src/vectors/")
+set(VectorTestDirectory "src/vector/")
 set(VectorTestFiles Vector2DTests.cpp Vector3DTests.cpp Vector4DTests.cpp)
-CreateSourceWithDirectory(${VectorTestDirectory} "${VectorTestFiles}" VectorTestSources)
+list(TRANSFORM VectorTestFiles PREPEND ${VectorTestDirectory})
+
+# Matrix Test Sources
+set(MatrixTestDirectory "src/matrix/")
+set(MatrixTestFiles Matrix3DTests.cpp)
+list(TRANSFORM MatrixTestFiles PREPEND ${MatrixTestDirectory})
 
 # message(${VectorTestSources})
 
@@ -20,7 +16,7 @@ CreateSourceWithDirectory(${VectorTestDirectory} "${VectorTestFiles}" VectorTest
 target_sources(
     MathTest
     PRIVATE
-        ${VectorTestSources}
+        ${VectorTestFiles} ${MatrixTestFiles}
 )
 
 target_link_libraries(
