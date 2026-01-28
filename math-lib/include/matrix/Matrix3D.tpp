@@ -85,4 +85,50 @@ namespace math
 		// We swap the rows and columns since internally we use column major order.
 		return elements[col][row];
 	}
+
+	/*************************************
+	 *                                   *
+	 *         MATH OPERATIONS           *
+	 *                                   *
+	 *************************************/
+
+	template <typename T>
+	Matrix3D<T> Matrix3D<T>::operator+(const Matrix3D& other) const
+	{
+		return Matrix3D(
+			elements[0][0] + other(0, 0), elements[0][1] + other(1, 0), elements[0][2] + other(2, 0),
+			elements[1][0] + other(0, 1), elements[1][1] + other(1, 1), elements[1][2] + other(2, 1),
+			elements[2][0] + other(0, 2), elements[2][1] + other(1, 2), elements[2][2] + other(2, 2)
+		);
+	}
+
+	template <typename T>
+	Matrix3D<T>& Matrix3D<T>::operator+=(const Matrix3D& other)
+	{
+		// Col 0 + Col 0 of other(since the order is swapped to form row major form, we need to swap the order here as well)
+		elements[0][0] += other(0, 0);
+		elements[1][0] += other(0, 1);
+		elements[2][0] += other(0, 2);
+
+		elements[0][1] += other(1, 0);
+		elements[1][1] += other(1, 1);
+		elements[2][1] += other(1, 2);
+
+		elements[0][2] += other(2, 0);
+		elements[1][2] += other(2, 1);
+		elements[2][2] += other(2, 2);
+		return *this;
+	}
+
+	template <typename T>
+	Matrix3D<T> Matrix3D<T>::operator-(const Matrix3D& other) const
+	{
+		return *this;
+	}
+
+	template <typename T>
+	Matrix3D<T>& Matrix3D<T>::operator-=(const Matrix3D& other)
+	{
+		return *this;
+	}
 }

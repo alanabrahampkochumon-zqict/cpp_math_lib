@@ -14,7 +14,6 @@ namespace math
 		union
 		{
 			Vector3D<T> columns[3];
-			//T elements[9];
 			T elements[3][3];
 		};
 
@@ -28,6 +27,13 @@ namespace math
 
 		T& operator()(size_t row, size_t col);
 		const T& operator()(size_t row, size_t col) const;
+
+		// Math Operators
+		Matrix3D operator+(const Matrix3D& other) const;
+		Matrix3D& operator+=(const Matrix3D& other);
+
+		Matrix3D operator-(const Matrix3D& other) const;
+		Matrix3D& operator-=(const Matrix3D& other);
 	};
 
 }

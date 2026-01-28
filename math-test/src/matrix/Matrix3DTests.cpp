@@ -8,8 +8,7 @@
  *                                   *
  *         INITIALIZATIONS           *
  *                                   *
- *************************************
- **/
+ *************************************/
 
 TEST(Matrix3D, InitializedWithOutParametersProvidesIdentityMatrix)
 {
@@ -131,4 +130,130 @@ TEST(Matrix3D, CanBeAccessedAsAValueAtRowColumn)
 	// Assert
 	for (size_t i = 0; i < size; ++i)
 		ASSERT_FLOAT_EQ(static_cast<float>(i), mat(i / rowMax, i % rowMax));
+}
+
+/*************************************
+ *                                   *
+ *         MATH OPERATIONS           *
+ *                                   *
+ *************************************/
+
+TEST(Matrix3D, SumOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
+{
+	// Arrange
+	const math::Matrix3D<float> a = {
+		1.0, 2.0, 3.0,
+		4.0, 5.0, 6.0,
+		7.0, -8.0, 9.0
+	};
+	const math::Matrix3D<float> b = {
+		3.0, 2.0, 255.0,
+		-8.0, 24.0, 6.0,
+		7.0, 16.0, -98.0
+	};
+	const math::Matrix3D<float> c = {
+		4.0, 4.0, 258.0,
+		-4.0, 29.0, 12.0,
+		14.0, 8.0, -89.0
+	};
+
+	// Act
+	const math::Matrix3D<float> res = a + b;
+	constexpr std::size_t size = 9;
+	constexpr std::size_t rowSize = 3;
+	// Assert
+	for (std::size_t i = 0; i < size; i++)
+	{
+		ASSERT_FLOAT_EQ(c(i / rowSize, i % rowSize), res(i / rowSize, i % rowSize));
+	}
+}
+
+TEST(Matrix3D, PlusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValues)
+{
+	// Arrange
+	math::Matrix3D<float> a = {
+		1.0, 2.0, 3.0,
+		4.0, 5.0, 6.0,
+		7.0, -8.0, 9.0
+	};
+	const math::Matrix3D<float> b = {
+		3.0, 2.0, 255.0,
+		-8.0, 24.0, 6.0,
+		7.0, 16.0, -98.0
+	};
+	const math::Matrix3D<float> c = {
+		4.0, 4.0, 258.0,
+		-4.0, 29.0, 12.0,
+		14.0, 8.0, -89.0
+	};
+
+	// Act
+	a += b;
+	constexpr std::size_t size = 9;
+	constexpr std::size_t rowSize = 3;
+	// Assert
+	for (std::size_t i = 0; i < size; i++)
+	{
+		ASSERT_FLOAT_EQ(c(i / rowSize, i % rowSize), a(i / rowSize, i % rowSize));
+	}
+}
+
+TEST(Matrix3D, DifferenceOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
+{
+	// Arrange
+	const math::Matrix3D<float> a = {
+		1.0, 2.0, 3.0,
+		4.0, 5.0, 6.0,
+		7.0, -8.0, 9.0
+	};
+	const math::Matrix3D<float> b = {
+		3.0, 2.0, 255.0,
+		-8.0, 24.0, 6.0,
+		2.0, 16.0, -98.0
+	};
+	const math::Matrix3D<float> c = {
+		-2.0, 0.0, -252.0,
+		12.0, -19.0, 0.0,
+		5.0, -24.0, 107.0
+	};
+
+	// Act
+	const math::Matrix3D<float> res = a - b;
+	constexpr std::size_t size = 9;
+	constexpr std::size_t rowSize = 3;
+	// Assert
+	for (std::size_t i = 0; i < size; i++)
+	{
+		ASSERT_FLOAT_EQ(c(i / rowSize, i % rowSize), res(i / rowSize, i % rowSize));
+	}
+}
+
+TEST(Matrix3D, MinusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValues)
+{
+	// Arrange
+	math::Matrix3D<float> a = {
+		1.0, 2.0, 3.0,
+		4.0, 5.0, 6.0,
+		7.0, -8.0, 9.0
+	};
+	const math::Matrix3D<float> b = {
+		3.0, 2.0, 255.0,
+		-8.0, 24.0, 6.0,
+		2.0, 16.0, -98.0
+	};
+	const math::Matrix3D<float> c = {
+		-2.0, 0.0, -252.0,
+		12.0, -19.0, 0.0,
+		5.0, -24.0, 107.0
+	};
+
+	// Act
+	a -= b;
+	constexpr std::size_t size = 9;
+	constexpr std::size_t rowSize = 3;
+	// Assert
+	for (std::size_t i = 0; i < size; i++)
+	{
+		ASSERT_FLOAT_EQ(c(i / rowSize, i % rowSize), a(i / rowSize, i % rowSize));
+	}
 }
