@@ -13,7 +13,8 @@ namespace math
 	private:
 		union
 		{
-			T elements[3][3];
+			Vector3D<T> columns[3];
+			T elements[9];
 		};
 
 	public:

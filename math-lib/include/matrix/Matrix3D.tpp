@@ -6,74 +6,70 @@ namespace math
 	Matrix3D<T>::Matrix3D()
 	{
 		// Column Major
-		elements[0][0] = T(1);
-		elements[0][1] = T(0);
-		elements[0][2] = T(0);
+		elements[0] = T(1);
+		elements[3] = T(0);
+		elements[6] = T(0);
 
-		elements[1][0] = T(0);
-		elements[1][1] = T(1);
-		elements[1][2] = T(0);
+		elements[1] = T(0);
+		elements[4] = T(1);
+		elements[7] = T(0);
 
-		elements[2][0] = T(0);
-		elements[2][1] = T(0);
-		elements[2][2] = T(1);
+		elements[2] = T(0);
+		elements[5] = T(0);
+		elements[8] = T(1);
 	}
 
 	template <typename T>
 	Matrix3D<T>::Matrix3D(T v_0_0, T v_0_1, T v_0_2, T v_1_0, T v_1_1, T v_1_2, T v_2_0, T v_2_1, T v_2_2)
 	{
 		// Column Major
-		elements[0][0] = v_0_0;
-		elements[0][1] = v_1_0;
-		elements[0][2] = v_2_0;
+		elements[0] = v_0_0;
+		elements[3] = v_0_1;
+		elements[6] = v_0_2;
 
-		elements[1][0] = v_0_1;
-		elements[1][1] = v_1_1;
-		elements[1][2] = v_2_1;
+		elements[1] = v_1_0;
+		elements[4] = v_1_1;
+		elements[7] = v_1_2;
 
-		elements[2][0] = v_0_2;
-		elements[2][1] = v_1_2;
-		elements[2][2] = v_2_2;
+		elements[2] = v_2_0;
+		elements[5] = v_2_1;
+		elements[8] = v_2_2;
 	}
 
 	template <typename T>
 	Matrix3D<T>::Matrix3D(Vector3D<T> vec1, Vector3D<T> vec2, Vector3D<T> vec3)
 	{
-
-		elements[0][0] = vec1.x;
-		elements[0][1] = vec1.y;
-		elements[0][2] = vec1.z;
-
-		elements[1][0] = vec2.x;
-		elements[1][1] = vec2.y;
-		elements[1][2] = vec2.z;
-
-		elements[2][0] = vec3.x;
-		elements[2][1] = vec3.y;
-		elements[2][2] = vec3.z;
+		columns[0] = vec1;
+		columns[1] = vec2;
+		columns[2] = vec3;
 	}
 
+	/**
+	 * Stores a <Vector3D> instance to the specified column of the matrix.
+	 * @param index index of the matrix.
+	 * @return address to the layout of the memory (alias).
+	 */
 	template <typename T>
 	Vector3D<T>& Matrix3D<T>::operator[](size_t index)
 	{
-		return (*reinterpret_cast<Vector3D<T>*>(elements[index]));
+		return columns[index];
 	}
 
 	template <typename T>
 	const Vector3D<T>& Matrix3D<T>::operator[](size_t index) const
 	{
-		return (*reinterpret_cast<Vector3D<T>*>(elements[index]));
+		return columns[index];
 	}
 
 	template <typename T>
 	T& Matrix3D<T>::operator()(size_t row, size_t col)
 	{
-		return elements[col][row];
+		return columns[col][row];
 	}
 
 	template <typename T>
 	const T& Matrix3D<T>::operator()(size_t row, size_t col) const
 	{
-		return elements[col][row];
+		return columns[col][row];
 	}
 }
