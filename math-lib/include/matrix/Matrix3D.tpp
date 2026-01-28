@@ -6,34 +6,40 @@ namespace math
 	Matrix3D<T>::Matrix3D()
 	{
 		// Column Major
-		elements[0] = T(1);
-		elements[3] = T(0);
-		elements[6] = T(0);
+		// First Column
+		elements[0][0] = T(1);
+		elements[0][1] = T(0);
+		elements[0][2] = T(0);
 
-		elements[1] = T(0);
-		elements[4] = T(1);
-		elements[7] = T(0);
-
-		elements[2] = T(0);
-		elements[5] = T(0);
-		elements[8] = T(1);
+		// Second Column
+		elements[1][0] = T(0);
+		elements[1][1] = T(1);
+		elements[1][2] = T(0);
+		
+		// Third Column
+		elements[2][0] = T(0);
+		elements[2][1] = T(0);
+		elements[2][2] = T(1);
 	}
 
 	template <typename T>
 	Matrix3D<T>::Matrix3D(T v_0_0, T v_0_1, T v_0_2, T v_1_0, T v_1_1, T v_1_2, T v_2_0, T v_2_1, T v_2_2)
 	{
 		// Column Major
-		elements[0] = v_0_0;
-		elements[3] = v_0_1;
-		elements[6] = v_0_2;
+		// First Column
+		elements[0][0] = v_0_0;
+		elements[0][1] = v_1_0;
+		elements[0][2] = v_2_0;
 
-		elements[1] = v_1_0;
-		elements[4] = v_1_1;
-		elements[7] = v_1_2;
+		// Second Column
+		elements[1][0] = v_0_1;
+		elements[1][1] = v_1_1;
+		elements[1][2] = v_2_1;
 
-		elements[2] = v_2_0;
-		elements[5] = v_2_1;
-		elements[8] = v_2_2;
+		// Third Column
+		elements[2][0] = v_0_2;
+		elements[2][1] = v_1_2;
+		elements[2][2] = v_2_2;
 	}
 
 	template <typename T>
@@ -46,8 +52,8 @@ namespace math
 
 	/**
 	 * Stores a <Vector3D> instance to the specified column of the matrix.
-	 * @param index index of the matrix.
-	 * @return address to the layout of the memory (alias).
+	 * @param index column index of the matrix.
+	 * @return alias to the layout of the memory that stores the vector.
 	 */
 	template <typename T>
 	Vector3D<T>& Matrix3D<T>::operator[](size_t index)
@@ -55,6 +61,11 @@ namespace math
 		return columns[index];
 	}
 
+	/**
+	 * Retrieves <Vector3D> instance from a specific column of the matrix.
+	 * @param index column index of the matrix.
+	 * @return alias to the layout of the memory that stores the vector.
+	 */
 	template <typename T>
 	const Vector3D<T>& Matrix3D<T>::operator[](size_t index) const
 	{
@@ -64,12 +75,14 @@ namespace math
 	template <typename T>
 	T& Matrix3D<T>::operator()(size_t row, size_t col)
 	{
-		return columns[col][row];
+		// We swap the rows and columns since internally we use column major order.
+		return elements[col][row];
 	}
 
 	template <typename T>
 	const T& Matrix3D<T>::operator()(size_t row, size_t col) const
 	{
-		return columns[col][row];
+		// We swap the rows and columns since internally we use column major order.
+		return elements[col][row];
 	}
 }

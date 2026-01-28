@@ -14,7 +14,8 @@ namespace math
 		union
 		{
 			Vector3D<T> columns[3];
-			T elements[9];
+			//T elements[9];
+			T elements[3][3];
 		};
 
 	public:
