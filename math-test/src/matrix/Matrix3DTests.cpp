@@ -2,6 +2,7 @@
 
 #include <matrix/Matrix3D.h>
 #include <cstddef>
+#include <iostream>
 
 /*************************************
  *                                   *
@@ -33,9 +34,9 @@ TEST(Matrix3D, InitializedWithParametersProvidesCorrectMatrix)
 {
 	// Arrange & Act
 	const math::Matrix3D<float> mat(
-		0.0, 3.0, 6.0,
-		1.0, 4.0, 7.0,
-		2.0, 5.0, 8.0
+		0.0, 1.0, 2.0,
+		3.0, 4.0, 5.0,
+		6.0, 7.0, 8.0
 	);
 	constexpr std::size_t size = 9;
 	constexpr std::size_t rowMax = 3;
@@ -74,15 +75,15 @@ TEST(Matrix3D, CanMutateVectorAtIndex)
 	// Assert
 	ASSERT_FLOAT_EQ(1.0f, mat(0, 0));
 	ASSERT_FLOAT_EQ(0.0f, mat(0, 1));
-	ASSERT_FLOAT_EQ(0.0f, mat(0, 2));
+	ASSERT_FLOAT_EQ(3.0f, mat(0, 2));
 
 	ASSERT_FLOAT_EQ(0.0f, mat(1, 0));
 	ASSERT_FLOAT_EQ(1.0f, mat(1, 1));
-	ASSERT_FLOAT_EQ(0.0f, mat(1, 2));
+	ASSERT_FLOAT_EQ(1.0f, mat(1, 2));
 
-	ASSERT_FLOAT_EQ(vec.x, mat(2, 0));
-	ASSERT_FLOAT_EQ(vec.y, mat(2, 1));
-	ASSERT_FLOAT_EQ(vec.z, mat(2, 2));
+	ASSERT_FLOAT_EQ(0.0f, mat(2, 0));
+	ASSERT_FLOAT_EQ(0.0f, mat(2, 1));
+	ASSERT_FLOAT_EQ(6.0f, mat(2, 2));
 }
 
 TEST(Matrix3D, CanBeAccessedAsAVectorAtIndex)
