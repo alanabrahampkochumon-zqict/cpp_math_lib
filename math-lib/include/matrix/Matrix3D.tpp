@@ -1,5 +1,7 @@
 #pragma once
 
+#include <type_traits>
+
 namespace math
 {
 	template<typename T>
@@ -15,7 +17,7 @@ namespace math
 		elements[1][0] = T(0);
 		elements[1][1] = T(1);
 		elements[1][2] = T(0);
-		
+
 		// Third Column
 		elements[2][0] = T(0);
 		elements[2][1] = T(0);
@@ -108,11 +110,7 @@ namespace math
 		//);
 
 		// Using Vector3D ops
-		Matrix3D mat;
-		mat[0] = columns[0] + other[0];
-		mat[1] = columns[1] + other[1];
-		mat[2] = columns[2] + other[2];
-		return mat;
+		return Matrix3D(columns[0] + other[0], columns[1] + other[1], columns[2] + other[2]);
 	}
 
 	template <typename T>
@@ -155,11 +153,7 @@ namespace math
 		//);
 
 		// Using Vector3D ops
-		Matrix3D mat;
-		mat[0] = columns[0] - other[0];
-		mat[1] = columns[1] - other[1];
-		mat[2] = columns[2] - other[2];
-		return mat;
+		return Matrix3D(columns[0] - other[0], columns[1] - other[1], columns[2] - other[2]);
 	}
 
 	template <typename T>
@@ -191,6 +185,8 @@ namespace math
 	template <typename S>
 	Matrix3D<T> Matrix3D<T>::operator*(const S& scalar) const
 	{
+		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
+
 		return Matrix3D(columns[0] * scalar, columns[1] * scalar, columns[2] * scalar);
 	}
 
@@ -198,15 +194,44 @@ namespace math
 	template <typename S>
 	Matrix3D<T>& Matrix3D<T>::operator*=(const S& scalar)
 	{
+		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
+
 		columns[0] *= scalar;
 		columns[1] *= scalar;
 		columns[2] *= scalar;
 		return *this;
 	}
 
+	template<typename T>
+	template <typename S>
+	Matrix3D<T> Matrix3D<T>::operator/(const S& scalar) const
+	{
+		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
+
+
+		T factor = T(1) / static_cast<T>(scalar);
+		return Matrix3D(columns[0] * factor, columns[1] * factor, columns[2] * factor);
+
+	}
+
+	template<typename T>
+	template <typename S>
+	Matrix3D<T>& Matrix3D<T>::operator/=(const S& scalar)
+	{
+		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
+
+		T factor = T(1) / static_cast<T>(scalar);
+		columns[0] *= factor;
+		columns[1] *= factor;
+		columns[2] *= factor;
+
+		return *this;
+	}
+
 	template<typename T, typename S>
 	Matrix3D<T> operator*(const S& scalar, const Matrix3D<T>& matrix)
 	{
+		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
 		return Matrix3D(matrix[0] * scalar, matrix[1] * scalar, matrix[2] * scalar);
 	}
 }
