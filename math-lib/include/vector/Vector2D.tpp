@@ -1,5 +1,7 @@
 #pragma once
 
+#include <type_traits>
+
 namespace math {
 
     template <typename T>
@@ -52,6 +54,7 @@ namespace math {
     template <typename M>
     Vector2D<T> Vector2D<T>::operator*(const M& scalar) const
     {
+        static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
         return Vector2D(x * scalar, y * scalar);
     }
 
@@ -59,6 +62,7 @@ namespace math {
     template <typename M>
     Vector2D<T>& Vector2D<T>::operator*=(const M& scalar)
     {
+        static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
         x *= scalar;
         y *= scalar;
         return *this;
@@ -68,6 +72,7 @@ namespace math {
     template <typename M>
     Vector2D<T> Vector2D<T>::operator/(const M& scalar) const
     {
+        static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
         T factor = T(1) / scalar;
         return Vector2D(x * factor, y * factor);
     }
@@ -76,6 +81,7 @@ namespace math {
     template <typename M>
     Vector2D<T>& Vector2D<T>::operator/=(const M& scalar)
     {
+        static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
         T factor = T(1) / scalar;
         x *= factor;
         y *= factor;
@@ -121,6 +127,7 @@ namespace math {
     template<typename T, typename M>
     Vector2D<T> operator*(M scalar, const Vector2D<T>& vector)
     {
+        static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
         return vector * scalar;
     }
 

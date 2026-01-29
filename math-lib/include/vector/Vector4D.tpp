@@ -62,6 +62,8 @@ namespace math
 	template <typename M>
 	Vector4D<T> Vector4D<T>::operator*(const M& scalar) const
 	{
+		static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
+
 		return Vector4D(x * scalar, y * scalar, z * scalar, w * scalar);
 	}
 
@@ -69,6 +71,8 @@ namespace math
 	template <typename M>
 	Vector4D<T>& Vector4D<T>::operator*=(const M& scalar)
 	{
+		static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
+
 		x *= scalar;
 		y *= scalar;
 		z *= scalar;
@@ -80,6 +84,7 @@ namespace math
 	template <typename M>
 	Vector4D<T> Vector4D<T>::operator/(const M& scalar) const
 	{
+		static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
 		T factor = T(1) / scalar;
 		return Vector4D(x * factor, y * factor, z * factor, w * factor);
 	}
@@ -88,6 +93,7 @@ namespace math
 	template <typename M>
 	Vector4D<T>& Vector4D<T>::operator/=(const M& scalar)
 	{
+		static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
 		T factor = T(1) / scalar;
 
 		x *= factor;
@@ -125,6 +131,7 @@ namespace math
 	template <typename T, typename M>
 	Vector4D<T> operator*(M scalar, const Vector4D<T>& vector)
 	{
+		static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
 		return vector * scalar;
 	}
 }

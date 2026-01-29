@@ -82,7 +82,7 @@ namespace math {
 	template <typename M>
 	Vector3D<T> Vector3D<T>::operator/(const M& scalar) const
 	{
-		static_assert(std::is_arithmetic_v<M>, "You can only perform division with a number");
+		static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
 		Vector3D copy = *this;
 		copy /= scalar;
 		return copy;
@@ -93,7 +93,7 @@ namespace math {
 	template <typename M>
 	Vector3D<T>& Vector3D<T>::operator/=(const M& scalar)
 	{
-		static_assert(std::is_arithmetic_v<M>, "You can only perform division with a number");
+		static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
 		T mFactor = T(1) / scalar;
 		x *= mFactor;
 		y *= mFactor;
@@ -117,7 +117,7 @@ namespace math {
 	template <typename T, typename M>
 	Vector3D<T> operator*(M scalar, const Vector3D<T>& vector)
 	{
-		static_assert(std::is_arithmetic_v<M>, "You can only perform division with a number");
+		static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
 		Vector3D<T> copy = vector;
 		copy *= scalar;
 		return copy;
