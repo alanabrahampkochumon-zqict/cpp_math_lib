@@ -95,66 +95,95 @@ namespace math
 	template <typename T>
 	Matrix3D<T> Matrix3D<T>::operator+(const Matrix3D& other) const
 	{
-		// Since `this` elements[0] is the first column, we need to take the rows first (this[c][r]) and add them to the r,c value of other
-		// to get the r,c value for the new matrix
-		return Matrix3D(
-			// First Row
-			elements[0][0] + other(0, 0), elements[1][0] + other(0, 1), elements[2][0] + other(0, 2),
-			// Second Row
-			elements[0][1] + other(1, 0), elements[1][1] + other(1, 1), elements[2][1] + other(1,2),
-			// Third Row
-			elements[0][2] + other(2, 0), elements[1][2] + other(2, 1), elements[2][2] + other(2,2)
-		);
+		// Commented out for profiling
+		//// Since `this` elements[0] is the first column, we need to take the rows first (this[c][r]) and add them to the r,c value of other
+		//// to get the r,c value for the new matrix
+		//return Matrix3D(
+		//	// First Row
+		//	elements[0][0] + other(0, 0), elements[1][0] + other(0, 1), elements[2][0] + other(0, 2),
+		//	// Second Row
+		//	elements[0][1] + other(1, 0), elements[1][1] + other(1, 1), elements[2][1] + other(1,2),
+		//	// Third Row
+		//	elements[0][2] + other(2, 0), elements[1][2] + other(2, 1), elements[2][2] + other(2,2)
+		//);
+
+		// Using Vector3D ops
+		Matrix3D mat;
+		mat[0] = columns[0] + other[0];
+		mat[1] = columns[1] + other[1];
+		mat[2] = columns[2] + other[2];
+		return mat;
 	}
 
 	template <typename T>
 	Matrix3D<T>& Matrix3D<T>::operator+=(const Matrix3D& other)
 	{
-		// First Row
-		elements[0][0] += other(0, 0);
-		elements[1][0] += other(0, 1);
-		elements[2][0] += other(0, 2);
-		// Second Row
-		elements[0][1] += other(1, 0);
-		elements[1][1] += other(1, 1);
-		elements[2][1] += other(1, 2);
-		// Third Row
-		elements[0][2] += other(2, 0);
-		elements[1][2] += other(2, 1);
-		elements[2][2] += other(2, 2);
+		// NOTE: Commented out for profiling
+		//// First Row
+		//elements[0][0] += other(0, 0);
+		//elements[1][0] += other(0, 1);
+		//elements[2][0] += other(0, 2);
+		//// Second Row
+		//elements[0][1] += other(1, 0);
+		//elements[1][1] += other(1, 1);
+		//elements[2][1] += other(1, 2);
+		//// Third Row
+		//elements[0][2] += other(2, 0);
+		//elements[1][2] += other(2, 1);
+		//elements[2][2] += other(2, 2);
+
+		columns[0] += other[0];
+		columns[1] += other[1];
+		columns[2] += other[2];
+
 		return *this;
 	}
 
 	template <typename T>
 	Matrix3D<T> Matrix3D<T>::operator-(const Matrix3D& other) const
 	{
-		// Since `this` elements[0] is the first column, we need to take the rows first (this[c][r]) and add them to the r,c value of other
-		// to get the r,c value for the new matrix
-		return Matrix3D(
-			// First Row
-			elements[0][0] - other(0, 0), elements[1][0] - other(0, 1), elements[2][0] - other(0, 2),
-			// Second Row
-			elements[0][1] - other(1, 0), elements[1][1] - other(1, 1), elements[2][1] - other(1, 2),
-			// Third Row
-			elements[0][2] - other(2, 0), elements[1][2] - other(2, 1), elements[2][2] - other(2, 2)
-		);
+		// NOTE: Commented out for profiling
+		//// Since `this` elements[0] is the first column, we need to take the rows first (this[c][r]) and add them to the r,c value of other
+		//// to get the r,c value for the new matrix
+		//return Matrix3D(
+		//	// First Row
+		//	elements[0][0] - other(0, 0), elements[1][0] - other(0, 1), elements[2][0] - other(0, 2),
+		//	// Second Row
+		//	elements[0][1] - other(1, 0), elements[1][1] - other(1, 1), elements[2][1] - other(1, 2),
+		//	// Third Row
+		//	elements[0][2] - other(2, 0), elements[1][2] - other(2, 1), elements[2][2] - other(2, 2)
+		//);
+
+		// Using Vector3D ops
+		Matrix3D mat;
+		mat[0] = columns[0] - other[0];
+		mat[1] = columns[1] - other[1];
+		mat[2] = columns[2] - other[2];
+		return mat;
 	}
 
 	template <typename T>
 	Matrix3D<T>& Matrix3D<T>::operator-=(const Matrix3D& other)
 	{
-		// First Row
-		elements[0][0] -= other(0, 0);
-		elements[1][0] -= other(0, 1);
-		elements[2][0] -= other(0, 2);
-		// Second Row
-		elements[0][1] -= other(1, 0);
-		elements[1][1] -= other(1, 1);
-		elements[2][1] -= other(1, 2);
-		// Third Row
-		elements[0][2] -= other(2, 0);
-		elements[1][2] -= other(2, 1);
-		elements[2][2] -= other(2, 2);
+		// NOTE: Commented out for profiling
+		//// First Row
+		//elements[0][0] -= other(0, 0);
+		//elements[1][0] -= other(0, 1);
+		//elements[2][0] -= other(0, 2);
+		//// Second Row
+		//elements[0][1] -= other(1, 0);
+		//elements[1][1] -= other(1, 1);
+		//elements[2][1] -= other(1, 2);
+		//// Third Row
+		//elements[0][2] -= other(2, 0);
+		//elements[1][2] -= other(2, 1);
+		//elements[2][2] -= other(2, 2);
+
+		// Using Vector3D ops
+		columns[0] -= other[0];
+		columns[1] -= other[1];
+		columns[2] -= other[2];
+
 		return *this;
 	}
 }
