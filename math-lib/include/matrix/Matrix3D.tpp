@@ -95,25 +95,30 @@ namespace math
 	template <typename T>
 	Matrix3D<T> Matrix3D<T>::operator+(const Matrix3D& other) const
 	{
+		// Since `this` elements[0] is the first column, we need to take the rows first (this[c][r]) and add them to the r,c value of other
+		// to get the r,c value for the new matrix
 		return Matrix3D(
-			elements[0][0] + other(0, 0), elements[0][1] + other(1, 0), elements[0][2] + other(2, 0),
-			elements[1][0] + other(0, 1), elements[1][1] + other(1, 1), elements[1][2] + other(2, 1),
-			elements[2][0] + other(0, 2), elements[2][1] + other(1, 2), elements[2][2] + other(2, 2)
+			// First Row
+			elements[0][0] + other(0, 0), elements[1][0] + other(0, 1), elements[2][0] + other(0, 2),
+			// Second Row
+			elements[0][1] + other(1, 0), elements[1][1] + other(1, 1), elements[2][1] + other(1,2),
+			// Third Row
+			elements[0][2] + other(2, 0), elements[1][2] + other(2, 1), elements[2][2] + other(2,2)
 		);
 	}
 
 	template <typename T>
 	Matrix3D<T>& Matrix3D<T>::operator+=(const Matrix3D& other)
 	{
-		// Col 0 + Col 0 of other(since the order is swapped to form row major form, we need to swap the order here as well)
+		// First Row
 		elements[0][0] += other(0, 0);
 		elements[1][0] += other(0, 1);
 		elements[2][0] += other(0, 2);
-
+		// Second Row
 		elements[0][1] += other(1, 0);
 		elements[1][1] += other(1, 1);
 		elements[2][1] += other(1, 2);
-
+		// Third Row
 		elements[0][2] += other(2, 0);
 		elements[1][2] += other(2, 1);
 		elements[2][2] += other(2, 2);
@@ -123,12 +128,33 @@ namespace math
 	template <typename T>
 	Matrix3D<T> Matrix3D<T>::operator-(const Matrix3D& other) const
 	{
-		return *this;
+		// Since `this` elements[0] is the first column, we need to take the rows first (this[c][r]) and add them to the r,c value of other
+		// to get the r,c value for the new matrix
+		return Matrix3D(
+			// First Row
+			elements[0][0] - other(0, 0), elements[1][0] - other(0, 1), elements[2][0] - other(0, 2),
+			// Second Row
+			elements[0][1] - other(1, 0), elements[1][1] - other(1, 1), elements[2][1] - other(1, 2),
+			// Third Row
+			elements[0][2] - other(2, 0), elements[1][2] - other(2, 1), elements[2][2] - other(2, 2)
+		);
 	}
 
 	template <typename T>
 	Matrix3D<T>& Matrix3D<T>::operator-=(const Matrix3D& other)
 	{
+		// First Row
+		elements[0][0] -= other(0, 0);
+		elements[1][0] -= other(0, 1);
+		elements[2][0] -= other(0, 2);
+		// Second Row
+		elements[0][1] -= other(1, 0);
+		elements[1][1] -= other(1, 1);
+		elements[2][1] -= other(1, 2);
+		// Third Row
+		elements[0][2] -= other(2, 0);
+		elements[1][2] -= other(2, 1);
+		elements[2][2] -= other(2, 2);
 		return *this;
 	}
 }
