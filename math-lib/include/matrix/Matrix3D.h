@@ -34,7 +34,16 @@ namespace math
 
 		Matrix3D operator-(const Matrix3D& other) const;
 		Matrix3D& operator-=(const Matrix3D& other);
+
+		template <typename S>
+		Matrix3D operator*(const S& scalar) const;
+		template <typename S>
+		Matrix3D& operator*=(const S& scalar);
+
 	};
+
+	template<typename T, typename S>
+	Matrix3D<T> operator*(const S& scalar, const Matrix3D<T>& matrix);
 
 }
 

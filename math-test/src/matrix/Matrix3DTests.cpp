@@ -257,3 +257,157 @@ TEST(Matrix3D, MinusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectVal
 		ASSERT_FLOAT_EQ(c(i / rowSize, i % rowSize), a(i / rowSize, i % rowSize));
 	}
 }
+
+TEST(Matrix3D, MatrixTimesAIntegerScalarReturnsCorrectMatrix)
+{
+	// Arrange
+	const math::Matrix3D<float> a = {
+		1.0, 2.0, 3.0,
+		4.0, 5.0, 6.0,
+		7.0, -8.0, 9.0
+	};
+	const int scalar = 2;
+
+	// Act
+	const math::Matrix3D<float> b = a * scalar;
+	constexpr std::size_t size = 9;
+	constexpr std::size_t rowSize = 3;
+	// Assert
+	for (std::size_t i = 0; i < size; i++)
+	{
+		ASSERT_FLOAT_EQ(a(i / rowSize, i % rowSize) * scalar, b(i / rowSize, i % rowSize));
+	}
+
+}
+
+TEST(Matrix3D, IntegerScalarTimesAMatrixReturnsCorrectMatrix)
+{
+	// Arrange
+	const math::Matrix3D<float> a = {
+		1.0, 2.0, 3.0,
+		4.0, 5.0, 6.0,
+		7.0, -8.0, 9.0
+	};
+	const int scalar = 2;
+
+	// Act
+	const math::Matrix3D<float> b = scalar * a;
+	constexpr std::size_t size = 9;
+	constexpr std::size_t rowSize = 3;
+	// Assert
+	for (std::size_t i = 0; i < size; i++)
+	{
+		ASSERT_FLOAT_EQ(a(i / rowSize, i % rowSize) * scalar, b(i / rowSize, i % rowSize));
+	}
+}
+
+TEST(Matrix3D, MatrixTimesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)
+{
+	// Arrange
+	math::Matrix3D<float> a = {
+		1.0, 2.0, 3.0,
+		4.0, 5.0, 6.0,
+		7.0, -8.0, 9.0
+	};
+	const math::Matrix3D<float> b = {
+		2.0, 4.0, 6.0,
+		8.0, 10.0, 12.0,
+		14.0, -16.0, 18.0
+	};
+	const int scalar = 2;
+
+	// Act
+	a *= scalar;
+	constexpr std::size_t size = 9;
+	constexpr std::size_t rowSize = 3;
+	// Assert
+	for (std::size_t i = 0; i < size; i++)
+	{
+		ASSERT_FLOAT_EQ(b(i / rowSize, i % rowSize), a(i / rowSize, i % rowSize));
+	}
+}
+
+TEST(Matrix3D, MatrixTimesOneReturnANewMatrixWithOriginalMatrixValues)
+{
+	// Arrange
+	const math::Matrix3D<float> a = {
+		1.0, 2.0, 3.0,
+		4.0, 5.0, 6.0,
+		7.0, -8.0, 9.0
+	};
+	
+	// Act
+	const math::Matrix3D<float> b = a * 1;
+	constexpr std::size_t size = 9;
+	constexpr std::size_t rowSize = 3;
+	// Assert
+	for (std::size_t i = 0; i < size; i++)
+	{
+		ASSERT_FLOAT_EQ(a(i / rowSize, i % rowSize), b(i / rowSize, i % rowSize));
+	}
+}
+
+TEST(Matrix3D, MatrixTimesZeroScalarReturnsZeroMatrix)
+{
+	// Arrange
+	const math::Matrix3D<float> a = {
+		1.0, 2.0, 3.0,
+		4.0, 5.0, 6.0,
+		7.0, -8.0, 9.0
+	};
+
+	// Act
+	const math::Matrix3D<float> b = a * 0;
+	constexpr std::size_t size = 9;
+	constexpr std::size_t rowSize = 3;
+
+	// Assert
+	for (std::size_t i = 0; i < size; i++)
+	{
+		// Must be exactly 0.0f
+		ASSERT_FLOAT_EQ(0.0f, b(i / rowSize, i % rowSize));
+	}
+}
+
+TEST(Matrix3D, MatrixTimesAFloatScalarReturnsCorrectMatrix)
+{
+	// Arrange
+	const math::Matrix3D<float> a = {
+		1.0, 2.0, 3.0,
+		4.0, 5.0, 6.0,
+		7.0, -8.0, 9.0
+	};
+	const float scalar = 2.5;
+
+	// Act
+	const math::Matrix3D<float> b = a * scalar;
+	constexpr std::size_t size = 9;
+	constexpr std::size_t rowSize = 3;
+	// Assert
+	for (std::size_t i = 0; i < size; i++)
+	{
+		ASSERT_FLOAT_EQ(a(i / rowSize, i % rowSize) * scalar, b(i / rowSize, i % rowSize));
+	}
+}
+
+TEST(Matrix3D, MatrixTimesNegativeFloatScalarFlipsSigns)
+{
+	// Arrange
+	const math::Matrix3D<float> a = {
+		 1.0, -2.0,  0.0,
+		-4.0,  5.0, -6.0,
+		 0.0,  8.0,  9.0
+	};
+	const float scalar = -2.0f;
+
+	// Act
+	const math::Matrix3D<float> b = a * scalar;
+	constexpr std::size_t size = 9;
+	constexpr std::size_t rowSize = 3;
+
+	// Assert
+	for (std::size_t i = 0; i < size; i++)
+	{
+		ASSERT_FLOAT_EQ(a(i / rowSize, i % rowSize) * scalar, b(i / rowSize, i % rowSize));
+	}
+}

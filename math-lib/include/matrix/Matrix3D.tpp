@@ -186,4 +186,27 @@ namespace math
 
 		return *this;
 	}
+
+	template<typename T>
+	template <typename S>
+	Matrix3D<T> Matrix3D<T>::operator*(const S& scalar) const
+	{
+		return Matrix3D(columns[0] * scalar, columns[1] * scalar, columns[2] * scalar);
+	}
+
+	template<typename T>
+	template <typename S>
+	Matrix3D<T>& Matrix3D<T>::operator*=(const S& scalar)
+	{
+		columns[0] *= scalar;
+		columns[1] *= scalar;
+		columns[2] *= scalar;
+		return *this;
+	}
+
+	template<typename T, typename S>
+	Matrix3D<T> operator*(const S& scalar, const Matrix3D<T>& matrix)
+	{
+		return Matrix3D(matrix[0] * scalar, matrix[1] * scalar, matrix[2] * scalar);
+	}
 }
