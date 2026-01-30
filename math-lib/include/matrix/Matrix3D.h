@@ -55,11 +55,30 @@ namespace math
 	template<typename T, typename S>
 	Matrix3D<T> operator*(const S& scalar, const Matrix3D<T>& matrix);
 
-	template<typename T>
-	Vector3D<T> operator*(const Vector3D<T>& vec, const Matrix3D<T>& mat);
+	/**
+	 * Multiplies a Vector3D by a Matrix3D.
+	 * NOTE: This operation transposes the 3x1 vector to a 1x3 vector(matrix), and may not be desirable in engine code.
+	 * @tparam T Type for matrix values
+	 * @tparam S Type for vector values
+	 * @param vec vector to be multiplied.
+	 * @param mat matrix to be multiplied against.
+	 * @return a new Vector3D transposed(row major form)
+	 */
+	template<typename T, typename S>
+	Vector3D<T> operator*(const Vector3D<S>& vec, const Matrix3D<T>& mat);
 
-	template<typename T>
-	Vector3D<T>& operator*=(Vector3D<T>& vec, const Matrix3D<T>& mat);
+	/**
+	 * Multiplies a Vector3D by a Matrix3D.
+	 * NOTE: This operation transposes the 3x1 vector to a 1x3 vector(matrix), and may not be desirable in engine code.
+	 * NOTE: This operation returns a new vector so it is strictly for testing purposes and completeness and is not desirable to be used in game engine.
+	 * @tparam T Type for matrix values
+	 * @tparam S Type for vector values
+	 * @param vec vector to be multiplied.
+	 * @param mat matrix to be multiplied against.
+	 * @return the passed in vector
+	 */
+	template<typename T, typename  S>
+	Vector3D<T> operator*=(Vector3D<S>& vec, const Matrix3D<T>& mat);
 
 }
 

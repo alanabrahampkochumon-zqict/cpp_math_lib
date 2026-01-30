@@ -610,7 +610,6 @@ TEST(Matrix3D, VectorTimesIdentityMatrixReturnsTheSameMatrix)
 	// Arrange
 	const math::Matrix3D<float> mat;
 	math::vec3 vec(2.0f, 1.0f, 3.0f);
-	const math::vec3 expected(27.0f, 33.0f, 39.0f);
 
 	// Act
 	const math::vec3 result = vec * mat;

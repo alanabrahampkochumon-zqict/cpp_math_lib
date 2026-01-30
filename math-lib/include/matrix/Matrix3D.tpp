@@ -26,7 +26,11 @@ namespace math
 	}
 
 	template <typename T>
-	Matrix3D<T>::Matrix3D(T v_0_0, T v_0_1, T v_0_2, T v_1_0, T v_1_1, T v_1_2, T v_2_0, T v_2_1, T v_2_2)
+	Matrix3D<T>::Matrix3D(
+		T v_0_0, T v_0_1, T v_0_2,
+		T v_1_0, T v_1_1, T v_1_2,
+		T v_2_0, T v_2_1, T v_2_2
+	)
 	{
 		// Column Major
 		// First Column
@@ -233,7 +237,12 @@ namespace math
 	template <typename S>
 	Vector3D<T> Matrix3D<T>::operator*(const Vector3D<S>& vec) const
 	{
-		return Vector3D<T>();
+		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
+		return Vector3D(
+			elements[0][0] * vec.x + elements[1][0] * vec.y + elements[2][0] * vec.z, // First Row * Vec
+			elements[0][1] * vec.x + elements[1][1] * vec.y + elements[2][1] * vec.z, // Second Row * Vec
+			elements[0][2] * vec.x + elements[1][2] * vec.y + elements[2][2] * vec.z  // Third Row * Vec
+		);
 	}
 
 
@@ -244,15 +253,26 @@ namespace math
 		return Matrix3D(matrix[0] * scalar, matrix[1] * scalar, matrix[2] * scalar);
 	}
 
-	template <typename T>
-	Vector3D<T> operator*(const Vector3D<T>& vec, const Matrix3D<T>& mat)
+	template <typename T, typename S>
+	Vector3D<T> operator*(const Vector3D<S>& vec, const Matrix3D<T>& mat)
 	{
-		return vec;
+		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
+		return Vector3D(
+			Vector3D<T>::dot(vec, mat[0]),
+			Vector3D<T>::dot(vec, mat[1]),
+			Vector3D<T>::dot(vec, mat[2])
+		);
 	}
 
-	template <typename T>
-	Vector3D<T>& operator*=(Vector3D<T>& vec, const Matrix3D<T>& mat)
+	template <typename T, typename S>
+	Vector3D<T> operator*=(Vector3D<S>& vec, const Matrix3D<T>& mat)
 	{
+		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
+		vec = Vector3D(
+			Vector3D<T>::dot(vec, mat[0]),
+			Vector3D<T>::dot(vec, mat[1]),
+			Vector3D<T>::dot(vec, mat[2])
+		);
 		return vec;
 	}
 }
