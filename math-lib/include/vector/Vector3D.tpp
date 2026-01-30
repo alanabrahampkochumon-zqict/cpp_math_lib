@@ -57,20 +57,20 @@ namespace math {
 
 
 	template <typename T>
-	template <typename M>
-	Vector3D<T> Vector3D<T>::operator*(const M& scalar) const
+	template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+	Vector3D<T> Vector3D<T>::operator*(const S& scalar) const
 	{
-		static_assert(std::is_arithmetic_v<M>, "You can only perform multiplication with a number");
+		static_assert(std::is_arithmetic_v<S>, "You can only perform multiplication with a number");
 		Vector3D copy = *this;
 		copy *= scalar;
 		return copy;
 	}
 
 	template <typename T>
-	template <typename M>
-	Vector3D<T>& Vector3D<T>::operator*=(const M& scalar)
+	template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+	Vector3D<T>& Vector3D<T>::operator*=(const S& scalar)
 	{
-		static_assert(std::is_arithmetic_v<M>, "You can only perform multiplication with a number");
+		static_assert(std::is_arithmetic_v<S>, "You can only perform multiplication with a number");
 		x *= scalar;
 		y *= scalar;
 		z *= scalar;

@@ -37,11 +37,11 @@ namespace math
         Vector2D operator-(const Vector2D &other) const;
         Vector2D &operator-=(const Vector2D &other);
 
-        template <typename M>
-        Vector2D operator*(const M &scalar) const;
+        template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        Vector2D operator*(const S &scalar) const;
 
-        template <typename M>
-        Vector2D &operator*=(const M &scalar);
+        template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        Vector2D &operator*=(const S &scalar);
 
         template <typename M>
         Vector2D operator/(const M &scalar) const;

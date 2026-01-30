@@ -51,18 +51,18 @@ namespace math {
     }
 
     template <typename T>
-    template <typename M>
-    Vector2D<T> Vector2D<T>::operator*(const M& scalar) const
+    template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+    Vector2D<T> Vector2D<T>::operator*(const S& scalar) const
     {
-        static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
+        static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
         return Vector2D(x * scalar, y * scalar);
     }
 
     template <typename T>
-    template <typename M>
-    Vector2D<T>& Vector2D<T>::operator*=(const M& scalar)
+    template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+    Vector2D<T>& Vector2D<T>::operator*=(const S& scalar)
     {
-        static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
+        static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
         x *= scalar;
         y *= scalar;
         return *this;

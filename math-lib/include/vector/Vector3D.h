@@ -33,11 +33,11 @@ namespace math
         Vector3D operator-(const Vector3D& other) const;
         Vector3D& operator-=(const Vector3D& other);
 
-		template<typename M>
-        Vector3D operator*(const M& scalar) const;
+        template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        Vector3D operator*(const S& scalar) const;
 
-        template<typename M>
-        Vector3D& operator*=(const M& scalar);
+        template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        Vector3D& operator*=(const S& scalar);
 
         template<typename M>
         Vector3D operator/(const M& scalar) const;

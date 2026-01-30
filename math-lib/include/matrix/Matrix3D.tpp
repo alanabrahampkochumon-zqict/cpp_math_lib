@@ -1,6 +1,7 @@
 #pragma once
 
 #include <type_traits>
+#include "Matrix3D.h"
 
 namespace math
 {
@@ -182,7 +183,7 @@ namespace math
 	}
 
 	template<typename T>
-	template <typename S>
+	template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 	Matrix3D<T> Matrix3D<T>::operator*(const S& scalar) const
 	{
 		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
@@ -203,7 +204,7 @@ namespace math
 	}
 
 	template<typename T>
-	template <typename S>
+	template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 	Matrix3D<T> Matrix3D<T>::operator/(const S& scalar) const
 	{
 		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
@@ -228,10 +229,30 @@ namespace math
 		return *this;
 	}
 
+	template <typename T>
+	template <typename S>
+	Vector3D<T> Matrix3D<T>::operator*(const Vector3D<S>& vec) const
+	{
+		return Vector3D<T>();
+	}
+
+
 	template<typename T, typename S>
 	Matrix3D<T> operator*(const S& scalar, const Matrix3D<T>& matrix)
 	{
 		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
 		return Matrix3D(matrix[0] * scalar, matrix[1] * scalar, matrix[2] * scalar);
+	}
+
+	template <typename T>
+	Vector3D<T> operator*(const Vector3D<T>& vec, const Matrix3D<T>& mat)
+	{
+		return vec;
+	}
+
+	template <typename T>
+	Vector3D<T>& operator*=(Vector3D<T>& vec, const Matrix3D<T>& mat)
+	{
+		return vec;
 	}
 }

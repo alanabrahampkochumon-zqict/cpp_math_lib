@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <matrix/Matrix3D.h>
-#include <cstddef> //
+#include <cstddef> 
 #include <iostream>
 #include <cmath>
 
@@ -546,4 +546,97 @@ TEST(Matrix3D, MatrixDividedNegativeFloatScalarFlipsSigns)
 	{
 		ASSERT_FLOAT_EQ(a(i / rowSize, i % rowSize) / scalar, b(i / rowSize, i % rowSize));
 	}
+}
+
+TEST(Matrix3D, MatrixTimesVectorReturnsANewMatrixWithCorrectValues)
+{
+	// Arrange
+	const math::Matrix3D mat = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, 8.0f, 9.0f
+	};
+	const math::vec3 vec(2.0f, 1.0f, 3.0f);
+	const math::vec3 expected(13.0f, 31.0f, 49.0f);
+
+	// Act
+	const math::vec3 result = mat * vec;
+
+	// Assert
+	ASSERT_FLOAT_EQ(expected.x, result.x);
+	ASSERT_FLOAT_EQ(expected.y, result.y);
+	ASSERT_FLOAT_EQ(expected.z, result.z);
+
+}
+
+TEST(Matrix3D, IdentityMatrixTimesAVectorReturnsTheSameMatrix)
+{
+	// Arrange
+	const math::Matrix3D<float> mat;
+	const math::vec3 vec(2.0f, 1.0f, 3.0f);
+
+	// Act
+	const math::vec3 result = mat * vec;
+
+	// Assert
+	ASSERT_FLOAT_EQ(vec.x, result.x);
+	ASSERT_FLOAT_EQ(vec.y, result.y);
+	ASSERT_FLOAT_EQ(vec.z, result.z);
+}
+
+
+TEST(Matrix3D, VectorTimesAMatrixReturnsANewVectorWithCorrectValues)
+{
+	// Arrange
+	const math::Matrix3D mat = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, 8.0f, 9.0f
+	};
+	math::vec3 vec(2.0f, 1.0f, 3.0f);
+	const math::vec3 expected(27.0f, 33.0f, 39.0f);
+
+	// Act
+	const math::vec3 result = vec * mat;
+
+	// Assert
+	ASSERT_FLOAT_EQ(expected.x, result.x);
+	ASSERT_FLOAT_EQ(expected.y, result.y);
+	ASSERT_FLOAT_EQ(expected.z, result.z);
+}
+
+TEST(Matrix3D, VectorTimesIdentityMatrixReturnsTheSameMatrix)
+{
+	// Arrange
+	const math::Matrix3D<float> mat;
+	math::vec3 vec(2.0f, 1.0f, 3.0f);
+	const math::vec3 expected(27.0f, 33.0f, 39.0f);
+
+	// Act
+	const math::vec3 result = vec * mat;
+
+	// Assert
+	ASSERT_FLOAT_EQ(vec.x, result.x);
+	ASSERT_FLOAT_EQ(vec.y, result.y);
+	ASSERT_FLOAT_EQ(vec.z, result.z);
+}
+
+TEST(Matrix3D, VectorTimesEqualMatrixReturnTheSameVectorWithNewValues)
+{
+	// Arrange
+	const math::Matrix3D mat = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, 8.0f, 9.0f
+	};
+	math::vec3 vec(2.0f, 1.0f, 3.0f);
+	const math::vec3 expected(27.0f, 33.0f, 39.0f);
+
+	// Act
+	vec *= mat;
+
+	// Assert
+	ASSERT_FLOAT_EQ(expected.x, vec.x);
+	ASSERT_FLOAT_EQ(expected.y, vec.y);
+	ASSERT_FLOAT_EQ(expected.z, vec.z);
 }

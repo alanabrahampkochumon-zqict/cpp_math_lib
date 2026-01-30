@@ -1,5 +1,6 @@
 #pragma once
 #include <cstddef>
+#include <type_traits>
 
 #include "vector/Vector3D.h"
 
@@ -35,20 +36,30 @@ namespace math
 		Matrix3D operator-(const Matrix3D& other) const;
 		Matrix3D& operator-=(const Matrix3D& other);
 
-		template <typename S>
+		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 		Matrix3D operator*(const S& scalar) const;
 		template <typename S>
 		Matrix3D& operator*=(const S& scalar);
 
-		template <typename S>
+		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 		Matrix3D operator/(const S& scalar) const;
 		template <typename S>
 		Matrix3D& operator/=(const S& scalar);
+
+		template <typename S>
+		Vector3D<T> operator*(const Vector3D<S>& vec) const;
+
 
 	};
 
 	template<typename T, typename S>
 	Matrix3D<T> operator*(const S& scalar, const Matrix3D<T>& matrix);
+
+	template<typename T>
+	Vector3D<T> operator*(const Vector3D<T>& vec, const Matrix3D<T>& mat);
+
+	template<typename T>
+	Vector3D<T>& operator*=(Vector3D<T>& vec, const Matrix3D<T>& mat);
 
 }
 

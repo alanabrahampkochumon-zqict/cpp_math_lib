@@ -35,11 +35,11 @@ namespace math
         Vector4D operator-(const Vector4D& other) const;
         Vector4D& operator-=(const Vector4D& other);
 
-        template<typename M>
-        Vector4D operator*(const M& scalar) const;
+        template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        Vector4D operator*(const S& scalar) const;
 
-        template<typename M>
-        Vector4D& operator*=(const M& scalar);
+        template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        Vector4D& operator*=(const S& scalar);
 
         template<typename M>
         Vector4D operator/(const M& scalar) const;
