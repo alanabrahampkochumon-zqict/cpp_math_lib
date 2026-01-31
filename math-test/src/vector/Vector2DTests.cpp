@@ -205,8 +205,8 @@ TEST(Vector2D, VectorTimesZeroIsZero)
     const math::Vector2D newVec = vec * 0;
 
     // Assert
-    ASSERT_FLOAT_EQ(0.0f, newVec.x);
-    ASSERT_FLOAT_EQ(0.0f, newVec.y);
+    EXPECT_FLOAT_EQ(0.0f, newVec.x);
+    EXPECT_FLOAT_EQ(0.0f, newVec.y);
 }
 
 TEST(Vector2D, VectorTimesOneIsItself)
@@ -218,8 +218,8 @@ TEST(Vector2D, VectorTimesOneIsItself)
     const math::Vector2D newVec = vec * 1;
 
     // Assert
-    ASSERT_FLOAT_EQ(3.0f, newVec.x);
-    ASSERT_FLOAT_EQ(1.0f, newVec.y);
+    EXPECT_FLOAT_EQ(3.0f, newVec.x);
+    EXPECT_FLOAT_EQ(1.0f, newVec.y);
 }
 
 TEST(Vector2D, VectorTimesANumberIsANewVector)
@@ -231,8 +231,8 @@ TEST(Vector2D, VectorTimesANumberIsANewVector)
     const math::Vector2D newVec = vec * 2;
 
     // Assert
-    ASSERT_FLOAT_EQ(6.0f, newVec.x);
-    ASSERT_FLOAT_EQ(2.0f, newVec.y);
+    EXPECT_FLOAT_EQ(6.0f, newVec.x);
+    EXPECT_FLOAT_EQ(2.0f, newVec.y);
 }
 
 TEST(Vector2D, VectorTimesAFloatIsANewVector)
@@ -244,8 +244,8 @@ TEST(Vector2D, VectorTimesAFloatIsANewVector)
     const math::Vector2D newVec = vec * 2.0;
 
     // Assert
-    ASSERT_FLOAT_EQ(6.0f, newVec.x);
-    ASSERT_FLOAT_EQ(2.0f, newVec.y);
+    EXPECT_FLOAT_EQ(6.0f, newVec.x);
+    EXPECT_FLOAT_EQ(2.0f, newVec.y);
 }
 
 TEST(Vector2D, NumberTimesAVectorIsANewVector)
@@ -257,8 +257,8 @@ TEST(Vector2D, NumberTimesAVectorIsANewVector)
     const math::Vector2D newVec = 2 * vec;
 
     // Assert
-    ASSERT_FLOAT_EQ(6.0f, newVec.x);
-    ASSERT_FLOAT_EQ(2.0f, newVec.y);
+    EXPECT_FLOAT_EQ(6.0f, newVec.x);
+    EXPECT_FLOAT_EQ(2.0f, newVec.y);
 }
 
 TEST(Vector2D, VectorTimesEqualAScalarIsSameVectorWithNewValues)
@@ -270,8 +270,8 @@ TEST(Vector2D, VectorTimesEqualAScalarIsSameVectorWithNewValues)
     vec *= 2;
 
     // Assert
-    ASSERT_FLOAT_EQ(6.0f, vec.x);
-    ASSERT_FLOAT_EQ(2.0f, vec.y);
+    EXPECT_FLOAT_EQ(6.0f, vec.x);
+    EXPECT_FLOAT_EQ(2.0f, vec.y);
 }
 
 TEST(Vector2D, VectorTimesEqualAScalarFloatIsSameVectorWithNewValues)
@@ -283,8 +283,8 @@ TEST(Vector2D, VectorTimesEqualAScalarFloatIsSameVectorWithNewValues)
     vec *= 2.0;
 
     // Assert
-    ASSERT_FLOAT_EQ(6.0f, vec.x);
-    ASSERT_FLOAT_EQ(2.0f, vec.y);
+    EXPECT_FLOAT_EQ(6.0f, vec.x);
+    EXPECT_FLOAT_EQ(2.0f, vec.y);
 }
 
 
@@ -297,8 +297,8 @@ TEST(Vector2D, VectorDividedByZeroIsInfinity)
     const math::Vector2D newVec = vec / 0;
 
     // Assert
-    ASSERT_FLOAT_EQ(INFINITY, newVec.x);
-    ASSERT_FLOAT_EQ(INFINITY, newVec.y);
+    EXPECT_FLOAT_EQ(INFINITY, newVec.x);
+    EXPECT_FLOAT_EQ(INFINITY, newVec.y);
 }
 
 TEST(Vector2D, VectorDividedByOneIsItself)
@@ -310,8 +310,8 @@ TEST(Vector2D, VectorDividedByOneIsItself)
     const math::Vector2D newVec = vec / 1;
 
     // Assert
-    ASSERT_FLOAT_EQ(3.0f, newVec.x);
-    ASSERT_FLOAT_EQ(1.0f, newVec.y);
+    EXPECT_FLOAT_EQ(3.0f, newVec.x);
+    EXPECT_FLOAT_EQ(1.0f, newVec.y);
 }
 
 TEST(Vector2D, VectorDividedByANumberIsANewVector)
@@ -323,8 +323,8 @@ TEST(Vector2D, VectorDividedByANumberIsANewVector)
     const math::Vector2D newVec = vec / 2;
 
     // Assert
-    ASSERT_FLOAT_EQ(1.5f, newVec.x);
-    ASSERT_FLOAT_EQ(0.5f, newVec.y);
+    EXPECT_FLOAT_EQ(1.5f, newVec.x);
+    EXPECT_FLOAT_EQ(0.5f, newVec.y);
 }
 
 TEST(Vector2D, VectorDividedByAFloatIsANewVector)
@@ -336,8 +336,8 @@ TEST(Vector2D, VectorDividedByAFloatIsANewVector)
     const math::Vector2D newVec = vec / 2.0;
 
     // Assert
-    ASSERT_FLOAT_EQ(1.5f, newVec.x);
-    ASSERT_FLOAT_EQ(0.5f, newVec.y);
+    EXPECT_FLOAT_EQ(1.5f, newVec.x);
+    EXPECT_FLOAT_EQ(0.5f, newVec.y);
 }
 
 TEST(Vector2D, VectorDividesEqualAScalarIsSameVectorWithNewValues)
@@ -349,8 +349,8 @@ TEST(Vector2D, VectorDividesEqualAScalarIsSameVectorWithNewValues)
     vec /= 2;
 
     // Assert
-    ASSERT_FLOAT_EQ(1.5f, vec.x);
-    ASSERT_FLOAT_EQ(0.5f, vec.y);
+    EXPECT_FLOAT_EQ(1.5f, vec.x);
+    EXPECT_FLOAT_EQ(0.5f, vec.y);
 }
 
 TEST(Vector2D, VectorDividesEqualAFloatIsSameVectorWithNewValues)
@@ -362,8 +362,8 @@ TEST(Vector2D, VectorDividesEqualAFloatIsSameVectorWithNewValues)
     vec /= 2.0;
 
     // Assert
-    ASSERT_FLOAT_EQ(1.5f, vec.x);
-    ASSERT_FLOAT_EQ(0.5f, vec.y);
+    EXPECT_FLOAT_EQ(1.5f, vec.x);
+    EXPECT_FLOAT_EQ(0.5f, vec.y);
 }
 
 
@@ -376,8 +376,8 @@ TEST(Vector2D, VectorWhenNormalizedReturnsANormalVector)
     math::Vector2D normalized = vec.normalize();
 
     // Assert
-    ASSERT_FLOAT_EQ(0.8f, normalized.x);
-    ASSERT_FLOAT_EQ(0.6f, normalized.y);
+    EXPECT_FLOAT_EQ(0.8f, normalized.x);
+    EXPECT_FLOAT_EQ(0.6f, normalized.y);
 }
 
 // Dot Product
@@ -390,7 +390,7 @@ TEST(Vector2D, VectorWhenDotWithItselfReturnsOne)
     const float res = vec.dot(vec);
 
     // Assert
-    ASSERT_FLOAT_EQ(1.0, res);
+    EXPECT_FLOAT_EQ(1.0, res);
 }
 
 TEST(Vector2D, VectorWhenDotWithOrthogonalVectorReturnZero)
@@ -403,7 +403,7 @@ TEST(Vector2D, VectorWhenDotWithOrthogonalVectorReturnZero)
     const float res = vec1.dot(vec2);
 
     // Assert
-    ASSERT_FLOAT_EQ(0.0, res);
+    EXPECT_FLOAT_EQ(0.0, res);
 }
 
 TEST(Vector2D, VectorWhenDotWithOppositeParallelVectorReturnsNegativeOne)
@@ -416,7 +416,7 @@ TEST(Vector2D, VectorWhenDotWithOppositeParallelVectorReturnsNegativeOne)
     const float res = vec1.dot(vec2);
 
     // Assert
-    ASSERT_FLOAT_EQ(-1.0, res);
+    EXPECT_FLOAT_EQ(-1.0, res);
 }
 
 TEST(Vector2D, VectorWhenDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
@@ -429,7 +429,7 @@ TEST(Vector2D, VectorWhenDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
     const float res = vec1.dot(vec2);
 
     // Assert
-    ASSERT_FLOAT_EQ(-6.0, res);
+    EXPECT_FLOAT_EQ(-6.0, res);
 }
 
 TEST(Vector2D, VectorWhenStaticWrapperDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
@@ -442,7 +442,7 @@ TEST(Vector2D, VectorWhenStaticWrapperDotWithAnotherNonOrthogonalVectorReturnsNo
     const float res = math::Vector2D<float>::dot(vec1, vec2);
 
     // Assert
-    ASSERT_FLOAT_EQ(-6.0, res);
+    EXPECT_FLOAT_EQ(-6.0, res);
 }
 
 TEST(Vector2D, UnitXVectorWhenCrossWithUnitYVectorReturnsOne)
@@ -455,7 +455,7 @@ TEST(Vector2D, UnitXVectorWhenCrossWithUnitYVectorReturnsOne)
     const float res = vec1.cross(vec2);
 
     // Assert
-    ASSERT_FLOAT_EQ(1.0, res);
+    EXPECT_FLOAT_EQ(1.0, res);
 }
 
 TEST(Vector2D, UnitYVectorWhenCrossWithUnitXVectorReturnsUnitNegativeOne)
@@ -468,7 +468,7 @@ TEST(Vector2D, UnitYVectorWhenCrossWithUnitXVectorReturnsUnitNegativeOne)
     float res = vec1.cross(vec2);
 
     // Assert
-    ASSERT_FLOAT_EQ(-1.0, res);
+    EXPECT_FLOAT_EQ(-1.0, res);
 }
 
 TEST(Vector2D, UnitVectorCrossWithItselfReturnZero)
@@ -481,7 +481,7 @@ TEST(Vector2D, UnitVectorCrossWithItselfReturnZero)
     const float res = vec.cross(vec);
 
     // Assert
-    ASSERT_FLOAT_EQ(0.0, res);
+    EXPECT_FLOAT_EQ(0.0, res);
 }
 
 TEST(Vector2D, VectorCrossWithAnotherNonParallelVectorReturnsPseudoCrossProduct)
@@ -494,7 +494,7 @@ TEST(Vector2D, VectorCrossWithAnotherNonParallelVectorReturnsPseudoCrossProduct)
     const float res = vec1.cross(vec2);
 
     // Assert
-    ASSERT_FLOAT_EQ(12.0, res);
+    EXPECT_FLOAT_EQ(12.0, res);
 }
 
 TEST(Vector2D, VectorCrossStaticWrapperWithAnotherNonParallelVectorReturnsPseudoCrossProduct)
@@ -507,5 +507,5 @@ TEST(Vector2D, VectorCrossStaticWrapperWithAnotherNonParallelVectorReturnsPseudo
     const float res = math::Vector2D<float>::cross(vec1, vec2);
 
     // Assert
-    ASSERT_FLOAT_EQ(12.0, res);
+    EXPECT_FLOAT_EQ(12.0, res);
 }
