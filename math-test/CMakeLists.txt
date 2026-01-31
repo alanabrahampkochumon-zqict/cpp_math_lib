@@ -10,13 +10,12 @@ set(MatrixTestDirectory "src/matrix/")
 set(MatrixTestFiles Matrix3DTests.cpp)
 list(TRANSFORM MatrixTestFiles PREPEND ${MatrixTestDirectory})
 
-# message(${VectorTestSources})
-
+set(Utilities "src/utils/FloatEquals.h")
 
 target_sources(
     MathTest
     PRIVATE
-        ${VectorTestFiles} ${MatrixTestFiles}
+        ${VectorTestFiles} ${MatrixTestFiles} ${Utilities}
 )
 
 target_link_libraries(

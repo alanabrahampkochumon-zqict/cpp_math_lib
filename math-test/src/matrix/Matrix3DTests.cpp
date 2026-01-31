@@ -1,9 +1,12 @@
 #include <gtest/gtest.h>
 
 #include <matrix/Matrix3D.h>
+#include <vector/Vector3D.h>
 #include <cstddef> 
 #include <iostream>
 #include <cmath>
+
+#include "../utils/FloatEquals.h"
 
 /*************************************
  *                                   *
@@ -53,7 +56,7 @@ TEST(Matrix3D, InitializedWithThree3DVectorsProvidesCorrectMatrix)
 	const math::Vector3D col2(1.0f, 4.0f, 7.0f);
 	const math::Vector3D col3(2.0f, 5.0f, 8.0f);
 
-	const math::Matrix3D mat(col1, col2, col3);
+	const math::Matrix3D<float> mat(col1, col2, col3);
 
 	constexpr std::size_t size = 9;
 	constexpr std::size_t rowMax = 3;
@@ -433,7 +436,6 @@ TEST(Matrix3D, MatrixDividedByAIntegerScalarReturnsCorrectMatrix)
 	{
 		ASSERT_FLOAT_EQ(a(i / rowSize, i % rowSize) / scalar, b(i / rowSize, i % rowSize));
 	}
-
 }
 
 TEST(Matrix3D, MatrixDividesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)
@@ -638,4 +640,122 @@ TEST(Matrix3D, VectorTimesEqualMatrixReturnTheSameVectorWithNewValues)
 	ASSERT_FLOAT_EQ(expected.x, vec.x);
 	ASSERT_FLOAT_EQ(expected.y, vec.y);
 	ASSERT_FLOAT_EQ(expected.z, vec.z);
+}
+
+TEST(Matrix3D, MatrixTimesMatrixGivesAnotherMatrixWithCorrectValues)
+{
+	// Arrange
+	const math::Matrix3D mat1 = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, 8.0f, 9.0f
+	};
+	const math::Matrix3D mat2 = {
+		2.0f, 4.0f, 6.0f,
+		8.0f, 10.0f, 12.0f,
+		14.0f, 16.0f, 18.0f
+	};
+	const math::Matrix3D expected = {
+		60.0f, 72.0f, 84.0f,
+		132.0f, 162.0f, 192.0f,
+		204.0f, 252.0f, 300.0f
+	};
+	constexpr std::size_t size = 9;
+	constexpr std::size_t rowSize = 3;
+
+	// Act
+	const math::Matrix3D result = mat1 * mat2;
+
+	// Assert
+	for (std::size_t i = 0; i < size; i++)
+	{
+		EXPECT_FLOAT_EQ(expected(i / rowSize, i % rowSize), result(i / rowSize, i % rowSize));
+	}
+
+}
+
+TEST(Matrix3D, MatrixTimesIdentityMatrixReturnsSameMatrix)
+{
+	// Arrange
+	const math::Matrix3D mat = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, 8.0f, 9.0f
+	};
+	const math::Matrix3D<float> eye;
+
+	constexpr std::size_t size = 9;
+	constexpr std::size_t rowSize = 3;
+
+	// Act
+	const math::Matrix3D result = mat * eye;
+
+	// Assert
+	for (std::size_t i = 0; i < size; i++)
+	{
+		EXPECT_FLOAT_EQ(mat(i / rowSize, i % rowSize), result(i / rowSize, i % rowSize));
+	}
+}
+
+TEST(Matrix3D, MatrixTimesEqualAnotherMatrixReturnsSameMatrixWithCorrectValues)
+{
+	// Arrange
+	math::Matrix3D mat1 = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, 8.0f, 9.0f
+	};
+	const math::Matrix3D mat2 = {
+		2.0f, 4.0f, 6.0f,
+		8.0f, 10.0f, 12.0f,
+		14.0f, 16.0f, 18.0f
+	};
+	const math::Matrix3D expected = {
+		60.0f, 72.0f, 84.0f,
+		132.0f, 162.0f, 192.0f,
+		204.0f, 252.0f, 300.0f
+	};
+	constexpr std::size_t size = 9;
+	constexpr std::size_t rowSize = 3;
+
+	// Act
+	mat1 *= mat2;
+
+	// Assert
+	for (std::size_t i = 0; i < size; i++)
+	{
+		EXPECT_FLOAT_EQ(expected(i / rowSize, i % rowSize), mat1(i / rowSize, i % rowSize));
+	}
+}
+
+TEST(Matrix3D, Matrix3DMultiplicationIsNotCommutative)
+{
+	// Arrange
+	const math::Matrix3D mat1 = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, 8.0f, 9.0f
+	};
+	const math::Matrix3D mat2 = {
+		3.0f, 6.0f, 3.0f,
+		12.0f, 0.0f, 2.0f,
+		15.0f, 11.0f, 6.0f
+	};
+	constexpr std::size_t SIZE = 9;
+	constexpr std::size_t ROW_SIZE = 3;
+
+	// Act
+	const math::Matrix3D result1 = mat1 * mat2;
+	const math::Matrix3D result2 = mat2 * mat1;
+
+	bool commutative = true;
+
+	// Assert
+	for (std::size_t i = 0; i < SIZE; i++)
+	{
+		commutative &= floatEquals(result1(i / ROW_SIZE, i % ROW_SIZE), result2(i / ROW_SIZE, i % ROW_SIZE));
+	}
+
+	EXPECT_FALSE(commutative);
+
 }

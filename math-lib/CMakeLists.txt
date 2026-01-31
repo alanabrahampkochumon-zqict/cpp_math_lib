@@ -7,7 +7,6 @@ list(TRANSFORM VectorHeaderFiles PREPEND ${VectorDirectory})
 set(VectorTemplateDefinitionFiles Vector2D.tpp Vector3D.tpp Vector4D.tpp)
 list(TRANSFORM VectorTemplateDefinitionFiles PREPEND ${VectorDirectory})
 
-
 set(MatrixDirectory "include/matrix/")
 set(MatrixHeaderFiles Matrix3D.h)
 list(TRANSFORM MatrixHeaderFiles PREPEND ${MatrixDirectory})

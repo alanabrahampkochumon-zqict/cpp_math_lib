@@ -46,13 +46,27 @@ namespace math
 		template <typename S>
 		Matrix3D& operator/=(const S& scalar);
 
-		template <typename S>
+		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 		Vector3D<T> operator*(const Vector3D<S>& vec) const;
+
+		template<typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+		Matrix3D<T> operator*(const Matrix3D<S>& other) const;
+
+		/**
+		 * Multiplies a matrix by a matrix with *= operator.
+		 * NOTE: Not recommended for game engine, since it involves object copying.
+		 * RECOMMENDED: Use Mat * Mat
+		 * @tparam S Type of the other Matrix
+		 * @param other The matrix to be multiplied with.
+		 * @return Matrix on which *= is called, but with new values
+		 */
+		template<typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+		Matrix3D<T>& operator*=(const Matrix3D<S>& other);
 
 
 	};
 
-	template<typename T, typename S>
+	template<typename T, typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 	Matrix3D<T> operator*(const S& scalar, const Matrix3D<T>& matrix);
 
 	/**
@@ -64,7 +78,7 @@ namespace math
 	 * @param mat matrix to be multiplied against.
 	 * @return a new Vector3D transposed(row major form)
 	 */
-	template<typename T, typename S>
+	template<typename T, typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 	Vector3D<T> operator*(const Vector3D<S>& vec, const Matrix3D<T>& mat);
 
 	/**
@@ -77,7 +91,7 @@ namespace math
 	 * @param mat matrix to be multiplied against.
 	 * @return the passed in vector
 	 */
-	template<typename T, typename  S>
+	template<typename T, typename  S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 	Vector3D<T> operator*=(Vector3D<S>& vec, const Matrix3D<T>& mat);
 
 }
