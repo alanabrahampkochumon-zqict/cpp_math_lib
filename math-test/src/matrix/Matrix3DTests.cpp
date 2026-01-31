@@ -20,17 +20,17 @@ TEST(Matrix3D, InitializedWithOutParametersProvidesIdentityMatrix)
 	const math::Matrix3D<float> mat;
 
 	// Assert
-	ASSERT_FLOAT_EQ(1.0f, mat(0, 0));
-	ASSERT_FLOAT_EQ(0.0f, mat(0, 1));
-	ASSERT_FLOAT_EQ(0.0f, mat(0, 2));
+	EXPECT_FLOAT_EQ(1.0f, mat(0, 0));
+	EXPECT_FLOAT_EQ(0.0f, mat(0, 1));
+	EXPECT_FLOAT_EQ(0.0f, mat(0, 2));
 
-	ASSERT_FLOAT_EQ(0.0f, mat(1, 0));
-	ASSERT_FLOAT_EQ(1.0f, mat(1, 1));
-	ASSERT_FLOAT_EQ(0.0f, mat(1, 2));
+	EXPECT_FLOAT_EQ(0.0f, mat(1, 0));
+	EXPECT_FLOAT_EQ(1.0f, mat(1, 1));
+	EXPECT_FLOAT_EQ(0.0f, mat(1, 2));
 
-	ASSERT_FLOAT_EQ(0.0f, mat(2, 0));
-	ASSERT_FLOAT_EQ(0.0f, mat(2, 1));
-	ASSERT_FLOAT_EQ(1.0f, mat(2, 2));
+	EXPECT_FLOAT_EQ(0.0f, mat(2, 0));
+	EXPECT_FLOAT_EQ(0.0f, mat(2, 1));
+	EXPECT_FLOAT_EQ(1.0f, mat(2, 2));
 }
 
 TEST(Matrix3D, InitializedWithParametersProvidesCorrectMatrix)
@@ -46,7 +46,7 @@ TEST(Matrix3D, InitializedWithParametersProvidesCorrectMatrix)
 
 	// Assert
 	for (size_t i = 0; i < size; ++i)
-		ASSERT_FLOAT_EQ(static_cast<float>(i), mat(i / rowMax, i % rowMax));
+		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowMax, i % rowMax));
 }
 
 TEST(Matrix3D, InitializedWithThree3DVectorsProvidesCorrectMatrix)
@@ -63,7 +63,7 @@ TEST(Matrix3D, InitializedWithThree3DVectorsProvidesCorrectMatrix)
 
 	// Assert
 	for (size_t i = 0; i < size; ++i)
-		ASSERT_FLOAT_EQ(static_cast<float>(i), mat(i / rowMax, i % rowMax));
+		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowMax, i % rowMax));
 }
 
 TEST(Matrix3D, CanMutateVectorAtIndex)
@@ -76,17 +76,17 @@ TEST(Matrix3D, CanMutateVectorAtIndex)
 	mat[2] = vec;
 	
 	// Assert
-	ASSERT_FLOAT_EQ(1.0f, mat(0, 0));
-	ASSERT_FLOAT_EQ(0.0f, mat(0, 1));
-	ASSERT_FLOAT_EQ(3.0f, mat(0, 2));
+	EXPECT_FLOAT_EQ(1.0f, mat(0, 0));
+	EXPECT_FLOAT_EQ(0.0f, mat(0, 1));
+	EXPECT_FLOAT_EQ(3.0f, mat(0, 2));
 
-	ASSERT_FLOAT_EQ(0.0f, mat(1, 0));
-	ASSERT_FLOAT_EQ(1.0f, mat(1, 1));
-	ASSERT_FLOAT_EQ(1.0f, mat(1, 2));
+	EXPECT_FLOAT_EQ(0.0f, mat(1, 0));
+	EXPECT_FLOAT_EQ(1.0f, mat(1, 1));
+	EXPECT_FLOAT_EQ(1.0f, mat(1, 2));
 
-	ASSERT_FLOAT_EQ(0.0f, mat(2, 0));
-	ASSERT_FLOAT_EQ(0.0f, mat(2, 1));
-	ASSERT_FLOAT_EQ(6.0f, mat(2, 2));
+	EXPECT_FLOAT_EQ(0.0f, mat(2, 0));
+	EXPECT_FLOAT_EQ(0.0f, mat(2, 1));
+	EXPECT_FLOAT_EQ(6.0f, mat(2, 2));
 }
 
 TEST(Matrix3D, CanBeAccessedAsAVectorAtIndex)
@@ -98,9 +98,9 @@ TEST(Matrix3D, CanBeAccessedAsAVectorAtIndex)
 	math::Vector3D vec = mat[1];
 
 	// Assert
-	ASSERT_FLOAT_EQ(0.0f, vec.x);
-	ASSERT_FLOAT_EQ(1.0f, vec.y);
-	ASSERT_FLOAT_EQ(0.0f, vec.z);
+	EXPECT_FLOAT_EQ(0.0f, vec.x);
+	EXPECT_FLOAT_EQ(1.0f, vec.y);
+	EXPECT_FLOAT_EQ(0.0f, vec.z);
 }
 
 TEST(Matrix3D, CanMutateValueAtRowColumn)
@@ -116,7 +116,7 @@ TEST(Matrix3D, CanMutateValueAtRowColumn)
 	 
 	// Assert
 	for (size_t i = 0; i < size; ++i)
-		ASSERT_FLOAT_EQ(static_cast<float>(i), mat(i / rowMax, i % rowMax));
+		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowMax, i % rowMax));
 }
 
 TEST(Matrix3D, CanBeAccessedAsAValueAtRowColumn)
@@ -133,7 +133,7 @@ TEST(Matrix3D, CanBeAccessedAsAValueAtRowColumn)
 
 	// Assert
 	for (size_t i = 0; i < size; ++i)
-		ASSERT_FLOAT_EQ(static_cast<float>(i), mat(i / rowMax, i % rowMax));
+		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowMax, i % rowMax));
 }
 
 /*************************************
@@ -168,7 +168,7 @@ TEST(Matrix3D, SumOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
 	// Assert
 	for (std::size_t i = 0; i < size; i++)
 	{
-		ASSERT_FLOAT_EQ(c(i / rowSize, i % rowSize), res(i / rowSize, i % rowSize));
+		EXPECT_FLOAT_EQ(c(i / rowSize, i % rowSize), res(i / rowSize, i % rowSize));
 	}
 }
 
@@ -198,7 +198,7 @@ TEST(Matrix3D, PlusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValu
 	// Assert
 	for (std::size_t i = 0; i < size; i++)
 	{
-		ASSERT_FLOAT_EQ(c(i / rowSize, i % rowSize), a(i / rowSize, i % rowSize));
+		EXPECT_FLOAT_EQ(c(i / rowSize, i % rowSize), a(i / rowSize, i % rowSize));
 	}
 }
 
@@ -228,7 +228,7 @@ TEST(Matrix3D, DifferenceOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
 	// Assert
 	for (std::size_t i = 0; i < size; i++)
 	{
-		ASSERT_FLOAT_EQ(c(i / rowSize, i % rowSize), res(i / rowSize, i % rowSize));
+		EXPECT_FLOAT_EQ(c(i / rowSize, i % rowSize), res(i / rowSize, i % rowSize));
 	}
 }
 
@@ -258,7 +258,7 @@ TEST(Matrix3D, MinusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectVal
 	// Assert
 	for (std::size_t i = 0; i < size; i++)
 	{
-		ASSERT_FLOAT_EQ(c(i / rowSize, i % rowSize), a(i / rowSize, i % rowSize));
+		EXPECT_FLOAT_EQ(c(i / rowSize, i % rowSize), a(i / rowSize, i % rowSize));
 	}
 }
 
@@ -279,7 +279,7 @@ TEST(Matrix3D, MatrixTimesAIntegerScalarReturnsCorrectMatrix)
 	// Assert
 	for (std::size_t i = 0; i < size; i++)
 	{
-		ASSERT_FLOAT_EQ(a(i / rowSize, i % rowSize) * scalar, b(i / rowSize, i % rowSize));
+		EXPECT_FLOAT_EQ(a(i / rowSize, i % rowSize) * scalar, b(i / rowSize, i % rowSize));
 	}
 
 }
@@ -301,7 +301,7 @@ TEST(Matrix3D, IntegerScalarTimesAMatrixReturnsCorrectMatrix)
 	// Assert
 	for (std::size_t i = 0; i < size; i++)
 	{
-		ASSERT_FLOAT_EQ(a(i / rowSize, i % rowSize) * scalar, b(i / rowSize, i % rowSize));
+		EXPECT_FLOAT_EQ(a(i / rowSize, i % rowSize) * scalar, b(i / rowSize, i % rowSize));
 	}
 }
 
@@ -327,7 +327,7 @@ TEST(Matrix3D, MatrixTimesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)
 	// Assert
 	for (std::size_t i = 0; i < size; i++)
 	{
-		ASSERT_FLOAT_EQ(b(i / rowSize, i % rowSize), a(i / rowSize, i % rowSize));
+		EXPECT_FLOAT_EQ(b(i / rowSize, i % rowSize), a(i / rowSize, i % rowSize));
 	}
 }
 
@@ -347,7 +347,7 @@ TEST(Matrix3D, MatrixTimesOneReturnANewMatrixWithOriginalMatrixValues)
 	// Assert
 	for (std::size_t i = 0; i < size; i++)
 	{
-		ASSERT_FLOAT_EQ(a(i / rowSize, i % rowSize), b(i / rowSize, i % rowSize));
+		EXPECT_FLOAT_EQ(a(i / rowSize, i % rowSize), b(i / rowSize, i % rowSize));
 	}
 }
 
@@ -369,7 +369,7 @@ TEST(Matrix3D, MatrixTimesZeroScalarReturnsZeroMatrix)
 	for (std::size_t i = 0; i < size; i++)
 	{
 		// Must be exactly 0.0f
-		ASSERT_FLOAT_EQ(0.0f, b(i / rowSize, i % rowSize));
+		EXPECT_FLOAT_EQ(0.0f, b(i / rowSize, i % rowSize));
 	}
 }
 
@@ -390,7 +390,7 @@ TEST(Matrix3D, MatrixTimesAFloatScalarReturnsCorrectMatrix)
 	// Assert
 	for (std::size_t i = 0; i < size; i++)
 	{
-		ASSERT_FLOAT_EQ(a(i / rowSize, i % rowSize) * scalar, b(i / rowSize, i % rowSize));
+		EXPECT_FLOAT_EQ(a(i / rowSize, i % rowSize) * scalar, b(i / rowSize, i % rowSize));
 	}
 }
 
@@ -412,7 +412,7 @@ TEST(Matrix3D, MatrixTimesNegativeFloatScalarFlipsSigns)
 	// Assert
 	for (std::size_t i = 0; i < size; i++)
 	{
-		ASSERT_FLOAT_EQ(a(i / rowSize, i % rowSize) * scalar, b(i / rowSize, i % rowSize));
+		EXPECT_FLOAT_EQ(a(i / rowSize, i % rowSize) * scalar, b(i / rowSize, i % rowSize));
 	}
 }
 
@@ -434,7 +434,7 @@ TEST(Matrix3D, MatrixDividedByAIntegerScalarReturnsCorrectMatrix)
 	// Assert
 	for (std::size_t i = 0; i < size; i++)
 	{
-		ASSERT_FLOAT_EQ(a(i / rowSize, i % rowSize) / scalar, b(i / rowSize, i % rowSize));
+		EXPECT_FLOAT_EQ(a(i / rowSize, i % rowSize) / scalar, b(i / rowSize, i % rowSize));
 	}
 }
 
@@ -461,7 +461,7 @@ TEST(Matrix3D, MatrixDividesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)
 	// Assert
 	for (std::size_t i = 0; i < size; i++)
 	{
-		ASSERT_FLOAT_EQ(b(i / rowSize, i % rowSize), a(i / rowSize, i % rowSize));
+		EXPECT_FLOAT_EQ(b(i / rowSize, i % rowSize), a(i / rowSize, i % rowSize));
 	}
 }
 
@@ -481,7 +481,7 @@ TEST(Matrix3D, MatrixDividedByOneReturnANewMatrixWithOriginalMatrixValues)
 	// Assert
 	for (std::size_t i = 0; i < size; i++)
 	{
-		ASSERT_FLOAT_EQ(a(i / rowSize, i % rowSize), b(i / rowSize, i % rowSize));
+		EXPECT_FLOAT_EQ(a(i / rowSize, i % rowSize), b(i / rowSize, i % rowSize));
 	}
 }
 
@@ -503,7 +503,7 @@ TEST(Matrix3D, MatrixDividedByZeroScalarReturnsInfinityMatrix)
 	for (std::size_t i = 0; i < size; i++)
 	{
 		// Must be exactly 0.0f
-		ASSERT_TRUE(std::isinf(b(i / rowSize, i % rowSize)));
+		EXPECT_TRUE(std::isinf(b(i / rowSize, i % rowSize)));
 	}
 }
 
@@ -524,7 +524,7 @@ TEST(Matrix3D, MatrixDividedByAFloatScalarReturnsCorrectMatrix)
 	// Assert
 	for (std::size_t i = 0; i < size; i++)
 	{
-		ASSERT_FLOAT_EQ(a(i / rowSize, i % rowSize) / scalar, b(i / rowSize, i % rowSize));
+		EXPECT_FLOAT_EQ(a(i / rowSize, i % rowSize) / scalar, b(i / rowSize, i % rowSize));
 	}
 }
 
@@ -546,7 +546,7 @@ TEST(Matrix3D, MatrixDividedNegativeFloatScalarFlipsSigns)
 	// Assert
 	for (std::size_t i = 0; i < size; i++)
 	{
-		ASSERT_FLOAT_EQ(a(i / rowSize, i % rowSize) / scalar, b(i / rowSize, i % rowSize));
+		EXPECT_FLOAT_EQ(a(i / rowSize, i % rowSize) / scalar, b(i / rowSize, i % rowSize));
 	}
 }
 
@@ -565,9 +565,9 @@ TEST(Matrix3D, MatrixTimesVectorReturnsANewMatrixWithCorrectValues)
 	const math::vec3 result = mat * vec;
 
 	// Assert
-	ASSERT_FLOAT_EQ(expected.x, result.x);
-	ASSERT_FLOAT_EQ(expected.y, result.y);
-	ASSERT_FLOAT_EQ(expected.z, result.z);
+	EXPECT_FLOAT_EQ(expected.x, result.x);
+	EXPECT_FLOAT_EQ(expected.y, result.y);
+	EXPECT_FLOAT_EQ(expected.z, result.z);
 
 }
 
@@ -581,9 +581,9 @@ TEST(Matrix3D, IdentityMatrixTimesAVectorReturnsTheSameMatrix)
 	const math::vec3 result = mat * vec;
 
 	// Assert
-	ASSERT_FLOAT_EQ(vec.x, result.x);
-	ASSERT_FLOAT_EQ(vec.y, result.y);
-	ASSERT_FLOAT_EQ(vec.z, result.z);
+	EXPECT_FLOAT_EQ(vec.x, result.x);
+	EXPECT_FLOAT_EQ(vec.y, result.y);
+	EXPECT_FLOAT_EQ(vec.z, result.z);
 }
 
 
@@ -602,9 +602,9 @@ TEST(Matrix3D, VectorTimesAMatrixReturnsANewVectorWithCorrectValues)
 	const math::vec3 result = vec * mat;
 
 	// Assert
-	ASSERT_FLOAT_EQ(expected.x, result.x);
-	ASSERT_FLOAT_EQ(expected.y, result.y);
-	ASSERT_FLOAT_EQ(expected.z, result.z);
+	EXPECT_FLOAT_EQ(expected.x, result.x);
+	EXPECT_FLOAT_EQ(expected.y, result.y);
+	EXPECT_FLOAT_EQ(expected.z, result.z);
 }
 
 TEST(Matrix3D, VectorTimesIdentityMatrixReturnsTheSameMatrix)
@@ -617,9 +617,9 @@ TEST(Matrix3D, VectorTimesIdentityMatrixReturnsTheSameMatrix)
 	const math::vec3 result = vec * mat;
 
 	// Assert
-	ASSERT_FLOAT_EQ(vec.x, result.x);
-	ASSERT_FLOAT_EQ(vec.y, result.y);
-	ASSERT_FLOAT_EQ(vec.z, result.z);
+	EXPECT_FLOAT_EQ(vec.x, result.x);
+	EXPECT_FLOAT_EQ(vec.y, result.y);
+	EXPECT_FLOAT_EQ(vec.z, result.z);
 }
 
 TEST(Matrix3D, VectorTimesEqualMatrixReturnTheSameVectorWithNewValues)
@@ -637,9 +637,9 @@ TEST(Matrix3D, VectorTimesEqualMatrixReturnTheSameVectorWithNewValues)
 	vec *= mat;
 
 	// Assert
-	ASSERT_FLOAT_EQ(expected.x, vec.x);
-	ASSERT_FLOAT_EQ(expected.y, vec.y);
-	ASSERT_FLOAT_EQ(expected.z, vec.z);
+	EXPECT_FLOAT_EQ(expected.x, vec.x);
+	EXPECT_FLOAT_EQ(expected.y, vec.y);
+	EXPECT_FLOAT_EQ(expected.z, vec.z);
 }
 
 TEST(Matrix3D, MatrixTimesMatrixGivesAnotherMatrixWithCorrectValues)
