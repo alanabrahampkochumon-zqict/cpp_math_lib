@@ -38,12 +38,12 @@ namespace math
 
 		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 		Matrix3D operator*(const S& scalar) const;
-		template <typename S>
+		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 		Matrix3D& operator*=(const S& scalar);
 
 		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 		Matrix3D operator/(const S& scalar) const;
-		template <typename S>
+		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 		Matrix3D& operator/=(const S& scalar);
 
 		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>

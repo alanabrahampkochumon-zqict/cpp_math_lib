@@ -187,7 +187,7 @@ namespace math
 	}
 
 	template<typename T>
-	template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+	template <typename S, typename>
 	Matrix3D<T> Matrix3D<T>::operator*(const S& scalar) const
 	{
 		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
@@ -196,7 +196,7 @@ namespace math
 	}
 
 	template<typename T>
-	template <typename S>
+	template <typename S, typename>
 	Matrix3D<T>& Matrix3D<T>::operator*=(const S& scalar)
 	{
 		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
@@ -208,7 +208,7 @@ namespace math
 	}
 
 	template<typename T>
-	template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+	template <typename S, typename>
 	Matrix3D<T> Matrix3D<T>::operator/(const S& scalar) const
 	{
 		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
@@ -220,7 +220,7 @@ namespace math
 	}
 
 	template<typename T>
-	template <typename S>
+	template <typename S, typename>
 	Matrix3D<T>& Matrix3D<T>::operator/=(const S& scalar)
 	{
 		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
@@ -234,7 +234,7 @@ namespace math
 	}
 
 	template <typename T>
-	template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+	template <typename S, typename>
 	Vector3D<T> Matrix3D<T>::operator*(const Vector3D<S>& vec) const
 	{
 		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
@@ -282,14 +282,14 @@ namespace math
 	}
 
 
-	template<typename T, typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+	template<typename T, typename S, typename>
 	Matrix3D<T> operator*(const S& scalar, const Matrix3D<T>& matrix)
 	{
 		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
 		return Matrix3D(matrix[0] * scalar, matrix[1] * scalar, matrix[2] * scalar);
 	}
 
-	template <typename T, typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+	template <typename T, typename S, typename>
 	Vector3D<T> operator*(const Vector3D<S>& vec, const Matrix3D<T>& mat)
 	{
 		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
@@ -300,7 +300,7 @@ namespace math
 		);
 	}
 
-	template <typename T, typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+	template <typename T, typename S, typename>
 	Vector3D<T> operator*=(Vector3D<S>& vec, const Matrix3D<T>& mat)
 	{
 		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
