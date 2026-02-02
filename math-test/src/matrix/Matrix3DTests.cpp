@@ -728,7 +728,7 @@ TEST(Matrix3D, MatrixTimesEqualAnotherMatrixReturnsSameMatrixWithCorrectValues)
 	}
 }
 
-TEST(Matrix3D, Matrix3DMultiplicationIsNotCommutative)
+TEST(Matrix3D, Matrix3DMultiplicationIsAntiCommutative)
 {
 	// Arrange
 	const math::Matrix3D mat1 = {

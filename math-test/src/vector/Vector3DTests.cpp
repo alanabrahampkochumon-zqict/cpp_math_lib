@@ -608,3 +608,44 @@ TEST(Vector3D, VectorCrossStaticWrapperWithAnotherNonParallelVectorReturnsNewPer
     EXPECT_FLOAT_EQ(0.0, dotProduct1);
     EXPECT_FLOAT_EQ(0.0, dotProduct2);
 }
+
+TEST(Vector3D, VectorCrossProductsAreAntiCommutative)
+{
+    // vec1 x(cross) vec2 = - (vec2 x vec1)
+    // Arrange
+    const math::Vector3D<float> vec1(2.0, 3.0, 4.0);
+    const math::Vector3D<float> vec2(3.0, 5.0, 9.0);
+    //const math::Vector3D<float> vec2 = vec1 * 2.0f;
+
+    math::Vector3D<float> res(-3.0, 6.0, -3.0);
+
+    // Act
+    math::Vector3D<float> result1 = math::Vector3D<float>::cross(vec1, vec2);
+    math::Vector3D<float> result2 = -1.0f * ( math::Vector3D<float>::cross(vec2, vec1) );
+
+    // Assert
+    for (int i = 0; i < 3; i++)
+    {
+        EXPECT_FLOAT_EQ(result1[i], result2[i]);
+    }
+}
+
+TEST(Vector3D, VectorCrossProductsOfScalarMultiplesAreCommutative)
+{
+    // vec1 x(cross) vec2 = vec2 x vec1, given vec2 = a * vec1
+    // Arrange
+    const math::Vector3D<float> vec1(2.0, 3.0, 4.0);
+    const math::Vector3D<float> vec2 = vec1 * 2.0f;
+
+    math::Vector3D<float> res(-3.0, 6.0, -3.0);
+
+    // Act
+    math::Vector3D<float> result1 = math::Vector3D<float>::cross(vec1, vec2);
+    math::Vector3D<float> result2 = math::Vector3D<float>::cross(vec1, vec2);
+
+    // Assert
+    for (int i = 0; i < 3; i++)
+    {
+        EXPECT_FLOAT_EQ(result1[i], result2[i]);
+    }
+}
