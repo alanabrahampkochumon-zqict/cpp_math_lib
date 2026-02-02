@@ -757,5 +757,31 @@ TEST(Matrix3D, Matrix3DMultiplicationIsNotCommutative)
 	}
 
 	EXPECT_FALSE(commutative);
+}
 
+TEST(Matrix3D, Matrix3DMultiplicationWithScalarMultiplesAreCommutative)
+{
+	// Arrange
+	const math::Matrix3D mat1 = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, 8.0f, 9.0f
+	};
+	const math::Matrix3D mat2 = mat1 * 5.0f;
+	constexpr std::size_t SIZE = 9;
+	constexpr std::size_t ROW_SIZE = 3;
+
+	// Act
+	const math::Matrix3D result1 = mat1 * mat2;
+	const math::Matrix3D result2 = mat2 * mat1;
+
+	bool commutative = true;
+
+	// Assert
+	for (std::size_t i = 0; i < SIZE; i++)
+	{
+		commutative &= floatEquals(result1(i / ROW_SIZE, i % ROW_SIZE), result2(i / ROW_SIZE, i % ROW_SIZE));
+	}
+
+	EXPECT_TRUE(commutative);
 }
