@@ -66,6 +66,16 @@ namespace math
         template<typename S>
         Vector2D<T> project(const Vector2D<S>& onto, bool ontoNormalized = false) const;
 
+        /**
+         * Returns the perpendicular component for the current vector after projection to the `onto` vector.
+         * @tparam S Type of the vector to be vector projected onto.
+         * @param onto Vector to be projected onto.
+         * @param ontoNormalized A flag for optimizing the by ignoring the division, given the vector that is projected onto is normalized.
+         * @return Projected vector.
+         */
+        template<typename S>
+        Vector2D<T> reject(const Vector2D<S>& onto, bool ontoNormalized = false) const;
+
 
         static T dot(const Vector2D &vecA, const Vector2D &vecB);
         static T cross(const Vector2D &vecA, const Vector2D &vecB);
@@ -82,6 +92,17 @@ namespace math
          */
         template<typename S>
         static Vector2D<S> project(const Vector2D& vector, const Vector2D<S>& onto, bool ontoNormalized = false);
+
+        /**
+         * Returns the perpendicular component for the current vector after projection to the `onto` vector.
+         * @tparam S Type of the vector to be vector projected onto.
+         * @param vector whose rejection(perpendicular) component on to `onto` we need to find.
+         * @param onto Vector to be projected onto.
+         * @param ontoNormalized A flag for optimizing the by ignoring the division, given the vector that is projected onto is normalized.
+         * @return Projected vector.
+         */
+        template<typename S>
+        static Vector2D<S> reject(const Vector2D& vector, const Vector2D<S>& onto, bool ontoNormalized = false);
     };
 
     template <typename T, typename S>

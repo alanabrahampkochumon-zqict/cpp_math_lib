@@ -510,7 +510,7 @@ TEST(Vector2D, VectorCrossStaticWrapperWithAnotherNonParallelVectorReturnsPseudo
     EXPECT_FLOAT_EQ(12.0f, res);
 }
 
-TEST(Vector2D, ParallelVectorsWhenProjectedReturnNonZeroProjectionVector)
+TEST(Vector2D, ParallelVectorsWhenProjectedReturnsNonZeroVector)
 {
 	// Arrange
     const math::Vector2D a(3.0f, 0.0f);
@@ -525,7 +525,7 @@ TEST(Vector2D, ParallelVectorsWhenProjectedReturnNonZeroProjectionVector)
     EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
 }
 
-TEST(Vector2D, PerpendicularVectorsWhenProjectedReturnZeroProjectionVector)
+TEST(Vector2D, PerpendicularVectorsWhenProjectedReturnsZeroVector)
 {
     // Arrange
     const math::Vector2D a(3.0f, 0.0f);
@@ -540,7 +540,7 @@ TEST(Vector2D, PerpendicularVectorsWhenProjectedReturnZeroProjectionVector)
     EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
 }
 
-TEST(Vector2D, VectorsWhenProjectedReturnNonZeroProjectionVector)
+TEST(Vector2D, VectorsWhenProjectedReturnsNonZeroVector)
 {
     // Arrange
     const math::Vector2D a(2.0f, 2.0f);
@@ -555,7 +555,7 @@ TEST(Vector2D, VectorsWhenProjectedReturnNonZeroProjectionVector)
     EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
 }
 
-TEST(Vector2D, VectorsWhenProjectedOntoNormalizedVectorReturnNonZeroProjectionVector)
+TEST(Vector2D, VectorsWhenProjectedOntoNormalizedVectorReturnsNonZeroVector)
 {
     // Arrange
     const math::Vector2D a(3.0f, 4.0f);
@@ -570,7 +570,7 @@ TEST(Vector2D, VectorsWhenProjectedOntoNormalizedVectorReturnNonZeroProjectionVe
     EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
 }
 
-TEST(Vector2D, VectorsWhenProjectedUsingStaticWrapperReturnNonZeroProjectionVector)
+TEST(Vector2D, VectorsWhenProjectedUsingStaticWrapperReturnsNonZeroVector)
 {
     // Arrange
     const math::Vector2D a(2.0f, 2.0f);
@@ -585,3 +585,78 @@ TEST(Vector2D, VectorsWhenProjectedUsingStaticWrapperReturnNonZeroProjectionVect
     EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
 }
 
+
+TEST(Vector2D, ParallelVectorsWhenRejectedReturnsZeroVector)
+{
+    // Arrange
+    const math::Vector2D a(3.0f, 0.0f);
+    const math::Vector2D b(1.0f, 0.0f);
+    const math::Vector2D expectedProjection(0.0f, 0.0f);
+
+    // Act
+    const math::Vector2D<float> actualProjection = a.reject(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+}
+
+TEST(Vector2D, PerpendicularVectorsWhenRejectedReturnsNonZeroVector)
+{
+    // Arrange
+    const math::Vector2D a(3.0f, 0.0f);
+    const math::Vector2D b(0.0f, 1.0f);
+    const math::Vector2D expectedProjection(3.0f, 0.0f);
+
+    // Act
+    const math::Vector2D<float> actualProjection = a.reject(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+}
+
+TEST(Vector2D, VectorsWhenRejectedReturnNonZeroVector)
+{
+    // Arrange
+    const math::Vector2D a(2.0f, 2.0f);
+    const math::Vector2D b(1.0f, 0.0f);
+    const math::Vector2D expectedProjection(0.0f, 2.0f);
+
+    // Act
+    const math::Vector2D<float> actualProjection = a.reject(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+}
+
+TEST(Vector2D, VectorsWhenRejectedOntoNormalizedVectorReturnNonZeroVector)
+{
+    // Arrange
+    const math::Vector2D a(3.0f, 4.0f);
+    const math::Vector2D b(1.0f, 0.0f);
+    const math::Vector2D expectedProjection(0.0f, 4.0f);
+
+    // Act
+    const math::Vector2D<float> actualProjection = a.reject(b, true);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+}
+
+TEST(Vector2D, VectorsWhenProjectedUsingStaticWrapperReturnNonZeroVector)
+{
+    // Arrange
+    const math::Vector2D a(2.0f, 2.0f);
+    const math::Vector2D b(1.0f, 0.0f);
+    const math::Vector2D expectedProjection(0.0f, 2.0f);
+
+    // Act
+    const math::Vector2D<float> actualProjection = a.reject(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+}
