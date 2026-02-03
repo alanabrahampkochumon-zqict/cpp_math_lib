@@ -151,14 +151,14 @@ namespace math {
 
     template <typename T>
     template <typename S>
-    Vector2D<S> Vector2D<T>::project(const Vector2D& vector, const Vector2D<S>& onto, bool ontoNormalized)
+    Vector2D<T> Vector2D<T>::project(const Vector2D& vector, const Vector2D<S>& onto, bool ontoNormalized)
     {
         return vector.project(onto, ontoNormalized);
     }
 
     template <typename T>
     template <typename S>
-    Vector2D<S> Vector2D<T>::reject(const Vector2D& vector, const Vector2D<S>& onto, bool ontoNormalized)
+    Vector2D<T> Vector2D<T>::reject(const Vector2D& vector, const Vector2D<S>& onto, bool ontoNormalized)
     {
         return vector - vector.project(onto, ontoNormalized);
     }

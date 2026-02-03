@@ -109,7 +109,7 @@ TEST(Vector3D, dvec3Return3DDoubleVector)
 }
 
 
-TEST(Vector4D, one2DVectorAndFloatCanInitializeA3DVector)
+TEST(Vector3D, one2DVectorAndFloatCanInitializeA3DVector)
 {
     // Arrange
     math::Vector2D vec1(3.0f, 1.0f);
@@ -636,11 +636,208 @@ TEST(Vector3D, VectorCrossProductsOfScalarMultiplesAreCommutative)
 
     // Act
     math::Vector3D<float> result1 = math::Vector3D<float>::cross(vec1, vec2);
-    math::Vector3D<float> result2 = math::Vector3D<float>::cross(vec1, vec2);
+    math::Vector3D<float> result2 = math::Vector3D<float>::cross(vec2, vec1);
 
     // Assert
     for (int i = 0; i < 3; i++)
     {
         EXPECT_FLOAT_EQ(result1[i], result2[i]);
     }
+}
+
+/**
+ * VECTOR PROJECTION & REJECTION TESTS
+ */
+
+TEST(Vector3D, ParallelVectorsWhenProjectedReturnsNonZeroVector)
+{
+    // Arrange
+    const math::Vector3D a(1.0f, 2.0f, 3.0f);
+    const math::Vector3D b(2.0f, 4.0f, 6.0f);
+    const math::Vector3D expectedProjection(1.0f, 2.0f, 3.0f);
+
+    // Act
+    const math::Vector3D<float> actualProjection = a.project(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+}
+
+TEST(Vector3D, PerpendicularVectorsWhenProjectedReturnsZeroVector)
+{
+    // Arrange
+    const math::Vector3D a(1.0f, 0.0f, 0.0f);
+    const math::Vector3D b(0.0f, 1.0f, 0.0f);
+    const math::Vector3D expectedProjection(0.0f, 0.0f, 0.0f);
+
+    // Act
+    const math::Vector3D<float> actualProjection = a.project(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+}
+
+TEST(Vector3D, VectorsWhenProjectedReturnsNonZeroVector)
+{
+    // Arrange
+    const math::Vector3D a(2.0f, 1.0f, -1.0f);
+    const math::Vector3D b(1.0f, 0.0f, 1.0f);
+    const math::Vector3D expectedProjection(0.5f, 0.0f, 0.5f);
+
+    // Act
+    const math::Vector3D<float> actualProjection = a.project(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+}
+
+TEST(Vector3D, VectorsWhenProjectedOntoNormalizedVectorReturnsNonZeroVector)
+{
+    // Arrange
+    const math::Vector3D a(10.0f, 5.0f, 2.0f);
+    const math::Vector3D b(0.8f, 0.6f, 0.0f);
+    const math::Vector3D expectedProjection(8.8f, 6.6f, 0.0f);
+
+    // Act
+    const math::Vector3D<float> actualProjection = a.project(b, true);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+}
+
+TEST(Vector3D, VectorsWhenProjectedOntoNegativeVectorReturnsNonZeroVectorInSameDirection)
+{
+    // Arrange
+    const math::Vector3D a(4.0f, 4.0f, 4.0f);
+    const math::Vector3D b(0.0f, 0.0f, -1.0f);
+    const math::Vector3D expectedProjection(0.0f, 0.0f, 4.0f);
+
+    // Act
+    const math::Vector3D<float> actualProjection = a.project(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+}
+
+TEST(Vector3D, VectorsWhenProjectedUsingStaticWrapperReturnsNonZeroVector)
+{
+    // Arrange
+    const math::Vector3D a(2.0f, 1.0f, -1.0f);
+    const math::Vector3D b(1.0f, 0.0f, 1.0f);
+    const math::Vector3D expectedProjection(0.5f, 0.0f, 0.5f);
+
+    // Act
+    const math::Vector3D<float> actualProjection = math::Vector3D<float>::project(a, b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+}
+
+
+TEST(Vector3D, ParallelVectorsWhenRejectedReturnsZeroVector)
+{
+    // Arrange
+    const math::Vector3D a(1.0f, 2.0f, 3.0f);
+    const math::Vector3D b(2.0f, 4.0f, 6.0f);
+    const math::Vector3D expectedProjection(0.0f, 0.0f, 0.0f);
+
+    // Act
+    const math::Vector3D<float> actualProjection = a.reject(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+}
+
+TEST(Vector3D, PerpendicularVectorsWhenRejectedReturnsNonZeroVector)
+{
+    // Arrange
+    const math::Vector3D a(1.0f, 0.0f, 0.0f);
+    const math::Vector3D b(0.0f, 1.0f, 0.0f);
+    const math::Vector3D expectedProjection(1.0f, 0.0f, 0.0f);
+
+    // Act
+    const math::Vector3D<float> actualProjection = a.reject(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+}
+
+TEST(Vector3D, VectorsWhenRejectedReturnNonZeroVector)
+{
+    // Arrange
+    const math::Vector3D a(2.0f, 1.0f, -1.0f);
+    const math::Vector3D b(1.0f, 0.0f, 1.0f);
+    const math::Vector3D expectedProjection(1.5f, 1.0f, -1.5f);
+
+    // Act
+    const math::Vector3D<float> actualProjection = a.reject(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+}
+
+TEST(Vector3D, VectorsWhenRejectedOntoNormalizedVectorReturnNonZeroVector)
+{
+    // Arrange
+    const math::Vector3D a(10.0f, 5.0f, 2.0f);
+    const math::Vector3D b(0.8f, 0.6f, 0.0f);
+    const math::Vector3D expectedProjection(1.2f, -1.6f, 2.0f);
+
+    // Act
+    const math::Vector3D<float> actualProjection = a.reject(b, true);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+}
+
+TEST(Vector3D, PositiveVectorsWhenRejectedOntoNegativeVectorReturnsNonZeroVectorNonZeroPositiveVector)
+{
+    // Arrange
+    const math::Vector3D a(4.0f, 4.0f, 4.0f);
+    const math::Vector3D b(0.0f, 0.0f, -1.0f);
+    const math::Vector3D expectedProjection(4.0f, 4.0f, 0.0f);
+
+    // Act
+    const math::Vector3D<float> actualProjection = a.reject(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+}
+
+TEST(Vector3D, VectorsWhenProjectedUsingStaticWrapperReturnNonZeroVector)
+{
+    // Arrange
+    const math::Vector3D a(2.0f, 1.0f, -1.0f);
+    const math::Vector3D b(1.0f, 0.0f, 1.0f);
+    const math::Vector3D expectedProjection(1.5f, 1.0f, -1.5f);
+
+    // Act
+    const math::Vector3D<float> actualProjection = math::Vector3D<float>::reject(a, b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
 }

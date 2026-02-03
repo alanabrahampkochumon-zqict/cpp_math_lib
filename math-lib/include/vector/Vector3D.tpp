@@ -148,6 +148,43 @@ namespace math {
 	{
 		return vecA.cross(vecB);
 	}
+
+	template <typename T>
+	template <typename S>
+	Vector3D<T> Vector3D<T>::project(const Vector3D<S>& onto, bool ontoNormalized) const
+	{
+		if (ontoNormalized)
+		{
+			// Pb||a^ = a.dot(b) * b
+			return this->dot(onto) * onto;
+		}
+		else
+		{
+			// Pb||a^ = a.dot(b) / b.dot(b) * b
+			return this->dot(onto) / onto.dot(onto) * onto;
+		}
+	}
+
+	template <typename T>
+	template <typename S>
+	Vector3D<T> Vector3D<T>::reject(const Vector3D<S>& onto, bool ontoNormalized) const
+	{
+		return *this - this->project(onto, ontoNormalized);
+	}
+
+	template <typename T>
+	template <typename S>
+	Vector3D<T> Vector3D<T>::project(const Vector3D& vector, const Vector3D<S>& onto, bool ontoNormalized)
+	{
+		return vector.project(onto, ontoNormalized);
+	}
+
+	template <typename T>
+	template <typename S>
+	Vector3D<T> Vector3D<T>::reject(const Vector3D& vector, const Vector3D<S>& onto, bool ontoNormalized)
+	{
+		return vector.reject(onto, ontoNormalized);
+	}
 }
 
 

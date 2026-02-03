@@ -91,7 +91,7 @@ namespace math
          * @return Projected vector.
          */
         template<typename S>
-        static Vector2D<S> project(const Vector2D& vector, const Vector2D<S>& onto, bool ontoNormalized = false);
+        static Vector2D project(const Vector2D& vector, const Vector2D<S>& onto, bool ontoNormalized = false);
 
         /**
          * Returns the perpendicular component for the current vector after projection to the `onto` vector.
@@ -102,7 +102,7 @@ namespace math
          * @return Projected vector.
          */
         template<typename S>
-        static Vector2D<S> reject(const Vector2D& vector, const Vector2D<S>& onto, bool ontoNormalized = false);
+        static Vector2D reject(const Vector2D& vector, const Vector2D<S>& onto, bool ontoNormalized = false);
     };
 
     template <typename T, typename S>
