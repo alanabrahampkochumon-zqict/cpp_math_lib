@@ -1,6 +1,7 @@
 #pragma once
 
 #include <type_traits>
+#include "Vector2D.h"
 
 namespace math {
 
@@ -69,19 +70,27 @@ namespace math {
     }
 
     template <typename T>
-    template <typename M>
-    Vector2D<T> Vector2D<T>::operator/(const M& scalar) const
+    template <typename S>
+    Vector2D<T> Vector2D<T>::operator/(const S& scalar) const
     {
-        static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
+        static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
         T factor = T(1) / scalar;
         return Vector2D(x * factor, y * factor);
     }
 
-    template <typename T>
-    template <typename M>
-    Vector2D<T>& Vector2D<T>::operator/=(const M& scalar)
+    template<typename T>
+    template<typename S>
+    Vector2D<T> Vector2D<T>::project(const Vector2D<S>& onto) const
     {
-        static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
+        // Pb||a = dot(a, b)/dot(b,b) * b;
+        return this->dot(onto) / Vector2D<T>::dot(onto, onto) * onto;
+    }
+
+    template <typename T>
+    template <typename S>
+    Vector2D<T>& Vector2D<T>::operator/=(const S& scalar)
+    {
+        static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
         T factor = T(1) / scalar;
         x *= factor;
         y *= factor;
@@ -122,6 +131,13 @@ namespace math {
     T Vector2D<T>::cross(const Vector2D& vecA, const Vector2D& vecB)
     {
         return vecA.cross(vecB);
+    }
+
+    template <typename T>
+    template <typename S>
+    Vector2D<S> Vector2D<T>::project(const Vector2D& vector, const Vector2D<S>& onto)
+    {
+        return vector.project(onto);
     }
 
     template<typename T, typename M>

@@ -615,9 +615,6 @@ TEST(Vector3D, VectorCrossProductsAreAntiCommutative)
     // Arrange
     const math::Vector3D<float> vec1(2.0, 3.0, 4.0);
     const math::Vector3D<float> vec2(3.0, 5.0, 9.0);
-    //const math::Vector3D<float> vec2 = vec1 * 2.0f;
-
-    math::Vector3D<float> res(-3.0, 6.0, -3.0);
 
     // Act
     math::Vector3D<float> result1 = math::Vector3D<float>::cross(vec1, vec2);
@@ -636,8 +633,6 @@ TEST(Vector3D, VectorCrossProductsOfScalarMultiplesAreCommutative)
     // Arrange
     const math::Vector3D<float> vec1(2.0, 3.0, 4.0);
     const math::Vector3D<float> vec2 = vec1 * 2.0f;
-
-    math::Vector3D<float> res(-3.0, 6.0, -3.0);
 
     // Act
     math::Vector3D<float> result1 = math::Vector3D<float>::cross(vec1, vec2);

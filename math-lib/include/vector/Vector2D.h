@@ -43,8 +43,8 @@ namespace math
         template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
         Vector2D &operator*=(const S &scalar);
 
-        template <typename M>
-        Vector2D operator/(const M &scalar) const;
+        template <typename S>
+        Vector2D operator/(const S &scalar) const;
 
         template <typename M>
         Vector2D &operator/=(const M &scalar);
@@ -55,12 +55,29 @@ namespace math
         T mag() const;
         Vector2D normalize() const;
 
+        // Projection & Rejection
+        template<typename S>
+        Vector2D<T> project(const Vector2D<S>& onto) const;
+
+
         static T dot(const Vector2D &vecA, const Vector2D &vecB);
         static T cross(const Vector2D &vecA, const Vector2D &vecB);
+
+        // TODO: Refactor with enable_if_t for S
+
+        /**
+         * Static wrapper for vector projection.
+         * @tparam S Type of the vector to be projected to
+         * @param vector Vector to project.
+         * @param onto Vector to be projected onto.
+         * @return Projected vector.
+         */
+        template<typename S>
+        static Vector2D<S> project(const Vector2D& vector, const Vector2D<S>& onto);
     };
 
-    template <typename T, typename M>
-    Vector2D<T> operator*(M scalar, const Vector2D<T> &vector);
+    template <typename T, typename S>
+    Vector2D<T> operator*(S scalar, const Vector2D<T> &vector);
 
     using vec2 = Vector2D<float>;
     using dvec2 = Vector2D<double>;
