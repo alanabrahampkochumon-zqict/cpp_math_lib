@@ -540,7 +540,7 @@ TEST(Vector2D, PerpendicularVectorsWhenProjectedReturnZeroProjectionVector)
     EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
 }
 
-TEST(Vector2D, VectorsWhenProjectedReturnNonProjectionVector)
+TEST(Vector2D, VectorsWhenProjectedReturnNonZeroProjectionVector)
 {
     // Arrange
     const math::Vector2D a(2.0f, 2.0f);
@@ -555,7 +555,22 @@ TEST(Vector2D, VectorsWhenProjectedReturnNonProjectionVector)
     EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
 }
 
-TEST(Vector2D, VectorsWhenProjectedUsingStaticWrapperReturnNonProjectionVector)
+TEST(Vector2D, VectorsWhenProjectedOntoNormalizedVectorReturnNonZeroProjectionVector)
+{
+    // Arrange
+    const math::Vector2D a(3.0f, 4.0f);
+    const math::Vector2D b(1.0f, 0.0f);
+    const math::Vector2D expectedProjection(3.0f, 0.0f);
+
+    // Act
+    const math::Vector2D<float> actualProjection = a.project(b, true);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+}
+
+TEST(Vector2D, VectorsWhenProjectedUsingStaticWrapperReturnNonZeroProjectionVector)
 {
     // Arrange
     const math::Vector2D a(2.0f, 2.0f);
@@ -569,3 +584,4 @@ TEST(Vector2D, VectorsWhenProjectedUsingStaticWrapperReturnNonProjectionVector)
     EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
     EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
 }
+

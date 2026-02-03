@@ -80,10 +80,18 @@ namespace math {
 
     template<typename T>
     template<typename S>
-    Vector2D<T> Vector2D<T>::project(const Vector2D<S>& onto) const
+    Vector2D<T> Vector2D<T>::project(const Vector2D<S>& onto, bool ontoNormalized) const
     {
-        // Pb||a = dot(a, b)/dot(b,b) * b;
-        return this->dot(onto) / Vector2D<T>::dot(onto, onto) * onto;
+        if (ontoNormalized)
+        {
+            return this->dot(onto) * onto;
+        }
+    	else
+        {
+            // Pb||a = dot(a, b)/dot(b,b) * b;
+            return this->dot(onto) / Vector2D<T>::dot(onto, onto) * onto;
+        }
+        
     }
 
     template <typename T>
@@ -135,9 +143,9 @@ namespace math {
 
     template <typename T>
     template <typename S>
-    Vector2D<S> Vector2D<T>::project(const Vector2D& vector, const Vector2D<S>& onto)
+    Vector2D<S> Vector2D<T>::project(const Vector2D& vector, const Vector2D<S>& onto, bool ontoNormalized)
     {
-        return vector.project(onto);
+        return vector.project(onto, ontoNormalized);
     }
 
     template<typename T, typename M>

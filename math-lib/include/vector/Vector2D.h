@@ -56,8 +56,15 @@ namespace math
         Vector2D normalize() const;
 
         // Projection & Rejection
+        /**
+         * Projects the current vector onto to the `onto` vector.
+         * @tparam S Type of the vector to be projected on to (b).
+         * @param onto Vector to be projected onto.
+         * @param ontoNormalized A flag for optimizing the by ignoring the division, given the vector that is projected onto is normalized.
+         * @return Projected vector.
+         */
         template<typename S>
-        Vector2D<T> project(const Vector2D<S>& onto) const;
+        Vector2D<T> project(const Vector2D<S>& onto, bool ontoNormalized = false) const;
 
 
         static T dot(const Vector2D &vecA, const Vector2D &vecB);
@@ -67,13 +74,14 @@ namespace math
 
         /**
          * Static wrapper for vector projection.
-         * @tparam S Type of the vector to be projected to
+         * @tparam S Type of the vector to be projected to.
          * @param vector Vector to project.
          * @param onto Vector to be projected onto.
+         * @param ontoNormalized A flag for optimizing the by ignoring the division, given the vector that is projected onto is normalized.
          * @return Projected vector.
          */
         template<typename S>
-        static Vector2D<S> project(const Vector2D& vector, const Vector2D<S>& onto);
+        static Vector2D<S> project(const Vector2D& vector, const Vector2D<S>& onto, bool ontoNormalized = false);
     };
 
     template <typename T, typename S>
