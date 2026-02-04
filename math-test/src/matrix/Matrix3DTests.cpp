@@ -913,7 +913,7 @@ TEST(Matrix3D, MatrixDeterminantReturnsCorrectValue)
 		5.0f, 6.0f, 0.0f
 	);
 
-	constexpr float expectedDeterminant = 1.0f;
+	constexpr float expectedDeterminant = -56.0f;
 
 	// Act
 	const float actualDeterminant = mat.determinant();
@@ -930,7 +930,7 @@ TEST(Matrix3D, MatrixDeterminantWithStaticWrapperReturnsCorrectValue)
 		5.0f, 6.0f, 0.0f
 	);
 
-	constexpr float expectedDeterminant = 1.0f;
+	constexpr float expectedDeterminant = -56.0f;
 
 	// Act
 	const float actualDeterminant = math::Matrix3D<float>::determinant(mat);

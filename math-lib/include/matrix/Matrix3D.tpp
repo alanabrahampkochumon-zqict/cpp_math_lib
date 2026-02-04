@@ -284,13 +284,16 @@ namespace math
 	template <typename T>
 	T Matrix3D<T>::determinant() const
 	{
-		return T(0);
+		// Evaluated along first column
+		return elements[0][0] * (elements[1][1] * elements[2][2] - elements[1][2] * elements[2][1])
+			- elements[0][1] * (elements[1][0] * elements[2][2] - elements[1][2] * elements[2][0])
+			+ elements[0][2] * (elements[1][0] * elements[2][1] - elements[1][1] * elements[2][0]);
 	}
 
 	template <typename T>
 	T Matrix3D<T>::determinant(const Matrix3D<T>& matrix)
 	{
-		return T(0);
+		return matrix.determinant();
 	}
 
 
