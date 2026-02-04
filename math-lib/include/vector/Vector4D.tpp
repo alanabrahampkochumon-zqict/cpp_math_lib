@@ -132,28 +132,37 @@ namespace math
 	template <typename S>
 	Vector4D<T> Vector4D<T>::project(const Vector4D<S>& onto, bool ontoNormalized) const
 	{
-		return *this;
+		if (ontoNormalized)
+		{
+			// a.dot(b) * b
+			return this->dot(onto) * onto;
+		}
+		else
+		{
+			// a.dot(b) / b.dot(b) * b
+			return this->dot(onto) / onto.dot(onto) * onto;
+		}
 	}
 
 	template <typename T>
 	template <typename S>
 	Vector4D<T> Vector4D<T>::reject(const Vector4D<S>& onto, bool ontoNormalized) const
 	{
-		return *this;
+		return *this - this->project(onto, ontoNormalized);
 	}
 
 	template <typename T>
 	template <typename S>
 	Vector4D<T> Vector4D<T>::project(const Vector4D& vector, const Vector4D<S>& onto, bool ontoNormalized)
 	{
-		return Vector4D();
+		return vector.project(onto, ontoNormalized);
 	}
 
 	template <typename T>
 	template <typename S>
 	Vector4D<T> Vector4D<T>::reject(const Vector4D& vector, const Vector4D<S>& onto, bool ontoNormalized)
 	{
-		return Vector4D();
+		return vector.reject(onto, ontoNormalized);
 	}
 
 	template <typename T, typename M>

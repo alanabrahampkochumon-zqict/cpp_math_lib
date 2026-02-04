@@ -561,7 +561,7 @@ TEST(Vector4D, VectorsWhenProjectedReturnsNonZeroVector)
     // Arrange
     const math::Vector4D a(1.0f, 2.0f, 0.0f, 1.0f);
     const math::Vector4D b(2.0f, 0.0f, 1.0f, 1.0f);
-    const math::Vector4D expectedProjection(0.0f, 2.0f, -0.5f, 0.5f);
+    const math::Vector4D expectedProjection(1.0f, 0.0f, 0.5f, 0.5f);
 
     // Act
     const math::Vector4D<float> actualProjection = a.project(b);
@@ -612,7 +612,7 @@ TEST(Vector4D, VectorsWhenProjectedUsingStaticWrapperReturnsNonZeroVector)
     // Arrange
     const math::Vector4D a(1.0f, 2.0f, 0.0f, 1.0f);
     const math::Vector4D b(2.0f, 0.0f, 1.0f, 1.0f);
-    const math::Vector4D expectedProjection(0.0f, 2.0f, -0.5f, 0.5f);
+    const math::Vector4D expectedProjection(1.0f, 0.0f, 0.5f, 0.5f);
 
     // Act
     const math::Vector4D<float> actualProjection = math::Vector4D<float>::project(a, b);
@@ -680,7 +680,7 @@ TEST(Vector4D, VectorsWhenRejectedReturnNonZeroVector)
     // Arrange
     const math::Vector4D a(1.0f, 2.0f, 0.0f, 1.0f);
     const math::Vector4D b(2.0f, 0.0f, 1.0f, 1.0f);
-    const math::Vector4D expectedProjection(0.0f, 0.2f, -0.5f, 0.5f);
+    const math::Vector4D expectedProjection(0.0f, 2.0f, -0.5f, 0.5f);
 
     // Act
     const math::Vector4D<float> actualProjection = a.reject(b);
@@ -731,7 +731,7 @@ TEST(Vector4D, VectorsWhenProjectedUsingStaticWrapperReturnNonZeroVector)
     // Arrange
     const math::Vector4D a(1.0f, 2.0f, 0.0f, 1.0f);
     const math::Vector4D b(2.0f, 0.0f, 1.0f, 1.0f);
-    const math::Vector4D expectedProjection(0.0f, 0.2f, -0.5f, 0.5f);
+    const math::Vector4D expectedProjection(0.0f, 2.0f, -0.5f, 0.5f);
 
     // Act
     const math::Vector4D<float> actualProjection = math::Vector4D<float>::reject(a, b);
