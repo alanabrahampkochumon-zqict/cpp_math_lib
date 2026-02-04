@@ -61,8 +61,14 @@ namespace math
 		 * @return Matrix on which *= is called, but with new values
 		 */
 		template<typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
-		Matrix3D<T>& operator*=(const Matrix3D<S>& other);
+		Matrix3D& operator*=(const Matrix3D<S>& other);
 
+		// Determinants
+		// Calculates the determinant for the current Matrix3d.
+		T determinant() const;
+
+		// Static wrapper for Matrix 3D determinants.
+		static T determinant(const Matrix3D<T>& matrix);
 
 	};
 

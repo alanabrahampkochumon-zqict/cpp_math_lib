@@ -281,6 +281,18 @@ namespace math
 		return *this;
 	}
 
+	template <typename T>
+	T Matrix3D<T>::determinant() const
+	{
+		return T(0);
+	}
+
+	template <typename T>
+	T Matrix3D<T>::determinant(const Matrix3D<T>& matrix)
+	{
+		return T(0);
+	}
+
 
 	template<typename T, typename S, typename>
 	Matrix3D<T> operator*(const S& scalar, const Matrix3D<T>& matrix)

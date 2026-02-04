@@ -785,3 +785,156 @@ TEST(Matrix3D, Matrix3DMultiplicationWithScalarMultiplesAreCommutative)
 
 	EXPECT_TRUE(commutative);
 }
+
+/**
+ * DETERMINANTS
+ **/
+
+TEST(Matrix3D, IdentityMatrixReturnsDeterminantOfOne)
+{
+	// Arrange
+	const math::Matrix3D<float> mat;
+	constexpr float expectedDeterminant = 1.0f;
+
+	// Act
+	const float actualDeterminant = mat.determinant();
+
+	// Assert
+	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
+}
+
+TEST(Matrix3D, DiagonalMatrixReturnsProductOfDiagonalEntriesAsDeterminant)
+{
+	// Arrange
+	const math::Matrix3D mat(
+		2.0f, 0.0f, 0.0f,
+		0.0f, 3.0f, 0.0f,
+		0.0f, 0.0f, 4.0f
+	);
+	constexpr float expectedDeterminant = 24.0f;
+
+	// Act
+	const float actualDeterminant = mat.determinant();
+
+	// Assert
+	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
+}
+
+TEST(Matrix3D, MatrixWithScalarMultipleColumnsReturnsDeterminantOfZero)
+{
+	const math::Matrix3D mat(
+		2.0f, 1.0f, 3.0f,
+		4.0f, 2.0f, 6.0f,
+		1.0f, 5.0f, 4.0f
+	);
+
+	constexpr float expectedDeterminant = 0.0f;
+
+	// Act
+	const float actualDeterminant = mat.determinant();
+
+	// Assert
+	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
+}
+
+TEST(Matrix3D, MatrixWithScalarMultipleRowsReturnsDeterminantOfZero)
+{
+	const math::Matrix3D mat(
+		2.0f, 4.0f, 3.0f,
+		4.0f, 8.0f, 6.0f,
+		1.0f, 2.0f, 4.0f
+	);
+
+	constexpr float expectedDeterminant = 0.0f;
+
+	// Act
+	const float actualDeterminant = mat.determinant();
+
+	// Assert
+	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
+}
+
+TEST(Matrix3D, IdentityMatrixWithSwappedRowsReturnsDeterminantOfNegativeOne)
+{
+	const math::Matrix3D mat(
+		1.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 1.0f,
+		0.0f, 1.0f, 0.0f
+	);
+
+	constexpr float expectedDeterminant = -1.0f;
+
+	// Act
+	const float actualDeterminant = mat.determinant();
+
+	// Assert
+	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
+}
+
+TEST(Matrix3D, IdentityMatrixWithSwappedColumnsReturnsDeterminantOfNegativeOne)
+{
+	const math::Matrix3D mat(
+		1.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 1.0f,
+		0.0f, 1.0f, 0.0f
+	);
+
+	constexpr float expectedDeterminant = -1.0f;
+
+	// Act
+	const float actualDeterminant = mat.determinant();
+
+	// Assert
+	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
+}
+
+TEST(Matrix3D, IdentityMatrixWithShearAppliedsReturnsDeterminantOfOne)
+{
+	const math::Matrix3D mat(
+		1.0f, 1.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, 1.0f
+	);
+
+	constexpr float expectedDeterminant = 1.0f;
+
+	// Act
+	const float actualDeterminant = mat.determinant();
+
+	// Assert
+	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
+}
+
+TEST(Matrix3D, MatrixDeterminantReturnsCorrectValue)
+{
+	const math::Matrix3D mat(
+		1.0f, 2.0f, 3.0f,
+		0.0f, 4.0f, 1.0f,
+		5.0f, 6.0f, 0.0f
+	);
+
+	constexpr float expectedDeterminant = 1.0f;
+
+	// Act
+	const float actualDeterminant = mat.determinant();
+
+	// Assert
+	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
+}
+
+TEST(Matrix3D, MatrixDeterminantWithStaticWrapperReturnsCorrectValue)
+{
+	const math::Matrix3D mat(
+		1.0f, 2.0f, 3.0f,
+		0.0f, 4.0f, 1.0f,
+		5.0f, 6.0f, 0.0f
+	);
+
+	constexpr float expectedDeterminant = 1.0f;
+
+	// Act
+	const float actualDeterminant = math::Matrix3D<float>::determinant(mat);
+
+	// Assert
+	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
+}
