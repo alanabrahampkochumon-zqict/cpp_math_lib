@@ -128,6 +128,34 @@ namespace math
 		return vecA.dot(vecB);
 	}
 
+	template <typename T>
+	template <typename S>
+	Vector4D<T> Vector4D<T>::project(const Vector4D<S>& onto, bool ontoNormalized) const
+	{
+		return *this;
+	}
+
+	template <typename T>
+	template <typename S>
+	Vector4D<T> Vector4D<T>::reject(const Vector4D<S>& onto, bool ontoNormalized) const
+	{
+		return *this;
+	}
+
+	template <typename T>
+	template <typename S>
+	Vector4D<T> Vector4D<T>::project(const Vector4D& vector, const Vector4D<S>& onto, bool ontoNormalized)
+	{
+		return Vector4D();
+	}
+
+	template <typename T>
+	template <typename S>
+	Vector4D<T> Vector4D<T>::reject(const Vector4D& vector, const Vector4D<S>& onto, bool ontoNormalized)
+	{
+		return Vector4D();
+	}
+
 	template <typename T, typename M>
 	Vector4D<T> operator*(M scalar, const Vector4D<T>& vector)
 	{

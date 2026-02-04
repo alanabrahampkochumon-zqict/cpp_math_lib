@@ -500,3 +500,245 @@ TEST(Vector4D, VectorWhenDotWithOppositeParallelVectorReturnsNegativeOne)
     // Assert
     EXPECT_FLOAT_EQ(-1.0, res);
 }
+
+/**
+ * VECTOR PROJECTION & REJECTION TESTS
+ */
+
+TEST(Vector4D, ParallelVectorsWhenProjectedReturnsNonZeroVector)
+{
+    // Arrange
+    const math::Vector4D a(1.0f, 2.0f, 3.0f, 5.0f);
+    const math::Vector4D b(2.0f, 4.0f, 6.0f, 10.0f);
+    const math::Vector4D expectedProjection(1.0f, 2.0f, 3.0f, 5.0f);
+
+    // Act
+    const math::Vector4D<float> actualProjection = a.project(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+}
+
+TEST(Vector4D, VectorWhenProjectedOntoXAxisProducesVectorWithOnlyXComponent)
+{
+    // Arrange
+    const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.f);
+    const math::Vector4D b(1.0f, 0.0f, 0.0f, 0.0f);
+    const math::Vector4D expectedProjection(10.0f, 0.0f, 0.0f, 0.0f);
+
+    // Act
+    const math::Vector4D<float> actualProjection = a.project(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+}
+
+TEST(Vector4D, VectorWhenProjectedOntoWAxisProducesVectorWithOnlyWComponent)
+{
+    // Arrange
+    const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.f);
+    const math::Vector4D b(0.0f, 0.0f, 0.0f, 1.0f);
+    const math::Vector4D expectedProjection(0.0f, 0.0f, 0.0f, 40.0f);
+
+    // Act
+    const math::Vector4D<float> actualProjection = a.project(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+}
+
+TEST(Vector4D, VectorsWhenProjectedReturnsNonZeroVector)
+{
+    // Arrange
+    const math::Vector4D a(1.0f, 2.0f, 0.0f, 1.0f);
+    const math::Vector4D b(2.0f, 0.0f, 1.0f, 1.0f);
+    const math::Vector4D expectedProjection(0.0f, 2.0f, -0.5f, 0.5f);
+
+    // Act
+    const math::Vector4D<float> actualProjection = a.project(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+}
+
+TEST(Vector4D, VectorsWhenProjectedOntoNormalizedVectorReturnsNonZeroVector)
+{
+    // Arrange
+    const math::Vector4D a(1.0f, 2.0f, 3.0f, 4.0f);
+    const math::Vector4D b(1.0f, 0.0f, 0.0f, 0.0f);
+    const math::Vector4D expectedProjection(1.0f, 0.0f, 0.0f, 0.0f);
+
+    // Act
+    const math::Vector4D<float> actualProjection = a.project(b, true);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+}
+
+TEST(Vector4D, VectorsWhenProjectedOntoNegativeVectorReturnsNonZeroVectorInSameDirection)
+{
+    // Arrange
+    const math::Vector4D a(4.0f, 4.0f, 4.0f, 4.0f);
+    const math::Vector4D b(0.0f, 0.0f, -1.0f, 0.0f);
+    const math::Vector4D expectedProjection(0.0f, 0.0f, 4.0f, 0.0f);
+
+    // Act
+    const math::Vector4D<float> actualProjection = a.project(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+}
+
+TEST(Vector4D, VectorsWhenProjectedUsingStaticWrapperReturnsNonZeroVector)
+{
+    // Arrange
+    const math::Vector4D a(1.0f, 2.0f, 0.0f, 1.0f);
+    const math::Vector4D b(2.0f, 0.0f, 1.0f, 1.0f);
+    const math::Vector4D expectedProjection(0.0f, 2.0f, -0.5f, 0.5f);
+
+    // Act
+    const math::Vector4D<float> actualProjection = math::Vector4D<float>::project(a, b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+}
+
+
+TEST(Vector4D, ParallelVectorsWhenRejectedReturnsZeroVector)
+{
+    // Arrange
+    const math::Vector4D a(1.0f, 2.0f, 3.0f, 5.0f);
+    const math::Vector4D b(2.0f, 4.0f, 6.0f, 10.0f);
+    const math::Vector4D expectedProjection(0.0f, 0.0f, 0.0f, 0.0f);
+
+    // Act
+    const math::Vector4D<float> actualProjection = a.reject(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+}
+
+TEST(Vector4D, PerpendicularVectorsWhenRejectedWReturnsNonZeroVectorWithZeroWComponent)
+{
+    // Arrange
+    const math::Vector4D a(1.0f, 2.0f, 3.0f, 4.0f);
+    const math::Vector4D b(0.0f, 0.0f, 0.0f, 1.0f);
+    const math::Vector4D expectedProjection(1.0f, 2.0f, 3.0f, 0.0f);
+
+    // Act
+    const math::Vector4D<float> actualProjection = a.reject(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+}
+
+TEST(Vector4D, RejectingNonExistantComponentReturnsSameVector)
+{
+    // Arrange
+    const math::Vector4D a(1.0f, 2.0f, 3.0f, 0.0f);
+    const math::Vector4D b(0.0f, 0.0f, 0.0f, 1.0f);
+
+    // Act
+    const math::Vector4D<float> actualProjection = a.reject(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(a.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(a.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(a.z, actualProjection.z);
+    EXPECT_FLOAT_EQ(a.w, actualProjection.w);
+}
+
+TEST(Vector4D, VectorsWhenRejectedReturnNonZeroVector)
+{
+    // Arrange
+    const math::Vector4D a(1.0f, 2.0f, 0.0f, 1.0f);
+    const math::Vector4D b(2.0f, 0.0f, 1.0f, 1.0f);
+    const math::Vector4D expectedProjection(0.0f, 0.2f, -0.5f, 0.5f);
+
+    // Act
+    const math::Vector4D<float> actualProjection = a.reject(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+}
+
+TEST(Vector4D, VectorsWhenRejectedOntoNormalizedVectorReturnNonZeroVector)
+{
+    // Arrange
+    const math::Vector4D a(1.0f, 2.0f, 3.0f, 4.0f);
+    const math::Vector4D b(1.0f, 0.0f, 0.0f, 0.0f);
+    const math::Vector4D expectedProjection(0.0f, 2.0f, 3.0f, 4.0f);
+
+    // Act
+    const math::Vector4D<float> actualProjection = a.reject(b, true);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+}
+
+TEST(Vector4D, PositiveVectorsWhenRejectedOntoNegativeVectorReturnsNonZeroVectorNonZeroPositiveVector)
+{
+    // Arrange
+    const math::Vector4D a(4.0f, 4.0f, 4.0f, 4.0f);
+    const math::Vector4D b(0.0f, 0.0f, -1.0f, 0.0f);
+    const math::Vector4D expectedProjection(4.0f, 4.0f, 0.0f, 4.0f);
+
+    // Act
+    const math::Vector4D<float> actualProjection = a.reject(b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+}
+
+TEST(Vector4D, VectorsWhenProjectedUsingStaticWrapperReturnNonZeroVector)
+{
+    // Arrange
+    const math::Vector4D a(1.0f, 2.0f, 0.0f, 1.0f);
+    const math::Vector4D b(2.0f, 0.0f, 1.0f, 1.0f);
+    const math::Vector4D expectedProjection(0.0f, 0.2f, -0.5f, 0.5f);
+
+    // Act
+    const math::Vector4D<float> actualProjection = math::Vector4D<float>::reject(a, b);
+
+    // Assert
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+}
