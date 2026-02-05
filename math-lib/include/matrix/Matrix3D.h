@@ -70,6 +70,11 @@ namespace math
 		// Static wrapper for Matrix 3D determinants.
 		static T determinant(const Matrix3D<T>& matrix);
 
+		// Transpose
+		Matrix3D<T> transpose() const;
+
+		static Matrix3D<T> transpose(const Matrix3D<T>& matrix);
+
 	};
 
 	template<typename T, typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
@@ -99,6 +104,7 @@ namespace math
 	 */
 	template<typename T, typename  S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 	Vector3D<T> operator*=(Vector3D<S>& vec, const Matrix3D<T>& mat);
+
 
 }
 

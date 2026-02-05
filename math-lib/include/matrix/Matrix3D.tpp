@@ -296,6 +296,18 @@ namespace math
 		return matrix.determinant();
 	}
 
+	template <typename T>
+	Matrix3D<T> Matrix3D<T>::transpose() const
+	{
+		return *this;
+	}
+
+	template <typename T>
+	Matrix3D<T> Matrix3D<T>::transpose(const Matrix3D<T>& matrix)
+	{
+		return Matrix3D();
+	}
+
 
 	template<typename T, typename S, typename>
 	Matrix3D<T> operator*(const S& scalar, const Matrix3D<T>& matrix)
