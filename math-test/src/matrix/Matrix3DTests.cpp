@@ -5,6 +5,7 @@
 #include <cstddef> 
 #include <iostream>
 #include <cmath>
+#include <valarray>
 
 #include "../utils/FloatEquals.h"
 
@@ -972,6 +973,24 @@ TEST(Matrix3D, DeterminantOfProductOfMatricesIsSameAsProductOfDeterminantOfMatri
 	// Act
 	const float determinantOfProduct = math::Matrix3D<float>::determinant(a * b);
 	const float productOfDeterminant = a.determinant() * b.determinant();
+
+	// Assert
+	EXPECT_FLOAT_EQ(determinantOfProduct, productOfDeterminant);
+}
+
+TEST(Matrix3D, DeterminantOfAMatrixMultipledByScalarIsScalarPowNTimesTheDeterminantOfOriginalMatrix)
+{
+	// det(t*A) = (t^n)det(A)
+	const math::Matrix3D a(
+		1.0f, 2.0f, 3.0f,
+		0.0f, 4.0f, 1.0f,
+		5.0f, 6.0f, 0.0f
+	);
+	const float scalar = 5.0f;
+
+	// Act
+	const float determinantOfProduct = math::Matrix3D<float>::determinant(scalar * a);
+	const float productOfDeterminant = (scalar * scalar * scalar) * a.determinant(); // n = 3 for 3x3 matrix
 
 	// Assert
 	EXPECT_FLOAT_EQ(determinantOfProduct, productOfDeterminant);
