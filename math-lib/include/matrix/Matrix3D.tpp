@@ -298,14 +298,18 @@ namespace math
 
 	template <typename T>
 	Matrix3D<T> Matrix3D<T>::transpose() const
-	{
-		return *this;
+	{	
+		return Matrix3D (
+			elements[0][0], elements[0][1], elements[0][2],
+			elements[1][0], elements[1][1], elements[1][2],
+			elements[2][0], elements[2][1], elements[2][2]
+		);
 	}
 
 	template <typename T>
 	Matrix3D<T> Matrix3D<T>::transpose(const Matrix3D<T>& matrix)
 	{
-		return Matrix3D();
+		return matrix.transpose();
 	}
 
 
