@@ -939,6 +939,44 @@ TEST(Matrix3D, MatrixDeterminantWithStaticWrapperReturnsCorrectValue)
 	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
 }
 
+TEST(Matrix3D, DeterminantofTransposedMatrixIsEqualToDeterminantOfTheMatrix)
+{
+	const math::Matrix3D a(
+		1.0f, 2.0f, 3.0f,
+		0.0f, 4.0f, 1.0f,
+		5.0f, 6.0f, 0.0f
+	);
+
+	// Act
+	const float detA = a.determinant();
+	const float detAT = a.transpose().determinant();
+
+	// Assert
+	EXPECT_FLOAT_EQ(detA, detAT);
+}
+
+TEST(Matrix3D, DeterminantOfProductOfMatricesIsSameAsProductOfDeterminantOfMatrix)
+{
+	// det(A*B) = det(A) * det(B)
+	const math::Matrix3D a(
+		1.0f, 2.0f, 3.0f,
+		0.0f, 4.0f, 1.0f,
+		5.0f, 6.0f, 0.0f
+	);
+	const math::Matrix3D b(
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, 8.0f, 9.0f
+	);
+
+	// Act
+	const float determinantOfProduct = math::Matrix3D<float>::determinant(a * b);
+	const float productOfDeterminant = a.determinant() * b.determinant();
+
+	// Assert
+	EXPECT_FLOAT_EQ(determinantOfProduct, productOfDeterminant);
+}
+
 TEST(Matrix3D, TransposeOfIdentityMatrixIsItself)
 {
 	// Arrange
@@ -955,6 +993,8 @@ TEST(Matrix3D, TransposeOfIdentityMatrixIsItself)
 		EXPECT_FLOAT_EQ(mat(i / rowSize, i % rowSize), actual(i / rowSize, i % rowSize));
 	}
 }
+
+
 
 TEST(Matrix3D, TransposeOfAMatrixReturnsMatrixWithRowsAndColumnsSwapped)
 {
