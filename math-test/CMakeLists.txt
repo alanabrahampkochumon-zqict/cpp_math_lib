@@ -10,7 +10,9 @@ set(MatrixTestDirectory "src/matrix/")
 set(MatrixTestFiles Matrix3DTests.cpp)
 list(TRANSFORM MatrixTestFiles PREPEND ${MatrixTestDirectory})
 
-set(Utilities "src/utils/FloatEquals.h")
+set(UtilityDirectory "src/utils/")
+set(Utilities "FloatEquals.h;MatrixUtils.h")
+list(TRANSFORM Utilities PREPEND ${UtilityDirectory})
 
 target_sources(
     MathTest
