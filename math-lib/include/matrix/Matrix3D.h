@@ -71,9 +71,13 @@ namespace math
 		static T determinant(const Matrix3D<T>& matrix);
 
 		// Transpose
-		Matrix3D<T> transpose() const;
+		Matrix3D transpose() const;
 
-		static Matrix3D<T> transpose(const Matrix3D<T>& matrix);
+		static Matrix3D transpose(const Matrix3D& matrix);
+
+		Matrix3D inverse() const;
+
+		static Matrix3D inverse(const Matrix3D& matrix);
 
 	};
 

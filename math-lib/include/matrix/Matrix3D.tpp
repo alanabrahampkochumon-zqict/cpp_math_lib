@@ -312,6 +312,18 @@ namespace math
 		return matrix.transpose();
 	}
 
+	template <typename T>
+	Matrix3D<T> Matrix3D<T>::inverse() const
+	{
+		return Matrix3D();
+	}
+
+	template <typename T>
+	Matrix3D<T> Matrix3D<T>::inverse(const Matrix3D& matrix)
+	{
+		return Matrix3D();
+	}
+
 
 	template<typename T, typename S, typename>
 	Matrix3D<T> operator*(const S& scalar, const Matrix3D<T>& matrix)

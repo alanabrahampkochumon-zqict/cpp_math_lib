@@ -8,6 +8,7 @@
 #include <valarray>
 
 #include "../utils/FloatEquals.h"
+#include "../utils/MatrixUtils.h"
 
 /*************************************
  *                                   *
@@ -1085,7 +1086,7 @@ TEST(Matrix3D_Inverse, InverseProducesAnotherMatrixWithCorrectValues)
 	const math::Matrix3D actualInverse = mat.inverse();
 
 	// Assert
-	// TODO: Create Mat Equal Function
+	TestUtils::EXPECT_MAT3D_EQ(expectedInverse, actualInverse);
 
 }
 
@@ -1106,22 +1107,22 @@ TEST(Matrix3D_Inverse, StaticWrapperForInverseReturnsAnotherMatrixWithCorrectVal
 	const math::Matrix3D<float> actualInverse = math::Matrix3D<float>::inverse(mat);
 
 	// Assert
-	// TODO: Create Mat Equal Function
+	TestUtils::EXPECT_MAT3D_EQ(expectedInverse, actualInverse);
 }
 
-TEST(Matrix_Inverse, IdentityMatrixInverseReturnsAnotherIdentityMatrix)
+TEST(Matrix3D_Inverse, IdentityMatrixInverseReturnsAnotherIdentityMatrix)
 {
 	// Given
 	const math::Matrix3D<float> identity;
 
 	// Act
-	const math::Matrix3D<float> actualInverse = mat.inverse();
+	const math::Matrix3D<float> actualInverse = identity.inverse();
 
 	// Assert
-	// TODO: Create Mat Equal Function
+	TestUtils::EXPECT_MAT3D_IDENTITY(actualInverse);
 }
 
-TEST(Matrix_Inverse, MatrixTimeInverseReturnsIdentityMatrix)
+TEST(Matrix3D_Inverse, MatrixTimeInverseReturnsIdentityMatrix)
 {
 	const math::Matrix3D mat(
 		1.0f, 2.0f, 3.0f,
@@ -1135,10 +1136,10 @@ TEST(Matrix_Inverse, MatrixTimeInverseReturnsIdentityMatrix)
 	const math::Matrix3D<float> product = mat * inverse;
 
 	// Assert
-	// TODO: Create Mat Equal Function
+	TestUtils::EXPECT_MAT3D_IDENTITY(product);
 }
 
-TEST(Matrix_Inverse, InverseTimesMatrixReturnsIdentityMatrix)
+TEST(Matrix3D_Inverse, InverseTimesMatrixReturnsIdentityMatrix)
 {
 	const math::Matrix3D mat(
 		1.0f, 2.0f, 3.0f,
@@ -1152,10 +1153,10 @@ TEST(Matrix_Inverse, InverseTimesMatrixReturnsIdentityMatrix)
 	const math::Matrix3D<float> product = inverse * mat;
 
 	// Assert
-	// TODO: Create Mat Equal Function
+	TestUtils::EXPECT_MAT3D_IDENTITY(product);
 }
 
-TEST(Matrix_Inverse, SingularMatrixProducesInfinityMatrix)
+TEST(Matrix3D_Inverse, SingularMatrixProducesInfinityMatrix)
 {
 	const math::Matrix3D singularMatrix(
 		0.0f, 0.0f, 0.0f,
@@ -1169,13 +1170,13 @@ TEST(Matrix_Inverse, SingularMatrixProducesInfinityMatrix)
 	);
 
 	// Act
-	const math::Matrix3D<float> actualInverse = math::Matrix3D<float>::inverse(mat);
+	const math::Matrix3D<float> actualInverse = math::Matrix3D<float>::inverse(singularMatrix);
 
 	// Assert
-	// TODO: Create Mat Equal Function
+	TestUtils::EXPECT_MAT3D_EQ(infinityMatrix, actualInverse);
 }
 
-TEST(Matrix_Inverse, InversionOfRotationOnlyMatrixReturnsTranspose)
+TEST(Matrix3D_Inverse, InversionOfRotationOnlyMatrixReturnsTranspose)
 {
 	const math::Matrix3D mat(
 		0.0f, -1.0f, 0.0f,
@@ -1192,5 +1193,5 @@ TEST(Matrix_Inverse, InversionOfRotationOnlyMatrixReturnsTranspose)
 	const math::Matrix3D<float> actualInverse = math::Matrix3D<float>::inverse(mat);
 
 	// Assert
-	// TODO: Create Mat Equal Function
+	TestUtils::EXPECT_MAT3D_EQ(transpose, actualInverse);
 }
