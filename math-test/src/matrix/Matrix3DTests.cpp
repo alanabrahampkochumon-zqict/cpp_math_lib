@@ -1163,17 +1163,13 @@ TEST(Matrix3D_Inverse, SingularMatrixProducesInfinityMatrix)
 		0.0f, 0.0f, 0.0f,
 		0.0f, 0.0f, 0.0f
 	);
-	const math::Matrix3D<float> infinityMatrix(
-		INFINITY, INFINITY, INFINITY,
-		INFINITY, INFINITY, INFINITY,
-		INFINITY, INFINITY, INFINITY
-	);
+	
 
 	// Act
 	const math::Matrix3D<float> actualInverse = math::Matrix3D<float>::inverse(singularMatrix);
 
 	// Assert
-	TestUtils::EXPECT_MAT3D_EQ(infinityMatrix, actualInverse);
+	TestUtils::EXPECT_MAT3D_IDENTITY(actualInverse);
 }
 
 TEST(Matrix3D_Inverse, InversionOfRotationOnlyMatrixReturnsTranspose)

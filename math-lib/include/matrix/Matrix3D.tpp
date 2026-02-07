@@ -1,6 +1,8 @@
 #pragma once
 
 #include <type_traits>
+#include <valarray>
+
 #include "Matrix3D.h"
 
 namespace math
@@ -315,13 +317,36 @@ namespace math
 	template <typename T>
 	Matrix3D<T> Matrix3D<T>::inverse() const
 	{
-		return Matrix3D();
+		const T det = this->determinant();
+		// Handle Non-Invertible Matrices
+		if (std::abs(det) <= 1e-6f)
+			return Matrix3D();
+			
+		// 1 / det(M) * [b cross c, c cross a, a cross b]^T
+		const T factor = T(1) / det;
+
+		const Vector3D<T> col1 = columns[1].cross(columns[2]);
+		const Vector3D<T> col2 = columns[2].cross(columns[0]);
+		const Vector3D<T> col3 = columns[0].cross(columns[1]);
+		
+		return factor * Matrix3D(
+			col1.x, col1.y, col1.z,
+			col2.x, col2.y, col2.z,
+			col3.x, col3.y, col3.z
+		);
+
+		// NOTE: Left for profiling
+		//return factor * Matrix3D<T>(
+		//	columns[1].cross(columns[2]), // Col 0
+		//	columns[2].cross(columns[0]), // Col 1
+		//	columns[0].cross(columns[1]) // Col 2
+		//).transpose();
 	}
 
 	template <typename T>
 	Matrix3D<T> Matrix3D<T>::inverse(const Matrix3D& matrix)
 	{
-		return Matrix3D();
+		return matrix.inverse();
 	}
 
 

@@ -75,6 +75,7 @@ namespace math
 
 		static Matrix3D transpose(const Matrix3D& matrix);
 
+		// Matrix Inverse
 		Matrix3D inverse() const;
 
 		static Matrix3D inverse(const Matrix3D& matrix);
