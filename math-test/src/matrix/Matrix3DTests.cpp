@@ -75,7 +75,7 @@ TEST(Matrix3D, CanMutateVectorAtIndex)
 
 	// Act
 	mat[2] = vec;
-	
+
 	// Assert
 	EXPECT_FLOAT_EQ(1.0f, mat(0, 0));
 	EXPECT_FLOAT_EQ(0.0f, mat(0, 1));
@@ -108,13 +108,13 @@ TEST(Matrix3D, CanMutateValueAtRowColumn)
 {
 	// Arrange
 	math::Matrix3D<float> mat;
-	
+
 	// Act
 	constexpr std::size_t size = 9;
 	constexpr std::size_t rowMax = 3;
 	for (size_t i = 0; i < size; ++i)
 		mat(i / rowMax, i % rowMax) = static_cast<float>(i);
-	 
+
 	// Assert
 	for (size_t i = 0; i < size; ++i)
 		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowMax, i % rowMax));
@@ -340,7 +340,7 @@ TEST(Matrix3D, MatrixTimesOneReturnANewMatrixWithOriginalMatrixValues)
 		4.0f, 5.0f, 6.0f,
 		7.0f, -8.0f, 9.0f
 	};
-	
+
 	// Act
 	const math::Matrix3D<float> b = a * 1;
 	constexpr std::size_t size = 9;
@@ -990,7 +990,7 @@ TEST(Matrix3D, DeterminantOfAMatrixMultipledByScalarIsScalarPowNTimesTheDetermin
 
 	// Act
 	const float determinantOfProduct = math::Matrix3D<float>::determinant(scalar * a);
-	const float productOfDeterminant = (scalar * scalar * scalar) * a.determinant(); // n = 3 for 3x3 matrix
+	const float productOfDeterminant = (scalar * scalar * scalar) * a.determinant(); // n = 3 for 3x3 matrix 
 
 	// Assert
 	EXPECT_FLOAT_EQ(determinantOfProduct, productOfDeterminant);
@@ -1065,4 +1065,132 @@ TEST(Matrix3D, TransposeOfAMatrixUsingStaticWrapperReturnsMatrixWithRowsAndColum
 	{
 		EXPECT_FLOAT_EQ(expected(i / rowSize, i % rowSize), actual(i / rowSize, i % rowSize));
 	}
+}
+
+TEST(Matrix3D_Inverse, InverseProducesAnotherMatrixWithCorrectValues)
+{
+	// Given
+	const math::Matrix3D mat(
+		1.0f, 2.0f, 3.0f,
+		0.0f, 1.0f, 4.0f,
+		5.0f, 6.0f, 0.0f
+	);
+	const math::Matrix3D expectedInverse(
+		-24.0f, 18.0f, 5.0f,
+		20.0f, -15.0f, -4.0f,
+		-5.0f, 4.0f, 1.0f
+	);
+
+	// Act
+	const math::Matrix3D actualInverse = mat.inverse();
+
+	// Assert
+	// TODO: Create Mat Equal Function
+
+}
+
+TEST(Matrix3D_Inverse, StaticWrapperForInverseReturnsAnotherMatrixWithCorrectValues)
+{
+	const math::Matrix3D mat(
+		1.0f, 2.0f, 3.0f,
+		0.0f, 1.0f, 4.0f,
+		5.0f, 6.0f, 0.0f
+	);
+	const math::Matrix3D expectedInverse(
+		-24.0f, 18.0f, 5.0f,
+		20.0f, -15.0f, -4.0f,
+		-5.0f, 4.0f, 1.0f
+	);
+
+	// Act
+	const math::Matrix3D<float> actualInverse = math::Matrix3D<float>::inverse(mat);
+
+	// Assert
+	// TODO: Create Mat Equal Function
+}
+
+TEST(Matrix_Inverse, IdentityMatrixInverseReturnsAnotherIdentityMatrix)
+{
+	// Given
+	const math::Matrix3D<float> identity;
+
+	// Act
+	const math::Matrix3D<float> actualInverse = mat.inverse();
+
+	// Assert
+	// TODO: Create Mat Equal Function
+}
+
+TEST(Matrix_Inverse, MatrixTimeInverseReturnsIdentityMatrix)
+{
+	const math::Matrix3D mat(
+		1.0f, 2.0f, 3.0f,
+		0.0f, 1.0f, 4.0f,
+		5.0f, 6.0f, 0.0f
+	);
+	const math::Matrix3D<float> identity;
+
+	// Act
+	const math::Matrix3D<float> inverse = math::Matrix3D<float>::inverse(mat);
+	const math::Matrix3D<float> product = mat * inverse;
+
+	// Assert
+	// TODO: Create Mat Equal Function
+}
+
+TEST(Matrix_Inverse, InverseTimesMatrixReturnsIdentityMatrix)
+{
+	const math::Matrix3D mat(
+		1.0f, 2.0f, 3.0f,
+		0.0f, 1.0f, 4.0f,
+		5.0f, 6.0f, 0.0f
+	);
+	const math::Matrix3D<float> identity;
+
+	// Act
+	const math::Matrix3D<float> inverse = math::Matrix3D<float>::inverse(mat);
+	const math::Matrix3D<float> product = inverse * mat;
+
+	// Assert
+	// TODO: Create Mat Equal Function
+}
+
+TEST(Matrix_Inverse, SingularMatrixProducesInfinityMatrix)
+{
+	const math::Matrix3D singularMatrix(
+		0.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 0.0f
+	);
+	const math::Matrix3D<float> infinityMatrix(
+		INFINITY, INFINITY, INFINITY,
+		INFINITY, INFINITY, INFINITY,
+		INFINITY, INFINITY, INFINITY
+	);
+
+	// Act
+	const math::Matrix3D<float> actualInverse = math::Matrix3D<float>::inverse(mat);
+
+	// Assert
+	// TODO: Create Mat Equal Function
+}
+
+TEST(Matrix_Inverse, InversionOfRotationOnlyMatrixReturnsTranspose)
+{
+	const math::Matrix3D mat(
+		0.0f, -1.0f, 0.0f,
+		1.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 1.0f
+	);
+	const math::Matrix3D transpose(
+		0.0f, 1.0f, 0.0f,
+		-1.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 1.0f
+	);
+
+	// Act
+	const math::Matrix3D<float> actualInverse = math::Matrix3D<float>::inverse(mat);
+
+	// Assert
+	// TODO: Create Mat Equal Function
 }
