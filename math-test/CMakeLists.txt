@@ -11,7 +11,7 @@ set(MatrixTestFiles Matrix3DTests.cpp)
 list(TRANSFORM MatrixTestFiles PREPEND ${MatrixTestDirectory})
 
 set(UtilityDirectory "src/utils/")
-set(Utilities "FloatEquals.h;MatrixUtils.h")
+set(Utilities "FloatEquals.h;MatrixUtils.h;VectorUtils.h")
 list(TRANSFORM Utilities PREPEND ${UtilityDirectory})
 
 target_sources(

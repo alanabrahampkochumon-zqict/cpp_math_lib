@@ -6,6 +6,7 @@
 
 #include "../utils/FloatEquals.h"
 #include "../utils/MatrixUtils.h"
+#include "../utils/VectorUtils.h"
 
 using namespace TestUtils::Matrix3D;
 
@@ -21,7 +22,7 @@ TEST(Matrix3D_Initialization, InitializedWithOutParametersProvidesIdentityMatrix
     const math::Matrix3D<float> mat;
 
     // Assert
-    EXPECT_MAT3D_IDENTITY(mat);
+    EXPECT_MAT_IDENTITY(mat);
 }
 
 TEST(Matrix3D_Initialization, InitializedWithParametersProvidesCorrectMatrix)
@@ -151,7 +152,7 @@ TEST(Matrix3D_Sum, SumOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
     const math::Matrix3D<float> res = a + b;
 
     // Assert
-    EXPECT_MAT3D_EQ(c, res);
+    EXPECT_MAT_EQ(c, res);
 }
 
 TEST(Matrix3D_Sum, PlusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValues)
@@ -174,7 +175,7 @@ TEST(Matrix3D_Sum, PlusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrect
     a += b;
 
     // Assert
-    EXPECT_MAT3D_EQ(c, a);
+    EXPECT_MAT_EQ(c, a);
 }
 
 TEST(Matrix3D_Difference, DifferenceOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
@@ -197,7 +198,7 @@ TEST(Matrix3D_Difference, DifferenceOfTwoMatricesReturnsAnotherMatrixWithCorrect
     const math::Matrix3D<float> res = a - b;
 
     // Assert
-    EXPECT_MAT3D_EQ(c, res);
+    EXPECT_MAT_EQ(c, res);
 }
 
 TEST(Matrix3D_Difference, MinusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValues)
@@ -220,7 +221,7 @@ TEST(Matrix3D_Difference, MinusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWit
     a -= b;
 
     // Assert
-    EXPECT_MAT3D_EQ(c, a);
+    EXPECT_MAT_EQ(c, a);
 }
 
 TEST(Matrix3D_Product, MatrixTimesAIntegerScalarReturnsCorrectMatrix)
@@ -233,14 +234,14 @@ TEST(Matrix3D_Product, MatrixTimesAIntegerScalarReturnsCorrectMatrix)
     const math::Matrix3D expected = {
         2.0f, 4.0f, 6.0f,
         8.0f, 10.0f, 12.0f,
-        14.0f, -16.0f, 18.0f };
+        14.0f, -16.0f, 18.0f};
     constexpr int scalar = 2;
 
     // Act
     const math::Matrix3D actual = a * scalar;
 
     // Assert
-    EXPECT_MAT3D_EQ(expected, actual);
+    EXPECT_MAT_EQ(expected, actual);
 }
 
 TEST(Matrix3D_Product, IntegerScalarTimesAMatrixReturnsCorrectMatrix)
@@ -253,14 +254,14 @@ TEST(Matrix3D_Product, IntegerScalarTimesAMatrixReturnsCorrectMatrix)
     const math::Matrix3D expected = {
         2.0f, 4.0f, 6.0f,
         8.0f, 10.0f, 12.0f,
-        14.0f, -16.0f, 18.0f };
+        14.0f, -16.0f, 18.0f};
     constexpr int scalar = 2;
 
     // Act
     const math::Matrix3D<float> actual = scalar * a;
 
     // Assert
-    EXPECT_MAT3D_EQ(expected, actual);
+    EXPECT_MAT_EQ(expected, actual);
 }
 
 TEST(Matrix3D_Product, MatrixTimesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)
@@ -280,7 +281,7 @@ TEST(Matrix3D_Product, MatrixTimesEqualIntegerScalarIsTheSameMatrixWithCorrectVa
     a *= scalar;
 
     // Assert
-    EXPECT_MAT3D_EQ(a, b);
+    EXPECT_MAT_EQ(a, b);
 }
 
 TEST(Matrix3D_Product, MatrixTimesOneReturnANewMatrixWithOriginalMatrixValues)
@@ -295,7 +296,7 @@ TEST(Matrix3D_Product, MatrixTimesOneReturnANewMatrixWithOriginalMatrixValues)
     const math::Matrix3D<float> b = a * 1;
 
     // Assert
-    EXPECT_MAT3D_EQ(a, b);
+    EXPECT_MAT_EQ(a, b);
 }
 
 TEST(Matrix3D_Product, MatrixTimesZeroScalarReturnsZeroMatrix)
@@ -310,7 +311,7 @@ TEST(Matrix3D_Product, MatrixTimesZeroScalarReturnsZeroMatrix)
     const math::Matrix3D<float> b = a * 0;
 
     // Assert
-    EXPECT_MAT3D_ZERO(b);
+    EXPECT_MAT_ZERO(b);
 }
 
 TEST(Matrix3D_Product, MatrixTimesAFloatScalarReturnsCorrectMatrix)
@@ -325,13 +326,13 @@ TEST(Matrix3D_Product, MatrixTimesAFloatScalarReturnsCorrectMatrix)
     const math::Matrix3D expected = {
         2.5f, 5.0f, 7.5f,
         10.0f, 12.5f, 15.0f,
-        17.5f, -20.0f, 22.5f };
+        17.5f, -20.0f, 22.5f};
 
     // Act
     const math::Matrix3D<float> b = a * scalar;
 
     // Assert
-    EXPECT_MAT3D_EQ(expected, b);
+    EXPECT_MAT_EQ(expected, b);
 }
 
 TEST(Matrix3D_Product, MatrixTimesNegativeFloatScalarFlipsSigns)
@@ -344,15 +345,14 @@ TEST(Matrix3D_Product, MatrixTimesNegativeFloatScalarFlipsSigns)
     const math::Matrix3D expected = {
         -2.0f, 4.0f, 0.0f,
         8.0f, -10.0f, 12.0f,
-        0.0f, -16.0f, -18.0f };
+        0.0f, -16.0f, -18.0f};
     constexpr float scalar = -2.0f;
 
     // Act
     const math::Matrix3D<float> b = a * scalar;
 
     // Assert
-    EXPECT_MAT3D_EQ(expected, b);
-
+    EXPECT_MAT_EQ(expected, b);
 }
 
 TEST(Matrix3D_Product, MatrixTimesVectorReturnsANewMatrixWithCorrectValues)
@@ -366,12 +366,10 @@ TEST(Matrix3D_Product, MatrixTimesVectorReturnsANewMatrixWithCorrectValues)
     const math::vec3 expected(13.0f, 31.0f, 49.0f);
 
     // Act
-    const math::vec3 result = mat * vec;
+    const math::vec3 actual = mat * vec;
 
     // Assert
-    EXPECT_FLOAT_EQ(expected.x, result.x);
-    EXPECT_FLOAT_EQ(expected.y, result.y);
-    EXPECT_FLOAT_EQ(expected.z, result.z);
+    TestUtils::Vector3D::EXPECT_VEC_EQ(expected, actual);
 }
 
 TEST(Matrix3D_Product, IdentityMatrixTimesAVectorReturnsTheSameMatrix)
@@ -381,12 +379,10 @@ TEST(Matrix3D_Product, IdentityMatrixTimesAVectorReturnsTheSameMatrix)
     const math::vec3 vec(2.0f, 1.0f, 3.0f);
 
     // Act
-    const math::vec3 result = mat * vec;
+    const math::vec3 actual = mat * vec;
 
     // Assert
-    EXPECT_FLOAT_EQ(vec.x, result.x);
-    EXPECT_FLOAT_EQ(vec.y, result.y);
-    EXPECT_FLOAT_EQ(vec.z, result.z);
+    TestUtils::Vector3D::EXPECT_VEC_EQ(vec, actual);
 }
 
 TEST(Matrix3D_Product, VectorTimesAMatrixReturnsANewVectorWithCorrectValues)
@@ -400,12 +396,10 @@ TEST(Matrix3D_Product, VectorTimesAMatrixReturnsANewVectorWithCorrectValues)
     const math::vec3 expected(27.0f, 33.0f, 39.0f);
 
     // Act
-    const math::vec3 result = vec * mat;
+    const math::vec3 actual = vec * mat;
 
     // Assert
-    EXPECT_FLOAT_EQ(expected.x, result.x);
-    EXPECT_FLOAT_EQ(expected.y, result.y);
-    EXPECT_FLOAT_EQ(expected.z, result.z);
+    TestUtils::Vector3D::EXPECT_VEC_EQ(expected, actual);
 }
 
 TEST(Matrix3D_Product, VectorTimesIdentityMatrixReturnsTheSameMatrix)
@@ -415,12 +409,10 @@ TEST(Matrix3D_Product, VectorTimesIdentityMatrixReturnsTheSameMatrix)
     math::vec3 vec(2.0f, 1.0f, 3.0f);
 
     // Act
-    const math::vec3 result = vec * mat;
+    const math::vec3 actual = vec * mat;
 
     // Assert
-    EXPECT_FLOAT_EQ(vec.x, result.x);
-    EXPECT_FLOAT_EQ(vec.y, result.y);
-    EXPECT_FLOAT_EQ(vec.z, result.z);
+    TestUtils::Vector3D::EXPECT_VEC_EQ(vec, actual);
 }
 
 TEST(Matrix3D_Product, VectorTimesEqualMatrixReturnTheSameVectorWithNewValues)
@@ -437,9 +429,7 @@ TEST(Matrix3D_Product, VectorTimesEqualMatrixReturnTheSameVectorWithNewValues)
     vec *= mat;
 
     // Assert
-    EXPECT_FLOAT_EQ(expected.x, vec.x);
-    EXPECT_FLOAT_EQ(expected.y, vec.y);
-    EXPECT_FLOAT_EQ(expected.z, vec.z);
+    TestUtils::Vector3D::EXPECT_VEC_EQ(expected, vec);
 }
 
 TEST(Matrix3D_Product, MatrixTimesMatrixGivesAnotherMatrixWithCorrectValues)
@@ -462,8 +452,7 @@ TEST(Matrix3D_Product, MatrixTimesMatrixGivesAnotherMatrixWithCorrectValues)
     const math::Matrix3D actual = mat1 * mat2;
 
     // Assert
-    EXPECT_MAT3D_EQ(expected, actual);
-
+    EXPECT_MAT_EQ(expected, actual);
 }
 
 TEST(Matrix3D_Product, MatrixTimesIdentityMatrixReturnsSameMatrix)
@@ -475,13 +464,11 @@ TEST(Matrix3D_Product, MatrixTimesIdentityMatrixReturnsSameMatrix)
         7.0f, 8.0f, 9.0f};
     const math::Matrix3D<float> eye;
 
-
     // Act
     const math::Matrix3D actual = mat * eye;
 
     // Assert
-    EXPECT_MAT3D_EQ(mat, actual);
-
+    EXPECT_MAT_EQ(mat, actual);
 }
 
 TEST(Matrix3D_Product, MatrixTimesEqualAnotherMatrixReturnsSameMatrixWithCorrectValues)
@@ -504,8 +491,7 @@ TEST(Matrix3D_Product, MatrixTimesEqualAnotherMatrixReturnsSameMatrixWithCorrect
     mat1 *= mat2;
 
     // Assert
-    EXPECT_MAT3D_EQ(expected, mat1);
-
+    EXPECT_MAT_EQ(expected, mat1);
 }
 
 TEST(Matrix3D_Product, Matrix3DProductIsAntiCommutative)
@@ -525,7 +511,6 @@ TEST(Matrix3D_Product, Matrix3DProductIsAntiCommutative)
     // Act
     const math::Matrix3D result1 = mat1 * mat2;
     const math::Matrix3D result2 = mat2 * mat1;
-
 
     // Assert
     bool commutative = true;
@@ -551,7 +536,6 @@ TEST(Matrix3D_Product, Matrix3DProductWithScalarMultiplesAreCommutative)
     const math::Matrix3D result1 = mat1 * mat2;
     const math::Matrix3D result2 = mat2 * mat1;
 
-
     // Assert
     bool commutative = true;
     for (std::size_t i = 0; i < SIZE; i++)
@@ -571,15 +555,14 @@ TEST(Matrix3D_Division, MatrixDividedByAIntegerScalarReturnsCorrectMatrix)
     const math::Matrix3D expected = {
         0.5f, 1.0f, 1.5f,
         2.0f, 2.5f, 3.0f,
-        3.5f, -4.0f, 4.5f
-    };
+        3.5f, -4.0f, 4.5f};
     constexpr int scalar = 2;
 
     // Act
     const math::Matrix3D<float> actual = a / scalar;
 
     // Assert
-    EXPECT_MAT3D_EQ(expected, actual);
+    EXPECT_MAT_EQ(expected, actual);
 }
 
 TEST(Matrix3D_Division, MatrixDividesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)
@@ -599,8 +582,7 @@ TEST(Matrix3D_Division, MatrixDividesEqualIntegerScalarIsTheSameMatrixWithCorrec
     a /= scalar;
 
     // Assert
-    EXPECT_MAT3D_EQ(b, a);
-
+    EXPECT_MAT_EQ(b, a);
 }
 
 TEST(Matrix3D_Division, MatrixDividedByOneReturnANewMatrixWithOriginalMatrixValues)
@@ -615,8 +597,7 @@ TEST(Matrix3D_Division, MatrixDividedByOneReturnANewMatrixWithOriginalMatrixValu
     const math::Matrix3D<float> b = a / 1;
 
     // Assert
-    EXPECT_MAT3D_EQ(a, b);
-
+    EXPECT_MAT_EQ(a, b);
 }
 
 TEST(Matrix3D_Division, MatrixDividedByZeroScalarReturnsInfinityMatrix)
@@ -631,7 +612,7 @@ TEST(Matrix3D_Division, MatrixDividedByZeroScalarReturnsInfinityMatrix)
     const math::Matrix3D<float> b = a / 0;
 
     // Assert
-    EXPECT_MAT3D_INF(b);
+    EXPECT_MAT_INF(b);
 }
 
 TEST(Matrix3D_Division, MatrixDividedByAFloatScalarReturnsCorrectMatrix)
@@ -645,7 +626,7 @@ TEST(Matrix3D_Division, MatrixDividedByAFloatScalarReturnsCorrectMatrix)
     const math::Matrix3D expected = {
         0.4f, 0.8f, 1.2f,
         1.6f, 2.0f, 2.4f,
-        2.8f, -3.2f, 3.6f };
+        2.8f, -3.2f, 3.6f};
 
     constexpr float scalar = 2.5;
 
@@ -653,7 +634,7 @@ TEST(Matrix3D_Division, MatrixDividedByAFloatScalarReturnsCorrectMatrix)
     const math::Matrix3D<float> actual = a / scalar;
 
     // Assert
-    EXPECT_MAT3D_EQ(expected, actual);
+    EXPECT_MAT_EQ(expected, actual);
 }
 
 TEST(Matrix3D_Division, MatrixDividedNegativeFloatScalarFlipsSigns)
@@ -662,19 +643,18 @@ TEST(Matrix3D_Division, MatrixDividedNegativeFloatScalarFlipsSigns)
     const math::Matrix3D a = {
         1.0f, -2.0f, 22.0f,
         -4.0f, 5.0f, -6.0f,
-        4.0f, 8.0f, 9.0f };
+        4.0f, 8.0f, 9.0f};
     const math::Matrix3D expected = {
         -0.5f, 1.0f, -11.0f,
         2.0f, -2.5f, 3.0f,
-        -2.0f, -4.0f, -4.5f };
+        -2.0f, -4.0f, -4.5f};
     constexpr float scalar = -2.0f;
 
     // Act
     const math::Matrix3D<float> actual = a / scalar;
 
     // Assert
-    EXPECT_MAT3D_EQ(expected, actual);
-
+    EXPECT_MAT_EQ(expected, actual);
 }
 
 /**
@@ -955,7 +935,7 @@ TEST(Matrix3D_Inverse, InverseProducesAnotherMatrixWithCorrectValues)
     const math::Matrix3D actualInverse = mat.inverse();
 
     // Assert
-    EXPECT_MAT3D_EQ(expectedInverse, actualInverse);
+    EXPECT_MAT_EQ(expectedInverse, actualInverse);
 }
 
 TEST(Matrix3D_Inverse, StaticWrapperForInverseReturnsAnotherMatrixWithCorrectValues)
@@ -973,7 +953,7 @@ TEST(Matrix3D_Inverse, StaticWrapperForInverseReturnsAnotherMatrixWithCorrectVal
     const math::Matrix3D<float> actualInverse = math::Matrix3D<float>::inverse(mat);
 
     // Assert
-    EXPECT_MAT3D_EQ(expectedInverse, actualInverse);
+    EXPECT_MAT_EQ(expectedInverse, actualInverse);
 }
 
 TEST(Matrix3D_Inverse, IdentityMatrixInverseReturnsAnotherIdentityMatrix)
@@ -985,7 +965,7 @@ TEST(Matrix3D_Inverse, IdentityMatrixInverseReturnsAnotherIdentityMatrix)
     const math::Matrix3D<float> actualInverse = identity.inverse();
 
     // Assert
-    EXPECT_MAT3D_IDENTITY(actualInverse);
+    EXPECT_MAT_IDENTITY(actualInverse);
 }
 
 TEST(Matrix3D_Inverse, MatrixTimeInverseReturnsIdentityMatrix)
@@ -1000,7 +980,7 @@ TEST(Matrix3D_Inverse, MatrixTimeInverseReturnsIdentityMatrix)
     const math::Matrix3D<float> product = mat * inverse;
 
     // Assert
-    EXPECT_MAT3D_IDENTITY(product);
+    EXPECT_MAT_IDENTITY(product);
 }
 
 TEST(Matrix3D_Inverse, InverseTimesMatrixReturnsIdentityMatrix)
@@ -1015,7 +995,7 @@ TEST(Matrix3D_Inverse, InverseTimesMatrixReturnsIdentityMatrix)
     const math::Matrix3D<float> product = inverse * mat;
 
     // Assert
-    EXPECT_MAT3D_IDENTITY(product);
+    EXPECT_MAT_IDENTITY(product);
 }
 
 TEST(Matrix3D_Inverse, SingularMatrixProducesInfinityMatrix)
@@ -1029,7 +1009,7 @@ TEST(Matrix3D_Inverse, SingularMatrixProducesInfinityMatrix)
     const math::Matrix3D<float> actualInverse = math::Matrix3D<float>::inverse(singularMatrix);
 
     // Assert
-    EXPECT_MAT3D_IDENTITY(actualInverse);
+    EXPECT_MAT_IDENTITY(actualInverse);
 }
 
 TEST(Matrix3D_Inverse, InversionOfRotationOnlyMatrixReturnsTranspose)
@@ -1047,5 +1027,5 @@ TEST(Matrix3D_Inverse, InversionOfRotationOnlyMatrixReturnsTranspose)
     const math::Matrix3D<float> actualInverse = math::Matrix3D<float>::inverse(mat);
 
     // Assert
-    EXPECT_MAT3D_EQ(transpose, actualInverse);
+    EXPECT_MAT_EQ(transpose, actualInverse);
 }

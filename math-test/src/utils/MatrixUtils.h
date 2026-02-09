@@ -13,7 +13,7 @@ namespace TestUtils::Matrix3D
 	static unsigned int ROW_SIZE = 3;
 
 	template<typename T>
-	void EXPECT_MAT3D_EQ(math::Matrix3D<T> expected, math::Matrix3D<T> actual)
+	void EXPECT_MAT_EQ(math::Matrix3D<T> expected, math::Matrix3D<T> actual)
 	{
 		for (unsigned int i = 0; i < SIZE; i++)
 		{
@@ -22,7 +22,7 @@ namespace TestUtils::Matrix3D
 	}
 
 	template<typename T>
-	void EXPECT_MAT3D_IDENTITY(math::Matrix3D<T> actual)
+	void EXPECT_MAT_IDENTITY(math::Matrix3D<T> actual)
 	{
 		const math::Matrix3D<T> identity(
 			T(1), T(0), T(0),
@@ -37,7 +37,7 @@ namespace TestUtils::Matrix3D
 	}
 
 	template<typename T>
-	void EXPECT_MAT3D_ZERO(math::Matrix3D<T> actual)
+	void EXPECT_MAT_ZERO(math::Matrix3D<T> actual)
 	{
 
 		for (unsigned int i = 0; i < SIZE; i++)
@@ -47,7 +47,7 @@ namespace TestUtils::Matrix3D
 	}
 
 	template<typename T>
-	void EXPECT_MAT3D_INF(math::Matrix3D<T> actual)
+	void EXPECT_MAT_INF(math::Matrix3D<T> actual)
 	{
 
 		for (unsigned int i = 0; i < SIZE; i++)
