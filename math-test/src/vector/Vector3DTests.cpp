@@ -3,124 +3,125 @@
 #include <vector/Vector3D.h>
 #include <vector/Vector2D.h>
 
+#include "../utils/VectorUtils.h"
+
+
 /*
 * INITIALIZATION AND ACCESS TESTS
 */
+using namespace TestUtils::Vector3D;
 
-TEST(Vector3D, EmptyConstructorInitializesZeroVector)
+TEST(Vector3D_Initialization, EmptyConstructorInitializesZeroVector)
 {
-    // Arrange & Act
-    const math::Vector3D<float> vec;
+	// Arrange & Act
+	const math::Vector3D<float> vec;
 
-    // Assert
-    EXPECT_FLOAT_EQ(0.0f, vec.x);
-    EXPECT_FLOAT_EQ(0.0f, vec.y);
-    EXPECT_FLOAT_EQ(0.0f, vec.z);
+	// Assert
+	EXPECT_VEC_ZERO(vec);
 }
 
-TEST(Vector3D, ConstructorParametersInitializesVector)
+TEST(Vector3D_Initialization, ConstructorParametersInitializesVector)
 {
-    // Arrange & Act
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+	// Arrange & Act
+	const math::Vector3D vec(3.0f, 1.0f, 6.0f);
 
-    // Assert
-    EXPECT_FLOAT_EQ(3.0f, vec.x);
-    EXPECT_FLOAT_EQ(1.0f, vec.y);
-    EXPECT_FLOAT_EQ(6.0f, vec.z);
+	// Assert
+	EXPECT_FLOAT_EQ(3.0f, vec.x);
+	EXPECT_FLOAT_EQ(1.0f, vec.y);
+	EXPECT_FLOAT_EQ(6.0f, vec.z);
 }
 
-TEST(Vector3D, AccessibleAsXYZ)
+TEST(Vector3D_Initialization, one2DVectorAndFloatCanInitializeA3DVector)
 {
-    // Arrange & Act
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+	// Arrange
+	math::Vector2D vec1(3.0f, 1.0f);
 
-    // Assert
-    EXPECT_FLOAT_EQ(3.0f, vec.x);
-    EXPECT_FLOAT_EQ(1.0f, vec.y);
-    EXPECT_FLOAT_EQ(6.0f, vec.z);
+	// Act
+	math::Vector3D vec(vec1, 6.0f);
+
+	// Assert
+	EXPECT_FLOAT_EQ(3.0f, vec.x);
+	EXPECT_FLOAT_EQ(1.0f, vec.y);
+	EXPECT_FLOAT_EQ(6.0f, vec.z);
 }
 
-TEST(Vector3D, AccessibleAsSTP)
+TEST(Vector3D_Access, AccessibleAsXYZ)
 {
-    // Arrange & Act
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+	// Arrange & Act
+	const math::Vector3D vec(3.0f, 1.0f, 6.0f);
 
-    // Assert
-    EXPECT_FLOAT_EQ(3.0f, vec.s);
-    EXPECT_FLOAT_EQ(1.0f, vec.t);
-    EXPECT_FLOAT_EQ(6.0f, vec.p);
+	// Assert
+	EXPECT_FLOAT_EQ(3.0f, vec.x);
+	EXPECT_FLOAT_EQ(1.0f, vec.y);
+	EXPECT_FLOAT_EQ(6.0f, vec.z);
 }
 
-TEST(Vector3D, AccessibleAsRGB)
+TEST(Vector3D_Access, AccessibleAsSTP)
 {
-    // Arrange & Act
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+	// Arrange & Act
+	const math::Vector3D vec(3.0f, 1.0f, 6.0f);
 
-    // Assert
-    EXPECT_FLOAT_EQ(3.0f, vec.r);
-    EXPECT_FLOAT_EQ(1.0f, vec.g);
-    EXPECT_FLOAT_EQ(6.0f, vec.b);
+	// Assert
+	EXPECT_FLOAT_EQ(3.0f, vec.s);
+	EXPECT_FLOAT_EQ(1.0f, vec.t);
+	EXPECT_FLOAT_EQ(6.0f, vec.p);
 }
 
-TEST(Vector3D, AccessibleAsArray)
+TEST(Vector3D_Access, AccessibleAsRGB)
 {
-    // Arrange & Act
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+	// Arrange & Act
+	const math::Vector3D vec(3.0f, 1.0f, 6.0f);
 
-    // Assert
-    EXPECT_FLOAT_EQ(3.0f, vec.elements[0]);
-    EXPECT_FLOAT_EQ(1.0f, vec.elements[1]);
-    EXPECT_FLOAT_EQ(6.0f, vec.elements[2]);
+	// Assert
+	EXPECT_FLOAT_EQ(3.0f, vec.r);
+	EXPECT_FLOAT_EQ(1.0f, vec.g);
+	EXPECT_FLOAT_EQ(6.0f, vec.b);
 }
 
-TEST(Vector3D, IndexBasedAssignmentAndRetrivalSupport)
+TEST(Vector3D_Access, AccessibleAsArray)
 {
-    // Arrange
-    math::Vector3D<float> vec;
+	// Arrange & Act
+	const math::Vector3D vec(3.0f, 1.0f, 6.0f);
 
-    // Act
-    vec[0] = 3.0f;
-    vec[1] = 1.0f;
-    vec[2] = 6.0f;
-    
-    // Assert
-    EXPECT_FLOAT_EQ(3.0f, vec[0]);
-    EXPECT_FLOAT_EQ(1.0f, vec[1]);
-    EXPECT_FLOAT_EQ(6.0f, vec[2]);
+	// Assert
+	EXPECT_FLOAT_EQ(3.0f, vec.elements[0]);
+	EXPECT_FLOAT_EQ(1.0f, vec.elements[1]);
+	EXPECT_FLOAT_EQ(6.0f, vec.elements[2]);
+}
+
+TEST(Vector3D_Access, IndexBasedAssignmentAndRetrivalSupport)
+{
+	// Arrange
+	math::Vector3D<float> vec;
+
+	// Act
+	vec[0] = 3.0f;
+	vec[1] = 1.0f;
+	vec[2] = 6.0f;
+
+	// Assert
+	EXPECT_FLOAT_EQ(3.0f, vec[0]);
+	EXPECT_FLOAT_EQ(1.0f, vec[1]);
+	EXPECT_FLOAT_EQ(6.0f, vec[2]);
 
 }
 
-TEST(Vector3D, vec3Return3DFloatVector)
+TEST(Vector3D_Helper, vec3Return3DFloatVector)
 {
-    // Arrange & Act
-    constexpr bool isCorrectType = std::is_same_v<math::vec3, math::Vector3D<float>>;
+	// Arrange & Act
+	constexpr bool isCorrectType = std::is_same_v<math::vec3, math::Vector3D<float>>;
 
-    // Assert
-    EXPECT_TRUE(isCorrectType);
+	// Assert
+	EXPECT_TRUE(isCorrectType);
 }
 
-TEST(Vector3D, dvec3Return3DDoubleVector)
+TEST(Vector3D_Helper, dvec3Return3DDoubleVector)
 {
-    // Arrange & Act
-    constexpr bool isCorrectType = std::is_same_v<math::dvec3, math::Vector3D<double>>;
+	// Arrange & Act
+	constexpr bool isCorrectType = std::is_same_v<math::dvec3, math::Vector3D<double>>;
 
-    // Assert
-    EXPECT_TRUE(isCorrectType);
-}
-
-
-TEST(Vector3D, one2DVectorAndFloatCanInitializeA3DVector)
-{
-    // Arrange
-    math::Vector2D vec1(3.0f, 1.0f);
-
-    // Act
-    math::Vector3D vec(vec1, 6.0f);
-
-    // Assert
-    EXPECT_FLOAT_EQ(3.0f, vec.x);
-    EXPECT_FLOAT_EQ(1.0f, vec.y);
-    EXPECT_FLOAT_EQ(6.0f, vec.z);
+	// Assert
+	EXPECT_TRUE(isCorrectType);
 }
 
 
@@ -128,716 +129,652 @@ TEST(Vector3D, one2DVectorAndFloatCanInitializeA3DVector)
 *   VECTOR OPERATIONS TESTS
 */
 
-TEST(Vector3D, VectorAddition)
+TEST(Vector3D_Addition, VectorPlusVectorReturnsNewVectorWithEachComponentsSummedUp)
 {
-    // Arrange
-    const math::Vector3D vec1(3.0f, 0.0f, -1.0f);
-    const math::Vector3D vec2(9.0f, -5.0f, 10.0f);
+	// Arrange
+	const math::Vector3D vec1(3.0f, 0.0f, -1.0f);
+	const math::Vector3D vec2(9.0f, -5.0f, 10.0f);
+	const math::Vector3D expected(12.0f, -5.0f, 9.0f);
 
-    // Act
-    const math::Vector3D result = vec1 + vec2;
+	// Act
+	const math::Vector3D actual = vec1 + vec2;
 
-    // Assert
-    EXPECT_FLOAT_EQ(12.0f, result.x);
-    EXPECT_FLOAT_EQ(-5.0f, result.y);
-    EXPECT_FLOAT_EQ(9.0f, result.z);
+	// Assert
+	EXPECT_VEC_EQ(expected, actual);
 }
 
-TEST(Vector3D, VectorPlusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
+TEST(Vector3D_Addition, VectorPlusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
 {
-    // Arrange
-    math::Vector3D vec1(3.0f, 0.0f, -1.0f);
-    const math::Vector3D vec2(9.0f, -5.0f, 10.0f);
+	// Arrange
+	math::Vector3D vec1(3.0f, 0.0f, -1.0f);
+	const math::Vector3D vec2(9.0f, -5.0f, 10.0f);
+	const math::Vector3D expected(12.0f, -5.0f, 9.0f);
 
-    // Act
-   vec1 += vec2;
+	// Act
+	vec1 += vec2;
 
-    // Assert
-    EXPECT_FLOAT_EQ(12.0f, vec1.x);
-    EXPECT_FLOAT_EQ(-5.0f, vec1.y);
-    EXPECT_FLOAT_EQ(9.0f, vec1.z);
+	// Assert
+	EXPECT_VEC_EQ(expected, vec1);
 }
 
-TEST(Vector3D, VectorSubtraction)
+TEST(Vector3D_Subraction, VectorSubtraction)
 {
-    // Arrange
-    const math::Vector3D vec1(3.0f, 0.0f, -1.0f);
-    const math::Vector3D vec2(9.0f, -5.0f, 10.0f);
+	// Arrange
+	const math::Vector3D vec1(3.0f, 0.0f, -1.0f);
+	const math::Vector3D vec2(9.0f, -5.0f, 10.0f);
+	const math::Vector3D expected(-6.0f, 5.0f, -11.0f);
 
-    // Act
-    const math::Vector3D result = vec1 - vec2;
+	// Act
+	const math::Vector3D actual = vec1 - vec2;
 
-    // Assert
-    EXPECT_FLOAT_EQ(-6.0f, result.x);
-    EXPECT_FLOAT_EQ(5.0f, result.y);
-    EXPECT_FLOAT_EQ(-11.0f, result.z);
+	// Assert
+	EXPECT_VEC_EQ(expected, actual);
+
 }
 
-TEST(Vector3D, VectorMinusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
+TEST(Vector3D_Subraction, VectorMinusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
 {
-    // Arrange
-    math::Vector3D vec1(3.0f, 0.0f, -1.0f);
-    const math::Vector3D vec2(9.0f, -5.0f, 10.0f);
+	// Arrange
+	math::Vector3D vec1(3.0f, 0.0f, -1.0f);
+	const math::Vector3D vec2(9.0f, -5.0f, 10.0f);
+	const math::Vector3D expected(-6.0f, 5.0f, -11.0f);
 
-    // Act
-    vec1 -= vec2;
+	// Act
+	vec1 -= vec2;
 
-    // Assert
-    EXPECT_FLOAT_EQ(-6.0f, vec1.x);
-    EXPECT_FLOAT_EQ(5.0f, vec1.y);
-    EXPECT_FLOAT_EQ(-11.0f, vec1.z);
+	// Assert
+	EXPECT_VEC_EQ(expected, vec1);
+
 }
 
-TEST(Vector3D, ZeroVectorReturnsMagnitudeZero)
+TEST(Vector3D_Product, VectorTimesZeroIsZero)
 {
-    // Arrange
-    const math::Vector3D vec(0.0f, 0.0f, 0.0f);
+	// Arrange
+	const math::Vector3D vec(3.0f, 1.0f, 6.0f);
 
-    // Act
-    const float magnitude = vec.mag();
+	// Act
+	const math::Vector3D result = vec * 0;
 
-    // Assert
-    EXPECT_FLOAT_EQ(0.0f, magnitude);
+	// Assert
+	EXPECT_VEC_ZERO(result);
 }
 
-TEST(Vector3D, OneVectorReturnsMagnitudeNotEqualToOne)
+TEST(Vector3D_Product, VectorTimesOneIsItself)
 {
-    // Arrange
-    const math::Vector3D vec(1.0f, 1.0f, 1.0f);
+	// Arrange
+	const math::Vector3D vec(3.0f, 1.0f, 6.0f);
 
-    // Act
-    const float magnitude = vec.mag();
+	// Act
+	const math::Vector3D result = vec * 1;
 
-    // Assert
-    EXPECT_NE(1.0f, magnitude);
+	// Assert
+	EXPECT_VEC_EQ(vec, result);
 }
 
-TEST(Vector3D, NonUnitVectorReturnsCorrectMagnitude)
+TEST(Vector3D_Product, VectorTimesAnIntegerIsANewVector)
 {
-    // Arrange
-    const math::Vector3D vec(2.0f, 3.0f, 6.0f);
+	// Arrange
+	const math::Vector3D vec(3.0f, 1.0f, 6.0f);
+	const math::Vector3D expected(6.0f, 2.0f, 12.0f);
+	constexpr int scalar = 2;
 
-    // Act
-    const float magnitude = vec.mag();
+	// Act
+	const math::Vector3D actual = vec * scalar;
 
-    // Assert
-    EXPECT_FLOAT_EQ(7.0f, magnitude);
+	// Assert
+	EXPECT_VEC_EQ(expected, actual);
 }
 
-TEST(Vector3D, VectorTimesZeroIsZero)
+TEST(Vector3D_Product, VectorTimesAFloatIsANewVector)
 {
-    // Arrange
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+	// Arrange
+	const math::Vector3D vec(3.0f, 1.0f, 6.0f);
+	const math::Vector3D expected(6.0f, 2.0f, 12.0f);
+	constexpr float scalar = 2.0f;
 
-    // Act
-    const math::Vector3D newVec = vec * 0;
+	// Act
+	const math::Vector3D actual = vec * scalar;
 
-    // Assert
-    EXPECT_FLOAT_EQ(0.0f, newVec.x);
-    EXPECT_FLOAT_EQ(0.0f, newVec.y);
-    EXPECT_FLOAT_EQ(0.0f, newVec.z);
+	// Assert
+	EXPECT_VEC_EQ(expected, actual);
 }
 
-TEST(Vector3D, VectorTimesOneIsItself)
+TEST(Vector3D_Product, IntegerTimesAVectorIsANewVector)
 {
-    // Arrange
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+	// Arrange
+	const math::Vector3D vec(3.0f, 1.0f, 6.0f);
+	const math::Vector3D expected(6.0f, 2.0f, 12.0f);
+	constexpr int scalar = 2;
 
-    // Act
-    const math::Vector3D newVec = vec * 1;
+	// Act
+	const math::Vector3D actual = scalar * vec;
 
-    // Assert
-    EXPECT_FLOAT_EQ(3.0f, newVec.x);
-    EXPECT_FLOAT_EQ(1.0f, newVec.y);
-    EXPECT_FLOAT_EQ(6.0f, newVec.z);
+	// Assert
+	EXPECT_VEC_EQ(expected, actual);
 }
 
-TEST(Vector3D, VectorTimesANumberIsANewVector)
+TEST(Vector3D_Product, VectorTimesEqualAScalarIsSameVectorWithNewValues)
 {
-    // Arrange
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+	// Arrange
+	math::Vector3D vec(3.0f, 1.0f, 6.0f);
+	const math::Vector3D expected(6.0f, 2.0f, 12.0f);
+	constexpr int scalar = 2;
 
-    // Act
-    const math::Vector3D newVec = vec * 2;
+	// Act
+	vec *= scalar;
 
-    // Assert
-    EXPECT_FLOAT_EQ(6.0f, newVec.x);
-    EXPECT_FLOAT_EQ(2.0f, newVec.y);
-    EXPECT_FLOAT_EQ(12.0f, newVec.z);
+	// Assert
+	EXPECT_VEC_EQ(expected, vec);
 }
 
-TEST(Vector3D, VectorTimesAFloatIsANewVector)
+TEST(Vector3D_Product, VectorTimesEqualAScalarFloatIsSameVectorWithNewValues)
 {
-    // Arrange
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+	// Arrange
+	math::Vector3D vec(3.0f, 1.0f, 6.0f);
+	const math::Vector3D expected(6.0f, 2.0f, 12.0f);
+	constexpr float scalar = 2.0f;
 
-    // Act
-    const math::Vector3D newVec = vec * 2.0;
+	// Act
+	vec *= scalar;
 
-    // Assert
-    EXPECT_FLOAT_EQ(6.0f, newVec.x);
-    EXPECT_FLOAT_EQ(2.0f, newVec.y);
-    EXPECT_FLOAT_EQ(12.0f, newVec.z);
-}
-
-TEST(Vector3D, NumberTimesAVectorIsANewVector)
-{
-    // Arrange
-    const math::Vector3D vec(3.0, 1.0, 6.0);
-
-    // Act
-    const math::Vector3D newVec = 2 * vec;
-
-    // Assert
-    EXPECT_FLOAT_EQ(6.0f, newVec.x);
-    EXPECT_FLOAT_EQ(2.0f, newVec.y);
-    EXPECT_FLOAT_EQ(12.0f, newVec.z);
-}
-
-TEST(Vector3D, VectorTimesEqualAScalarIsSameVectorWithNewValues)
-{
-    // Arrange
-    math::Vector3D vec(3.0, 1.0, 6.0);
-
-    // Act
-    vec *= 2;
-
-    // Assert
-    EXPECT_FLOAT_EQ(6.0f, vec.x);
-    EXPECT_FLOAT_EQ(2.0f, vec.y);
-    EXPECT_FLOAT_EQ(12.0f, vec.z);
-}
-
-TEST(Vector3D, VectorTimesEqualAScalarFloatIsSameVectorWithNewValues)
-{
-    // Arrange
-    math::Vector3D vec(3.0, 1.0, 6.0);
-
-    // Act
-    vec *= 2.0;
-
-    // Assert
-    EXPECT_FLOAT_EQ(6.0f, vec.x);
-    EXPECT_FLOAT_EQ(2.0f, vec.y);
-    EXPECT_FLOAT_EQ(12.0f, vec.z);
+	// Assert
+	EXPECT_VEC_EQ(expected, vec);
 }
 
 
-TEST(Vector3D, VectorDividedByZeroIsInfinity)
+TEST(Vector3D_Division, VectorDividedByZeroIsInfinity)
 {
-    // Arrange
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+	// Arrange
+	const math::Vector3D vec(3.0f, 1.0f, 6.0f);
 
-    // Act
-    const math::Vector3D newVec = vec / 0;
+	// Act
+	const math::Vector3D result = vec / 0;
 
-    // Assert
-    EXPECT_FLOAT_EQ(INFINITY, newVec.x);
-    EXPECT_FLOAT_EQ(INFINITY, newVec.y);
-    EXPECT_FLOAT_EQ(INFINITY, newVec.z);
+	// Assert
+	EXPECT_VEC_INF(result);
 }
 
-TEST(Vector3D, VectorDividedByOneIsItself)
+TEST(Vector3D_Division, VectorDividedByOneIsItself)
 {
-    // Arrange
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+	// Arrange
+	const math::Vector3D vec(3.0f, 1.0f, 6.0f);
 
-    // Act
-    const math::Vector3D newVec = vec / 1;
+	// Act
+	const math::Vector3D result = vec / 1;
 
-    // Assert
-    EXPECT_FLOAT_EQ(3.0f, newVec.x);
-    EXPECT_FLOAT_EQ(1.0f, newVec.y);
-    EXPECT_FLOAT_EQ(6.0f, newVec.z);
+	// Assert
+	EXPECT_VEC_EQ(vec, result);
 }
 
-TEST(Vector3D, VectorDividedByANumberIsANewVector)
+TEST(Vector3D_Division, VectorDividedByANumberIsANewVector)
 {
-    // Arrange
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+	// Arrange
+	const math::Vector3D vec(3.0f, 1.0f, 6.0f);
+	const math::Vector3D expected(1.5f, 0.5f, 3.0f);
+	constexpr int scalar = 2;
+	// Act
+	const math::Vector3D actual = vec / scalar;
 
-    // Act
-    const math::Vector3D newVec = vec / 2;
+	// Assert
+	EXPECT_VEC_EQ(expected, actual);
 
-    // Assert
-    EXPECT_FLOAT_EQ(1.5f, newVec.x);
-    EXPECT_FLOAT_EQ(0.5f, newVec.y);
-    EXPECT_FLOAT_EQ(3.0f, newVec.z);
 }
 
-TEST(Vector3D, VectorDividedByAFloatIsANewVector)
+TEST(Vector3D_Division, VectorDividedByAFloatIsANewVector)
 {
-    // Arrange
-    const math::Vector3D vec(3.0, 1.0, 6.0);
+	// Arrange
+	const math::Vector3D vec(3.0f, 1.0f, 6.0f);
+	const math::Vector3D expected(1.5f, 0.5f, 3.0f);
+	constexpr float scalar = 2.0f;
+	// Act
+	const math::Vector3D actual = vec / scalar;
 
-    // Act
-    const math::Vector3D newVec = vec / 2.0;
-
-    // Assert
-    EXPECT_FLOAT_EQ(1.5f, newVec.x);
-    EXPECT_FLOAT_EQ(0.5f, newVec.y);
-    EXPECT_FLOAT_EQ(3.0f, newVec.z);
+	// Assert
+	EXPECT_VEC_EQ(expected, actual);
 }
 
-TEST(Vector3D, VectorDividesEqualAScalarIsSameVectorWithNewValues)
+TEST(Vector3D_Division, VectorDividesEqualAScalarIsSameVectorWithNewValues)
 {
-    // Arrange
-    math::Vector3D vec(3.0, 1.0, 6.0);
+	// Arrange
+	math::Vector3D vec(3.0f, 1.0f, 6.0f);
+	const math::Vector3D expected(1.5f, 0.5f, 3.0f);
+	constexpr int scalar = 2;
 
-    // Act
-    vec /= 2;
+	// Act
+	vec /= scalar;
 
-    // Assert
-    EXPECT_FLOAT_EQ(1.5f, vec.x);
-    EXPECT_FLOAT_EQ(0.5f, vec.y);
-    EXPECT_FLOAT_EQ(3.0f, vec.z);
+	// Assert
+	EXPECT_VEC_EQ(expected, vec);
 }
 
-TEST(Vector3D, VectorDividesEqualAFloatIsSameVectorWithNewValues)
+TEST(Vector3D_Division, VectorDividesEqualAFloatIsSameVectorWithNewValues)
 {
-    // Arrange
-    math::Vector3D vec(3.0, 1.0, 6.0);
+	// Arrange
+	math::Vector3D vec(3.0f, 1.0f, 6.0f);
+	const math::Vector3D expected(1.5f, 0.5f, 3.0f);
+	constexpr float scalar = 2.0f;
 
-    // Act
-    vec /= 2.0;
+	// Act
+	vec /= scalar;
 
-    // Assert
-    EXPECT_FLOAT_EQ(1.5f, vec.x);
-    EXPECT_FLOAT_EQ(0.5f, vec.y);
-    EXPECT_FLOAT_EQ(3.0f, vec.z);
+	// Assert
+	EXPECT_VEC_EQ(expected, vec);
 }
 
 
-TEST(Vector3D, VectorWhenNormalizedReturnsANormalVector)
+TEST(Vector3D_Magnitude, ZeroVectorReturnsMagnitudeZero)
 {
-    // Arrange
-    const math::Vector3D vec(0.0, 3.0, 4.0);
+	// Arrange
+	const math::Vector3D vec(0.0f, 0.0f, 0.0f);
 
-    // Act
-    const math::Vector3D normalized = vec.normalize();
+	// Act
+	const float magnitude = vec.mag();
 
-    // Assert
-    EXPECT_FLOAT_EQ(0.0f, normalized.x);
-    EXPECT_FLOAT_EQ(0.6f, normalized.y);
-    EXPECT_FLOAT_EQ(0.8f, normalized.z);
+	// Assert
+	EXPECT_FLOAT_EQ(0.0f, magnitude);
+}
+
+TEST(Vector3D_Magnitude, OneVectorReturnsMagnitudeNotEqualToOne)
+{
+	// Arrange
+	const math::Vector3D vec(1.0f, 1.0f, 1.0f);
+
+	// Act
+	const float magnitude = vec.mag();
+
+	// Assert
+	EXPECT_NE(1.0f, magnitude);
+}
+
+TEST(Vector3D_Magnitude, NonUnitVectorReturnsCorrectMagnitude)
+{
+	// Arrange
+	const math::Vector3D vec(2.0f, 3.0f, 6.0f);
+
+	// Act
+	const float magnitude = vec.mag();
+
+	// Assert
+	EXPECT_FLOAT_EQ(7.0f, magnitude);
+}
+
+TEST(Vector3D_Normalization, VectorWhenNormalizedReturnsANormalVector)
+{
+	// Arrange
+	const math::Vector3D vec(0.0f, 3.0f, 4.0f);
+	const math::Vector3D expected(0.0f, 0.6f, 0.8f);
+
+	// Act
+	const math::Vector3D normalized = vec.normalize();
+
+	// Assert
+	EXPECT_VEC_EQ(expected, normalized);
 }
 
 // Dot Product
-TEST(Vector3D, VectorWhenDotWithItselfReturnsOne)
+TEST(Vector3D_Dot, VectorWhenDotWithItselfReturnsOne)
 {
 	// Arrange
-    const math::Vector3D<float> vec(1.0, 0.0, 0.0);
+	const math::Vector3D vec(1.0f, 0.0f, 0.0f);
 
-    // Act
-    const float res = vec.dot(vec);
-
-    // Assert
-    EXPECT_FLOAT_EQ(1.0, res);
-}
-
-TEST(Vector3D, VectorWhenDotWithOrthogonalVectorReturnZero)
-{
-    // Arrange
-    const math::Vector3D<float> vec1(1.0, 0.0, 0.0);
-    const math::Vector3D<float> vec2(0.0, 1.0, 0.0);
-
-    // Act
-    const float res = vec1.dot(vec2);
-
-    // Assert
-    EXPECT_FLOAT_EQ(0.0, res);
-}
-
-TEST(Vector3D, VectorWhenDotWithOppositeParallelVectorReturnsNegativeOne)
-{
-    // Arrange
-    const math::Vector3D<float> vec1(1.0, 0.0, 0.0);
-    const math::Vector3D<float> vec2(-1.0, 0.0, 0.0);
-
-    // Act
-    const float res = vec1.dot(vec2);
-
-    // Assert
-    EXPECT_FLOAT_EQ(-1.0, res);
-}
-
-TEST(Vector3D, VectorWhenDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
-{
-    // Arrange
-    const math::Vector3D<float> vec1(1.0, 2.0, 3.0);
-    const math::Vector3D<float> vec2(4.0, -5.0, 6.0);
-
-    // Act
-    const float res = vec1.dot(vec2);
-
-    // Assert
-    EXPECT_FLOAT_EQ(12.0, res);
-}
-
-TEST(Vector3D, VectorWhenStaticWrapperDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
-{
-    // Arrange
-    const math::Vector3D<float> vec1(1.0, 2.0, 3.0);
-    const math::Vector3D<float> vec2(4.0, -5.0, 6.0);
-
-    // Act
-    const float res = math::Vector3D<float>::dot(vec1, vec2);
-
-    // Assert
-    EXPECT_FLOAT_EQ(12.0, res);
-}
-
-TEST(Vector3D, UnitXVectorWhenCrossWithUnitYVectorReturnsUnitZVector)
-{
-    // Arrange
-    const math::Vector3D<float> vec1(1.0, 0.0, 0.0);
-    const math::Vector3D<float> vec2(0.0, 1.0, 0.0);
-
-    const math::Vector3D<float> res(0.0, 0.0, 1.0);
-    
 	// Act
-    const math::Vector3D<float> ret = vec1.cross(vec2);
+	const float res = vec.dot(vec);
 
-    // Assert
-    for (int i = 0; i < 3; i++)
-    {
-        EXPECT_FLOAT_EQ(res[i], ret[i]);
-    }
-    
+	// Assert
+	EXPECT_FLOAT_EQ(1.0f, res);
 }
 
-TEST(Vector3D, UnitYVectorWhenCrossWithUnitXVectorReturnsUnitNegativeZVector)
+TEST(Vector3D_Dot, VectorWhenDotWithOrthogonalVectorReturnZero)
 {
-    // Arrange
-    const math::Vector3D<float> vec1(0.0, 1.0, 0.0);
-    const math::Vector3D<float> vec2(1.0, 0.0, 0.0);
+	// Arrange
+	const math::Vector3D vec1(1.0f, 0.0f, 0.0f);
+	const math::Vector3D vec2(0.0f, 1.0f, 0.0f);
 
-    const math::Vector3D<float> res(0.0, 0.0, -1.0);
+	// Act
+	const float res = vec1.dot(vec2);
 
-    // Act
-    const  math::Vector3D<float> ret = vec1.cross(vec2);
-
-    // Assert
-    for (int i = 0; i < 3; i++)
-    {
-        EXPECT_FLOAT_EQ(res[i], ret[i]);
-    }
+	// Assert
+	EXPECT_FLOAT_EQ(0.0f, res);
 }
 
-TEST(Vector3D, UnitZVectorWhenCrossWithUnitYVectorReturnsUnitNegativeVector)
+TEST(Vector3D_Dot, VectorWhenDotWithOppositeParallelVectorReturnsNegativeOne)
 {
-    // Arrange
-    const math::Vector3D<float> vec1(0.0, 0.0, 1.0);
-    const math::Vector3D<float> vec2(0.0, 1.0, 0.0);
+	// Arrange
+	const math::Vector3D vec1(1.0f, 0.0f, 0.0f);
+	const math::Vector3D vec2(-1.0f, 0.0f, 0.0f);
 
-    const math::Vector3D<float> res(-1.0, 0.0, 0.0);
+	// Act
+	const float res = vec1.dot(vec2);
 
-    // Act
-    const math::Vector3D<float> ret = vec1.cross(vec2);
-
-    // Assert
-    for (int i = 0; i < 3; i++)
-    {
-        EXPECT_FLOAT_EQ(res[i], ret[i]);
-    }
+	// Assert
+	EXPECT_FLOAT_EQ(-1.0f, res);
 }
 
-TEST(Vector3D, UnitVectorCrossWithItselfReturnZeroVector)
+TEST(Vector3D_Dot, VectorWhenDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
 {
-    // Arrange
-    const math::Vector3D<float> vec(0.0, 0.0, 1.0);
+	// Arrange
+	const math::Vector3D<float> vec1(1.0, 2.0, 3.0);
+	const math::Vector3D<float> vec2(4.0, -5.0, 6.0);
 
-    const math::Vector3D<float> res(0.0, 0.0, 0.0);
+	// Act
+	const float res = vec1.dot(vec2);
 
-    // Act
-    const math::Vector3D<float> ret = vec.cross(vec);
-
-    // Assert
-    for (int i = 0; i < 3; i++)
-    {
-        EXPECT_FLOAT_EQ(res[i], ret[i]);
-    }
+	// Assert
+	EXPECT_FLOAT_EQ(12.0, res);
 }
 
-TEST(Vector3D, VectorCrossWithAnotherNonParallelVectorReturnsNewPerpendicularVector)
+TEST(Vector3D_Dot, VectorWhenStaticWrapperDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
 {
-    // Arrange
-    const math::Vector3D<float> vec1(2.0, 3.0, 4.0);
-    const math::Vector3D<float> vec2(5.0, 6.0, 7.0);
+	// Arrange
+	const math::Vector3D<float> vec1(1.0, 2.0, 3.0);
+	const math::Vector3D<float> vec2(4.0, -5.0, 6.0);
 
-    const math::Vector3D<float> res(-3.0, 6.0, -3.0);
+	// Act
+	const float res = math::Vector3D<float>::dot(vec1, vec2);
 
-    // Act
-    const math::Vector3D<float> ret = vec1.cross(vec2);
-
-    // Assert
-    for (int i = 0; i < 3; i++)
-    {
-        EXPECT_FLOAT_EQ(res[i], ret[i]);
-    }
-
-    // Orientation Check: Dot must be zero
-    const float dotProduct1 = vec1.dot(ret);
-    const float dotProduct2 = vec2.dot(ret);
-
-    EXPECT_FLOAT_EQ(0.0, dotProduct1);
-    EXPECT_FLOAT_EQ(0.0, dotProduct2);
+	// Assert
+	EXPECT_FLOAT_EQ(12.0, res);
 }
 
-TEST(Vector3D, VectorCrossStaticWrapperWithAnotherNonParallelVectorReturnsNewPerpendicularVector)
+TEST(Vector3D_Cross, UnitXVectorWhenCrossWithUnitYVectorReturnsUnitZVector)
 {
-    // Arrange
-    const math::Vector3D<float> vec1(2.0, 3.0, 4.0);
-    const math::Vector3D<float> vec2(5.0, 6.0, 7.0);
+	// Arrange
+	const math::Vector3D<float> vec1(1.0, 0.0, 0.0);
+	const math::Vector3D<float> vec2(0.0, 1.0, 0.0);
+	const math::Vector3D<float> expected(0.0, 0.0, 1.0);
 
-    math::Vector3D<float> res(-3.0, 6.0, -3.0);
+	// Act
+	const math::Vector3D<float> actual = vec1.cross(vec2);
 
-    // Act
-    math::Vector3D<float> ret = math::Vector3D<float>::cross(vec1, vec2);
-
-    // Assert
-    for (int i = 0; i < 3; i++)
-    {
-        EXPECT_FLOAT_EQ(res[i], ret[i]);
-    }
-
-    // Orientation Check: Dot must be zero
-    const float dotProduct1 = math::Vector3D<float>::dot(vec1, ret);
-    const float dotProduct2 = math::Vector3D<float>::dot(vec2, ret);
-
-    EXPECT_FLOAT_EQ(0.0, dotProduct1);
-    EXPECT_FLOAT_EQ(0.0, dotProduct2);
+	// Assert
+	EXPECT_VEC_EQ(expected, actual);
 }
 
-TEST(Vector3D, VectorCrossProductsAreAntiCommutative)
+TEST(Vector3D_Cross, UnitYVectorWhenCrossWithUnitXVectorReturnsUnitNegativeZVector)
 {
-    // vec1 x(cross) vec2 = - (vec2 x vec1)
-    // Arrange
-    const math::Vector3D<float> vec1(2.0, 3.0, 4.0);
-    const math::Vector3D<float> vec2(3.0, 5.0, 9.0);
+	// Arrange
+	const math::Vector3D<float> vec1(0.0, 1.0, 0.0);
+	const math::Vector3D<float> vec2(1.0, 0.0, 0.0);
+	const math::Vector3D<float> expected(0.0, 0.0, -1.0);
 
-    // Act
-    math::Vector3D<float> result1 = math::Vector3D<float>::cross(vec1, vec2);
-    math::Vector3D<float> result2 = -1.0f * ( math::Vector3D<float>::cross(vec2, vec1) );
+	// Act
+	const  math::Vector3D<float> actual = vec1.cross(vec2);
 
-    // Assert
-    for (int i = 0; i < 3; i++)
-    {
-        EXPECT_FLOAT_EQ(result1[i], result2[i]);
-    }
+	// Assert
+	EXPECT_VEC_EQ(expected, actual);
 }
 
-TEST(Vector3D, VectorCrossProductsOfScalarMultiplesAreCommutative)
+TEST(Vector3D_Cross, UnitZVectorWhenCrossWithUnitYVectorReturnsUnitNegativeVector)
 {
-    // vec1 x(cross) vec2 = vec2 x vec1, given vec2 = a * vec1
-    // Arrange
-    const math::Vector3D<float> vec1(2.0, 3.0, 4.0);
-    const math::Vector3D<float> vec2 = vec1 * 2.0f;
+	// Arrange
+	const math::Vector3D<float> vec1(0.0, 0.0, 1.0);
+	const math::Vector3D<float> vec2(0.0, 1.0, 0.0);
+	const math::Vector3D<float> expected(-1.0, 0.0, 0.0);
 
-    // Act
-    math::Vector3D<float> result1 = math::Vector3D<float>::cross(vec1, vec2);
-    math::Vector3D<float> result2 = math::Vector3D<float>::cross(vec2, vec1);
+	// Act
+	const math::Vector3D<float> actual = vec1.cross(vec2);
 
-    // Assert
-    for (int i = 0; i < 3; i++)
-    {
-        EXPECT_FLOAT_EQ(result1[i], result2[i]);
-    }
+	// Assert
+	EXPECT_VEC_EQ(expected, actual);
+}
+
+TEST(Vector3D_Cross, UnitVectorCrossWithItselfReturnZeroVector)
+{
+	// Arrange
+	const math::Vector3D<float> vec(0.0, 0.0, 1.0);
+
+	const math::Vector3D<float> expected(0.0, 0.0, 0.0);
+
+	// Act
+	const math::Vector3D<float> actual = vec.cross(vec);
+
+	// Assert
+	EXPECT_VEC_EQ(expected, actual);
+}
+
+TEST(Vector3D_Cross, VectorCrossWithAnotherNonParallelVectorReturnsNewPerpendicularVector)
+{
+	// Arrange
+	const math::Vector3D<float> vec1(2.0, 3.0, 4.0);
+	const math::Vector3D<float> vec2(5.0, 6.0, 7.0);
+
+	const math::Vector3D<float> expected(-3.0, 6.0, -3.0);
+
+	// Act
+	const math::Vector3D<float> actual = vec1.cross(vec2);
+
+	// Assert
+	EXPECT_VEC_EQ(expected, actual);
+
+	// Orientation Check: Dot must be zero
+	const float dotProduct1 = vec1.dot(actual);
+	const float dotProduct2 = vec2.dot(actual);
+
+	EXPECT_FLOAT_EQ(0.0, dotProduct1);
+	EXPECT_FLOAT_EQ(0.0, dotProduct2);
+}
+
+TEST(Vector3D_Cross, VectorCrossStaticWrapperWithAnotherNonParallelVectorReturnsNewPerpendicularVector)
+{
+	// Arrange
+	const math::Vector3D<float> vec1(2.0, 3.0, 4.0);
+	const math::Vector3D<float> vec2(5.0, 6.0, 7.0);
+
+	math::Vector3D<float> expected(-3.0, 6.0, -3.0);
+
+	// Act
+	math::Vector3D<float> actual = math::Vector3D<float>::cross(vec1, vec2);
+
+	// Assert
+	EXPECT_VEC_EQ(expected, actual);
+
+	// Orientation Check: Dot must be zero
+	const float dotProduct1 = math::Vector3D<float>::dot(vec1, actual);
+	const float dotProduct2 = math::Vector3D<float>::dot(vec2, actual);
+
+	EXPECT_FLOAT_EQ(0.0, dotProduct1);
+	EXPECT_FLOAT_EQ(0.0, dotProduct2);
+}
+
+TEST(Vector3D_Cross, VectorCrossProductsAreAntiCommutative)
+{
+	// vec1 x(cross) vec2 = - (vec2 x vec1)
+	// Arrange
+	const math::Vector3D<float> vec1(2.0, 3.0, 4.0);
+	const math::Vector3D<float> vec2(3.0, 5.0, 9.0);
+
+	// Act
+	math::Vector3D<float> result1 = math::Vector3D<float>::cross(vec1, vec2);
+	math::Vector3D<float> result2 = -1.0f * (math::Vector3D<float>::cross(vec2, vec1));
+
+	// Assert
+	EXPECT_VEC_EQ(result1, result2);
+}
+
+TEST(Vector3D_Cross, VectorCrossProductsOfScalarMultiplesAreCommutative)
+{
+	// vec1 x(cross) vec2 = vec2 x vec1, given vec2 = a * vec1
+	// Arrange
+	const math::Vector3D<float> vec1(2.0, 3.0, 4.0);
+	const math::Vector3D<float> vec2 = vec1 * 2.0f;
+
+	// Act
+	math::Vector3D<float> result1 = math::Vector3D<float>::cross(vec1, vec2);
+	math::Vector3D<float> result2 = math::Vector3D<float>::cross(vec2, vec1);
+
+	// Assert
+	EXPECT_VEC_EQ(result1, result2);
 }
 
 /**
  * VECTOR PROJECTION & REJECTION TESTS
  */
 
-TEST(Vector3D, ParallelVectorsWhenProjectedReturnsNonZeroVector)
+TEST(Vector3D_Projection, ParallelVectorsWhenProjectedReturnsNonZeroVector)
 {
-    // Arrange
-    const math::Vector3D a(1.0f, 2.0f, 3.0f);
-    const math::Vector3D b(2.0f, 4.0f, 6.0f);
-    const math::Vector3D expectedProjection(1.0f, 2.0f, 3.0f);
+	// Arrange
+	const math::Vector3D a(1.0f, 2.0f, 3.0f);
+	const math::Vector3D b(2.0f, 4.0f, 6.0f);
+	const math::Vector3D expectedProjection(1.0f, 2.0f, 3.0f);
 
-    // Act
-    const math::Vector3D<float> actualProjection = a.project(b);
+	// Act
+	const math::Vector3D<float> actualProjection = a.project(b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	// Assert
+	EXPECT_VEC_EQ(expectedProjection, actualProjection);
 }
 
-TEST(Vector3D, PerpendicularVectorsWhenProjectedReturnsZeroVector)
+TEST(Vector3D_Projection, PerpendicularVectorsWhenProjectedReturnsZeroVector)
 {
-    // Arrange
-    const math::Vector3D a(1.0f, 0.0f, 0.0f);
-    const math::Vector3D b(0.0f, 1.0f, 0.0f);
-    const math::Vector3D expectedProjection(0.0f, 0.0f, 0.0f);
+	// Arrange
+	const math::Vector3D a(1.0f, 0.0f, 0.0f);
+	const math::Vector3D b(0.0f, 1.0f, 0.0f);
+	const math::Vector3D expectedProjection(0.0f, 0.0f, 0.0f);
 
-    // Act
-    const math::Vector3D<float> actualProjection = a.project(b);
+	// Act
+	const math::Vector3D<float> actualProjection = a.project(b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	// Assert
+	EXPECT_VEC_EQ(expectedProjection, actualProjection);
 }
 
-TEST(Vector3D, VectorsWhenProjectedReturnsNonZeroVector)
+TEST(Vector3D_Projection, VectorsWhenProjectedReturnsNonZeroVector)
 {
-    // Arrange
-    const math::Vector3D a(2.0f, 1.0f, -1.0f);
-    const math::Vector3D b(1.0f, 0.0f, 1.0f);
-    const math::Vector3D expectedProjection(0.5f, 0.0f, 0.5f);
+	// Arrange
+	const math::Vector3D a(2.0f, 1.0f, -1.0f);
+	const math::Vector3D b(1.0f, 0.0f, 1.0f);
+	const math::Vector3D expectedProjection(0.5f, 0.0f, 0.5f);
 
-    // Act
-    const math::Vector3D<float> actualProjection = a.project(b);
+	// Act
+	const math::Vector3D<float> actualProjection = a.project(b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	// Assert
+	EXPECT_VEC_EQ(expectedProjection, actualProjection);
 }
 
-TEST(Vector3D, VectorsWhenProjectedOntoNormalizedVectorReturnsNonZeroVector)
+TEST(Vector3D_Projection, VectorsWhenProjectedOntoNormalizedVectorReturnsNonZeroVector)
 {
-    // Arrange
-    const math::Vector3D a(10.0f, 5.0f, 2.0f);
-    const math::Vector3D b(0.8f, 0.6f, 0.0f);
-    const math::Vector3D expectedProjection(8.8f, 6.6f, 0.0f);
+	// Arrange
+	const math::Vector3D a(10.0f, 5.0f, 2.0f);
+	const math::Vector3D b(0.8f, 0.6f, 0.0f);
+	const math::Vector3D expectedProjection(8.8f, 6.6f, 0.0f);
 
-    // Act
-    const math::Vector3D<float> actualProjection = a.project(b, true);
+	// Act
+	const math::Vector3D<float> actualProjection = a.project(b, true);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	// Assert
+	EXPECT_VEC_EQ(expectedProjection, actualProjection);
 }
 
-TEST(Vector3D, VectorsWhenProjectedOntoNegativeVectorReturnsNonZeroVectorInSameDirection)
+TEST(Vector3D_Projection, VectorsWhenProjectedOntoNegativeVectorReturnsNonZeroVectorInSameDirection)
 {
-    // Arrange
-    const math::Vector3D a(4.0f, 4.0f, 4.0f);
-    const math::Vector3D b(0.0f, 0.0f, -1.0f);
-    const math::Vector3D expectedProjection(0.0f, 0.0f, 4.0f);
+	// Arrange
+	const math::Vector3D a(4.0f, 4.0f, 4.0f);
+	const math::Vector3D b(0.0f, 0.0f, -1.0f);
+	const math::Vector3D expectedProjection(0.0f, 0.0f, 4.0f);
 
-    // Act
-    const math::Vector3D<float> actualProjection = a.project(b);
+	// Act
+	const math::Vector3D<float> actualProjection = a.project(b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	// Assert
+	EXPECT_VEC_EQ(expectedProjection, actualProjection);
 }
 
-TEST(Vector3D, VectorsWhenProjectedUsingStaticWrapperReturnsNonZeroVector)
+TEST(Vector3D_Projection, VectorsWhenProjectedUsingStaticWrapperReturnsNonZeroVector)
 {
-    // Arrange
-    const math::Vector3D a(2.0f, 1.0f, -1.0f);
-    const math::Vector3D b(1.0f, 0.0f, 1.0f);
-    const math::Vector3D expectedProjection(0.5f, 0.0f, 0.5f);
+	// Arrange
+	const math::Vector3D a(2.0f, 1.0f, -1.0f);
+	const math::Vector3D b(1.0f, 0.0f, 1.0f);
+	const math::Vector3D expectedProjection(0.5f, 0.0f, 0.5f);
 
-    // Act
-    const math::Vector3D<float> actualProjection = math::Vector3D<float>::project(a, b);
+	// Act
+	const math::Vector3D<float> actualProjection = math::Vector3D<float>::project(a, b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	// Assert
+	EXPECT_VEC_EQ(expectedProjection, actualProjection);
 }
 
 
-TEST(Vector3D, ParallelVectorsWhenRejectedReturnsZeroVector)
+TEST(Vector3D_Rejection, ParallelVectorsWhenRejectedReturnsZeroVector)
 {
-    // Arrange
-    const math::Vector3D a(1.0f, 2.0f, 3.0f);
-    const math::Vector3D b(2.0f, 4.0f, 6.0f);
-    const math::Vector3D expectedProjection(0.0f, 0.0f, 0.0f);
+	// Arrange
+	const math::Vector3D a(1.0f, 2.0f, 3.0f);
+	const math::Vector3D b(2.0f, 4.0f, 6.0f);
+	const math::Vector3D expectedRejection(0.0f, 0.0f, 0.0f);
 
-    // Act
-    const math::Vector3D<float> actualProjection = a.reject(b);
+	// Act
+	const math::Vector3D<float> actualRejection = a.reject(b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	// Assert
+	EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
 
-TEST(Vector3D, PerpendicularVectorsWhenRejectedReturnsNonZeroVector)
+TEST(Vector3D_Rejection, PerpendicularVectorsWhenRejectedReturnsNonZeroVector)
 {
-    // Arrange
-    const math::Vector3D a(1.0f, 0.0f, 0.0f);
-    const math::Vector3D b(0.0f, 1.0f, 0.0f);
-    const math::Vector3D expectedProjection(1.0f, 0.0f, 0.0f);
+	// Arrange
+	const math::Vector3D a(1.0f, 0.0f, 0.0f);
+	const math::Vector3D b(0.0f, 1.0f, 0.0f);
+	const math::Vector3D expectedRejection(1.0f, 0.0f, 0.0f);
 
-    // Act
-    const math::Vector3D<float> actualProjection = a.reject(b);
+	// Act
+	const math::Vector3D<float> actualRejection = a.reject(b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	// Assert
+	EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
 
-TEST(Vector3D, VectorsWhenRejectedReturnNonZeroVector)
+TEST(Vector3D_Rejection, VectorsWhenRejectedReturnNonZeroVector)
 {
-    // Arrange
-    const math::Vector3D a(2.0f, 1.0f, -1.0f);
-    const math::Vector3D b(1.0f, 0.0f, 1.0f);
-    const math::Vector3D expectedProjection(1.5f, 1.0f, -1.5f);
+	// Arrange
+	const math::Vector3D a(2.0f, 1.0f, -1.0f);
+	const math::Vector3D b(1.0f, 0.0f, 1.0f);
+	const math::Vector3D expectedRejection(1.5f, 1.0f, -1.5f);
 
-    // Act
-    const math::Vector3D<float> actualProjection = a.reject(b);
+	// Act
+	const math::Vector3D<float> actualRejection = a.reject(b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	// Assert
+	EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
 
-TEST(Vector3D, VectorsWhenRejectedOntoNormalizedVectorReturnNonZeroVector)
+TEST(Vector3D_Rejection, VectorsWhenRejectedOntoNormalizedVectorReturnNonZeroVector)
 {
-    // Arrange
-    const math::Vector3D a(10.0f, 5.0f, 2.0f);
-    const math::Vector3D b(0.8f, 0.6f, 0.0f);
-    const math::Vector3D expectedProjection(1.2f, -1.6f, 2.0f);
+	// Arrange
+	const math::Vector3D a(10.0f, 5.0f, 2.0f);
+	const math::Vector3D b(0.8f, 0.6f, 0.0f);
+	const math::Vector3D expectedRejection(1.2f, -1.6f, 2.0f);
 
-    // Act
-    const math::Vector3D<float> actualProjection = a.reject(b, true);
+	// Act
+	const math::Vector3D<float> actualRejection = a.reject(b, true);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	// Assert
+	EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
 
-TEST(Vector3D, PositiveVectorsWhenRejectedOntoNegativeVectorReturnsNonZeroVectorNonZeroPositiveVector)
+TEST(Vector3D_Rejection, PositiveVectorsWhenRejectedOntoNegativeVectorReturnsNonZeroVectorNonZeroPositiveVector)
 {
-    // Arrange
-    const math::Vector3D a(4.0f, 4.0f, 4.0f);
-    const math::Vector3D b(0.0f, 0.0f, -1.0f);
-    const math::Vector3D expectedProjection(4.0f, 4.0f, 0.0f);
+	// Arrange
+	const math::Vector3D a(4.0f, 4.0f, 4.0f);
+	const math::Vector3D b(0.0f, 0.0f, -1.0f);
+	const math::Vector3D expectedRejection(4.0f, 4.0f, 0.0f);
 
-    // Act
-    const math::Vector3D<float> actualProjection = a.reject(b);
+	// Act
+	const math::Vector3D<float> actualRejection = a.reject(b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	// Assert
+	EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
 
-TEST(Vector3D, VectorsWhenProjectedUsingStaticWrapperReturnNonZeroVector)
+TEST(Vector3D_Rejection, VectorsWhenProjectedUsingStaticWrapperReturnNonZeroVector)
 {
-    // Arrange
-    const math::Vector3D a(2.0f, 1.0f, -1.0f);
-    const math::Vector3D b(1.0f, 0.0f, 1.0f);
-    const math::Vector3D expectedProjection(1.5f, 1.0f, -1.5f);
+	// Arrange
+	const math::Vector3D a(2.0f, 1.0f, -1.0f);
+	const math::Vector3D b(1.0f, 0.0f, 1.0f);
+	const math::Vector3D expectedRejection(1.5f, 1.0f, -1.5f);
 
-    // Act
-    const math::Vector3D<float> actualProjection = math::Vector3D<float>::reject(a, b);
+	// Act
+	const math::Vector3D<float> actualRejection = math::Vector3D<float>::reject(a, b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	// Assert
+	EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
