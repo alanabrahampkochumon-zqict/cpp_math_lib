@@ -16,7 +16,7 @@
  *                                   *
  *************************************/
 
-TEST(Matrix3D, InitializedWithOutParametersProvidesIdentityMatrix)
+TEST(Matrix3D_Initialization, InitializedWithOutParametersProvidesIdentityMatrix)
 {
 	// Arrange & Act
 	const math::Matrix3D<float> mat;
@@ -35,7 +35,7 @@ TEST(Matrix3D, InitializedWithOutParametersProvidesIdentityMatrix)
 	EXPECT_FLOAT_EQ(1.0f, mat(2, 2));
 }
 
-TEST(Matrix3D, InitializedWithParametersProvidesCorrectMatrix)
+TEST(Matrix3D_Initialization, InitializedWithParametersProvidesCorrectMatrix)
 {
 	// Arrange & Act
 	const math::Matrix3D mat(
@@ -51,7 +51,7 @@ TEST(Matrix3D, InitializedWithParametersProvidesCorrectMatrix)
 		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowMax, i % rowMax));
 }
 
-TEST(Matrix3D, InitializedWithThree3DVectorsProvidesCorrectMatrix)
+TEST(Matrix3D_Initialization, InitializedWithThree3DVectorsProvidesCorrectMatrix)
 {
 	// Arrange & Act
 	const math::Vector3D col1(0.0f, 3.0f, 6.0f);
@@ -68,7 +68,7 @@ TEST(Matrix3D, InitializedWithThree3DVectorsProvidesCorrectMatrix)
 		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowMax, i % rowMax));
 }
 
-TEST(Matrix3D, CanMutateVectorAtIndex)
+TEST(Matrix3D_Initialization, CanMutateVectorAtIndex)
 {
 	// Arrange
 	math::Matrix3D<float> mat;
@@ -91,7 +91,7 @@ TEST(Matrix3D, CanMutateVectorAtIndex)
 	EXPECT_FLOAT_EQ(6.0f, mat(2, 2));
 }
 
-TEST(Matrix3D, CanBeAccessedAsAVectorAtIndex)
+TEST(Matrix3D_Initialization, CanBeAccessedAsAVectorAtIndex)
 {
 	// Arrange
 	math::Matrix3D<float> mat;
@@ -105,7 +105,7 @@ TEST(Matrix3D, CanBeAccessedAsAVectorAtIndex)
 	EXPECT_FLOAT_EQ(0.0f, vec.z);
 }
 
-TEST(Matrix3D, CanMutateValueAtRowColumn)
+TEST(Matrix3D_Initialization, CanMutateValueAtRowColumn)
 {
 	// Arrange
 	math::Matrix3D<float> mat;
@@ -121,7 +121,7 @@ TEST(Matrix3D, CanMutateValueAtRowColumn)
 		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowMax, i % rowMax));
 }
 
-TEST(Matrix3D, CanBeAccessedAsAValueAtRowColumn)
+TEST(Matrix3D_Initialization, CanBeAccessedAsAValueAtRowColumn)
 {
 	// Arrange & Act
 	const math::Matrix3D mat(
@@ -144,7 +144,7 @@ TEST(Matrix3D, CanBeAccessedAsAValueAtRowColumn)
  *                                   *
  *************************************/
 
-TEST(Matrix3D, SumOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
+TEST(Matrix3D_Sum, SumOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
 {
 	// Arrange
 	const math::Matrix3D a = {
@@ -174,7 +174,7 @@ TEST(Matrix3D, SumOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
 	}
 }
 
-TEST(Matrix3D, PlusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValues)
+TEST(Matrix3D_Sum, PlusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValues)
 {
 	// Arrange
 	math::Matrix3D a = {
@@ -204,7 +204,7 @@ TEST(Matrix3D, PlusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValu
 	}
 }
 
-TEST(Matrix3D, DifferenceOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
+TEST(Matrix3D_Difference, DifferenceOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
 {
 	// Arrange
 	const math::Matrix3D a = {
@@ -234,7 +234,7 @@ TEST(Matrix3D, DifferenceOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
 	}
 }
 
-TEST(Matrix3D, MinusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValues)
+TEST(Matrix3D_Difference, MinusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValues)
 {
 	// Arrange
 	math::Matrix3D a = {
@@ -242,12 +242,12 @@ TEST(Matrix3D, MinusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectVal
 		4.0f, 5.0f, 6.0f,
 		7.0f, -8.0f, 9.0f
 	};
-	const math::Matrix3D<float> b = {
+	const math::Matrix3D b = {
 		3.0f, 2.0f, 255.0f,
 		-8.0f, 24.0f, 6.0f,
 		2.0f, 16.0f, -98.0f
 	};
-	const math::Matrix3D<float> c = {
+	const math::Matrix3D c = {
 		-2.0f, 0.0f, -252.0f,
 		12.0f, -19.0f, 0.0f,
 		5.0f, -24.0f, 107.0f
@@ -264,7 +264,7 @@ TEST(Matrix3D, MinusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectVal
 	}
 }
 
-TEST(Matrix3D, MatrixTimesAIntegerScalarReturnsCorrectMatrix)
+TEST(Matrix3D_Product, MatrixTimesAIntegerScalarReturnsCorrectMatrix)
 {
 	// Arrange
 	const math::Matrix3D a = {
@@ -286,7 +286,7 @@ TEST(Matrix3D, MatrixTimesAIntegerScalarReturnsCorrectMatrix)
 
 }
 
-TEST(Matrix3D, IntegerScalarTimesAMatrixReturnsCorrectMatrix)
+TEST(Matrix3D_Product, IntegerScalarTimesAMatrixReturnsCorrectMatrix)
 {
 	// Arrange
 	const math::Matrix3D a = {
@@ -307,7 +307,7 @@ TEST(Matrix3D, IntegerScalarTimesAMatrixReturnsCorrectMatrix)
 	}
 }
 
-TEST(Matrix3D, MatrixTimesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)
+TEST(Matrix3D_Product, MatrixTimesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)
 {
 	// Arrange
 	math::Matrix3D a = {
@@ -333,7 +333,7 @@ TEST(Matrix3D, MatrixTimesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)
 	}
 }
 
-TEST(Matrix3D, MatrixTimesOneReturnANewMatrixWithOriginalMatrixValues)
+TEST(Matrix3D_Product, MatrixTimesOneReturnANewMatrixWithOriginalMatrixValues)
 {
 	// Arrange
 	const math::Matrix3D a = {
@@ -353,7 +353,7 @@ TEST(Matrix3D, MatrixTimesOneReturnANewMatrixWithOriginalMatrixValues)
 	}
 }
 
-TEST(Matrix3D, MatrixTimesZeroScalarReturnsZeroMatrix)
+TEST(Matrix3D_Product, MatrixTimesZeroScalarReturnsZeroMatrix)
 {
 	// Arrange
 	const math::Matrix3D a = {
@@ -375,7 +375,7 @@ TEST(Matrix3D, MatrixTimesZeroScalarReturnsZeroMatrix)
 	}
 }
 
-TEST(Matrix3D, MatrixTimesAFloatScalarReturnsCorrectMatrix)
+TEST(Matrix3D_Product, MatrixTimesAFloatScalarReturnsCorrectMatrix)
 {
 	// Arrange
 	const math::Matrix3D a = {
@@ -396,7 +396,7 @@ TEST(Matrix3D, MatrixTimesAFloatScalarReturnsCorrectMatrix)
 	}
 }
 
-TEST(Matrix3D, MatrixTimesNegativeFloatScalarFlipsSigns)
+TEST(Matrix3D_Product, MatrixTimesNegativeFloatScalarFlipsSigns)
 {
 	// Arrange
 	const math::Matrix3D a = {
@@ -418,141 +418,8 @@ TEST(Matrix3D, MatrixTimesNegativeFloatScalarFlipsSigns)
 	}
 }
 
-TEST(Matrix3D, MatrixDividedByAIntegerScalarReturnsCorrectMatrix)
-{
-	// Arrange
-	const math::Matrix3D a = {
-		1.0f, 2.0f, 3.0f,
-		4.0f, 5.0f, 6.0f,
-		7.0f, -8.0f, 9.0f
-	};
-	const int scalar = 2;
 
-	// Act
-	const math::Matrix3D<float> b = a / scalar;
-	constexpr std::size_t size = 9;
-	constexpr std::size_t rowSize = 3;
-
-	// Assert
-	for (std::size_t i = 0; i < size; i++)
-	{
-		EXPECT_FLOAT_EQ(a(i / rowSize, i % rowSize) / scalar, b(i / rowSize, i % rowSize));
-	}
-}
-
-TEST(Matrix3D, MatrixDividesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)
-{
-	// Arrange
-	math::Matrix3D a = {
-		1.0f, 2.0f, 3.0f,
-		4.0f, 5.0f, 6.0f,
-		7.0f, -8.0f, 9.0f
-	};
-	const math::Matrix3D b = {
-		0.5f, 1.0f, 1.5f,
-		2.0f, 2.5f, 3.0f,
-		3.5f, -4.0f, 4.5f
-	};
-	const int scalar = 2;
-
-	// Act
-	a /= scalar;
-	constexpr std::size_t size = 9;
-	constexpr std::size_t rowSize = 3;
-
-	// Assert
-	for (std::size_t i = 0; i < size; i++)
-	{
-		EXPECT_FLOAT_EQ(b(i / rowSize, i % rowSize), a(i / rowSize, i % rowSize));
-	}
-}
-
-TEST(Matrix3D, MatrixDividedByOneReturnANewMatrixWithOriginalMatrixValues)
-{
-	// Arrange
-	const math::Matrix3D a = {
-		1.0f, 2.0f, 3.0f,
-		4.0f, 5.0f, 6.0f,
-		7.0f, -8.0f, 9.0f
-	};
-
-	// Act
-	const math::Matrix3D<float> b = a / 1;
-	constexpr std::size_t size = 9;
-	constexpr std::size_t rowSize = 3;
-	// Assert
-	for (std::size_t i = 0; i < size; i++)
-	{
-		EXPECT_FLOAT_EQ(a(i / rowSize, i % rowSize), b(i / rowSize, i % rowSize));
-	}
-}
-
-TEST(Matrix3D, MatrixDividedByZeroScalarReturnsInfinityMatrix)
-{
-	// Arrange
-	const math::Matrix3D a = {
-		1.0f, 2.0f, 3.0f,
-		4.0f, 5.0f, 6.0f,
-		7.0f, -8.0f, 9.0f
-	};
-
-	// Act
-	const math::Matrix3D<float> b = a / 0;
-	constexpr std::size_t size = 9;
-	constexpr std::size_t rowSize = 3;
-
-	// Assert
-	for (std::size_t i = 0; i < size; i++)
-	{
-		// Must be exactly 0.0f
-		EXPECT_TRUE(std::isinf(b(i / rowSize, i % rowSize)));
-	}
-}
-
-TEST(Matrix3D, MatrixDividedByAFloatScalarReturnsCorrectMatrix)
-{
-	// Arrange
-	const math::Matrix3D<float> a = {
-		1.0f, 2.0f, 3.0f,
-		4.0f, 5.0f, 6.0f,
-		7.0f, -8.0f, 9.0
-	};
-	const float scalar = 2.5;
-
-	// Act
-	const math::Matrix3D<float> b = a / scalar;
-	constexpr std::size_t size = 9;
-	constexpr std::size_t rowSize = 3;
-	// Assert
-	for (std::size_t i = 0; i < size; i++)
-	{
-		EXPECT_FLOAT_EQ(a(i / rowSize, i % rowSize) / scalar, b(i / rowSize, i % rowSize));
-	}
-}
-
-TEST(Matrix3D, MatrixDividedNegativeFloatScalarFlipsSigns)
-{
-	// Arrange
-	const math::Matrix3D<float> a = {
-		 1.0f, -2.0f,  0.0f,
-		-4.0f,  5.0f, -6.0f,
-		 0.0f,  8.0f,  9.0
-	};
-	const float scalar = -2.0f;
-
-	// Act
-	const math::Matrix3D<float> b = a / scalar;
-	constexpr std::size_t size = 9;
-	constexpr std::size_t rowSize = 3;
-
-	// Assert
-	for (std::size_t i = 0; i < size; i++)
-	{
-		EXPECT_FLOAT_EQ(a(i / rowSize, i % rowSize) / scalar, b(i / rowSize, i % rowSize));
-	}
-}
-
-TEST(Matrix3D, MatrixTimesVectorReturnsANewMatrixWithCorrectValues)
+TEST(Matrix3D_Product, MatrixTimesVectorReturnsANewMatrixWithCorrectValues)
 {
 	// Arrange
 	const math::Matrix3D mat = {
@@ -573,7 +440,7 @@ TEST(Matrix3D, MatrixTimesVectorReturnsANewMatrixWithCorrectValues)
 
 }
 
-TEST(Matrix3D, IdentityMatrixTimesAVectorReturnsTheSameMatrix)
+TEST(Matrix3D_Product, IdentityMatrixTimesAVectorReturnsTheSameMatrix)
 {
 	// Arrange
 	const math::Matrix3D<float> mat;
@@ -589,7 +456,7 @@ TEST(Matrix3D, IdentityMatrixTimesAVectorReturnsTheSameMatrix)
 }
 
 
-TEST(Matrix3D, VectorTimesAMatrixReturnsANewVectorWithCorrectValues)
+TEST(Matrix3D_Product, VectorTimesAMatrixReturnsANewVectorWithCorrectValues)
 {
 	// Arrange
 	const math::Matrix3D mat = {
@@ -609,7 +476,7 @@ TEST(Matrix3D, VectorTimesAMatrixReturnsANewVectorWithCorrectValues)
 	EXPECT_FLOAT_EQ(expected.z, result.z);
 }
 
-TEST(Matrix3D, VectorTimesIdentityMatrixReturnsTheSameMatrix)
+TEST(Matrix3D_Product, VectorTimesIdentityMatrixReturnsTheSameMatrix)
 {
 	// Arrange
 	const math::Matrix3D<float> mat;
@@ -624,7 +491,7 @@ TEST(Matrix3D, VectorTimesIdentityMatrixReturnsTheSameMatrix)
 	EXPECT_FLOAT_EQ(vec.z, result.z);
 }
 
-TEST(Matrix3D, VectorTimesEqualMatrixReturnTheSameVectorWithNewValues)
+TEST(Matrix3D_Product, VectorTimesEqualMatrixReturnTheSameVectorWithNewValues)
 {
 	// Arrange
 	const math::Matrix3D mat = {
@@ -644,7 +511,7 @@ TEST(Matrix3D, VectorTimesEqualMatrixReturnTheSameVectorWithNewValues)
 	EXPECT_FLOAT_EQ(expected.z, vec.z);
 }
 
-TEST(Matrix3D, MatrixTimesMatrixGivesAnotherMatrixWithCorrectValues)
+TEST(Matrix3D_Product, MatrixTimesMatrixGivesAnotherMatrixWithCorrectValues)
 {
 	// Arrange
 	const math::Matrix3D mat1 = {
@@ -676,7 +543,7 @@ TEST(Matrix3D, MatrixTimesMatrixGivesAnotherMatrixWithCorrectValues)
 
 }
 
-TEST(Matrix3D, MatrixTimesIdentityMatrixReturnsSameMatrix)
+TEST(Matrix3D_Product, MatrixTimesIdentityMatrixReturnsSameMatrix)
 {
 	// Arrange
 	const math::Matrix3D mat = {
@@ -699,7 +566,7 @@ TEST(Matrix3D, MatrixTimesIdentityMatrixReturnsSameMatrix)
 	}
 }
 
-TEST(Matrix3D, MatrixTimesEqualAnotherMatrixReturnsSameMatrixWithCorrectValues)
+TEST(Matrix3D_Product, MatrixTimesEqualAnotherMatrixReturnsSameMatrixWithCorrectValues)
 {
 	// Arrange
 	math::Matrix3D mat1 = {
@@ -730,7 +597,7 @@ TEST(Matrix3D, MatrixTimesEqualAnotherMatrixReturnsSameMatrixWithCorrectValues)
 	}
 }
 
-TEST(Matrix3D, Matrix3DMultiplicationIsAntiCommutative)
+TEST(Matrix3D_Product, Matrix3DProductIsAntiCommutative)
 {
 	// Arrange
 	const math::Matrix3D mat1 = {
@@ -761,7 +628,7 @@ TEST(Matrix3D, Matrix3DMultiplicationIsAntiCommutative)
 	EXPECT_FALSE(commutative);
 }
 
-TEST(Matrix3D, Matrix3DMultiplicationWithScalarMultiplesAreCommutative)
+TEST(Matrix3D_Product, Matrix3DProductWithScalarMultiplesAreCommutative)
 {
 	// Arrange
 	const math::Matrix3D mat1 = {
@@ -788,11 +655,145 @@ TEST(Matrix3D, Matrix3DMultiplicationWithScalarMultiplesAreCommutative)
 	EXPECT_TRUE(commutative);
 }
 
+TEST(Matrix3D_Division, MatrixDividedByAIntegerScalarReturnsCorrectMatrix)
+{
+	// Arrange
+	const math::Matrix3D a = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, -8.0f, 9.0f
+	};
+	const int scalar = 2;
+
+	// Act
+	const math::Matrix3D<float> b = a / scalar;
+	constexpr std::size_t size = 9;
+	constexpr std::size_t rowSize = 3;
+
+	// Assert
+	for (std::size_t i = 0; i < size; i++)
+	{
+		EXPECT_FLOAT_EQ(a(i / rowSize, i % rowSize) / scalar, b(i / rowSize, i % rowSize));
+	}
+}
+
+TEST(Matrix3D_Division, MatrixDividesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)
+{
+	// Arrange
+	math::Matrix3D a = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, -8.0f, 9.0f
+	};
+	const math::Matrix3D b = {
+		0.5f, 1.0f, 1.5f,
+		2.0f, 2.5f, 3.0f,
+		3.5f, -4.0f, 4.5f
+	};
+	const int scalar = 2;
+
+	// Act
+	a /= scalar;
+	constexpr std::size_t size = 9;
+	constexpr std::size_t rowSize = 3;
+
+	// Assert
+	for (std::size_t i = 0; i < size; i++)
+	{
+		EXPECT_FLOAT_EQ(b(i / rowSize, i % rowSize), a(i / rowSize, i % rowSize));
+	}
+}
+
+TEST(Matrix3D_Division, MatrixDividedByOneReturnANewMatrixWithOriginalMatrixValues)
+{
+	// Arrange
+	const math::Matrix3D a = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, -8.0f, 9.0f
+	};
+
+	// Act
+	const math::Matrix3D<float> b = a / 1;
+	constexpr std::size_t size = 9;
+	constexpr std::size_t rowSize = 3;
+	// Assert
+	for (std::size_t i = 0; i < size; i++)
+	{
+		EXPECT_FLOAT_EQ(a(i / rowSize, i % rowSize), b(i / rowSize, i % rowSize));
+	}
+}
+
+TEST(Matrix3D_Division, MatrixDividedByZeroScalarReturnsInfinityMatrix)
+{
+	// Arrange
+	const math::Matrix3D a = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, -8.0f, 9.0f
+	};
+
+	// Act
+	const math::Matrix3D<float> b = a / 0;
+	constexpr std::size_t size = 9;
+	constexpr std::size_t rowSize = 3;
+
+	// Assert
+	for (std::size_t i = 0; i < size; i++)
+	{
+		// Must be exactly 0.0f
+		EXPECT_TRUE(std::isinf(b(i / rowSize, i % rowSize)));
+	}
+}
+
+TEST(Matrix3D_Division, MatrixDividedByAFloatScalarReturnsCorrectMatrix)
+{
+	// Arrange
+	const math::Matrix3D<float> a = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, -8.0f, 9.0
+	};
+	const float scalar = 2.5;
+
+	// Act
+	const math::Matrix3D<float> b = a / scalar;
+	constexpr std::size_t size = 9;
+	constexpr std::size_t rowSize = 3;
+	// Assert
+	for (std::size_t i = 0; i < size; i++)
+	{
+		EXPECT_FLOAT_EQ(a(i / rowSize, i % rowSize) / scalar, b(i / rowSize, i % rowSize));
+	}
+}
+
+TEST(Matrix3D_Division, MatrixDividedNegativeFloatScalarFlipsSigns)
+{
+	// Arrange
+	const math::Matrix3D<float> a = {
+		 1.0f, -2.0f,  0.0f,
+		-4.0f,  5.0f, -6.0f,
+		 0.0f,  8.0f,  9.0
+	};
+	const float scalar = -2.0f;
+
+	// Act
+	const math::Matrix3D<float> b = a / scalar;
+	constexpr std::size_t size = 9;
+	constexpr std::size_t rowSize = 3;
+
+	// Assert
+	for (std::size_t i = 0; i < size; i++)
+	{
+		EXPECT_FLOAT_EQ(a(i / rowSize, i % rowSize) / scalar, b(i / rowSize, i % rowSize));
+	}
+}
+
 /**
  * DETERMINANTS
  **/
 
-TEST(Matrix3D, IdentityMatrixReturnsDeterminantOfOne)
+TEST(Matrix3D_Determinant, IdentityMatrixReturnsDeterminantOfOne)
 {
 	// Arrange
 	const math::Matrix3D<float> mat;
@@ -805,7 +806,7 @@ TEST(Matrix3D, IdentityMatrixReturnsDeterminantOfOne)
 	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
 }
 
-TEST(Matrix3D, DiagonalMatrixReturnsProductOfDiagonalEntriesAsDeterminant)
+TEST(Matrix3D_Determinant, DiagonalMatrixReturnsProductOfDiagonalEntriesAsDeterminant)
 {
 	// Arrange
 	const math::Matrix3D mat(
@@ -822,7 +823,7 @@ TEST(Matrix3D, DiagonalMatrixReturnsProductOfDiagonalEntriesAsDeterminant)
 	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
 }
 
-TEST(Matrix3D, MatrixWithScalarMultipleColumnsReturnsDeterminantOfZero)
+TEST(Matrix3D_Determinant, MatrixWithScalarMultipleColumnsReturnsDeterminantOfZero)
 {
 	const math::Matrix3D mat(
 		2.0f, 1.0f, 3.0f,
@@ -839,7 +840,7 @@ TEST(Matrix3D, MatrixWithScalarMultipleColumnsReturnsDeterminantOfZero)
 	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
 }
 
-TEST(Matrix3D, MatrixWithScalarMultipleRowsReturnsDeterminantOfZero)
+TEST(Matrix3D_Determinant, MatrixWithScalarMultipleRowsReturnsDeterminantOfZero)
 {
 	const math::Matrix3D mat(
 		2.0f, 4.0f, 3.0f,
@@ -856,7 +857,7 @@ TEST(Matrix3D, MatrixWithScalarMultipleRowsReturnsDeterminantOfZero)
 	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
 }
 
-TEST(Matrix3D, IdentityMatrixWithSwappedRowsReturnsDeterminantOfNegativeOne)
+TEST(Matrix3D_Determinant, IdentityMatrixWithSwappedRowsReturnsDeterminantOfNegativeOne)
 {
 	const math::Matrix3D mat(
 		1.0f, 0.0f, 0.0f,
@@ -873,7 +874,7 @@ TEST(Matrix3D, IdentityMatrixWithSwappedRowsReturnsDeterminantOfNegativeOne)
 	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
 }
 
-TEST(Matrix3D, IdentityMatrixWithSwappedColumnsReturnsDeterminantOfNegativeOne)
+TEST(Matrix3D_Determinant, IdentityMatrixWithSwappedColumnsReturnsDeterminantOfNegativeOne)
 {
 	const math::Matrix3D mat(
 		1.0f, 0.0f, 0.0f,
@@ -890,7 +891,7 @@ TEST(Matrix3D, IdentityMatrixWithSwappedColumnsReturnsDeterminantOfNegativeOne)
 	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
 }
 
-TEST(Matrix3D, IdentityMatrixWithShearAppliedsReturnsDeterminantOfOne)
+TEST(Matrix3D_Determinant, IdentityMatrixWithShearAppliedsReturnsDeterminantOfOne)
 {
 	const math::Matrix3D mat(
 		1.0f, 1.0f, 0.0f,
@@ -907,7 +908,7 @@ TEST(Matrix3D, IdentityMatrixWithShearAppliedsReturnsDeterminantOfOne)
 	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
 }
 
-TEST(Matrix3D, MatrixDeterminantReturnsCorrectValue)
+TEST(Matrix3D_Determinant, MatrixDeterminantReturnsCorrectValue)
 {
 	const math::Matrix3D mat(
 		1.0f, 2.0f, 3.0f,
@@ -924,7 +925,7 @@ TEST(Matrix3D, MatrixDeterminantReturnsCorrectValue)
 	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
 }
 
-TEST(Matrix3D, MatrixDeterminantWithStaticWrapperReturnsCorrectValue)
+TEST(Matrix3D_Determinant, MatrixDeterminantWithStaticWrapperReturnsCorrectValue)
 {
 	const math::Matrix3D mat(
 		1.0f, 2.0f, 3.0f,
@@ -941,7 +942,7 @@ TEST(Matrix3D, MatrixDeterminantWithStaticWrapperReturnsCorrectValue)
 	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
 }
 
-TEST(Matrix3D, DeterminantofTransposedMatrixIsEqualToDeterminantOfTheMatrix)
+TEST(Matrix3D_Determinant, DeterminantofTransposedMatrixIsEqualToDeterminantOfTheMatrix)
 {
 	const math::Matrix3D a(
 		1.0f, 2.0f, 3.0f,
@@ -957,7 +958,7 @@ TEST(Matrix3D, DeterminantofTransposedMatrixIsEqualToDeterminantOfTheMatrix)
 	EXPECT_FLOAT_EQ(detA, detAT);
 }
 
-TEST(Matrix3D, DeterminantOfProductOfMatricesIsSameAsProductOfDeterminantOfMatrix)
+TEST(Matrix3D_Determinant, DeterminantOfProductOfMatricesIsSameAsProductOfDeterminantOfMatrix)
 {
 	// det(A*B) = det(A) * det(B)
 	const math::Matrix3D a(
@@ -979,7 +980,7 @@ TEST(Matrix3D, DeterminantOfProductOfMatricesIsSameAsProductOfDeterminantOfMatri
 	EXPECT_FLOAT_EQ(determinantOfProduct, productOfDeterminant);
 }
 
-TEST(Matrix3D, DeterminantOfAMatrixMultipledByScalarIsScalarPowNTimesTheDeterminantOfOriginalMatrix)
+TEST(Matrix3D_Determinant, DeterminantOfAMatrixMultipledByScalarIsScalarPowNTimesTheDeterminantOfOriginalMatrix)
 {
 	// det(t*A) = (t^n)det(A)
 	const math::Matrix3D a(
@@ -997,7 +998,7 @@ TEST(Matrix3D, DeterminantOfAMatrixMultipledByScalarIsScalarPowNTimesTheDetermin
 	EXPECT_FLOAT_EQ(determinantOfProduct, productOfDeterminant);
 }
 
-TEST(Matrix3D, TransposeOfIdentityMatrixIsItself)
+TEST(Matrix3D_Transpose, TransposeOfIdentityMatrixIsItself)
 {
 	// Arrange
 	const math::Matrix3D<float> mat;
@@ -1016,7 +1017,7 @@ TEST(Matrix3D, TransposeOfIdentityMatrixIsItself)
 
 
 
-TEST(Matrix3D, TransposeOfAMatrixReturnsMatrixWithRowsAndColumnsSwapped)
+TEST(Matrix3D_Transpose, TransposeOfAMatrixReturnsMatrixWithRowsAndColumnsSwapped)
 {
 	// Arrange
 	const math::Matrix3D mat(
@@ -1042,7 +1043,7 @@ TEST(Matrix3D, TransposeOfAMatrixReturnsMatrixWithRowsAndColumnsSwapped)
 	}
 }
 
-TEST(Matrix3D, TransposeOfAMatrixUsingStaticWrapperReturnsMatrixWithRowsAndColumnsSwapped)
+TEST(Matrix3D_Transpose, TransposeOfAMatrixUsingStaticWrapperReturnsMatrixWithRowsAndColumnsSwapped)
 {
 	// Arrange
 	const math::Matrix3D mat(
