@@ -2,9 +2,11 @@
 
 #include <gtest/gtest.h>
 
+#include <cmath>
+
 #include <matrix/Matrix3D.h>
 
-namespace TestUtils
+namespace TestUtils::Matrix3D
 {
 	
 	static unsigned int SIZE = 9;
@@ -31,6 +33,26 @@ namespace TestUtils
 		for (unsigned int i = 0; i < SIZE; i++)
 		{
 			EXPECT_FLOAT_EQ(identity(i / ROW_SIZE, i % ROW_SIZE), actual(i / ROW_SIZE, i % ROW_SIZE));
+		}
+	}
+
+	template<typename T>
+	void EXPECT_MAT3D_ZERO(math::Matrix3D<T> actual)
+	{
+
+		for (unsigned int i = 0; i < SIZE; i++)
+		{
+			EXPECT_FLOAT_EQ(T(0), actual(i / ROW_SIZE, i % ROW_SIZE));
+		}
+	}
+
+	template<typename T>
+	void EXPECT_MAT3D_INF(math::Matrix3D<T> actual)
+	{
+
+		for (unsigned int i = 0; i < SIZE; i++)
+		{
+			EXPECT_TRUE(std::isinf(actual(i / ROW_SIZE, i % ROW_SIZE)));
 		}
 	}
 }
