@@ -8,10 +8,10 @@ set(VectorTemplateDefinitionFiles Vector2D.tpp Vector3D.tpp Vector4D.tpp)
 list(TRANSFORM VectorTemplateDefinitionFiles PREPEND ${VectorDirectory})
 
 set(MatrixDirectory "include/matrix/")
-set(MatrixHeaderFiles Matrix3D.h)
+set(MatrixHeaderFiles Matrix2D.h Matrix3D.h)
 list(TRANSFORM MatrixHeaderFiles PREPEND ${MatrixDirectory})
 
-set(MatrixTemplateDefinitionFiles Matrix3D.tpp)
+set(MatrixTemplateDefinitionFiles Matrix2D.tpp Matrix3D.tpp)
 list(TRANSFORM MatrixTemplateDefinitionFiles PREPEND ${MatrixDirectory})
 
 target_sources(MathLib

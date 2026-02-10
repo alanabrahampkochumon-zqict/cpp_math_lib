@@ -7,7 +7,7 @@ list(TRANSFORM VectorTestFiles PREPEND ${VectorTestDirectory})
 
 # Matrix Test Sources
 set(MatrixTestDirectory "src/matrix/")
-set(MatrixTestFiles Matrix3DTests.cpp)
+set(MatrixTestFiles Matrix2DTests.cpp Matrix3DTests.cpp)
 list(TRANSFORM MatrixTestFiles PREPEND ${MatrixTestDirectory})
 
 set(UtilityDirectory "src/utils/")
