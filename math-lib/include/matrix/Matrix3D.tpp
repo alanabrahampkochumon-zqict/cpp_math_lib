@@ -3,8 +3,6 @@
 #include <type_traits>
 #include <valarray>
 
-#include "Matrix3D.h"
-
 namespace math
 {
 	template<typename T>
