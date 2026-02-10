@@ -63,25 +63,41 @@ namespace math
 	template <typename T>
 	Matrix2D<T> Matrix2D<T>::operator+(const Matrix2D& other) const
 	{
-		return Matrix2D<T>();
+		return Matrix2D(
+			elements[0][0] + other(0, 0), elements[1][0] + other(0, 1),
+			elements[0][1] + other(1, 0), elements[1][1] + other(1, 1)
+		);
 	}
 
 	template <typename T>
 	Matrix2D<T>& Matrix2D<T>::operator+=(const Matrix2D& other)
 	{
-		return Matrix2D<T>();
+		elements[0][0] += other(0, 0);
+		elements[1][0] += other(0, 1);
+		elements[0][1] += other(1, 0);
+		elements[1][1] += other(1, 1);
+
+		return *this;
 	}
 
 	template <typename T>
 	Matrix2D<T> Matrix2D<T>::operator-(const Matrix2D& other) const
 	{
-		return Matrix2D<T>();
+		return Matrix2D(
+			elements[0][0] - other(0, 0), elements[1][0] - other(0, 1),
+			elements[0][1] - other(1, 0), elements[1][1] - other(1, 1)
+		);
 	}
 
 	template <typename T>
 	Matrix2D<T>& Matrix2D<T>::operator-=(const Matrix2D& other)
 	{
-		return Matrix2D<T>();
+		elements[0][0] -= other(0, 0);
+		elements[1][0] -= other(0, 1);
+		elements[0][1] -= other(1, 0);
+		elements[1][1] -= other(1, 1);
+
+		return *this;
 	}
 
 	template <typename T>

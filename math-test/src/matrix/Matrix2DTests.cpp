@@ -111,104 +111,104 @@ TEST(Matrix2D_Access, CanBeAccessedAsAValueAtRowColumn)
 		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowSize, i % rowSize));
 }
 
-///*************************************
-// *                                   *
-// *         MATH OPERATIONS           *
-// *                                   *
-// *************************************/
-//
-//TEST(Matrix2D_Sum, SumOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
-//{
-//	// Arrange
-//	const math::Matrix2D a = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, -8.0f, 9.0f };
-//	const math::Matrix2D b = {
-//		3.0f, 2.0f, 255.0f,
-//		-8.0f, 24.0f, 6.0f,
-//		7.0f, 16.0f, -98.0f };
-//	const math::Matrix2D c = {
-//		4.0f, 4.0f, 258.0f,
-//		-4.0f, 29.0f, 12.0f,
-//		14.0f, 8.0f, -89.0f };
-//
-//	// Act
-//	const math::Matrix2D<float> res = a + b;
-//
-//	// Assert
-//	EXPECT_MAT_EQ(c, res);
-//}
-//
-//TEST(Matrix2D_Sum, PlusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValues)
-//{
-//	// Arrange
-//	math::Matrix2D a = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, -8.0f, 9.0f };
-//	const math::Matrix2D b = {
-//		3.0f, 2.0f, 255.0f,
-//		-8.0f, 24.0f, 6.0f,
-//		7.0f, 16.0f, -98.0f };
-//	const math::Matrix2D c = {
-//		4.0f, 4.0f, 258.0f,
-//		-4.0f, 29.0f, 12.0f,
-//		14.0f, 8.0f, -89.0f };
-//
-//	// Act
-//	a += b;
-//
-//	// Assert
-//	EXPECT_MAT_EQ(c, a);
-//}
-//
-//TEST(Matrix2D_Difference, DifferenceOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
-//{
-//	// Arrange
-//	const math::Matrix2D a = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, -8.0f, 9.0f };
-//	const math::Matrix2D b = {
-//		3.0f, 2.0f, 255.0f,
-//		-8.0f, 24.0f, 6.0f,
-//		2.0f, 16.0f, -98.0f };
-//	const math::Matrix2D c = {
-//		-2.0f, 0.0f, -252.0f,
-//		12.0f, -19.0f, 0.0f,
-//		5.0f, -24.0f, 107.0f };
-//
-//	// Act
-//	const math::Matrix2D<float> res = a - b;
-//
-//	// Assert
-//	EXPECT_MAT_EQ(c, res);
-//}
-//
-//TEST(Matrix2D_Difference, MinusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValues)
-//{
-//	// Arrange
-//	math::Matrix2D a = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, -8.0f, 9.0f };
-//	const math::Matrix2D b = {
-//		3.0f, 2.0f, 255.0f,
-//		-8.0f, 24.0f, 6.0f,
-//		2.0f, 16.0f, -98.0f };
-//	const math::Matrix2D c = {
-//		-2.0f, 0.0f, -252.0f,
-//		12.0f, -19.0f, 0.0f,
-//		5.0f, -24.0f, 107.0f };
-//
-//	// Act
-//	a -= b;
-//
-//	// Assert
-//	EXPECT_MAT_EQ(c, a);
-//}
-//
+/*************************************
+ *                                   *
+ *         MATH OPERATIONS           *
+ *                                   *
+ *************************************/
+
+TEST(Matrix2D_Sum, SumOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
+{
+	// Arrange
+	math::Matrix2D a = {
+		1.0f, 2.0f,
+		4.0f, 5.0f
+	};
+	const math::Matrix2D b = {
+		3.0f, 2.0f,
+		-8.0f, 24.0f
+	};
+	const math::Matrix2D c = {
+		4.0f, 4.0f,
+		-4.0f, 29.0f
+	};
+
+	// Act
+	const math::Matrix2D<float> res = a + b;
+
+	// Assert
+	EXPECT_MAT_EQ(c, res);
+}
+
+TEST(Matrix2D_Sum, PlusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValues)
+{
+	// Arrange
+	math::Matrix2D a = {
+		1.0f, 2.0f,
+		4.0f, 5.0f
+	};
+	const math::Matrix2D b = {
+		3.0f, 2.0f,
+		-8.0f, 24.0f
+	};
+	const math::Matrix2D c = {
+		4.0f, 4.0f,
+		-4.0f, 29.0f
+	};
+
+	// Act
+	a += b;
+
+	// Assert
+	EXPECT_MAT_EQ(c, a);
+}
+
+TEST(Matrix2D_Difference, DifferenceOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
+{
+	// Arrange
+	math::Matrix2D a = {
+		1.0f, 2.0f,
+		4.0f, 5.0f
+	};
+	const math::Matrix2D b = {
+		3.0f, 2.0f,
+		-8.0f, 24.0f
+	};
+	const math::Matrix2D c = {
+		-2.0f, 0.0f,
+		12.0f, -19.0f
+	};
+
+	// Act
+	const math::Matrix2D<float> res = a - b;
+
+	// Assert
+	EXPECT_MAT_EQ(c, res);
+}
+
+TEST(Matrix2D_Difference, MinusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValues)
+{
+	// Arrange
+	math::Matrix2D a = {
+		1.0f, 2.0f,
+		4.0f, 5.0f
+	};
+	const math::Matrix2D b = {
+		3.0f, 2.0f,
+		-8.0f, 24.0f
+	};
+	const math::Matrix2D c = {
+		-2.0f, 0.0f,
+		12.0f, -19.0f
+	};
+
+	// Act
+	a -= b;
+
+	// Assert
+	EXPECT_MAT_EQ(c, a);
+}
+
 //TEST(Matrix2D_Product, MatrixTimesAIntegerScalarReturnsCorrectMatrix)
 //{
 //	// Arrange
