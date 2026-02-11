@@ -178,25 +178,31 @@ namespace math
 	template <typename T>
 	T Matrix2D<T>::determinant() const
 	{
-		return T(0);
+		// 0_0  1_0
+		//	 \  /
+		// 0_1  1_1
+		return elements[0][0] * elements[1][1] - elements[1][0] * elements[0][1];
 	}
 
 	template <typename T>
 	T Matrix2D<T>::determinant(const Matrix2D<T>& matrix)
 	{
-		return T(0);
+		return matrix.determinant();
 	}
 
 	template <typename T>
 	Matrix2D<T> Matrix2D<T>::transpose() const
 	{
-		return Matrix2D<T>();
+		return Matrix2D<T>(
+			elements[0][0], elements[0][1],
+			elements[1][0], elements[1][1]
+		);
 	}
 
 	template <typename T>
 	Matrix2D<T> Matrix2D<T>::transpose(const Matrix2D& matrix)
 	{
-		return Matrix2D<T>();
+		return matrix.transpose();
 	}
 
 	template <typename T>

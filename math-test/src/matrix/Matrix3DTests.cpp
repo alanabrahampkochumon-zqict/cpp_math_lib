@@ -844,7 +844,7 @@ TEST(Matrix3D_Determinant, DeterminantOfAMatrixMultipledByScalarIsScalarPowNTime
 		1.0f, 2.0f, 3.0f,
 		0.0f, 4.0f, 1.0f,
 		5.0f, 6.0f, 0.0f);
-	const float scalar = 5.0f;
+	constexpr float scalar = 5.0f;
 
 	// Act
 	const float determinantOfProduct = math::Matrix3D<float>::determinant(scalar * a);
@@ -861,14 +861,9 @@ TEST(Matrix3D_Transpose, TransposeOfIdentityMatrixIsItself)
 
 	// Act
 	const math::Matrix3D<float> actual = mat.transpose();
-	constexpr int size = 9;
-	constexpr int rowSize = 3;
 
 	// Assert
-	for (std::size_t i = 0; i < size; i++)
-	{
-		EXPECT_FLOAT_EQ(mat(i / rowSize, i % rowSize), actual(i / rowSize, i % rowSize));
-	}
+	EXPECT_MAT_EQ(mat, actual);
 }
 
 TEST(Matrix3D_Transpose, TransposeOfAMatrixReturnsMatrixWithRowsAndColumnsSwapped)
@@ -885,14 +880,9 @@ TEST(Matrix3D_Transpose, TransposeOfAMatrixReturnsMatrixWithRowsAndColumnsSwappe
 
 	// Act
 	const math::Matrix3D<float> actual = mat.transpose();
-	constexpr int size = 9;
-	constexpr int rowSize = 3;
 
 	// Assert
-	for (std::size_t i = 0; i < size; i++)
-	{
-		EXPECT_FLOAT_EQ(expected(i / rowSize, i % rowSize), actual(i / rowSize, i % rowSize));
-	}
+	EXPECT_MAT_EQ(expected, actual);
 }
 
 TEST(Matrix3D_Transpose, TransposeOfAMatrixUsingStaticWrapperReturnsMatrixWithRowsAndColumnsSwapped)
@@ -909,14 +899,9 @@ TEST(Matrix3D_Transpose, TransposeOfAMatrixUsingStaticWrapperReturnsMatrixWithRo
 
 	// Act
 	const math::Matrix3D<float> actual = math::Matrix3D<float>::transpose(mat);
-	constexpr int size = 9;
-	constexpr int rowSize = 3;
 
 	// Assert
-	for (std::size_t i = 0; i < size; i++)
-	{
-		EXPECT_FLOAT_EQ(expected(i / rowSize, i % rowSize), actual(i / rowSize, i % rowSize));
-	}
+	EXPECT_MAT_EQ(expected, actual);
 }
 
 TEST(Matrix3D_Inverse, InverseProducesAnotherMatrixWithCorrectValues)

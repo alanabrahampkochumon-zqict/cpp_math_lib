@@ -640,268 +640,254 @@ TEST(Matrix2D_Division, MatrixDividedNegativeFloatScalarFlipsSigns)
 	EXPECT_MAT_EQ(expected, actual);
 }
 
-///**
-// * DETERMINANTS
-// **/
-//
-//TEST(Matrix2D_Determinant, IdentityMatrixReturnsDeterminantOfOne)
-//{
-//	// Arrange
-//	const math::Matrix2D<float> mat;
-//	constexpr float expectedDeterminant = 1.0f;
-//
-//	// Act
-//	const float actualDeterminant = mat.determinant();
-//
-//	// Assert
-//	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
-//}
-//
-//TEST(Matrix2D_Determinant, DiagonalMatrixReturnsProductOfDiagonalEntriesAsDeterminant)
-//{
-//	// Arrange
-//	const math::Matrix2D mat(
-//		2.0f, 0.0f, 0.0f,
-//		0.0f, 3.0f, 0.0f,
-//		0.0f, 0.0f, 4.0f);
-//	constexpr float expectedDeterminant = 24.0f;
-//
-//	// Act
-//	const float actualDeterminant = mat.determinant();
-//
-//	// Assert
-//	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
-//}
-//
-//TEST(Matrix2D_Determinant, MatrixWithScalarMultipleColumnsReturnsDeterminantOfZero)
-//{
-//	const math::Matrix2D mat(
-//		2.0f, 1.0f, 3.0f,
-//		4.0f, 2.0f, 6.0f,
-//		1.0f, 5.0f, 4.0f);
-//
-//	constexpr float expectedDeterminant = 0.0f;
-//
-//	// Act
-//	const float actualDeterminant = mat.determinant();
-//
-//	// Assert
-//	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
-//}
-//
-//TEST(Matrix2D_Determinant, MatrixWithScalarMultipleRowsReturnsDeterminantOfZero)
-//{
-//	const math::Matrix2D mat(
-//		2.0f, 4.0f, 3.0f,
-//		4.0f, 8.0f, 6.0f,
-//		1.0f, 2.0f, 4.0f);
-//
-//	constexpr float expectedDeterminant = 0.0f;
-//
-//	// Act
-//	const float actualDeterminant = mat.determinant();
-//
-//	// Assert
-//	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
-//}
-//
-//TEST(Matrix2D_Determinant, IdentityMatrixWithSwappedRowsReturnsDeterminantOfNegativeOne)
-//{
-//	const math::Matrix2D mat(
-//		1.0f, 0.0f, 0.0f,
-//		0.0f, 0.0f, 1.0f,
-//		0.0f, 1.0f, 0.0f);
-//
-//	constexpr float expectedDeterminant = -1.0f;
-//
-//	// Act
-//	const float actualDeterminant = mat.determinant();
-//
-//	// Assert
-//	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
-//}
-//
-//TEST(Matrix2D_Determinant, IdentityMatrixWithSwappedColumnsReturnsDeterminantOfNegativeOne)
-//{
-//	const math::Matrix2D mat(
-//		1.0f, 0.0f, 0.0f,
-//		0.0f, 0.0f, 1.0f,
-//		0.0f, 1.0f, 0.0f);
-//
-//	constexpr float expectedDeterminant = -1.0f;
-//
-//	// Act
-//	const float actualDeterminant = mat.determinant();
-//
-//	// Assert
-//	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
-//}
-//
-//TEST(Matrix2D_Determinant, IdentityMatrixWithShearAppliedsReturnsDeterminantOfOne)
-//{
-//	const math::Matrix2D mat(
-//		1.0f, 1.0f, 0.0f,
-//		0.0f, 1.0f, 0.0f,
-//		0.0f, 0.0f, 1.0f);
-//
-//	constexpr float expectedDeterminant = 1.0f;
-//
-//	// Act
-//	const float actualDeterminant = mat.determinant();
-//
-//	// Assert
-//	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
-//}
-//
-//TEST(Matrix2D_Determinant, MatrixDeterminantReturnsCorrectValue)
-//{
-//	const math::Matrix2D mat(
-//		1.0f, 2.0f, 3.0f,
-//		0.0f, 4.0f, 1.0f,
-//		5.0f, 6.0f, 0.0f);
-//
-//	constexpr float expectedDeterminant = -56.0f;
-//
-//	// Act
-//	const float actualDeterminant = mat.determinant();
-//
-//	// Assert
-//	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
-//}
-//
-//TEST(Matrix2D_Determinant, MatrixDeterminantWithStaticWrapperReturnsCorrectValue)
-//{
-//	const math::Matrix2D mat(
-//		1.0f, 2.0f, 3.0f,
-//		0.0f, 4.0f, 1.0f,
-//		5.0f, 6.0f, 0.0f);
-//
-//	constexpr float expectedDeterminant = -56.0f;
-//
-//	// Act
-//	const float actualDeterminant = math::Matrix2D<float>::determinant(mat);
-//
-//	// Assert
-//	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
-//}
-//
-//TEST(Matrix2D_Determinant, DeterminantofTransposedMatrixIsEqualToDeterminantOfTheMatrix)
-//{
-//	const math::Matrix2D a(
-//		1.0f, 2.0f, 3.0f,
-//		0.0f, 4.0f, 1.0f,
-//		5.0f, 6.0f, 0.0f);
-//
-//	// Act
-//	const float detA = a.determinant();
-//	const float detAT = a.transpose().determinant();
-//
-//	// Assert
-//	EXPECT_FLOAT_EQ(detA, detAT);
-//}
-//
-//TEST(Matrix2D_Determinant, DeterminantOfProductOfMatricesIsSameAsProductOfDeterminantOfMatrix)
-//{
-//	// det(A*B) = det(A) * det(B)
-//	const math::Matrix2D a(
-//		1.0f, 2.0f, 3.0f,
-//		0.0f, 4.0f, 1.0f,
-//		5.0f, 6.0f, 0.0f);
-//	const math::Matrix2D b(
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, 8.0f, 9.0f);
-//
-//	// Act
-//	const float determinantOfProduct = math::Matrix2D<float>::determinant(a * b);
-//	const float productOfDeterminant = a.determinant() * b.determinant();
-//
-//	// Assert
-//	EXPECT_FLOAT_EQ(determinantOfProduct, productOfDeterminant);
-//}
-//
-//TEST(Matrix2D_Determinant, DeterminantOfAMatrixMultipledByScalarIsScalarPowNTimesTheDeterminantOfOriginalMatrix)
-//{
-//	// det(t*A) = (t^n)det(A)
-//	const math::Matrix2D a(
-//		1.0f, 2.0f, 3.0f,
-//		0.0f, 4.0f, 1.0f,
-//		5.0f, 6.0f, 0.0f);
-//	const float scalar = 5.0f;
-//
-//	// Act
-//	const float determinantOfProduct = math::Matrix2D<float>::determinant(scalar * a);
-//	const float productOfDeterminant = (scalar * scalar * scalar) * a.determinant(); // n = 3 for 3x3 matrix
-//
-//	// Assert
-//	EXPECT_FLOAT_EQ(determinantOfProduct, productOfDeterminant);
-//}
-//
-//TEST(Matrix2D_Transpose, TransposeOfIdentityMatrixIsItself)
-//{
-//	// Arrange
-//	const math::Matrix2D<float> mat;
-//
-//	// Act
-//	const math::Matrix2D<float> actual = mat.transpose();
-//	constexpr int size = 9;
-//	constexpr int rowSize = 3;
-//
-//	// Assert
-//	for (std::size_t i = 0; i < size; i++)
-//	{
-//		EXPECT_FLOAT_EQ(mat(i / rowSize, i % rowSize), actual(i / rowSize, i % rowSize));
-//	}
-//}
-//
-//TEST(Matrix2D_Transpose, TransposeOfAMatrixReturnsMatrixWithRowsAndColumnsSwapped)
-//{
-//	// Arrange
-//	const math::Matrix2D mat(
-//		1.0f, 2.0f, 3.0f,
-//		0.0f, 4.0f, 1.0f,
-//		5.0f, 6.0f, 0.0f);
-//	const math::Matrix2D expected(
-//		1.0f, 0.0f, 5.0f,
-//		2.0f, 4.0f, 6.0f,
-//		3.0f, 1.0f, 0.0f);
-//
-//	// Act
-//	const math::Matrix2D<float> actual = mat.transpose();
-//	constexpr int size = 9;
-//	constexpr int rowSize = 3;
-//
-//	// Assert
-//	for (std::size_t i = 0; i < size; i++)
-//	{
-//		EXPECT_FLOAT_EQ(expected(i / rowSize, i % rowSize), actual(i / rowSize, i % rowSize));
-//	}
-//}
-//
-//TEST(Matrix2D_Transpose, TransposeOfAMatrixUsingStaticWrapperReturnsMatrixWithRowsAndColumnsSwapped)
-//{
-//	// Arrange
-//	const math::Matrix2D mat(
-//		1.0f, 2.0f, 3.0f,
-//		0.0f, 4.0f, 1.0f,
-//		5.0f, 6.0f, 0.0f);
-//	const math::Matrix2D expected(
-//		1.0f, 0.0f, 5.0f,
-//		2.0f, 4.0f, 6.0f,
-//		3.0f, 1.0f, 0.0f);
-//
-//	// Act
-//	const math::Matrix2D<float> actual = math::Matrix2D<float>::transpose(mat);
-//	constexpr int size = 9;
-//	constexpr int rowSize = 3;
-//
-//	// Assert
-//	for (std::size_t i = 0; i < size; i++)
-//	{
-//		EXPECT_FLOAT_EQ(expected(i / rowSize, i % rowSize), actual(i / rowSize, i % rowSize));
-//	}
-//}
-//
+/**
+ * DETERMINANTS
+ **/
+
+TEST(Matrix2D_Determinant, IdentityMatrixReturnsDeterminantOfOne)
+{
+	// Arrange
+	const math::Matrix2D<float> mat;
+	constexpr float expectedDeterminant = 1.0f;
+
+	// Act
+	const float actualDeterminant = mat.determinant();
+
+	// Assert
+	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
+}
+
+TEST(Matrix2D_Determinant, DiagonalMatrixReturnsProductOfDiagonalEntriesAsDeterminant)
+{
+	// Arrange
+	const math::Matrix2D mat(
+		2.0f, 0.0f,
+		0.0f, 3.0f
+	);
+	constexpr float expectedDeterminant = 6.0f;
+
+	// Act
+	const float actualDeterminant = mat.determinant();
+
+	// Assert
+	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
+}
+
+TEST(Matrix2D_Determinant, MatrixWithScalarMultipleColumnsReturnsDeterminantOfZero)
+{
+	const math::Matrix2D mat(
+		2.0f, 1.0f,
+		4.0f, 2.0f
+	);
+
+	constexpr float expectedDeterminant = 0.0f;
+
+	// Act
+	const float actualDeterminant = mat.determinant();
+
+	// Assert
+	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
+}
+
+TEST(Matrix2D_Determinant, MatrixWithScalarMultipleRowsReturnsDeterminantOfZero)
+{
+	const math::Matrix2D mat(
+		2.0f, 4.0f,
+		4.0f, 8.0f
+	);
+
+	constexpr float expectedDeterminant = 0.0f;
+
+	// Act
+	const float actualDeterminant = mat.determinant();
+
+	// Assert
+	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
+}
+
+TEST(Matrix2D_Determinant, IdentityMatrixWithSwappedRowsReturnsDeterminantOfNegativeOne)
+{
+	const math::Matrix2D mat(
+		0.0f, 1.0f,
+		1.0f, 0.0f
+	);
+
+	constexpr float expectedDeterminant = -1.0f;
+
+	// Act
+	const float actualDeterminant = mat.determinant();
+
+	// Assert
+	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
+}
+
+TEST(Matrix2D_Determinant, IdentityMatrixWithSwappedColumnsReturnsDeterminantOfNegativeOne)
+{
+	const math::Matrix2D mat(
+		0.0f, 1.0f,
+		1.0f, 0.0f
+	);
+
+	constexpr float expectedDeterminant = -1.0f;
+
+	// Act
+	const float actualDeterminant = mat.determinant();
+
+	// Assert
+	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
+}
+
+TEST(Matrix2D_Determinant, IdentityMatrixWithShearAppliedsReturnsDeterminantOfOne)
+{
+	const math::Matrix2D mat(
+		1.0f, 1.0f,
+		0.0f, 1.0f
+	);
+
+	constexpr float expectedDeterminant = 1.0f;
+
+	// Act
+	const float actualDeterminant = mat.determinant();
+
+	// Assert
+	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
+}
+
+TEST(Matrix2D_Determinant, MatrixDeterminantReturnsCorrectValue)
+{
+	const math::Matrix2D mat(
+		1.0f, 2.0f,
+		-5.0f, 4.0f
+	);
+
+	constexpr float expectedDeterminant = 14.0f;
+
+	// Act
+	const float actualDeterminant = mat.determinant();
+
+	// Assert
+	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
+}
+
+TEST(Matrix2D_Determinant, MatrixDeterminantWithStaticWrapperReturnsCorrectValue)
+{
+	const math::Matrix2D mat(
+		1.0f, 2.0f,
+		-5.0f, 4.0f
+	);
+
+	constexpr float expectedDeterminant = 14.0f;
+
+	// Act
+	const float actualDeterminant = math::Matrix2D<float>::determinant(mat);
+
+	// Assert
+	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
+}
+
+TEST(Matrix2D_Determinant, DeterminantofTransposedMatrixIsEqualToDeterminantOfTheMatrix)
+{
+	const math::Matrix2D a(
+		1.0f, 2.0f,
+		0.0f, 4.0f
+	);
+
+	// Act
+	const float detA = a.determinant();
+	const float detAT = a.transpose().determinant();
+
+	// Assert
+	EXPECT_FLOAT_EQ(detA, detAT);
+}
+
+TEST(Matrix2D_Determinant, DeterminantOfProductOfMatricesIsSameAsProductOfDeterminantOfMatrix)
+{
+	// det(A*B) = det(A) * det(B)
+	const math::Matrix2D a(
+		1.0f, 2.0f,
+		0.0f, 4.0f
+	);
+	const math::Matrix2D b(
+		1.0f, 2.0f,
+		4.0f, 5.0f
+	);
+
+	// Act
+	const float determinantOfProduct = math::Matrix2D<float>::determinant(a * b);
+	const float productOfDeterminant = a.determinant() * b.determinant();
+
+	// Assert
+	EXPECT_FLOAT_EQ(determinantOfProduct, productOfDeterminant);
+}
+
+TEST(Matrix2D_Determinant, DeterminantOfAMatrixMultipledByScalarIsScalarPowNTimesTheDeterminantOfOriginalMatrix)
+{
+	// det(t*A) = (t^n)det(A)
+	const math::Matrix2D a(
+		1.0f, 2.0f,
+		0.0f, 4.0f
+	);
+	const float scalar = 5.0f;
+
+	// Act
+	const float determinantOfProduct = math::Matrix2D<float>::determinant(scalar * a);
+	const float productOfDeterminant = (scalar * scalar) * a.determinant(); // n = 2 for 2x2 matrix
+
+	// Assert
+	EXPECT_FLOAT_EQ(determinantOfProduct, productOfDeterminant);
+}
+
+TEST(Matrix2D_Transpose, TransposeOfIdentityMatrixIsItself)
+{
+	// Arrange
+	const math::Matrix2D<float> mat;
+
+	// Act
+	const math::Matrix2D<float> actual = mat.transpose();
+
+	// Assert
+	EXPECT_MAT_EQ(mat, actual);
+}
+
+TEST(Matrix2D_Transpose, TransposeOfAMatrixReturnsMatrixWithRowsAndColumnsSwapped)
+{
+	// Arrange
+	const math::Matrix2D mat(
+		1.0f, 2.0f,
+		0.0f, 4.0f
+	);
+	const math::Matrix2D expected(
+		1.0f, 0.0f,
+		2.0f, 4.0f
+	);
+
+	// Act
+	const math::Matrix2D<float> actual = mat.transpose();
+
+
+	// Assert
+	EXPECT_MAT_EQ(expected, actual);
+}
+
+TEST(Matrix2D_Transpose, TransposeOfAMatrixUsingStaticWrapperReturnsMatrixWithRowsAndColumnsSwapped)
+{
+	// Arrange
+	const math::Matrix2D mat(
+		1.0f, 2.0f,
+		0.0f, 4.0f
+	);
+	const math::Matrix2D expected(
+		1.0f, 0.0f,
+		2.0f, 4.0f
+	);
+
+	// Act
+	const math::Matrix2D<float> actual = math::Matrix2D<float>::transpose(mat);
+
+	// Assert
+	EXPECT_MAT_EQ(expected, actual);
+}
+
 //TEST(Matrix2D_Inverse, InverseProducesAnotherMatrixWithCorrectValues)
 //{
 //	// Given
