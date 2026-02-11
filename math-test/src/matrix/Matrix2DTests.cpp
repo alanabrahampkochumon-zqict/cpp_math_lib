@@ -513,8 +513,6 @@ TEST(Matrix2D_Product, Matrix2DProductWithScalarMultiplesAreCommutative)
 		4.0f, 5.0f
 	};
 	const math::Matrix2D mat2 = mat1 * 5.0f;
-	constexpr std::size_t size = 9;
-	constexpr std::size_t rowSize = 3;
 
 	// Act
 	const math::Matrix2D result1 = mat1 * mat2;
@@ -529,118 +527,119 @@ TEST(Matrix2D_Product, Matrix2DProductWithScalarMultiplesAreCommutative)
 	EXPECT_TRUE(commutative);
 }
 
-//TEST(Matrix2D_Division, MatrixDividedByAIntegerScalarReturnsCorrectMatrix)
-//{
-//	// Arrange
-//	const math::Matrix2D a = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, -8.0f, 9.0f };
-//	const math::Matrix2D expected = {
-//		0.5f, 1.0f, 1.5f,
-//		2.0f, 2.5f, 3.0f,
-//		3.5f, -4.0f, 4.5f };
-//	constexpr int scalar = 2;
-//
-//	// Act
-//	const math::Matrix2D<float> actual = a / scalar;
-//
-//	// Assert
-//	EXPECT_MAT_EQ(expected, actual);
-//}
-//
-//TEST(Matrix2D_Division, MatrixDividesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)
-//{
-//	// Arrange
-//	math::Matrix2D a = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, -8.0f, 9.0f };
-//	const math::Matrix2D b = {
-//		0.5f, 1.0f, 1.5f,
-//		2.0f, 2.5f, 3.0f,
-//		3.5f, -4.0f, 4.5f };
-//	constexpr int scalar = 2;
-//
-//	// Act
-//	a /= scalar;
-//
-//	// Assert
-//	EXPECT_MAT_EQ(b, a);
-//}
-//
-//TEST(Matrix2D_Division, MatrixDividedByOneReturnANewMatrixWithOriginalMatrixValues)
-//{
-//	// Arrange
-//	const math::Matrix2D a = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, -8.0f, 9.0f };
-//
-//	// Act
-//	const math::Matrix2D<float> b = a / 1;
-//
-//	// Assert
-//	EXPECT_MAT_EQ(a, b);
-//}
-//
-//TEST(Matrix2D_Division, MatrixDividedByZeroScalarReturnsInfinityMatrix)
-//{
-//	// Arrange
-//	const math::Matrix2D a = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, -8.0f, 9.0f };
-//
-//	// Act
-//	const math::Matrix2D<float> b = a / 0;
-//
-//	// Assert
-//	EXPECT_MAT_INF(b);
-//}
-//
-//TEST(Matrix2D_Division, MatrixDividedByAFloatScalarReturnsCorrectMatrix)
-//{
-//	// Arrange
-//	const math::Matrix2D a = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, -8.0f, 9.0f };
-//
-//	const math::Matrix2D expected = {
-//		0.4f, 0.8f, 1.2f,
-//		1.6f, 2.0f, 2.4f,
-//		2.8f, -3.2f, 3.6f };
-//
-//	constexpr float scalar = 2.5;
-//
-//	// Act
-//	const math::Matrix2D<float> actual = a / scalar;
-//
-//	// Assert
-//	EXPECT_MAT_EQ(expected, actual);
-//}
-//
-//TEST(Matrix2D_Division, MatrixDividedNegativeFloatScalarFlipsSigns)
-//{
-//	// Arrange
-//	const math::Matrix2D a = {
-//		1.0f, -2.0f, 22.0f,
-//		-4.0f, 5.0f, -6.0f,
-//		4.0f, 8.0f, 9.0f };
-//	const math::Matrix2D expected = {
-//		-0.5f, 1.0f, -11.0f,
-//		2.0f, -2.5f, 3.0f,
-//		-2.0f, -4.0f, -4.5f };
-//	constexpr float scalar = -2.0f;
-//
-//	// Act
-//	const math::Matrix2D<float> actual = a / scalar;
-//
-//	// Assert
-//	EXPECT_MAT_EQ(expected, actual);
-//}
-//
+TEST(Matrix2D_Division, MatrixDividedByAIntegerScalarReturnsCorrectMatrix)
+{
+	// Arrange
+	const math::Matrix2D a = {
+		1.0f, 2.0f,
+		-4.0f, 5.0f
+	};
+	const math::Matrix2D expected = {
+		0.5f, 1.0f,
+		-2.0f, 2.5f
+	};
+	constexpr int scalar = 2;
+
+	// Act
+	const math::Matrix2D<float> actual = a / scalar;
+
+	// Assert
+	EXPECT_MAT_EQ(expected, actual);
+}
+
+TEST(Matrix2D_Division, MatrixDividesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)
+{
+	// Arrange
+	math::Matrix2D a = {
+		1.0f, 2.0f,
+		-4.0f, 5.0f
+	};
+	const math::Matrix2D b = {
+		0.5f, 1.0f,
+		-2.0f, 2.5f
+	};
+	constexpr int scalar = 2;
+
+	// Act
+	a /= scalar;
+
+	// Assert
+	EXPECT_MAT_EQ(b, a);
+}
+
+TEST(Matrix2D_Division, MatrixDividedByOneReturnANewMatrixWithOriginalMatrixValues)
+{
+	// Arrange
+	const math::Matrix2D a = {
+		1.0f, 2.0f,
+		-4.0f, 5.0f
+	};
+	
+
+	// Act
+	const math::Matrix2D<float> b = a / 1;
+
+	// Assert
+	EXPECT_MAT_EQ(a, b);
+}
+
+TEST(Matrix2D_Division, MatrixDividedByZeroScalarReturnsInfinityMatrix)
+{
+	// Arrange
+	const math::Matrix2D a = {
+		1.0f, 2.0f,
+		-4.0f, 5.0f
+	};
+
+	// Act
+	const math::Matrix2D<float> b = a / 0;
+
+	// Assert
+	EXPECT_MAT_INF(b);
+}
+
+TEST(Matrix2D_Division, MatrixDividedByAFloatScalarReturnsCorrectMatrix)
+{
+	// Arrange
+	const math::Matrix2D a = {
+		1.0f, 2.0f,
+		4.0f, 5.0f 
+	};
+
+	const math::Matrix2D expected = {
+		0.4f, 0.8f,
+		1.6f, 2.0f 
+	};
+
+	constexpr float scalar = 2.5;
+
+	// Act
+	const math::Matrix2D<float> actual = a / scalar;
+
+	// Assert
+	EXPECT_MAT_EQ(expected, actual);
+}
+
+TEST(Matrix2D_Division, MatrixDividedNegativeFloatScalarFlipsSigns)
+{
+	// Arrange
+	const math::Matrix2D a = {
+		1.0f, 2.0f,
+		-4.0f, 5.0f
+	};
+	const math::Matrix2D expected = {
+		-0.5f, -1.0f,
+		2.0f, -2.5f
+	};
+	constexpr float scalar = -2.0f;
+
+	// Act
+	const math::Matrix2D<float> actual = a / scalar;
+
+	// Assert
+	EXPECT_MAT_EQ(expected, actual);
+}
+
 ///**
 // * DETERMINANTS
 // **/

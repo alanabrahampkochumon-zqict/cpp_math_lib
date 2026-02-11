@@ -162,14 +162,17 @@ namespace math
 	template <typename S, typename>
 	Matrix2D<T> Matrix2D<T>::operator/(const S& scalar) const
 	{
-		return Matrix2D<T>();
+		T factor = T(1) / static_cast<T>(scalar);
+		return factor * (*this);
 	}
 
 	template <typename T>
 	template <typename S, typename>
 	Matrix2D<T>& Matrix2D<T>::operator/=(const S& scalar)
 	{
-		return Matrix2D<T>();
+		T factor = T(1) / static_cast<T>(scalar);
+		(*this) *= factor;
+		return *this;
 	}
 
 	template <typename T>
