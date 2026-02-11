@@ -76,7 +76,6 @@ namespace math
 		elements[1][0] += other(0, 1);
 		elements[0][1] += other(1, 0);
 		elements[1][1] += other(1, 1);
-
 		return *this;
 	}
 
@@ -128,7 +127,6 @@ namespace math
 		// 0_0 1_0     x
 		//           *
 		// 0_1 1_1     y
-
 		return Vector2D<T>(
 			elements[0][0] * vec.x + elements[1][0] * vec.y,
 			elements[0][1] * vec.x + elements[1][1] * vec.y
@@ -153,9 +151,10 @@ namespace math
 			elements[0][0] * other(0, 0) + elements[1][0] * other(1, 0), elements[0][0] * other(0, 1) + elements[1][0] * other(1, 1),
 			elements[0][1] * other(0, 0) + elements[1][1] * other(1, 0), elements[0][1] * other(0, 1) + elements[1][1] * other(1, 1)
 		);
+
 		(*this) = temp;
 
-		return temp;
+		return *this;
 	}
 
 	template <typename T>
@@ -208,13 +207,23 @@ namespace math
 	template <typename T>
 	Matrix2D<T> Matrix2D<T>::inverse() const
 	{
-		return Matrix2D<T>();
+		T det = determinant();
+		if (std::abs(det) <= 1e-6f)
+			return Matrix2D(); // Identity Matrix
+
+		T factor = T(1) / det;
+
+		return factor * Matrix2D(
+			elements[1][1], -elements[1][0],
+			-elements[0][1], elements[0][0]
+		);
+
 	}
 
 	template <typename T>
 	Matrix2D<T> Matrix2D<T>::inverse(const Matrix2D& matrix)
 	{
-		return Matrix2D<T>();
+		return matrix.inverse();
 	}
 
 	template <typename T, typename S, typename>

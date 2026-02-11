@@ -65,7 +65,7 @@ namespace math
 		Matrix3D& operator/=(const S& scalar);
 
 		// Determinants
-		// Calculates the determinant for the current Matrix3d.
+		// Calculates the determinant for the current Matrix3D.
 		T determinant() const;
 
 		// Static wrapper for Matrix 3D determinants.

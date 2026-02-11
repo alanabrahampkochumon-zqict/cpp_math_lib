@@ -904,7 +904,7 @@ TEST(Matrix3D_Transpose, TransposeOfAMatrixUsingStaticWrapperReturnsMatrixWithRo
 	EXPECT_MAT_EQ(expected, actual);
 }
 
-TEST(Matrix3D_Inverse, InverseProducesAnotherMatrixWithCorrectValues)
+TEST(Matrix3D_Inverse, InverseReturnsAnotherMatrixWithCorrectValues)
 {
 	// Given
 	const math::Matrix3D mat(
@@ -983,7 +983,7 @@ TEST(Matrix3D_Inverse, InverseTimesMatrixReturnsIdentityMatrix)
 	EXPECT_MAT_IDENTITY(product);
 }
 
-TEST(Matrix3D_Inverse, SingularMatrixProducesInfinityMatrix)
+TEST(Matrix3D_Inverse, SingularMatrixProducesIdentityMatrix)
 {
 	const math::Matrix3D singularMatrix(
 		0.0f, 0.0f, 0.0f,

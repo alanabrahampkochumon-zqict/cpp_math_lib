@@ -888,113 +888,113 @@ TEST(Matrix2D_Transpose, TransposeOfAMatrixUsingStaticWrapperReturnsMatrixWithRo
 	EXPECT_MAT_EQ(expected, actual);
 }
 
-//TEST(Matrix2D_Inverse, InverseProducesAnotherMatrixWithCorrectValues)
-//{
-//	// Given
-//	const math::Matrix2D mat(
-//		1.0f, 2.0f, 3.0f,
-//		0.0f, 1.0f, 4.0f,
-//		5.0f, 6.0f, 0.0f);
-//	const math::Matrix2D expectedInverse(
-//		-24.0f, 18.0f, 5.0f,
-//		20.0f, -15.0f, -4.0f,
-//		-5.0f, 4.0f, 1.0f);
-//
-//	// Act
-//	const math::Matrix2D actualInverse = mat.inverse();
-//
-//	// Assert
-//	EXPECT_MAT_EQ(expectedInverse, actualInverse);
-//}
-//
-//TEST(Matrix2D_Inverse, StaticWrapperForInverseReturnsAnotherMatrixWithCorrectValues)
-//{
-//	const math::Matrix2D mat(
-//		1.0f, 2.0f, 3.0f,
-//		0.0f, 1.0f, 4.0f,
-//		5.0f, 6.0f, 0.0f);
-//	const math::Matrix2D expectedInverse(
-//		-24.0f, 18.0f, 5.0f,
-//		20.0f, -15.0f, -4.0f,
-//		-5.0f, 4.0f, 1.0f);
-//
-//	// Act
-//	const math::Matrix2D<float> actualInverse = math::Matrix2D<float>::inverse(mat);
-//
-//	// Assert
-//	EXPECT_MAT_EQ(expectedInverse, actualInverse);
-//}
-//
-//TEST(Matrix2D_Inverse, IdentityMatrixInverseReturnsAnotherIdentityMatrix)
-//{
-//	// Given
-//	const math::Matrix2D<float> identity;
-//
-//	// Act
-//	const math::Matrix2D<float> actualInverse = identity.inverse();
-//
-//	// Assert
-//	EXPECT_MAT_IDENTITY(actualInverse);
-//}
-//
-//TEST(Matrix2D_Inverse, MatrixTimeInverseReturnsIdentityMatrix)
-//{
-//	const math::Matrix2D mat(
-//		1.0f, 2.0f, 3.0f,
-//		0.0f, 1.0f, 4.0f,
-//		5.0f, 6.0f, 0.0f);
-//
-//	// Act
-//	const math::Matrix2D<float> inverse = math::Matrix2D<float>::inverse(mat);
-//	const math::Matrix2D<float> product = mat * inverse;
-//
-//	// Assert
-//	EXPECT_MAT_IDENTITY(product);
-//}
-//
-//TEST(Matrix2D_Inverse, InverseTimesMatrixReturnsIdentityMatrix)
-//{
-//	const math::Matrix2D mat(
-//		1.0f, 2.0f, 3.0f,
-//		0.0f, 1.0f, 4.0f,
-//		5.0f, 6.0f, 0.0f);
-//
-//	// Act
-//	const math::Matrix2D<float> inverse = math::Matrix2D<float>::inverse(mat);
-//	const math::Matrix2D<float> product = inverse * mat;
-//
-//	// Assert
-//	EXPECT_MAT_IDENTITY(product);
-//}
-//
-//TEST(Matrix2D_Inverse, SingularMatrixProducesInfinityMatrix)
-//{
-//	const math::Matrix2D singularMatrix(
-//		0.0f, 0.0f, 0.0f,
-//		0.0f, 0.0f, 0.0f,
-//		0.0f, 0.0f, 0.0f);
-//
-//	// Act
-//	const math::Matrix2D<float> actualInverse = math::Matrix2D<float>::inverse(singularMatrix);
-//
-//	// Assert
-//	EXPECT_MAT_IDENTITY(actualInverse);
-//}
-//
-//TEST(Matrix2D_Inverse, InversionOfRotationOnlyMatrixReturnsTranspose)
-//{
-//	const math::Matrix2D mat(
-//		0.0f, -1.0f, 0.0f,
-//		1.0f, 0.0f, 0.0f,
-//		0.0f, 0.0f, 1.0f);
-//	const math::Matrix2D transpose(
-//		0.0f, 1.0f, 0.0f,
-//		-1.0f, 0.0f, 0.0f,
-//		0.0f, 0.0f, 1.0f);
-//
-//	// Act
-//	const math::Matrix2D<float> actualInverse = math::Matrix2D<float>::inverse(mat);
-//
-//	// Assert
-//	EXPECT_MAT_EQ(transpose, actualInverse);
-//}
+TEST(Matrix2D_Inverse, InverseReturnsAnotherMatrixWithCorrectValues)
+{
+	// Given
+	const math::Matrix2D mat(
+		2.0f, 1.0f,
+		5.0f, 3.0f
+	);
+	const math::Matrix2D expectedInverse(
+		3.0f, -1.0f,
+		-5.0f, 2.0f
+	);
+
+	// Act
+	const math::Matrix2D actualInverse = mat.inverse();
+
+	// Assert
+	EXPECT_MAT_EQ(expectedInverse, actualInverse);
+}
+
+TEST(Matrix2D_Inverse, StaticWrapperForInverseReturnsAnotherMatrixWithCorrectValues)
+{
+	const math::Matrix2D mat(
+		2.0f, 1.0f,
+		5.0f, 3.0f
+	);
+	const math::Matrix2D expectedInverse(
+		3.0f, -1.0f,
+		-5.0f, 2.0f
+	);
+
+	// Act
+	const math::Matrix2D<float> actualInverse = math::Matrix2D<float>::inverse(mat);
+
+	// Assert
+	EXPECT_MAT_EQ(expectedInverse, actualInverse);
+}
+
+TEST(Matrix2D_Inverse, IdentityMatrixInverseReturnsAnotherIdentityMatrix)
+{
+	// Given
+	const math::Matrix2D<float> identity;
+
+	// Act
+	const math::Matrix2D<float> actualInverse = identity.inverse();
+
+	// Assert
+	EXPECT_MAT_IDENTITY(actualInverse);
+}
+
+TEST(Matrix2D_Inverse, MatrixTimeInverseReturnsIdentityMatrix)
+{
+	const math::Matrix2D mat(
+		1.0f, 2.0f,
+		3.0f, 1.0f
+	);
+
+	// Act
+	const math::Matrix2D<float> inverse = math::Matrix2D<float>::inverse(mat);
+	const math::Matrix2D<float> product = mat * inverse;
+
+	// Assert
+	EXPECT_MAT_IDENTITY(product);
+}
+
+TEST(Matrix2D_Inverse, InverseTimesMatrixReturnsIdentityMatrix)
+{
+	const math::Matrix2D mat(
+		1.0f, 2.0f,
+		3.0f, 1.0f
+	);
+
+	// Act
+	const math::Matrix2D<float> inverse = math::Matrix2D<float>::inverse(mat);
+	const math::Matrix2D<float> product = inverse * mat;
+
+	// Assert
+	EXPECT_MAT_IDENTITY(product);
+}
+
+TEST(Matrix2D_Inverse, SingularMatrixProducesIdentityMatrix)
+{
+	const math::Matrix2D singularMatrix(
+		1.0f, 2.0f,
+		2.0f, 4.0f
+	);
+
+	// Act
+	const math::Matrix2D<float> actualInverse = math::Matrix2D<float>::inverse(singularMatrix);
+
+	// Assert
+	EXPECT_MAT_IDENTITY(actualInverse);
+}
+
+TEST(Matrix2D_Inverse, InversionOfRotationOnlyMatrixReturnsTranspose)
+{
+	const math::Matrix2D mat(
+		0.0f, -1.0f,
+		1.0f, 0.0f
+	);
+	const math::Matrix2D transpose(
+		0.0f, 1.0f,
+		-1.0f, 0.0f
+	);
+
+	// Act
+	const math::Matrix2D<float> actualInverse = math::Matrix2D<float>::inverse(mat);
+
+	// Assert
+	EXPECT_MAT_EQ(transpose, actualInverse);
+}
