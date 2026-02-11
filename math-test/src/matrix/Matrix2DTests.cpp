@@ -209,327 +209,326 @@ TEST(Matrix2D_Difference, MinusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWit
 	EXPECT_MAT_EQ(c, a);
 }
 
-//TEST(Matrix2D_Product, MatrixTimesAIntegerScalarReturnsCorrectMatrix)
-//{
-//	// Arrange
-//	const math::Matrix2D a = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, -8.0f, 9.0f };
-//	const math::Matrix2D expected = {
-//		2.0f, 4.0f, 6.0f,
-//		8.0f, 10.0f, 12.0f,
-//		14.0f, -16.0f, 18.0f };
-//	constexpr int scalar = 2;
-//
-//	// Act
-//	const math::Matrix2D actual = a * scalar;
-//
-//	// Assert
-//	EXPECT_MAT_EQ(expected, actual);
-//}
-//
-//TEST(Matrix2D_Product, IntegerScalarTimesAMatrixReturnsCorrectMatrix)
-//{
-//	// Arrange
-//	const math::Matrix2D a = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, -8.0f, 9.0f };
-//	const math::Matrix2D expected = {
-//		2.0f, 4.0f, 6.0f,
-//		8.0f, 10.0f, 12.0f,
-//		14.0f, -16.0f, 18.0f };
-//	constexpr int scalar = 2;
-//
-//	// Act
-//	const math::Matrix2D<float> actual = scalar * a;
-//
-//	// Assert
-//	EXPECT_MAT_EQ(expected, actual);
-//}
-//
-//TEST(Matrix2D_Product, MatrixTimesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)
-//{
-//	// Arrange
-//	math::Matrix2D a = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, -8.0f, 9.0f };
-//	const math::Matrix2D b = {
-//		2.0f, 4.0f, 6.0f,
-//		8.0f, 10.0f, 12.0f,
-//		14.0f, -16.0f, 18.0f };
-//	constexpr int scalar = 2;
-//
-//	// Act
-//	a *= scalar;
-//
-//	// Assert
-//	EXPECT_MAT_EQ(a, b);
-//}
-//
-//TEST(Matrix2D_Product, MatrixTimesOneReturnANewMatrixWithOriginalMatrixValues)
-//{
-//	// Arrange
-//	const math::Matrix2D a = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, -8.0f, 9.0f };
-//
-//	// Act
-//	const math::Matrix2D<float> b = a * 1;
-//
-//	// Assert
-//	EXPECT_MAT_EQ(a, b);
-//}
-//
-//TEST(Matrix2D_Product, MatrixTimesZeroScalarReturnsZeroMatrix)
-//{
-//	// Arrange
-//	const math::Matrix2D a = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, -8.0f, 9.0f };
-//
-//	// Act
-//	const math::Matrix2D<float> b = a * 0;
-//
-//	// Assert
-//	EXPECT_MAT_ZERO(b);
-//}
-//
-//TEST(Matrix2D_Product, MatrixTimesAFloatScalarReturnsCorrectMatrix)
-//{
-//	// Arrange
-//	const math::Matrix2D a = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, -8.0f, 9.0f };
-//	constexpr float scalar = 2.5f;
-//
-//	const math::Matrix2D expected = {
-//		2.5f, 5.0f, 7.5f,
-//		10.0f, 12.5f, 15.0f,
-//		17.5f, -20.0f, 22.5f };
-//
-//	// Act
-//	const math::Matrix2D<float> b = a * scalar;
-//
-//	// Assert
-//	EXPECT_MAT_EQ(expected, b);
-//}
-//
-//TEST(Matrix2D_Product, MatrixTimesNegativeFloatScalarFlipsSigns)
-//{
-//	// Arrange
-//	const math::Matrix2D a = {
-//		1.0f, -2.0f, 0.0f,
-//		-4.0f, 5.0f, -6.0f,
-//		0.0f, 8.0f, 9.0f };
-//	const math::Matrix2D expected = {
-//		-2.0f, 4.0f, 0.0f,
-//		8.0f, -10.0f, 12.0f,
-//		0.0f, -16.0f, -18.0f };
-//	constexpr float scalar = -2.0f;
-//
-//	// Act
-//	const math::Matrix2D<float> b = a * scalar;
-//
-//	// Assert
-//	EXPECT_MAT_EQ(expected, b);
-//}
-//
-//TEST(Matrix2D_Product, MatrixTimesVectorReturnsANewMatrixWithCorrectValues)
-//{
-//	// Arrange
-//	const math::Matrix2D mat = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, 8.0f, 9.0f };
-//	const math::vec3 vec(2.0f, 1.0f, 3.0f);
-//	const math::vec3 expected(13.0f, 31.0f, 49.0f);
-//
-//	// Act
-//	const math::vec3 actual = mat * vec;
-//
-//	// Assert
-//	TestUtils::Vector2D::EXPECT_VEC_EQ(expected, actual);
-//}
-//
-//TEST(Matrix2D_Product, IdentityMatrixTimesAVectorReturnsTheSameMatrix)
-//{
-//	// Arrange
-//	const math::Matrix2D<float> mat;
-//	const math::vec3 vec(2.0f, 1.0f, 3.0f);
-//
-//	// Act
-//	const math::vec3 actual = mat * vec;
-//
-//	// Assert
-//	TestUtils::Vector2D::EXPECT_VEC_EQ(vec, actual);
-//}
-//
-//TEST(Matrix2D_Product, VectorTimesAMatrixReturnsANewVectorWithCorrectValues)
-//{
-//	// Arrange
-//	const math::Matrix2D mat = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, 8.0f, 9.0f };
-//	math::vec3 vec(2.0f, 1.0f, 3.0f);
-//	const math::vec3 expected(27.0f, 33.0f, 39.0f);
-//
-//	// Act
-//	const math::vec3 actual = vec * mat;
-//
-//	// Assert
-//	TestUtils::Vector2D::EXPECT_VEC_EQ(expected, actual);
-//}
-//
-//TEST(Matrix2D_Product, VectorTimesIdentityMatrixReturnsTheSameMatrix)
-//{
-//	// Arrange
-//	const math::Matrix2D<float> mat;
-//	math::vec3 vec(2.0f, 1.0f, 3.0f);
-//
-//	// Act
-//	const math::vec3 actual = vec * mat;
-//
-//	// Assert
-//	TestUtils::Vector2D::EXPECT_VEC_EQ(vec, actual);
-//}
-//
-//TEST(Matrix2D_Product, VectorTimesEqualMatrixReturnTheSameVectorWithNewValues)
-//{
-//	// Arrange
-//	const math::Matrix2D mat = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, 8.0f, 9.0f };
-//	math::vec3 vec(2.0f, 1.0f, 3.0f);
-//	const math::vec3 expected(27.0f, 33.0f, 39.0f);
-//
-//	// Act
-//	vec *= mat;
-//
-//	// Assert
-//	TestUtils::Vector2D::EXPECT_VEC_EQ(expected, vec);
-//}
-//
-//TEST(Matrix2D_Product, MatrixTimesMatrixGivesAnotherMatrixWithCorrectValues)
-//{
-//	// Arrange
-//	const math::Matrix2D mat1 = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, 8.0f, 9.0f };
-//	const math::Matrix2D mat2 = {
-//		2.0f, 4.0f, 6.0f,
-//		8.0f, 10.0f, 12.0f,
-//		14.0f, 16.0f, 18.0f };
-//	const math::Matrix2D expected = {
-//		60.0f, 72.0f, 84.0f,
-//		132.0f, 162.0f, 192.0f,
-//		204.0f, 252.0f, 300.0f };
-//
-//	// Act
-//	const math::Matrix2D actual = mat1 * mat2;
-//
-//	// Assert
-//	EXPECT_MAT_EQ(expected, actual);
-//}
-//
-//TEST(Matrix2D_Product, MatrixTimesIdentityMatrixReturnsSameMatrix)
-//{
-//	// Arrange
-//	const math::Matrix2D mat = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, 8.0f, 9.0f };
-//	const math::Matrix2D<float> eye;
-//
-//	// Act
-//	const math::Matrix2D actual = mat * eye;
-//
-//	// Assert
-//	EXPECT_MAT_EQ(mat, actual);
-//}
-//
-//TEST(Matrix2D_Product, MatrixTimesEqualAnotherMatrixReturnsSameMatrixWithCorrectValues)
-//{
-//	// Arrange
-//	math::Matrix2D mat1 = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, 8.0f, 9.0f };
-//	const math::Matrix2D mat2 = {
-//		2.0f, 4.0f, 6.0f,
-//		8.0f, 10.0f, 12.0f,
-//		14.0f, 16.0f, 18.0f };
-//	const math::Matrix2D expected = {
-//		60.0f, 72.0f, 84.0f,
-//		132.0f, 162.0f, 192.0f,
-//		204.0f, 252.0f, 300.0f };
-//
-//	// Act
-//	mat1 *= mat2;
-//
-//	// Assert
-//	EXPECT_MAT_EQ(expected, mat1);
-//}
-//
-//TEST(Matrix2D_Product, Matrix2DProductIsAntiCommutative)
-//{
-//	// Arrange
-//	const math::Matrix2D mat1 = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, 8.0f, 9.0f };
-//	const math::Matrix2D mat2 = {
-//		3.0f, 6.0f, 3.0f,
-//		12.0f, 0.0f, 2.0f,
-//		15.0f, 11.0f, 6.0f };
-//	constexpr std::size_t size = 9;
-//	constexpr std::size_t rowSize = 3;
-//
-//	// Act
-//	const math::Matrix2D result1 = mat1 * mat2;
-//	const math::Matrix2D result2 = mat2 * mat1;
-//
-//	// Assert
-//	bool commutative = true;
-//	for (std::size_t i = 0; i < size; i++)
-//	{
-//		commutative &= floatEquals(result1(i / rowSize, i % rowSize), result2(i / rowSize, i % rowSize));
-//	}
-//	EXPECT_FALSE(commutative);
-//}
-//
-//TEST(Matrix2D_Product, Matrix2DProductWithScalarMultiplesAreCommutative)
-//{
-//	// Arrange
-//	const math::Matrix2D mat1 = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, 8.0f, 9.0f };
-//	const math::Matrix2D mat2 = mat1 * 5.0f;
-//	constexpr std::size_t size = 9;
-//	constexpr std::size_t rowSize = 3;
-//
-//	// Act
-//	const math::Matrix2D result1 = mat1 * mat2;
-//	const math::Matrix2D result2 = mat2 * mat1;
-//
-//	// Assert
-//	bool commutative = true;
-//	for (std::size_t i = 0; i < size; i++)
-//	{
-//		commutative &= floatEquals(result1(i / rowSize, i % rowSize), result2(i / rowSize, i % rowSize));
-//	}
-//	EXPECT_TRUE(commutative);
-//}
-//
+TEST(Matrix2D_Product, MatrixTimesAIntegerScalarReturnsCorrectMatrix)
+{
+	// Arrange
+	const math::Matrix2D a = {
+		1.0f, 2.0f,
+		4.0f, 5.0f
+	};
+	const math::Matrix2D expected = {
+		2.0f, 4.0f,
+		8.0f, 10.0f
+	};
+	constexpr int scalar = 2;
+
+	// Act
+	const math::Matrix2D actual = a * scalar;
+
+	// Assert
+	EXPECT_MAT_EQ(expected, actual);
+}
+
+TEST(Matrix2D_Product, IntegerScalarTimesAMatrixReturnsCorrectMatrix)
+{
+	// Arrange
+	const math::Matrix2D a = {
+		1.0f, 2.0f,
+		4.0f, 5.0f
+	};
+	const math::Matrix2D expected = {
+		2.0f, 4.0f,
+		8.0f, 10.0f
+	};
+	constexpr int scalar = 2;
+
+	// Act
+	const math::Matrix2D<float> actual = scalar * a;
+
+	// Assert
+	EXPECT_MAT_EQ(expected, actual);
+}
+
+TEST(Matrix2D_Product, MatrixTimesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)
+{
+	// Arrange
+	math::Matrix2D a = {
+		1.0f, 2.0f,
+		4.0f, 5.0f
+	};
+	const math::Matrix2D b = {
+		2.0f, 4.0f,
+		8.0f, 10.0f
+	};
+	constexpr int scalar = 2;
+
+	// Act
+	a *= scalar;
+
+	// Assert
+	EXPECT_MAT_EQ(a, b);
+}
+
+TEST(Matrix2D_Product, MatrixTimesOneReturnANewMatrixWithOriginalMatrixValues)
+{
+	// Arrange
+	const math::Matrix2D a = {
+		1.0f, 2.0f,
+		4.0f, 5.0f
+	};
+
+	// Act
+	const math::Matrix2D<float> b = a * 1;
+
+	// Assert
+	EXPECT_MAT_EQ(a, b);
+}
+
+TEST(Matrix2D_Product, MatrixTimesZeroScalarReturnsZeroMatrix)
+{
+	// Arrange
+	const math::Matrix2D a = {
+		1.0f, 2.0f,
+		4.0f, 5.0f
+	};
+
+	// Act
+	const math::Matrix2D<float> b = a * 0;
+
+	// Assert
+	EXPECT_MAT_ZERO(b);
+}
+
+TEST(Matrix2D_Product, MatrixTimesAFloatScalarReturnsCorrectMatrix)
+{
+	// Arrange
+	const math::Matrix2D a = {
+		1.0f, 2.0f,
+		4.0f, 5.0f
+	};
+	constexpr float scalar = 2.5f;
+
+	const math::Matrix2D expected = {
+		2.5f, 5.0f,
+		10.0f, 12.5f
+	};
+
+	// Act
+	const math::Matrix2D<float> b = a * scalar;
+
+	// Assert
+	EXPECT_MAT_EQ(expected, b);
+}
+
+TEST(Matrix2D_Product, MatrixTimesNegativeFloatScalarFlipsSigns)
+{
+	// Arrange
+	const math::Matrix2D a = {
+		1.0f, -2.0f,
+		-4.0f, 5.0f
+	};
+	const math::Matrix2D expected = {
+		-2.0f, 4.0f,
+		8.0f, -10.0f
+	};
+	constexpr float scalar = -2.0f;
+
+	// Act
+	const math::Matrix2D<float> b = a * scalar;
+
+	// Assert
+	EXPECT_MAT_EQ(expected, b);
+}
+
+TEST(Matrix2D_Product, MatrixTimesVectorReturnsANewMatrixWithCorrectValues)
+{
+	// Arrange
+	const math::Matrix2D mat = {
+		1.0f, 2.0f,
+		4.0f, 5.0f
+	};
+	const math::vec2 vec(2.0f, 1.0f);
+	const math::vec2 expected(4.0f, 13.0f);
+
+	// Act
+	const math::vec2 actual = mat * vec;
+
+	// Assert
+	TestUtils::Vector2D::EXPECT_VEC_EQ(expected, actual);
+}
+
+TEST(Matrix2D_Product, IdentityMatrixTimesAVectorReturnsTheSameMatrix)
+{
+	// Arrange
+	const math::Matrix2D<float> mat;
+	const math::vec2 vec(2.0f, 1.0f);
+
+	// Act
+	const math::vec2 actual = mat * vec;
+
+	// Assert
+	TestUtils::Vector2D::EXPECT_VEC_EQ(vec, actual);
+}
+
+TEST(Matrix2D_Product, VectorTimesAMatrixReturnsANewVectorWithCorrectValues)
+{
+	// Arrange
+	const math::Matrix2D mat = {
+		1.0f, 2.0f,
+		4.0f, 5.0f
+	};
+	const math::vec2 vec(2.0f, 1.0f);
+	const math::vec2 expected(6.0f, 9.0f);
+
+	// Act
+	const math::vec2 actual = vec * mat;
+
+	// Assert
+	TestUtils::Vector2D::EXPECT_VEC_EQ(expected, actual);
+}
+
+TEST(Matrix2D_Product, VectorTimesIdentityMatrixReturnsTheSameMatrix)
+{
+	// Arrange
+	const math::Matrix2D<float> mat;
+	math::vec2 vec(2.0f, 1.0f);
+
+	// Act
+	const math::vec2 actual = vec * mat;
+
+	// Assert
+	TestUtils::Vector2D::EXPECT_VEC_EQ(vec, actual);
+}
+
+TEST(Matrix2D_Product, VectorTimesEqualMatrixReturnTheSameVectorWithNewValues)
+{
+	// Arrange
+	math::vec2 vec(2.0f, 1.0f);
+	const math::Matrix2D mat = {
+		1.0f, 2.0f,
+		4.0f, 5.0f
+	};
+	const math::vec2 expected(6.0f, 9.0f);
+
+	// Act
+	vec *= mat;
+
+	// Assert
+	TestUtils::Vector2D::EXPECT_VEC_EQ(expected, vec);
+}
+
+TEST(Matrix2D_Product, MatrixTimesMatrixGivesAnotherMatrixWithCorrectValues)
+{
+	// Arrange
+	const math::Matrix2D mat1 = {
+		1.0f, 2.0f,
+		4.0f, 5.0f 
+	};
+	const math::Matrix2D mat2 = {
+		2.0f, 4.0f,
+		8.0f, 10.0f
+	};
+	const math::Matrix2D expected = {
+		18.0f, 24.0f,
+		48.0f, 66.0f
+	};
+
+	// Act
+	const math::Matrix2D actual = mat1 * mat2;
+
+	// Assert
+	EXPECT_MAT_EQ(expected, actual);
+}
+
+TEST(Matrix2D_Product, MatrixTimesIdentityMatrixReturnsSameMatrix)
+{
+	// Arrange
+	const math::Matrix2D mat = {
+		1.0f, 2.0f,
+		4.0f, 5.0f
+	};
+	const math::Matrix2D<float> eye;
+
+	// Act
+	const math::Matrix2D actual = mat * eye;
+
+	// Assert
+	EXPECT_MAT_EQ(mat, actual);
+}
+
+TEST(Matrix2D_Product, MatrixTimesEqualAnotherMatrixReturnsSameMatrixWithCorrectValues)
+{
+	// Arrange
+	math::Matrix2D mat1 = {
+		1.0f, 2.0f,
+		4.0f, 5.0f
+	};
+	const math::Matrix2D mat2 = {
+		2.0f, 4.0f,
+		8.0f, 10.0f
+	};
+	const math::Matrix2D expected = {
+		18.0f, 24.0f,
+		48.0f, 66.0f
+	};
+
+	// Act
+	mat1 *= mat2;
+
+	// Assert
+	EXPECT_MAT_EQ(expected, mat1);
+}
+
+TEST(Matrix2D_Product, Matrix2DProductIsAntiCommutative)
+{
+	// Arrange
+	const math::Matrix2D mat1 = {
+		1.0f, 5.0f,
+		4.0f, 12.0f
+	};
+	const math::Matrix2D mat2 = {
+		2.0f, 4.0f,
+		3.0f, 7.0f
+	};
+
+
+	// Act
+	const math::Matrix2D result1 = mat1 * mat2;
+	const math::Matrix2D result2 = mat2 * mat1;
+
+	// Assert
+	bool commutative = true;
+	for (std::size_t i = 0; i < size; i++)
+	{
+		commutative &= floatEquals(result1(i / rowSize, i % rowSize), result2(i / rowSize, i % rowSize));
+	}
+	EXPECT_FALSE(commutative);
+}
+
+TEST(Matrix2D_Product, Matrix2DProductWithScalarMultiplesAreCommutative)
+{
+	// Arrange
+	const math::Matrix2D mat1 = {
+		1.0f, 2.0f,
+		4.0f, 5.0f
+	};
+	const math::Matrix2D mat2 = mat1 * 5.0f;
+	constexpr std::size_t size = 9;
+	constexpr std::size_t rowSize = 3;
+
+	// Act
+	const math::Matrix2D result1 = mat1 * mat2;
+	const math::Matrix2D result2 = mat2 * mat1;
+
+	// Assert
+	bool commutative = true;
+	for (std::size_t i = 0; i < size; i++)
+	{
+		commutative &= floatEquals(result1(i / rowSize, i % rowSize), result2(i / rowSize, i % rowSize));
+	}
+	EXPECT_TRUE(commutative);
+}
+
 //TEST(Matrix2D_Division, MatrixDividedByAIntegerScalarReturnsCorrectMatrix)
 //{
 //	// Arrange

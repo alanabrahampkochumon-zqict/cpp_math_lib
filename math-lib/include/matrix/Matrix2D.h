@@ -38,13 +38,9 @@ namespace math
 
 		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 		Matrix2D operator*(const S& scalar) const;
+		
 		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 		Matrix2D& operator*=(const S& scalar);
-
-		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
-		Matrix2D operator/(const S& scalar) const;
-		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
-		Matrix2D& operator/=(const S& scalar);
 
 		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 		Vector2D<T> operator*(const Vector2D<S>& vec) const;
@@ -62,6 +58,11 @@ namespace math
 		 */
 		template<typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 		Matrix2D& operator*=(const Matrix2D<S>& other);
+
+		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+		Matrix2D operator/(const S& scalar) const;
+		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+		Matrix2D& operator/=(const S& scalar);
 
 		// Determinants
 		// Calculates the determinant for the current Matrix2D.
