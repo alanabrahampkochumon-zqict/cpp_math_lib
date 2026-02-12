@@ -1,5 +1,7 @@
 add_library(MathLib INTERFACE)
 
+option(ENABLE_STRICT "Makes Compiler Warnings as Error and Turns on AddressSanitizer" ON)
+
 set(VectorDirectory "include/vector/")
 set(VectorHeaderFiles Vector3D.h Vector2D.h Vector4D.h)
 list(TRANSFORM VectorHeaderFiles PREPEND ${VectorDirectory})
@@ -23,6 +25,19 @@ target_sources(MathLib
         ${VectorTemplateDefinitionFiles}
         ${MatrixHeaderFiles}
         ${MatrixTemplateDefinitionFiles}
+)
+
+target_compile_options(MathLib INTERFACE
+    $<$<CXX_COMPILER_ID:MSVC>:/W4>
+    $<$<CXX_COMPILER_ID:GNU,Clang>:-Wall;-Wextra;-Wpedantic>
+    $<$<BOOL:${ENABLE_STRICT}>:
+        $<$<CXX_COMPILER_ID:MSVC>:/WX;/fsanitize=address>
+        $<$<CXX_COMPILER_ID:GNU,Clang>:-Werror;-fsanitize=address>
+    >
+)
+
+target_link_options(MathLib INTERFACE
+    $<$<AND:$<BOOL:${ENABLE_STRICT}>,$<CXX_COMPILER_ID:GNU,Clang>>:-fsanitize=address>
 )
 
 target_include_directories(
