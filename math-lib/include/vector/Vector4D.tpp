@@ -59,24 +59,24 @@ namespace math
 	}
 
 	template <typename T>
-	template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+	template <typename S, typename>
 	Vector4D<T> Vector4D<T>::operator*(const S& scalar) const
 	{
 		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
 
-		return Vector4D(x * scalar, y * scalar, z * scalar, w * scalar);
+		return Vector4D(x * static_cast<T>(scalar), y * static_cast<T>(scalar), z * static_cast<T>(scalar), w * static_cast<T>(scalar));
 	}
 
 	template <typename T>
-	template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+	template <typename S, typename>
 	Vector4D<T>& Vector4D<T>::operator*=(const S& scalar)
 	{
 		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
 
-		x *= scalar;
-		y *= scalar;
-		z *= scalar;
-		w *= scalar;
+		x *= static_cast<T>(scalar);
+		y *= static_cast<T>(scalar);
+		z *= static_cast<T>(scalar);
+		w *= static_cast<T>(scalar);
 		return *this;
 	}
 
@@ -85,7 +85,7 @@ namespace math
 	Vector4D<T> Vector4D<T>::operator/(const M& scalar) const
 	{
 		static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
-		T factor = T(1) / scalar;
+		T factor = T(1) / static_cast<T>(scalar);
 		return Vector4D(x * factor, y * factor, z * factor, w * factor);
 	}
 
@@ -94,7 +94,7 @@ namespace math
 	Vector4D<T>& Vector4D<T>::operator/=(const M& scalar)
 	{
 		static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
-		T factor = T(1) / scalar;
+		T factor = T(1) / static_cast<T>(scalar);
 
 		x *= factor;
 		y *= factor;

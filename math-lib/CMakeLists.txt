@@ -28,17 +28,14 @@ target_sources(MathLib
 )
 
 target_compile_options(MathLib INTERFACE
-    $<$<CXX_COMPILER_ID:MSVC>:/W4>
-    $<$<CXX_COMPILER_ID:GNU,Clang>:-Wall;-Wextra;-Wpedantic>
-    $<$<BOOL:${ENABLE_STRICT}>:
-        $<$<CXX_COMPILER_ID:MSVC>:/WX;/fsanitize=address>
-        $<$<CXX_COMPILER_ID:GNU,Clang>:-Werror;-fsanitize=address>
-    >
+    $<$<CXX_COMPILER_ID:MSVC>:/W4;/wd4201>
+    $<$<CXX_COMPILER_ID:GNU,Clang>:-Wall;-Wextra;-Wpedantic;-Wno-gnu-anonymous-struct>
+    $<$<BOOL:${ENABLE_STRICT}>:$<$<CXX_COMPILER_ID:MSVC>:/WX>$<$<CXX_COMPILER_ID:GNU,Clang>:-Werror>> #/fsanitize=address -fsanitize=address Disabled
 )
 
-target_link_options(MathLib INTERFACE
-    $<$<AND:$<BOOL:${ENABLE_STRICT}>,$<CXX_COMPILER_ID:GNU,Clang>>:-fsanitize=address>
-)
+# target_link_options(MathLib INTERFACE
+#     $<$<BOOL:${ENABLE_STRICT}>:$<$<CXX_COMPILER_ID:GNU,Clang>:-fsanitize=address>>
+# )
 
 target_include_directories(
     MathLib

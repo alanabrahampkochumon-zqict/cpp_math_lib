@@ -11,6 +11,8 @@ namespace math
 	{
 		static_assert(std::is_floating_point_v<T>, "Matrix3D can only be instantiated with floats(float and double)");
 
+		template<typename U> friend struct Matrix2D;
+
 	private:
 		union
 		{

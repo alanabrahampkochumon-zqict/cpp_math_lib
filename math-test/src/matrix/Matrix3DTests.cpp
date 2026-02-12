@@ -16,6 +16,9 @@ using namespace TestUtils::Matrix3D;
  *                                   *
  *************************************/
 
+constexpr int size = 9;
+constexpr int rowSize = 3;
+
 TEST(Matrix3D_Initialization, InitializedWithOutParametersProvidesIdentityMatrix)
 {
 	// Arrange & Act
@@ -32,12 +35,10 @@ TEST(Matrix3D_Initialization, InitializedWithParametersProvidesCorrectMatrix)
 		0.0f, 1.0f, 2.0f,
 		3.0f, 4.0f, 5.0f,
 		6.0f, 7.0f, 8.0f);
-	constexpr std::size_t size = 9;
-	constexpr std::size_t rowMax = 3;
 
 	// Assert
 	for (size_t i = 0; i < size; ++i)
-		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowMax, i % rowMax));
+		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowSize, i % rowSize));
 }
 
 TEST(Matrix3D_Initialization, InitializedWithThree3DVectorsProvidesCorrectMatrix)
@@ -49,12 +50,10 @@ TEST(Matrix3D_Initialization, InitializedWithThree3DVectorsProvidesCorrectMatrix
 
 	const math::Matrix3D mat(col1, col2, col3);
 
-	constexpr std::size_t size = 9;
-	constexpr std::size_t rowMax = 3;
 
 	// Assert
 	for (size_t i = 0; i < size; ++i)
-		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowMax, i % rowMax));
+		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowSize, i % rowSize));
 }
 
 TEST(Matrix3D_Initialization, CanMutateVectorAtIndex)
@@ -86,14 +85,12 @@ TEST(Matrix3D_Initialization, CanMutateValueAtRowColumn)
 	math::Matrix3D<float> mat;
 
 	// Act
-	constexpr std::size_t size = 9;
-	constexpr std::size_t rowMax = 3;
 	for (size_t i = 0; i < size; ++i)
-		mat(i / rowMax, i % rowMax) = static_cast<float>(i);
+		mat(i / rowSize, i % rowSize) = static_cast<float>(i);
 
 	// Assert
 	for (size_t i = 0; i < size; ++i)
-		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowMax, i % rowMax));
+		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowSize, i % rowSize));
 }
 
 TEST(Matrix3D_Access, CanBeAccessedAsAVectorAtIndex)
@@ -118,12 +115,10 @@ TEST(Matrix3D_Access, CanBeAccessedAsAValueAtRowColumn)
 		3.0f, 4.0f, 5.0f,
 		6.0f, 7.0f, 8.0f);
 
-	constexpr std::size_t size = 9;
-	constexpr std::size_t rowMax = 3;
 
 	// Assert
 	for (size_t i = 0; i < size; ++i)
-		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowMax, i % rowMax));
+		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowSize, i % rowSize));
 }
 
 /*************************************
@@ -505,8 +500,6 @@ TEST(Matrix3D_Product, Matrix3DProductIsAntiCommutative)
 		3.0f, 6.0f, 3.0f,
 		12.0f, 0.0f, 2.0f,
 		15.0f, 11.0f, 6.0f };
-	constexpr std::size_t SIZE = 9;
-	constexpr std::size_t ROW_SIZE = 3;
 
 	// Act
 	const math::Matrix3D result1 = mat1 * mat2;
@@ -514,9 +507,9 @@ TEST(Matrix3D_Product, Matrix3DProductIsAntiCommutative)
 
 	// Assert
 	bool commutative = true;
-	for (std::size_t i = 0; i < SIZE; i++)
+	for (std::size_t i = 0; i < size; i++)
 	{
-		commutative &= floatEquals(result1(i / ROW_SIZE, i % ROW_SIZE), result2(i / ROW_SIZE, i % ROW_SIZE));
+		commutative &= floatEquals(result1(i / rowSize, i % rowSize), result2(i / rowSize, i % rowSize));
 	}
 	EXPECT_FALSE(commutative);
 }
@@ -529,8 +522,6 @@ TEST(Matrix3D_Product, Matrix3DProductWithScalarMultiplesAreCommutative)
 		4.0f, 5.0f, 6.0f,
 		7.0f, 8.0f, 9.0f };
 	const math::Matrix3D mat2 = mat1 * 5.0f;
-	constexpr std::size_t SIZE = 9;
-	constexpr std::size_t ROW_SIZE = 3;
 
 	// Act
 	const math::Matrix3D result1 = mat1 * mat2;
@@ -538,9 +529,9 @@ TEST(Matrix3D_Product, Matrix3DProductWithScalarMultiplesAreCommutative)
 
 	// Assert
 	bool commutative = true;
-	for (std::size_t i = 0; i < SIZE; i++)
+	for (std::size_t i = 0; i < size; i++)
 	{
-		commutative &= floatEquals(result1(i / ROW_SIZE, i % ROW_SIZE), result2(i / ROW_SIZE, i % ROW_SIZE));
+		commutative &= floatEquals(result1(i / rowSize, i % rowSize), result2(i / rowSize, i % rowSize));
 	}
 	EXPECT_TRUE(commutative);
 }

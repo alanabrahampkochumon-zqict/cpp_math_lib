@@ -57,7 +57,7 @@ namespace math {
 
 
 	template <typename T>
-	template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+	template <typename S, typename>
 	Vector3D<T> Vector3D<T>::operator*(const S& scalar) const
 	{
 		static_assert(std::is_arithmetic_v<S>, "You can only perform multiplication with a number");
@@ -67,7 +67,7 @@ namespace math {
 	}
 
 	template <typename T>
-	template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+	template <typename S, typename>
 	Vector3D<T>& Vector3D<T>::operator*=(const S& scalar)
 	{
 		static_assert(std::is_arithmetic_v<S>, "You can only perform multiplication with a number");

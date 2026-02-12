@@ -52,7 +52,7 @@ namespace math {
     }
 
     template <typename T>
-    template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+    template <typename S, typename>
     Vector2D<T> Vector2D<T>::operator*(const S& scalar) const
     {
         static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
@@ -60,12 +60,12 @@ namespace math {
     }
 
     template <typename T>
-    template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+    template <typename S, typename>
     Vector2D<T>& Vector2D<T>::operator*=(const S& scalar)
     {
         static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
-        x *= scalar;
-        y *= scalar;
+        x *= static_cast<T>(scalar);
+        y *= static_cast<T>(scalar);
         return *this;
     }
 
@@ -74,7 +74,7 @@ namespace math {
     Vector2D<T> Vector2D<T>::operator/(const S& scalar) const
     {
         static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
-        T factor = T(1) / scalar;
+        T factor = T(1) / static_cast<T>(scalar);
         return Vector2D(x * factor, y * factor);
     }
 
@@ -107,7 +107,7 @@ namespace math {
     Vector2D<T>& Vector2D<T>::operator/=(const S& scalar)
     {
         static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
-        T factor = T(1) / scalar;
+        T factor = T(1) / static_cast<T>(scalar);
         x *= factor;
         y *= factor;
         return *this;

@@ -11,6 +11,8 @@ namespace math
 	{
 		static_assert(std::is_floating_point_v<T>, "Matrix2D can only be instantiated with floats(float and double)");
 
+		template<typename U> friend struct Matrix2D;
+
 	private:
 		union
 		{
@@ -50,8 +52,6 @@ namespace math
 
 		/**
 		 * Multiplies a matrix by a matrix with *= operator.
-		 * NOTE: Not recommended for game engine, since it involves object copying.
-		 * RECOMMENDED: Use Mat * Mat
 		 * @tparam S Type of the other Matrix
 		 * @param other The matrix to be multiplied with.
 		 * @return Matrix on which *= is called, but with new values
