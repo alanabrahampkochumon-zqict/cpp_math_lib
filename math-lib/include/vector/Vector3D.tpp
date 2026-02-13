@@ -84,9 +84,9 @@ namespace math {
 	template <typename S, typename>
 	Vector3D<T>& Vector3D<T>::operator*=(const S& scalar)
 	{
-		x *= static_cast<T>(scalar);
-		y *= static_cast<T>(scalar);
-		z *= static_cast<T>(scalar);
+		x = static_cast<T>(scalar * x);
+		y = static_cast<T>(scalar * y);
+		z = static_cast<T>(scalar * z);
 		return (*this);
 	}
 
@@ -97,19 +97,18 @@ namespace math {
 		// TODO: Experiment with rvalue
 		using R = std::common_type_t<T, S>;
 		R factor = R(1) / scalar;
-		return Vector3D(factor * x, factor * y, factor * z) ;
+		return Vector3D<R>(factor * x, factor * y, factor * z) ;
 	}
 
 	template <typename T>
 	template <typename S, typename>
 	Vector3D<T>& Vector3D<T>::operator/=(const S& scalar)
 	{
-		// TODO: Experiment with rvalue
 		using R = std::common_type_t<T, S>;
-		R mFactor = R(1) / scalar;
-		x *= mFactor;
-		y *= mFactor;
-		z *= mFactor;
+		R factor = R(1) / scalar;
+		x = static_cast<T>(x * factor);
+		y = static_cast<T>(y * factor);
+		z = static_cast<T>(z * factor);
 		return (*this);
 	}
 

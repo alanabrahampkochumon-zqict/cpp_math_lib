@@ -13,7 +13,7 @@ namespace math
     {
         using value_type = T;
 
-        static_assert(std::is_floating_point_v<T>, "Vector3D can only be instantiated with floats(float and double)"); //TODO: Change to is_arithmetic.
+        static_assert(std::is_arithmetic_v<T>, "Vector3D can only be instantiated with numbers(integer, float, doubles etc.");
         // TODO: Write tests for cross arithmetic ops(float * double)...
 
         Vector3D();

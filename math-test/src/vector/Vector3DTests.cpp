@@ -363,7 +363,7 @@ TEST(Vector3D_Product, VectorTimesEqualAScalarFloatIsSameVectorWithNewValues)
 	EXPECT_VEC_EQ(expected, vec);
 }
 
-TEST(Vector3D_Product, VectorTimesAScalarDoubleIsSameVectorWithoutPromotedType)
+TEST(Vector3D_Product, VectorTimesAScalarDoubleIsReturnsVectorWithoutPromotedType)
 {
 	// Arrange
 	math::Vector3D vec(3.0f, 1.0f, 6.0f);
@@ -384,6 +384,21 @@ TEST(Vector3D_Product, VectorTimesEqualAScalarDoubleIsSameVectorWithPromotedType
 	const math::Vector3D vec(3.0f, 1.0f, 6.0f);
 	const math::Vector3D expected(6.0f, 2.0f, 12.0f);
 	constexpr double scalar = 2.0;
+
+	// Act
+	const auto actual = scalar * vec;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(actual)::value_type, double>);
+	EXPECT_VEC_EQ(expected, actual);
+}
+
+TEST(Vector3D_Product, IntegerVectorTimesEqualAScalarFloatReturnsInMinimalPrecisionLoss)
+{
+	// Arrange
+	const math::Vector3D vec(2, 4, 8);
+	const math::Vector3D expected(5.0f, 10.0f, 20.0f);
+	constexpr double scalar = 2.5;
 
 	// Act
 	const auto actual = scalar * vec;
@@ -444,7 +459,7 @@ TEST(Vector3D_Division, VectorDividedByAFloatIsANewVector)
 	EXPECT_VEC_EQ(expected, actual);
 }
 
-TEST(Vector3D_Division, VectorDividesEqualAScalarIsSameVectorWithNewValues)
+TEST(Vector3D_Division, VectorDivideEqualAScalarIsSameVectorWithNewValues)
 {
 	// Arrange
 	math::Vector3D vec(3.0f, 1.0f, 6.0f);
@@ -458,7 +473,7 @@ TEST(Vector3D_Division, VectorDividesEqualAScalarIsSameVectorWithNewValues)
 	EXPECT_VEC_EQ(expected, vec);
 }
 
-TEST(Vector3D_Division, VectorDividesEqualAFloatIsSameVectorWithNewValues)
+TEST(Vector3D_Division, VectorDivideEqualAFloatIsSameVectorWithNewValues)
 {
 	// Arrange
 	math::Vector3D vec(3.0f, 1.0f, 6.0f);
@@ -470,6 +485,51 @@ TEST(Vector3D_Division, VectorDividesEqualAFloatIsSameVectorWithNewValues)
 
 	// Assert
 	EXPECT_VEC_EQ(expected, vec);
+}
+
+TEST(Vector3D_Division, VectorDivideEqualADoubleScalarIsSameVectorWithoutPromotedType)
+{
+	// Arrange
+	math::Vector3D vec(3.0f, 1.0f, 6.0f);
+	const math::Vector3D expected(1.5f, 0.5f, 3.0f);
+	constexpr double scalar = 2.0;
+
+	// Act
+	vec /= scalar;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(vec)::value_type, float>);
+	EXPECT_VEC_EQ(expected, vec);
+}
+
+TEST(Vector3D_Division, VectorDividedByADoubleScalarIsAVectorWithPromotedType)
+{
+	// Arrange
+	math::Vector3D vec(3.0f, 1.0f, 6.0f);
+	const math::Vector3D expected(1.5f, 0.5f, 3.0f);
+	constexpr double scalar = 2.0;
+
+	// Act
+	const auto actual = vec / scalar;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(actual)::value_type, double>);
+	EXPECT_VEC_EQ(expected, actual);
+}
+
+TEST(Vector3D_Division, IntegerVectorDividedByAScalarFloatResultsInMinimalPrecisionLoss)
+{
+	// Arrange
+	const math::Vector3D vec(2, 4, 8);
+	const math::Vector3D expected(4.0, 8.0, 16.0);
+	constexpr double scalar = 0.5;
+
+	// Act
+	const auto actual = vec / scalar;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(actual)::value_type, double>);
+	EXPECT_VEC_EQ(expected, actual);
 }
 
 
