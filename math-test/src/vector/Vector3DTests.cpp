@@ -624,8 +624,8 @@ TEST(Vector3D_Dot, VectorWhenDotWithOppositeParallelVectorReturnsNegativeOne)
 TEST(Vector3D_Dot, VectorWhenDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
 {
 	// Arrange
-	const math::Vector3D<float> vec1(1.0, 2.0, 3.0);
-	const math::Vector3D<float> vec2(4.0, -5.0, 6.0);
+	const math::Vector3D<float> vec1(1.0f, 2.0f, 3.0f);
+	const math::Vector3D<float> vec2(4.0f, -5.0f, 6.0f);
 
 	// Act
 	const float res = vec1.dot(vec2);
@@ -637,8 +637,8 @@ TEST(Vector3D_Dot, VectorWhenDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumb
 TEST(Vector3D_Dot, VectorWhenStaticWrapperDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
 {
 	// Arrange
-	const math::Vector3D<float> vec1(1.0, 2.0, 3.0);
-	const math::Vector3D<float> vec2(4.0, -5.0, 6.0);
+	const math::Vector3D<float> vec1(1.0f, 2.0f, 3.0f);
+	const math::Vector3D<float> vec2(4.0f, -5.0f, 6.0f);
 
 	// Act
 	const float res = math::Vector3D<float>::dot(vec1, vec2);
@@ -647,15 +647,29 @@ TEST(Vector3D_Dot, VectorWhenStaticWrapperDotWithAnotherNonOrthogonalVectorRetur
 	EXPECT_FLOAT_EQ(12.0, res);
 }
 
+TEST(Vector3D_Dot, VectorWhenDotWithAnotherNonOrthogonalVectorOfDifferentTypeReturnsNonZeroNumberWithPromotedType)
+{
+	// Arrange
+	const math::Vector3D vec1(1.0f, 2.0f, 3.0f);
+	const math::Vector3D vec2(4.0, -5.0, 6.0);
+
+	// Act
+	const auto res = vec1.dot(vec2);
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(res), const double>);
+	EXPECT_DOUBLE_EQ(12.0, res);
+}
+
 TEST(Vector3D_Cross, UnitXVectorWhenCrossWithUnitYVectorReturnsUnitZVector)
 {
 	// Arrange
-	const math::Vector3D<float> vec1(1.0, 0.0, 0.0);
-	const math::Vector3D<float> vec2(0.0, 1.0, 0.0);
-	const math::Vector3D<float> expected(0.0, 0.0, 1.0);
+	const math::Vector3D vec1(1.0f, 0.0f, 0.0f);
+	const math::Vector3D vec2(0.0f, 1.0f, 0.0f);
+	const math::Vector3D expected(0.0f, 0.0f, 1.0f);
 
 	// Act
-	const math::Vector3D<float> actual = vec1.cross(vec2);
+	const math::Vector3D actual = vec1.cross(vec2);
 
 	// Assert
 	EXPECT_VEC_EQ(expected, actual);
@@ -664,12 +678,12 @@ TEST(Vector3D_Cross, UnitXVectorWhenCrossWithUnitYVectorReturnsUnitZVector)
 TEST(Vector3D_Cross, UnitYVectorWhenCrossWithUnitXVectorReturnsUnitNegativeZVector)
 {
 	// Arrange
-	const math::Vector3D<float> vec1(0.0, 1.0, 0.0);
-	const math::Vector3D<float> vec2(1.0, 0.0, 0.0);
-	const math::Vector3D<float> expected(0.0, 0.0, -1.0);
+	const math::Vector3D vec1(0.0f, 1.0f, 0.0f);
+	const math::Vector3D vec2(1.0f, 0.0f, 0.0f);
+	const math::Vector3D expected(0.0f, 0.0f, -1.0f);
 
 	// Act
-	const  math::Vector3D<float> actual = vec1.cross(vec2);
+	const  math::Vector3D actual = vec1.cross(vec2);
 
 	// Assert
 	EXPECT_VEC_EQ(expected, actual);
@@ -678,12 +692,12 @@ TEST(Vector3D_Cross, UnitYVectorWhenCrossWithUnitXVectorReturnsUnitNegativeZVect
 TEST(Vector3D_Cross, UnitZVectorWhenCrossWithUnitYVectorReturnsUnitNegativeVector)
 {
 	// Arrange
-	const math::Vector3D<float> vec1(0.0, 0.0, 1.0);
-	const math::Vector3D<float> vec2(0.0, 1.0, 0.0);
-	const math::Vector3D<float> expected(-1.0, 0.0, 0.0);
+	const math::Vector3D vec1(0.0f, 0.0f, 1.0f);
+	const math::Vector3D vec2(0.0f, 1.0f, 0.0f);
+	const math::Vector3D expected(-1.0f, 0.0f, 0.0f);
 
 	// Act
-	const math::Vector3D<float> actual = vec1.cross(vec2);
+	const math::Vector3D actual = vec1.cross(vec2);
 
 	// Assert
 	EXPECT_VEC_EQ(expected, actual);
@@ -692,12 +706,12 @@ TEST(Vector3D_Cross, UnitZVectorWhenCrossWithUnitYVectorReturnsUnitNegativeVecto
 TEST(Vector3D_Cross, UnitVectorCrossWithItselfReturnZeroVector)
 {
 	// Arrange
-	const math::Vector3D<float> vec(0.0, 0.0, 1.0);
+	const math::Vector3D vec(0.0f, 0.0f, 1.0f);
 
-	const math::Vector3D<float> expected(0.0, 0.0, 0.0);
+	const math::Vector3D expected(0.0f, 0.0f, 0.0f);
 
 	// Act
-	const math::Vector3D<float> actual = vec.cross(vec);
+	const math::Vector3D actual = vec.cross(vec);
 
 	// Assert
 	EXPECT_VEC_EQ(expected, actual);
@@ -706,13 +720,13 @@ TEST(Vector3D_Cross, UnitVectorCrossWithItselfReturnZeroVector)
 TEST(Vector3D_Cross, VectorCrossWithAnotherNonParallelVectorReturnsNewPerpendicularVector)
 {
 	// Arrange
-	const math::Vector3D<float> vec1(2.0, 3.0, 4.0);
-	const math::Vector3D<float> vec2(5.0, 6.0, 7.0);
+	const math::Vector3D vec1(2.0f, 3.0f, 4.0f);
+	const math::Vector3D vec2(5.0f, 6.0f, 7.0f);
 
-	const math::Vector3D<float> expected(-3.0, 6.0, -3.0);
+	const math::Vector3D expected(-3.0f, 6.0f, -3.0f);
 
 	// Act
-	const math::Vector3D<float> actual = vec1.cross(vec2);
+	const math::Vector3D actual = vec1.cross(vec2);
 
 	// Assert
 	EXPECT_VEC_EQ(expected, actual);
@@ -728,13 +742,13 @@ TEST(Vector3D_Cross, VectorCrossWithAnotherNonParallelVectorReturnsNewPerpendicu
 TEST(Vector3D_Cross, VectorCrossStaticWrapperWithAnotherNonParallelVectorReturnsNewPerpendicularVector)
 {
 	// Arrange
-	const math::Vector3D<float> vec1(2.0, 3.0, 4.0);
-	const math::Vector3D<float> vec2(5.0, 6.0, 7.0);
+	const math::Vector3D vec1(2.0f, 3.0f, 4.0f);
+	const math::Vector3D vec2(5.0f, 6.0f, 7.0f);
 
-	math::Vector3D<float> expected(-3.0, 6.0, -3.0);
+	math::Vector3D expected(-3.0f, 6.0f, -3.0f);
 
 	// Act
-	math::Vector3D<float> actual = math::Vector3D<float>::cross(vec1, vec2);
+	math::Vector3D actual = math::Vector3D<float>::cross(vec1, vec2);
 
 	// Assert
 	EXPECT_VEC_EQ(expected, actual);
@@ -743,16 +757,16 @@ TEST(Vector3D_Cross, VectorCrossStaticWrapperWithAnotherNonParallelVectorReturns
 	const float dotProduct1 = math::Vector3D<float>::dot(vec1, actual);
 	const float dotProduct2 = math::Vector3D<float>::dot(vec2, actual);
 
-	EXPECT_FLOAT_EQ(0.0, dotProduct1);
-	EXPECT_FLOAT_EQ(0.0, dotProduct2);
+	EXPECT_FLOAT_EQ(0.0f, dotProduct1);
+	EXPECT_FLOAT_EQ(0.0f, dotProduct2);
 }
 
 TEST(Vector3D_Cross, VectorCrossProductsAreAntiCommutative)
 {
 	// vec1 x(cross) vec2 = - (vec2 x vec1)
 	// Arrange
-	const math::Vector3D<float> vec1(2.0, 3.0, 4.0);
-	const math::Vector3D<float> vec2(3.0, 5.0, 9.0);
+	const math::Vector3D vec1(2.0f, 3.0f, 4.0f);
+	const math::Vector3D vec2(3.0f, 5.0f, 9.0f);
 
 	// Act
 	math::Vector3D result1 = math::Vector3D<float>::cross(vec1, vec2);
@@ -766,15 +780,38 @@ TEST(Vector3D_Cross, VectorCrossProductsOfScalarMultiplesAreCommutative)
 {
 	// vec1 x(cross) vec2 = vec2 x vec1, given vec2 = a * vec1
 	// Arrange
-	const math::Vector3D<float> vec1(2.0, 3.0, 4.0);
-	const math::Vector3D<float> vec2 = vec1 * 2.0f;
+	const math::Vector3D vec1(2.0f, 3.0f, 4.0f);
+	const math::Vector3D vec2 = vec1 * 2.0f;
 
 	// Act
-	math::Vector3D<float> result1 = math::Vector3D<float>::cross(vec1, vec2);
-	math::Vector3D<float> result2 = math::Vector3D<float>::cross(vec2, vec1);
+	math::Vector3D result1 = math::Vector3D<float>::cross(vec1, vec2);
+	math::Vector3D result2 = math::Vector3D<float>::cross(vec2, vec1);
 
 	// Assert
 	EXPECT_VEC_EQ(result1, result2);
+}
+
+TEST(Vector3D_Cross, VectorCrossWithAnotherNonParallelVectorOfDifferentTypeReturnsNewPerpendicularVectorWithPromotedType)
+{
+	// Arrange
+	const math::Vector3D vec1(2.0f, 3.0f, 4.0f);
+	const math::Vector3D vec2(5.0, 6.0, 7.0);
+
+	const math::Vector3D expected(-3.0, 6.0, -3.0);
+
+	// Act
+	const math::Vector3D actual = vec1.cross(vec2);
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(actual)::value_type, double>);
+	EXPECT_VEC_EQ(expected, actual);
+
+	// Orientation Check: Dot must be zero
+	const auto dotProduct1 = vec1.dot(actual);
+	const auto dotProduct2 = vec2.dot(actual);
+
+	EXPECT_DOUBLE_EQ(0.0, dotProduct1);
+	EXPECT_DOUBLE_EQ(0.0, dotProduct2);
 }
 
 /**
@@ -865,6 +902,21 @@ TEST(Vector3D_Projection, VectorsWhenProjectedUsingStaticWrapperReturnsNonZeroVe
 	EXPECT_VEC_EQ(expectedProjection, actualProjection);
 }
 
+TEST(Vector3D_Projection, VectorsWhenProjectedOntoVectorOfDifferentTypeReturnsVectorWithPromotedType)
+{
+	// Arrange
+	const math::Vector3D a(2.0f, 1.0f, -1.0f);
+	const math::Vector3D b(1.0, 0.0, 1.0);
+	const math::Vector3D expectedProjection(0.5, 0.0, 0.5);
+
+	// Act
+	const auto actualProjection = a.project(b);
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(actualProjection)::value_type, double>);
+	EXPECT_VEC_EQ(expectedProjection, actualProjection);
+}
+
 
 TEST(Vector3D_Rejection, ParallelVectorsWhenRejectedReturnsZeroVector)
 {
@@ -922,7 +974,7 @@ TEST(Vector3D_Rejection, VectorsWhenRejectedOntoNormalizedVectorReturnNonZeroVec
 	EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
 
-TEST(Vector3D_Rejection, PositiveVectorsWhenRejectedOntoNegativeVectorReturnsNonZeroVectorNonZeroPositiveVector)
+TEST(Vector3D_Rejection, PositiveVectorsWhenRejectedOntoNegativeVectorReturnsNonZeroPositiveVector)
 {
 	// Arrange
 	const math::Vector3D a(4.0f, 4.0f, 4.0f);
@@ -936,7 +988,7 @@ TEST(Vector3D_Rejection, PositiveVectorsWhenRejectedOntoNegativeVectorReturnsNon
 	EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
 
-TEST(Vector3D_Rejection, VectorsWhenProjectedUsingStaticWrapperReturnNonZeroVector)
+TEST(Vector3D_Rejection, VectorsWhenRejectedUsingStaticWrapperReturnNonZeroVector)
 {
 	// Arrange
 	const math::Vector3D a(2.0f, 1.0f, -1.0f);
@@ -947,5 +999,20 @@ TEST(Vector3D_Rejection, VectorsWhenProjectedUsingStaticWrapperReturnNonZeroVect
 	const math::Vector3D<float> actualRejection = math::Vector3D<float>::reject(a, b);
 
 	// Assert
+	EXPECT_VEC_EQ(expectedRejection, actualRejection);
+}
+
+TEST(Vector3D_Rejection, VectorsWhenRejectedOntoVectorOfDifferentTypeReturnsVectorWithPromotedType)
+{
+	// Arrange
+	const math::Vector3D a(4.0f, 4.0f, 4.0f);
+	const math::Vector3D b(0.0, 0.0, -1.0);
+	const math::Vector3D expectedRejection(4.0, 4.0, 0.0);
+
+	// Act
+	const math::Vector3D actualRejection = a.reject(b);
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(actualRejection)::value_type, double>);
 	EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }

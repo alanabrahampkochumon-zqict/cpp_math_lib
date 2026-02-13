@@ -142,7 +142,8 @@ namespace math {
 	template <typename S, typename>
 	auto Vector3D<T>::cross(const Vector3D<S>& other) const -> Vector3D<std::common_type_t<T, S>>
 	{
-		return Vector3D(y * other.z - z * other.y, z * other.x - x * other.z, x * other.y - y * other.x);
+		using R = std::common_type_t<T, S>;
+		return Vector3D<R>(y * other.z - z * other.y, z * other.x - x * other.z, x * other.y - y * other.x);
 	}
 
 	template <typename T>
