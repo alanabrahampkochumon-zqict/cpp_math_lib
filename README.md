@@ -11,6 +11,10 @@ Project uses CMake as it's build system.
     ```bash
         cmake -B build
     ```
+    OR using
+    ```bash
+        genStrict.batfd
+    ```
 3. Run the build using commandline
     ```bash
         cmake --build build
