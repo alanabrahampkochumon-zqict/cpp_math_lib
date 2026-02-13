@@ -363,6 +363,35 @@ TEST(Vector3D_Product, VectorTimesEqualAScalarFloatIsSameVectorWithNewValues)
 	EXPECT_VEC_EQ(expected, vec);
 }
 
+TEST(Vector3D_Product, VectorTimesAScalarDoubleIsSameVectorWithoutPromotedType)
+{
+	// Arrange
+	math::Vector3D vec(3.0f, 1.0f, 6.0f);
+	const math::Vector3D expected(6.0f, 2.0f, 12.0f);
+	constexpr double scalar = 2.0;
+
+	// Act
+	vec *= scalar;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(vec)::value_type, float>);
+	EXPECT_VEC_EQ(expected, vec);
+}
+
+TEST(Vector3D_Product, VectorTimesEqualAScalarDoubleIsSameVectorWithPromotedType)
+{
+	// Arrange
+	const math::Vector3D vec(3.0f, 1.0f, 6.0f);
+	const math::Vector3D expected(6.0f, 2.0f, 12.0f);
+	constexpr double scalar = 2.0;
+
+	// Act
+	const auto actual = scalar * vec;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(actual)::value_type, double>);
+	EXPECT_VEC_EQ(expected, actual);
+}
 
 TEST(Vector3D_Division, VectorDividedByZeroIsInfinity)
 {

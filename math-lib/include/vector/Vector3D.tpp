@@ -84,9 +84,9 @@ namespace math {
 	template <typename S, typename>
 	Vector3D<T>& Vector3D<T>::operator*=(const S& scalar)
 	{
-		x *= scalar;
-		y *= scalar;
-		z *= scalar;
+		x *= static_cast<T>(scalar);
+		y *= static_cast<T>(scalar);
+		z *= static_cast<T>(scalar);
 		return (*this);
 	}
 
