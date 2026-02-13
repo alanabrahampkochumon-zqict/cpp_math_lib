@@ -1,35 +1,35 @@
-//#include <gtest/gtest.h>
-//
-//#include <matrix/Matrix3D.h>
-//#include <vector/Vector3D.h>
-//#include <cstddef>
-//
-//#include "../utils/FloatEquals.h"
-//#include "../utils/MatrixUtils.h"
-//#include "../utils/VectorUtils.h"
-//
-//using namespace TestUtils::Matrix3D;
-//// TODO: Add test for integer precision on multiplication -> [[2]] * 2.5 = [[5]] not 4
-//
-//
-///*************************************
-// *                                   *
-// *         INITIALIZATIONS           *
-// *                                   *
-// *************************************/
-//
-//constexpr int size = 9;
-//constexpr int rowSize = 3;
-//
-//TEST(Matrix3D_Initialization, InitializedWithOutParametersProvidesIdentityMatrix)
-//{
-//	// Arrange & Act
-//	const math::Matrix3D<float> mat;
-//
-//	// Assert
-//	EXPECT_MAT_IDENTITY(mat);
-//}
-//
+#include <gtest/gtest.h>
+
+#include <matrix/Matrix3D.h>
+#include <vector/Vector3D.h>
+#include <cstddef>
+
+#include "../utils/FloatEquals.h"
+#include "../utils/MatrixUtils.h"
+#include "../utils/VectorUtils.h"
+
+using namespace TestUtils::Matrix3D;
+// TODO: Add test for integer precision on multiplication -> [[2]] * 2.5 = [[5]] not 4
+
+
+/*************************************
+ *                                   *
+ *         INITIALIZATIONS           *
+ *                                   *
+ *************************************/
+
+constexpr int size = 9;
+constexpr int rowSize = 3;
+
+TEST(Matrix3D_Initialization, InitializedWithOutParametersProvidesIdentityMatrix)
+{
+	// Arrange & Act
+	const math::Matrix3D<float> mat;
+
+	// Assert
+	EXPECT_MAT_IDENTITY(mat);
+}
+
 //TEST(Matrix3D_Initialization, InitializedWithParametersProvidesCorrectMatrix)
 //{
 //	// Arrange & Act

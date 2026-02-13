@@ -1,47 +1,48 @@
-//#pragma once
-//#include <cstddef>
-//#include <type_traits>
-//
-//#include "vector/Vector3D.h"
-//
-//namespace math
-//{
-//	template<typename T>
-//	struct Matrix3D
-//	{	
-//		static_assert(std::is_arithmetic_v<T>, "Matrix3D can only be instantiated with arithmetics like floats, integers, etc.");
-//		using value_type = T;
-//
-//	private:
-//		union
-//		{
-//			Vector3D<T> columns[3];
-//			T elements[3][3];
-//		};
-//
-//	public:
-//		Matrix3D();
-//		Matrix3D(T v_0_0, T v_0_1, T v_0_2, T v_1_0, T v_1_1, T v_1_2, T v_2_0, T v_2_1, T v_2_2);
-//		Matrix3D(Vector3D<T> vec1, Vector3D<T> vec2, Vector3D<T> vec3);
-//
-//		//template<typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
-//		//Matrix3D(const Matrix3D<S>& other);
-//		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>, int>> // Added 'typename' and ', int'
-//		Matrix3D(const Matrix3D<S>& other)
-//		{
-//			columns[0] = Vector3D<T>(other[0]);
-//			columns[1] = Vector3D<T>(other[1]);
-//			columns[2] = Vector3D<T>(other[2]);
-//		}
-//
-//
+#pragma once
+#include <cstddef>
+#include <type_traits>
+
+#include "vector/Vector3D.h"
+
+namespace math
+{
+	template<typename T>
+	struct Matrix3D
+	{
+		static_assert(std::is_arithmetic_v<T>, "Matrix3D can only be instantiated with numbers like floats, integers, etc.");
+		using value_type = T;
+
+	private:
+		union
+		{
+			//Vector3D<T> columns[3];
+			T elements[3][3];
+		};
+
+	public:
+		Matrix3D();
+		Matrix3D(T v_0_0, T v_0_1, T v_0_2, T v_1_0, T v_1_1, T v_1_2, T v_2_0, T v_2_1, T v_2_2);
+		//Matrix3D(Vector3D<T> vec1, Vector3D<T> vec2, Vector3D<T> vec3);
+
+		//template<typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+		//Matrix3D(const Matrix3D<S>& other);
+		//template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>, int>> // Added 'typename' and ', int'
+		//Matrix3D(const Matrix3D<S>& other)
+		//{
+		//	columns[0] = Vector3D<T>(other[0]);
+		//	columns[1] = Vector3D<T>(other[1]);
+		//	columns[2] = Vector3D<T>(other[2]);
+		//}
+
+
 //		Vector3D<T>& operator[](size_t index);
 //		const Vector3D<T>& operator[](size_t index) const;
-//
-//
-//		T& operator()(size_t row, size_t col);
-//		const T& operator()(size_t row, size_t col) const;
-//
+
+		T& operator()(size_t row, size_t col);
+		const T& operator()(size_t row, size_t col) const;
+
+	};
+}
 //
 //		// Math Operators
 //		template<typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
@@ -138,6 +139,6 @@
 //	auto operator*=(Vector3D<S>& vec, const Matrix3D<T>& mat) -> Vector3D<std::common_type_t<T, S>>;
 //
 //
+//	};
 //}
-//
-//#include "Matrix3D.tpp"
+#include "Matrix3D.tpp"
