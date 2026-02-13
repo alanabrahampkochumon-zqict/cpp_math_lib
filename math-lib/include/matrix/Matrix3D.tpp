@@ -100,7 +100,8 @@ namespace math
 	 *************************************/
 
 	template <typename T>
-	Matrix3D<T> Matrix3D<T>::operator+(const Matrix3D& other) const
+	template <typename S, typename>
+	auto Matrix3D<T>::operator+(const Matrix3D<S>& other) const -> Matrix3D<std::common_type_t<T, S>>
 	{
 		// Commented out for profiling
 		//// Since `this` elements[0] is the first column, we need to take the rows first (this[c][r]) and add them to the r,c value of other
@@ -119,7 +120,8 @@ namespace math
 	}
 
 	template <typename T>
-	Matrix3D<T>& Matrix3D<T>::operator+=(const Matrix3D& other)
+	template <typename S, typename>
+	Matrix3D<T>& Matrix3D<T>::operator+=(const Matrix3D<S>& other)
 	{
 		// NOTE: Commented out for profiling
 		//// First Row
@@ -142,8 +144,10 @@ namespace math
 		return *this;
 	}
 
+
 	template <typename T>
-	Matrix3D<T> Matrix3D<T>::operator-(const Matrix3D& other) const
+	template <typename S, typename>
+	auto Matrix3D<T>::operator-(const Matrix3D<S>& other) const -> Matrix3D<std::common_type_t<T, S>>
 	{
 		// NOTE: Commented out for profiling
 		//// Since `this` elements[0] is the first column, we need to take the rows first (this[c][r]) and add them to the r,c value of other
@@ -162,7 +166,8 @@ namespace math
 	}
 
 	template <typename T>
-	Matrix3D<T>& Matrix3D<T>::operator-=(const Matrix3D& other)
+	template <typename S, typename>
+	Matrix3D<T>& Matrix3D<T>::operator-=(const Matrix3D<S>& other)
 	{
 		// NOTE: Commented out for profiling
 		//// First Row
@@ -186,45 +191,57 @@ namespace math
 		return *this;
 	}
 
-	template<typename T>
+	template <typename T>
 	template <typename S, typename>
-	Matrix3D<T> Matrix3D<T>::operator*(const S& scalar) const
+	auto Matrix3D<T>::operator*(const S& scalar) const -> Matrix3D<std::common_type_t<T, S>>
 	{
-		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
-
 		return Matrix3D(columns[0] * scalar, columns[1] * scalar, columns[2] * scalar);
 	}
+
+	template <typename T, typename S, typename, typename>
+	auto operator*(const S& scalar, const Matrix3D<T>& matrix) -> Matrix3D<std::common_type_t<T, S>>
+	{
+		return Matrix3D(matrix[0] * scalar, matrix[1] * scalar, matrix[2] * scalar);
+	}
+
+	template <typename T, typename S, typename, typename>
+	auto operator*(const Vector3D<S>& vec, const Matrix3D<T>& mat) -> Vector3D<std::common_type_t<T, S>>
+	{
+		return Vector3D(
+			Vector3D<T>::dot(vec, mat[0]),
+			Vector3D<T>::dot(vec, mat[1]),
+			Vector3D<T>::dot(vec, mat[2])
+		);
+	}
+
+	template <typename T, typename S, typename, typename>
+	auto operator*=(Vector3D<S>& vec, const Matrix3D<T>& mat) -> Vector3D<std::common_type_t<T, S>>
+	{
+		vec = Vector3D(
+			Vector3D<T>::dot(vec, mat[0]),
+			Vector3D<T>::dot(vec, mat[1]),
+			Vector3D<T>::dot(vec, mat[2])
+		);
+		return vec;
+	}
+
 
 	template<typename T>
 	template <typename S, typename>
 	Matrix3D<T>& Matrix3D<T>::operator*=(const S& scalar)
 	{
 		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
-
-		columns[0] *= scalar;
-		columns[1] *= scalar;
-		columns[2] *= scalar;
+		// TODO: When supporting integer, check this to ensure that 2 * 2.5 = 5, not 4
+		columns[0] *= static_cast<T>(scalar);
+		columns[1] *= static_cast<T>(scalar);
+		columns[2] *= static_cast<T>(scalar);
 		return *this;
 	}
 
-	template<typename T>
-	template <typename S, typename>
-	Matrix3D<T> Matrix3D<T>::operator/(const S& scalar) const
-	{
-		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
-
-
-		T factor = T(1) / static_cast<T>(scalar);
-		return Matrix3D(columns[0] * factor, columns[1] * factor, columns[2] * factor);
-
-	}
-	
-
 	template <typename T>
 	template <typename S, typename>
-	Vector3D<T> Matrix3D<T>::operator*(const Vector3D<S>& vec) const
+	auto Matrix3D<T>::operator*(const Vector3D<S>& vec) const -> Vector3D<std::common_type_t<T, S>>
 	{
-		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
 		return Vector3D(
 			elements[0][0] * vec.x + elements[1][0] * vec.y + elements[2][0] * vec.z, // First Row * Vec
 			elements[0][1] * vec.x + elements[1][1] * vec.y + elements[2][1] * vec.z, // Second Row * Vec
@@ -234,9 +251,8 @@ namespace math
 
 	template <typename T>
 	template <typename S, typename>
-	Matrix3D<T> Matrix3D<T>::operator*(const Matrix3D<S>& other) const
+	auto Matrix3D<T>::operator*(const Matrix3D<S>& other) const -> Matrix3D<std::common_type_t<T, S>>
 	{
-
 		// TODO: Profiling
 		//return Matrix3D(
 		//	// First Row * Columns
@@ -262,10 +278,18 @@ namespace math
 	Matrix3D<T>& Matrix3D<T>::operator*=(const Matrix3D<S>& other)
 	{
 		Matrix3D<T> result = (*this) * other;
-
 		*this = result;
 
 		return *this;
+	}
+
+	template <typename T>
+	template <typename S, typename>
+	auto Matrix3D<T>::operator/(const S& scalar) const -> Matrix3D<std::common_type_t<T, S>>
+	{	
+		using P = std::common_type_t<T, S>;
+		P factor = P(1) / static_cast<P>(scalar);
+		return Matrix3D(columns[0] * factor, columns[1] * factor, columns[2] * factor);
 	}
 
 	template<typename T>
@@ -299,8 +323,8 @@ namespace math
 
 	template <typename T>
 	Matrix3D<T> Matrix3D<T>::transpose() const
-	{	
-		return Matrix3D (
+	{
+		return Matrix3D(
 			elements[0][0], elements[0][1], elements[0][2],
 			elements[1][0], elements[1][1], elements[1][2],
 			elements[2][0], elements[2][1], elements[2][2]
@@ -320,14 +344,14 @@ namespace math
 		// Handle Non-Invertible Matrices
 		if (std::abs(det) <= 1e-6f)
 			return Matrix3D();
-			
+
 		// 1 / det(M) * [b cross c, c cross a, a cross b]^T
 		const T factor = T(1) / det;
 
 		const Vector3D<T> col1 = columns[1].cross(columns[2]);
 		const Vector3D<T> col2 = columns[2].cross(columns[0]);
 		const Vector3D<T> col3 = columns[0].cross(columns[1]);
-		
+
 		return factor * Matrix3D(
 			col1.x, col1.y, col1.z,
 			col2.x, col2.y, col2.z,
@@ -348,34 +372,4 @@ namespace math
 		return matrix.inverse();
 	}
 
-
-	template<typename T, typename S, typename>
-	Matrix3D<T> operator*(const S& scalar, const Matrix3D<T>& matrix)
-	{
-		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
-		return Matrix3D(matrix[0] * scalar, matrix[1] * scalar, matrix[2] * scalar);
-	}
-
-	template <typename T, typename S, typename>
-	Vector3D<T> operator*(const Vector3D<S>& vec, const Matrix3D<T>& mat)
-	{
-		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
-		return Vector3D(
-			Vector3D<T>::dot(vec, mat[0]),
-			Vector3D<T>::dot(vec, mat[1]),
-			Vector3D<T>::dot(vec, mat[2])
-		);
-	}
-
-	template <typename T, typename S, typename>
-	Vector3D<T> operator*=(Vector3D<S>& vec, const Matrix3D<T>& mat)
-	{
-		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
-		vec = Vector3D(
-			Vector3D<T>::dot(vec, mat[0]),
-			Vector3D<T>::dot(vec, mat[1]),
-			Vector3D<T>::dot(vec, mat[2])
-		);
-		return vec;
-	}
 }

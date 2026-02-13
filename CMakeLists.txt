@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.23)
 project(CPPMathLib)
 
-option(ENABLE_STRICT "Enable ASan and Strict Warnings" OFF) # To turn on ASan, use cmake -D 
+option(ENABLE_STRICT "Enable ASan and Strict Warnings" OFF) # To turn on ASan, use cmake -D
 
 # Turn on solution folders
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)

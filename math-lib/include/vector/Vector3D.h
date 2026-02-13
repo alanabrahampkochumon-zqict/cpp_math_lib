@@ -9,6 +9,8 @@ namespace math
     template<typename T>
     struct Vector3D
     {
+        using type = T;
+
         static_assert(std::is_floating_point_v<T>, "Vector3D can only be instantiated with floats(float and double)");
 
         Vector3D();

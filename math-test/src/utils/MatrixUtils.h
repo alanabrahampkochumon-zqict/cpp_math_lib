@@ -13,8 +13,8 @@ namespace TestUtils::Matrix3D
 	static unsigned int SIZE = 9;
 	static unsigned int ROW_SIZE = 3;
 
-	template<typename T>
-	void EXPECT_MAT_EQ(math::Matrix3D<T> expected, math::Matrix3D<T> actual)
+	template<typename T, typename S, typename = std::enable_if_t < std::is_arithmetic_v<S>>>
+	void EXPECT_MAT_EQ(math::Matrix3D<T> expected, math::Matrix3D<S> actual)
 	{
 		for (unsigned int i = 0; i < SIZE; i++)
 		{

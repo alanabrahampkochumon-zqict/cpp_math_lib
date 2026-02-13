@@ -173,6 +173,30 @@ TEST(Matrix3D_Sum, PlusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrect
 	EXPECT_MAT_EQ(c, a);
 }
 
+TEST(Matrix3D_Sum, SumOfTwoMatricesOfDifferentTypeReturnsAnotherMatrixPromotedType)
+{
+	// Arrange
+	const math::Matrix3D a = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, -8.0f, 9.0f };
+	const math::Matrix3D b = {
+		3.0, 2.0, 255.0,
+		-8.0, 24.0, 6.0,
+		7.0, 16.0, -98.0 };
+	const math::Matrix3D c = {
+		4.0, 4.0, 258.0,
+		-4.0, 29.0, 12.0,
+		14.0, 8.0, -89.0 };
+
+	// Act
+	const auto res = a + b;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(res)::value_type, double>, "Assertion Failed (Matrix3D): Float + Double = Double");
+	EXPECT_MAT_EQ(c, res);
+}
+
 TEST(Matrix3D_Difference, DifferenceOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
 {
 	// Arrange
@@ -196,7 +220,31 @@ TEST(Matrix3D_Difference, DifferenceOfTwoMatricesReturnsAnotherMatrixWithCorrect
 	EXPECT_MAT_EQ(c, res);
 }
 
-TEST(Matrix3D_Difference, MinusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValues)
+TEST(Matrix3D_Difference, DifferenceOfTwoMatricesOfDifferentTypeReturnsAnotherMatrixPromotedType)
+{
+	// Arrange
+	const math::Matrix3D a = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, -8.0f, 9.0f };
+	const math::Matrix3D b = {
+		3.0, 2.0, 255.0,
+		-8.0, 24.0, 6.0,
+		2.0, 16.0, -98.0 };
+	const math::Matrix3D c = {
+		-2.0, 0.0, -252.0,
+		12.0, -19.0, 0.0,
+		5.0, -24.0, 107.0 };
+
+	// Act
+	const auto res = a - b;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(res)::value_type, double>, "Assertion Failed (Matrix3D): Float - Double = Double");
+	EXPECT_MAT_EQ(c, res);
+}
+
+TEST(Matrix3D_Sum, PlusEqualsMatrixWithMatrixOfAnotherTypeReturnsSameMatrixWithoutTypePromotion)
 {
 	// Arrange
 	math::Matrix3D a = {
@@ -204,9 +252,33 @@ TEST(Matrix3D_Difference, MinusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWit
 		4.0f, 5.0f, 6.0f,
 		7.0f, -8.0f, 9.0f };
 	const math::Matrix3D b = {
-		3.0f, 2.0f, 255.0f,
-		-8.0f, 24.0f, 6.0f,
-		2.0f, 16.0f, -98.0f };
+		3.0, 2.0, 255.0,
+		-8.0, 24.0, 6.0,
+		7.0, 16.0, -98.0 };
+	const math::Matrix3D c = {
+		4.0f, 4.0f, 258.0f,
+		-4.0f, 29.0f, 12.0f,
+		14.0f, 8.0f, -89.0f };
+
+	// Act
+	a += b;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(a)::value_type, float>, "Assertion Failed (Matrix3D): Float += Double = Float");
+	EXPECT_MAT_EQ(c, a);
+}
+
+TEST(Matrix3D_Difference, MinusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsSameMatrixWithoutTypePromotion)
+{
+	// Arrange
+	math::Matrix3D a = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, -8.0f, 9.0f };
+	const math::Matrix3D b = {
+		3.0, 2.0, 255.0,
+		-8.0, 24.0, 6.0,
+		2.0, 16.0, -98.0 };
 	const math::Matrix3D c = {
 		-2.0f, 0.0f, -252.0f,
 		12.0f, -19.0f, 0.0f,
@@ -216,6 +288,7 @@ TEST(Matrix3D_Difference, MinusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWit
 	a -= b;
 
 	// Assert
+	static_assert(std::is_same_v<typename decltype(a)::value_type, float>, "Assertion Failed (Matrix3D): Float -= Double = Float");
 	EXPECT_MAT_EQ(c, a);
 }
 
@@ -387,15 +460,16 @@ TEST(Matrix3D_Product, VectorTimesAMatrixReturnsANewVectorWithCorrectValues)
 		1.0f, 2.0f, 3.0f,
 		4.0f, 5.0f, 6.0f,
 		7.0f, 8.0f, 9.0f };
-	math::vec3 vec(2.0f, 1.0f, 3.0f);
-	const math::vec3 expected(27.0f, 33.0f, 39.0f);
+	math::Vector3D vec(2.0f, 1.0f, 3.0f);
+	const math::Vector3D expected(27.0f, 33.0f, 39.0f);
 
 	// Act
-	const math::vec3 actual = vec * mat;
+	const auto actual = vec * mat;
 
 	// Assert
 	TestUtils::Vector3D::EXPECT_VEC_EQ(expected, actual);
 }
+
 
 TEST(Matrix3D_Product, VectorTimesIdentityMatrixReturnsTheSameMatrix)
 {
@@ -435,9 +509,9 @@ TEST(Matrix3D_Product, MatrixTimesMatrixGivesAnotherMatrixWithCorrectValues)
 		4.0f, 5.0f, 6.0f,
 		7.0f, 8.0f, 9.0f };
 	const math::Matrix3D mat2 = {
-		2.0f, 4.0f, 6.0f,
-		8.0f, 10.0f, 12.0f,
-		14.0f, 16.0f, 18.0f };
+		2.0, 4.0, 6.0,
+		8.0, 10.0, 12.0,
+		14.0, 16.0, 18.0 };
 	const math::Matrix3D expected = {
 		60.0f, 72.0f, 84.0f,
 		132.0f, 162.0f, 192.0f,
@@ -535,6 +609,137 @@ TEST(Matrix3D_Product, Matrix3DProductWithScalarMultiplesAreCommutative)
 	}
 	EXPECT_TRUE(commutative);
 }
+
+TEST(Matrix3D_Product, MatrixTimesADoubleScalarReturnsMatrixWithPromotedType)
+{
+	// Arrange
+	const math::Matrix3D a = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, -8.0f, 9.0f };
+	constexpr double scalar = 2.5;
+
+	const math::Matrix3D expected = {
+		2.5, 5.0, 7.5,
+		10.0, 12.5, 15.0,
+		17.5, -20.0, 22.5 };
+
+	// Act
+	const auto b = a * scalar;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(b)::value_type, double>, "Assertion Failed (Matrix3D): Float * Double(Scalar) = Double");
+	EXPECT_MAT_EQ(expected, b);
+}
+
+TEST(Matrix3D_Product, MatrixTimesEqualDoubleScalarReturnsMatrixWithoutTypePromotion)
+{
+	// Arrange
+	math::Matrix3D a = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, -8.0f, 9.0f };
+	constexpr double scalar = 2.5;
+
+	const math::Matrix3D expected = {
+		2.5, 5.0, 7.5,
+		10.0, 12.5, 15.0,
+		17.5, -20.0, 22.5 };
+
+	// Act
+	a *= scalar;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(a)::value_type, float>, "Assertion Failed (Matrix3D): Float * Double(Scalar) = Double");
+	EXPECT_MAT_EQ(expected, a);
+}
+
+TEST(Matrix3D_Product, DoubleVectorTimesAMatrixReturnsANewVectorWithPromotedType)
+{
+	// Arrange
+	const math::Matrix3D mat = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, 8.0f, 9.0f };
+
+	math::dvec3 vec(2.0, 1.0, 3.0);
+	const math::dvec3 expected(27.0, 33.0, 39.0);
+
+	// Act
+	const math::dvec3 actual = vec * mat;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(actual)::type, double>, "Assertion Failed (Matrix3D): Float * Double(vec) = Double");
+	TestUtils::Vector3D::EXPECT_VEC_EQ(expected, actual);
+}
+
+TEST(Matrix3D_Product, DoubleVectorTimesEqualAMatrixReturnsANewVectorWithPromotedType)
+{
+	// Arrange
+	const math::Matrix3D mat = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, 8.0f, 9.0f };
+
+	math::vec3 vec(2.0f, 1.0f, 3.0f);
+	const math::dvec3 expected(27.0, 33.0, 39.0);
+
+	// Act
+	vec *= mat;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(vec)::type, float>, "Assertion Failed (Matrix3D): Float(vec) * Double = Float");
+	TestUtils::Vector3D::EXPECT_VEC_EQ(expected, vec);
+}
+
+TEST(Matrix3D_Product, MatrixTimesMatrixGivesAnotherMatrixWithTypePromotion)
+{
+	// Arrange
+	const math::Matrix3D mat1 = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, 8.0f, 9.0f };
+	const math::Matrix3D mat2 = {
+		2.0, 4.0, 6.0,
+		8.0, 10.0, 12.0,
+		14.0, 16.0, 18.0 };
+	const math::Matrix3D expected = {
+		60.0, 72.0, 84.0,
+		132.0, 162.0, 192.0,
+		204.0, 252.0, 300.0 };
+
+	// Act
+	const math::Matrix3D actual = mat1 * mat2;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(actual)::value_type, double>, "Assertion Failed (Matrix3D): Float * Double = Double");
+	EXPECT_MAT_EQ(expected, actual);
+}
+
+TEST(Matrix3D_Product, MatrixTimesEqualAnotherMatrixReturnsSameMatrixWithoutTypePromotion)
+{
+	// Arrange
+	math::Matrix3D mat1 = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, 8.0f, 9.0f };
+	const math::Matrix3D mat2 = {
+		2.0, 4.0, 6.0,
+		8.0, 10.0, 12.0,
+		14.0, 16.0, 18.0 };
+	const math::Matrix3D expected = {
+		60.0, 72.0, 84.0,
+		132.0, 162.0, 192.0,
+		204.0, 252.0, 300.0 };
+
+	// Act
+	mat1 *= mat2;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(mat1)::value_type, float>, "Assertion Failed (Matrix3D): Float *= Double = Float");
+	EXPECT_MAT_EQ(expected, mat1);
+}
+
 
 TEST(Matrix3D_Division, MatrixDividedByAIntegerScalarReturnsCorrectMatrix)
 {
@@ -646,6 +851,48 @@ TEST(Matrix3D_Division, MatrixDividedNegativeFloatScalarFlipsSigns)
 
 	// Assert
 	EXPECT_MAT_EQ(expected, actual);
+}
+
+TEST(Matrix3D_Division, MatrixDividedByDoubleScalarReturnsMatrixWithTypePromotion)
+{
+	// Arrange
+	const math::Matrix3D a = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, -8.0f, 9.0f };
+	const math::Matrix3D expected = {
+		0.5, 1.0, 1.5,
+		2.0, 2.5, 3.0,
+		3.5, -4.0, 4.5 };
+	constexpr double scalar = 2.0;
+
+	// Act
+	const auto actual = a / scalar;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(actual)::value_type, double>, "Assertion Failed (Matrix3D): Float / Double = Double");
+	EXPECT_MAT_EQ(expected, actual);
+}
+
+TEST(Matrix3D_Division, MatrixDividesEqualDoubleScalarIsTheSameMatrixWithoutTypePromotion)
+{
+	// Arrange
+	math::Matrix3D a = {
+		1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f,
+		7.0f, -8.0f, 9.0f };
+	const math::Matrix3D b = {
+		0.5f, 1.0f, 1.5f,
+		2.0f, 2.5f, 3.0f,
+		3.5f, -4.0f, 4.5f };
+	constexpr double scalar = 2.0;
+
+	// Act
+	a /= scalar;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(a)::value_type, float>, "Assertion Failed (Matrix3D): Float /= Double = Float");
+	EXPECT_MAT_EQ(b, a);
 }
 
 /**
@@ -986,6 +1233,24 @@ TEST(Matrix3D_Inverse, SingularMatrixProducesIdentityMatrix)
 
 	// Assert
 	EXPECT_MAT_IDENTITY(actualInverse);
+}
+
+TEST(Matrix3D_Inverse, NearSingularMatrixProducesNonIdentityMatrix)
+{
+	const math::Matrix3D nearSingularMatrix(
+		1.0f, 2.0f, 3.0f,
+		1.0f, 2.00001f, 3.0f,
+		4.0f, 5.0f, 6.0f);
+	const math::Matrix3D expectedInverse(
+		-50000.0f, 50000.0f, 0.0f,
+		100000.0f, -100000.0f, 0.0f,
+		-83333.333f, 83333.344f, 1.0f);
+
+	// Act
+	const math::Matrix3D<float> actualInverse = math::Matrix3D<float>::inverse(nearSingularMatrix);
+
+	// Assert
+	EXPECT_MAT_EQ(expectedInverse, actualInverse);
 }
 
 TEST(Matrix3D_Inverse, InversionOfRotationOnlyMatrixReturnsTranspose)

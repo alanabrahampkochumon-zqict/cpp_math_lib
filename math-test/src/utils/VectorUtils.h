@@ -38,11 +38,12 @@ namespace TestUtils::Vector2D
 	}
 }
 
+//TODO: Add Type Promotion And Checking
 namespace TestUtils::Vector3D
 {
 
-	template<typename T>
-	void EXPECT_VEC_EQ(math::Vector3D<T> expected, math::Vector3D<T> actual)
+	template<typename T, typename S>
+	void EXPECT_VEC_EQ(math::Vector3D<T> expected, math::Vector3D<S> actual)
 	{
 		EXPECT_FLOAT_EQ(expected.x, actual.x);
 		EXPECT_FLOAT_EQ(expected.y, actual.y);
