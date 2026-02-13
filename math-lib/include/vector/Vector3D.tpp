@@ -17,7 +17,7 @@ namespace math {
 	template <typename T>
 	template <typename S, typename>
 	Vector3D<T>::Vector3D(const Vector3D<S>& other) :
-		x(static_cast<T>(other.x)), y(static_cast<T>(other.y), z(static_cast<T>(other.z)))
+		x(static_cast<T>(other.x)), y(static_cast<T>(other.y)), z(static_cast<T>(other.z))
 	{ }
 
 	template <typename T>
@@ -93,9 +93,9 @@ namespace math {
 	auto Vector3D<T>::operator/(const S& scalar) const -> Vector3D<std::common_type_t<T, S>>
 	{
 		// TODO: Experiment with rvalue
-		Vector3D copy = *this;
-		copy *= scalar;
-		return copy;
+		using R = std::common_type_t<T, S>;
+		R factor = R(1) / scalar;
+		return Vector3D(factor * x, factor * y, factor * z) ;
 	}
 
 	template <typename T>

@@ -31,7 +31,7 @@ TEST(Vector3D_Initialization, ConstructorParametersInitializesVector)
 	EXPECT_FLOAT_EQ(6.0f, vec.z);
 }
 
-TEST(Vector3D_Initialization, one2DVectorAndFloatCanInitializeA3DVector)
+TEST(Vector3D_Initialization, One2DVectorAndFloatCanInitializeA3DVector)
 {
 	// Arrange
 	math::Vector2D vec1(3.0f, 1.0f);
@@ -43,6 +43,26 @@ TEST(Vector3D_Initialization, one2DVectorAndFloatCanInitializeA3DVector)
 	EXPECT_FLOAT_EQ(3.0f, vec.x);
 	EXPECT_FLOAT_EQ(1.0f, vec.y);
 	EXPECT_FLOAT_EQ(6.0f, vec.z);
+}
+
+TEST(Vector3D_CopyContructor, CopyConstructorCreatesNewVectorWithPromotedType)
+{
+	// Arrange
+	math::Vector3D vec1(3.0f, 1.0f, 6.0f);
+
+	// Act
+	math::Vector3D<double> vec2 = vec1;
+	vec2.x = 5;
+
+	// Assert
+	ASSERT_FLOAT_EQ(3.0f, vec1.x);
+	ASSERT_FLOAT_EQ(1.0f, vec1.y);
+	ASSERT_FLOAT_EQ(6.0f, vec1.z);
+
+	ASSERT_DOUBLE_EQ(5.0, vec2.x);
+	ASSERT_DOUBLE_EQ(1.0, vec2.y);
+	ASSERT_DOUBLE_EQ(6.0, vec2.z);
+
 }
 
 TEST(Vector3D_Access, AccessibleAsXYZ)
