@@ -49,16 +49,17 @@ namespace math {
 	template <typename S, typename>
 	auto Vector3D<T>::operator-(const Vector3D<S>& other) const -> Vector3D<std::common_type_t<T, S>>
 	{
-		return Vector3D(x - other.x, y - other.y, z - other.z);
+		using R = std::common_type_t<T, S>;
+		return Vector3D<R>(x - other.x, y - other.y, z - other.z);
 	}
 
 	template <typename T>
 	template <typename S, typename>
 	Vector3D<T>& Vector3D<T>::operator-=(const Vector3D<S>& other)
 	{
-		x -= other.x;
-		y -= other.y;
-		z -= other.z;
+		x -= static_cast<T>(other.x);
+		y -= static_cast<T>(other.y);
+		z -= static_cast<T>(other.z);
 		return *this;
 	}
 

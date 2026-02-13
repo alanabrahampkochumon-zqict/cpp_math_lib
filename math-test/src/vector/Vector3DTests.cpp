@@ -239,6 +239,36 @@ TEST(Vector3D_Subraction, VectorMinusEqualsAnotherVectorReturnsFirstVectorWithCo
 
 }
 
+TEST(Vector3D_Subraction, VectorMinusVectorOfDifferentTypeReturnsNewVectorWithPromotedType)
+{
+	// Arrange
+	const math::Vector3D vec1(3.0f, 0.0f, -1.0f);
+	const math::Vector3D vec2(9.0, -5.0, 10.0);
+	const math::Vector3D expected(-6.0, 5.0, -11.0);
+
+	// Act
+	const math::Vector3D actual = vec1 - vec2;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(actual)::value_type, double>);
+	EXPECT_VEC_EQ(expected, actual);
+}
+
+TEST(Vector3D_Subraction, VectorMinusEqualsVectorOfDifferentTypeReturnsNewVectorWithoutPromotedType)
+{
+	// Arrange
+	math::Vector3D vec1(3.0f, 0.0f, -1.0f);
+	const math::Vector3D vec2(9.0, -5.0, 10.0);
+	const math::Vector3D expected(-6.0, 5.0, -11.0);
+
+	// Act
+	vec1 -= vec2;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(vec1)::value_type, float>);
+	EXPECT_VEC_EQ(expected, vec1);
+}
+
 TEST(Vector3D_Product, VectorTimesZeroIsZero)
 {
 	// Arrange
