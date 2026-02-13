@@ -11,7 +11,7 @@ namespace math
     template<typename T>
     struct Vector3D
     {
-        using type = T;
+        using value_type = T;
 
         static_assert(std::is_floating_point_v<T>, "Vector3D can only be instantiated with floats(float and double)"); //TODO: Change to is_arithmetic.
         // TODO: Write tests for cross arithmetic ops(float * double)...

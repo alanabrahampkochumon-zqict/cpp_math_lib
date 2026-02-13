@@ -59,6 +59,8 @@ TEST(Vector3D_CopyContructor, CopyConstructorCreatesNewVectorWithPromotedType)
 	ASSERT_FLOAT_EQ(1.0f, vec1.y);
 	ASSERT_FLOAT_EQ(6.0f, vec1.z);
 
+	static_assert(std::is_same_v<typename decltype(vec2)::value_type, double>);
+
 	ASSERT_DOUBLE_EQ(5.0, vec2.x);
 	ASSERT_DOUBLE_EQ(1.0, vec2.y);
 	ASSERT_DOUBLE_EQ(6.0, vec2.z);
@@ -174,6 +176,36 @@ TEST(Vector3D_Addition, VectorPlusEqualsAnotherVectorReturnsFirstVectorWithCorre
 	vec1 += vec2;
 
 	// Assert
+	EXPECT_VEC_EQ(expected, vec1);
+}
+
+TEST(Vector3D_Addition, VectorPlusVectorOfDifferentTypeReturnsNewVectorWithPromotedType)
+{
+	// Arrange
+	const math::Vector3D vec1(3.0f, 0.0f, -1.0f);
+	const math::Vector3D vec2(9.0, -5.0, 10.0);
+	const math::Vector3D expected(12.0, -5.0, 9.0);
+
+	// Act
+	const math::Vector3D actual = vec1 + vec2;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(actual)::value_type, double>);
+	EXPECT_VEC_EQ(expected, actual);
+}
+
+TEST(Vector3D_Addition, VectorPlusEqualsVectorOfDifferentTypeReturnsNewVectorWithoutPromotedType)
+{
+	// Arrange
+	math::Vector3D vec1(3.0f, 0.0f, -1.0f);
+	const math::Vector3D vec2(9.0, -5.0, 10.0);
+	const math::Vector3D expected(12.0, -5.0, 9.0);
+
+	// Act
+	vec1 += vec2;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(vec1)::value_type, float>);
 	EXPECT_VEC_EQ(expected, vec1);
 }
 

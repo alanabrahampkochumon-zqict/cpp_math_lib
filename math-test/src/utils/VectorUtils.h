@@ -45,25 +45,52 @@ namespace TestUtils::Vector3D
 	template<typename T, typename S>
 	void EXPECT_VEC_EQ(math::Vector3D<T> expected, math::Vector3D<S> actual)
 	{
-		EXPECT_FLOAT_EQ(expected.x, actual.x);
-		EXPECT_FLOAT_EQ(expected.y, actual.y);
-		EXPECT_FLOAT_EQ(expected.z, actual.z);
+		if constexpr (std::is_same_v<typename decltype(expected)::value_type, double> || std::is_same_v<typename decltype(actual)::value_type, double>)
+		{
+			EXPECT_DOUBLE_EQ(expected.x, actual.x);
+			EXPECT_DOUBLE_EQ(expected.y, actual.y);
+			EXPECT_DOUBLE_EQ(expected.z, actual.z);
+		}
+		else
+		{
+			EXPECT_FLOAT_EQ(expected.x, actual.x);
+			EXPECT_FLOAT_EQ(expected.y, actual.y);
+			EXPECT_FLOAT_EQ(expected.z, actual.z);
+		}
 	}
 
 	template<typename T>
 	void EXPECT_VEC_UNIT(math::Vector3D<T> actual)
 	{
-		EXPECT_FLOAT_EQ(T(1), actual.x);
-		EXPECT_FLOAT_EQ(T(1), actual.y);
-		EXPECT_FLOAT_EQ(T(1), actual.z);
+		if constexpr (std::is_same_v<typename decltype(actual)::value_type, double>)
+		{
+			EXPECT_DOUBLE_EQ(T(1), actual.x);
+			EXPECT_DOUBLE_EQ(T(1), actual.y);
+			EXPECT_DOUBLE_EQ(T(1), actual.z);
+		}
+		else
+		{
+			EXPECT_FLOAT_EQ(T(1), actual.z);
+			EXPECT_FLOAT_EQ(T(1), actual.x);
+			EXPECT_FLOAT_EQ(T(1), actual.y);
+		}
 	}
 
 	template<typename T>
 	void EXPECT_VEC_ZERO(math::Vector3D<T> actual)
 	{
-		EXPECT_FLOAT_EQ(T(0), actual.x);
-		EXPECT_FLOAT_EQ(T(0), actual.y);
-		EXPECT_FLOAT_EQ(T(0), actual.z);
+		if constexpr (std::is_same_v<typename decltype(actual)::value_type, double>)
+		{
+			EXPECT_DOUBLE_EQ(T(0), actual.x);
+			EXPECT_DOUBLE_EQ(T(0), actual.y);
+			EXPECT_DOUBLE_EQ(T(0), actual.z);
+		}
+		else
+		{
+			EXPECT_FLOAT_EQ(T(0), actual.x);
+			EXPECT_FLOAT_EQ(T(0), actual.y);
+			EXPECT_FLOAT_EQ(T(0), actual.z);
+		}
 	}
 
 	template<typename T>
