@@ -3,6 +3,8 @@
 #include <type_traits>
 
 #include "Vector2D.h"
+#include "matrix/Matrix3D.h"
+#include "matrix/Matrix3D.h"
 
 namespace math
 {
@@ -17,6 +19,9 @@ namespace math
         Vector3D();
         Vector3D(T v1, T v2, T v3);
         Vector3D(Vector2D<T> vec, T v);
+
+        template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        Vector3D(const Vector3D<S>& other);
 
 
         union {

@@ -14,6 +14,11 @@ namespace math {
 	template <typename T>
 	Vector3D<T>::Vector3D(Vector2D<T> vec, T v) : x(vec.x), y(vec.y), z(v) {}
 
+	template <typename T>
+	template <typename S, typename>
+	Vector3D<T>::Vector3D(const Vector3D<S>& other) :
+		x(static_cast<T>(other.x)), y(static_cast<T>(other.y), z(static_cast<T>(other.z)))
+	{ }
 
 	template <typename T>
 	T& Vector3D<T>::operator[](int i) { return ((&x)[i]); }
@@ -66,14 +71,6 @@ namespace math {
 		return copy;
 	}
 
-	//template <typename T, typename M>
-	//Vector3D<T> operator*(M scalar, const Vector3D<T>& vector)
-	//{
-	//	// TODO: Experiment with rvalue
-	//	Vector3D<T> copy = vector;
-	//	copy *= scalar;
-	//	return copy;
-	//}
 
 	template <typename T, typename S, typename, typename>
 	auto operator*(S scalar, const Vector3D<T>& vector) -> Vector3D<std::common_type_t<T, S>>
@@ -132,7 +129,7 @@ namespace math {
 	{
 		return x * other.x + y * other.y + z * other.z;
 	}
-	
+
 	template <typename T>
 	template <typename S, typename>
 	auto Vector3D<T>::dot(const Vector3D& vecA, const Vector3D<S>& vecB) -> std::common_type_t<T, S>

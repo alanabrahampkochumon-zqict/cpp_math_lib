@@ -5,6 +5,7 @@
 
 namespace math
 {
+
 	template<typename T>
 	Matrix3D<T>::Matrix3D()
 	{
@@ -56,6 +57,17 @@ namespace math
 		columns[1] = vec2;
 		columns[2] = vec3;
 	}
+
+	// TODO: Add test for copy constructor
+	//template <typename T>
+	//template <typename S, typename std::enable_if_t<std::is_arithmetic_v<S>, int>> // Added 'typename' and ', int'
+	//Matrix3D<T>::Matrix3D(const Matrix3D<S>& other)
+	//{
+	//	columns[0] = Vector3D<T>(other[0]);
+	//	columns[1] = Vector3D<T>(other[1]);
+	//	columns[2] = Vector3D<T>(other[2]);
+	//}
+
 
 	/**
 	 * Stores a <Vector3D> instance to the specified column of the matrix.
@@ -277,7 +289,7 @@ namespace math
 	template <typename S, typename>
 	Matrix3D<T>& Matrix3D<T>::operator*=(const Matrix3D<S>& other)
 	{
-		Matrix3D<T> result = (*this) * other;
+		Matrix3D result = (*this) * other;
 		*this = result;
 
 		return *this;

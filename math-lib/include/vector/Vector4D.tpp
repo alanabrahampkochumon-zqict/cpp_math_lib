@@ -171,10 +171,4 @@ namespace math
 		return vector * scalar;
 	}
 
-	//template <typename T, typename M>
-	//Vector4D<T> operator*(M scalar, const Vector4D<T>& vector)
-	//{
-	//	static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
-	//	return vector * scalar;
-	//}
 }

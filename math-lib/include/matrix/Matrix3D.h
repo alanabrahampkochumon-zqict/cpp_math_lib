@@ -24,6 +24,16 @@ namespace math
 		Matrix3D(T v_0_0, T v_0_1, T v_0_2, T v_1_0, T v_1_1, T v_1_2, T v_2_0, T v_2_1, T v_2_2);
 		Matrix3D(Vector3D<T> vec1, Vector3D<T> vec2, Vector3D<T> vec3);
 
+		//template<typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+		//Matrix3D(const Matrix3D<S>& other);
+		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>, int>> // Added 'typename' and ', int'
+		Matrix3D(const Matrix3D<S>& other)
+		{
+			columns[0] = Vector3D<T>(other[0]);
+			columns[1] = Vector3D<T>(other[1]);
+			columns[2] = Vector3D<T>(other[2]);
+		}
+
 
 		Vector3D<T>& operator[](size_t index);
 		const Vector3D<T>& operator[](size_t index) const;
