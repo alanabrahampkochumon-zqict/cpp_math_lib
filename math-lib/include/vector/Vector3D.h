@@ -3,8 +3,6 @@
 #include <type_traits>
 
 #include "Vector2D.h"
-#include "matrix/Matrix3D.h"
-#include "matrix/Matrix3D.h"
 
 namespace math
 {
