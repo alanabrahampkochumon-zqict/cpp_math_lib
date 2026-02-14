@@ -11,7 +11,8 @@ namespace math
     {
         using type = T;
 
-        static_assert(std::is_floating_point_v<T>, "Vector3D can only be instantiated with floats(float and double)");
+        static_assert(std::is_floating_point_v<T>, "Vector3D can only be instantiated with floats(float and double)"); //TODO: Change to is_arithmetic.
+        // TODO: Write tests for cross arithmetic ops(float * double)...
 
         Vector3D();
         Vector3D(T v1, T v2, T v3);
@@ -30,31 +31,45 @@ namespace math
         T& operator[](int i);
         const T& operator[](int i) const;
 
-        Vector3D operator+(const Vector3D& other) const;
-        Vector3D& operator+=(const Vector3D& other);
-        Vector3D operator-(const Vector3D& other) const;
-        Vector3D& operator-=(const Vector3D& other);
+        template<typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        auto operator+(const Vector3D<S>& other) const -> Vector3D<std::common_type_t<T, S>>;
+
+        template<typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        Vector3D& operator+=(const Vector3D<S>& other);
+        
+    	template<typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        auto operator-(const Vector3D<S>& other) const -> Vector3D<std::common_type_t<T, S>>;
+
+        template<typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+    	Vector3D& operator-=(const Vector3D<S>& other);
 
         template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
-        Vector3D operator*(const S& scalar) const;
+        auto operator*(const S& scalar) const -> Vector3D<std::common_type_t<T, S>>;
 
         template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
         Vector3D& operator*=(const S& scalar);
 
-        template<typename M>
-        Vector3D operator/(const M& scalar) const;
+        template<typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        auto operator/(const S& scalar) const -> Vector3D<std::common_type_t<T, S>>;
 
-        template<typename M>
-        Vector3D& operator/=(const M& scalar);
+        template<typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        Vector3D& operator/=(const S& scalar);
 
-        T dot(const Vector3D& other) const;
-        Vector3D cross(const Vector3D& other) const;
+        template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        auto dot(const Vector3D<S>& other) const -> std::common_type_t<T, S>;
+
+        template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        auto cross(const Vector3D<S>& other) const -> Vector3D<std::common_type_t<T, S>>;
 
         T mag() const;
+
         Vector3D normalize() const;
 
-        static T dot(const Vector3D& vecA, const Vector3D& vecB);
-        static Vector3D cross(const Vector3D& vecA, const Vector3D& vecB);
+        template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        static auto dot(const Vector3D& vecA, const Vector3D<S>& vecB) -> std::common_type_t<T, S>;
+
+        template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        static auto cross(const Vector3D& vecA, const Vector3D<S>& vecB) -> Vector3D<std::common_type_t<T, S>>;
 
         // Projection & Rejection
         /**
@@ -64,8 +79,8 @@ namespace math
          * @param ontoNormalized A flag for optimizing the by ignoring the division, given the vector that is projected onto is normalized.
          * @return Projected vector.
          */
-        template<typename S>
-        Vector3D<T> project(const Vector3D<S>& onto, bool ontoNormalized = false) const;
+        template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        auto project(const Vector3D<S>& onto, bool ontoNormalized = false) const -> Vector3D<std::common_type_t<T, S>>;
 
         /**
          * Returns the perpendicular component for the current vector after projection to the `onto` vector.
@@ -74,8 +89,8 @@ namespace math
          * @param ontoNormalized A flag for optimizing the by ignoring the division, given the vector that is projected onto is normalized.
          * @return Projected vector.
          */
-        template<typename S>
-        Vector3D<T> reject(const Vector3D<S>& onto, bool ontoNormalized = false) const;
+        template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        auto reject(const Vector3D<S>& onto, bool ontoNormalized = false) const -> Vector3D<std::common_type_t<T, S>>;
 
         /**
          * Static wrapper for vector projection.
@@ -85,8 +100,8 @@ namespace math
          * @param ontoNormalized A flag for optimizing the by ignoring the division, given the vector that is projected onto is normalized.
          * @return Projected vector.
          */
-        template<typename S>
-        static Vector3D project(const Vector3D& vector, const Vector3D<S>& onto, bool ontoNormalized = false);
+        template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        static auto project(const Vector3D& vector, const Vector3D<S>& onto, bool ontoNormalized = false) -> Vector3D<std::common_type_t<T, S>>;
 
         /**
          * Returns the perpendicular component for the current vector after projection to the `onto` vector.
@@ -96,13 +111,13 @@ namespace math
          * @param ontoNormalized A flag for optimizing the by ignoring the division, given the vector that is projected onto is normalized.
          * @return Projected vector.
          */
-        template<typename S>
-        static Vector3D reject(const Vector3D& vector, const Vector3D<S>& onto, bool ontoNormalized = false);
+        template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        static auto reject(const Vector3D& vector, const Vector3D<S>& onto, bool ontoNormalized = false) -> Vector3D<std::common_type_t<T, S>>;
 
     };
 
-    template<typename T, typename M>
-    Vector3D<T> operator*(M scalar, const Vector3D<T>& vector);
+    template <typename T, typename S, typename = std::enable_if_t<std::is_arithmetic_v<T>>, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+    auto operator*(S scalar, const Vector3D<T>& vector) -> Vector3D<std::common_type_t<T, S>>;
 
     // Aliases
     using vec3 = Vector3D<float>;

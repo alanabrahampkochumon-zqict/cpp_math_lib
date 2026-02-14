@@ -64,7 +64,7 @@ namespace math
          * @return Projected vector.
          */
         template<typename S>
-        Vector2D<T> project(const Vector2D<S>& onto, bool ontoNormalized = false) const;
+        Vector2D project(const Vector2D<S>& onto, bool ontoNormalized = false) const;
 
         /**
          * Returns the perpendicular component for the current vector after projection to the `onto` vector.
@@ -105,7 +105,7 @@ namespace math
         static Vector2D reject(const Vector2D& vector, const Vector2D<S>& onto, bool ontoNormalized = false);
     };
 
-    template <typename T, typename S>
+    template <typename T, typename S, typename = std::enable_if_t<std::is_arithmetic_v<T>>, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
     Vector2D<T> operator*(S scalar, const Vector2D<T> &vector);
 
     using vec2 = Vector2D<float>;

@@ -584,8 +584,8 @@ TEST(Vector3D_Cross, VectorCrossProductsAreAntiCommutative)
 	const math::Vector3D<float> vec2(3.0, 5.0, 9.0);
 
 	// Act
-	math::Vector3D<float> result1 = math::Vector3D<float>::cross(vec1, vec2);
-	math::Vector3D<float> result2 = -1.0f * (math::Vector3D<float>::cross(vec2, vec1));
+	math::Vector3D result1 = math::Vector3D<float>::cross(vec1, vec2);
+	math::Vector3D result2 = -1.0f * (math::Vector3D<float>::cross(vec2, vec1));
 
 	// Assert
 	EXPECT_VEC_EQ(result1, result2);

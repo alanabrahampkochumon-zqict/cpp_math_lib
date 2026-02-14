@@ -99,7 +99,7 @@ namespace math
 
     };
 
-    template<typename T, typename M>
+    template<typename T, typename M, typename = std::enable_if_t<std::is_arithmetic_v<T>>, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
     Vector4D<T> operator*(M scalar, const Vector4D<T>& vector);
 
     // Aliases

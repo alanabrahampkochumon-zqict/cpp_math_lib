@@ -163,11 +163,16 @@ namespace math {
         return vector - vector.project(onto, ontoNormalized);
     }
 
-    template<typename T, typename M>
-    Vector2D<T> operator*(M scalar, const Vector2D<T>& vector)
+    //template<typename T, typename M>
+    //Vector2D<T> operator*(M scalar, const Vector2D<T>& vector)
+    //{
+    //    static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
+    //    return vector * scalar;
+    //}
+
+    template <typename T, typename S, typename, typename>
+    Vector2D<T> operator*(S scalar, const Vector2D<T>& vector)
     {
-        static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
         return vector * scalar;
     }
-
 }

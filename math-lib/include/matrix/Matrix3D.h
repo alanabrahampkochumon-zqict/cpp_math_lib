@@ -9,7 +9,7 @@ namespace math
 	template<typename T>
 	struct Matrix3D
 	{	
-		static_assert(std::is_floating_point_v<T>, "Matrix3D can only be instantiated with floats(float and double)");
+		static_assert(std::is_arithmetic_v<T>, "Matrix3D can only be instantiated with arithmetics like floats, integers, etc.");
 		using value_type = T;
 
 	private:

@@ -9,6 +9,8 @@
 #include "../utils/VectorUtils.h"
 
 using namespace TestUtils::Matrix3D;
+// TODO: Add test for integer precision on multiplication -> [[2]] * 2.5 = [[5]] not 4
+
 
 /*************************************
  *                                   *
@@ -562,6 +564,7 @@ TEST(Matrix3D_Product, MatrixTimesEqualAnotherMatrixReturnsSameMatrixWithCorrect
 	// Assert
 	EXPECT_MAT_EQ(expected, mat1);
 }
+
 
 TEST(Matrix3D_Product, Matrix3DProductIsAntiCommutative)
 {

@@ -165,10 +165,16 @@ namespace math
 		return vector.reject(onto, ontoNormalized);
 	}
 
-	template <typename T, typename M>
+	template <typename T, typename M, typename, typename>
 	Vector4D<T> operator*(M scalar, const Vector4D<T>& vector)
 	{
-		static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
 		return vector * scalar;
 	}
+
+	//template <typename T, typename M>
+	//Vector4D<T> operator*(M scalar, const Vector4D<T>& vector)
+	//{
+	//	static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
+	//	return vector * scalar;
+	//}
 }
