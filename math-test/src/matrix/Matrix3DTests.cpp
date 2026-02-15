@@ -672,7 +672,7 @@ TEST(Matrix3D_Product, DoubleVectorTimesAMatrixReturnsANewVectorWithPromotedType
 	const math::dvec3 actual = vec * mat;
 
 	// Assert
-	static_assert(std::is_same_v<typename decltype(actual)::type, double>, "Assertion Failed (Matrix3D): Float * Double(vec) = Double");
+	static_assert(std::is_same_v<typename decltype(actual)::value_type, double>, "Assertion Failed (Matrix3D): Float * Double(vec) = Double");
 	TestUtils::Vector3D::EXPECT_VEC_EQ(expected, actual);
 }
 
@@ -691,7 +691,7 @@ TEST(Matrix3D_Product, DoubleVectorTimesEqualAMatrixReturnsANewVectorWithPromote
 	vec *= mat;
 
 	// Assert
-	static_assert(std::is_same_v<typename decltype(vec)::type, float>, "Assertion Failed (Matrix3D): Float(vec) * Double = Float");
+	static_assert(std::is_same_v<typename decltype(vec)::value_type, float>, "Assertion Failed (Matrix3D): Float(vec) * Double = Float");
 	TestUtils::Vector3D::EXPECT_VEC_EQ(expected, vec);
 }
 

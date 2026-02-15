@@ -44,32 +44,32 @@ namespace math
 
 		// Math Operators
 		template<typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
-		auto operator+(const Matrix3D<S>& other) const -> Matrix3D<std::common_type_t<T, S>>;
+		auto operator+(const Matrix3D<S>& other) const->Matrix3D<std::common_type_t<T, S>>;
 
 		template<typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 		Matrix3D& operator+=(const Matrix3D<S>& other);
 
 
 		template<typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
-		auto operator-(const Matrix3D<S>& other) const -> Matrix3D<std::common_type_t<T, S>>;
+		auto operator-(const Matrix3D<S>& other) const->Matrix3D<std::common_type_t<T, S>>;
 
 		template<typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 		Matrix3D& operator-=(const Matrix3D<S>& other);
 
 
 		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
-		auto operator*(const S& scalar) const -> Matrix3D<std::common_type_t<T, S>>;
+		auto operator*(const S& scalar) const->Matrix3D<std::common_type_t<T, S>>;
 
 		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 		Matrix3D& operator*=(const S& scalar);
 
 
 		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
-		auto operator*(const Vector3D<S>& vec) const -> Vector3D<std::common_type_t<T, S>>;
+		auto operator*(const Vector3D<S>& vec) const->Vector3D<std::common_type_t<T, S>>;
 
 
 		template<typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
-		auto operator*(const Matrix3D<S>& other) const -> Matrix3D<std::common_type_t<T, S>>;
+		auto operator*(const Matrix3D<S>& other) const->Matrix3D<std::common_type_t<T, S>>;
 
 		/**
 		 * Multiplies a matrix by a matrix with *= operator.
@@ -84,7 +84,7 @@ namespace math
 
 
 		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
-		auto operator/(const S& scalar) const -> Matrix3D<std::common_type_t<T, S>>;
+		auto operator/(const S& scalar) const->Matrix3D<std::common_type_t<T, S>>;
 
 		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 		Matrix3D& operator/=(const S& scalar);
@@ -137,6 +137,6 @@ namespace math
 	auto operator*=(Vector3D<S>& vec, const Matrix3D<T>& mat) -> Vector3D<std::common_type_t<T, S>>;
 
 
-	};
-}
+};
+
 #include "Matrix3D.tpp"
