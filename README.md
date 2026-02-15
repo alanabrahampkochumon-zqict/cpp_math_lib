@@ -6,14 +6,15 @@ Project uses CMake as it's build system.
 
 ## How to run
 
-1. <a href="https://cmake.org/download/" target="_blank">Download and install CMake</a> if you don't have it installed. 2.<a href="https://git-scm.com/install/windows" target="_blank">Download and install Git</a> if you don't have it installed.
+1. Download and install <a href="https://cmake.org/download/" target="_blank">CMake</a> and <a href="https://git-scm.com/install/windows" target="_blank">Git</a> if you don't have it installed.
+
 2. Generate project files using
     ```bash
         cmake -B build
     ```
     OR using
     ```bash
-        genStrict.batfd
+        genStrict.bat
     ```
 3. Run the build using commandline
     ```bash
