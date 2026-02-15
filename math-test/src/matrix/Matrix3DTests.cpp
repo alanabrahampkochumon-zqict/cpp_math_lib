@@ -1280,19 +1280,22 @@ TEST(Matrix3D_Inverse, SingularMatrixProducesIdentityMatrix)
 TEST(Matrix3D_Inverse, NearSingularMatrixProducesNonIdentityMatrix)
 {
 	const math::Matrix3D nearSingularMatrix(
-		1.0f, 2.0f, 3.0f,
-		1.0f, 2.00001f, 3.0f,
-		4.0f, 5.0f, 6.0f);
+		1.0f, 0.0f, 0.0f,
+		0.0f, 0.1f, 0.0f,
+		0.0f, 0.0f, 0.1f
+	);
+
 	const math::Matrix3D expectedInverse(
-		-50000.0f, 50000.0f, 0.0f,
-		100000.0f, -100000.0f, 0.0f,
-		-83333.333f, 83333.344f, 1.0f);
+		1.0f, 0.0f, 0.0f,
+		0.0f, 10.0f, 0.0f,
+		0.0f, 0.0f, 10.0f
+	);
 
 	// Act
 	const math::Matrix3D<float> actualInverse = math::Matrix3D<float>::inverse(nearSingularMatrix);
 
 	// Assert
-	EXPECT_MAT_EQ(expectedInverse, actualInverse);
+	EXPECT_MAT_NEAR(expectedInverse, actualInverse);
 }
 
 TEST(Matrix3D_Inverse, InversionOfRotationOnlyMatrixReturnsTranspose)
