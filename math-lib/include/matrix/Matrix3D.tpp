@@ -354,7 +354,8 @@ namespace math
 		return factor * Matrix3D(
 			col1.x, col1.y, col1.z,
 			col2.x, col2.y, col2.z,
-			col3.x, col3.y, col3.z);
+			col3.x, col3.y, col3.z
+		);
 
 		// NOTE: Left for profiling
 		// return factor * Matrix3D<T>(

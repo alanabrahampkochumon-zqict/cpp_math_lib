@@ -51,7 +51,7 @@ TEST(Vector3D_CopyContructor, ConversionConstructorCreatesNewVectorWithPromotedT
 	math::Vector3D vec1(3.0f, 1.0f, 6.0f);
 
 	// Act
-	math::Vector3D<double> vec2 = vec1;
+	math::Vector3D<double> vec2(vec1);
 	vec2.x = 5;
 
 	// Assert
@@ -66,6 +66,29 @@ TEST(Vector3D_CopyContructor, ConversionConstructorCreatesNewVectorWithPromotedT
 	ASSERT_DOUBLE_EQ(6.0, vec2.z);
 
 }
+
+TEST(Vector3D_CopyContructor, ConversionConstructorCreatesNewVectorWithDemotedType)
+{
+	// Arrange
+	math::Vector3D vec1(3.0, 1.0, 6.0);
+
+	// Act
+	math::Vector3D<float> vec2 = vec1;
+	vec2.x = 5;
+
+	// Assert
+	ASSERT_DOUBLE_EQ(3.0, vec1.x);
+	ASSERT_DOUBLE_EQ(1.0, vec1.y);
+	ASSERT_DOUBLE_EQ(6.0, vec1.z);
+
+	static_assert(std::is_same_v<typename decltype(vec2)::value_type, float>);
+
+	ASSERT_FLOAT_EQ(5.0f, vec2.x);
+	ASSERT_FLOAT_EQ(1.0f, vec2.y);
+	ASSERT_FLOAT_EQ(6.0f, vec2.z);
+
+}
+
 
 TEST(Vector3D_Access, AccessibleAsXYZ)
 {
@@ -637,8 +660,8 @@ TEST(Vector3D_Dot, VectorWhenDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumb
 TEST(Vector3D_Dot, VectorWhenStaticWrapperDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
 {
 	// Arrange
-	const math::Vector3D<float> vec1(1.0f, 2.0f, 3.0f);
-	const math::Vector3D<float> vec2(4.0f, -5.0f, 6.0f);
+	const math::Vector3D vec1(1.0f, 2.0f, 3.0f);
+	const math::Vector3D vec2(4.0f, -5.0f, 6.0f);
 
 	// Act
 	const float res = math::Vector3D<float>::dot(vec1, vec2);
@@ -657,7 +680,7 @@ TEST(Vector3D_Dot, VectorWhenDotWithAnotherNonOrthogonalVectorOfDifferentTypeRet
 	const auto res = vec1.dot(vec2);
 
 	// Assert
-	static_assert(std::is_same_v<typename decltype(res), const double>);
+	static_assert(std::is_same_v<decltype(res), const double>);
 	EXPECT_DOUBLE_EQ(12.0, res);
 }
 

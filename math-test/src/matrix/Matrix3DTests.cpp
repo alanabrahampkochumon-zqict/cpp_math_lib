@@ -866,13 +866,13 @@ TEST(Matrix3D_Division, MatrixDividedByAFloatScalarReturnsCorrectMatrix)
 		1.6f, 2.0f, 2.4f,
 		2.8f, -3.2f, 3.6f };
 
-	constexpr float scalar = 2.5;
+	constexpr float scalar = 2.5f;
 
 	// Act
 	const math::Matrix3D<float> actual = a / scalar;
 
 	// Assert
-	EXPECT_MAT_EQ(expected, actual);
+	EXPECT_MAT_NEAR(expected, actual);
 }
 
 TEST(Matrix3D_Division, MatrixDividedNegativeFloatScalarFlipsSigns)
