@@ -300,7 +300,9 @@ namespace math
 	template <typename S, typename>
 	Matrix3D<T>& Matrix3D<T>::operator/=(const S& scalar)
 	{
-		T factor = T(1) / static_cast<T>(scalar);
+		using R = std::common_type_t<T, S>;
+		R factor = R(1) / static_cast<R>(scalar);
+
 		columns[0] *= factor;
 		columns[1] *= factor;
 		columns[2] *= factor;

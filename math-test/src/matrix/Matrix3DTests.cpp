@@ -444,6 +444,27 @@ TEST(Matrix3D_Product, MatrixTimesAFloatScalarReturnsCorrectMatrix)
 	EXPECT_MAT_EQ(expected, b);
 }
 
+TEST(Matrix3D_Product, IntegerMatrixTimesEqualAFloatScalarReturnsCorrectMatrixWithMinimalPrecisionLoss)
+{
+	// Arrange
+	math::Matrix3D a = {
+		1, 2, 3,
+		4, 5, 6,
+		7, -8, 9};
+	constexpr float scalar = 2.5f;
+
+	const math::Matrix3D expected = {
+		2, 5, 7,
+		10, 12, 15,
+		17, -20, 22 };
+
+	// Act
+	a *= scalar;
+
+	// Assert
+	EXPECT_MAT_EQ(expected, a);
+}
+
 TEST(Matrix3D_Product, MatrixTimesNegativeFloatScalarFlipsSigns)
 {
 	// Arrange
@@ -936,6 +957,27 @@ TEST(Matrix3D_Division, MatrixDividesEqualDoubleScalarIsTheSameMatrixWithoutType
 	static_assert(std::is_same_v<typename decltype(a)::value_type, float>, "Assertion Failed (Matrix3D): Float /= Double = Float");
 	EXPECT_MAT_EQ(b, a);
 }
+
+TEST(Matrix3D_Division, IntegerMatrixDivideEqualFloatScalarIsTheSameMatrixWithMinimalPrecisionLoss)
+{
+	// Arrange
+	math::Matrix3D a = {
+		1, 2, 3,
+		4, 5, 6,
+		7, -8, 9 };
+	const math::Matrix3D b = {
+		4, 8, 12,
+		16, 20, 24,
+		28, -32, 36 };
+	constexpr float scalar = 0.25f;
+
+	// Act
+	a /= scalar;
+
+	// Assert
+	EXPECT_MAT_EQ(b, a);
+}
+
 
 /**
  * DETERMINANTS
