@@ -54,7 +54,7 @@ TEST(Matrix3D_Initialization, InitializedWithThree3DVectorsProvidesCorrectMatrix
 
 
 	// Assert
-	for (size_t i = 0; i < size; ++i)
+	for (std::size_t i = 0; i < size; ++i)
 		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowSize, i % rowSize));
 }
 
@@ -87,12 +87,51 @@ TEST(Matrix3D_Initialization, CanMutateValueAtRowColumn)
 	math::Matrix3D<float> mat;
 
 	// Act
-	for (size_t i = 0; i < size; ++i)
+	for (std::size_t i = 0; i < size; ++i)
 		mat(i / rowSize, i % rowSize) = static_cast<float>(i);
 
 	// Assert
-	for (size_t i = 0; i < size; ++i)
+	for (std::size_t i = 0; i < size; ++i)
 		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowSize, i % rowSize));
+}
+
+TEST(Matrix3D_Initialization, ConversionConstructorHandlesTypeDemotion)
+{
+	// Arrange
+	math::Matrix3D<double> mat;
+	
+
+	// Act
+	math::Matrix3D<float> copy(mat);
+	copy(0, 0) = 5.0f;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(copy)::value_type, float>);
+	EXPECT_MAT_IDENTITY(mat);
+
+	EXPECT_FLOAT_EQ(5.0f, copy(0, 0));
+	for (std::size_t i = 1; i < size; ++i)
+		EXPECT_FLOAT_EQ(i % rowSize == i / rowSize, copy(i / rowSize, i % rowSize));
+
+}
+
+TEST(Matrix3D_Initialization, ConversionConstructorHandlesTypePromotion)
+{
+	// Arrange
+	math::Matrix3D<float> mat;
+
+	// Act
+	math::Matrix3D<double> copy(mat);
+	copy(0, 0) = 5.0;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(copy)::value_type, double>);
+	EXPECT_MAT_IDENTITY(mat);
+
+	EXPECT_DOUBLE_EQ(5.0f, copy(0, 0));
+	for (std::size_t i = 1; i < size; ++i)
+		EXPECT_DOUBLE_EQ(i % rowSize == i / rowSize, copy(i / rowSize, i % rowSize)); // i % rowSize == i / rowSize => Gives diagonal entries as 1
+
 }
 
 TEST(Matrix3D_Access, CanBeAccessedAsAVectorAtIndex)
