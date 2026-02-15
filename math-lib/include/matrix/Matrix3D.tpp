@@ -284,10 +284,7 @@ namespace math
 	template <typename S, typename>
 	Matrix3D<T>& Matrix3D<T>::operator*=(const Matrix3D<S>& other)
 	{
-		//Matrix3D<std::common_type_t<T, S>> result = (*this) * other;
-		//*this = result;
-		other[0];
-		return *this;
+		return *this = (*this) * other;
 	}
 
 	template <typename T>
