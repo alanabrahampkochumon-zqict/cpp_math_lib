@@ -22,6 +22,8 @@ list(TRANSFORM MatrixHeaderFiles PREPEND ${MatrixDirectory})
 set(MatrixTemplateDefinitionFiles Matrix2D.tpp Matrix3D.tpp Matrix4D.tpp)
 list(TRANSFORM MatrixTemplateDefinitionFiles PREPEND ${MatrixDirectory})
 
+set(GeneralFiles "include/MathTraits.h")
+
 target_sources(MathLib
     INTERFACE
     FILE_SET HEADERS
@@ -31,6 +33,7 @@ target_sources(MathLib
         ${VectorTemplateDefinitionFiles}
         ${MatrixHeaderFiles}
         ${MatrixTemplateDefinitionFiles}
+        ${GeneralFiles}
 )
 
 
@@ -50,6 +53,7 @@ add_custom_target(
     ${VectorTemplateDefinitionFiles}
     ${MatrixHeaderFiles}
     ${MatrixTemplateDefinitionFiles}
+    ${GeneralFiles}
 )
 
 source_group("Header Files\\vector" FILES ${VectorHeaderFiles})

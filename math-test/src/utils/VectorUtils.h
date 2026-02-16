@@ -1,12 +1,88 @@
 #pragma once
 
-#include <gtest/gtest.h>
 #include <cmath>
 #include <type_traits>
+
+#include <gtest/gtest.h>
 
 #include <vector/Vector2D.h>
 #include <vector/Vector3D.h>
 #include <vector/Vector4D.h>
+
+// TODO: Template to single namespace functions
+namespace TestUtils
+{
+	static unsigned int SIZE = 2;
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic_v<T>>, typename = std::enable_if_t<std::is_arithmetic_v<U>>>
+	void EXPECT_VEC_EQ(math::Vector2D<T> expected, math::Vector2D<U> actual)
+	{
+		for (unsigned int i = 0; i < SIZE; i++)
+		{
+			if constexpr (std::is_same_v<T, float>)
+			{
+				EXPECT_FLOAT_EQ(expected[i], static_cast<T>(actual[i]));
+			}
+			else if (std::is_same_v<T, double>)
+			{
+				EXPECT_DOUBLE_EQ(expected[i], static_cast<T>(actual[i]));
+			}
+			else
+			{
+				EXPECT_EQ(expected[i], static_cast<T>(actual[i]));
+			}
+		}
+	}
+
+	template<typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
+	void EXPECT_VEC_UNIT(math::Vector2D<T> actual)
+	{
+		for (unsigned int i = 0; i < SIZE; i++)
+		{
+			if constexpr (std::is_same_v<T, float>)
+			{
+				EXPECT_FLOAT_EQ(T(1), static_cast<T>(actual[i]));
+			}
+			else if (std::is_same_v<T, double>)
+			{
+				EXPECT_DOUBLE_EQ(T(1), static_cast<T>(actual[i]));
+			}
+			else
+			{
+				EXPECT_EQ(T(1), static_cast<T>(actual[i]));
+			}
+		}
+	}
+
+	template<typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
+	void EXPECT_VEC_ZERO(math::Vector2D<T> actual)
+	{
+		for (unsigned int i = 0; i < SIZE; i++)
+		{
+			if constexpr (std::is_same_v<T, float>)
+			{
+				EXPECT_FLOAT_EQ(T(0), static_cast<T>(actual[i]));
+			}
+			else if (std::is_same_v<T, double>)
+			{
+				EXPECT_DOUBLE_EQ(T(0), static_cast<T>(actual[i]));
+			}
+			else
+			{
+				EXPECT_EQ(T(0), static_cast<T>(actual[i]));
+			}
+		}
+	}
+
+	template<typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
+	void EXPECT_VEC_INF(math::Vector2D<T> actual)
+	{
+		EXPECT_TRUE(std::isinf(actual.x));
+		EXPECT_TRUE(std::isinf(actual.y));
+	}
+}
+
+
 
 // TODO: Template to single namespace functions
 namespace TestUtils::Vector2D

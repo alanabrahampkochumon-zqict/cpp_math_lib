@@ -143,6 +143,21 @@ TEST(Vector2D, VectorPlusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
 	EXPECT_FLOAT_EQ(-5.0f, vec1.y);
 }
 
+TEST(Vector2D, VectorPlusVectorOfDifferentTypesReturnsVectorWithTypePromotion)
+{
+	// Arrange
+	const math::Vector2D vec1(3.0f, 0.0f);
+	const math::Vector2D vec2(9.0, -5.0);
+
+	// Act
+	const math::Vector2D result = vec1 + vec2;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(result)::value_type, double>);
+	EXPECT_DOUBLE_EQ(12.0, result.x);
+	EXPECT_DOUBLE_EQ(-5.0, result.y);
+}
+
 TEST(Vector2D, VectorSubtraction)
 {
 	// Arrange

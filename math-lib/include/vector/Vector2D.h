@@ -1,6 +1,7 @@
 #pragma once
 
 #include <type_traits>
+#include "../MathTraits.h"
 
 namespace math
 {
@@ -35,7 +36,11 @@ namespace math
 		T& operator[](int i);
 		const T& operator[](int i) const;
 
-		Vector2D operator+(const Vector2D& other) const;
+		template<typename S>
+		auto operator+(const Vector2D<S>& other) const
+			->Vector2D<std::common_type_t<S, T>>
+			requires std::is_arithmetic_v<S>;
+
 		Vector2D& operator+=(const Vector2D& other);
 		Vector2D operator-(const Vector2D& other) const;
 		Vector2D& operator-=(const Vector2D& other);
