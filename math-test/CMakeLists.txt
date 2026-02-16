@@ -1,5 +1,7 @@
 add_executable(MathTest)
 
+target_compile_features(MathTest PRIVATE cxx_std_20)
+
 # Vector Test Sources
 set(VectorTestDirectory "src/vector/")
 set(VectorTestFiles Vector2DTests.cpp Vector3DTests.cpp Vector4DTests.cpp)

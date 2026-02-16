@@ -1,5 +1,8 @@
 add_library(MathLib INTERFACE)
 
+set_property(TARGET MathLib PROPERTY CXX_STANDARD 20)
+set_property(TARGET MathLib PROPERTY CXX_STANDARD_REQUIRED ON)
+
 target_compile_options(MathLib INTERFACE
     $<$<CXX_COMPILER_ID:MSVC>:/W4;/wd4201;/WX>
     $<$<CXX_COMPILER_ID:GNU,Clang>:-Wall;-Wextra;-Wpedantic;-Wno-gnu-anonymous-struct;-Werror>
