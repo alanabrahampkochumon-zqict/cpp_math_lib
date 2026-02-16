@@ -13,8 +13,8 @@ namespace TestUtils::Matrix3D
 	static unsigned int SIZE = 9;
 	static unsigned int ROW_SIZE = 3;
 
-	template<typename T, typename S, typename = std::enable_if_t < std::is_arithmetic_v<T>>, typename = std::enable_if_t < std::is_arithmetic_v<S>>>
-	void EXPECT_MAT_EQ(math::Matrix3D<T> expected, math::Matrix3D<S> actual)
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic_v<T>>, typename = std::enable_if_t<std::is_arithmetic_v<U>>>
+	void EXPECT_MAT_EQ(math::Matrix3D<T> expected, math::Matrix3D<U> actual)
 	{
 		for (unsigned int i = 0; i < SIZE; i++)
 		{
@@ -34,8 +34,8 @@ namespace TestUtils::Matrix3D
 	}
 	// TODO: Add checks for precision
 
-	template<typename T, typename S, typename = std::enable_if_t < std::is_floating_point_v<T>>, typename = std::enable_if_t < std::is_floating_point_v<S>>>
-	void EXPECT_MAT_NEAR(math::Matrix3D<T> expected, math::Matrix3D<S> actual, double tolerance = 1e-5)
+	template<typename T, typename U, typename = std::enable_if_t < std::is_floating_point_v<T>>, typename = std::enable_if_t < std::is_floating_point_v<U>>>
+	void EXPECT_MAT_NEAR(math::Matrix3D<T> expected, math::Matrix3D<U> actual, double tolerance = 1e-5)
 	{
 		if (std::is_same_v<T, double> && tolerance == 1e-5) // Hacky trick for only upgrading if user hasn't changed from default tolerance.
 			tolerance = 1e-11;
