@@ -2,6 +2,9 @@
 
 #include <vector/Vector2D.h>
 #include <type_traits>
+
+#include "../utils/MatrixUtils.h"
+#include "../utils/VectorUtils.h"
 /*
 * INITIALIZATION AND ACCESS TESTS
 */
@@ -148,14 +151,14 @@ TEST(Vector2D, VectorPlusVectorOfDifferentTypesReturnsVectorWithTypePromotion)
 	// Arrange
 	const math::Vector2D vec1(3.0f, 0.0f);
 	const math::Vector2D vec2(9.0, -5.0);
+	const math::Vector2D expected(12.0, -5.0);
 
 	// Act
 	const math::Vector2D result = vec1 + vec2;
 
 	// Assert
 	static_assert(std::is_same_v<typename decltype(result)::value_type, double>);
-	EXPECT_DOUBLE_EQ(12.0, result.x);
-	EXPECT_DOUBLE_EQ(-5.0, result.y);
+	TestUtils::EXPECT_VEC_EQ(expected, result);
 }
 
 TEST(Vector2D, VectorSubtraction)
