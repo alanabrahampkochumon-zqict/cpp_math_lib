@@ -16,6 +16,17 @@ TEST(Vector2D, EmptyConstructorInitializesZeroVector)
 	EXPECT_FLOAT_EQ(0.0f, vec.y);
 }
 
+TEST(Vector2D, IntializationWithIntegersSupported)
+{
+	// Arrange & Act
+	const math::Vector2D vec(3, 1);
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(vec)::value_type, int>);
+	EXPECT_EQ(3, vec.x);
+	EXPECT_EQ(1, vec.y);
+}
+
 TEST(Vector2D, ConstructorParametersInitializesVector)
 {
 	// Arrange & Act

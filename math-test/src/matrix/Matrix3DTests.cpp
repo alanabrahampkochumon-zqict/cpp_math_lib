@@ -30,6 +30,16 @@ TEST(Matrix3D_Initialization, InitializedWithOutParametersProvidesIdentityMatrix
 	EXPECT_MAT_IDENTITY(mat);
 }
 
+TEST(Matrix3D_Initialization, InitializationSupportedForIntegers)
+{
+	// Arrange and Act
+	const math::Matrix3D<int> mat;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(mat)::value_type, int>);
+	EXPECT_MAT_IDENTITY(mat);
+}
+
 TEST(Matrix3D_Initialization, InitializedWithParametersProvidesCorrectMatrix)
 {
 	// Arrange & Act

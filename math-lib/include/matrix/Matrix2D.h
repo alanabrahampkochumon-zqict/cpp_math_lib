@@ -9,9 +9,9 @@ namespace math
 	template<typename T>
 	struct Matrix2D
 	{
-		static_assert(std::is_floating_point_v<T>, "Matrix2D can only be instantiated with floats(float and double)");
+		static_assert(std::is_arithmetic_v<T>, "Matrix2D can only be instantiated with numbers like floats, integers, etc.");
 
-		template<typename U> friend struct Matrix2D;
+		using value_type = T;
 
 	private:
 		union
@@ -24,6 +24,9 @@ namespace math
 		Matrix2D();
 		Matrix2D(T v_0_0, T v_0_1, T v_1_0, T v_1_1);
 		Matrix2D(Vector2D<T> vec1, Vector2D<T> vec2);
+
+		template <typename S, std::enable_if_t<std::is_arithmetic_v<S>>>
+		Matrix2D(const Matrix2D& other);
 
 		Vector2D<T>& operator[](size_t index);
 		const Vector2D<T>& operator[](size_t index) const;

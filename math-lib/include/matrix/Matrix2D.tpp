@@ -37,6 +37,13 @@ namespace math
 	}
 
 	template <typename T>
+	template <typename S, std::enable_if_t<std::is_arithmetic_v<S>>>
+	Matrix2D<T>::Matrix2D(const Matrix2D& other)
+	{
+		// TODO:
+	}
+
+	template <typename T>
 	Vector2D<T>& Matrix2D<T>::operator[](size_t index)
 	{
 		return columns[index];

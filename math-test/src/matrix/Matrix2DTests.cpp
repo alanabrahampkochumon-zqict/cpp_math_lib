@@ -10,6 +10,11 @@
 
 using namespace TestUtils::Matrix2D;
 
+
+static constexpr std::size_t size = 4;
+static constexpr std::size_t rowSize = 2;
+
+
 /*************************************
  *                                   *
  *         INITIALIZATIONS           *
@@ -25,9 +30,15 @@ TEST(Matrix2D_Initialization, InitializedWithOutParametersProvidesIdentityMatrix
 	EXPECT_MAT_IDENTITY(mat);
 }
 
-static constexpr std::size_t size = 4;
-static constexpr std::size_t rowSize = 2;
+TEST(Matrix2D_Initialization, InitializationSupportedForIntegers)
+{
+	// Arrange and Act
+	const math::Matrix2D<int> mat;
 
+	// Assert
+	static_assert(std::is_same_v<typename decltype(mat)::value_type, int>);
+	EXPECT_MAT_IDENTITY(mat);
+}
 
 TEST(Matrix2D_Initialization, InitializedWithParametersProvidesCorrectMatrix)
 {
