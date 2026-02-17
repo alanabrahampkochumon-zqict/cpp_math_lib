@@ -38,15 +38,18 @@ namespace math
 		T& operator[](std::size_t i);
 		const T& operator[](std::size_t i) const;
 
-		template<arithmetic S>
-		auto operator+(const Vector2D<S>& other) const
-			->Vector2D<std::common_type_t<S, T>>;
+		template<arithmetic U>
+		auto operator+(const Vector2D<U>& other) const
+			->Vector2D<std::common_type_t<U, T>>;
 
 		template<arithmetic U>
 		Vector2D& operator+=(const Vector2D<U>& other);
 
-		Vector2D operator-(const Vector2D& other) const;
-		Vector2D& operator-=(const Vector2D& other);
+		template<arithmetic U>
+		auto operator-(const Vector2D<U>& other) const -> Vector2D<std::common_type_t<T,U>>;
+
+		template<arithmetic U>
+		Vector2D& operator-=(const Vector2D<U>& other);
 
 		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
 		Vector2D operator*(const S& scalar) const;

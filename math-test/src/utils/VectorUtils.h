@@ -19,7 +19,7 @@ namespace TestUtils
 
 		static_assert(T::dimension == U::dimension, "Vectors must have the same dimension (e.g. both 3D)");
 
-		constexpr std::size_t elementCount = sizeof(T) / sizeof(ValueType);
+		constexpr std::size_t elementCount = T::dimension;
 
 		for (std::size_t i = 0; i < elementCount; ++i)
 		{
@@ -44,7 +44,7 @@ namespace TestUtils
 		using ValueType = T::value_type;
 		ValueType expected = ValueType(1);
 
-		std::size_t elementCount = sizeof(T) / sizeof(ValueType);
+		constexpr std::size_t elementCount = T::dimension;
 
 		for (std::size_t i = 0; i < elementCount; ++i)
 		{
@@ -69,7 +69,7 @@ namespace TestUtils
 		using ValueType = T::value_type;
 		ValueType expected = ValueType(0);
 
-		std::size_t elementCount = sizeof(T) / sizeof(ValueType);
+		constexpr std::size_t elementCount = T::dimension;
 
 		for (std::size_t i = 0; i < elementCount; ++i)
 		{
@@ -91,7 +91,7 @@ namespace TestUtils
 	template<math::IsVector T>
 	void EXPECT_VEC_INF(T vector)
 	{
-		std::size_t elementCount = sizeof(T) / sizeof(T::value_type);
+		constexpr std::size_t elementCount = T::dimension;
 
 		for (std::size_t i = 0; i < elementCount; ++i)
 		{

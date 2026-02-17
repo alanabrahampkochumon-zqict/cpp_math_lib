@@ -118,7 +118,7 @@ TEST(Vector2D, dvec2Return2DDoubleVector)
 *  VECTOR OPERATIONS TESTS
 */
 
-TEST(Vector2D, VectorPlusVectorGivesCorrectVector)
+TEST(Vector2D, VectorPlusVectorReturnsCorrectVector)
 {
 	// Arrange
 	const math::Vector2D vec1(3.0f, 0.0f);
@@ -176,18 +176,18 @@ TEST(Vector2D, VectorPlusEqualsVectorOfDifferentTypesReturnsVectorWithTypePromot
 	EXPECT_VEC_EQ(expected, vec1);
 }
 
-TEST(Vector2D, VectorSubtraction)
+TEST(Vector2D, VectorMinusVectorReturnsCorrectVector)
 {
 	// Arrange
 	const math::Vector2D vec1(3.0f, 0.0f);
 	const math::Vector2D vec2(9.0f, -5.0f);
+	const math::Vector2D expected(-6.0f, 5.0f);
 
 	// Act
 	const math::Vector2D result = vec1 - vec2;
 
 	// Assert
-	EXPECT_FLOAT_EQ(-6.0f, result.x);
-	EXPECT_FLOAT_EQ(5.0f, result.y);
+	EXPECT_VEC_EQ(expected, result);
 }
 
 TEST(Vector2D, VectorMinusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
@@ -195,13 +195,43 @@ TEST(Vector2D, VectorMinusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues
 	// Arrange
 	math::Vector2D vec1(3.0f, 0.0f);
 	const math::Vector2D vec2(9.0f, -5.0f);
+	const math::Vector2D expected(-6.0f, 5.0f);
 
 	// Act
 	vec1 -= vec2;
 
 	// Assert
-	EXPECT_FLOAT_EQ(-6.0f, vec1.x);
-	EXPECT_FLOAT_EQ(5.0f, vec1.y);
+	EXPECT_VEC_EQ(expected, vec1);
+}
+
+TEST(Vector2D, VectorMinusVectorOfDifferentTypeReturnsVectorWithTypePromotion)
+{
+	// Arrange
+	const math::Vector2D vec1(3.0f, 0.0f);
+	const math::Vector2D vec2(9.0, -5.0);
+	const math::Vector2D expected(-6.0, 5.0);
+
+	// Act
+	const math::Vector2D result = vec1 - vec2;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(result)::value_type, double>);
+	EXPECT_VEC_EQ(expected, result);
+}
+
+TEST(Vector2D, VectorMinusEqualsAnotherVectorWithDifferentTypeReturnsFirstVectorWithoutTypePromotion)
+{
+	// Arrange
+	math::Vector2D vec1(3.0f, 0.0f);
+	const math::Vector2D vec2(9.0, -5.0);
+	const math::Vector2D expected(-6.0f, 5.0f);
+
+	// Act
+	vec1 -= vec2;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(vec1)::value_type, float>);
+	EXPECT_VEC_EQ(expected, vec1);
 }
 
 TEST(Vector2D, ZeroVectorReturnsMagnitudeZero)

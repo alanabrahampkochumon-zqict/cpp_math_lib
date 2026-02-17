@@ -40,18 +40,20 @@ namespace math {
         return *this;
     }
 
-
     template <typename T>
-    Vector2D<T> Vector2D<T>::operator-(const Vector2D& other) const
+    template <arithmetic U>
+    auto Vector2D<T>::operator-(const Vector2D<U>& other) const -> Vector2D<std::common_type_t<T, U>>
     {
-        return Vector2D(x - other.x, y - other.y);
+        using R = std::common_type_t<T, U>;
+        return Vector2D<R>(x - other.x, y - other.y);
     }
 
     template <typename T>
-    Vector2D<T>& Vector2D<T>::operator-=(const Vector2D& other)
+    template <arithmetic U>
+    Vector2D<T>& Vector2D<T>::operator-=(const Vector2D<U>& other)
     {
-        x -= other.x;
-        y -= other.y;
+        x -= static_cast<T>(other.x);
+        y -= static_cast<T>(other.y);
         return *this;
     }
 
