@@ -12,13 +12,13 @@ namespace math {
     Vector2D<T>::Vector2D(T v1, T v2): x(v1), y(v2) { }
 
     template <typename T>
-    T& Vector2D<T>::operator[](int i)
+    T& Vector2D<T>::operator[](std::size_t i)
     {
         return ( &x)[i];
     }
 
     template <typename T>
-    const T& Vector2D<T>::operator[](int i) const
+    const T& Vector2D<T>::operator[](std::size_t i) const
     {
         return (&x)[i];
     }

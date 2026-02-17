@@ -33,8 +33,8 @@ namespace math
 		Vector2D(T v1, T v2);
 
 
-		T& operator[](int i);
-		const T& operator[](int i) const;
+		T& operator[](std::size_t i);
+		const T& operator[](std::size_t i) const;
 
 		template<typename S>
 		auto operator+(const Vector2D<S>& other) const
