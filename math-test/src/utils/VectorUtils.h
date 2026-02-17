@@ -10,7 +10,6 @@
 #include <vector/Vector3D.h>
 #include <vector/Vector4D.h>
 
-// TODO: Template to single namespace functions
 namespace TestUtils
 {
 	template<math::IsVector T, math::IsVector U>
@@ -18,9 +17,7 @@ namespace TestUtils
 	{
 		using ValueType = T::value_type;
 
-		static_assert(sizeof(T) / sizeof(ValueType) ==
-			sizeof(U) / sizeof(ValueType),
-			"Vectors must have the same dimension (e.g. both 3D)");
+		static_assert(T::dimension == U::dimension, "Vectors must have the same dimension (e.g. both 3D)");
 
 		constexpr std::size_t elementCount = sizeof(T) / sizeof(ValueType);
 
@@ -51,7 +48,7 @@ namespace TestUtils
 
 		for (std::size_t i = 0; i < elementCount; ++i)
 		{
-			if constexpr (std::is_same_v<T, float>)
+			if constexpr (std::is_same_v<ValueType, float>)
 			{
 				EXPECT_FLOAT_EQ(expected, static_cast<ValueType>(vector[i]));
 			}
@@ -67,7 +64,7 @@ namespace TestUtils
 	}
 
 	template <math::IsVector T>
-	void EXPECT_VEC_Zero(T vector)
+	void EXPECT_VEC_ZERO(T vector)
 	{
 		using ValueType = T::value_type;
 		ValueType expected = ValueType(0);
@@ -76,7 +73,7 @@ namespace TestUtils
 
 		for (std::size_t i = 0; i < elementCount; ++i)
 		{
-			if constexpr (std::is_same_v<T, float>)
+			if constexpr (std::is_same_v<ValueType, float>)
 			{
 				EXPECT_FLOAT_EQ(expected, static_cast<ValueType>(vector[i]));
 			}

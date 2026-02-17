@@ -8,6 +8,7 @@
 /*
 * INITIALIZATION AND ACCESS TESTS
 */
+using namespace TestUtils;
 
 TEST(Vector2D, EmptyConstructorInitializesZeroVector)
 {
@@ -15,8 +16,7 @@ TEST(Vector2D, EmptyConstructorInitializesZeroVector)
 	const math::Vector2D<float> vec;
 
 	// Assert
-	EXPECT_FLOAT_EQ(0.0f, vec.x);
-	EXPECT_FLOAT_EQ(0.0f, vec.y);
+	EXPECT_VEC_ZERO(vec);
 }
 
 TEST(Vector2D, IntializationWithIntegersSupported)
@@ -118,18 +118,18 @@ TEST(Vector2D, dvec2Return2DDoubleVector)
 *  VECTOR OPERATIONS TESTS
 */
 
-TEST(Vector2D, VectorAddition)
+TEST(Vector2D, VectorPlusVectorGivesCorrectVector)
 {
 	// Arrange
 	const math::Vector2D vec1(3.0f, 0.0f);
 	const math::Vector2D vec2(9.0f, -5.0f);
+	const math::Vector2D expected(12.0f, -5.0f);
 
 	// Act
 	const math::Vector2D result = vec1 + vec2;
 
 	// Assert
-	EXPECT_FLOAT_EQ(12.0f, result.x);
-	EXPECT_FLOAT_EQ(-5.0f, result.y);
+	EXPECT_VEC_EQ(expected, result);
 }
 
 TEST(Vector2D, VectorPlusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
@@ -137,13 +137,13 @@ TEST(Vector2D, VectorPlusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
 	// Arrange
 	math::Vector2D vec1(3.0f, 0.0f);
 	const math::Vector2D vec2(9.0f, -5.0f);
+	const math::Vector2D expected(12.0f, -5.0f);
 
 	// Act
 	vec1 += vec2;
 
 	// Assert
-	EXPECT_FLOAT_EQ(12.0f, vec1.x);
-	EXPECT_FLOAT_EQ(-5.0f, vec1.y);
+	EXPECT_VEC_EQ(expected, vec1);
 }
 
 TEST(Vector2D, VectorPlusVectorOfDifferentTypesReturnsVectorWithTypePromotion)
@@ -158,7 +158,22 @@ TEST(Vector2D, VectorPlusVectorOfDifferentTypesReturnsVectorWithTypePromotion)
 
 	// Assert
 	static_assert(std::is_same_v<typename decltype(result)::value_type, double>);
-	TestUtils::EXPECT_VEC_EQ(expected, result);
+	EXPECT_VEC_EQ(expected, result);
+}
+
+TEST(Vector2D, VectorPlusEqualsVectorOfDifferentTypesReturnsVectorWithTypePromotion)
+{
+	// Arrange
+	math::Vector2D vec1(3.0f, 0.0f);
+	const math::Vector2D vec2(9.0, -5.0);
+	const math::Vector2D expected(12.0f, -5.0f);
+
+	// Act
+	vec1 += vec2;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(vec1)::value_type, float>);
+	EXPECT_VEC_EQ(expected, vec1);
 }
 
 TEST(Vector2D, VectorSubtraction)

@@ -12,6 +12,8 @@ namespace math
 
 		using value_type = T;
 
+		static constexpr std::size_t dimension = 2;
+
 		union
 		{
 			struct
@@ -41,7 +43,9 @@ namespace math
 			-> Vector2D<std::common_type_t<S, T>>
 			requires std::is_arithmetic_v<S>;
 
-		Vector2D& operator+=(const Vector2D& other);
+		template<arithmetic U>
+		Vector2D& operator+=(const Vector2D<U>& other);
+
 		Vector2D operator-(const Vector2D& other) const;
 		Vector2D& operator-=(const Vector2D& other);
 

@@ -14,7 +14,7 @@ namespace math {
     template <typename T>
     T& Vector2D<T>::operator[](std::size_t i)
     {
-        return ( &x)[i];
+        return (&x)[i];
     }
 
     template <typename T>
@@ -33,12 +33,14 @@ namespace math {
     }
 
     template <typename T>
-    Vector2D<T>& Vector2D<T>::operator+=(const Vector2D& other)
+    template <arithmetic U>
+    Vector2D<T>& Vector2D<T>::operator+=(const Vector2D<U>& other)
     {
-        x += other.x;
-        y += other.y;
+        x += static_cast<T>(other.x);
+        y += static_cast<T>(other.y);
         return *this;
     }
+
 
     template <typename T>
     Vector2D<T> Vector2D<T>::operator-(const Vector2D& other) const
