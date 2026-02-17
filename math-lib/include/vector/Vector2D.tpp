@@ -24,9 +24,8 @@ namespace math {
     }
 
     template <typename T>
-    template <typename S>
+    template <arithmetic S>
     auto Vector2D<T>::operator+(const Vector2D<S>& other) const -> Vector2D<std::common_type_t<S, T>>
-        requires std::is_arithmetic_v<S>
     {
         using R = std::common_type_t<T, S>;
         return Vector2D<R>(x + other.x, y + other.y);

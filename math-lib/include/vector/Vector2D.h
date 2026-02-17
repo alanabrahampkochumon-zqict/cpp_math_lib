@@ -38,10 +38,9 @@ namespace math
 		T& operator[](std::size_t i);
 		const T& operator[](std::size_t i) const;
 
-		template<typename S>
+		template<arithmetic S>
 		auto operator+(const Vector2D<S>& other) const
-			-> Vector2D<std::common_type_t<S, T>>
-			requires std::is_arithmetic_v<S>;
+			->Vector2D<std::common_type_t<S, T>>;
 
 		template<arithmetic U>
 		Vector2D& operator+=(const Vector2D<U>& other);
