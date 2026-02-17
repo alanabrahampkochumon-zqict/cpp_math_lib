@@ -486,68 +486,82 @@ TEST(Vector2D_Division, IntegerVectorDivideEqualsAFloatReturnsVectorWithMinimalP
 }
 
 // Dot Product
-TEST(Vector2D, VectorWhenDotWithItselfReturnsOne)
+TEST(Vector2D_Dot, VectorWhenDotWithItselfReturnsOne)
 {
 	// Arrange
 	const math::Vector2D vec(1.0f, 0.0f);
 
 	// Act
-	const float res = vec.dot(vec);
+	const float result = vec.dot(vec);
 
 	// Assert
-	EXPECT_FLOAT_EQ(1.0, res);
+	EXPECT_FLOAT_EQ(1.0, result);
 }
 
-TEST(Vector2D, VectorWhenDotWithOrthogonalVectorReturnZero)
+TEST(Vector2D_Dot, VectorWhenDotWithOrthogonalVectorReturnZero)
 {
 	// Arrange
 	const math::Vector2D vec1(1.0f, 0.0f);
 	const math::Vector2D vec2(0.0f, 1.0f);
 
 	// Act
-	const float res = vec1.dot(vec2);
+	const float result = vec1.dot(vec2);
 
 	// Assert
-	EXPECT_FLOAT_EQ(0.0, res);
+	EXPECT_FLOAT_EQ(0.0, result);
 }
 
-TEST(Vector2D, VectorWhenDotWithOppositeParallelVectorReturnsNegativeOne)
+TEST(Vector2D_Dot, VectorWhenDotWithOppositeParallelVectorReturnsNegativeOne)
 {
 	// Arrange
 	const math::Vector2D vec1(1.0f, 0.0f);
 	const math::Vector2D vec2(-1.0f, 0.0f);
 
 	// Act
-	const float res = vec1.dot(vec2);
+	const float result = vec1.dot(vec2);
 
 	// Assert
-	EXPECT_FLOAT_EQ(-1.0, res);
+	EXPECT_FLOAT_EQ(-1.0, result);
 }
 
-TEST(Vector2D, VectorWhenDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
+TEST(Vector2D_Dot, VectorWhenDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
 {
 	// Arrange
 	const math::Vector2D vec1(1.0f, 2.0f);
 	const math::Vector2D vec2(4.0f, -5.0f);
 
 	// Act
-	const float res = vec1.dot(vec2);
+	const float result = vec1.dot(vec2);
 
 	// Assert
-	EXPECT_FLOAT_EQ(-6.0, res);
+	EXPECT_FLOAT_EQ(-6.0, result);
 }
 
-TEST(Vector2D, VectorWhenStaticWrapperDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
+TEST(Vector2D_Dot, VectorWhenStaticWrapperDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
 {
 	// Arrange
 	const math::Vector2D vec1(1.0f, 2.0f);
 	const math::Vector2D vec2(4.0f, -5.0f);
 
 	// Act
-	const float res = math::Vector2D<float>::dot(vec1, vec2);
+	const float result = math::Vector2D<float>::dot(vec1, vec2);
 
 	// Assert
-	EXPECT_FLOAT_EQ(-6.0, res);
+	EXPECT_FLOAT_EQ(-6.0f, result);
+}
+
+TEST(Vector2D_Dot, VectorWhenDotWithNonOrthogonalVectorOfDifferentTypeReturnsNumberWithTypePromotion)
+{
+	// Arrange
+	const math::Vector2D vec1(1.0f, 2.0f);
+	const math::Vector2D vec2(4.0, -5.0);
+
+	// Act
+	const auto result = vec1.dot(vec2);
+
+	// Assert
+	static_assert(std::is_same_v<decltype(result), const double>);
+	EXPECT_DOUBLE_EQ(-6.0, result);
 }
 
 TEST(Vector2D, UnitXVectorWhenCrossWithUnitYVectorReturnsOne)
@@ -560,7 +574,7 @@ TEST(Vector2D, UnitXVectorWhenCrossWithUnitYVectorReturnsOne)
 	const float res = vec1.cross(vec2);
 
 	// Assert
-	EXPECT_FLOAT_EQ(1.0, res);
+	EXPECT_FLOAT_EQ(1.0f, res);
 }
 
 TEST(Vector2D, UnitYVectorWhenCrossWithUnitXVectorReturnsUnitNegativeOne)
@@ -657,13 +671,14 @@ TEST(Vector2D_Normalize, VectorWhenNormalizedReturnsANormalVector)
 {
 	// Arrange
 	math::Vector2D vec(4.0f, 3.0f);
-
+	const math::Vector2D expected(0.8f, 0.6f);
+	
 	// Act
 	math::Vector2D normalized = vec.normalize();
 
 	// Assert
-	EXPECT_FLOAT_EQ(0.8f, normalized.x);
-	EXPECT_FLOAT_EQ(0.6f, normalized.y);
+	EXPECT_VEC_EQ(expected, normalized);
+	EXPECT_FLOAT_EQ(1.0f, normalized.mag());
 }
 
 

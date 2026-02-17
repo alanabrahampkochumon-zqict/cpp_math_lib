@@ -63,8 +63,14 @@ namespace math
 		template <arithmetic S>
 		Vector2D& operator/=(S scalar);
 
-		T dot(const Vector2D& other) const;
+		template <arithmetic U>
+		auto dot(const Vector2D<U>& other) const -> std::common_type_t<T, U>;
+
+		template<arithmetic U>
+		static auto dot(const Vector2D& vectorA, const Vector2D<U>& vectorB) ->std::common_type_t<T, U>;
+
 		T cross(const Vector2D& other) const;
+		static T cross(const Vector2D& vecA, const Vector2D& vecB);
 
 		T mag() const;
 		Vector2D normalize() const;
@@ -91,8 +97,6 @@ namespace math
 		Vector2D<T> reject(const Vector2D<S>& onto, bool ontoNormalized = false) const;
 
 
-		static T dot(const Vector2D& vecA, const Vector2D& vecB);
-		static T cross(const Vector2D& vecA, const Vector2D& vecB);
 
 		// TODO: Refactor with enable_if_t for S
 

@@ -94,6 +94,20 @@ namespace math {
         return *this;
     }
 
+    template <arithmetic T>
+    template <arithmetic S>
+    auto Vector2D<T>::dot(const Vector2D<S>& other) const -> std::common_type_t<T, S>
+    {
+        return x * other.x + y * other.y;
+    }
+
+    template <arithmetic T>
+    template <arithmetic U>
+    auto Vector2D<T>::dot(const Vector2D& vectorA, const Vector2D<U>& vectorB) -> std::common_type_t<T, U>
+    {
+        return vectorA.dot(vectorB);
+    }
+
     template<arithmetic T>
     template<typename S>
     Vector2D<T> Vector2D<T>::project(const Vector2D<S>& onto, bool ontoNormalized) const
@@ -120,12 +134,6 @@ namespace math {
 
 
     template <arithmetic T>
-    T Vector2D<T>::dot(const Vector2D& other) const
-    {
-        return x * other.x + y * other.y;
-    }
-
-    template <arithmetic T>
     T Vector2D<T>::cross(const Vector2D& other) const
     {
         return x * other.y - y * other.x;
@@ -141,12 +149,6 @@ namespace math {
     Vector2D<T> Vector2D<T>::normalize() const
     {
         return (*this) / this->mag();
-    }
-
-    template <arithmetic T>
-    T Vector2D<T>::dot(const Vector2D& vecA, const Vector2D& vecB)
-    {
-        return vecA.dot(vecB);
     }
 
     template <arithmetic T>
