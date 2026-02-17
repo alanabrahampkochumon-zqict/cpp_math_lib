@@ -485,56 +485,6 @@ TEST(Vector2D_Division, IntegerVectorDivideEqualsAFloatReturnsVectorWithMinimalP
 	EXPECT_VEC_EQ(expected, vec);
 }
 
-TEST(Vector2D_Magnitude, ZeroVectorReturnsMagnitudeZero)
-{
-	// Arrange
-	const math::Vector2D vec(0.0f, 0.0f);
-
-	// Act
-	const float magnitude = vec.mag();
-
-	// Assert
-	EXPECT_FLOAT_EQ(0.0f, magnitude);
-}
-
-TEST(Vector2D_Magnitude, OneVectorReturnsMagnitudeNotEqualToOne)
-{
-	// Arrange
-	const math::Vector2D vec(1.0f, 1.0f);
-
-	// Act
-	const float magnitude = vec.mag();
-
-	// Assert
-	EXPECT_NE(1.0f, magnitude);
-}
-
-TEST(Vector2D_Magnitude, NonUnitVectorReturnsCorrectMagnitude)
-{
-	// Arrange
-	const math::Vector2D vec(4.0f, 3.0f);
-
-	// Act
-	const float magnitude = vec.mag();
-
-	// Assert
-	EXPECT_FLOAT_EQ(5.0f, magnitude);
-}
-
-
-TEST(Vector2D, VectorWhenNormalizedReturnsANormalVector)
-{
-	// Arrange
-	math::Vector2D vec(4.0f, 3.0f);
-
-	// Act
-	math::Vector2D normalized = vec.normalize();
-
-	// Assert
-	EXPECT_FLOAT_EQ(0.8f, normalized.x);
-	EXPECT_FLOAT_EQ(0.6f, normalized.y);
-}
-
 // Dot Product
 TEST(Vector2D, VectorWhenDotWithItselfReturnsOne)
 {
@@ -664,6 +614,58 @@ TEST(Vector2D, VectorCrossStaticWrapperWithAnotherNonParallelVectorReturnsPseudo
 	// Assert
 	EXPECT_FLOAT_EQ(12.0f, res);
 }
+
+
+TEST(Vector2D_Magnitude, ZeroVectorReturnsMagnitudeZero)
+{
+	// Arrange
+	const math::Vector2D vec(0.0f, 0.0f);
+
+	// Act
+	const float magnitude = vec.mag();
+
+	// Assert
+	EXPECT_FLOAT_EQ(0.0f, magnitude);
+}
+
+TEST(Vector2D_Magnitude, OneVectorReturnsMagnitudeNotEqualToOne)
+{
+	// Arrange
+	const math::Vector2D vec(1.0f, 1.0f);
+
+	// Act
+	const float magnitude = vec.mag();
+
+	// Assert
+	EXPECT_NE(1.0f, magnitude);
+}
+
+TEST(Vector2D_Magnitude, NonUnitVectorReturnsCorrectMagnitude)
+{
+	// Arrange
+	const math::Vector2D vec(4.0f, 3.0f);
+
+	// Act
+	const float magnitude = vec.mag();
+
+	// Assert
+	EXPECT_FLOAT_EQ(5.0f, magnitude);
+}
+
+
+TEST(Vector2D_Normalize, VectorWhenNormalizedReturnsANormalVector)
+{
+	// Arrange
+	math::Vector2D vec(4.0f, 3.0f);
+
+	// Act
+	math::Vector2D normalized = vec.normalize();
+
+	// Assert
+	EXPECT_FLOAT_EQ(0.8f, normalized.x);
+	EXPECT_FLOAT_EQ(0.6f, normalized.y);
+}
+
 
 TEST(Vector2D, ParallelVectorsWhenProjectedReturnsNonZeroVector)
 {
