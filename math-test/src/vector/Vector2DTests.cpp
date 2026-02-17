@@ -352,7 +352,6 @@ TEST(Vector2D_Mutliplication, FloatVectorTimesADoubleScalarReturnsVectorWithType
 	EXPECT_VEC_EQ(expected, result);
 }
 
-
 TEST(Vector2D_Mutliplication, IntegerVectorTimesEqualADoubleScalarReturnsVectorWithMinimalPrecisionLoss)
 {
 	// Arrange
@@ -361,6 +360,125 @@ TEST(Vector2D_Mutliplication, IntegerVectorTimesEqualADoubleScalarReturnsVectorW
 
 	// Act
 	vec *= 2.5;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(vec)::value_type, int>);
+	EXPECT_VEC_EQ(expected, vec);
+}
+
+TEST(Vector2D_Division, VectorDividedByZeroIsInfinityVector)
+{
+	// Arrange
+	const math::Vector2D vec(3.0f, 1.0f);
+
+	// Act
+	const math::Vector2D result = vec / 0;
+
+	// Assert
+	EXPECT_VEC_INF(result);
+}
+
+TEST(Vector2D_Division, VectorDividedReturnsVectorWithSameValues)
+{
+	// Arrange
+	const math::Vector2D vec(3.0f, 1.0f);
+
+	// Act
+	const math::Vector2D result = vec / 1;
+
+	// Assert
+	EXPECT_VEC_EQ(vec, result);
+}
+
+TEST(Vector2D_Division, VectorDividedByANumberReturnsANewVectorWithCorrectValues)
+{
+	// Arrange
+	const math::Vector2D vec(3.0f, 1.0f);
+	const math::Vector2D expected(1.5f, 0.5f);
+
+	// Act
+	const math::Vector2D result = vec / 2;
+
+	// Assert
+	EXPECT_VEC_EQ(expected, result);
+
+}
+
+TEST(Vector2D_Division, VectorDividedByAFloatReturnsANewVectorWithCorrectValues)
+{
+	// Arrange
+	const math::Vector2D vec(3.0f, 1.0f);
+	const math::Vector2D expected(1.5f, 0.5f);
+
+	// Act
+	const math::Vector2D result = vec / 2.0f;
+
+	// Assert
+	EXPECT_VEC_EQ(expected, result);
+}
+
+TEST(Vector2D_Division, VectorDividesEqualAScalarIsSameVectorWithNewValues)
+{
+	// Arrange
+	math::Vector2D vec(3.0f, 1.0f);
+	const math::Vector2D expected(1.5f, 0.5f);
+
+	// Act
+	vec /= 2;
+
+	// Assert
+	EXPECT_VEC_EQ(expected, vec);
+}
+
+TEST(Vector2D_Division, VectorDividesEqualAFloatIsSameVectorWithNewValues)
+{
+	// Arrange
+	math::Vector2D vec(3.0f, 1.0f);
+	const math::Vector2D expected(1.5f, 0.5f);
+
+	// Act
+	vec /= 2.0;
+
+	// Assert
+	EXPECT_VEC_EQ(expected, vec);
+}
+
+TEST(Vector2D_Division, VectorDividesEqualADoubleIsSameVectorWithoutTypePromotion)
+{
+	// Arrange
+	math::Vector2D vec(3.0f, 1.0f);
+	const math::Vector2D expected(1.5f, 0.5f);
+
+	// Act
+	vec /= 2.0;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(vec)::value_type, float>);
+	EXPECT_VEC_EQ(expected, vec);
+}
+
+TEST(Vector2D_Division, VectorDividedByADoubleReturnsVectorWithTypePromotion)
+{
+	// Arrange
+	const math::Vector2D vec(3.0f, 1.0f);
+	const math::Vector2D expected(1.5f, 0.5f);
+
+	// Act
+	const math::Vector2D result = vec / 2.0;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(result)::value_type, double>);
+	EXPECT_VEC_EQ(expected, result);
+}
+
+TEST(Vector2D_Division, IntegerVectorDivideEqualsAFloatReturnsVectorWithMinimalPrecisionLoss)
+{
+	// Arrange
+	math::Vector2D vec(3, 1);
+	const math::Vector2D expected(12, 4);
+
+	// Act
+	vec /= 0.25f;
 
 	// Assert
 	static_assert(std::is_same_v<typename decltype(vec)::value_type, int>);
@@ -401,84 +519,6 @@ TEST(Vector2D_Magnitude, NonUnitVectorReturnsCorrectMagnitude)
 
 	// Assert
 	EXPECT_FLOAT_EQ(5.0f, magnitude);
-}
-
-TEST(Vector2D, VectorDividedByZeroIsInfinity)
-{
-	// Arrange
-	const math::Vector2D vec(3.0f, 1.0f);
-
-	// Act
-	const math::Vector2D newVec = vec / 0;
-
-	// Assert
-	EXPECT_FLOAT_EQ(INFINITY, newVec.x);
-	EXPECT_FLOAT_EQ(INFINITY, newVec.y);
-}
-
-TEST(Vector2D, VectorDividedByOneIsItself)
-{
-	// Arrange
-	const math::Vector2D vec(3.0f, 1.0f);
-
-	// Act
-	const math::Vector2D newVec = vec / 1;
-
-	// Assert
-	EXPECT_FLOAT_EQ(3.0f, newVec.x);
-	EXPECT_FLOAT_EQ(1.0f, newVec.y);
-}
-
-TEST(Vector2D, VectorDividedByANumberIsANewVector)
-{
-	// Arrange
-	const math::Vector2D vec(3.0f, 1.0f);
-
-	// Act
-	const math::Vector2D newVec = vec / 2;
-
-	// Assert
-	EXPECT_FLOAT_EQ(1.5f, newVec.x);
-	EXPECT_FLOAT_EQ(0.5f, newVec.y);
-}
-
-TEST(Vector2D, VectorDividedByAFloatIsANewVector)
-{
-	// Arrange
-	const math::Vector2D vec(3.0f, 1.0f);
-
-	// Act
-	const math::Vector2D newVec = vec / 2.0;
-
-	// Assert
-	EXPECT_FLOAT_EQ(1.5f, newVec.x);
-	EXPECT_FLOAT_EQ(0.5f, newVec.y);
-}
-
-TEST(Vector2D, VectorDividesEqualAScalarIsSameVectorWithNewValues)
-{
-	// Arrange
-	math::Vector2D vec(3.0f, 1.0f);
-
-	// Act
-	vec /= 2;
-
-	// Assert
-	EXPECT_FLOAT_EQ(1.5f, vec.x);
-	EXPECT_FLOAT_EQ(0.5f, vec.y);
-}
-
-TEST(Vector2D, VectorDividesEqualAFloatIsSameVectorWithNewValues)
-{
-	// Arrange
-	math::Vector2D vec(3.0f, 1.0f);
-
-	// Act
-	vec /= 2.0;
-
-	// Assert
-	EXPECT_FLOAT_EQ(1.5f, vec.x);
-	EXPECT_FLOAT_EQ(0.5f, vec.y);
 }
 
 

@@ -57,11 +57,11 @@ namespace math
 		template <arithmetic S>
 		Vector2D& operator*=(S scalar);
 
-		template <typename S>
-		Vector2D operator/(const S& scalar) const;
+		template <arithmetic S>
+		auto operator/(S scalar) const -> Vector2D<std::common_type_t<T, S>>;
 
-		template <typename M>
-		Vector2D& operator/=(const M& scalar);
+		template <arithmetic S>
+		Vector2D& operator/=(S scalar);
 
 		T dot(const Vector2D& other) const;
 		T cross(const Vector2D& other) const;

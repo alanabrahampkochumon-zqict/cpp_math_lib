@@ -75,12 +75,23 @@ namespace math {
     }
 
     template <arithmetic T>
-    template <typename S>
-    Vector2D<T> Vector2D<T>::operator/(const S& scalar) const
+    template <arithmetic S>
+    auto Vector2D<T>::operator/(S scalar) const -> Vector2D<std::common_type_t<T, S>>
     {
-        static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
-        T factor = T(1) / static_cast<T>(scalar);
-        return Vector2D(x * factor, y * factor);
+        using R = std::common_type_t<T, S>;
+        R factor = R(1) / static_cast<R>(scalar);
+        return Vector2D<R>(x * factor, y * factor);
+    }
+
+    template <arithmetic T>
+    template <arithmetic S>
+    Vector2D<T>& Vector2D<T>::operator/=(S scalar)
+    {
+        using R = std::common_type_t<T, S>;
+        R factor = R(1) / static_cast<R>(scalar);
+        x = static_cast<T>(factor * x);
+        y = static_cast<T>(factor * y);
+        return *this;
     }
 
     template<arithmetic T>
@@ -107,16 +118,6 @@ namespace math {
         return *this - this->project(onto, ontoNormalized);
     }
 
-    template <arithmetic T>
-    template <typename S>
-    Vector2D<T>& Vector2D<T>::operator/=(const S& scalar)
-    {
-        static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
-        T factor = T(1) / static_cast<T>(scalar);
-        x *= factor;
-        y *= factor;
-        return *this;
-    }
 
     template <arithmetic T>
     T Vector2D<T>::dot(const Vector2D& other) const
