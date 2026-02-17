@@ -5,7 +5,7 @@
 
 namespace math
 {
-	template <typename T>
+	template <arithmetic T>
 	struct Vector2D
 	{
 		static_assert(std::is_arithmetic_v<T>, "Vector2D can only be instantiated with numbers like floats, integers, etc.");
@@ -51,11 +51,11 @@ namespace math
 		template<arithmetic U>
 		Vector2D& operator-=(const Vector2D<U>& other);
 
-		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
-		Vector2D operator*(const S& scalar) const;
+		template <arithmetic S>
+		auto operator*(S scalar) const -> Vector2D<std::common_type_t<T, S>>;
 
-		template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
-		Vector2D& operator*=(const S& scalar);
+		template <arithmetic S>
+		Vector2D& operator*=(S scalar);
 
 		template <typename S>
 		Vector2D operator/(const S& scalar) const;
@@ -119,8 +119,8 @@ namespace math
 		static Vector2D reject(const Vector2D& vector, const Vector2D<S>& onto, bool ontoNormalized = false);
 	};
 
-	template <typename T, typename S, typename = std::enable_if_t<std::is_arithmetic_v<T>>, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
-	Vector2D<T> operator*(S scalar, const Vector2D<T>& vector);
+	template <arithmetic T, arithmetic S>
+	auto operator*(S scalar, const Vector2D<T>& vector) -> Vector2D<std::common_type_t<S, T>>;
 
 	using vec2 = Vector2D<float>;
 	using dvec2 = Vector2D<double>;

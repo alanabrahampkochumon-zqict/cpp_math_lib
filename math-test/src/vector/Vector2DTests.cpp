@@ -10,7 +10,7 @@
 */
 using namespace TestUtils;
 
-TEST(Vector2D, EmptyConstructorInitializesZeroVector)
+TEST(Vector2D_Initialization, EmptyConstructorInitializesZeroVector)
 {
 	// Arrange & Act
 	const math::Vector2D<float> vec;
@@ -19,7 +19,7 @@ TEST(Vector2D, EmptyConstructorInitializesZeroVector)
 	EXPECT_VEC_ZERO(vec);
 }
 
-TEST(Vector2D, IntializationWithIntegersSupported)
+TEST(Vector2D_Initialization, IntializationWithIntegersSupported)
 {
 	// Arrange & Act
 	const math::Vector2D vec(3, 1);
@@ -30,7 +30,7 @@ TEST(Vector2D, IntializationWithIntegersSupported)
 	EXPECT_EQ(1, vec.y);
 }
 
-TEST(Vector2D, ConstructorParametersInitializesVector)
+TEST(Vector2D_Initialization, ConstructorParametersInitializesVector)
 {
 	// Arrange & Act
 	const math::Vector2D vec(3.0f, 1.0f);
@@ -40,7 +40,7 @@ TEST(Vector2D, ConstructorParametersInitializesVector)
 	EXPECT_FLOAT_EQ(1.0f, vec.y);
 }
 
-TEST(Vector2D, AccessibleAsXYZ)
+TEST(Vector2D_Access, AccessibleAsXYZ)
 {
 	// Arrange & Act
 	const math::Vector2D vec(3.0f, 1.0f);
@@ -50,7 +50,7 @@ TEST(Vector2D, AccessibleAsXYZ)
 	EXPECT_FLOAT_EQ(1.0f, vec.y);
 }
 
-TEST(Vector2D, AccessibleAsSTP)
+TEST(Vector2D_Access, AccessibleAsSTP)
 {
 	// Arrange & Act
 	const math::Vector2D vec(3.0f, 1.0f);
@@ -60,7 +60,7 @@ TEST(Vector2D, AccessibleAsSTP)
 	EXPECT_FLOAT_EQ(1.0f, vec.t);
 }
 
-TEST(Vector2D, AccessibleAsRGB)
+TEST(Vector2D_Access, AccessibleAsRGB)
 {
 	// Arrange & Act
 	const math::Vector2D vec(3.0f, 1.0f);
@@ -70,7 +70,7 @@ TEST(Vector2D, AccessibleAsRGB)
 	EXPECT_FLOAT_EQ(1.0f, vec.g);
 }
 
-TEST(Vector2D, AccessibleAsArray)
+TEST(Vector2D_Access, AccessibleAsArray)
 {
 	// Arrange & Act
 	const math::Vector2D vec(3.0f, 1.0f);
@@ -80,7 +80,7 @@ TEST(Vector2D, AccessibleAsArray)
 	EXPECT_FLOAT_EQ(1.0f, vec.elements[1]);
 }
 
-TEST(Vector2D, IndexBasedAssignmentAndRetrivalSupport)
+TEST(Vector2D_Access, IndexBasedAssignmentAndRetrivalSupport)
 {
 	// Arrange
 	math::Vector2D<float> vec;
@@ -95,7 +95,7 @@ TEST(Vector2D, IndexBasedAssignmentAndRetrivalSupport)
 
 }
 
-TEST(Vector2D, vec2Return2DFloatVector)
+TEST(Vector2D_Access, vec2Return2DFloatVector)
 {
 	// Arrange & Act
 	constexpr bool isCorrectType = std::is_same_v<math::vec2, math::Vector2D<float>>;
@@ -104,7 +104,7 @@ TEST(Vector2D, vec2Return2DFloatVector)
 	EXPECT_TRUE(isCorrectType);
 }
 
-TEST(Vector2D, dvec2Return2DDoubleVector)
+TEST(Vector2D_Access, dvec2Return2DDoubleVector)
 {
 	// Arrange & Act
 	constexpr bool isCorrectType = std::is_same_v<math::dvec2, math::Vector2D<double>>;
@@ -118,7 +118,7 @@ TEST(Vector2D, dvec2Return2DDoubleVector)
 *  VECTOR OPERATIONS TESTS
 */
 
-TEST(Vector2D, VectorPlusVectorReturnsCorrectVector)
+TEST(Vector2D_Addition, VectorPlusVectorReturnsCorrectVector)
 {
 	// Arrange
 	const math::Vector2D vec1(3.0f, 0.0f);
@@ -132,7 +132,7 @@ TEST(Vector2D, VectorPlusVectorReturnsCorrectVector)
 	EXPECT_VEC_EQ(expected, result);
 }
 
-TEST(Vector2D, VectorPlusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
+TEST(Vector2D_Addition, VectorPlusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
 {
 	// Arrange
 	math::Vector2D vec1(3.0f, 0.0f);
@@ -146,7 +146,7 @@ TEST(Vector2D, VectorPlusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
 	EXPECT_VEC_EQ(expected, vec1);
 }
 
-TEST(Vector2D, VectorPlusVectorOfDifferentTypesReturnsVectorWithTypePromotion)
+TEST(Vector2D_Addition, VectorPlusVectorOfDifferentTypesReturnsVectorWithTypePromotion)
 {
 	// Arrange
 	const math::Vector2D vec1(3.0f, 0.0f);
@@ -161,7 +161,7 @@ TEST(Vector2D, VectorPlusVectorOfDifferentTypesReturnsVectorWithTypePromotion)
 	EXPECT_VEC_EQ(expected, result);
 }
 
-TEST(Vector2D, VectorPlusEqualsVectorOfDifferentTypesReturnsVectorWithTypePromotion)
+TEST(Vector2D_Addition, VectorPlusEqualsVectorOfDifferentTypesReturnsVectorWithTypePromotion)
 {
 	// Arrange
 	math::Vector2D vec1(3.0f, 0.0f);
@@ -176,7 +176,7 @@ TEST(Vector2D, VectorPlusEqualsVectorOfDifferentTypesReturnsVectorWithTypePromot
 	EXPECT_VEC_EQ(expected, vec1);
 }
 
-TEST(Vector2D, VectorMinusVectorReturnsCorrectVector)
+TEST(Vector2D_Subraction, VectorMinusVectorReturnsCorrectVector)
 {
 	// Arrange
 	const math::Vector2D vec1(3.0f, 0.0f);
@@ -190,7 +190,7 @@ TEST(Vector2D, VectorMinusVectorReturnsCorrectVector)
 	EXPECT_VEC_EQ(expected, result);
 }
 
-TEST(Vector2D, VectorMinusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
+TEST(Vector2D_Subraction, VectorMinusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
 {
 	// Arrange
 	math::Vector2D vec1(3.0f, 0.0f);
@@ -204,7 +204,7 @@ TEST(Vector2D, VectorMinusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues
 	EXPECT_VEC_EQ(expected, vec1);
 }
 
-TEST(Vector2D, VectorMinusVectorOfDifferentTypeReturnsVectorWithTypePromotion)
+TEST(Vector2D_Subraction, VectorMinusVectorOfDifferentTypeReturnsVectorWithTypePromotion)
 {
 	// Arrange
 	const math::Vector2D vec1(3.0f, 0.0f);
@@ -219,7 +219,7 @@ TEST(Vector2D, VectorMinusVectorOfDifferentTypeReturnsVectorWithTypePromotion)
 	EXPECT_VEC_EQ(expected, result);
 }
 
-TEST(Vector2D, VectorMinusEqualsAnotherVectorWithDifferentTypeReturnsFirstVectorWithoutTypePromotion)
+TEST(Vector2D_Subraction, VectorMinusEqualsAnotherVectorWithDifferentTypeReturnsFirstVectorWithoutTypePromotion)
 {
 	// Arrange
 	math::Vector2D vec1(3.0f, 0.0f);
@@ -234,7 +234,140 @@ TEST(Vector2D, VectorMinusEqualsAnotherVectorWithDifferentTypeReturnsFirstVector
 	EXPECT_VEC_EQ(expected, vec1);
 }
 
-TEST(Vector2D, ZeroVectorReturnsMagnitudeZero)
+TEST(Vector2D_Mutliplication, VectorTimesZeroIsZero)
+{
+	// Arrange
+	const math::Vector2D vec(3.0f, 1.0f);
+
+	// Act
+	const math::Vector2D result = vec * 0;
+
+	// Assert
+	EXPECT_VEC_ZERO(result);
+}
+
+TEST(Vector2D_Mutliplication, VectorTimesOneIsItself)
+{
+	// Arrange
+	const math::Vector2D vec(3.0f, 1.0f);
+
+	// Act
+	const math::Vector2D result = vec * 1;
+
+	// Assert
+	EXPECT_VEC_EQ(vec, result);
+}
+
+TEST(Vector2D_Mutliplication, VectorTimesANumberIsANewVector)
+{
+	// Arrange
+	const math::Vector2D vec(3.0f, 1.0f);
+	const math::Vector2D expected(6.0f, 2.0f);
+
+	// Act
+	const math::Vector2D result = vec * 2;
+
+	// Assert
+	EXPECT_VEC_EQ(expected, result);
+
+}
+
+TEST(Vector2D_Mutliplication, VectorTimesAFloatIsANewVector)
+{
+	// Arrange
+	const math::Vector2D vec(3.0f, 1.0f);
+	const math::Vector2D expected(6.0f, 2.0f);
+
+	// Act
+	const math::Vector2D result = vec * 2.0f;
+
+	// Assert
+	EXPECT_VEC_EQ(expected, result);
+}
+
+TEST(Vector2D_Mutliplication, NumberTimesAVectorIsANewVector)
+{
+	// Arrange
+	const math::Vector2D vec(3.0f, 1.0f);
+	const math::Vector2D expected(6.0f, 2.0f);
+
+	// Act
+	const math::Vector2D result = 2 * vec;
+
+	// Assert
+	EXPECT_VEC_EQ(expected, result);
+}
+
+TEST(Vector2D_Mutliplication, VectorTimesEqualAScalarIsSameVectorWithNewValues)
+{
+	// Arrange
+	math::Vector2D vec(3.0f, 1.0f);
+	const math::Vector2D expected(6.0f, 2.0f);
+
+	// Act
+	vec *= 2;
+
+	// Assert
+	EXPECT_VEC_EQ(expected, vec);
+}
+
+TEST(Vector2D_Mutliplication, VectorTimesEqualAScalarFloatIsSameVectorWithNewValues)
+{
+	// Arrange
+	math::Vector2D vec(3.0f, 1.0f);
+	const math::Vector2D expected(6.0f, 2.0f);
+
+	// Act
+	vec *= 2.0;
+
+	// Assert
+	EXPECT_VEC_EQ(expected, vec);
+}
+
+TEST(Vector2D_Mutliplication, VectorTimesEqualADoubleScalarIsSameVectorWithoutTypePromotion)
+{
+	// Arrange
+	math::Vector2D vec(3.0f, 1.0f);
+	const math::Vector2D expected(6.0f, 2.0f);
+
+	// Act
+	vec *= 2.0;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(vec)::value_type, float>);
+	EXPECT_VEC_EQ(expected, vec);
+}
+
+TEST(Vector2D_Mutliplication, FloatVectorTimesADoubleScalarReturnsVectorWithTypePromotion)
+{
+	// Arrange
+	const math::Vector2D vec(3.0f, 1.0f);
+	const math::Vector2D expected(6.0f, 2.0f);
+
+	// Act
+	const math::Vector2D result = vec * 2.0;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(result)::value_type, double>);
+	EXPECT_VEC_EQ(expected, result);
+}
+
+
+TEST(Vector2D_Mutliplication, IntegerVectorTimesEqualADoubleScalarReturnsVectorWithMinimalPrecisionLoss)
+{
+	// Arrange
+	math::Vector2D vec(3, 1);
+	const math::Vector2D expected(7, 2);
+
+	// Act
+	vec *= 2.5;
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(vec)::value_type, int>);
+	EXPECT_VEC_EQ(expected, vec);
+}
+
+TEST(Vector2D_Magnitude, ZeroVectorReturnsMagnitudeZero)
 {
 	// Arrange
 	const math::Vector2D vec(0.0f, 0.0f);
@@ -246,7 +379,7 @@ TEST(Vector2D, ZeroVectorReturnsMagnitudeZero)
 	EXPECT_FLOAT_EQ(0.0f, magnitude);
 }
 
-TEST(Vector2D, OneVectorReturnsMagnitudeNotEqualToOne)
+TEST(Vector2D_Magnitude, OneVectorReturnsMagnitudeNotEqualToOne)
 {
 	// Arrange
 	const math::Vector2D vec(1.0f, 1.0f);
@@ -258,7 +391,7 @@ TEST(Vector2D, OneVectorReturnsMagnitudeNotEqualToOne)
 	EXPECT_NE(1.0f, magnitude);
 }
 
-TEST(Vector2D, NonUnitVectorReturnsCorrectMagnitude)
+TEST(Vector2D_Magnitude, NonUnitVectorReturnsCorrectMagnitude)
 {
 	// Arrange
 	const math::Vector2D vec(4.0f, 3.0f);
@@ -269,98 +402,6 @@ TEST(Vector2D, NonUnitVectorReturnsCorrectMagnitude)
 	// Assert
 	EXPECT_FLOAT_EQ(5.0f, magnitude);
 }
-
-TEST(Vector2D, VectorTimesZeroIsZero)
-{
-	// Arrange
-	const math::Vector2D vec(3.0f, 1.0f);
-
-	// Act
-	const math::Vector2D newVec = vec * 0;
-
-	// Assert
-	EXPECT_FLOAT_EQ(0.0f, newVec.x);
-	EXPECT_FLOAT_EQ(0.0f, newVec.y);
-}
-
-TEST(Vector2D, VectorTimesOneIsItself)
-{
-	// Arrange
-	const math::Vector2D vec(3.0f, 1.0f);
-
-	// Act
-	const math::Vector2D newVec = vec * 1;
-
-	// Assert
-	EXPECT_FLOAT_EQ(3.0f, newVec.x);
-	EXPECT_FLOAT_EQ(1.0f, newVec.y);
-}
-
-TEST(Vector2D, VectorTimesANumberIsANewVector)
-{
-	// Arrange
-	const math::Vector2D vec(3.0f, 1.0f);
-
-	// Act
-	const math::Vector2D newVec = vec * 2;
-
-	// Assert
-	EXPECT_FLOAT_EQ(6.0f, newVec.x);
-	EXPECT_FLOAT_EQ(2.0f, newVec.y);
-}
-
-TEST(Vector2D, VectorTimesAFloatIsANewVector)
-{
-	// Arrange
-	const math::Vector2D vec(3.0f, 1.0f);
-
-	// Act
-	const math::Vector2D newVec = vec * 2.0f;
-
-	// Assert
-	EXPECT_FLOAT_EQ(6.0f, newVec.x);
-	EXPECT_FLOAT_EQ(2.0f, newVec.y);
-}
-
-TEST(Vector2D, NumberTimesAVectorIsANewVector)
-{
-	// Arrange
-	const math::Vector2D vec(3.0f, 1.0f);
-
-	// Act
-	const math::Vector2D newVec = 2 * vec;
-
-	// Assert
-	EXPECT_FLOAT_EQ(6.0f, newVec.x);
-	EXPECT_FLOAT_EQ(2.0f, newVec.y);
-}
-
-TEST(Vector2D, VectorTimesEqualAScalarIsSameVectorWithNewValues)
-{
-	// Arrange
-	math::Vector2D vec(3.0f, 1.0f);
-
-	// Act
-	vec *= 2;
-
-	// Assert
-	EXPECT_FLOAT_EQ(6.0f, vec.x);
-	EXPECT_FLOAT_EQ(2.0f, vec.y);
-}
-
-TEST(Vector2D, VectorTimesEqualAScalarFloatIsSameVectorWithNewValues)
-{
-	// Arrange
-	math::Vector2D vec(3.0f, 1.0f);
-
-	// Act
-	vec *= 2.0;
-
-	// Assert
-	EXPECT_FLOAT_EQ(6.0f, vec.x);
-	EXPECT_FLOAT_EQ(2.0f, vec.y);
-}
-
 
 TEST(Vector2D, VectorDividedByZeroIsInfinity)
 {
