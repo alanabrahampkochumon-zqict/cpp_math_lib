@@ -69,8 +69,10 @@ namespace math
 		template<arithmetic U>
 		static auto dot(const Vector2D& vectorA, const Vector2D<U>& vectorB) ->std::common_type_t<T, U>;
 
-		T cross(const Vector2D& other) const;
-		static T cross(const Vector2D& vecA, const Vector2D& vecB);
+		template<arithmetic U>
+		auto cross(const Vector2D<U>& other) const -> std::common_type_t<T, U>;
+		template<arithmetic U>
+		static auto cross(const Vector2D<T>& vectorA, const Vector2D<U>& vectorB) -> std::common_type_t<T, U>;
 
 		T mag() const;
 		Vector2D normalize() const;

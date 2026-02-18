@@ -564,7 +564,7 @@ TEST(Vector2D_Dot, VectorWhenDotWithNonOrthogonalVectorOfDifferentTypeReturnsNum
 	EXPECT_DOUBLE_EQ(-6.0, result);
 }
 
-TEST(Vector2D, UnitXVectorWhenCrossWithUnitYVectorReturnsOne)
+TEST(Vector2D_Cross, UnitXVectorWhenCrossWithUnitYVectorReturnsOne)
 {
 	// Arrange
 	math::Vector2D vec1(1.0f, 0.0f);
@@ -577,7 +577,7 @@ TEST(Vector2D, UnitXVectorWhenCrossWithUnitYVectorReturnsOne)
 	EXPECT_FLOAT_EQ(1.0f, res);
 }
 
-TEST(Vector2D, UnitYVectorWhenCrossWithUnitXVectorReturnsUnitNegativeOne)
+TEST(Vector2D_Cross, UnitYVectorWhenCrossWithUnitXVectorReturnsUnitNegativeOne)
 {
 	// Arrange
 	const math::Vector2D vec1(0.0f, 1.0f);
@@ -590,7 +590,7 @@ TEST(Vector2D, UnitYVectorWhenCrossWithUnitXVectorReturnsUnitNegativeOne)
 	EXPECT_FLOAT_EQ(-1.0f, res);
 }
 
-TEST(Vector2D, UnitVectorCrossWithItselfReturnZero)
+TEST(Vector2D_Cross, UnitVectorCrossWithItselfReturnZero)
 {
 	// Arrange
 	const math::Vector2D vec(0.0f, 1.0f);
@@ -603,7 +603,7 @@ TEST(Vector2D, UnitVectorCrossWithItselfReturnZero)
 	EXPECT_FLOAT_EQ(0.0f, res);
 }
 
-TEST(Vector2D, VectorCrossWithAnotherNonParallelVectorReturnsPseudoCrossProduct)
+TEST(Vector2D_Cross, VectorCrossWithAnotherNonParallelVectorReturnsPseudoCrossProduct)
 {
 	// Arrange
 	const math::Vector2D vec1(3.0f, 0.0f);
@@ -616,7 +616,7 @@ TEST(Vector2D, VectorCrossWithAnotherNonParallelVectorReturnsPseudoCrossProduct)
 	EXPECT_FLOAT_EQ(12.0f, res);
 }
 
-TEST(Vector2D, VectorCrossStaticWrapperWithAnotherNonParallelVectorReturnsPseudoCrossProduct)
+TEST(Vector2D_Cross, VectorCrossStaticWrapperWithAnotherNonParallelVectorReturnsPseudoCrossProduct)
 {
 	// Arrange
 	const math::Vector2D vec1(3.0f, 0.0f);
@@ -629,6 +629,19 @@ TEST(Vector2D, VectorCrossStaticWrapperWithAnotherNonParallelVectorReturnsPseudo
 	EXPECT_FLOAT_EQ(12.0f, res);
 }
 
+TEST(Vector2D_Cross, VectorCrossWithVectorOfDifferentTypeReturnsScalarWithTypePromotion)
+{
+	// Arrange
+	const math::Vector2D vec1(3.0f, 0.0f);
+	const math::Vector2D vec2(0.0, 4.0);
+
+	// Act
+	const auto result = vec1.cross(vec2);
+
+	// Assert
+	static_assert(std::is_same_v<decltype(result), const double>);
+	EXPECT_DOUBLE_EQ(12.0, result);
+}
 
 TEST(Vector2D_Magnitude, ZeroVectorReturnsMagnitudeZero)
 {
