@@ -28,7 +28,7 @@ namespace math
 			{
 				T s, t;
 			};
-			T elements[2];
+			T elements[dimension];
 		};
 
 

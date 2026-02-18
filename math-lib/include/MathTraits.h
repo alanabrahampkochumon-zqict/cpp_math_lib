@@ -25,8 +25,8 @@ namespace math {
 	concept Matrix = requires(T matrix, std::size_t r, std::size_t c)
 	{
 		typename T::value_type;
-		{ T::row } -> std::same_as<const std::size_t&>;
-		{ T::column } -> std::same_as<const std::size_t&>;
+		{ T::rows } -> std::same_as<const std::size_t&>;
+		{ T::columns } -> std::same_as<const std::size_t&>;
 		{ matrix(r, c) } -> std::convertible_to<typename T::value_type>;
 		{ matrix(c) };
 	} && arithmetic<typename T::value_type>;

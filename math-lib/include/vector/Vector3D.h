@@ -20,7 +20,7 @@ namespace math
 			struct { T r, g, b; };
 			struct { T s, t, p; };
 
-			T elements[3];
+			T elements[dimension];
 		};
 
 		Vector3D();

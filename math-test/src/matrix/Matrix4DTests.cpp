@@ -1,16 +1,16 @@
-//#include <gtest/gtest.h>
-//
-//#include <matrix/Matrix3D.h>
-//#include <vector/Vector3D.h>
-//#include <cstddef>
-//
-//#include "../utils/FloatEquals.h"
-//#include "../utils/MatrixUtils.h"
-//#include "../utils/VectorUtils.h"
-//
-//using namespace TestUtils::Matrix3D;
-//// TODO: Add test for integer precision on multiplication -> [[2]] * 2.5 = [[5]] not 4
-//
+#include <gtest/gtest.h>
+
+#include <matrix/Matrix4D.h>
+#include <vector/Vector3D.h>
+#include <cstddef>
+
+#include "../utils/FloatEquals.h"
+#include "../utils/MatrixUtils.h"
+#include "../utils/VectorUtils.h"
+
+using namespace TestUtils;
+// TODO: Add test for integer precision on multiplication -> [[2]] * 2.5 = [[5]] not 4
+
 
 /*************************************
  *                                   *
@@ -18,18 +18,24 @@
  *                                   *
  *************************************/
 
-//constexpr int size = 9;
-//constexpr int rowSize = 3;
-//
-//TEST(Matrix3D_Initialization, InitializedWithOutParametersProvidesIdentityMatrix)
-//{
-//	// Arrange & Act
-//	const math::Matrix3D<float> mat;
-//
-//	// Assert
-//	EXPECT_MAT_IDENTITY(mat);
-//}
-//
+static constexpr std::size_t rows = math::Matrix4D<float>::rows;
+static constexpr std::size_t cols = math::Matrix4D<float>::columns;
+
+TEST(Matrix4D_Initialization, InitializedWithOutParametersProvidesIdentityMatrix)
+{
+	// Arrange & Act
+	const math::Matrix4D<float> mat;
+
+	// Assert
+	for (std::size_t i = 0 ; i < rows; ++i)
+	{
+		for (std::size_t j = 0; j < cols; ++j)
+		{
+			EXPECT_FLOAT_EQ(i == j, mat.elements[i][j]); // TODO: Replace with accessor
+		}
+	}
+}
+
 //TEST(Matrix3D_Initialization, InitializationSupportedForIntegers)
 //{
 //	// Arrange and Act
