@@ -40,6 +40,46 @@ TEST(Vector2D_Initialization, ConstructorParametersInitializesVector)
 	EXPECT_FLOAT_EQ(1.0f, vec.y);
 }
 
+TEST(Vector2D_ConversionContructor, ConversionConstructorCreatesNewVectorWithPromotedType)
+{
+	// Arrange
+	math::Vector2D vec1(3.0f, 1.0f);
+
+	// Act
+	math::Vector2D<double> vec2(vec1);
+	vec2.x = 5;
+
+	// Assert
+	ASSERT_FLOAT_EQ(3.0f, vec1.x);
+	ASSERT_FLOAT_EQ(1.0f, vec1.y);
+
+	static_assert(std::is_same_v<typename decltype(vec2)::value_type, double>);
+
+	ASSERT_DOUBLE_EQ(5.0, vec2.x);
+	ASSERT_DOUBLE_EQ(1.0, vec2.y);
+
+}
+
+TEST(Vector2D_ConversionContructor, ConversionConstructorCreatesNewVectorWithDemotedType)
+{
+	// Arrange
+	math::Vector2D vec1(3.0, 1.0);
+
+	// Act
+	math::Vector2D<float> vec2 = vec1;
+	vec2.x = 5;
+
+	// Assert
+	ASSERT_DOUBLE_EQ(3.0, vec1.x);
+	ASSERT_DOUBLE_EQ(1.0, vec1.y);
+
+	static_assert(std::is_same_v<typename decltype(vec2)::value_type, float>);
+
+	ASSERT_FLOAT_EQ(5.0f, vec2.x);
+	ASSERT_FLOAT_EQ(1.0f, vec2.y);
+}
+
+
 TEST(Vector2D_Access, AccessibleAsXYZ)
 {
 	// Arrange & Act
@@ -780,9 +820,7 @@ TEST(Vector2D_Projection, VectorsWhenProjectedOntoVectorOfDifferentTypeReturnsVe
 	EXPECT_VEC_EQ(expectedProjection, actualProjection);
 }
 
-
-
-TEST(Vector2D, ParallelVectorsWhenRejectedReturnsZeroVector)
+TEST(Vector2D_Rejection, ParallelVectorsWhenRejectedReturnsZeroVector)
 {
 	// Arrange
 	const math::Vector2D a(3.0f, 0.0f);
@@ -793,11 +831,10 @@ TEST(Vector2D, ParallelVectorsWhenRejectedReturnsZeroVector)
 	const math::Vector2D<float> actualProjection = a.reject(b);
 
 	// Assert
-	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+	EXPECT_VEC_EQ(expectedProjection, actualProjection);
 }
 
-TEST(Vector2D, PerpendicularVectorsWhenRejectedReturnsNonZeroVector)
+TEST(Vector2D_Rejection, PerpendicularVectorsWhenRejectedReturnsNonZeroVector)
 {
 	// Arrange
 	const math::Vector2D a(3.0f, 0.0f);
@@ -808,11 +845,10 @@ TEST(Vector2D, PerpendicularVectorsWhenRejectedReturnsNonZeroVector)
 	const math::Vector2D<float> actualProjection = a.reject(b);
 
 	// Assert
-	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+	EXPECT_VEC_EQ(expectedProjection, actualProjection);
 }
 
-TEST(Vector2D, VectorsWhenRejectedReturnNonZeroVector)
+TEST(Vector2D_Rejection, VectorsWhenRejectedReturnsNonZeroVector)
 {
 	// Arrange
 	const math::Vector2D a(2.0f, 2.0f);
@@ -823,11 +859,10 @@ TEST(Vector2D, VectorsWhenRejectedReturnNonZeroVector)
 	const math::Vector2D<float> actualProjection = a.reject(b);
 
 	// Assert
-	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+	EXPECT_VEC_EQ(expectedProjection, actualProjection);
 }
 
-TEST(Vector2D, VectorsWhenRejectedOntoNormalizedVectorReturnNonZeroVector)
+TEST(Vector2D_Rejection, VectorsWhenRejectedOntoNormalizedVectorReturnsNonZeroVector)
 {
 	// Arrange
 	const math::Vector2D a(3.0f, 4.0f);
@@ -838,11 +873,10 @@ TEST(Vector2D, VectorsWhenRejectedOntoNormalizedVectorReturnNonZeroVector)
 	const math::Vector2D<float> actualProjection = a.reject(b, true);
 
 	// Assert
-	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+	EXPECT_VEC_EQ(expectedProjection, actualProjection);
 }
 
-TEST(Vector2D, VectorsWhenProjectedUsingStaticWrapperReturnNonZeroVector)
+TEST(Vector2D_Rejection, VectorsWhenProjectedUsingStaticWrapperReturnsNonZeroVector)
 {
 	// Arrange
 	const math::Vector2D a(2.0f, 2.0f);
@@ -853,6 +887,20 @@ TEST(Vector2D, VectorsWhenProjectedUsingStaticWrapperReturnNonZeroVector)
 	const math::Vector2D<float> actualProjection = a.reject(b);
 
 	// Assert
-	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+	EXPECT_VEC_EQ(expectedProjection, actualProjection);
+}
+
+TEST(Vector2D_Rejection, VectorsWhenRejectedOntoVectorOfDifferentTypeReturnsVectorWithTypePromotion)
+{
+	// Arrange
+	const math::Vector2D a(2.0f, 2.0f);
+	const math::Vector2D b(1.0, 0.0);
+	const math::Vector2D expectedProjection(0.0, 2.0);
+
+	// Act
+	const math::Vector2D actualProjection = a.reject(b);
+
+	// Assert
+	static_assert(std::is_same_v<typename decltype(actualProjection)::value_type, double>);
+	EXPECT_VEC_EQ(expectedProjection, actualProjection);
 }

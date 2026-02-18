@@ -12,6 +12,12 @@ namespace math {
     Vector2D<T>::Vector2D(T v1, T v2): x(v1), y(v2) { }
 
     template <arithmetic T>
+    template <arithmetic U>
+    Vector2D<T>::Vector2D(const Vector2D<U>& other):
+    x(static_cast<T>(other.x)), y(static_cast<T>(other.y))
+	{ }
+
+    template <arithmetic T>
     T& Vector2D<T>::operator[](std::size_t i)
     {
         return (&x)[i];
@@ -63,6 +69,12 @@ namespace math {
     {
         using R = std::common_type_t<T, S>;
         return Vector2D<R>(x * scalar, y * scalar);
+    }
+
+    template <arithmetic T, arithmetic S>
+    auto operator*(S scalar, const Vector2D<T>& vector) -> Vector2D<std::common_type_t<S, T>>
+    {
+        return vector * scalar;
     }
 
     template <arithmetic T>
@@ -121,16 +133,7 @@ namespace math {
     {
         return vectorA.cross(vectorB);
     }
-
-
-    template <arithmetic T>
-    template <typename S>
-    Vector2D<T> Vector2D<T>::reject(const Vector2D<S>& onto, bool ontoNormalized) const
-    {
-        return *this - this->project(onto, ontoNormalized);
-    }
-
-    
+        
     template <arithmetic T>
     T Vector2D<T>::mag() const
     {
@@ -156,7 +159,7 @@ namespace math {
         else
         {
             // Pb||a = dot(a, b)/dot(b,b) * b;
-            return this->dot(onto) / Vector2D<R>::dot(onto, onto) * onto;
+            return this->dot(onto) / onto.dot(onto) * onto;
         }
     }
 
@@ -168,34 +171,17 @@ namespace math {
     }
 
     template <arithmetic T>
-    template <typename S>
-    Vector2D<T> Vector2D<T>::reject(const Vector2D& vector, const Vector2D<S>& onto, bool ontoNormalized)
+    template <arithmetic U>
+    auto Vector2D<T>::reject(const Vector2D<U>& onto, bool ontoNormalized) const -> Vector2D<std::common_type_t<T, U>>
     {
-        return vector - vector.project(onto, ontoNormalized);
+        return *this - this->project(onto, ontoNormalized);
     }
 
-    template <arithmetic T, arithmetic S>
-    auto operator*(S scalar, const Vector2D<T>& vector) -> Vector2D<std::common_type_t<S, T>>
+    template <arithmetic T>
+    template <arithmetic U>
+    auto Vector2D<T>::reject(const Vector2D& vector, const Vector2D<U>& onto,
+	    bool ontoNormalized) -> Vector2D<std::common_type_t<T, U>>
     {
-        return vector * scalar;
+        return vector.reject(onto, ontoNormalized);
     }
-
-    //template <arithmetic T, arithmetic S>
-    //Vector2D<T> operator*(S scalar, const Vector2D<T>& vector)
-    //{
-    //    return vector * scalar;
-    //}
-
-    //template<typename T, typename M>
-    //Vector2D<T> operator*(M scalar, const Vector2D<T>& vector)
-    //{
-    //    static_assert(std::is_arithmetic_v<M>, "scalar must be an integral or float(int, float, double, etc.)");
-    //    return vector * scalar;
-    //}
-
-    //template <arithmetic T, typename S, typename, typename>
-    //Vector2D<T> operator*(S scalar, const Vector2D<T>& vector)
-    //{
-    //    return vector * scalar;
-    //}
 }

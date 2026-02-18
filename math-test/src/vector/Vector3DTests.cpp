@@ -89,7 +89,6 @@ TEST(Vector3D_ConversionContructor, ConversionConstructorCreatesNewVectorWithDem
 
 }
 
-
 TEST(Vector3D_Access, AccessibleAsXYZ)
 {
 	// Arrange & Act
