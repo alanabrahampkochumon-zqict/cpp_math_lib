@@ -9,7 +9,7 @@
 /*
 * INITIALIZATION AND ACCESS TESTS
 */
-using namespace TestUtils::Vector3D;
+using namespace TestUtils;
 
 TEST(Vector3D_Initialization, EmptyConstructorInitializesZeroVector)
 {

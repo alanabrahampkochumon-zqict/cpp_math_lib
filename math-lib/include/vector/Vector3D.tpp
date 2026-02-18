@@ -1,43 +1,43 @@
 #pragma once
 
-// TODO: Enable strict types using `using R = std::common_type_t<T, S>`
+// TODO: Enable strict types using `using R = std::common_type_t<T, U>`
 
 namespace math {
 
-	template <typename T>
+	template <arithmetic T>
 	Vector3D<T>::Vector3D() : x(T(0)), y(T(0)), z(T(0)) {}
 
-
-	template <typename T>
+	template <arithmetic T>
 	Vector3D<T>::Vector3D(T v1, T v2, T v3) : x(v1), y(v2), z(v3) {}
 
-	template <typename T>
+	template <arithmetic T>
 	Vector3D<T>::Vector3D(Vector2D<T> vec, T v) : x(vec.x), y(vec.y), z(v) {}
 
-	template <typename T>
-	template <typename S, typename>
-	Vector3D<T>::Vector3D(const Vector3D<S>& other) :
+	template <arithmetic T>
+	template <arithmetic U>
+	Vector3D<T>::Vector3D(const Vector3D<U>& other) :
 		x(static_cast<T>(other.x)), y(static_cast<T>(other.y)), z(static_cast<T>(other.z))
 	{ }
 
-	template <typename T>
-	T& Vector3D<T>::operator[](int i) { return ((&x)[i]); }
+
+	template <arithmetic T>
+	T& Vector3D<T>::operator[](std::size_t i) { return ((&x)[i]); }
+
+	template <arithmetic T>
+	const T& Vector3D<T>::operator[](std::size_t i) const { return ((&x)[i]); }
 
 
-	template <typename T>
-	const T& Vector3D<T>::operator[](int i) const { return ((&x)[i]); }
-
-	template <typename T>
-	template <typename S, typename>
-	auto Vector3D<T>::operator+(const Vector3D<S>& other) const -> Vector3D<std::common_type_t<T, S>>
+	template <arithmetic T>
+	template <arithmetic U>
+	auto Vector3D<T>::operator+(const Vector3D<U>& other) const -> Vector3D<std::common_type_t<T, U>>
 	{
-		using R = std::common_type_t<T, S>;
+		using R = std::common_type_t<T, U>;
 		return Vector3D<R>(x + other.x, y + other.y, z + other.z);
 	}
 
-	template <typename T>
-	template <typename S, typename>
-	Vector3D<T>& Vector3D<T>::operator+=(const Vector3D<S>& other)
+	template <arithmetic T>
+	template <arithmetic U>
+	Vector3D<T>& Vector3D<T>::operator+=(const Vector3D<U>& other)
 	{
 		x += static_cast<T>(other.x);
 		y += static_cast<T>(other.y);
@@ -45,17 +45,17 @@ namespace math {
 		return *this;
 	}
 
-	template <typename T>
-	template <typename S, typename>
-	auto Vector3D<T>::operator-(const Vector3D<S>& other) const -> Vector3D<std::common_type_t<T, S>>
+	template <arithmetic T>
+	template <arithmetic U>
+	auto Vector3D<T>::operator-(const Vector3D<U>& other) const -> Vector3D<std::common_type_t<T, U>>
 	{
-		using R = std::common_type_t<T, S>;
+		using R = std::common_type_t<T, U>;
 		return Vector3D<R>(x - other.x, y - other.y, z - other.z);
 	}
 
-	template <typename T>
-	template <typename S, typename>
-	Vector3D<T>& Vector3D<T>::operator-=(const Vector3D<S>& other)
+	template <arithmetic T>
+	template <arithmetic U>
+	Vector3D<T>& Vector3D<T>::operator-=(const Vector3D<U>& other)
 	{
 		x -= static_cast<T>(other.x);
 		y -= static_cast<T>(other.y);
@@ -63,9 +63,9 @@ namespace math {
 		return *this;
 	}
 
-	template <typename T>
-	template <typename S, typename>
-	auto Vector3D<T>::operator*(const S& scalar) const -> Vector3D<std::common_type_t<T, S>>
+	template <arithmetic T>
+	template <arithmetic S>
+	auto Vector3D<T>::operator*(S scalar) const -> Vector3D<std::common_type_t<T, S>>
 	{
 		// TODO: Experiment with rvalue
 		Vector3D copy = (*this);
@@ -74,15 +74,15 @@ namespace math {
 	}
 
 
-	template <typename T, typename S, typename, typename>
+	template <arithmetic T, arithmetic S>
 	auto operator*(S scalar, const Vector3D<T>& vector) -> Vector3D<std::common_type_t<T, S>>
 	{
 		return vector * scalar;
 	}
 
-	template <typename T>
-	template <typename S, typename>
-	Vector3D<T>& Vector3D<T>::operator*=(const S& scalar)
+	template <arithmetic T>
+	template <arithmetic S>
+	Vector3D<T>& Vector3D<T>::operator*=(S scalar)
 	{
 		x = static_cast<T>(scalar * x);
 		y = static_cast<T>(scalar * y);
@@ -90,9 +90,9 @@ namespace math {
 		return (*this);
 	}
 
-	template <typename T>
-	template <typename S, typename>
-	auto Vector3D<T>::operator/(const S& scalar) const -> Vector3D<std::common_type_t<T, S>>
+	template <arithmetic T>
+	template <arithmetic S>
+	auto Vector3D<T>::operator/(S scalar) const -> Vector3D<std::common_type_t<T, S>>
 	{
 		// TODO: Experiment with rvalue
 		using R = std::common_type_t<T, S>;
@@ -100,9 +100,9 @@ namespace math {
 		return Vector3D<R>(factor * x, factor * y, factor * z) ;
 	}
 
-	template <typename T>
-	template <typename S, typename>
-	Vector3D<T>& Vector3D<T>::operator/=(const S& scalar)
+	template <arithmetic T>
+	template <arithmetic S>
+	Vector3D<T>& Vector3D<T>::operator/=(S scalar)
 	{
 		using R = std::common_type_t<T, S>;
 		R factor = R(1) / scalar;
@@ -112,50 +112,50 @@ namespace math {
 		return (*this);
 	}
 
-	template <typename T>
+	template <arithmetic T>
 	T Vector3D<T>::mag() const
 	{
 		return sqrt(x * x + y * y + z * z);
 	}
 
-	template <typename T>
+	template <arithmetic T>
 	Vector3D<T> Vector3D<T>::normalize() const
 	{
 		return (*this) / mag();
 	}
 
-	template <typename T>
-	template <typename S, typename>
-	auto Vector3D<T>::dot(const Vector3D<S>& other) const -> std::common_type_t<T, S>
+	template <arithmetic T>
+	template <arithmetic U>
+	auto Vector3D<T>::dot(const Vector3D<U>& other) const -> std::common_type_t<T, U>
 	{
 		return x * other.x + y * other.y + z * other.z;
 	}
 
-	template <typename T>
-	template <typename S, typename>
-	auto Vector3D<T>::dot(const Vector3D& vecA, const Vector3D<S>& vecB) -> std::common_type_t<T, S>
+	template <arithmetic T>
+	template <arithmetic U>
+	auto Vector3D<T>::dot(const Vector3D& vecA, const Vector3D<U>& vecB) -> std::common_type_t<T, U>
 	{
 		return vecA.dot(vecB);
 	}
 
-	template <typename T>
-	template <typename S, typename>
-	auto Vector3D<T>::cross(const Vector3D<S>& other) const -> Vector3D<std::common_type_t<T, S>>
+	template <arithmetic T>
+	template <arithmetic U>
+	auto Vector3D<T>::cross(const Vector3D<U>& other) const -> Vector3D<std::common_type_t<T, U>>
 	{
-		using R = std::common_type_t<T, S>;
+		using R = std::common_type_t<T, U>;
 		return Vector3D<R>(y * other.z - z * other.y, z * other.x - x * other.z, x * other.y - y * other.x);
 	}
 
-	template <typename T>
-	template <typename S, typename>
-	auto Vector3D<T>::cross(const Vector3D& vecA, const Vector3D<S>& vecB) -> Vector3D<std::common_type_t<T, S>>
+	template <arithmetic T>
+	template <arithmetic U>
+	auto Vector3D<T>::cross(const Vector3D& vecA, const Vector3D<U>& vecB) -> Vector3D<std::common_type_t<T, U>>
 	{
 		return vecA.cross(vecB);
 	}
 
-	template <typename T>
-	template <typename S, typename>
-	auto Vector3D<T>::project(const Vector3D<S>& onto, bool ontoNormalized) const -> Vector3D<std::common_type_t<T, S>>
+	template <arithmetic T>
+	template <arithmetic U>
+	auto Vector3D<T>::project(const Vector3D<U>& onto, bool ontoNormalized) const -> Vector3D<std::common_type_t<T, U>>
 	{
 		if (ontoNormalized)
 		{
@@ -169,25 +169,25 @@ namespace math {
 		}
 	}
 
-	template <typename T>
-	template <typename S, typename>
-	auto Vector3D<T>::project(const Vector3D& vector, const Vector3D<S>& onto,
-		bool ontoNormalized) -> Vector3D<std::common_type_t<T, S>>
+	template <arithmetic T>
+	template <arithmetic U>
+	auto Vector3D<T>::project(const Vector3D& vector, const Vector3D<U>& onto,
+		bool ontoNormalized) -> Vector3D<std::common_type_t<T, U>>
 	{
 		return vector.project(onto, ontoNormalized);
 	}
 
-	template <typename T>
-	template <typename S, typename>
-	auto Vector3D<T>::reject(const Vector3D<S>& onto, bool ontoNormalized) const -> Vector3D<std::common_type_t<T, S>>
+	template <arithmetic T>
+	template <arithmetic U>
+	auto Vector3D<T>::reject(const Vector3D<U>& onto, bool ontoNormalized) const -> Vector3D<std::common_type_t<T, U>>
 	{
 		return *this - this->project(onto, ontoNormalized);
 	}
 
-	template <typename T>
-	template <typename S, typename>
-	auto Vector3D<T>::reject(const Vector3D& vector, const Vector3D<S>& onto,
-		bool ontoNormalized) -> Vector3D<std::common_type_t<T, S>>
+	template <arithmetic T>
+	template <arithmetic U>
+	auto Vector3D<T>::reject(const Vector3D& vector, const Vector3D<U>& onto,
+		bool ontoNormalized) -> Vector3D<std::common_type_t<T, U>>
 	{
 		return vector.reject(onto, ontoNormalized);
 	}
