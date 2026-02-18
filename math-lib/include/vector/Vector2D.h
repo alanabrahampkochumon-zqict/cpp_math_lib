@@ -63,18 +63,22 @@ namespace math
 		template <arithmetic S>
 		Vector2D& operator/=(S scalar);
 
+
 		template <arithmetic U>
 		auto dot(const Vector2D<U>& other) const -> std::common_type_t<T, U>;
 
 		template<arithmetic U>
 		static auto dot(const Vector2D& vectorA, const Vector2D<U>& vectorB) ->std::common_type_t<T, U>;
 
+
 		template<arithmetic U>
 		auto cross(const Vector2D<U>& other) const -> std::common_type_t<T, U>;
+
 		template<arithmetic U>
 		static auto cross(const Vector2D<T>& vectorA, const Vector2D<U>& vectorB) -> std::common_type_t<T, U>;
 
 		T mag() const;
+
 		Vector2D normalize() const;
 
 		// Projection & Rejection
@@ -85,8 +89,19 @@ namespace math
 		 * @param ontoNormalized A flag for optimizing the by ignoring the division, given the vector that is projected onto is normalized.
 		 * @return Projected vector.
 		 */
-		template<typename S>
-		Vector2D project(const Vector2D<S>& onto, bool ontoNormalized = false) const;
+		template<arithmetic U>
+		auto project(const Vector2D<U>& onto, bool ontoNormalized = false) const -> Vector2D<std::common_type_t<T, U>>;
+
+		/**
+		 * Static wrapper for vector projection.
+		 * @tparam S Type of the vector to be projected to.
+		 * @param vector Vector to project.
+		 * @param onto Vector to be projected onto.
+		 * @param ontoNormalized A flag for optimizing the by ignoring the division, given the vector that is projected onto is normalized.
+		 * @return Projected vector.
+		 */
+		template<arithmetic U>
+		static auto project(const Vector2D& vector, const Vector2D<U>& onto, bool ontoNormalized = false) -> Vector2D<std::common_type_t<T, U>>;
 
 		/**
 		 * Returns the perpendicular component for the current vector after projection to the `onto` vector.
@@ -97,21 +112,6 @@ namespace math
 		 */
 		template<typename S>
 		Vector2D<T> reject(const Vector2D<S>& onto, bool ontoNormalized = false) const;
-
-
-
-		// TODO: Refactor with enable_if_t for S
-
-		/**
-		 * Static wrapper for vector projection.
-		 * @tparam S Type of the vector to be projected to.
-		 * @param vector Vector to project.
-		 * @param onto Vector to be projected onto.
-		 * @param ontoNormalized A flag for optimizing the by ignoring the division, given the vector that is projected onto is normalized.
-		 * @return Projected vector.
-		 */
-		template<typename S>
-		static Vector2D project(const Vector2D& vector, const Vector2D<S>& onto, bool ontoNormalized = false);
 
 		/**
 		 * Returns the perpendicular component for the current vector after projection to the `onto` vector.

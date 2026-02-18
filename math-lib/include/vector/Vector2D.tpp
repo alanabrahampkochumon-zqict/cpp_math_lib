@@ -122,22 +122,6 @@ namespace math {
         return vectorA.cross(vectorB);
     }
 
-    template<arithmetic T>
-    template<typename S>
-    Vector2D<T> Vector2D<T>::project(const Vector2D<S>& onto, bool ontoNormalized) const
-    {
-        if (ontoNormalized)
-        {
-            // Pb||a^ = dot(a, b) * b;
-            return this->dot(onto) * onto;
-        }
-    	else
-        {
-            // Pb||a = dot(a, b)/dot(b,b) * b;
-            return this->dot(onto) / Vector2D<T>::dot(onto, onto) * onto;
-        }
-        
-    }
 
     template <arithmetic T>
     template <typename S>
@@ -145,7 +129,6 @@ namespace math {
     {
         return *this - this->project(onto, ontoNormalized);
     }
-
 
     
     template <arithmetic T>
@@ -160,11 +143,26 @@ namespace math {
         return (*this) / this->mag();
     }
 
-   
+    template <arithmetic T>
+    template <arithmetic U>
+    auto Vector2D<T>::project(const Vector2D<U>& onto, bool ontoNormalized) const -> Vector2D<std::common_type_t<T, U>>
+    {
+        using R = std::common_type_t<T, U>;
+        if (ontoNormalized)
+        {
+            // Pb||a^ = dot(a, b) * b;
+            return this->dot(onto) * onto;
+        }
+        else
+        {
+            // Pb||a = dot(a, b)/dot(b,b) * b;
+            return this->dot(onto) / Vector2D<R>::dot(onto, onto) * onto;
+        }
+    }
 
     template <arithmetic T>
-    template <typename S>
-    Vector2D<T> Vector2D<T>::project(const Vector2D& vector, const Vector2D<S>& onto, bool ontoNormalized)
+    template <arithmetic U>
+    auto Vector2D<T>::project(const Vector2D& vector, const Vector2D<U>& onto, bool ontoNormalized) -> Vector2D<std::common_type_t<T, U>>
     {
         return vector.project(onto, ontoNormalized);
     }
