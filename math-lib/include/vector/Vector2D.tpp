@@ -150,7 +150,6 @@ namespace math {
     template <arithmetic U>
     auto Vector2D<T>::project(const Vector2D<U>& onto, bool ontoNormalized) const -> Vector2D<std::common_type_t<T, U>>
     {
-        using R = std::common_type_t<T, U>;
         if (ontoNormalized)
         {
             // Pb||a^ = dot(a, b) * b;

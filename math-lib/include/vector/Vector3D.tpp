@@ -67,10 +67,8 @@ namespace math {
 	template <arithmetic S>
 	auto Vector3D<T>::operator*(S scalar) const -> Vector3D<std::common_type_t<T, S>>
 	{
-		// TODO: Experiment with rvalue
-		Vector3D copy = (*this);
-		copy *= scalar;
-		return copy;
+		using R = std::common_type_t<T, S>;
+		return Vector3D<R>(x * scalar, y * scalar, z * scalar);
 	}
 
 
@@ -94,7 +92,6 @@ namespace math {
 	template <arithmetic S>
 	auto Vector3D<T>::operator/(S scalar) const -> Vector3D<std::common_type_t<T, S>>
 	{
-		// TODO: Experiment with rvalue
 		using R = std::common_type_t<T, S>;
 		R factor = R(1) / scalar;
 		return Vector3D<R>(factor * x, factor * y, factor * z) ;

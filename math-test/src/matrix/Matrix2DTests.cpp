@@ -365,7 +365,7 @@ TEST(Matrix2D_Product, MatrixTimesVectorReturnsANewMatrixWithCorrectValues)
 	const math::vec2 actual = mat * vec;
 
 	// Assert
-	TestUtils::Vector2D::EXPECT_VEC_EQ(expected, actual);
+	TestUtils::EXPECT_VEC_EQ(expected, actual);
 }
 
 TEST(Matrix2D_Product, IdentityMatrixTimesAVectorReturnsTheSameMatrix)
@@ -378,7 +378,7 @@ TEST(Matrix2D_Product, IdentityMatrixTimesAVectorReturnsTheSameMatrix)
 	const math::vec2 actual = mat * vec;
 
 	// Assert
-	TestUtils::Vector2D::EXPECT_VEC_EQ(vec, actual);
+	TestUtils::EXPECT_VEC_EQ(vec, actual);
 }
 
 TEST(Matrix2D_Product, VectorTimesAMatrixReturnsANewVectorWithCorrectValues)
@@ -395,7 +395,7 @@ TEST(Matrix2D_Product, VectorTimesAMatrixReturnsANewVectorWithCorrectValues)
 	const math::vec2 actual = vec * mat;
 
 	// Assert
-	TestUtils::Vector2D::EXPECT_VEC_EQ(expected, actual);
+	TestUtils::EXPECT_VEC_EQ(expected, actual);
 }
 
 TEST(Matrix2D_Product, VectorTimesIdentityMatrixReturnsTheSameMatrix)
@@ -408,7 +408,7 @@ TEST(Matrix2D_Product, VectorTimesIdentityMatrixReturnsTheSameMatrix)
 	const math::vec2 actual = vec * mat;
 
 	// Assert
-	TestUtils::Vector2D::EXPECT_VEC_EQ(vec, actual);
+	TestUtils::EXPECT_VEC_EQ(vec, actual);
 }
 
 TEST(Matrix2D_Product, VectorTimesEqualMatrixReturnTheSameVectorWithNewValues)
@@ -425,7 +425,7 @@ TEST(Matrix2D_Product, VectorTimesEqualMatrixReturnTheSameVectorWithNewValues)
 	vec *= mat;
 
 	// Assert
-	TestUtils::Vector2D::EXPECT_VEC_EQ(expected, vec);
+	TestUtils::EXPECT_VEC_EQ(expected, vec);
 }
 
 TEST(Matrix2D_Product, MatrixTimesMatrixGivesAnotherMatrixWithCorrectValues)
