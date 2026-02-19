@@ -23,10 +23,10 @@ static constexpr std::size_t cols = math::Matrix4D<float>::columns;
 
 TEST(Matrix4D_Initialization, InitializedWithOutParametersProvidesIdentityMatrix)
 {
-	// Arrange & Act
+	// Given a matrix constructed without parameters
 	const math::Matrix4D<float> mat;
 
-	// Assert
+	// Then it's elements form an identity matrix
 	for (std::size_t i = 0 ; i < rows; ++i)
 	{
 		for (std::size_t j = 0; j < cols; ++j)
@@ -36,29 +36,41 @@ TEST(Matrix4D_Initialization, InitializedWithOutParametersProvidesIdentityMatrix
 	}
 }
 
-//TEST(Matrix4D_Initialization, InitializationSupportedForIntegers)
-//{
-//	// Arrange and Act
-//	const math::Matrix4D<int> mat;
-//
-//	// Assert
-//	static_assert(std::is_same_v<typename decltype(mat)::value_type, int>);
-//	EXPECT_MAT_IDENTITY(mat);
-//}
-//
-//TEST(Matrix4D_Initialization, InitializedWithParametersProvidesCorrectMatrix)
-//{
-//	// Arrange & Act
-//	const math::Matrix4D mat(
-//		0.0f, 1.0f, 2.0f,
-//		3.0f, 4.0f, 5.0f,
-//		6.0f, 7.0f, 8.0f);
-//
-//	// Assert
-//	for (size_t i = 0; i < size; ++i)
-//		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowSize, i % rowSize));
-//}
-//
+TEST(Matrix4D_Initialization, InitializationSupportedForIntegers)
+{
+	// Given an integer matrix initialized without parameters
+	const math::Matrix4D<int> mat;
+
+	// Then it's value_type is int, and elements form an identity matrix
+	static_assert(std::is_same_v<typename decltype(mat)::value_type, int>);
+	for (std::size_t i = 0; i < rows; ++i)
+	{
+		for (std::size_t j = 0; j < cols; ++j)
+		{
+			EXPECT_EQ(i == j, mat.elements[i][j]); // TODO: Replace with accessor
+		}
+	}
+}
+
+TEST(Matrix4D_Initialization, InitializedWithParametersProvidesCorrectMatrix)
+{
+	// Given a matrix created with arbitrary values passed in
+	const math::Matrix4D mat(
+		0.0f, 1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f, 7.0f,
+		8.0f, 9.0f, 10.0f, 11.0f,
+		12.0f, 13.0f, 14.0f, 15.0f);
+
+	// Then it's elements reflect the correct values
+	for (std::size_t i = 0; i < rows; ++i)
+	{
+		for (std::size_t j = 0; j < cols; ++j)
+		{
+			EXPECT_FLOAT_EQ(static_cast<float>((i * rows) + j), mat(i, j)); // TODO: Replace with accessor
+		}
+	}
+}
+
 //TEST(Matrix4D_Initialization, InitializedWithThree3DVectorsProvidesCorrectMatrix)
 //{
 //	// Arrange & Act
