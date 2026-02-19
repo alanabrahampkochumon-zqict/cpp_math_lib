@@ -11,8 +11,6 @@ namespace math
 	{
 		using value_type = T;
 
-		//static_assert(std::is_arithmetic_v<T>, "Vector3D can only be instantiated with numbers(integer, float, doubles etc.");
-
 		static constexpr std::size_t dimension = 3;
 
 		union {
@@ -23,6 +21,12 @@ namespace math
 			T elements[dimension];
 		};
 
+		/*************************************
+		 *                                   *
+		 *            INITIALIZERS           *
+		 *                                   *
+		 *************************************/
+
 		Vector3D();
 		Vector3D(T v1, T v2, T v3);
 		Vector3D(Vector2D<T> vec, T v);
@@ -31,14 +35,21 @@ namespace math
 		Vector3D(const Vector3D<S>& other);
 
 
-
+		/*************************************
+		 *                                   *
+		 *            ACCESSORS              *
+		 *                                   *
+		 *************************************/
 
 		T& operator[](std::size_t i);
 		const T& operator[](std::size_t i) const;
 
-		/**
-		 * Vector Arithmetic
-		 */
+
+		/*************************************
+		 *                                   *
+		 *      ARITHMETIC OPERATORS         *
+		 *                                   *
+		 *************************************/
 
 		template<Arithmetic U>
 		auto operator+(const Vector3D<U>& other) const -> Vector3D<std::common_type_t<T, U>>;
@@ -64,36 +75,53 @@ namespace math
 		template<Arithmetic S>
 		Vector3D& operator/=(S scalar);
 
-		/**
-		 * Vector Dot Product
-		 */
+
+		/*************************************
+		 *                                   *
+		 *       VECTOR DOT PRODUCT          *
+		 *                                   *
+		 *************************************/
 		template <Arithmetic U>
 		auto dot(const Vector3D<U>& other) const -> std::common_type_t<T, U>;
 
 		template <Arithmetic U>
 		static auto dot(const Vector3D& vecA, const Vector3D<U>& vecB) -> std::common_type_t<T, U>;
 
-		/**
-		 * Vector Cross Product
-		 */
+
+		/*************************************
+		 *                                   *
+		 *       VECTOR CROSS PRODUCT        *
+		 *                                   *
+		 *************************************/
 		template <Arithmetic U>
 		auto cross(const Vector3D<U>& other) const -> Vector3D<std::common_type_t<T, U>>;
 
 		template <Arithmetic U>
 		static auto cross(const Vector3D& vecA, const Vector3D<U>& vecB) -> Vector3D<std::common_type_t<T, U>>;
 
-		/**
-		 * Vector Magnitude
-		 */
+
+		/*************************************
+		 *                                   *
+		 *         VECTOR MAGNITUDE          *
+		 *                                   *
+		 *************************************/
 		T mag() const;
 
-		/*
-		 * Vector Normalization
-		 */
+
+		/*************************************
+		 *                                   *
+		 *       VECTOR NORMALIZATION        *
+		 *                                   *
+		 *************************************/
 		Vector3D normalize() const;
 
 
-		// Projection & Rejection
+		/*************************************
+		 *                                   *
+		 *        VECTOR PROJECTION          *
+		 *                                   *
+		 *************************************/
+
 		/**
 		 * Projects the current vector onto to the `onto` vector.
 		 * @tparam U Type of the vector to be projected on to (b).
@@ -114,6 +142,13 @@ namespace math
 		 */
 		template <Arithmetic U>
 		static auto project(const Vector3D& vector, const Vector3D<U>& onto, bool ontoNormalized = false) -> Vector3D<std::common_type_t<T, U>>;
+		
+		
+		/*************************************
+		 *                                   *
+		 *         VECTOR REJECTION          *
+		 *                                   *
+		 *************************************/
 
 		/**
 		 * Returns the perpendicular component for the current vector after projection to the `onto` vector.
@@ -138,10 +173,19 @@ namespace math
 
 	};
 
+	/*************************************
+	 *                                   *
+	 *       NON-MEMBER FUNCTIONS        *
+	 *                                   *
+	 *************************************/
 	template <Arithmetic T, Arithmetic S>
 	auto operator*(S scalar, const Vector3D<T>& vector) -> Vector3D<std::common_type_t<T, S>>;
 
-	// Aliases
+	/*************************************
+	 *                                   *
+	 *             ALIASES               *
+	 *                                   *
+	 *************************************/
 	using vec3 = Vector3D<float>;
 	using dvec3 = Vector3D<double>;
 

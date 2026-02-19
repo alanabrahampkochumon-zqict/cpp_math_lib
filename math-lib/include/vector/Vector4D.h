@@ -1,7 +1,5 @@
 #pragma once
 
-#include <type_traits>
-
 #include "Vector2D.h"
 #include "Vector3D.h"
 
@@ -10,20 +8,23 @@ namespace math
     template<Arithmetic T>
     struct Vector4D
     {
+        using value_type = T;
+
+        static constexpr std::size_t dimension = 4;
 
         union {
             struct { T x, y, z, w; };
             struct { T r, g, b, a; };
             struct { T s, t, p, q; };
 
-            T elements[4];
+            T elements[dimension];
         };
 
         /*************************************
-		 *                                   *
-		 *         INITIALIZATIONS           *
-		 *                                   *
-		 *************************************/
+         *                                   *
+         *            INITIALIZERS           *
+         *                                   *
+         *************************************/
 
         Vector4D();
         Vector4D(T v1, T v2, T v3, T v4);
@@ -66,7 +67,7 @@ namespace math
 
         /*************************************
          *                                   *
-         *       VECTOR DOT PRODUCT          *
+         *        VECTOR DOT PRODUCT         *
          *                                   *
          *************************************/
         T dot(const Vector4D& other) const;
@@ -113,11 +114,13 @@ namespace math
         template<Arithmetic U>
         static Vector4D project(const Vector4D& vector, const Vector4D<U>& onto, bool ontoNormalized = false);
 
-        /*************************************
+    	
+    	/*************************************
          *                                   *
          *         VECTOR REJECTION          *
          *                                   *
          *************************************/
+
         /**
          * Returns the perpendicular component for the current vector after projection to the `onto` vector.
          * @tparam U Type of the vector to be vector projected onto.
