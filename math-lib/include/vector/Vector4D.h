@@ -7,16 +7,9 @@
 
 namespace math
 {
-    template<typename T>
+    template<Arithmetic T>
     struct Vector4D
     {
-        static_assert(std::is_floating_point_v<T>, "Vector4D can only be instantiated with floats(float and double)");
-
-        Vector4D();
-        Vector4D(T v1, T v2, T v3, T v4);
-        Vector4D(Vector2D<T> vec1, Vector2D<T> vec2);
-        Vector4D(Vector3D<T> vec, T v);
-
 
         union {
             struct { T x, y, z, w; };
@@ -26,83 +19,144 @@ namespace math
             T elements[4];
         };
 
+        /*************************************
+		 *                                   *
+		 *         INITIALIZATIONS           *
+		 *                                   *
+		 *************************************/
+
+        Vector4D();
+        Vector4D(T v1, T v2, T v3, T v4);
+        Vector4D(Vector2D<T> vec1, Vector2D<T> vec2);
+        Vector4D(Vector3D<T> vec, T v);
+
+        
+        /*************************************
+         *                                   *
+         *            ACCESSORS              *
+         *                                   *
+         *************************************/
 
         T& operator[](int i);
         const T& operator[](int i) const;
+
+
+        /*************************************
+         *                                   *
+         *      ARITHMETIC OPERATORS         *
+         *                                   *
+         *************************************/
 
         Vector4D operator+(const Vector4D& other) const;
         Vector4D& operator+=(const Vector4D& other);
         Vector4D operator-(const Vector4D& other) const;
         Vector4D& operator-=(const Vector4D& other);
 
-        template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        template <Arithmetic S>
         Vector4D operator*(const S& scalar) const;
 
-        template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>>>
+        template <Arithmetic S>
         Vector4D& operator*=(const S& scalar);
 
-        template<typename M>
-        Vector4D operator/(const M& scalar) const;
+        template<Arithmetic S>
+        Vector4D operator/(const S& scalar) const;
 
-        template<typename M>
-        Vector4D& operator/=(const M& scalar);
+        template<Arithmetic S>
+        Vector4D& operator/=(const S& scalar);
 
+        /*************************************
+         *                                   *
+         *       VECTOR DOT PRODUCT          *
+         *                                   *
+         *************************************/
         T dot(const Vector4D& other) const;
-
-        T mag() const;
-        Vector4D normalize() const;
-
         static T dot(const Vector4D& vecA, const Vector4D& vecB);
 
-        // Projection & Rejection
+        /*************************************
+         *                                   *
+         *         VECTOR MAGNITUDE          *
+         *                                   *
+         *************************************/
+        T mag() const;
+
+        /*************************************
+         *                                   *
+         *       VECTOR NORMALIZATION        *
+         *                                   *
+         *************************************/
+        Vector4D normalize() const;
+
+
+        /*************************************
+         *                                   *
+         *        VECTOR PROJECTION          *
+         *                                   *
+         *************************************/
         /**
          * Projects the current vector onto to the `onto` vector.
-         * @tparam S Type of the vector to be projected on to (b).
+         * @tparam U Type of the vector to be projected on to (b).
          * @param onto Vector to be projected onto.
          * @param ontoNormalized A flag for optimizing the by ignoring the division, given the vector that is projected onto is normalized.
          * @return Projected vector.
          */
-        template<typename S>
-        Vector4D<T> project(const Vector4D<S>& onto, bool ontoNormalized = false) const;
+        template<Arithmetic U>
+        Vector4D<T> project(const Vector4D<U>& onto, bool ontoNormalized = false) const;
+
+        /**
+		 * Static wrapper for vector projection.
+		 * @tparam U Type of the vector to be projected to.
+		 * @param vector Vector to project.
+		 * @param onto Vector to be projected onto.
+		 * @param ontoNormalized A flag for optimizing the by ignoring the division, given the vector that is projected onto is normalized.
+		 * @return Projected vector.
+		 */
+        template<Arithmetic U>
+        static Vector4D project(const Vector4D& vector, const Vector4D<U>& onto, bool ontoNormalized = false);
+
+        /*************************************
+         *                                   *
+         *         VECTOR REJECTION          *
+         *                                   *
+         *************************************/
+        /**
+         * Returns the perpendicular component for the current vector after projection to the `onto` vector.
+         * @tparam U Type of the vector to be vector projected onto.
+         * @param onto Vector to be projected onto.
+         * @param ontoNormalized A flag for optimizing the by ignoring the division, given the vector that is projected onto is normalized.
+         * @return Projected vector.
+         */
+        template<Arithmetic U>
+        Vector4D<T> reject(const Vector4D<U>& onto, bool ontoNormalized = false) const;
+
 
         /**
          * Returns the perpendicular component for the current vector after projection to the `onto` vector.
-         * @tparam S Type of the vector to be vector projected onto.
-         * @param onto Vector to be projected onto.
-         * @param ontoNormalized A flag for optimizing the by ignoring the division, given the vector that is projected onto is normalized.
-         * @return Projected vector.
-         */
-        template<typename S>
-        Vector4D<T> reject(const Vector4D<S>& onto, bool ontoNormalized = false) const;
-
-        /**
-         * Static wrapper for vector projection.
-         * @tparam S Type of the vector to be projected to.
-         * @param vector Vector to project.
-         * @param onto Vector to be projected onto.
-         * @param ontoNormalized A flag for optimizing the by ignoring the division, given the vector that is projected onto is normalized.
-         * @return Projected vector.
-         */
-        template<typename S>
-        static Vector4D project(const Vector4D& vector, const Vector4D<S>& onto, bool ontoNormalized = false);
-
-        /**
-         * Returns the perpendicular component for the current vector after projection to the `onto` vector.
-         * @tparam S Type of the vector to be vector projected onto.
+         * @tparam U Type of the vector to be vector projected onto.
          * @param vector whose rejection(perpendicular) component on to `onto` we need to find.
          * @param onto Vector to be projected onto.
          * @param ontoNormalized A flag for optimizing the by ignoring the division, given the vector that is projected onto is normalized.
          * @return Projected vector.
          */
-        template<typename S>
-        static Vector4D reject(const Vector4D& vector, const Vector4D<S>& onto, bool ontoNormalized = false);
+        template<Arithmetic U>
+        static Vector4D reject(const Vector4D& vector, const Vector4D<U>& onto, bool ontoNormalized = false);
 
     };
 
-    template<typename T, typename M, typename = std::enable_if_t<std::is_arithmetic_v<T>>, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
-    Vector4D<T> operator*(M scalar, const Vector4D<T>& vector);
 
-    // Aliases
+    /*************************************
+     *                                   *
+     *       NON-MEMBER FUNCTIONS        *
+     *                                   *
+     *************************************/
+    template<Arithmetic T, Arithmetic S>
+    Vector4D<T> operator*(S scalar, const Vector4D<S>& vector);
+
+
+    /*************************************
+     *                                   *
+     *             ALIASES               *
+     *                                   *
+     *************************************/
     using vec4 = Vector4D<float>;
     using dvec4 = Vector4D<double>;
 
