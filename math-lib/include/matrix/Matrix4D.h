@@ -22,8 +22,11 @@ namespace math
 		};
 
 		Matrix4D();
-	};
 
+
+		T& operator()(std::size_t row, std::size_t col);
+		const T& operator()(std::size_t row, std::size_t col) const;
+	};
 	
 }
 

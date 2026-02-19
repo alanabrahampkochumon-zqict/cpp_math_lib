@@ -29,4 +29,16 @@ namespace math
 		elements[3][2] = 0;
 		elements[3][3] = 1;
 	}
+
+	template <Arithmetic T>
+	T& Matrix4D<T>::operator()(std::size_t row, std::size_t col)
+	{
+		return elements[col][row];
+	}
+
+	template <Arithmetic T>
+	const T& Matrix4D<T>::operator()(std::size_t row, std::size_t col) const
+	{
+		return elements[col][row];
+	}
 }
