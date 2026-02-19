@@ -2,94 +2,155 @@
 
 #include <vector/Vector4D.h>
 
-/*
-* INITIALIZATION AND ACCESS TESTS
-*/
+#include "../utils/VectorUtils.h"
 
-TEST(Vector4D, EmptyConstructorInitializesZeroVector)
+
+using namespace TestUtils;
+
+/**************************************
+ *                                    *
+ *  INITIALIZATION AND ACCESS TESTS   *
+ *                                    *
+ **************************************/
+TEST(Vector4D_Initalization, EmptyConstructorInitializesZeroVector)
 {
-    // Arrange & Act
+    // Given a vector initialized without parameters
     const math::Vector4D<float> vec;
 
-    // Assert
-    EXPECT_FLOAT_EQ(0.0f, vec.x);
-    EXPECT_FLOAT_EQ(0.0f, vec.y);
-    EXPECT_FLOAT_EQ(0.0f, vec.z);
-    EXPECT_FLOAT_EQ(0.0f, vec.w);
+    // Then it's elements form a zero vector
+    EXPECT_VEC_ZERO(vec);
 }
 
-TEST(Vector4D, ConstructorParametersInitializesVector)
+TEST(Vector4D_Initalization, ConstructorParametersInitializesVector)
 {
-    // Arrange & Act
+    // Given a vector initialized with parameters
     const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // Assert
+    // Then it's elements reflect correct values
     EXPECT_FLOAT_EQ(3.0f, vec.x);
     EXPECT_FLOAT_EQ(1.0f, vec.y);
     EXPECT_FLOAT_EQ(6.0f, vec.z);
     EXPECT_FLOAT_EQ(2.0f, vec.w);
 }
 
-TEST(Vector4D, AccessibleAsXYZ)
+TEST(Vector4D_Initalization, InitializationSupportedForIntegers)
 {
-    // Arrange & Act
+    // Given a vector initialized with integer parameters
+    const math::Vector4D vec(3, 1, 6, 2);
+
+    // Then it's value_type is int, and elements reflect correct values
+    static_assert(std::is_same_v<typename decltype(vec)::value_type, int>);
+    EXPECT_EQ(3, vec.x);
+    EXPECT_EQ(1, vec.y);
+    EXPECT_EQ(6, vec.z);
+    EXPECT_EQ(2, vec.w);
+}
+
+// TODO: add conversion constructor and tests
+//TEST(Vector4D_ConversionConstructor, ConversionConstructorCreatesNewVectorWithPromotedType)
+//{
+//    // Arrange
+//    math::Vector3D vec1(3.0f, 1.0f, 6.0f);
+//
+//    // Act
+//    math::Vector3D<double> vec2(vec1);
+//    vec2.x = 5;
+//
+//    // Assert
+//    ASSERT_FLOAT_EQ(3.0f, vec1.x);
+//    ASSERT_FLOAT_EQ(1.0f, vec1.y);
+//    ASSERT_FLOAT_EQ(6.0f, vec1.z);
+//
+//    static_assert(std::is_same_v<typename decltype(vec2)::value_type, double>);
+//
+//    ASSERT_DOUBLE_EQ(5.0, vec2.x);
+//    ASSERT_DOUBLE_EQ(1.0, vec2.y);
+//    ASSERT_DOUBLE_EQ(6.0, vec2.z);
+//
+//}
+//
+//TEST(Vector4D_ConversionConstructor, ConversionConstructorCreatesNewVectorWithDemotedType)
+//{
+//    // Arrange
+//    math::Vector3D vec1(3.0, 1.0, 6.0);
+//
+//    // Act
+//    math::Vector3D<float> vec2 = vec1;
+//    vec2.x = 5;
+//
+//    // Assert
+//    ASSERT_DOUBLE_EQ(3.0, vec1.x);
+//    ASSERT_DOUBLE_EQ(1.0, vec1.y);
+//    ASSERT_DOUBLE_EQ(6.0, vec1.z);
+//
+//    static_assert(std::is_same_v<typename decltype(vec2)::value_type, float>);
+//
+//    ASSERT_FLOAT_EQ(5.0f, vec2.x);
+//    ASSERT_FLOAT_EQ(1.0f, vec2.y);
+//    ASSERT_FLOAT_EQ(6.0f, vec2.z);
+//
+//}
+
+TEST(Vector4D_Access, AccessibleAsXYZ)
+{
+    // Given a vector with arbitrary values passed in
     const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // Assert
+    // Then it's elements are accessible as x, y, z, w
     EXPECT_FLOAT_EQ(3.0f, vec.x);
     EXPECT_FLOAT_EQ(1.0f, vec.y);
     EXPECT_FLOAT_EQ(6.0f, vec.z);
     EXPECT_FLOAT_EQ(2.0f, vec.w);
 }
 
-TEST(Vector4D, AccessibleAsSTP)
+TEST(Vector4D_Access, AccessibleAsSTP)
 {
-    // Arrange & Act
+    // Given a vector with arbitrary values passed in
     const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // Assert
+    // Then it's elements are accessible as s, t, p, q
     EXPECT_FLOAT_EQ(3.0f, vec.s);
     EXPECT_FLOAT_EQ(1.0f, vec.t);
     EXPECT_FLOAT_EQ(6.0f, vec.p);
     EXPECT_FLOAT_EQ(2.0f, vec.q);
 }
 
-TEST(Vector4D, AccessibleAsRGB)
+TEST(Vector4D_Access, AccessibleAsRGB)
 {
-    // Arrange & Act
+    // Given a vector with arbitrary values passed in
     const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // Assert
+    // Then it's elements are accessible as r, g, b, a
     EXPECT_FLOAT_EQ(3.0f, vec.r);
     EXPECT_FLOAT_EQ(1.0f, vec.g);
     EXPECT_FLOAT_EQ(6.0f, vec.b);
     EXPECT_FLOAT_EQ(2.0f, vec.a);
 }
 
-TEST(Vector4D, AccessibleAsArray)
+TEST(Vector4D_Access, AccessibleAsArray)
 {
-    // Arrange & Act
+    // Given a vector with arbitrary values passed in
     const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // Assert
+    // Then it's elements are accessible as array elements
     EXPECT_FLOAT_EQ(3.0f, vec.elements[0]);
     EXPECT_FLOAT_EQ(1.0f, vec.elements[1]);
     EXPECT_FLOAT_EQ(6.0f, vec.elements[2]);
     EXPECT_FLOAT_EQ(2.0f, vec.elements[3]);
 }
 
-TEST(Vector4D, IndexBasedAssignmentAndRetrivalSupport)
+TEST(Vector4D_Mutation, ElementsCanBeMutatedAtGivenIndex)
 {
-    // Arrange
+    // Given a vector initialization without parameters
     math::Vector4D<float> vec;
 
-    // Act
+    // When it's elements are mutated at a particular index
     vec[0] = 3.0f;
     vec[1] = 1.0f;
     vec[2] = 6.0f;
     vec[3] = 2.0f;
     
-    // Assert
+    // Then it's element reflect the change
     EXPECT_FLOAT_EQ(3.0f, vec[0]);
     EXPECT_FLOAT_EQ(1.0f, vec[1]);
     EXPECT_FLOAT_EQ(6.0f, vec[2]);
@@ -97,7 +158,7 @@ TEST(Vector4D, IndexBasedAssignmentAndRetrivalSupport)
 
 }
 
-TEST(Vector4D, vec4Return3DFloatVector)
+TEST(Vector4D_Access, vec4Return3DFloatVector)
 {
     // Arrange & Act
     constexpr bool isCorrectType = std::is_same_v<math::vec4, math::Vector4D<float>>;

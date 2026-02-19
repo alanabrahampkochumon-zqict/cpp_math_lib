@@ -3,6 +3,8 @@
 #include "Vector2D.h"
 #include "Vector3D.h"
 
+#include <cstddef>
+
 namespace math
 {
     template<Arithmetic T>
@@ -38,8 +40,8 @@ namespace math
          *                                   *
          *************************************/
 
-        T& operator[](int i);
-        const T& operator[](int i) const;
+        T& operator[](std::size_t i);
+        const T& operator[](std::size_t i) const;
 
 
         /*************************************
@@ -152,7 +154,7 @@ namespace math
      *                                   *
      *************************************/
     template<Arithmetic T, Arithmetic S>
-    Vector4D<T> operator*(S scalar, const Vector4D<S>& vector);
+    Vector4D<T> operator*(S scalar, const Vector4D<T>& vector);
 
 
     /*************************************

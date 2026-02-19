@@ -45,7 +45,7 @@ TEST(Vector3D_Initialization, One2DVectorAndFloatCanInitializeA3DVector)
 	EXPECT_FLOAT_EQ(6.0f, vec.z);
 }
 
-TEST(Vector3D_ConversionContructor, ConversionConstructorCreatesNewVectorWithPromotedType)
+TEST(Vector3D_ConversionConstructor, ConversionConstructorCreatesNewVectorWithPromotedType)
 {
 	// Arrange
 	math::Vector3D vec1(3.0f, 1.0f, 6.0f);
@@ -67,7 +67,7 @@ TEST(Vector3D_ConversionContructor, ConversionConstructorCreatesNewVectorWithPro
 
 }
 
-TEST(Vector3D_ConversionContructor, ConversionConstructorCreatesNewVectorWithDemotedType)
+TEST(Vector3D_ConversionConstructor, ConversionConstructorCreatesNewVectorWithDemotedType)
 {
 	// Arrange
 	math::Vector3D vec1(3.0, 1.0, 6.0);

@@ -15,13 +15,13 @@ namespace math
 	Vector4D<T>::Vector4D(Vector3D<T> vec, T v): x(vec.x), y(vec.y), z(vec.z), w(v)	{ }
 
 	template <Arithmetic T>
-	T& Vector4D<T>::operator[](int i)
+	T& Vector4D<T>::operator[](std::size_t i)
 	{
 		return (&x)[i];
 	}
 
 	template <Arithmetic T>
-	const T& Vector4D<T>::operator[](int i) const
+	const T& Vector4D<T>::operator[](std::size_t i) const
 	{
 		return (&x)[i];
 	}
@@ -163,7 +163,7 @@ namespace math
 		return vector.reject(onto, ontoNormalized);
 	}
 
-	template <Arithmetic T, Arithmetic S>
+	template<Arithmetic T, Arithmetic S>
 	Vector4D<T> operator*(S scalar, const Vector4D<T>& vector)
 	{
 		return vector * scalar;

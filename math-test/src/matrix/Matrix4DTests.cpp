@@ -23,7 +23,7 @@ static constexpr std::size_t cols = math::Matrix4D<float>::columns;
 
 TEST(Matrix4D_Initialization, InitializedWithOutParametersProvidesIdentityMatrix)
 {
-	// Given a matrix constructed without parameters
+	// Given a matrix initialized without parameters
 	const math::Matrix4D<float> mat;
 
 	// Then it's elements form an identity matrix
@@ -54,7 +54,7 @@ TEST(Matrix4D_Initialization, InitializationSupportedForIntegers)
 
 TEST(Matrix4D_Initialization, InitializedWithParametersProvidesCorrectMatrix)
 {
-	// Given a matrix created with arbitrary values passed in
+	// Given a matrix with arbitrary values passed in
 	const math::Matrix4D mat(
 		0.0f, 1.0f, 2.0f, 3.0f,
 		4.0f, 5.0f, 6.0f, 7.0f,

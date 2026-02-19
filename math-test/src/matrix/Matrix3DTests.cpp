@@ -11,13 +11,11 @@
 using namespace TestUtils::Matrix3D;
 // TODO: Add test for integer precision on multiplication -> [[2]] * 2.5 = [[5]] not 4
 
-
-/*************************************
- *                                   *
- *         INITIALIZATIONS           *
- *                                   *
- *************************************/
-
+/**************************************
+ *                                    *
+ *  INITIALIZATION AND ACCESS TESTS   *
+ *                                    *
+ **************************************/
 constexpr int size = 9;
 constexpr int rowSize = 3;
 

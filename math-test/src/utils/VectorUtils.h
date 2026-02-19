@@ -62,7 +62,6 @@ namespace TestUtils
 	void EXPECT_VEC_ZERO(T vector)
 	{
 		using ValueType = T::value_type;
-		ValueType expected = ValueType(0);
 
 		constexpr std::size_t elementCount = T::dimension;
 
@@ -70,15 +69,15 @@ namespace TestUtils
 		{
 			if constexpr (std::is_same_v<ValueType, float>)
 			{
-				EXPECT_FLOAT_EQ(expected, static_cast<ValueType>(vector[i]));
+				EXPECT_FLOAT_EQ(0.0f, static_cast<ValueType>(vector[i]));
 			}
 			else if (std::is_same_v<ValueType, double>)
 			{
-				EXPECT_DOUBLE_EQ(expected, static_cast<ValueType>(vector[i]));
+				EXPECT_DOUBLE_EQ(0.0, static_cast<ValueType>(vector[i]));
 			}
 			else
 			{
-				EXPECT_EQ(expected, static_cast<ValueType>(vector[i]));
+				EXPECT_EQ(ValueType(0), static_cast<ValueType>(vector[i]));
 			}
 		}
 	}
