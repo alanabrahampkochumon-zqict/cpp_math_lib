@@ -2,7 +2,7 @@
 
 namespace math
 {
-	template <arithmetic T>
+	template <Arithmetic T>
 	Matrix4D<T>::Matrix4D()
 	{
 		// First Column

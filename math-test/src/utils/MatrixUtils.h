@@ -7,6 +7,83 @@
 #include <matrix/Matrix3D.h>
 #include <matrix/Matrix2D.h>
 
+#include <MathTraits.h>
+
+namespace TestUtils
+{
+	template<math::Matrix T, math::Matrix U>
+	void EXPECT_MAT_EQ(T expected, U actual)
+	{
+		using ValueType = T::value_type;
+
+		static_assert(T::rows != U::rows || T::columns != U::columns, "Matrices must of the same dimension, e.g: 3x3 and 3x3");
+
+		for (std::size_t i = 0; i < T::rows; ++i)
+			for (std::size_t j = 0; j < T::columns; ++j)
+				if constexpr (std::is_same_v<ValueType, double>)
+					ASSERT_DOUBLE_EQ(expected(i, j), static_cast<ValueType>(actual(i, j)));
+				else if constexpr (std::is_same_v<ValueType, float>)
+					ASSERT_FLOAT_EQ(expected(i, j), static_cast<ValueType>(actual(i, j)));
+				else
+					ASSERT_EQ(expected(i, j), static_cast<ValueType>(actual(i, j)));
+
+
+	}
+
+	template<math::Matrix T, math::Matrix U>
+	void EXPECT_MAT_NEAR(T expected, U actual, double tolerance = 1e-5)
+	{
+
+		using ValueType = T::value_type;
+		static_assert(T::rows != U::rows || T::columns != U::columns, "Matrices must of the same dimension, e.g: 3x3 and 3x3");
+
+		for (std::size_t i = 0; i < T::rows; ++i)
+			for (std::size_t j = 0; j < T::columns; ++j)
+				EXPECT_NEAR(expected(i, j), static_cast<ValueType>(actual(i, j)), tolerance);
+	}
+
+	template<math::Matrix T>
+	void EXPECT_MAT_IDENTITY(T actual)
+	{
+		using ValueType = T::value_type;
+		EXPECT_EQ(T::rows, T::columns) << "Identity matrices must be square(e.g: 3x3)\n";
+
+		for (std::size_t i = 0; i < T::rows; ++i)
+			for (std::size_t j = 0; j < T::columns; ++j)
+				if constexpr (std::is_same_v<ValueType, double>)
+					ASSERT_DOUBLE_EQ(i == j, actual(i, j));
+				else if constexpr (std::is_same_v<ValueType, float>)
+					ASSERT_FLOAT_EQ(i == j, actual(i, j));
+				else
+					ASSERT_EQ(i == j, actual(i, j));
+	}
+
+	template<math::Matrix T>
+	void EXPECT_MAT_ZERO(T actual)
+	{
+		using ValueType = T::value_type;
+
+		for (std::size_t i = 0; i < T::rows; ++i)
+			for (std::size_t j = 0; j < T::columns; ++j)
+				if constexpr (std::is_same_v<ValueType, double>)
+					ASSERT_DOUBLE_EQ(0.0, actual(i, j));
+				else if constexpr (std::is_same_v<ValueType, float>)
+					ASSERT_FLOAT_EQ(0.0f, actual(i, j));
+				else
+					ASSERT_EQ(ValueType(0), actual(i, j));
+	}
+
+	template<math::Matrix T>
+	void EXPECT_MAT_INF(T actual)
+	{
+		for (std::size_t i = 0; i < T::rows; ++i)
+			for (std::size_t j = 0; j < T::columns; ++j)
+				EXPECT_TRUE(std::isinf(actual(i, j)));
+	}
+
+}
+
+
 namespace TestUtils::Matrix3D
 {
 

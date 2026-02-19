@@ -7,7 +7,7 @@
 
 namespace math
 {
-	template <arithmetic T>
+	template <Arithmetic T>
 	struct alignas(16) Matrix4D
 	{
 		using value_type = T;

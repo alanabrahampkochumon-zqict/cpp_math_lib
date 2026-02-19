@@ -6,7 +6,7 @@
 
 namespace math
 {
-	template<arithmetic T>
+	template<Arithmetic T>
 	struct Vector3D
 	{
 		using value_type = T;
@@ -27,7 +27,7 @@ namespace math
 		Vector3D(T v1, T v2, T v3);
 		Vector3D(Vector2D<T> vec, T v);
 
-		template <arithmetic S>
+		template <Arithmetic S>
 		Vector3D(const Vector3D<S>& other);
 
 
@@ -40,46 +40,46 @@ namespace math
 		 * Vector Arithmetic
 		 */
 
-		template<arithmetic U>
+		template<Arithmetic U>
 		auto operator+(const Vector3D<U>& other) const -> Vector3D<std::common_type_t<T, U>>;
 
-		template<arithmetic U>
+		template<Arithmetic U>
 		Vector3D& operator+=(const Vector3D<U>& other);
 
-		template<arithmetic U>
+		template<Arithmetic U>
 		auto operator-(const Vector3D<U>& other) const -> Vector3D<std::common_type_t<T, U>>;
 
-		template<arithmetic U>
+		template<Arithmetic U>
 		Vector3D& operator-=(const Vector3D<U>& other);
 
-		template <arithmetic S>
+		template <Arithmetic S>
 		auto operator*(S scalar) const -> Vector3D<std::common_type_t<T, S>>;
 
-		template <arithmetic S>
+		template <Arithmetic S>
 		Vector3D& operator*=(S scalar);
 
-		template<arithmetic S>
+		template<Arithmetic S>
 		auto operator/(S scalar) const -> Vector3D<std::common_type_t<T, S>>;
 
-		template<arithmetic S>
+		template<Arithmetic S>
 		Vector3D& operator/=(S scalar);
 
 		/**
 		 * Vector Dot Product
 		 */
-		template <arithmetic U>
+		template <Arithmetic U>
 		auto dot(const Vector3D<U>& other) const -> std::common_type_t<T, U>;
 
-		template <arithmetic U>
+		template <Arithmetic U>
 		static auto dot(const Vector3D& vecA, const Vector3D<U>& vecB) -> std::common_type_t<T, U>;
 
 		/**
 		 * Vector Cross Product
 		 */
-		template <arithmetic U>
+		template <Arithmetic U>
 		auto cross(const Vector3D<U>& other) const -> Vector3D<std::common_type_t<T, U>>;
 
-		template <arithmetic U>
+		template <Arithmetic U>
 		static auto cross(const Vector3D& vecA, const Vector3D<U>& vecB) -> Vector3D<std::common_type_t<T, U>>;
 
 		/**
@@ -101,7 +101,7 @@ namespace math
 		 * @param ontoNormalized A flag for optimizing the by ignoring the division, given the vector that is projected onto is normalized.
 		 * @return Projected vector.
 		 */
-		template <arithmetic U>
+		template <Arithmetic U>
 		auto project(const Vector3D<U>& onto, bool ontoNormalized = false) const -> Vector3D<std::common_type_t<T, U>>;
 
 		/**
@@ -112,7 +112,7 @@ namespace math
 		 * @param ontoNormalized A flag for optimizing the by ignoring the division, given the vector that is projected onto is normalized.
 		 * @return Projected vector.
 		 */
-		template <arithmetic U>
+		template <Arithmetic U>
 		static auto project(const Vector3D& vector, const Vector3D<U>& onto, bool ontoNormalized = false) -> Vector3D<std::common_type_t<T, U>>;
 
 		/**
@@ -122,7 +122,7 @@ namespace math
 		 * @param ontoNormalized A flag for optimizing the by ignoring the division, given the vector that is projected onto is normalized.
 		 * @return Projected vector.
 		 */
-		template <arithmetic U>
+		template <Arithmetic U>
 		auto reject(const Vector3D<U>& onto, bool ontoNormalized = false) const -> Vector3D<std::common_type_t<T, U>>;
 
 		/**
@@ -133,12 +133,12 @@ namespace math
 		 * @param ontoNormalized A flag for optimizing the by ignoring the division, given the vector that is projected onto is normalized.
 		 * @return Projected vector.
 		 */
-		template <arithmetic U>
+		template <Arithmetic U>
 		static auto reject(const Vector3D& vector, const Vector3D<U>& onto, bool ontoNormalized = false) -> Vector3D<std::common_type_t<T, U>>;
 
 	};
 
-	template <arithmetic T, arithmetic S>
+	template <Arithmetic T, Arithmetic S>
 	auto operator*(S scalar, const Vector3D<T>& vector) -> Vector3D<std::common_type_t<T, S>>;
 
 	// Aliases
