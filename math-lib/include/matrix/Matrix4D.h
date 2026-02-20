@@ -49,12 +49,24 @@ namespace math
 		 *            ACCESSORS              *
 		 *                                   *
 		 *************************************/
+
 		Vector4D<T>& operator[](std::size_t index);
 		const Vector4D<T>& operator[](std::size_t index) const;
 
 		T& operator()(std::size_t row, std::size_t col);
 		const T& operator()(std::size_t row, std::size_t col) const;
 
+		
+		/*************************************
+		 *                                   *
+		 *      ARITHMETIC OPERATORS         *
+		 *                                   *
+		 *************************************/
+		template<Arithmetic U>
+		auto operator+(const Matrix4D<U>& other) const -> Matrix4D<std::common_type_t<T, U>>;
+
+		template<Arithmetic U>
+		Matrix4D& operator+=(const Matrix4D<U>& other);
 	};
 	
 }

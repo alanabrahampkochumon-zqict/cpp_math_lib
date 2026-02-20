@@ -16,7 +16,7 @@ namespace TestUtils
 	{
 		using ValueType = T::value_type;
 
-		static_assert(T::rows != U::rows || T::columns != U::columns, "Matrices must of the same dimension, e.g: 3x3 and 3x3");
+		static_assert(T::rows == U::rows && T::columns == U::columns, "Matrices must of the same dimension, e.g: 3x3 and 3x3");
 
 		for (std::size_t i = 0; i < T::rows; ++i)
 			for (std::size_t j = 0; j < T::columns; ++j)
@@ -35,7 +35,7 @@ namespace TestUtils
 	{
 
 		using ValueType = T::value_type;
-		static_assert(T::rows != U::rows || T::columns != U::columns, "Matrices must of the same dimension, e.g: 3x3 and 3x3");
+		static_assert(T::rows == U::rows && T::columns == U::columns, "Matrices must of the same dimension, e.g: 3x3 and 3x3");
 
 		for (std::size_t i = 0; i < T::rows; ++i)
 			for (std::size_t j = 0; j < T::columns; ++j)

@@ -117,4 +117,28 @@ namespace math
 	{
 		return elements[col][row];
 	}
+
+
+	/*************************************
+	 *                                   *
+	 *      ARITHMETIC OPERATORS         *
+	 *                                   *
+	 *************************************/
+
+	template<Arithmetic T>
+	template<Arithmetic U>
+	auto Matrix4D<T>::operator+(const Matrix4D<U>& other) const->Matrix4D<std::common_type_t<T, U>>
+	{
+		other[0];
+		return *this;
+	}
+
+	template <Arithmetic T>
+	template <Arithmetic U>
+	Matrix4D<T>& Matrix4D<T>::operator+=(const Matrix4D<U>& other)
+	{
+		other[0];
+		return *this;
+	}
+
 }

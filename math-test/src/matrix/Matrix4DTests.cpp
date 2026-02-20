@@ -219,76 +219,134 @@ TEST(Matrix4D_Access, CanBeAccessedAsAValueAtRowColumn)
  *                               *
  *********************************/
 
-//TEST(Matrix4D_Sum, SumOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
-//{
-//	// Arrange
-//	const math::Matrix4D a = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, -8.0f, 9.0f };
-//	const math::Matrix4D b = {
-//		3.0f, 2.0f, 255.0f,
-//		-8.0f, 24.0f, 6.0f,
-//		7.0f, 16.0f, -98.0f };
-//	const math::Matrix4D c = {
-//		4.0f, 4.0f, 258.0f,
-//		-4.0f, 29.0f, 12.0f,
-//		14.0f, 8.0f, -89.0f };
-//
-//	// Act
-//	const math::Matrix4D<float> res = a + b;
-//
-//	// Assert
-//	EXPECT_MAT_EQ(c, res);
-//}
-//
-//TEST(Matrix4D_Sum, PlusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValues)
-//{
-//	// Arrange
-//	math::Matrix4D a = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, -8.0f, 9.0f };
-//	const math::Matrix4D b = {
-//		3.0f, 2.0f, 255.0f,
-//		-8.0f, 24.0f, 6.0f,
-//		7.0f, 16.0f, -98.0f };
-//	const math::Matrix4D c = {
-//		4.0f, 4.0f, 258.0f,
-//		-4.0f, 29.0f, 12.0f,
-//		14.0f, 8.0f, -89.0f };
-//
-//	// Act
-//	a += b;
-//
-//	// Assert
-//	EXPECT_MAT_EQ(c, a);
-//}
-//
-//TEST(Matrix4D_Sum, SumOfTwoMatricesOfDifferentTypeReturnsAnotherMatrixPromotedType)
-//{
-//	// Arrange
-//	const math::Matrix4D a = {
-//		1.0f, 2.0f, 3.0f,
-//		4.0f, 5.0f, 6.0f,
-//		7.0f, -8.0f, 9.0f };
-//	const math::Matrix4D b = {
-//		3.0, 2.0, 255.0,
-//		-8.0, 24.0, 6.0,
-//		7.0, 16.0, -98.0 };
-//	const math::Matrix4D c = {
-//		4.0, 4.0, 258.0,
-//		-4.0, 29.0, 12.0,
-//		14.0, 8.0, -89.0 };
-//
-//	// Act
-//	const auto res = a + b;
-//
-//	// Assert
-//	static_assert(std::is_same_v<typename decltype(res)::value_type, double>, "Assertion Failed (Matrix4D): Float + Double = Double");
-//	EXPECT_MAT_EQ(c, res);
-//}
-//
+TEST(Matrix4D_Addition, SumOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
+{
+	// Given two matrices with arbitrary values
+	const math::Matrix4D a = {
+		1.0f, 2.0f, 3.0f, 5.0f,
+		4.0f, 5.0f, 6.0f, 2.0f,
+		7.0f, -8.0f, 9.0f, 8.0f,
+		12.0f, -3.0f, -20.f, 2.0f
+	};
+	const math::Matrix4D b = {
+		3.0f, 2.0f, 255.0f, 55.0f,
+		-8.0f, 24.0f, 6.0f, -23.0f,
+		7.0f, 16.0f, -98.0f, 11.0f,
+		1.0f, 55.0f, 11.0f, -316.0f
+	};
+
+	const math::Matrix4D expected = {
+		4.0f, 4.0f, 258.0f, 60.0f,
+		-4.0f, 29.0f, 12.0f, -21.0f,
+		14.0f, 8.0f, -89.0f, 19.0f,
+		13.0f, 52.0f, -9.0f, -314.0f
+	};
+
+	// When they are added together
+	const math::Matrix4D result = a + b;
+
+	// Then, the result is the sum of individual elements
+	EXPECT_MAT_EQ(expected, result);
+}
+
+TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValues)
+{
+
+	// Given two matrices with arbitrary values
+	math::Matrix4D a = {
+		1.0f, 2.0f, 3.0f, 5.0f,
+		4.0f, 5.0f, 6.0f, 2.0f,
+		7.0f, -8.0f, 9.0f, 8.0f,
+		12.0f, -3.0f, -20.f, 2.0f
+	};
+
+	const math::Matrix4D b = {
+		3.0f, 2.0f, 255.0f, 55.0f,
+		-8.0f, 24.0f, 6.0f, -23.0f,
+		7.0f, 16.0f, -98.0f, 11.0f,
+		1.0f, 55.0f, 11.0f, -316.0f
+	};
+
+	const math::Matrix4D expected = {
+		4.0f, 4.0f, 258.0f, 60.0f,
+		-4.0f, 29.0f, 12.0f, -21.0f,
+		14.0f, 8.0f, -89.0f, 19.0f,
+		13.0f, 52.0f, -9.0f, -314.0f
+	};
+
+	// When one matrix is added to the other(+=)
+	a += b;
+
+	// Then, the original matrix contains the sum of the elements added together
+	EXPECT_MAT_EQ(expected, a);
+}
+
+TEST(Matrix4D_Addition, SumOfTwoMatricesOfDifferentTypeReturnsAnotherMatrixWithTypePromotion)
+{
+	// Given two matrices with arbitrary values and different types
+	const math::Matrix4D a = {
+		1.0f, 2.0f, 3.0f, 5.0f,
+		4.0f, 5.0f, 6.0f, 2.0f,
+		7.0f, -8.0f, 9.0f, 8.0f,
+		12.0f, -3.0f, -20.f, 2.0f
+	};
+
+	const math::Matrix4D b = {
+		3.0, 2.0, 255.0, 55.0,
+		-8.0, 24.0, 6.0, -23.0,
+		7.0, 16.0, -98.0, 11.0,
+		1.0, 55.0, 11.0, -316.0
+	};
+
+	const math::Matrix4D expected = {
+		4.0, 4.0, 258.0, 60.0,
+		-4.0, 29.0, 12.0, -21.0,
+		14.0, 8.0, -89.0, 19.0,
+		13.0, 52.0, -9.0, -314.0
+	};
+
+	// When they are added together
+	const auto result = a + b;
+
+	// Then, the type of the resultant matrix is of the larger of the two type
+	static_assert(std::is_same_v<typename decltype(result)::value_type, double>);
+	// And, the result is the sum of individual elements
+	EXPECT_MAT_EQ(expected, result);
+}
+
+TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsSameMatrixWithoutTypePromotion)
+{
+	// Given two matrices with arbitrary values with different types
+	math::Matrix4D a = {
+		1.0f, 2.0f, 3.0f, 5.0f,
+		4.0f, 5.0f, 6.0f, 2.0f,
+		7.0f, -8.0f, 9.0f, 8.0f,
+		12.0f, -3.0f, -20.f, 2.0f
+	};
+
+	const math::Matrix4D b = {
+		3.0, 2.0, 255.0, 55.0,
+		-8.0, 24.0, 6.0, -23.0,
+		7.0, 16.0, -98.0, 11.0,
+		1.0, 55.0, 11.0, -316.0
+	};
+
+	const math::Matrix4D expected = {
+		4.0f, 4.0f, 258.0f, 60.0f,
+		-4.0f, 29.0f, 12.0f, -21.0f,
+		14.0f, 8.0f, -89.0f, 19.0f,
+		13.0f, 52.0f, -9.0f, -314.0f
+	};
+
+	// When one matrix is added to the other(+=)
+	a += b;
+
+	// Then, the type of the original matrix is preserved
+	static_assert(std::is_same_v<typename decltype(a)::value_type, float>);
+	// And, the original matrix contains the sum of the elements added together
+	EXPECT_MAT_EQ(expected, a);
+}
+
 //TEST(Matrix4D_Difference, DifferenceOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
 //{
 //	// Arrange
@@ -311,7 +369,7 @@ TEST(Matrix4D_Access, CanBeAccessedAsAValueAtRowColumn)
 //	// Assert
 //	EXPECT_MAT_EQ(c, res);
 //}
-//
+
 //TEST(Matrix4D_Difference, DifferenceOfTwoMatricesOfDifferentTypeReturnsAnotherMatrixPromotedType)
 //{
 //	// Arrange
@@ -336,7 +394,7 @@ TEST(Matrix4D_Access, CanBeAccessedAsAValueAtRowColumn)
 //	EXPECT_MAT_EQ(c, res);
 //}
 //
-//TEST(Matrix4D_Sum, PlusEqualsMatrixWithMatrixOfAnotherTypeReturnsSameMatrixWithoutTypePromotion)
+//TEST(Matrix4D_Addition, PlusEqualsMatrixWithMatrixOfAnotherTypeReturnsSameMatrixWithoutTypePromotion)
 //{
 //	// Arrange
 //	math::Matrix4D a = {
