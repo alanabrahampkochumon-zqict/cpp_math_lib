@@ -34,6 +34,9 @@ namespace math
         Vector4D(Vector2D<T> vec1, Vector2D<T> vec2);
         Vector4D(Vector3D<T> vec, T v);
 
+        template<Arithmetic U>
+        Vector4D(const Vector4D<U>& other);
+
         
         /*************************************
          *                                   *

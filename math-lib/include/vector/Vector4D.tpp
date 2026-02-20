@@ -19,6 +19,12 @@ namespace math
 	template <Arithmetic T>
 	Vector4D<T>::Vector4D(Vector3D<T> vec, T v): x(vec.x), y(vec.y), z(vec.z), w(v)	{ }
 
+	template <Arithmetic T>
+	template <Arithmetic U>
+	Vector4D<T>::Vector4D(const Vector4D<U>& other) :
+	x(static_cast<T>(other.x)), y(static_cast<T>(other.y)), z(static_cast<T>(other.z)), w(static_cast<T>(other.w))
+	{ }
+
 
 	/*************************************
 	 *                                   *
