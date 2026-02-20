@@ -170,6 +170,7 @@ namespace math
      *************************************/
     using vec4 = Vector4D<float>;
     using dvec4 = Vector4D<double>;
+    using ivec4 = Vector4D<int>;
 
 }
 

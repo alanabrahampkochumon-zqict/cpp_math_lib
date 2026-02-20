@@ -19,7 +19,7 @@ TEST(Vector4D_Initalization, EmptyConstructorInitializesZeroVector)
     // Given a vector initialized without parameters
     const math::Vector4D<float> vec;
 
-    // Then it's elements form a zero vector
+    // Then, it's elements form a zero vector
     EXPECT_VEC_ZERO(vec);
 }
 
@@ -28,7 +28,7 @@ TEST(Vector4D_Initalization, ConstructorParametersInitializesVector)
     // Given a vector initialized with parameters
     const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // Then it's elements reflect correct values
+    // Then, it's elements reflect correct values
     EXPECT_FLOAT_EQ(3.0f, vec.x);
     EXPECT_FLOAT_EQ(1.0f, vec.y);
     EXPECT_FLOAT_EQ(6.0f, vec.z);
@@ -40,12 +40,44 @@ TEST(Vector4D_Initalization, InitializationSupportedForIntegers)
     // Given a vector initialized with integer parameters
     const math::Vector4D vec(3, 1, 6, 2);
 
-    // Then it's value_type is int, and elements reflect correct values
+    // Then, it's value_type is int, and elements reflect correct values
     static_assert(std::is_same_v<typename decltype(vec)::value_type, int>);
     EXPECT_EQ(3, vec.x);
     EXPECT_EQ(1, vec.y);
     EXPECT_EQ(6, vec.z);
     EXPECT_EQ(2, vec.w);
+}
+
+TEST(Vector4D_Initialization, Two2DVectorsCanInitializeA4DVector)
+{
+    // Given two 2D Vectors
+    const math::Vector2D vec1(3.0f, 1.0f);
+    const math::Vector2D vec2(6.0f, 2.0f);
+
+    // When a Vector4D is initialized with those vectors
+    const math::Vector4D vec(vec1, vec2);
+
+    // Then, the 2D vector elements form the 4D vector
+    EXPECT_FLOAT_EQ(3.0f, vec[0]);
+    EXPECT_FLOAT_EQ(1.0f, vec[1]);
+    EXPECT_FLOAT_EQ(6.0f, vec[2]);
+    EXPECT_FLOAT_EQ(2.0f, vec[3]);
+}
+
+TEST(Vector4D_Initialization, One3DVectorAndScalarCanInitializeA4DVector)
+{
+    // Given a 3D Vector and a scalar
+    const math::Vector3D vec1(3.0f, 1.0f, 6.0f);
+    constexpr float scalar = 2.0f;
+
+    // When a Vector4D is initialized with those vectors
+    const math::Vector4D vec(vec1, scalar);
+
+    // Then, the 3D vector elements + scalar form the 4D vector in the passed-in format
+    EXPECT_FLOAT_EQ(3.0f, vec[0]);
+    EXPECT_FLOAT_EQ(1.0f, vec[1]);
+    EXPECT_FLOAT_EQ(6.0f, vec[2]);
+    EXPECT_FLOAT_EQ(scalar, vec[3]);
 }
 
 // TODO: add conversion constructor and tests
@@ -92,6 +124,25 @@ TEST(Vector4D_Initalization, InitializationSupportedForIntegers)
 //    ASSERT_FLOAT_EQ(6.0f, vec2.z);
 //
 //}
+
+TEST(Vector4D_Mutation, ElementsCanBeMutatedAtGivenIndex)
+{
+    // Given a vector initialization without parameters
+    math::Vector4D<float> vec;
+
+    // When it's elements are mutated at a particular index
+    vec[0] = 3.0f;
+    vec[1] = 1.0f;
+    vec[2] = 6.0f;
+    vec[3] = 2.0f;
+
+    // Then it's element reflect the change
+    EXPECT_FLOAT_EQ(3.0f, vec[0]);
+    EXPECT_FLOAT_EQ(1.0f, vec[1]);
+    EXPECT_FLOAT_EQ(6.0f, vec[2]);
+    EXPECT_FLOAT_EQ(2.0f, vec[3]);
+
+}
 
 TEST(Vector4D_Access, AccessibleAsXYZ)
 {
@@ -141,72 +192,31 @@ TEST(Vector4D_Access, AccessibleAsArray)
     EXPECT_FLOAT_EQ(2.0f, vec.elements[3]);
 }
 
-TEST(Vector4D_Mutation, ElementsCanBeMutatedAtGivenIndex)
-{
-    // Given a vector initialization without parameters
-    math::Vector4D<float> vec;
-
-    // When it's elements are mutated at a particular index
-    vec[0] = 3.0f;
-    vec[1] = 1.0f;
-    vec[2] = 6.0f;
-    vec[3] = 2.0f;
-    
-    // Then it's element reflect the change
-    EXPECT_FLOAT_EQ(3.0f, vec[0]);
-    EXPECT_FLOAT_EQ(1.0f, vec[1]);
-    EXPECT_FLOAT_EQ(6.0f, vec[2]);
-    EXPECT_FLOAT_EQ(2.0f, vec[3]);
-
-}
-
 TEST(Vector4D_Access, vec4Return3DFloatVector)
 {
-    // Arrange & Act
-    constexpr bool isCorrectType = std::is_same_v<math::vec4, math::Vector4D<float>>;
+    // Given a vector is accessed as vec4
+    constexpr bool isCorrectType = std::is_same_v<math::vec4::value_type, float>;
 
-    // Assert
+    // Then it's value_type is float
     EXPECT_TRUE(isCorrectType);
 }
 
-TEST(Vector4D, dvec4Return3DDoubleVector)
+TEST(Vector4D_Helper, dvec4Return3DDoubleVector)
 {
-    // Arrange & Act
-    constexpr bool isCorrectType = std::is_same_v<math::dvec4, math::Vector4D<double>>;
+    // Given a vector is accessed as dvec4
+    constexpr bool isCorrectType = std::is_same_v<math::dvec4::value_type, double>;
 
-    // Assert
+    // Then it's value_type is double
     EXPECT_TRUE(isCorrectType);
 }
 
-TEST(Vector4D, two2DVectorsCanInitializeA4DVector)
+TEST(Vector4D_Helper, ivec4Return3DDoubleVector)
 {
-    // Arrange
-    math::Vector2D vec1(3.0f, 1.0f);
-    math::Vector2D vec2(6.0f, 2.0f);
+    // Given a vector is accessed as ivec4
+    constexpr bool isCorrectType = std::is_same_v<math::ivec4::value_type, int>;
 
-    // Act
-    math::Vector4D vec(vec1, vec2);
-
-    // Assert
-    EXPECT_FLOAT_EQ(3.0f, vec[0]);
-    EXPECT_FLOAT_EQ(1.0f, vec[1]);
-    EXPECT_FLOAT_EQ(6.0f, vec[2]);
-    EXPECT_FLOAT_EQ(2.0f, vec[3]);
-}
-
-TEST(Vector4D, one3DVectorAndFloatCanInitializeA4DVector)
-{
-    // Arrange
-    math::Vector3D vec1(3.0f, 1.0f, 6.0f);
-
-    // Act
-    math::Vector4D vec(vec1, 2.0f);
-
-    // Assert
-    EXPECT_FLOAT_EQ(3.0f, vec[0]);
-    EXPECT_FLOAT_EQ(1.0f, vec[1]);
-    EXPECT_FLOAT_EQ(6.0f, vec[2]);
-    EXPECT_FLOAT_EQ(2.0f, vec[3]);
+    // Then it's value_type is integer
+    EXPECT_TRUE(isCorrectType);
 }
 
 
