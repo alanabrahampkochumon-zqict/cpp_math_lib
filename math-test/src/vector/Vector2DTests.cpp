@@ -5,10 +5,15 @@
 
 #include "../utils/MatrixUtils.h"
 #include "../utils/VectorUtils.h"
-/*
-* INITIALIZATION AND ACCESS TESTS
-*/
+
 using namespace TestUtils;
+
+
+/***********************************************
+ *                                             *
+ *  INITIALIZATION, ACCESS AND MUTATION TESTS  *
+ *                                             *
+ ***********************************************/
 
 TEST(Vector2D_Initialization, EmptyConstructorInitializesZeroVector)
 {
@@ -154,9 +159,11 @@ TEST(Vector2D_Access, dvec2Return2DDoubleVector)
 }
 
 
-/*
-*  VECTOR OPERATIONS TESTS
-*/
+/*********************************
+ *                               *
+ *  SIMPLE MATH OPERATION TESTS  *
+ *                               *
+ *********************************/
 
 TEST(Vector2D_Addition, VectorPlusVectorReturnsCorrectVector)
 {
@@ -525,7 +532,71 @@ TEST(Vector2D_Division, IntegerVectorDivideEqualsAFloatReturnsVectorWithMinimalP
 	EXPECT_VEC_EQ(expected, vec);
 }
 
-// Dot Product
+
+/***************************************
+ *                                     *
+ *  MAGNITUDE AND NORMALIZATION TESTS  *
+ *                                     *
+ ***************************************/
+
+TEST(Vector2D_Magnitude, ZeroVectorReturnsMagnitudeZero)
+{
+	// Arrange
+	const math::Vector2D vec(0.0f, 0.0f);
+
+	// Act
+	const float magnitude = vec.mag();
+
+	// Assert
+	EXPECT_FLOAT_EQ(0.0f, magnitude);
+}
+
+TEST(Vector2D_Magnitude, OneVectorReturnsMagnitudeNotEqualToOne)
+{
+	// Arrange
+	const math::Vector2D vec(1.0f, 1.0f);
+
+	// Act
+	const float magnitude = vec.mag();
+
+	// Assert
+	EXPECT_NE(1.0f, magnitude);
+}
+
+TEST(Vector2D_Magnitude, NonUnitVectorReturnsCorrectMagnitude)
+{
+	// Arrange
+	const math::Vector2D vec(4.0f, 3.0f);
+
+	// Act
+	const float magnitude = vec.mag();
+
+	// Assert
+	EXPECT_FLOAT_EQ(5.0f, magnitude);
+}
+
+
+TEST(Vector2D_Normalize, VectorWhenNormalizedReturnsANormalVector)
+{
+	// Arrange
+	math::Vector2D vec(4.0f, 3.0f);
+	const math::Vector2D expected(0.8f, 0.6f);
+
+	// Act
+	math::Vector2D normalized = vec.normalize();
+
+	// Assert
+	EXPECT_VEC_EQ(expected, normalized);
+	EXPECT_FLOAT_EQ(1.0f, normalized.mag());
+}
+
+
+/*********************************
+ *                               *
+ *  DOT AND CROSS PRODUCT TESTS  *
+ *                               *
+ *********************************/
+
 TEST(Vector2D_Dot, VectorWhenDotWithItselfReturnsOne)
 {
 	// Arrange
@@ -683,57 +754,12 @@ TEST(Vector2D_Cross, VectorCrossWithVectorOfDifferentTypeReturnsScalarWithTypePr
 	EXPECT_DOUBLE_EQ(12.0, result);
 }
 
-TEST(Vector2D_Magnitude, ZeroVectorReturnsMagnitudeZero)
-{
-	// Arrange
-	const math::Vector2D vec(0.0f, 0.0f);
 
-	// Act
-	const float magnitude = vec.mag();
-
-	// Assert
-	EXPECT_FLOAT_EQ(0.0f, magnitude);
-}
-
-TEST(Vector2D_Magnitude, OneVectorReturnsMagnitudeNotEqualToOne)
-{
-	// Arrange
-	const math::Vector2D vec(1.0f, 1.0f);
-
-	// Act
-	const float magnitude = vec.mag();
-
-	// Assert
-	EXPECT_NE(1.0f, magnitude);
-}
-
-TEST(Vector2D_Magnitude, NonUnitVectorReturnsCorrectMagnitude)
-{
-	// Arrange
-	const math::Vector2D vec(4.0f, 3.0f);
-
-	// Act
-	const float magnitude = vec.mag();
-
-	// Assert
-	EXPECT_FLOAT_EQ(5.0f, magnitude);
-}
-
-
-TEST(Vector2D_Normalize, VectorWhenNormalizedReturnsANormalVector)
-{
-	// Arrange
-	math::Vector2D vec(4.0f, 3.0f);
-	const math::Vector2D expected(0.8f, 0.6f);
-	
-	// Act
-	math::Vector2D normalized = vec.normalize();
-
-	// Assert
-	EXPECT_VEC_EQ(expected, normalized);
-	EXPECT_FLOAT_EQ(1.0f, normalized.mag());
-}
-
+/************************************
+ *                                  *
+ *  PROJECTION AND REJECTION TESTS  *
+ *                                  *
+ ************************************/
 
 TEST(Vector2D_Projection, ParallelVectorsWhenProjectedReturnsNonZeroVector)
 {

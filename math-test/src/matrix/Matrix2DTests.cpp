@@ -15,11 +15,11 @@ static constexpr std::size_t size = 4;
 static constexpr std::size_t rowSize = 2;
 
 
-/*************************************
- *                                   *
- *         INITIALIZATIONS           *
- *                                   *
- *************************************/
+/***********************************************
+ *                                             *
+ *  INITIALIZATION, ACCESS AND MUTATION TESTS  *
+ *                                             *
+ ***********************************************/
 
 TEST(Matrix2D_Initialization, InitializedWithOutParametersProvidesIdentityMatrix)
 {
@@ -122,11 +122,12 @@ TEST(Matrix2D_Access, CanBeAccessedAsAValueAtRowColumn)
 		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowSize, i % rowSize));
 }
 
-/*************************************
- *                                   *
- *         MATH OPERATIONS           *
- *                                   *
- *************************************/
+
+/*********************************
+ *                               *
+ *  SIMPLE MATH OPERATION TESTS  *
+ *                               *
+ *********************************/
 
 TEST(Matrix2D_Sum, SumOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
 {
@@ -651,9 +652,12 @@ TEST(Matrix2D_Division, MatrixDividedNegativeFloatScalarFlipsSigns)
 	EXPECT_MAT_EQ(expected, actual);
 }
 
-/**
- * DETERMINANTS
- **/
+
+/***********************
+ *                     *
+ *  DETERMINANT TESTS  *
+ *                     *
+ ***********************/
 
 TEST(Matrix2D_Determinant, IdentityMatrixReturnsDeterminantOfOne)
 {
@@ -848,6 +852,12 @@ TEST(Matrix2D_Determinant, DeterminantOfAMatrixMultipledByScalarIsScalarPowNTime
 	EXPECT_FLOAT_EQ(determinantOfProduct, productOfDeterminant);
 }
 
+/*********************
+ *                   *
+ *  TRANSPOSE TESTS  *
+ *                   *
+ *********************/
+
 TEST(Matrix2D_Transpose, TransposeOfIdentityMatrixIsItself)
 {
 	// Arrange
@@ -898,6 +908,13 @@ TEST(Matrix2D_Transpose, TransposeOfAMatrixUsingStaticWrapperReturnsMatrixWithRo
 	// Assert
 	EXPECT_MAT_EQ(expected, actual);
 }
+
+
+/*******************
+ *                 *
+ *  INVERSE TESTS  *
+ *                 *
+ *******************/
 
 TEST(Matrix2D_Inverse, InverseReturnsAnotherMatrixWithCorrectValues)
 {

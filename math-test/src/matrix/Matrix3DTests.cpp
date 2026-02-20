@@ -11,11 +11,13 @@
 using namespace TestUtils::Matrix3D;
 // TODO: Add test for integer precision on multiplication -> [[2]] * 2.5 = [[5]] not 4
 
-/**************************************
- *                                    *
- *  INITIALIZATION AND ACCESS TESTS   *
- *                                    *
- **************************************/
+
+/***********************************************
+ *                                             *
+ *  INITIALIZATION, ACCESS AND MUTATION TESTS  *
+ *                                             *
+ ***********************************************/
+
 constexpr int size = 9;
 constexpr int rowSize = 3;
 
@@ -170,11 +172,12 @@ TEST(Matrix3D_Access, CanBeAccessedAsAValueAtRowColumn)
 		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowSize, i % rowSize));
 }
 
-/*************************************
- *                                   *
- *         MATH OPERATIONS           *
- *                                   *
- *************************************/
+
+/*********************************
+ *                               *
+ *  SIMPLE MATH OPERATION TESTS  *
+ *                               *
+ *********************************/
 
 TEST(Matrix3D_Sum, SumOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
 {
@@ -987,9 +990,11 @@ TEST(Matrix3D_Division, IntegerMatrixDivideEqualFloatScalarIsTheSameMatrixWithMi
 }
 
 
-/**
- * DETERMINANTS
- **/
+/***********************
+ *                     *
+ *  DETERMINANT TESTS  *
+ *                     *
+ ***********************/
 
 TEST(Matrix3D_Determinant, IdentityMatrixReturnsDeterminantOfOne)
 {
@@ -1184,6 +1189,13 @@ TEST(Matrix3D_Determinant, DeterminantOfAMatrixMultipledByScalarIsScalarPowNTime
 	EXPECT_FLOAT_EQ(determinantOfProduct, productOfDeterminant);
 }
 
+
+/*********************
+ *                   *
+ *  TRANSPOSE TESTS  *
+ *                   *
+ *********************/
+
 TEST(Matrix3D_Transpose, TransposeOfIdentityMatrixIsItself)
 {
 	// Arrange
@@ -1233,6 +1245,13 @@ TEST(Matrix3D_Transpose, TransposeOfAMatrixUsingStaticWrapperReturnsMatrixWithRo
 	// Assert
 	EXPECT_MAT_EQ(expected, actual);
 }
+
+
+/*******************
+ *                 *
+ *  INVERSE TESTS  *
+ *                 *
+ *******************/
 
 TEST(Matrix3D_Inverse, InverseReturnsAnotherMatrixWithCorrectValues)
 {

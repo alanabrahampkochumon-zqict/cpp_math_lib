@@ -12,11 +12,11 @@ using namespace TestUtils;
 // TODO: Add test for integer precision on multiplication -> [[2]] * 2.5 = [[5]] not 4
 
 
-/*************************************
- *                                   *
- *         INITIALIZATIONS           *
- *                                   *
- *************************************/
+/***********************************************
+ *                                             *
+ *  INITIALIZATION, ACCESS AND MUTATION TESTS  *
+ *                                             *
+ ***********************************************/
 
 static constexpr std::size_t rows = math::Matrix4D<float>::rows;
 static constexpr std::size_t cols = math::Matrix4D<float>::columns;
@@ -192,11 +192,12 @@ TEST(Matrix4D_Initialization, CanMutateValueAtRowColumn)
 //		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowSize, i % rowSize));
 //}
 
-///*************************************
-// *                                   *
-// *         MATH OPERATIONS           *
-// *                                   *
-// *************************************/
+
+///*********************************
+// *                               *
+// *  SIMPLE MATH OPERATION TESTS  *
+// *                               *
+// *********************************/
 //
 //TEST(Matrix4D_Sum, SumOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
 //{
@@ -1009,9 +1010,11 @@ TEST(Matrix4D_Initialization, CanMutateValueAtRowColumn)
 //}
 //
 //
-///**
-// * DETERMINANTS
-// **/
+///***********************
+// *                     *
+// *  DETERMINANT TESTS  *
+// *                     *
+// ***********************/
 //
 //TEST(Matrix4D_Determinant, IdentityMatrixReturnsDeterminantOfOne)
 //{
@@ -1154,7 +1157,7 @@ TEST(Matrix4D_Initialization, CanMutateValueAtRowColumn)
 //	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
 //}
 //
-//TEST(Matrix4D_Determinant, DeterminantofTransposedMatrixIsEqualToDeterminantOfTheMatrix)
+//TEST(Matrix4D_Determinant, DeterminantOfTransposedMatrixIsEqualToDeterminantOfTheMatrix)
 //{
 //	const math::Matrix4D a(
 //		1.0f, 2.0f, 3.0f,
@@ -1189,7 +1192,7 @@ TEST(Matrix4D_Initialization, CanMutateValueAtRowColumn)
 //	EXPECT_FLOAT_EQ(determinantOfProduct, productOfDeterminant);
 //}
 //
-//TEST(Matrix4D_Determinant, DeterminantOfAMatrixMultipledByScalarIsScalarPowNTimesTheDeterminantOfOriginalMatrix)
+//TEST(Matrix4D_Determinant, DeterminantOfAMatrixMultipliedByScalarIsScalarPowNTimesTheDeterminantOfOriginalMatrix)
 //{
 //	// det(t*A) = (t^n)det(A)
 //	const math::Matrix4D a(
@@ -1205,7 +1208,14 @@ TEST(Matrix4D_Initialization, CanMutateValueAtRowColumn)
 //	// Assert
 //	EXPECT_FLOAT_EQ(determinantOfProduct, productOfDeterminant);
 //}
-//
+
+
+///*********************
+// *                   *
+// *  TRANSPOSE TESTS  *
+// *                   *
+// *********************/
+
 //TEST(Matrix4D_Transpose, TransposeOfIdentityMatrixIsItself)
 //{
 //	// Arrange
@@ -1255,7 +1265,14 @@ TEST(Matrix4D_Initialization, CanMutateValueAtRowColumn)
 //	// Assert
 //	EXPECT_MAT_EQ(expected, actual);
 //}
-//
+
+
+///*******************
+// *                 *
+// *  INVERSE TESTS  *
+// *                 *
+// *******************/
+
 //TEST(Matrix4D_Inverse, InverseReturnsAnotherMatrixWithCorrectValues)
 //{
 //	// Given

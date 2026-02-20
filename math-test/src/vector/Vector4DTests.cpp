@@ -7,11 +7,13 @@
 
 using namespace TestUtils;
 
-/**************************************
- *                                    *
- *  INITIALIZATION AND ACCESS TESTS   *
- *                                    *
- **************************************/
+
+/***********************************************
+ *                                             *
+ *  INITIALIZATION, ACCESS AND MUTATION TESTS  *
+ *                                             *
+ ***********************************************/
+
 TEST(Vector4D_Initalization, EmptyConstructorInitializesZeroVector)
 {
     // Given a vector initialized without parameters
@@ -207,9 +209,12 @@ TEST(Vector4D, one3DVectorAndFloatCanInitializeA4DVector)
     EXPECT_FLOAT_EQ(2.0f, vec[3]);
 }
 
-/*
-*   VECTOR OPERATIONS TESTS
-*/
+
+/*********************************
+ *                               *
+ *  SIMPLE MATH OPERATION TESTS  *
+ *                               *
+ *********************************/
 
 TEST(Vector4D, VectorAddition)
 {
@@ -273,42 +278,6 @@ TEST(Vector4D, VectorMinusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues
     EXPECT_FLOAT_EQ(5.0f, vec1.y);
     EXPECT_FLOAT_EQ(-11.0f, vec1.z);
     EXPECT_FLOAT_EQ(3.0f, vec1.w);
-}
-
-TEST(Vector4D, ZeroVectorReturnsMagnitudeZero)
-{
-    // Arrange
-    const math::Vector4D vec(0.0f, 0.0f, 0.0f, 0.0f);
-
-    // Act
-    const float magnitude = vec.mag();
-
-    // Assert
-    EXPECT_FLOAT_EQ(0.0f, magnitude);
-}
-
-TEST(Vector4D, OneVectorReturnsMagnitudeNotEqualToOne)
-{
-    // Arrange
-    const math::Vector4D vec(1.0f, 1.0f, 1.0f, 1.0f);
-
-    // Act
-    const float magnitude = vec.mag();
-
-    // Assert
-    EXPECT_NE(1.0f, magnitude);
-}
-
-TEST(Vector4D, NonUnitVectorReturnsCorrectMagnitude)
-{
-    // Arrange
-    const math::Vector4D vec(1.0f, 2.0f, 2.0f, 4.0f);
-
-    // Act
-    const float magnitude = vec.mag();
-
-    // Assert
-    EXPECT_FLOAT_EQ(5.0f, magnitude);
 }
 
 TEST(Vector4D, VectorTimesZeroIsZero)
@@ -507,6 +476,47 @@ TEST(Vector4D, VectorDividesEqualAFloatIsSameVectorWithNewValues)
     EXPECT_FLOAT_EQ(1.0f, vec.w);
 }
 
+/***************************************
+ *                                     *
+ *  MAGNITUDE AND NORMALIZATION TESTS  *
+ *                                     *
+ ***************************************/
+
+TEST(Vector4D, ZeroVectorReturnsMagnitudeZero)
+{
+    // Arrange
+    const math::Vector4D vec(0.0f, 0.0f, 0.0f, 0.0f);
+
+    // Act
+    const float magnitude = vec.mag();
+
+    // Assert
+    EXPECT_FLOAT_EQ(0.0f, magnitude);
+}
+
+TEST(Vector4D, OneVectorReturnsMagnitudeNotEqualToOne)
+{
+    // Arrange
+    const math::Vector4D vec(1.0f, 1.0f, 1.0f, 1.0f);
+
+    // Act
+    const float magnitude = vec.mag();
+
+    // Assert
+    EXPECT_NE(1.0f, magnitude);
+}
+
+TEST(Vector4D, NonUnitVectorReturnsCorrectMagnitude)
+{
+    // Arrange
+    const math::Vector4D vec(1.0f, 2.0f, 2.0f, 4.0f);
+
+    // Act
+    const float magnitude = vec.mag();
+
+    // Assert
+    EXPECT_FLOAT_EQ(5.0f, magnitude);
+}
 
 TEST(Vector4D, VectorWhenNormalizedReturnsANormalVector)
 {
@@ -523,7 +533,13 @@ TEST(Vector4D, VectorWhenNormalizedReturnsANormalVector)
     EXPECT_FLOAT_EQ(0.8f, normalized.w);
 }
 
-// Dot Product
+
+/***********************
+ *                     *
+ *  DOT PRODUCT TESTS  *
+ *                     *
+ ***********************/
+
 TEST(Vector4D, VectorWhenDotWithItselfReturnsOne)
 {
 	// Arrange
@@ -562,9 +578,12 @@ TEST(Vector4D, VectorWhenDotWithOppositeParallelVectorReturnsNegativeOne)
     EXPECT_FLOAT_EQ(-1.0, res);
 }
 
-/**
- * VECTOR PROJECTION & REJECTION TESTS
- */
+
+/************************************
+ *                                  *
+ *  PROJECTION AND REJECTION TESTS  *
+ *                                  *
+ ************************************/
 
 TEST(Vector4D, ParallelVectorsWhenProjectedReturnsNonZeroVector)
 {

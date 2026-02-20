@@ -6,10 +6,14 @@
 #include "../utils/VectorUtils.h"
 
 
-/*
-* INITIALIZATION AND ACCESS TESTS
-*/
 using namespace TestUtils;
+
+
+/***********************************************
+ *                                             *
+ *  INITIALIZATION, ACCESS AND MUTATION TESTS  *
+ *                                             *
+ ***********************************************/
 
 TEST(Vector3D_Initialization, EmptyConstructorInitializesZeroVector)
 {
@@ -169,9 +173,11 @@ TEST(Vector3D_Helper, dvec3Return3DDoubleVector)
 }
 
 
-/*
-*   VECTOR OPERATIONS TESTS
-*/
+/*********************************
+ *                               *
+ *  SIMPLE MATH OPERATION TESTS  *
+ *                               *
+ *********************************/
 
 TEST(Vector3D_Addition, VectorPlusVectorReturnsNewVectorWithEachComponentsSummedUp)
 {
@@ -555,6 +561,12 @@ TEST(Vector3D_Division, IntegerVectorDividedByAScalarFloatResultsInMinimalPrecis
 }
 
 
+/***************************************
+ *                                     *
+ *  MAGNITUDE AND NORMALIZATION TESTS  *
+ *                                     *
+ ***************************************/
+
 TEST(Vector3D_Magnitude, ZeroVectorReturnsMagnitudeZero)
 {
 	// Arrange
@@ -604,7 +616,13 @@ TEST(Vector3D_Normalization, VectorWhenNormalizedReturnsANormalVector)
 	EXPECT_VEC_EQ(expected, normalized);
 }
 
-// Dot Product
+
+/*********************************
+ *                               *
+ *  DOT AND CROSS PRODUCT TESTS  *
+ *                               *
+ *********************************/
+
 TEST(Vector3D_Dot, VectorWhenDotWithItselfReturnsOne)
 {
 	// Arrange
@@ -836,9 +854,12 @@ TEST(Vector3D_Cross, VectorCrossWithAnotherNonParallelVectorOfDifferentTypeRetur
 	EXPECT_DOUBLE_EQ(0.0, dotProduct2);
 }
 
-/**
- * VECTOR PROJECTION & REJECTION TESTS
- */
+
+/************************************
+ *                                  *
+ *  PROJECTION AND REJECTION TESTS  *
+ *                                  *
+ ************************************/
 
 TEST(Vector3D_Projection, ParallelVectorsWhenProjectedReturnsNonZeroVector)
 {
