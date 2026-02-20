@@ -141,7 +141,7 @@ TEST(Vector4D_Mutation, ElementsCanBeMutatedAtGivenIndex)
     vec[2] = 6.0f;
     vec[3] = 2.0f;
 
-    // Then it's element reflect the change
+    // Then, it's element reflect the change
     EXPECT_FLOAT_EQ(3.0f, vec[0]);
     EXPECT_FLOAT_EQ(1.0f, vec[1]);
     EXPECT_FLOAT_EQ(6.0f, vec[2]);
@@ -154,7 +154,7 @@ TEST(Vector4D_Access, AccessibleAsXYZ)
     // Given a vector with arbitrary values passed in
     const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // Then it's elements are accessible as x, y, z, w
+    // Then, it's elements are accessible as x, y, z, w
     EXPECT_FLOAT_EQ(3.0f, vec.x);
     EXPECT_FLOAT_EQ(1.0f, vec.y);
     EXPECT_FLOAT_EQ(6.0f, vec.z);
@@ -166,7 +166,7 @@ TEST(Vector4D_Access, AccessibleAsSTP)
     // Given a vector with arbitrary values passed in
     const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // Then it's elements are accessible as s, t, p, q
+    // Then, it's elements are accessible as s, t, p, q
     EXPECT_FLOAT_EQ(3.0f, vec.s);
     EXPECT_FLOAT_EQ(1.0f, vec.t);
     EXPECT_FLOAT_EQ(6.0f, vec.p);
@@ -178,7 +178,7 @@ TEST(Vector4D_Access, AccessibleAsRGB)
     // Given a vector with arbitrary values passed in
     const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // Then it's elements are accessible as r, g, b, a
+    // Then, it's elements are accessible as r, g, b, a
     EXPECT_FLOAT_EQ(3.0f, vec.r);
     EXPECT_FLOAT_EQ(1.0f, vec.g);
     EXPECT_FLOAT_EQ(6.0f, vec.b);
@@ -190,7 +190,7 @@ TEST(Vector4D_Access, AccessibleAsArray)
     // Given a vector with arbitrary values passed in
     const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // Then it's elements are accessible as array elements
+    // Then, it's elements are accessible as array elements
     EXPECT_FLOAT_EQ(3.0f, vec.elements[0]);
     EXPECT_FLOAT_EQ(1.0f, vec.elements[1]);
     EXPECT_FLOAT_EQ(6.0f, vec.elements[2]);
@@ -202,7 +202,7 @@ TEST(Vector4D_Access, vec4Return3DFloatVector)
     // Given a vector is accessed as vec4
     constexpr bool isCorrectType = std::is_same_v<math::vec4::value_type, float>;
 
-    // Then it's value_type is float
+    // Then, it's value_type is float
     EXPECT_TRUE(isCorrectType);
 }
 
@@ -211,7 +211,7 @@ TEST(Vector4D_Helper, dvec4Return3DDoubleVector)
     // Given a vector is accessed as dvec4
     constexpr bool isCorrectType = std::is_same_v<math::dvec4::value_type, double>;
 
-    // Then it's value_type is double
+    // Then, it's value_type is double
     EXPECT_TRUE(isCorrectType);
 }
 
@@ -220,7 +220,7 @@ TEST(Vector4D_Helper, ivec4Return3DDoubleVector)
     // Given a vector is accessed as ivec4
     constexpr bool isCorrectType = std::is_same_v<math::ivec4::value_type, int>;
 
-    // Then it's value_type is integer
+    // Then, it's value_type is integer
     EXPECT_TRUE(isCorrectType);
 }
 

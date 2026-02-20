@@ -77,6 +77,16 @@ namespace math
 		col_vectors[3] = col3;
 	}
 
+	template <Arithmetic T>
+	template <Arithmetic U>
+	Matrix4D<T>::Matrix4D(const Matrix4D<U>& other)
+	{
+		col_vectors[0] = Vector4D<T>(other.col_vectors[0]);
+		col_vectors[1] = Vector4D<T>(other.col_vectors[1]);
+		col_vectors[2] = Vector4D<T>(other.col_vectors[2]);
+		col_vectors[3] = Vector4D<T>(other.col_vectors[3]);
+	}
+
 
 	/*************************************
 	 *                                   *

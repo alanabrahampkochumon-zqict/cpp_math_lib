@@ -40,6 +40,9 @@ namespace math
 			Vector4D<T> col0, Vector4D<T> col1, Vector4D<T> col2, Vector4D<T> col3
 		);
 
+		template<Arithmetic U>
+		Matrix4D(const Matrix4D<U>& other);
+
 
 		/*************************************
 		 *                                   *

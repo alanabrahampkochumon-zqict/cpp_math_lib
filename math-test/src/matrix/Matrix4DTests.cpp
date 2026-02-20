@@ -122,44 +122,64 @@ TEST(Matrix4D_Initialization, CanMutateValueAtRowColumn)
 			EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i, j));
 }
 
-//TEST(Matrix4D_Initialization, ConversionConstructorHandlesTypeDemotion)
-//{
-//	// Arrange
-//	math::Matrix4D<double> mat;
-//
-//
-//	// Act
-//	math::Matrix4D<float> copy(mat);
-//	copy(0, 0) = 5.0f;
-//
-//	// Assert
-//	static_assert(std::is_same_v<typename decltype(copy)::value_type, float>);
-//	EXPECT_MAT_IDENTITY(mat);
-//
-//	EXPECT_FLOAT_EQ(5.0f, copy(0, 0));
-//	for (std::size_t i = 1; i < size; ++i)
-//		EXPECT_FLOAT_EQ(i % rowSize == i / rowSize, copy(i / rowSize, i % rowSize));
-//
-//}
-//
-//TEST(Matrix4D_Initialization, ConversionConstructorHandlesTypePromotion)
-//{
-//	// Arrange
-//	math::Matrix4D<float> mat;
-//
-//	// Act
-//	math::Matrix4D<double> copy(mat);
-//	copy(0, 0) = 5.0;
-//
-//	// Assert
-//	static_assert(std::is_same_v<typename decltype(copy)::value_type, double>);
-//	EXPECT_MAT_IDENTITY(mat);
-//
-//	EXPECT_DOUBLE_EQ(5.0f, copy(0, 0));
-//	for (std::size_t i = 1; i < size; ++i)
-//		EXPECT_DOUBLE_EQ(i % rowSize == i / rowSize, copy(i / rowSize, i % rowSize)); // i % rowSize == i / rowSize => Gives diagonal entries as 1
-//
-//}
+TEST(Matrix4D_Initialization, ConversionConstructorHandlesTypePromotion)
+{
+	// Given a float matrix
+	math::Matrix4D<float> mat;
+
+	// When copied to a double matrix
+	math::Matrix4D<double> copy(mat);
+	// And some value of the new matrix mutated
+	copy(0, 0) = 5.0;
+	copy(0, 1) = 4.0;
+	copy(0, 2) = 3.0;
+	copy(0, 3) = 2.0;
+
+	// Then, the double matrix remains unchanged
+	EXPECT_MAT_IDENTITY(mat);
+
+	// And, the new matrix is of type float with the mutated value
+	static_assert(std::is_same_v<typename decltype(copy)::value_type, double>);
+
+	EXPECT_DOUBLE_EQ(5.0, copy(0, 0));
+	EXPECT_DOUBLE_EQ(4.0, copy(0, 1));
+	EXPECT_DOUBLE_EQ(3.0, copy(0, 2));
+	EXPECT_DOUBLE_EQ(2.0, copy(0, 3));
+
+	for (std::size_t i = 1; i < rows; ++i)
+		for (std::size_t j = 0; j < cols; ++j)
+			EXPECT_DOUBLE_EQ(i == j, copy(i, j));
+}
+
+TEST(Matrix4D_Initialization, ConversionConstructorHandlesTypeDemotion)
+{
+	// Given a double matrix
+	math::Matrix4D<double> mat;
+
+	// When copied to a float matrix
+	math::Matrix4D<float> copy(mat);
+	// And some value of the new matrix mutated
+	copy(0, 0) = 5.0f;
+	copy(0, 1) = 4.0f;
+	copy(0, 2) = 3.0f;
+	copy(0, 3) = 2.0f;
+
+	// Then, the double matrix remains unchanged
+	EXPECT_MAT_IDENTITY(mat);
+
+	// And, the new matrix is of type float with the mutated value
+	static_assert(std::is_same_v<typename decltype(copy)::value_type, float>);
+
+	EXPECT_FLOAT_EQ(5.0f, copy(0, 0));
+	EXPECT_FLOAT_EQ(4.0f, copy(0, 1));
+	EXPECT_FLOAT_EQ(3.0f, copy(0, 2));
+	EXPECT_FLOAT_EQ(2.0f, copy(0, 3));
+
+	for (std::size_t i = 1; i < rows; ++i)
+		for (std::size_t j = 0; j < cols; ++j)
+			EXPECT_FLOAT_EQ(i == j, copy(i, j));
+
+}
 
 TEST(Matrix4D_Access, CanBeAccessedAsAVectorAtIndex)
 {
