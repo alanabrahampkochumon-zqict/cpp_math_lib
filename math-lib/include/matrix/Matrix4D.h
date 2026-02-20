@@ -17,11 +17,18 @@ namespace math
 
 		union
 		{
-			//Vector4D<T> col_vectors[columns]; TODO: Add in after refactor vec4d to support type promotion
+			Vector4D<T> col_vectors[columns];
 			T elements[columns][rows];
 		};
 
+		/*************************************
+		 *                                   *
+		 *            INITIALIZERS           *
+		 *                                   *
+		 *************************************/
+
 		Matrix4D();
+
 		Matrix4D(
 			T v_0_0, T v_0_1, T v_0_2, T v_0_3,
 			T v_1_0, T v_1_1, T v_1_2, T v_1_3,
@@ -29,6 +36,16 @@ namespace math
 			T v_3_0, T v_3_1, T v_3_2, T v_3_3
 		);
 
+		Matrix4D(
+			Vector4D<T> col0, Vector4D<T> col1, Vector4D<T> col2, Vector4D<T> col3
+		);
+
+
+		/*************************************
+		 *                                   *
+		 *            ACCESSORS              *
+		 *                                   *
+		 *************************************/
 
 		T& operator()(std::size_t row, std::size_t col);
 		const T& operator()(std::size_t row, std::size_t col) const;

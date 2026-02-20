@@ -68,6 +68,15 @@ namespace math
 		elements[3][3] = v_3_3;
 	}
 
+	template <Arithmetic T>
+	Matrix4D<T>::Matrix4D(Vector4D<T> col0, Vector4D<T> col1, Vector4D<T> col2, Vector4D<T> col3)
+	{
+		col_vectors[0] = col0;
+		col_vectors[1] = col1;
+		col_vectors[2] = col2;
+		col_vectors[3] = col3;
+	}
+
 	/*************************************
 	 *                                   *
 	 *            ACCESSORS              *

@@ -30,9 +30,9 @@ namespace math
 	}
 
 	template <typename T>
-	Matrix2D<T>::Matrix2D(Vector2D<T> vec1, Vector2D<T> vec2)
+	Matrix2D<T>::Matrix2D(Vector2D<T> col0, Vector2D<T> vec2)
 	{
-		columns[0] = vec1;
+		columns[0] = col0;
 		columns[1] = vec2;
 	}
 

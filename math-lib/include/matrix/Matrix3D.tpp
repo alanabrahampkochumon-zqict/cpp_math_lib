@@ -52,11 +52,11 @@ namespace math
 	}
 
 	template <typename T>
-	Matrix3D<T>::Matrix3D(Vector3D<T> vec1, Vector3D<T> vec2, Vector3D<T> vec3)
+	Matrix3D<T>::Matrix3D(Vector3D<T> col0, Vector3D<T> col1, Vector3D<T> col2)
 	{
-		columns[0] = vec1;
-		columns[1] = vec2;
-		columns[2] = vec3;
+		columns[0] = col0;
+		columns[1] = col1;
+		columns[2] = col2;
 	}
 
 	template <typename T>

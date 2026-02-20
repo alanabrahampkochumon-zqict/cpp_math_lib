@@ -23,32 +23,32 @@ constexpr int rowSize = 3;
 
 TEST(Matrix3D_Initialization, InitializedWithOutParametersProvidesIdentityMatrix)
 {
-	// Arrange & Act
+	// Given a matrix initialized without parameters
 	const math::Matrix3D<float> mat;
 
-	// Assert
+	// Then it's elements form an identity matrix
 	EXPECT_MAT_IDENTITY(mat);
 }
 
 TEST(Matrix3D_Initialization, InitializationSupportedForIntegers)
 {
-	// Arrange and Act
+	// Given an integer matrix initialized without parameters
 	const math::Matrix3D<int> mat;
 
-	// Assert
+	// Then it's value_type is int, and elements form an identity matrix
 	static_assert(std::is_same_v<typename decltype(mat)::value_type, int>);
 	EXPECT_MAT_IDENTITY(mat);
 }
 
 TEST(Matrix3D_Initialization, InitializedWithParametersProvidesCorrectMatrix)
 {
-	// Arrange & Act
+	// Given a matrix with arbitrary values passed in
 	const math::Matrix3D mat(
 		0.0f, 1.0f, 2.0f,
 		3.0f, 4.0f, 5.0f,
 		6.0f, 7.0f, 8.0f);
 
-	// Assert
+	// Then it's elements reflect the correct values
 	for (size_t i = 0; i < size; ++i)
 		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowSize, i % rowSize));
 }
@@ -56,11 +56,11 @@ TEST(Matrix3D_Initialization, InitializedWithParametersProvidesCorrectMatrix)
 TEST(Matrix3D_Initialization, InitializedWithThree3DVectorsProvidesCorrectMatrix)
 {
 	// Arrange & Act
-	const math::Vector3D col1(0.0f, 3.0f, 6.0f);
-	const math::Vector3D col2(1.0f, 4.0f, 7.0f);
-	const math::Vector3D col3(2.0f, 5.0f, 8.0f);
+	const math::Vector3D col0(0.0f, 3.0f, 6.0f);
+	const math::Vector3D col1(1.0f, 4.0f, 7.0f);
+	const math::Vector3D col2(2.0f, 5.0f, 8.0f);
 
-	const math::Matrix3D mat(col1, col2, col3);
+	const math::Matrix3D mat(col0, col1, col2);
 
 
 	// Assert

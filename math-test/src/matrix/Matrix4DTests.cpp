@@ -28,12 +28,8 @@ TEST(Matrix4D_Initialization, InitializedWithOutParametersProvidesIdentityMatrix
 
 	// Then it's elements form an identity matrix
 	for (std::size_t i = 0 ; i < rows; ++i)
-	{
 		for (std::size_t j = 0; j < cols; ++j)
-		{
 			EXPECT_FLOAT_EQ(i == j, mat.elements[i][j]); // TODO: Replace with accessor
-		}
-	}
 }
 
 TEST(Matrix4D_Initialization, InitializationSupportedForIntegers)
@@ -44,12 +40,8 @@ TEST(Matrix4D_Initialization, InitializationSupportedForIntegers)
 	// Then it's value_type is int, and elements form an identity matrix
 	static_assert(std::is_same_v<typename decltype(mat)::value_type, int>);
 	for (std::size_t i = 0; i < rows; ++i)
-	{
 		for (std::size_t j = 0; j < cols; ++j)
-		{
 			EXPECT_EQ(i == j, mat.elements[i][j]); // TODO: Replace with accessor
-		}
-	}
 }
 
 TEST(Matrix4D_Initialization, InitializedWithParametersProvidesCorrectMatrix)
@@ -63,29 +55,28 @@ TEST(Matrix4D_Initialization, InitializedWithParametersProvidesCorrectMatrix)
 
 	// Then it's elements reflect the correct values
 	for (std::size_t i = 0; i < rows; ++i)
-	{
 		for (std::size_t j = 0; j < cols; ++j)
-		{
 			EXPECT_FLOAT_EQ(static_cast<float>((i * rows) + j), mat(i, j)); // TODO: Replace with accessor
-		}
-	}
 }
 
-//TEST(Matrix4D_Initialization, InitializedWithThree3DVectorsProvidesCorrectMatrix)
-//{
-//	// Arrange & Act
-//	const math::Vector3D col1(0.0f, 3.0f, 6.0f);
-//	const math::Vector3D col2(1.0f, 4.0f, 7.0f);
-//	const math::Vector3D col3(2.0f, 5.0f, 8.0f);
-//
-//	const math::Matrix4D mat(col1, col2, col3);
-//
-//
-//	// Assert
-//	for (std::size_t i = 0; i < size; ++i)
-//		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowSize, i % rowSize));
-//}
-//
+TEST(Matrix4D_Initialization, InitializedWithFour4DVectorsProvidesCorrectMatrix)
+{
+	// Given four 4D vectors
+	const math::Vector4D col0(0.0f, 4.0f, 8.0f, 12.0f);
+	const math::Vector4D col1(1.0f, 5.0f, 9.0f, 13.0f);
+	const math::Vector4D col2(2.0f, 6.0f, 10.0f, 14.0f);
+	const math::Vector4D col3(3.0f, 7.0f, 11.0f, 15.0f);
+
+	// When a matrix is initialized with those vectors
+	const math::Matrix4D mat(col0, col1, col2, col3);
+
+
+	// Then it's elements reflect the vectors put in column major order
+	for (std::size_t i = 0; i < rows; ++i)
+		for (std::size_t j = 0; j < cols; ++j)
+			EXPECT_FLOAT_EQ(static_cast<float>((i * rows) + j), mat(i, j));
+}
+
 //TEST(Matrix4D_Initialization, CanMutateVectorAtIndex)
 //{
 //	// Arrange

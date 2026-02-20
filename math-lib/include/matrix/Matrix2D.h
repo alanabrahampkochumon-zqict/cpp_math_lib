@@ -23,7 +23,7 @@ namespace math
 	public:
 		Matrix2D();
 		Matrix2D(T v_0_0, T v_0_1, T v_1_0, T v_1_1);
-		Matrix2D(Vector2D<T> vec1, Vector2D<T> vec2);
+		Matrix2D(Vector2D<T> col0, Vector2D<T> col1);
 
 		template <typename S, std::enable_if_t<std::is_arithmetic_v<S>>>
 		Matrix2D(const Matrix2D& other);
