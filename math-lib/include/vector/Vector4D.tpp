@@ -2,6 +2,11 @@
 
 namespace math
 {
+	/*************************************
+	 *                                   *
+	 *            INITIALIZERS           *
+	 *                                   *
+	 *************************************/
 	template <Arithmetic T>
 	Vector4D<T>::Vector4D() : x(T(0)), y(T(0)), z(T(0)), w(T(0)) { }
 
@@ -14,6 +19,13 @@ namespace math
 	template <Arithmetic T>
 	Vector4D<T>::Vector4D(Vector3D<T> vec, T v): x(vec.x), y(vec.y), z(vec.z), w(v)	{ }
 
+
+	/*************************************
+	 *                                   *
+	 *            ACCESSORS              *
+	 *                                   *
+	 *************************************/
+
 	template <Arithmetic T>
 	T& Vector4D<T>::operator[](std::size_t i)
 	{
@@ -25,6 +37,13 @@ namespace math
 	{
 		return (&x)[i];
 	}
+
+
+	/*************************************
+	 *                                   *
+	 *      ARITHMETIC OPERATORS         *
+	 *                                   *
+	 *************************************/
 
 	template <Arithmetic T>
 	Vector4D<T> Vector4D<T>::operator+(const Vector4D& other) const
@@ -67,6 +86,12 @@ namespace math
 		return Vector4D(x * static_cast<T>(scalar), y * static_cast<T>(scalar), z * static_cast<T>(scalar), w * static_cast<T>(scalar));
 	}
 
+	template<Arithmetic T, Arithmetic S>
+	Vector4D<T> operator*(S scalar, const Vector4D<T>& vector)
+	{
+		return vector * scalar;
+	}
+
 	template <Arithmetic T>
 	template <Arithmetic S>
 	Vector4D<T>& Vector4D<T>::operator*=(const S& scalar)
@@ -102,11 +127,12 @@ namespace math
 		return *this;
 	}
 
-	template <Arithmetic T>
-	T Vector4D<T>::dot(const Vector4D& other) const
-	{
-		return x * other.x + y * other.y + z * other.z + w * other.w;
-	}
+
+	/*************************************
+	 *                                   *
+	 *         VECTOR MAGNITUDE          *
+	 *                                   *
+	 *************************************/
 
 	template <Arithmetic T>
 	T Vector4D<T>::mag() const
@@ -114,10 +140,30 @@ namespace math
 		return sqrt(x * x + y * y + z * z + w * w);
 	}
 
+
+	/*************************************
+	 *                                   *
+	 *       VECTOR NORMALIZATION        *
+	 *                                   *
+	 *************************************/
+
 	template <Arithmetic T>
 	Vector4D<T> Vector4D<T>::normalize() const
 	{
 		return *this / mag();
+	}
+
+
+	/*************************************
+	 *                                   *
+	 *        VECTOR DOT PRODUCT         *
+	 *                                   *
+	 *************************************/
+
+	template <Arithmetic T>
+	T Vector4D<T>::dot(const Vector4D& other) const
+	{
+		return x * other.x + y * other.y + z * other.z + w * other.w;
 	}
 
 	template <Arithmetic T>
@@ -125,6 +171,13 @@ namespace math
 	{
 		return vecA.dot(vecB);
 	}
+
+
+	/*************************************
+	 *                                   *
+	 *        VECTOR PROJECTION          *
+	 *                                   *
+	 *************************************/
 
 	template <Arithmetic T>
 	template <Arithmetic S>
@@ -144,6 +197,20 @@ namespace math
 
 	template <Arithmetic T>
 	template <Arithmetic S>
+	Vector4D<T> Vector4D<T>::project(const Vector4D& vector, const Vector4D<S>& onto, bool ontoNormalized)
+	{
+		return vector.project(onto, ontoNormalized);
+	}
+
+
+	/*************************************
+	 *                                   *
+	 *         VECTOR REJECTION          *
+	 *                                   *
+	 *************************************/
+
+	template <Arithmetic T>
+	template <Arithmetic S>
 	Vector4D<T> Vector4D<T>::reject(const Vector4D<S>& onto, bool ontoNormalized) const
 	{
 		return *this - this->project(onto, ontoNormalized);
@@ -151,22 +218,9 @@ namespace math
 
 	template <Arithmetic T>
 	template <Arithmetic S>
-	Vector4D<T> Vector4D<T>::project(const Vector4D& vector, const Vector4D<S>& onto, bool ontoNormalized)
-	{
-		return vector.project(onto, ontoNormalized);
-	}
-
-	template <Arithmetic T>
-	template <Arithmetic S>
 	Vector4D<T> Vector4D<T>::reject(const Vector4D& vector, const Vector4D<S>& onto, bool ontoNormalized)
 	{
 		return vector.reject(onto, ontoNormalized);
-	}
-
-	template<Arithmetic T, Arithmetic S>
-	Vector4D<T> operator*(S scalar, const Vector4D<T>& vector)
-	{
-		return vector * scalar;
 	}
 
 }

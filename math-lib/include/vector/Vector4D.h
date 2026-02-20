@@ -22,6 +22,7 @@ namespace math
             T elements[dimension];
         };
 
+
         /*************************************
          *                                   *
          *            INITIALIZERS           *
@@ -67,13 +68,16 @@ namespace math
         template<Arithmetic S>
         Vector4D& operator/=(const S& scalar);
 
+
         /*************************************
          *                                   *
          *        VECTOR DOT PRODUCT         *
          *                                   *
          *************************************/
+
         T dot(const Vector4D& other) const;
         static T dot(const Vector4D& vecA, const Vector4D& vecB);
+
 
         /*************************************
          *                                   *
@@ -81,6 +85,7 @@ namespace math
          *                                   *
          *************************************/
         T mag() const;
+
 
         /*************************************
          *                                   *
@@ -95,6 +100,7 @@ namespace math
          *        VECTOR PROJECTION          *
          *                                   *
          *************************************/
+
         /**
          * Projects the current vector onto to the `onto` vector.
          * @tparam U Type of the vector to be projected on to (b).

@@ -5,6 +5,12 @@
 
 namespace math {
 
+    /*************************************
+	 *                                   *
+	 *            INITIALIZERS           *
+	 *                                   *
+	 *************************************/
+
     template <Arithmetic T>
     Vector2D<T>::Vector2D(): x(T(0)), y(T(0)) { }
 
@@ -17,6 +23,13 @@ namespace math {
     x(static_cast<T>(other.x)), y(static_cast<T>(other.y))
 	{ }
 
+
+    /*************************************
+	 *                                   *
+	 *            ACCESSORS              *
+	 *                                   *
+	 *************************************/
+
     template <Arithmetic T>
     T& Vector2D<T>::operator[](std::size_t i)
     {
@@ -28,6 +41,13 @@ namespace math {
     {
         return (&x)[i];
     }
+
+
+    /*************************************
+	 *                                   *
+	 *      ARITHMETIC OPERATORS         *
+	 *                                   *
+	 *************************************/
 
     template <Arithmetic T>
     template <Arithmetic S>
@@ -106,6 +126,14 @@ namespace math {
         return *this;
     }
 
+
+
+    /*************************************
+	 *                                   *
+	 *        VECTOR DOT PRODUCT         *
+	 *                                   *
+	 *************************************/
+
     template <Arithmetic T>
     template <Arithmetic S>
     auto Vector2D<T>::dot(const Vector2D<S>& other) const -> std::common_type_t<T, S>
@@ -120,6 +148,13 @@ namespace math {
         return vectorA.dot(vectorB);
     }
 
+
+    /*************************************
+     *                                   *
+     *       VECTOR CROSS PRODUCT        *
+     *                                   *
+     *************************************/
+
     template <Arithmetic T>
     template <Arithmetic U>
     auto Vector2D<T>::cross(const Vector2D<U>& other) const -> std::common_type_t<T, U>
@@ -133,18 +168,39 @@ namespace math {
     {
         return vectorA.cross(vectorB);
     }
-        
+
+
+    /*************************************
+    *                                   *
+    *         VECTOR MAGNITUDE          *
+    *                                   *
+    *************************************/
+
     template <Arithmetic T>
     T Vector2D<T>::mag() const
     {
         return sqrt(x * x + y * y);
     }
 
+
+    /*************************************
+     *                                   *
+     *       VECTOR NORMALIZATION        *
+     *                                   *
+     *************************************/
+
     template <Arithmetic T>
     Vector2D<T> Vector2D<T>::normalize() const
     {
         return (*this) / this->mag();
     }
+
+    
+    /*************************************
+     *                                   *
+     *        VECTOR PROJECTION          *
+     *                                   *
+     *************************************/
 
     template <Arithmetic T>
     template <Arithmetic U>
@@ -168,6 +224,13 @@ namespace math {
     {
         return vector.project(onto, ontoNormalized);
     }
+
+
+    /*************************************
+     *                                   *
+     *         VECTOR REJECTION          *
+     *                                   *
+     *************************************/
 
     template <Arithmetic T>
     template <Arithmetic U>

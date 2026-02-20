@@ -2,6 +2,12 @@
 
 namespace math
 {
+	/*************************************
+	*                                   *
+	*            INITIALIZERS           *
+	*                                   *
+	*************************************/
+
 	template <Arithmetic T>
 	Matrix4D<T>::Matrix4D()
 	{
@@ -61,6 +67,12 @@ namespace math
 		elements[3][2] = v_2_3;
 		elements[3][3] = v_3_3;
 	}
+
+	/*************************************
+	 *                                   *
+	 *            ACCESSORS              *
+	 *                                   *
+	 *************************************/
 
 	template <Arithmetic T>
 	T& Matrix4D<T>::operator()(std::size_t row, std::size_t col)

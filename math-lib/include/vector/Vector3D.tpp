@@ -4,6 +4,13 @@
 
 namespace math {
 
+
+	/*************************************
+	 *                                   *
+	 *            INITIALIZERS           *
+	 *                                   *
+	 *************************************/
+
 	template <Arithmetic T>
 	Vector3D<T>::Vector3D() : x(T(0)), y(T(0)), z(T(0)) {}
 
@@ -20,12 +27,24 @@ namespace math {
 	{ }
 
 
+	/*************************************
+	 *                                   *
+	 *            ACCESSORS              *
+	 *                                   *
+	 *************************************/
+
 	template <Arithmetic T>
 	T& Vector3D<T>::operator[](std::size_t i) { return ((&x)[i]); }
 
 	template <Arithmetic T>
 	const T& Vector3D<T>::operator[](std::size_t i) const { return ((&x)[i]); }
 
+
+	/*************************************
+	 *                                   *
+	 *      ARITHMETIC OPERATORS         *
+	 *                                   *
+	 *************************************/
 
 	template <Arithmetic T>
 	template <Arithmetic U>
@@ -108,6 +127,13 @@ namespace math {
 		z = static_cast<T>(z * factor);
 		return (*this);
 	}
+	
+
+	/*************************************
+	 *                                   *
+	 *         VECTOR MAGNITUDE          *
+	 *                                   *
+	 *************************************/
 
 	template <Arithmetic T>
 	T Vector3D<T>::mag() const
@@ -115,12 +141,23 @@ namespace math {
 		return sqrt(x * x + y * y + z * z);
 	}
 
+
+	/*************************************
+	 *                                   *
+	 *       VECTOR NORMALIZATION        *
+	 *                                   *
+	 *************************************/
 	template <Arithmetic T>
 	Vector3D<T> Vector3D<T>::normalize() const
 	{
 		return (*this) / mag();
 	}
 
+	/*************************************
+	 *                                   *
+	 *        VECTOR DOT PRODUCT         *
+	 *                                   *
+	 *************************************/
 	template <Arithmetic T>
 	template <Arithmetic U>
 	auto Vector3D<T>::dot(const Vector3D<U>& other) const -> std::common_type_t<T, U>
@@ -134,6 +171,13 @@ namespace math {
 	{
 		return vecA.dot(vecB);
 	}
+
+
+	/*************************************
+	 *                                   *
+	 *       VECTOR CROSS PRODUCT        *
+	 *                                   *
+	 *************************************/
 
 	template <Arithmetic T>
 	template <Arithmetic U>
@@ -149,6 +193,13 @@ namespace math {
 	{
 		return vecA.cross(vecB);
 	}
+
+	
+	/*************************************
+	 *                                   *
+	 *        VECTOR PROJECTION          *
+	 *                                   *
+	 *************************************/
 
 	template <Arithmetic T>
 	template <Arithmetic U>
@@ -173,6 +224,13 @@ namespace math {
 	{
 		return vector.project(onto, ontoNormalized);
 	}
+
+
+	/*************************************
+	 *                                   *
+	 *         VECTOR REJECTION          *
+	 *                                   *
+	 *************************************/
 
 	template <Arithmetic T>
 	template <Arithmetic U>
