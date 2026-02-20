@@ -46,9 +46,12 @@ namespace math
 		 *            ACCESSORS              *
 		 *                                   *
 		 *************************************/
+		Vector4D<T>& operator[](std::size_t index);
+		const Vector4D<T>& operator[](std::size_t index) const;
 
 		T& operator()(std::size_t row, std::size_t col);
 		const T& operator()(std::size_t row, std::size_t col) const;
+
 	};
 	
 }

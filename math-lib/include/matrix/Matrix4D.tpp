@@ -77,11 +77,24 @@ namespace math
 		col_vectors[3] = col3;
 	}
 
+
 	/*************************************
 	 *                                   *
 	 *            ACCESSORS              *
 	 *                                   *
 	 *************************************/
+
+	template <Arithmetic T>
+	Vector4D<T>& Matrix4D<T>::operator[](std::size_t index)
+	{
+		return col_vectors[index];
+	}
+
+	template <Arithmetic T>
+	const Vector4D<T>& Matrix4D<T>::operator[](std::size_t index) const
+	{
+		return col_vectors[index];
+	}
 
 	template <Arithmetic T>
 	T& Matrix4D<T>::operator()(std::size_t row, std::size_t col)

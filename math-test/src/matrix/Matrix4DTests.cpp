@@ -26,10 +26,8 @@ TEST(Matrix4D_Initialization, InitializedWithOutParametersProvidesIdentityMatrix
 	// Given a matrix initialized without parameters
 	const math::Matrix4D<float> mat;
 
-	// Then it's elements form an identity matrix
-	for (std::size_t i = 0 ; i < rows; ++i)
-		for (std::size_t j = 0; j < cols; ++j)
-			EXPECT_FLOAT_EQ(i == j, mat.elements[i][j]); // TODO: Replace with accessor
+	// Then, it's elements form an identity matrix
+	EXPECT_MAT_IDENTITY(mat);
 }
 
 TEST(Matrix4D_Initialization, InitializationSupportedForIntegers)
@@ -37,7 +35,7 @@ TEST(Matrix4D_Initialization, InitializationSupportedForIntegers)
 	// Given an integer matrix initialized without parameters
 	const math::Matrix4D<int> mat;
 
-	// Then it's value_type is int, and elements form an identity matrix
+	// Then, it's value_type is int, and elements form an identity matrix
 	static_assert(std::is_same_v<typename decltype(mat)::value_type, int>);
 	for (std::size_t i = 0; i < rows; ++i)
 		for (std::size_t j = 0; j < cols; ++j)
@@ -53,7 +51,7 @@ TEST(Matrix4D_Initialization, InitializedWithParametersProvidesCorrectMatrix)
 		8.0f, 9.0f, 10.0f, 11.0f,
 		12.0f, 13.0f, 14.0f, 15.0f);
 
-	// Then it's elements reflect the correct values
+	// Then, it's elements reflect the correct values
 	for (std::size_t i = 0; i < rows; ++i)
 		for (std::size_t j = 0; j < cols; ++j)
 			EXPECT_FLOAT_EQ(static_cast<float>((i * rows) + j), mat(i, j)); // TODO: Replace with accessor
@@ -71,34 +69,42 @@ TEST(Matrix4D_Initialization, InitializedWithFour4DVectorsProvidesCorrectMatrix)
 	const math::Matrix4D mat(col0, col1, col2, col3);
 
 
-	// Then it's elements reflect the vectors put in column major order
+	// Then, it's elements reflect the vectors put in column major order
 	for (std::size_t i = 0; i < rows; ++i)
 		for (std::size_t j = 0; j < cols; ++j)
 			EXPECT_FLOAT_EQ(static_cast<float>((i * rows) + j), mat(i, j));
 }
 
-//TEST(Matrix4D_Initialization, CanMutateVectorAtIndex)
-//{
-//	// Arrange
-//	math::Matrix4D<float> mat;
-//	math::Vector3D vec(3.0f, 1.0f, 6.0f);
-//
-//	// Act
-//	mat[2] = vec;
-//
-//	// Assert
-//	EXPECT_FLOAT_EQ(1.0f, mat(0, 0));
-//	EXPECT_FLOAT_EQ(0.0f, mat(0, 1));
-//	EXPECT_FLOAT_EQ(3.0f, mat(0, 2));
-//
-//	EXPECT_FLOAT_EQ(0.0f, mat(1, 0));
-//	EXPECT_FLOAT_EQ(1.0f, mat(1, 1));
-//	EXPECT_FLOAT_EQ(1.0f, mat(1, 2));
-//
-//	EXPECT_FLOAT_EQ(0.0f, mat(2, 0));
-//	EXPECT_FLOAT_EQ(0.0f, mat(2, 1));
-//	EXPECT_FLOAT_EQ(6.0f, mat(2, 2));
-//}
+TEST(Matrix4D_Initialization, CanMutateVectorAtIndex)
+{
+	// Given an identity matrix and a vector
+	math::Matrix4D<float> mat;
+	math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+
+	// When the vector is put into the matrices column
+	mat[2] = vec;
+
+	// Then, it's value reflect that change
+	EXPECT_FLOAT_EQ(1.0f, mat(0, 0));
+	EXPECT_FLOAT_EQ(0.0f, mat(0, 1));
+	EXPECT_FLOAT_EQ(3.0f, mat(0, 2));
+	EXPECT_FLOAT_EQ(0.0f, mat(0, 3));
+
+	EXPECT_FLOAT_EQ(0.0f, mat(1, 0));
+	EXPECT_FLOAT_EQ(1.0f, mat(1, 1));
+	EXPECT_FLOAT_EQ(1.0f, mat(1, 2));
+	EXPECT_FLOAT_EQ(0.0f, mat(1, 3));
+
+	EXPECT_FLOAT_EQ(0.0f, mat(2, 0));
+	EXPECT_FLOAT_EQ(0.0f, mat(2, 1));
+	EXPECT_FLOAT_EQ(6.0f, mat(2, 2));
+	EXPECT_FLOAT_EQ(0.0f, mat(2, 3));
+
+	EXPECT_FLOAT_EQ(0.0f, mat(3, 0));
+	EXPECT_FLOAT_EQ(0.0f, mat(3, 1));
+	EXPECT_FLOAT_EQ(2.0f, mat(3, 2));
+	EXPECT_FLOAT_EQ(1.0f, mat(3, 3));
+}
 
 TEST(Matrix4D_Initialization, CanMutateValueAtRowColumn)
 {
@@ -110,7 +116,7 @@ TEST(Matrix4D_Initialization, CanMutateValueAtRowColumn)
 		for (std::size_t j = 0; j < cols; ++j)
 		mat(i , j) = static_cast<float>(i);
 
-	// Then matrix is populated with correct value
+	// Then, matrix is populated with correct value
 	for (std::size_t i = 0; i < rows; ++i)
 		for (std::size_t j = 0; j < cols; ++j)
 			EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i, j));
@@ -154,42 +160,45 @@ TEST(Matrix4D_Initialization, CanMutateValueAtRowColumn)
 //		EXPECT_DOUBLE_EQ(i % rowSize == i / rowSize, copy(i / rowSize, i % rowSize)); // i % rowSize == i / rowSize => Gives diagonal entries as 1
 //
 //}
-//
-//TEST(Matrix4D_Access, CanBeAccessedAsAVectorAtIndex)
-//{
-//	// Arrange
-//	math::Matrix4D<float> mat;
-//
-//	// Act
-//	math::Vector3D vec = mat[1];
-//
-//	// Assert
-//	EXPECT_FLOAT_EQ(0.0f, vec.x);
-//	EXPECT_FLOAT_EQ(1.0f, vec.y);
-//	EXPECT_FLOAT_EQ(0.0f, vec.z);
-//}
 
-//TEST(Matrix4D_Access, CanBeAccessedAsAValueAtRowColumn)
-//{
-//	// Arrange & Act
-//	const math::Matrix4D mat(
-//		0.0f, 1.0f, 2.0f,
-//		3.0f, 4.0f, 5.0f,
-//		6.0f, 7.0f, 8.0f);
-//
-//
-//	// Assert
-//	for (size_t i = 0; i < size; ++i)
-//		EXPECT_FLOAT_EQ(static_cast<float>(i), mat(i / rowSize, i % rowSize));
-//}
+TEST(Matrix4D_Access, CanBeAccessedAsAVectorAtIndex)
+{
+	// Given an identity matrix
+	math::Matrix4D<float> mat;
+
+	// When accessed by index[] operator
+	math::Vector4D vec = mat[1];
+
+	// Returns a vector with the correct value
+	EXPECT_FLOAT_EQ(0.0f, vec.x);
+	EXPECT_FLOAT_EQ(1.0f, vec.y);
+	EXPECT_FLOAT_EQ(0.0f, vec.z);
+	EXPECT_FLOAT_EQ(0.0f, vec.w);
+}
+
+TEST(Matrix4D_Access, CanBeAccessedAsAValueAtRowColumn)
+{
+	// Given a matrix initialized with arbitrary values
+	const math::Matrix4D mat(
+		0.0f, 1.0f, 2.0f, 3.0f,
+		4.0f, 5.0f, 6.0f, 7.0f,
+		8.0f, 9.0f, 10.0f, 11.0f,
+		12.0f, 13.0f, 14.0f, 15.0f
+	);
+
+	// Then, its elements can be accessed using (row, col)
+	for (std::size_t i = 0; i < rows; ++i)
+		for (std::size_t j = 0; j < cols; ++j)
+			EXPECT_FLOAT_EQ(static_cast<float>(i * rows + j), mat(i, j));
+}
 
 
-///*********************************
-// *                               *
-// *  SIMPLE MATH OPERATION TESTS  *
-// *                               *
-// *********************************/
-//
+/*********************************
+ *                               *
+ *  SIMPLE MATH OPERATION TESTS  *
+ *                               *
+ *********************************/
+
 //TEST(Matrix4D_Sum, SumOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
 //{
 //	// Arrange
