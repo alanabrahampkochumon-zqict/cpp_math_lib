@@ -5,6 +5,9 @@
 
 #include <cstddef>
 
+// NOTE: To manually turn off SIMD support use `FORCE_NO_SIMD` macro
+
+
 namespace math
 {
     template<Arithmetic T>

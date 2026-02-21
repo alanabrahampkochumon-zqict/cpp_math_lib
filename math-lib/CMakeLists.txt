@@ -8,6 +8,8 @@ target_compile_options(MathLib INTERFACE
     $<$<CXX_COMPILER_ID:GNU,Clang>:-Wall;-Wextra;-Wpedantic;-Wno-gnu-anonymous-struct;-Werror>
 )
 
+set(IncludeDirectory "include/")
+
 set(VectorDirectory "include/vector/")
 set(VectorHeaderFiles Vector3D.h Vector2D.h Vector4D.h)
 list(TRANSFORM VectorHeaderFiles PREPEND ${VectorDirectory})
@@ -22,7 +24,8 @@ list(TRANSFORM MatrixHeaderFiles PREPEND ${MatrixDirectory})
 set(MatrixTemplateDefinitionFiles Matrix2D.tpp Matrix3D.tpp Matrix4D.tpp)
 list(TRANSFORM MatrixTemplateDefinitionFiles PREPEND ${MatrixDirectory})
 
-set(GeneralFiles "include/MathTraits.h")
+set(GeneralFiles MathTraits.h SimdTraits.h)
+list(TRANSFORM GeneralFiles PREPEND ${IncludeDirectory})
 
 target_sources(MathLib
     INTERFACE

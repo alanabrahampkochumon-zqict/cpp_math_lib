@@ -13,6 +13,8 @@ using namespace TestUtils;
  *  INITIALIZATION, ACCESS AND MUTATION TESTS  *
  *                                             *
  ***********************************************/
+// Turn off SIMD
+#define FORCE_NO_SIMD
 
 TEST(Vector4DInitalization, EmptyConstructorInitializesZeroVector)
 {
