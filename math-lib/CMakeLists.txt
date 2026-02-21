@@ -3,9 +3,16 @@ add_library(MathLib INTERFACE)
 set_property(TARGET MathLib PROPERTY CXX_STANDARD 20)
 set_property(TARGET MathLib PROPERTY CXX_STANDARD_REQUIRED ON)
 
+target_compile_options(MathLib INTERFACE # TODO: Change to the compile target
+    $<$<CXX_COMPILER_ID:MSVC>:/W4;/wd4201>
+    $<$<CXX_COMPILER_ID:GNU>:-Wall;-Wextra;-Wpedantic;-Wno-gnu-anonymous-struct;-Werror;>
+    $<$<CXX_COMPILER_ID:Clang>:-Wall;-Wextra;-Wpedantic;-Wno-gnu-anonymous-struct;-Werror;>
+)
+
 target_compile_options(MathLib INTERFACE
-    $<$<CXX_COMPILER_ID:MSVC>:/W4;/wd4201;/WX>
-    $<$<CXX_COMPILER_ID:GNU,Clang>:-Wall;-Wextra;-Wpedantic;-Wno-gnu-anonymous-struct;-Werror>
+    $<$<CXX_COMPILER_ID:MSVC>:/arch:AVX2>
+    $<$<CXX_COMPILER_ID:GNU>:-mavx2>
+    $<$<CXX_COMPILER_ID:Clang>:-mavx2>
 )
 
 set(IncludeDirectory "include/")
