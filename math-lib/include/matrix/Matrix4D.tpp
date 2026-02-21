@@ -129,15 +129,23 @@ namespace math
 	template<Arithmetic U>
 	auto Matrix4D<T>::operator+(const Matrix4D<U>& other) const->Matrix4D<std::common_type_t<T, U>>
 	{
-		other[0];
-		return *this;
+		using R = std::common_type_t<T, U>;
+		return Matrix4D<R>(
+			col_vectors[0] + other.col_vectors[0],
+			col_vectors[1] + other.col_vectors[1],
+			col_vectors[2] + other.col_vectors[2],
+			col_vectors[3] + other.col_vectors[3]
+		);
 	}
 
 	template <Arithmetic T>
 	template <Arithmetic U>
 	Matrix4D<T>& Matrix4D<T>::operator+=(const Matrix4D<U>& other)
 	{
-		other[0];
+		col_vectors[0] += other.col_vectors[0];
+		col_vectors[1] += other.col_vectors[1];
+		col_vectors[2] += other.col_vectors[2];
+		col_vectors[3] += other.col_vectors[3];
 		return *this;
 	}
 
