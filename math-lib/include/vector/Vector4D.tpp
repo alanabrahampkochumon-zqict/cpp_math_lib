@@ -52,18 +52,21 @@ namespace math
 	 *************************************/
 
 	template <Arithmetic T>
-	Vector4D<T> Vector4D<T>::operator+(const Vector4D& other) const
+	template <Arithmetic U>
+	auto Vector4D<T>::operator+(const Vector4D<U>& other) const -> Vector4D<std::common_type_t<T, U>>
 	{
-		return Vector4D(x + other.x, y + other.y, z + other.z, w + other.w);
+		using R = std::common_type_t<T, U>;
+		return Vector4D<R>(x + other.x, y + other.y, z + other.z, w + other.w);
 	}
 
 	template <Arithmetic T>
-	Vector4D<T>& Vector4D<T>::operator+=(const Vector4D& other)
+	template <Arithmetic U>
+	Vector4D<T>& Vector4D<T>::operator+=(const Vector4D<U>& other)
 	{
-		x += other.x;
-		y += other.y;
-		z += other.z;
-		w += other.w;
+		x += static_cast<T>(other.x);
+		y += static_cast<T>(other.y);
+		z += static_cast<T>(other.z);
+		w += static_cast<T>(other.w);
 		return *this;
 	}
 

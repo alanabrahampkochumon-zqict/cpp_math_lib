@@ -14,7 +14,7 @@ using namespace TestUtils;
  *                                             *
  ***********************************************/
 
-TEST(Vector4D_Initalization, EmptyConstructorInitializesZeroVector)
+TEST(Vector4DInitalization, EmptyConstructorInitializesZeroVector)
 {
     // Given a vector initialized without parameters
     const math::Vector4D<float> vec;
@@ -23,7 +23,7 @@ TEST(Vector4D_Initalization, EmptyConstructorInitializesZeroVector)
     EXPECT_VEC_ZERO(vec);
 }
 
-TEST(Vector4D_Initalization, ConstructorParametersInitializesVector)
+TEST(Vector4DInitalization, ConstructorParametersInitializesVector)
 {
     // Given a vector initialized with parameters
     const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
@@ -35,7 +35,7 @@ TEST(Vector4D_Initalization, ConstructorParametersInitializesVector)
     EXPECT_FLOAT_EQ(2.0f, vec.w);
 }
 
-TEST(Vector4D_Initalization, InitializationSupportedForIntegers)
+TEST(Vector4DInitalization, InitializationSupportedForIntegers)
 {
     // Given a vector initialized with integer parameters
     const math::Vector4D vec(3, 1, 6, 2);
@@ -48,7 +48,7 @@ TEST(Vector4D_Initalization, InitializationSupportedForIntegers)
     EXPECT_EQ(2, vec.w);
 }
 
-TEST(Vector4D_Initialization, Two2DVectorsCanInitializeA4DVector)
+TEST(Vector4DInitialization, Two2DVectorsCanInitializeA4DVector)
 {
     // Given two 2D Vectors
     const math::Vector2D vec1(3.0f, 1.0f);
@@ -64,7 +64,7 @@ TEST(Vector4D_Initialization, Two2DVectorsCanInitializeA4DVector)
     EXPECT_FLOAT_EQ(2.0f, vec[3]);
 }
 
-TEST(Vector4D_Initialization, One3DVectorAndScalarCanInitializeA4DVector)
+TEST(Vector4DInitialization, One3DVectorAndScalarCanInitializeA4DVector)
 {
     // Given a 3D Vector and a scalar
     const math::Vector3D vec1(3.0f, 1.0f, 6.0f);
@@ -80,7 +80,7 @@ TEST(Vector4D_Initialization, One3DVectorAndScalarCanInitializeA4DVector)
     EXPECT_FLOAT_EQ(scalar, vec[3]);
 }
 
-TEST(Vector4D_ConversionConstructor, ConversionConstructorCreatesNewVectorWithPromotedType)
+TEST(Vector4DConversionConstructor, ConversionConstructorCreatesNewVectorWithPromotedType)
 {
     // Given a float vector
     math::Vector4D vec1(3.0f, 1.0f, 6.0f, 2.0f);
@@ -105,7 +105,7 @@ TEST(Vector4D_ConversionConstructor, ConversionConstructorCreatesNewVectorWithPr
 
 }
 
-TEST(Vector4D_ConversionConstructor, ConversionConstructorCreatesNewVectorWithDemotedType)
+TEST(Vector4DConversionConstructor, ConversionConstructorCreatesNewVectorWithDemotedType)
 {
     // Given a double vector
     math::Vector4D vec1(3.0, 1.0, 6.0, 2.0);
@@ -130,7 +130,7 @@ TEST(Vector4D_ConversionConstructor, ConversionConstructorCreatesNewVectorWithDe
 
 }
 
-TEST(Vector4D_Mutation, ElementsCanBeMutatedAtGivenIndex)
+TEST(Vector4DMutation, ElementsCanBeMutatedAtGivenIndex)
 {
     // Given a vector initialization without parameters
     math::Vector4D<float> vec;
@@ -149,7 +149,7 @@ TEST(Vector4D_Mutation, ElementsCanBeMutatedAtGivenIndex)
 
 }
 
-TEST(Vector4D_Access, AccessibleAsXYZ)
+TEST(Vector4DAccess, AccessibleAsXYZ)
 {
     // Given a vector with arbitrary values passed in
     const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
@@ -161,7 +161,7 @@ TEST(Vector4D_Access, AccessibleAsXYZ)
     EXPECT_FLOAT_EQ(2.0f, vec.w);
 }
 
-TEST(Vector4D_Access, AccessibleAsSTP)
+TEST(Vector4DAccess, AccessibleAsSTP)
 {
     // Given a vector with arbitrary values passed in
     const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
@@ -173,7 +173,7 @@ TEST(Vector4D_Access, AccessibleAsSTP)
     EXPECT_FLOAT_EQ(2.0f, vec.q);
 }
 
-TEST(Vector4D_Access, AccessibleAsRGB)
+TEST(Vector4DAccess, AccessibleAsRGB)
 {
     // Given a vector with arbitrary values passed in
     const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
@@ -185,7 +185,7 @@ TEST(Vector4D_Access, AccessibleAsRGB)
     EXPECT_FLOAT_EQ(2.0f, vec.a);
 }
 
-TEST(Vector4D_Access, AccessibleAsArray)
+TEST(Vector4DAccess, AccessibleAsArray)
 {
     // Given a vector with arbitrary values passed in
     const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
@@ -197,7 +197,7 @@ TEST(Vector4D_Access, AccessibleAsArray)
     EXPECT_FLOAT_EQ(2.0f, vec.elements[3]);
 }
 
-TEST(Vector4D_Access, vec4Return3DFloatVector)
+TEST(Vector4DAccess, vec4Return3DFloatVector)
 {
     // Given a vector is accessed as vec4
     constexpr bool isCorrectType = std::is_same_v<math::vec4::value_type, float>;
@@ -206,7 +206,7 @@ TEST(Vector4D_Access, vec4Return3DFloatVector)
     EXPECT_TRUE(isCorrectType);
 }
 
-TEST(Vector4D_Helper, dvec4Return3DDoubleVector)
+TEST(Vector4DHelper, dvec4Return3DDoubleVector)
 {
     // Given a vector is accessed as dvec4
     constexpr bool isCorrectType = std::is_same_v<math::dvec4::value_type, double>;
@@ -215,7 +215,7 @@ TEST(Vector4D_Helper, dvec4Return3DDoubleVector)
     EXPECT_TRUE(isCorrectType);
 }
 
-TEST(Vector4D_Helper, ivec4Return3DDoubleVector)
+TEST(Vector4DHelper, ivec4Return3DDoubleVector)
 {
     // Given a vector is accessed as ivec4
     constexpr bool isCorrectType = std::is_same_v<math::ivec4::value_type, int>;
@@ -231,36 +231,64 @@ TEST(Vector4D_Helper, ivec4Return3DDoubleVector)
  *                               *
  *********************************/
 
-TEST(Vector4D, VectorAddition)
+TEST(Vector4DAddition, AdditionOperatorReturnsNewVectorWithSum)
 {
-    // Arrange
+    // Given vectors with arbitrary values
     const math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
     const math::Vector4D vec2(9.0f, -5.0f, 10.0f, 3.0f);
+    const math::Vector4D expected(12.0f, -5.0f, 9.0f, 5.0f);
 
-    // Act
+    // When they are added together
     const math::Vector4D result = vec1 + vec2;
 
-    // Assert
-    EXPECT_FLOAT_EQ(12.0f, result.x);
-    EXPECT_FLOAT_EQ(-5.0f, result.y);
-    EXPECT_FLOAT_EQ(9.0f, result.z);
-    EXPECT_FLOAT_EQ(5.0f, result.w);
+    // Then the output vector contains sum of elements
+    EXPECT_VEC_EQ(expected, result);
 }
 
-TEST(Vector4D, VectorPlusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
+TEST(Vector4DAddition, AdditionAssignmentOperatorReturnsSameVectorWithSum)
 {
-    // Arrange
-    math::Vector4D vec1(3.0f, 0.0f, -1.0f, 8.0f);
-    const math::Vector4D vec2(9.0f, -5.0f, 10.0f, 5.0f);
+    // Given vectors with arbitrary values
+    math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
+    const math::Vector4D vec2(9.0f, -5.0f, 10.0f, 3.0f);
+    const math::Vector4D expected(12.0f, -5.0f, 9.0f, 5.0f);
 
-    // Act
+    // When one vector is added to the other(+=)
    vec1 += vec2;
 
-    // Assert
-    EXPECT_FLOAT_EQ(12.0f, vec1.x);
-    EXPECT_FLOAT_EQ(-5.0f, vec1.y);
-    EXPECT_FLOAT_EQ(9.0f, vec1.z);
-    EXPECT_FLOAT_EQ(13.0f, vec1.w);
+   // Then, the original matrix contains the sum of the elements added together
+   EXPECT_VEC_EQ(expected, vec1);
+}
+
+TEST(Vector4DAddition, MixedTypeAdditionPromotesType)
+{
+    // Given vectors with arbitrary values
+    const math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
+    const math::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
+    const math::Vector4D expected(12.0, -5.0, 9.0, 5.0);
+
+    // When they are added together
+    const math::Vector4D result = vec1 + vec2;
+
+    // Then the new vector is type promoted
+    static_assert(std::is_same_v<typename decltype(result)::value_type, double>);
+    // And contains sum of elements
+    EXPECT_VEC_EQ(expected, result);
+}
+
+TEST(Vector4DAddition, MixedTypeAdditionAssignmentDoesNotPromoteType)
+{
+    // Given vectors with arbitrary values
+    math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
+    const math::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
+    const math::Vector4D expected(12.0f, -5.0f, 9.0f, 5.0f);
+
+    // When one vector is added to the other(+=)
+    vec1 += vec2;
+
+    // Then, the original vector's type is preserved
+    static_assert(std::is_same_v<typename decltype(vec1)::value_type, float>);
+    // and contains sum of elements
+    EXPECT_VEC_EQ(expected, vec1);
 }
 
 TEST(Vector4D, VectorSubtraction)
