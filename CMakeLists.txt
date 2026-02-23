@@ -21,7 +21,7 @@ endif()
 
 add_subdirectory(math-lib)
 add_subdirectory(playground)
-add_subdirectory(math-test)
+add_subdirectory(test-harness)
 add_subdirectory(simd)
 
 include(dependencies.cmake)
