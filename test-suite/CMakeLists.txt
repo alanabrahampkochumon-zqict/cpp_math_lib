@@ -1,6 +1,6 @@
-add_executable(TestHarness)
+add_executable(TestSuite)
 
-target_compile_features(TestHarness PRIVATE cxx_std_20)
+target_compile_features(TestSuite PRIVATE cxx_std_20)
 
 # Vector Test Sources
 set(VectorTestDirectory "src/vector/")
@@ -21,13 +21,13 @@ set(SimdTestFiles "AdditionTests.cpp;InitializationTests.cpp")
 list(TRANSFORM SimdTestFiles PREPEND ${SimdTestDirectory})
 
 target_sources(
-    TestHarness
+    TestSuite
     PRIVATE
         ${VectorTestFiles} ${MatrixTestFiles} ${Utilities} ${SimdTestFiles}
 )
 
 target_link_libraries(
-    TestHarness
+    TestSuite
     PRIVATE
     MathLib
     GTest::gtest_main # googletest
@@ -36,7 +36,7 @@ target_link_libraries(
 enable_testing()
 
 include(GoogleTest)
-gtest_discover_tests(TestHarness)
+gtest_discover_tests(TestSuite)
 
 source_group("Source Files\\Vectors" FILES ${VectorTestFiles})
 source_group("Source Files\\Matrices" FILES ${MatrixTestFiles})
