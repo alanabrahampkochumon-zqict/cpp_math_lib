@@ -40,7 +40,7 @@ namespace falcon::simd
 	{	
 		#if defined(FALCON_AVX512_SUPPORTED) && (!defined(FORCE_AVX2) || !defined(FORCE_AVX) || !defined(FORCE_SSE) || !defined(FORCE_SCALAR))
 			using reg = __m512i;
-		#elif (defined(FALCOM_AVX2_SUPPORTED) || defined(FALCON_AVX_SUPPORTED)) && (!defined(FORCE_SSE) || !defined(FORCE_SCALAR))
+		#elif (defined(FALCON_AVX2_SUPPORTED) || defined(FALCON_AVX_SUPPORTED)) && (!defined(FORCE_SSE) || !defined(FORCE_SCALAR))
 			using reg = __m256i;
 		elif defined(FALCON_SSE_SUPPORTED) && !defined(FORCE_SCALAR)
 			using reg = __m128i;
