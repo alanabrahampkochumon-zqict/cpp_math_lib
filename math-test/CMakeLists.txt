@@ -16,11 +16,14 @@ set(UtilityDirectory "src/utils/")
 set(Utilities "FloatEquals.h;MatrixUtils.h;VectorUtils.h")
 list(TRANSFORM Utilities PREPEND ${UtilityDirectory})
 
+set(SimdTestDirectory "src/simd/")
+set(SimdTestFiles "AdditionTests.cpp;InitializationTests.cpp")
+list(TRANSFORM SimdTestFiles PREPEND ${SimdTestDirectory})
 
 target_sources(
     MathTest
     PRIVATE
-        ${VectorTestFiles} ${MatrixTestFiles} ${Utilities}
+        ${VectorTestFiles} ${MatrixTestFiles} ${Utilities} ${SimdTestFiles}
 )
 
 target_link_libraries(
@@ -35,3 +38,6 @@ enable_testing()
 include(GoogleTest)
 gtest_discover_tests(MathTest)
 
+source_group("Source Files\\Vectors"   FILES ${VectorTestFiles})
+source_group("Source Files\\Matrices"  FILES ${MatrixTestFiles})
+source_group("Source Files\\Simd"      FILES ${SimdTestFiles})
