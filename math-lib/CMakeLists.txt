@@ -37,7 +37,7 @@ list(TRANSFORM GeneralFiles PREPEND ${IncludeDirectory})
 target_sources(MathLib
     INTERFACE
     FILE_SET HEADERS
-    BASE_DIRS include
+    BASE_DIRS ${IncludeDirectory}
     FILES
         ${VectorHeaderFiles}
         ${VectorTemplateDefinitionFiles}

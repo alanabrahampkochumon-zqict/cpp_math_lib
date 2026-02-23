@@ -16,6 +16,7 @@ set(UtilityDirectory "src/utils/")
 set(Utilities "FloatEquals.h;MatrixUtils.h;VectorUtils.h")
 list(TRANSFORM Utilities PREPEND ${UtilityDirectory})
 
+
 target_sources(
     MathTest
     PRIVATE
