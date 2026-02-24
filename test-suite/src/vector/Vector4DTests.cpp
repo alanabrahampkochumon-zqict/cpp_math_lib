@@ -18,13 +18,28 @@ using namespace TestUtils;
 
 using SupportedTypes = ::testing::Types<unsigned char, int, unsigned int, float, double, std::size_t, long long>;
 
+
 template<typename T>
 class VectorInitialization: public ::testing::Test{ };
-
 TYPED_TEST_SUITE(VectorInitialization, SupportedTypes);
 
 
+template <typename T>
+class VectorAddition: public ::testing::Test
+{
+protected:
+    math::Vector4D<T> vecA;
+    math::Vector4D<T> vecB;
+    math::Vector4D<T> expected;
 
+    void SetUp() override
+    {
+	    vecA = {T(3), T(1), T(6), T(2)};
+	    vecB = {T(-8) , T(5), T(-2), T(5)};
+        expected = {T(-5) , T(6), T(4), T(7)};
+    }
+};
+TYPED_TEST_SUITE(VectorAddition, SupportedTypes);
 
 
 /***********************************************
@@ -55,28 +70,7 @@ TYPED_TEST(VectorInitialization, ConstructorInitializesVectorsWithCorrectValue)
     const math::Vector4D<TypeParam> vec(a, b, c, d);
 
     // Then, the values are stored as elements of the vector
-    if constexpr (std::is_same_v<TypeParam, float>)
-    {
-        EXPECT_FLOAT_EQ(a, vec.x);
-        EXPECT_FLOAT_EQ(b, vec.y);
-        EXPECT_FLOAT_EQ(c, vec.z);
-        EXPECT_FLOAT_EQ(d, vec.w);
-    }
-    else if constexpr (std::is_same_v<TypeParam, double>)
-    {
-        EXPECT_DOUBLE_EQ(a, vec.x);
-        EXPECT_DOUBLE_EQ(b, vec.y);
-        EXPECT_DOUBLE_EQ(c, vec.z);
-        EXPECT_DOUBLE_EQ(d, vec.w);
-    }
-    else
-    {
-        EXPECT_EQ(a, vec.x);
-        EXPECT_EQ(b, vec.y);
-        EXPECT_EQ(c, vec.z);
-        EXPECT_EQ(d, vec.w);
-    }
-
+    EXPECT_VEQ_CONTAINS(vec, a, b, c, d);
 }
 
 TYPED_TEST(VectorInitialization, Two2DVectorsCanInitializeA4DVector)
@@ -86,34 +80,14 @@ TYPED_TEST(VectorInitialization, Two2DVectorsCanInitializeA4DVector)
     TypeParam b = static_cast<TypeParam>(1);
     TypeParam c = static_cast<TypeParam>(6);
     TypeParam d = static_cast<TypeParam>(4);
-    const math::Vector2D vec1(a, b);
-    const math::Vector2D vec2(c, d);
+    const math::Vector2D<TypeParam> vec1(a, b);
+    const math::Vector2D<TypeParam> vec2(c, d);
 
     // When a Vector4D is initialized with those vectors
-    const math::Vector4D vec(vec1, vec2);
+    const math::Vector4D<TypeParam> vec(vec1, vec2);
 
     // Then, the 2D vector elements form the 4D vector
-    if constexpr (std::is_same_v<TypeParam, float>)
-    {
-        EXPECT_FLOAT_EQ(a, vec.x);
-        EXPECT_FLOAT_EQ(b, vec.y);
-        EXPECT_FLOAT_EQ(c, vec.z);
-        EXPECT_FLOAT_EQ(d, vec.w);
-    }
-    else if constexpr (std::is_same_v<TypeParam, double>)
-    {
-        EXPECT_DOUBLE_EQ(a, vec.x);
-        EXPECT_DOUBLE_EQ(b, vec.y);
-        EXPECT_DOUBLE_EQ(c, vec.z);
-        EXPECT_DOUBLE_EQ(d, vec.w);
-    }
-    else
-    {
-        EXPECT_EQ(a, vec.x);
-        EXPECT_EQ(b, vec.y);
-        EXPECT_EQ(c, vec.z);
-        EXPECT_EQ(d, vec.w);
-    }
+    EXPECT_VEQ_CONTAINS(vec, a, b, c, d);
 }
 
 TYPED_TEST(VectorInitialization, One3DVectorAndScalarCanInitializeA4DVector)
@@ -129,27 +103,7 @@ TYPED_TEST(VectorInitialization, One3DVectorAndScalarCanInitializeA4DVector)
     const math::Vector4D vec(vec1, scalar);
 
     // Then, the 3D vector elements + scalar form the 4D vector in the passed-in format
-    if constexpr (std::is_same_v<TypeParam, float>)
-    {
-        EXPECT_FLOAT_EQ(a, vec.x);
-        EXPECT_FLOAT_EQ(b, vec.y);
-        EXPECT_FLOAT_EQ(c, vec.z);
-        EXPECT_FLOAT_EQ(scalar, vec.w);
-    }
-    else if constexpr (std::is_same_v<TypeParam, double>)
-    {
-        EXPECT_DOUBLE_EQ(a, vec.x);
-        EXPECT_DOUBLE_EQ(b, vec.y);
-        EXPECT_DOUBLE_EQ(c, vec.z);
-        EXPECT_DOUBLE_EQ(scalar, vec.w);
-    }
-    else
-    {
-        EXPECT_EQ(a, vec.x);
-        EXPECT_EQ(b, vec.y);
-        EXPECT_EQ(c, vec.z);
-        EXPECT_EQ(scalar, vec.w);
-    }
+    EXPECT_VEQ_CONTAINS(vec, a, b, c, scalar);
 }
 
 TEST(Vector4DConversionConstructor, ConversionConstructorCreatesNewVectorWithPromotedType)
@@ -174,7 +128,6 @@ TEST(Vector4DConversionConstructor, ConversionConstructorCreatesNewVectorWithPro
     ASSERT_DOUBLE_EQ(1.0, vec2.y);
     ASSERT_DOUBLE_EQ(6.0, vec2.z);
     ASSERT_DOUBLE_EQ(2.0, vec2.w);
-
 }
 
 TEST(Vector4DConversionConstructor, ConversionConstructorCreatesNewVectorWithDemotedType)
@@ -218,7 +171,6 @@ TEST(Vector4DMutation, ElementsCanBeMutatedAtGivenIndex)
     EXPECT_FLOAT_EQ(1.0f, vec[1]);
     EXPECT_FLOAT_EQ(6.0f, vec[2]);
     EXPECT_FLOAT_EQ(2.0f, vec[3]);
-
 }
 
 TEST(Vector4DAccess, AccessibleAsXYZ)
@@ -303,35 +255,27 @@ TEST(Vector4DHelper, ivec4Return3DDoubleVector)
  *                               *
  *********************************/
 
-TEST(Vector4DAddition, AdditionOperatorReturnsNewVectorWithSum)
+TYPED_TEST(VectorAddition, AdditionOperatorReturnsNewVectorWithSum)
 {
-    // Given vectors with arbitrary values
-    const math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
-    const math::Vector4D vec2(9.0f, -5.0f, 10.0f, 3.0f);
-    const math::Vector4D expected(12.0f, -5.0f, 9.0f, 5.0f);
-
+    // Given two vectors
     // When they are added together
-    const math::Vector4D result = vec1 + vec2;
+    const math::Vector4D result = this->vecA + this->vecB;
 
     // Then the output vector contains sum of elements
-    EXPECT_VEC_EQ(expected, result);
+    EXPECT_VEC_EQ(this->expected, result);
 }
 
-TEST(Vector4DAddition, AdditionAssignmentOperatorReturnsSameVectorWithSum)
+TYPED_TEST(VectorAddition, AdditionAssignmentOperatorReturnsSameVectorWithSum)
 {
-    // Given vectors with arbitrary values
-    math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
-    const math::Vector4D vec2(9.0f, -5.0f, 10.0f, 3.0f);
-    const math::Vector4D expected(12.0f, -5.0f, 9.0f, 5.0f);
-
+    //Given two vectors
     // When one vector is added to the other(+=)
-   vec1 += vec2;
+    this->vecA += this->vecB;
 
    // Then, the original matrix contains the sum of the elements added together
-   EXPECT_VEC_EQ(expected, vec1);
+   EXPECT_VEC_EQ(this->expected, this->vecA);
 }
 
-TEST(Vector4DAddition, MixedTypeAdditionPromotesType)
+TEST(VectorAddition, MixedTypeAdditionPromotesType)
 {
     // Given vectors with arbitrary values
     const math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
@@ -347,7 +291,7 @@ TEST(Vector4DAddition, MixedTypeAdditionPromotesType)
     EXPECT_VEC_EQ(expected, result);
 }
 
-TEST(Vector4DAddition, MixedTypeAdditionAssignmentDoesNotPromoteType)
+TEST(VectorAddition, MixedTypeAdditionAssignmentDoesNotPromoteType)
 {
     // Given vectors with arbitrary values
     math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);

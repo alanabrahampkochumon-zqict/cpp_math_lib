@@ -4,11 +4,14 @@
 #include <type_traits>
 
 #include <gtest/gtest.h>
+#include <vector/Vector2D.h>
+#include <vector/Vector3D.h>
+#include <vector/Vector4D.h>
 
 namespace TestUtils
 {
 	template<math::IsVector T, math::IsVector U>
-	void EXPECT_VEC_EQ(T expected, U actual)
+	void EXPECT_VEC_EQ(const T& expected, const U& actual)
 	{
 		using ValueType = T::value_type;
 
@@ -33,8 +36,77 @@ namespace TestUtils
 		}
 	}
 
+	template<math::Arithmetic T>
+	void EXPECT_VEQ_CONTAINS(const math::Vector2D<T>& vector, T x, T y)
+	{
+		if constexpr (std::is_same_v<T, float>)
+		{
+			EXPECT_FLOAT_EQ(x, vector.x);
+			EXPECT_FLOAT_EQ(y, vector.y);
+		}
+		else if constexpr (std::is_same_v<T, double>)
+		{
+			EXPECT_DOUBLE_EQ(x, vector.x);
+			EXPECT_DOUBLE_EQ(y, vector.y);
+		}
+		else
+		{
+			EXPECT_EQ(x, vector.x);
+			EXPECT_EQ(y, vector.y);
+		}
+	}
+
+	template<math::Arithmetic T>
+	void EXPECT_VEQ_CONTAINS(const math::Vector3D<T>& vector, T x, T y, T z)
+	{
+		if constexpr (std::is_same_v<T, float>)
+		{
+			EXPECT_FLOAT_EQ(x, vector.x);
+			EXPECT_FLOAT_EQ(y, vector.y);
+			EXPECT_FLOAT_EQ(z, vector.z);
+		}
+		else if constexpr (std::is_same_v<T, double>)
+		{
+			EXPECT_DOUBLE_EQ(x, vector.x);
+			EXPECT_DOUBLE_EQ(y, vector.y);
+			EXPECT_DOUBLE_EQ(z, vector.z);
+		}
+		else
+		{
+			EXPECT_EQ(x, vector.x);
+			EXPECT_EQ(y, vector.y);
+			EXPECT_EQ(z, vector.z);
+		}
+	}
+
+	template<math::Arithmetic T>
+	void EXPECT_VEQ_CONTAINS(const math::Vector4D<T>& vector, T x, T y, T z, T w)
+	{
+		if constexpr (std::is_same_v<T, float>)
+		{
+			EXPECT_FLOAT_EQ(x, vector.x);
+			EXPECT_FLOAT_EQ(y, vector.y);
+			EXPECT_FLOAT_EQ(z, vector.z);
+			EXPECT_FLOAT_EQ(w, vector.w);
+		}
+		else if constexpr (std::is_floating_point_v<T>)
+		{
+			EXPECT_DOUBLE_EQ(x, vector.x);
+			EXPECT_DOUBLE_EQ(y, vector.y);
+			EXPECT_DOUBLE_EQ(z, vector.z);
+			EXPECT_DOUBLE_EQ(w, vector.w);
+		}
+		else
+		{
+			EXPECT_EQ(x, vector.x);
+			EXPECT_EQ(y, vector.y);
+			EXPECT_EQ(z, vector.z);
+			EXPECT_EQ(w, vector.w);
+		}
+	}
+
 	template <math::IsVector T>
-	void EXPECT_VEC_UNIT(T vector)
+	void EXPECT_VEC_UNIT(const T& vector)
 	{
 		using ValueType = T::value_type;
 		ValueType expected = ValueType(1);
@@ -59,7 +131,7 @@ namespace TestUtils
 	}
 
 	template <math::IsVector T>
-	void EXPECT_VEC_ZERO(T vector)
+	void EXPECT_VEC_ZERO(const T& vector)
 	{
 		using ValueType = T::value_type;
 
@@ -83,7 +155,7 @@ namespace TestUtils
 	}
 
 	template<math::IsVector T>
-	void EXPECT_VEC_INF(T vector)
+	void EXPECT_VEC_INF(const T& vector)
 	{
 		constexpr std::size_t elementCount = T::dimension;
 
