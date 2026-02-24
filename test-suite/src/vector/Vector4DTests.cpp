@@ -16,15 +16,14 @@ using namespace TestUtils;
 // Turn off SIMD
 #define FORCE_NO_SIMD // TODO: Update
 
-using SupportedTypes = ::testing::Types<int, float, double, std::size_t>;
+using SupportedTypes = ::testing::Types<unsigned char, int, unsigned int, float, double, std::size_t, long long>;
 
 template<typename T>
-class VectorInitializationTest: public ::testing::Test
-{
-protected:
-};
+class VectorInitialization: public ::testing::Test{ };
 
-TYPED_TEST_SUITE(VectorInitializationTest, SupportedTypes);
+TYPED_TEST_SUITE(VectorInitialization, SupportedTypes);
+
+
 
 
 
@@ -35,7 +34,7 @@ TYPED_TEST_SUITE(VectorInitializationTest, SupportedTypes);
  ***********************************************/
 
 
-TEST(VectorInitializationTest, EmptyConstructorInitializesZeroVector)
+TEST(VectorInitialization, EmptyConstructorInitializesZeroVector)
 {
     // Given a vector initialized without parameters
     const math::Vector4D<float> vec;
@@ -44,7 +43,7 @@ TEST(VectorInitializationTest, EmptyConstructorInitializesZeroVector)
     EXPECT_VEC_ZERO(vec);
 }
 
-TYPED_TEST(VectorInitializationTest, ConstructorInitializesVectorsToCorrectValue)
+TYPED_TEST(VectorInitialization, ConstructorInitializesVectorsWithCorrectValue)
 {
 	// Given 4 different values
     TypeParam a = static_cast<TypeParam>(3);
@@ -63,7 +62,7 @@ TYPED_TEST(VectorInitializationTest, ConstructorInitializesVectorsToCorrectValue
         EXPECT_FLOAT_EQ(c, vec.z);
         EXPECT_FLOAT_EQ(d, vec.w);
     }
-    else if (std::is_same_v<TypeParam, double>)
+    else if constexpr (std::is_same_v<TypeParam, double>)
     {
         EXPECT_DOUBLE_EQ(a, vec.x);
         EXPECT_DOUBLE_EQ(b, vec.y);
@@ -80,36 +79,77 @@ TYPED_TEST(VectorInitializationTest, ConstructorInitializesVectorsToCorrectValue
 
 }
 
-TEST(Vector4DInitialization, Two2DVectorsCanInitializeA4DVector)
+TYPED_TEST(VectorInitialization, Two2DVectorsCanInitializeA4DVector)
 {
     // Given two 2D Vectors
-    const math::Vector2D vec1(3.0f, 1.0f);
-    const math::Vector2D vec2(6.0f, 2.0f);
+    TypeParam a = static_cast<TypeParam>(3);
+    TypeParam b = static_cast<TypeParam>(1);
+    TypeParam c = static_cast<TypeParam>(6);
+    TypeParam d = static_cast<TypeParam>(4);
+    const math::Vector2D vec1(a, b);
+    const math::Vector2D vec2(c, d);
 
     // When a Vector4D is initialized with those vectors
     const math::Vector4D vec(vec1, vec2);
 
     // Then, the 2D vector elements form the 4D vector
-    EXPECT_FLOAT_EQ(3.0f, vec[0]);
-    EXPECT_FLOAT_EQ(1.0f, vec[1]);
-    EXPECT_FLOAT_EQ(6.0f, vec[2]);
-    EXPECT_FLOAT_EQ(2.0f, vec[3]);
+    if constexpr (std::is_same_v<TypeParam, float>)
+    {
+        EXPECT_FLOAT_EQ(a, vec.x);
+        EXPECT_FLOAT_EQ(b, vec.y);
+        EXPECT_FLOAT_EQ(c, vec.z);
+        EXPECT_FLOAT_EQ(d, vec.w);
+    }
+    else if constexpr (std::is_same_v<TypeParam, double>)
+    {
+        EXPECT_DOUBLE_EQ(a, vec.x);
+        EXPECT_DOUBLE_EQ(b, vec.y);
+        EXPECT_DOUBLE_EQ(c, vec.z);
+        EXPECT_DOUBLE_EQ(d, vec.w);
+    }
+    else
+    {
+        EXPECT_EQ(a, vec.x);
+        EXPECT_EQ(b, vec.y);
+        EXPECT_EQ(c, vec.z);
+        EXPECT_EQ(d, vec.w);
+    }
 }
 
-TEST(Vector4DInitialization, One3DVectorAndScalarCanInitializeA4DVector)
+TYPED_TEST(VectorInitialization, One3DVectorAndScalarCanInitializeA4DVector)
 {
     // Given a 3D Vector and a scalar
-    const math::Vector3D vec1(3.0f, 1.0f, 6.0f);
-    constexpr float scalar = 2.0f;
+    TypeParam a = static_cast<TypeParam>(3);
+    TypeParam b = static_cast<TypeParam>(1);
+    TypeParam c = static_cast<TypeParam>(6);
+    const math::Vector3D vec1(a, b, c);
+    TypeParam scalar = static_cast<TypeParam>(4);
 
     // When a Vector4D is initialized with those vectors
     const math::Vector4D vec(vec1, scalar);
 
     // Then, the 3D vector elements + scalar form the 4D vector in the passed-in format
-    EXPECT_FLOAT_EQ(3.0f, vec[0]);
-    EXPECT_FLOAT_EQ(1.0f, vec[1]);
-    EXPECT_FLOAT_EQ(6.0f, vec[2]);
-    EXPECT_FLOAT_EQ(scalar, vec[3]);
+    if constexpr (std::is_same_v<TypeParam, float>)
+    {
+        EXPECT_FLOAT_EQ(a, vec.x);
+        EXPECT_FLOAT_EQ(b, vec.y);
+        EXPECT_FLOAT_EQ(c, vec.z);
+        EXPECT_FLOAT_EQ(scalar, vec.w);
+    }
+    else if constexpr (std::is_same_v<TypeParam, double>)
+    {
+        EXPECT_DOUBLE_EQ(a, vec.x);
+        EXPECT_DOUBLE_EQ(b, vec.y);
+        EXPECT_DOUBLE_EQ(c, vec.z);
+        EXPECT_DOUBLE_EQ(scalar, vec.w);
+    }
+    else
+    {
+        EXPECT_EQ(a, vec.x);
+        EXPECT_EQ(b, vec.y);
+        EXPECT_EQ(c, vec.z);
+        EXPECT_EQ(scalar, vec.w);
+    }
 }
 
 TEST(Vector4DConversionConstructor, ConversionConstructorCreatesNewVectorWithPromotedType)
