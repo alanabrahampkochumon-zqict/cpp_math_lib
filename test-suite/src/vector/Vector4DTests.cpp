@@ -41,6 +41,23 @@ protected:
 };
 TYPED_TEST_SUITE(VectorAddition, SupportedTypes);
 
+template <typename T>
+class VectorSubtraction : public ::testing::Test
+{
+protected:
+    math::Vector4D<T> vecA;
+    math::Vector4D<T> vecB;
+    math::Vector4D<T> expected;
+
+    void SetUp() override
+    {
+        vecA = { T(95), T(11), T(-6), T(2) };
+        vecB = { T(-8) , T(5), T(-2), T(-5) };
+        expected = { T(103) , T(6), T(-4), T(7) };
+    }
+};
+TYPED_TEST_SUITE(VectorSubtraction, SupportedTypes);
+
 
 /***********************************************
  *                                             *
@@ -221,7 +238,7 @@ TEST(Vector4DAccess, AccessibleAsArray)
     EXPECT_FLOAT_EQ(2.0f, vec.elements[3]);
 }
 
-TEST(Vector4DAccess, vec4Return3DFloatVector)
+TEST(Vector4DAccess, vec4Return4DFloatVector)
 {
     // Given a vector is accessed as vec4
     constexpr bool isCorrectType = std::is_same_v<math::vec4::value_type, float>;
@@ -230,7 +247,7 @@ TEST(Vector4DAccess, vec4Return3DFloatVector)
     EXPECT_TRUE(isCorrectType);
 }
 
-TEST(Vector4DHelper, dvec4Return3DDoubleVector)
+TEST(Vector4DHelper, dvec4Return4DDoubleVector)
 {
     // Given a vector is accessed as dvec4
     constexpr bool isCorrectType = std::is_same_v<math::dvec4::value_type, double>;
@@ -239,7 +256,7 @@ TEST(Vector4DHelper, dvec4Return3DDoubleVector)
     EXPECT_TRUE(isCorrectType);
 }
 
-TEST(Vector4DHelper, ivec4Return3DDoubleVector)
+TEST(Vector4DHelper, ivec4Return4DIntegerVector)
 {
     // Given a vector is accessed as ivec4
     constexpr bool isCorrectType = std::is_same_v<math::ivec4::value_type, int>;
@@ -271,7 +288,7 @@ TYPED_TEST(VectorAddition, AdditionAssignmentOperatorReturnsSameVectorWithSum)
     // When one vector is added to the other(+=)
     this->vecA += this->vecB;
 
-   // Then, the original matrix contains the sum of the elements added together
+   // Then, the original vector contains the sum of the elements added together
    EXPECT_VEC_EQ(this->expected, this->vecA);
 }
 
@@ -307,36 +324,56 @@ TEST(VectorAddition, MixedTypeAdditionAssignmentDoesNotPromoteType)
     EXPECT_VEC_EQ(expected, vec1);
 }
 
-TEST(Vector4D, VectorSubtraction)
+TYPED_TEST(VectorSubtraction, SubtractionOperatorReturnsNewVectorWithDifference)
 {
-    // Arrange
-    math::Vector4D vec1(3.0f, 0.0f, -1.0f, 8.0f);
-    const math::Vector4D vec2(9.0f, -5.0f, 10.0f, 5.0f);
+    // Given two vectors
+    // When they are added together
+    const math::Vector4D result = this->vecA - this->vecB;
 
-    // Act
-    const math::Vector4D result = vec1 - vec2;
-
-    // Assert
-    EXPECT_FLOAT_EQ(-6.0f, result.x);
-    EXPECT_FLOAT_EQ(5.0f, result.y);
-    EXPECT_FLOAT_EQ(-11.0f, result.z);
-    EXPECT_FLOAT_EQ(3.0f, result.w);
+    // Then the output vector contains the difference between elements
+    EXPECT_VEC_EQ(this->expected, result);
 }
 
-TEST(Vector4D, VectorMinusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
+TYPED_TEST(VectorSubtraction, SubtractionAssignmentOperatorReturnsSameVectorWithDifference)
 {
-    // Arrange
-    math::Vector4D vec1(3.0f, 0.0f, -1.0f, 8.0f);
-    const math::Vector4D vec2(9.0f, -5.0f, 10.0f, 5.0f);
+    //Given two vectors
+    // When one vector is added to the other(+=)
+    this->vecA -= this->vecB;
 
-    // Act
+    // Then, the original vector contains the difference between elements
+    EXPECT_VEC_EQ(this->expected, this->vecA);
+}
+
+TEST(VectorSubtraction, MixedTypeSubtractionPromotesType)
+{
+    // Given vectors with arbitrary values
+    const math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
+    const math::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
+    const math::Vector4D expected(-6.0, 5.0, -11.0, -1.0);
+
+    // When they are subtracted
+    const math::Vector4D result = vec1 - vec2;
+
+    // Then the new vector is type promoted
+    static_assert(std::is_same_v<typename decltype(result)::value_type, double>);
+    // And contains difference between the elements
+    EXPECT_VEC_EQ(expected, result);
+}
+
+TEST(VectorSubtraction, MixedTypeSubtractionAssignmentDoesNotPromoteType)
+{
+    // Given vectors with arbitrary values
+    math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
+    const math::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
+    const math::Vector4D expected(-6.0, 5.0, -11.0, -1.0);
+
+    // When one vector is subtracted from the other(-=)
     vec1 -= vec2;
 
-    // Assert
-    EXPECT_FLOAT_EQ(-6.0f, vec1.x);
-    EXPECT_FLOAT_EQ(5.0f, vec1.y);
-    EXPECT_FLOAT_EQ(-11.0f, vec1.z);
-    EXPECT_FLOAT_EQ(3.0f, vec1.w);
+    // Then, the original vector's type is preserved
+    static_assert(std::is_same_v<typename decltype(vec1)::value_type, float>);
+    // And contains difference between the elements
+    EXPECT_VEC_EQ(expected, vec1);
 }
 
 TEST(Vector4D, VectorTimesZeroIsZero)

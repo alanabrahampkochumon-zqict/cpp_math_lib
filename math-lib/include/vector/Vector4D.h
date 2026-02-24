@@ -63,8 +63,10 @@ namespace math
         template<Arithmetic U>
         Vector4D& operator+=(const Vector4D<U>& other);
 
-        Vector4D operator-(const Vector4D& other) const;
-        Vector4D& operator-=(const Vector4D& other);
+        template<Arithmetic U>
+        auto operator-(const Vector4D<U>& other) const -> Vector4D<std::common_type_t<T, U>>;
+        template<Arithmetic U>
+        Vector4D& operator-=(const Vector4D<U>& other);
 
         template <Arithmetic S>
         Vector4D operator*(const S& scalar) const;
