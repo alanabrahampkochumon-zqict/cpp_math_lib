@@ -7,16 +7,35 @@
 
 using namespace TestUtils;
 
+/****************
+ *              *
+ *  TEST SETUP  *
+ *              *
+ ****************/
+
+// Turn off SIMD
+#define FORCE_NO_SIMD // TODO: Update
+
+using SupportedTypes = ::testing::Types<int, float, double, std::size_t>;
+
+template<typename T>
+class VectorInitializationTest: public ::testing::Test
+{
+protected:
+};
+
+TYPED_TEST_SUITE(VectorInitializationTest, SupportedTypes);
+
+
 
 /***********************************************
  *                                             *
  *  INITIALIZATION, ACCESS AND MUTATION TESTS  *
  *                                             *
  ***********************************************/
-// Turn off SIMD
-#define FORCE_NO_SIMD
 
-TEST(Vector4DInitalization, EmptyConstructorInitializesZeroVector)
+
+TEST(VectorInitializationTest, EmptyConstructorInitializesZeroVector)
 {
     // Given a vector initialized without parameters
     const math::Vector4D<float> vec;
@@ -25,29 +44,40 @@ TEST(Vector4DInitalization, EmptyConstructorInitializesZeroVector)
     EXPECT_VEC_ZERO(vec);
 }
 
-TEST(Vector4DInitalization, ConstructorParametersInitializesVector)
+TYPED_TEST(VectorInitializationTest, ConstructorInitializesVectorsToCorrectValue)
 {
-    // Given a vector initialized with parameters
-    const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+	// Given 4 different values
+    TypeParam a = static_cast<TypeParam>(3);
+    TypeParam b = static_cast<TypeParam>(1);
+    TypeParam c = static_cast<TypeParam>(6);
+    TypeParam d = static_cast<TypeParam>(4);
 
-    // Then, it's elements reflect correct values
-    EXPECT_FLOAT_EQ(3.0f, vec.x);
-    EXPECT_FLOAT_EQ(1.0f, vec.y);
-    EXPECT_FLOAT_EQ(6.0f, vec.z);
-    EXPECT_FLOAT_EQ(2.0f, vec.w);
-}
+    // When, a vector is initialized with those values
+    const math::Vector4D<TypeParam> vec(a, b, c, d);
 
-TEST(Vector4DInitalization, InitializationSupportedForIntegers)
-{
-    // Given a vector initialized with integer parameters
-    const math::Vector4D vec(3, 1, 6, 2);
+    // Then, the values are stored as elements of the vector
+    if constexpr (std::is_same_v<TypeParam, float>)
+    {
+        EXPECT_FLOAT_EQ(a, vec.x);
+        EXPECT_FLOAT_EQ(b, vec.y);
+        EXPECT_FLOAT_EQ(c, vec.z);
+        EXPECT_FLOAT_EQ(d, vec.w);
+    }
+    else if (std::is_same_v<TypeParam, double>)
+    {
+        EXPECT_DOUBLE_EQ(a, vec.x);
+        EXPECT_DOUBLE_EQ(b, vec.y);
+        EXPECT_DOUBLE_EQ(c, vec.z);
+        EXPECT_DOUBLE_EQ(d, vec.w);
+    }
+    else
+    {
+        EXPECT_EQ(a, vec.x);
+        EXPECT_EQ(b, vec.y);
+        EXPECT_EQ(c, vec.z);
+        EXPECT_EQ(d, vec.w);
+    }
 
-    // Then, it's value_type is int, and elements reflect correct values
-    static_assert(std::is_same_v<typename decltype(vec)::value_type, int>);
-    EXPECT_EQ(3, vec.x);
-    EXPECT_EQ(1, vec.y);
-    EXPECT_EQ(6, vec.z);
-    EXPECT_EQ(2, vec.w);
 }
 
 TEST(Vector4DInitialization, Two2DVectorsCanInitializeA4DVector)
