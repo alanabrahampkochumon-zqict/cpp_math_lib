@@ -93,15 +93,15 @@ namespace math
 
 	template <Arithmetic T>
 	template <Arithmetic S>
-	Vector4D<T> Vector4D<T>::operator*(const S& scalar) const
+	auto Vector4D<T>::operator*(const S& scalar) const -> Vector4D<std::common_type_t<T, S>>
 	{
-		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
 
-		return Vector4D(x * static_cast<T>(scalar), y * static_cast<T>(scalar), z * static_cast<T>(scalar), w * static_cast<T>(scalar));
+		using R = std::common_type_t<T, S>;
+		return Vector4D<R>(x * scalar, y * scalar, z * scalar, w * scalar);
 	}
 
 	template<Arithmetic T, Arithmetic S>
-	Vector4D<T> operator*(S scalar, const Vector4D<T>& vector)
+	auto operator*(S scalar, const Vector4D<T>& vector) -> Vector4D<std::common_type_t<T, S>>
 	{
 		return vector * scalar;
 	}
@@ -110,12 +110,11 @@ namespace math
 	template <Arithmetic S>
 	Vector4D<T>& Vector4D<T>::operator*=(const S& scalar)
 	{
-		static_assert(std::is_arithmetic_v<S>, "scalar must be an integral or float(int, float, double, etc.)");
 
-		x *= static_cast<T>(scalar);
-		y *= static_cast<T>(scalar);
-		z *= static_cast<T>(scalar);
-		w *= static_cast<T>(scalar);
+		x = static_cast<T>(scalar * x);
+		y = static_cast<T>(scalar * y);
+		z = static_cast<T>(scalar * z);
+		w = static_cast<T>(scalar * w);
 		return *this;
 	}
 

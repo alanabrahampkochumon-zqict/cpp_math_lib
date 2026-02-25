@@ -58,6 +58,22 @@ protected:
 };
 TYPED_TEST_SUITE(VectorSubtraction, SupportedTypes);
 
+template <typename T>
+class VectorScalarMultiplication: public ::testing::Test
+{
+protected:
+    math::Vector4D<T> vec;
+    T scalar;
+    math::Vector4D<T> expected;
+
+    void SetUp() override
+    {
+	    vec = {T(5), T(9), T(-8), T(-2)};
+        scalar = T(5);
+	    expected = {T(25), T(45), T(-40), T(-10)};
+    }
+};
+TYPED_TEST_SUITE(VectorScalarMultiplication, SupportedTypes);
 
 /***********************************************
  *                                             *
@@ -376,109 +392,107 @@ TEST(VectorSubtraction, MixedTypeSubtractionAssignmentDoesNotPromoteType)
     EXPECT_VEC_EQ(expected, vec1);
 }
 
-TEST(Vector4D, VectorTimesZeroIsZero)
+TEST(VectorScalarMultiplication, VectorTimesZeroIsZeroVector)
 {
-    // Arrange
+    // Given an arbitrary vector
     const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // Act
-    const math::Vector4D newVec = vec * 0;
+    // When multiplied with 0
+    const math::Vector4D result = vec * 0;
 
-    // Assert
-    EXPECT_FLOAT_EQ(0.0f, newVec.x);
-    EXPECT_FLOAT_EQ(0.0f, newVec.y);
-    EXPECT_FLOAT_EQ(0.0f, newVec.z);
-    EXPECT_FLOAT_EQ(0.0f, newVec.w);
+    // Then, we get a zero vector
+    EXPECT_VEC_ZERO(result);
 }
 
-TEST(Vector4D, VectorTimesOneIsItself)
+TEST(VectorScalarMultiplication, VectorTimesOneIsVectorWithSameValues)
 {
-    // Arrange
+    // Given an arbitrary vector
     const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // Act
-    const math::Vector4D newVec = vec * 1;
+    // When multiplied with 1
+    const math::Vector4D result = vec * 1;
 
-    // Assert
-    EXPECT_FLOAT_EQ(3.0f, newVec.x);
-    EXPECT_FLOAT_EQ(1.0f, newVec.y);
-    EXPECT_FLOAT_EQ(6.0f, newVec.z);
-    EXPECT_FLOAT_EQ(2.0f, newVec.w);
+    // Then, we get the same vector
+    EXPECT_VEC_EQ(vec, result);
 }
 
-TEST(Vector4D, VectorTimesANumberIsANewVector)
+TYPED_TEST(VectorScalarMultiplication, VectorTimesANumberIsAScaledVector)
 {
-    // Arrange
-    const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+    // Given an arbitrary vector and a scalar
 
-    // Act
-    const math::Vector4D newVec = vec * 2;
+    // When multiplied (vec * scalar)
+    const math::Vector4D result = this->vec * this->scalar;
 
-    // Assert
-    EXPECT_FLOAT_EQ(6.0f, newVec.x);
-    EXPECT_FLOAT_EQ(2.0f, newVec.y);
-    EXPECT_FLOAT_EQ(12.0f, newVec.z);
-    EXPECT_FLOAT_EQ(4.0f, newVec.w);
+    // Then, new vector contains elements multiplied(scaled) with the scalar
+    EXPECT_VEC_EQ(this->expected, result);
 }
 
-TEST(Vector4D, VectorTimesAFloatIsANewVector)
+TYPED_TEST(VectorScalarMultiplication, NumberTimesAVectorIsAScaledVector)
 {
-    // Arrange
-    const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+    // Given an arbitrary vector and a scalar
 
-    // Act
-    const math::Vector4D newVec = vec * 2.0;
+    // When multiplied (vec * scalar)
+    const math::Vector4D result =  this->scalar * this->vec;
 
-    // Assert
-    EXPECT_FLOAT_EQ(6.0f, newVec.x);
-    EXPECT_FLOAT_EQ(2.0f, newVec.y);
-    EXPECT_FLOAT_EQ(12.0f, newVec.z);
-    EXPECT_FLOAT_EQ(4.0f, newVec.w);
+    // Then, new vector contains elements multiplied(scaled) with the scalar
+    EXPECT_VEC_EQ(this->expected, result);
 }
 
-TEST(Vector4D, NumberTimesAVectorIsANewVector)
+TYPED_TEST(VectorScalarMultiplication, VectorTimesEqualAScalarIsSameVectorScaled)
 {
-    // Arrange
-    const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+    // Given an arbitrary vector and a scalar
 
-    // Act
-    const math::Vector4D newVec = 2 * vec;
+    // When multiplied (vec * scalar)
+    this->vec *= this->scalar;
 
-    // Assert
-    EXPECT_FLOAT_EQ(6.0f, newVec.x);
-    EXPECT_FLOAT_EQ(2.0f, newVec.y);
-    EXPECT_FLOAT_EQ(12.0f, newVec.z);
-    EXPECT_FLOAT_EQ(4.0f, newVec.w);
+    // Then, the original vector is scaled by the scalar
+    EXPECT_VEC_EQ(this->expected, this->vec);
 }
 
-TEST(Vector4D, VectorTimesEqualAScalarIsSameVectorWithNewValues)
+TEST(VectorScalarMultiplication, MixedTypeScalarMulitplicationPromotesType)
 {
-    // Arrange
-    math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+    // Given a vector and scalar with arbitrary values
+    const math::Vector4D vec(3.0f, 0.0f, -1.0f, 2.0f);
+    constexpr double scalar = 5.0;
+    const math::Vector4D expected(15.0, 0.0, -5.0, 10.0);
 
-    // Act
-    vec *= 2;
+    // When they are multiplied
+    const math::Vector4D result = vec * scalar;
 
-    // Assert
-    EXPECT_FLOAT_EQ(6.0f, vec.x);
-    EXPECT_FLOAT_EQ(2.0f, vec.y);
-    EXPECT_FLOAT_EQ(12.0f, vec.z);
-    EXPECT_FLOAT_EQ(4.0f, vec.w);
+    // Then the new vector is type promoted
+    static_assert(std::is_same_v<typename decltype(result)::value_type, double>);
+    // And the vector is scaled by `scalar`
+    EXPECT_VEC_EQ(expected, result);
 }
 
-TEST(Vector4D, VectorTimesEqualAScalarFloatIsSameVectorWithNewValues)
+TEST(VectorScalarMultiplication, MixedTypeScalarMulitplicationAssignmentDoesNotPromoteType)
 {
-    // Arrange
-    math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+    // Given a vector and scalar with arbitrary values
+    math::Vector4D vec(3.0f, 0.0f, -1.0f, 2.0f);
+    constexpr double scalar = 5.0;
+    const math::Vector4D expected(15.0f, 0.0f, -5.0f, 10.0f);
 
-    // Act
-    vec *= 2.0;
+    // When vector is multiplied by the scalar and assigned (*=)
+    vec *= scalar;
 
-    // Assert
-    EXPECT_FLOAT_EQ(6.0f, vec.x);
-    EXPECT_FLOAT_EQ(2.0f, vec.y);
-    EXPECT_FLOAT_EQ(12.0f, vec.z);
-    EXPECT_FLOAT_EQ(4.0f, vec.w);
+    // Then the vector type is preserved
+    static_assert(std::is_same_v<typename decltype(vec)::value_type, float>);
+    // And the vector is scaled by `scalar`
+    EXPECT_VEC_EQ(expected, vec);
+}
+
+TEST(VectorScalarMultiplication, MixedTypeScalarMulitplicationAssignmentGivesResultWithMinimalPrecisionLoss)
+{
+    // Given a vector and scalar with arbitrary values
+    math::Vector4D vec(3, 0, -1, 8);
+    constexpr double scalar = 2.5;
+    const math::Vector4D expected(7, 0, -2, 20);
+
+    // When vector is multiplied by the scalar and assigned (*=)
+    vec *= scalar;
+
+    // And the vector is scaled by `scalar`
+    EXPECT_VEC_EQ(expected, vec);
 }
 
 
