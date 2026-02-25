@@ -288,7 +288,7 @@ TEST(Vector4DHelper, ivec4Return4DIntegerVector)
  *                               *
  *********************************/
 
-TYPED_TEST(VectorAddition, AdditionOperatorReturnsNewVectorWithSum)
+TYPED_TEST(VectorAddition, VectorPlusVectorReturnsNewVectorWithSum)
 {
     // Given two vectors
     // When they are added together
@@ -298,7 +298,7 @@ TYPED_TEST(VectorAddition, AdditionOperatorReturnsNewVectorWithSum)
     EXPECT_VEC_EQ(this->expected, result);
 }
 
-TYPED_TEST(VectorAddition, AdditionAssignmentOperatorReturnsSameVectorWithSum)
+TYPED_TEST(VectorAddition, VectorPlusEqualsReturnsSameVectorWithSum)
 {
     //Given two vectors
     // When one vector is added to the other(+=)
@@ -340,7 +340,7 @@ TEST(VectorAddition, MixedTypeAdditionAssignmentDoesNotPromoteType)
     EXPECT_VEC_EQ(expected, vec1);
 }
 
-TYPED_TEST(VectorSubtraction, SubtractionOperatorReturnsNewVectorWithDifference)
+TYPED_TEST(VectorSubtraction, VectorMinusVectorReturnsNewVectorWithDifference)
 {
     // Given two vectors
     // When they are added together
@@ -350,7 +350,7 @@ TYPED_TEST(VectorSubtraction, SubtractionOperatorReturnsNewVectorWithDifference)
     EXPECT_VEC_EQ(this->expected, result);
 }
 
-TYPED_TEST(VectorSubtraction, SubtractionAssignmentOperatorReturnsSameVectorWithDifference)
+TYPED_TEST(VectorSubtraction, VectorMinusEqualsVectorReturnsSameVectorWithDifference)
 {
     //Given two vectors
     // When one vector is added to the other(+=)
