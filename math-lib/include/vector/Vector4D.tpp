@@ -125,11 +125,13 @@ namespace math
 		using R = std::common_type_t<T, S>;
 		if constexpr (std::is_floating_point_v<R>)
 		{
-		R factor = R(1) / static_cast<R>(scalar);
-		return Vector4D<R>(x * factor, y * factor, z * factor, w * factor);
-			
-		} else
+			R factor = R(1) / static_cast<R>(scalar);
+			return Vector4D<R>(x * factor, y * factor, z * factor, w * factor);
+
+		}
+		else
 		{
+			assert(scalar != 0 && "Integral division by zero");
 			return Vector4D<R>(x / static_cast<T>(scalar), y / static_cast<T>(scalar), z / static_cast<T>(scalar), w / static_cast<T>(scalar));
 		}
 	}
@@ -150,6 +152,7 @@ namespace math
 		}
 		else
 		{
+			assert(scalar != 0 && "Integral division by zero");
 			x /= static_cast<T>(scalar);
 			y /= static_cast<T>(scalar);
 			z /= static_cast<T>(scalar);

@@ -518,11 +518,19 @@ TYPED_TEST(VectorScalarDivision, VectorDividedByZeroReturnsInfinityVector)
 {
 	// Given an arbitrary vector
 
-	// When divided by zero
-	const math::Vector4D result = this->vec / 0;
+	// Floating point
+	if constexpr (std::is_floating_point_v<TypeParam>)
+	{
+		// When divided by zero
+		const math::Vector4D result = this->vec / 0;
 
-	// Then, the resultant vector is an infinity vector
-	EXPECT_VEC_INF(result);
+		// Then, the resultant vector is an infinity vector
+		EXPECT_VEC_INF(result);
+	} // Integrals
+	else
+	{
+		EXPECT_DEATH({ this->vec / 0; }, "Integral division by zero");
+	}
 }
 
 TYPED_TEST(VectorScalarDivision, VectorDividedByOneReturnsAVectorWithSameValues)
