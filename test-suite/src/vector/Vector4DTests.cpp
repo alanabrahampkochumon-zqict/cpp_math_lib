@@ -85,9 +85,9 @@ protected:
 
 	void SetUp() override
 	{
-		vec = { T(5), T(35), T(-40), T(100) };
+		vec = { T(5), T(35), T(40), T(100) };
 		scalar = T(5);
-		expected = { T(1), T(7), T(-8), T(20) };
+		expected = { T(1), T(7), T(8), T(20) };
 	}
 
 };
