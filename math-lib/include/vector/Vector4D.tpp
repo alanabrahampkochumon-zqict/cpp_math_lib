@@ -11,18 +11,18 @@ namespace math
 	Vector4D<T>::Vector4D() : x(T(0)), y(T(0)), z(T(0)), w(T(0)) { }
 
 	template <Arithmetic T>
-	Vector4D<T>::Vector4D(T v1, T v2, T v3, T v4): x(v1), y(v2), z(v3), w(v4) { }
+	Vector4D<T>::Vector4D(T v1, T v2, T v3, T v4) : x(v1), y(v2), z(v3), w(v4) { }
 
 	template <Arithmetic T>
-	Vector4D<T>::Vector4D(Vector2D<T> vec1, Vector2D<T> vec2): x(vec1.x), y(vec1.y), z(vec2.x), w(vec2.y) { }
+	Vector4D<T>::Vector4D(Vector2D<T> vec1, Vector2D<T> vec2) : x(vec1.x), y(vec1.y), z(vec2.x), w(vec2.y) { }
 
 	template <Arithmetic T>
-	Vector4D<T>::Vector4D(Vector3D<T> vec, T v): x(vec.x), y(vec.y), z(vec.z), w(v)	{ }
+	Vector4D<T>::Vector4D(Vector3D<T> vec, T v) : x(vec.x), y(vec.y), z(vec.z), w(v) { }
 
 	template <Arithmetic T>
 	template <Arithmetic U>
 	Vector4D<T>::Vector4D(const Vector4D<U>& other) :
-	x(static_cast<T>(other.x)), y(static_cast<T>(other.y)), z(static_cast<T>(other.z)), w(static_cast<T>(other.w))
+		x(static_cast<T>(other.x)), y(static_cast<T>(other.y)), z(static_cast<T>(other.z)), w(static_cast<T>(other.w))
 	{ }
 
 
@@ -119,24 +119,43 @@ namespace math
 	}
 
 	template <Arithmetic T>
-	template <Arithmetic M>
-	Vector4D<T> Vector4D<T>::operator/(const M& scalar) const
+	template <Arithmetic S>
+	auto Vector4D<T>::operator/(const S& scalar) const -> Vector4D<std::common_type_t<T, S>>
 	{
-		T factor = T(1) / static_cast<T>(scalar);
-		return Vector4D(x * factor, y * factor, z * factor, w * factor);
+		using R = std::common_type_t<T, S>;
+		if constexpr (std::is_floating_point_v<R>)
+		{
+		R factor = R(1) / static_cast<R>(scalar);
+		return Vector4D<R>(x * factor, y * factor, z * factor, w * factor);
+			
+		} else
+		{
+			return Vector4D<R>(x / static_cast<T>(scalar), y / static_cast<T>(scalar), z / static_cast<T>(scalar), w / static_cast<T>(scalar));
+		}
 	}
 
 	template <Arithmetic T>
-	template <Arithmetic M>
-	Vector4D<T>& Vector4D<T>::operator/=(const M& scalar)
+	template <Arithmetic S>
+	Vector4D<T>& Vector4D<T>::operator/=(const S& scalar)
 	{
-		T factor = T(1) / static_cast<T>(scalar);
+		using R = std::common_type_t<T, S>;
+		if constexpr (std::is_floating_point_v<R>)
+		{
+			R factor = R(1) / static_cast<R>(scalar);
 
-		x *= factor;
-		y *= factor;
-		z *= factor;
-		w *= factor;
-		
+			x = static_cast<T>(factor * x);
+			y = static_cast<T>(factor * y);
+			z = static_cast<T>(factor * z);
+			w = static_cast<T>(factor * w);
+		}
+		else
+		{
+			x /= static_cast<T>(scalar);
+			y /= static_cast<T>(scalar);
+			z /= static_cast<T>(scalar);
+			w /= static_cast<T>(scalar);
+		}
+
 		return *this;
 	}
 

@@ -13,31 +13,31 @@ using namespace TestUtils;
  *              *
  ****************/
 
-// Turn off SIMD
+ // Turn off SIMD
 #define FORCE_NO_SIMD // TODO: Update
 
 using SupportedTypes = ::testing::Types<unsigned char, int, unsigned int, float, double, std::size_t, long long>;
 
 
 template<typename T>
-class VectorInitialization: public ::testing::Test{ };
+class VectorInitialization : public ::testing::Test { };
 TYPED_TEST_SUITE(VectorInitialization, SupportedTypes);
 
 
 template <typename T>
-class VectorAddition: public ::testing::Test
+class VectorAddition : public ::testing::Test
 {
 protected:
-    math::Vector4D<T> vecA;
-    math::Vector4D<T> vecB;
-    math::Vector4D<T> expected;
+	math::Vector4D<T> vecA;
+	math::Vector4D<T> vecB;
+	math::Vector4D<T> expected;
 
-    void SetUp() override
-    {
-	    vecA = {T(3), T(1), T(6), T(2)};
-	    vecB = {T(-8) , T(5), T(-2), T(5)};
-        expected = {T(-5) , T(6), T(4), T(7)};
-    }
+	void SetUp() override
+	{
+		vecA = { T(3), T(1), T(6), T(2) };
+		vecB = { T(-8) , T(5), T(-2), T(5) };
+		expected = { T(-5) , T(6), T(4), T(7) };
+	}
 };
 TYPED_TEST_SUITE(VectorAddition, SupportedTypes);
 
@@ -45,35 +45,53 @@ template <typename T>
 class VectorSubtraction : public ::testing::Test
 {
 protected:
-    math::Vector4D<T> vecA;
-    math::Vector4D<T> vecB;
-    math::Vector4D<T> expected;
+	math::Vector4D<T> vecA;
+	math::Vector4D<T> vecB;
+	math::Vector4D<T> expected;
 
-    void SetUp() override
-    {
-        vecA = { T(95), T(11), T(-6), T(2) };
-        vecB = { T(-8) , T(5), T(-2), T(-5) };
-        expected = { T(103) , T(6), T(-4), T(7) };
-    }
+	void SetUp() override
+	{
+		vecA = { T(95), T(11), T(-6), T(2) };
+		vecB = { T(-8) , T(5), T(-2), T(-5) };
+		expected = { T(103) , T(6), T(-4), T(7) };
+	}
 };
 TYPED_TEST_SUITE(VectorSubtraction, SupportedTypes);
 
 template <typename T>
-class VectorScalarMultiplication: public ::testing::Test
+class VectorScalarMultiplication : public ::testing::Test
 {
 protected:
-    math::Vector4D<T> vec;
-    T scalar;
-    math::Vector4D<T> expected;
+	math::Vector4D<T> vec;
+	T scalar;
+	math::Vector4D<T> expected;
 
-    void SetUp() override
-    {
-	    vec = {T(5), T(9), T(-8), T(-2)};
-        scalar = T(5);
-	    expected = {T(25), T(45), T(-40), T(-10)};
-    }
+	void SetUp() override
+	{
+		vec = { T(5), T(9), T(-8), T(-2) };
+		scalar = T(5);
+		expected = { T(25), T(45), T(-40), T(-10) };
+	}
 };
 TYPED_TEST_SUITE(VectorScalarMultiplication, SupportedTypes);
+
+template<typename T>
+class VectorScalarDivision : public ::testing::Test
+{
+protected:
+	math::Vector4D<T> vec;
+	T scalar;
+	math::Vector4D<T> expected;
+
+	void SetUp() override
+	{
+		vec = { T(5), T(35), T(-40), T(100) };
+		scalar = T(5);
+		expected = { T(1), T(7), T(-8), T(20) };
+	}
+
+};
+TYPED_TEST_SUITE(VectorScalarDivision, SupportedTypes);
 
 /***********************************************
  *                                             *
@@ -84,201 +102,201 @@ TYPED_TEST_SUITE(VectorScalarMultiplication, SupportedTypes);
 
 TEST(VectorInitialization, EmptyConstructorInitializesZeroVector)
 {
-    // Given a vector initialized without parameters
-    const math::Vector4D<float> vec;
+	// Given a vector initialized without parameters
+	const math::Vector4D<float> vec;
 
-    // Then, it's elements form a zero vector
-    EXPECT_VEC_ZERO(vec);
+	// Then, it's elements form a zero vector
+	EXPECT_VEC_ZERO(vec);
 }
 
 TYPED_TEST(VectorInitialization, ConstructorInitializesVectorsWithCorrectValue)
 {
 	// Given 4 different values
-    TypeParam a = static_cast<TypeParam>(3);
-    TypeParam b = static_cast<TypeParam>(1);
-    TypeParam c = static_cast<TypeParam>(6);
-    TypeParam d = static_cast<TypeParam>(4);
+	TypeParam a = static_cast<TypeParam>(3);
+	TypeParam b = static_cast<TypeParam>(1);
+	TypeParam c = static_cast<TypeParam>(6);
+	TypeParam d = static_cast<TypeParam>(4);
 
-    // When, a vector is initialized with those values
-    const math::Vector4D<TypeParam> vec(a, b, c, d);
+	// When, a vector is initialized with those values
+	const math::Vector4D<TypeParam> vec(a, b, c, d);
 
-    // Then, the values are stored as elements of the vector
-    EXPECT_VEQ_CONTAINS(vec, a, b, c, d);
+	// Then, the values are stored as elements of the vector
+	EXPECT_VEQ_CONTAINS(vec, a, b, c, d);
 }
 
 TYPED_TEST(VectorInitialization, Two2DVectorsCanInitializeA4DVector)
 {
-    // Given two 2D Vectors
-    TypeParam a = static_cast<TypeParam>(3);
-    TypeParam b = static_cast<TypeParam>(1);
-    TypeParam c = static_cast<TypeParam>(6);
-    TypeParam d = static_cast<TypeParam>(4);
-    const math::Vector2D<TypeParam> vec1(a, b);
-    const math::Vector2D<TypeParam> vec2(c, d);
+	// Given two 2D Vectors
+	TypeParam a = static_cast<TypeParam>(3);
+	TypeParam b = static_cast<TypeParam>(1);
+	TypeParam c = static_cast<TypeParam>(6);
+	TypeParam d = static_cast<TypeParam>(4);
+	const math::Vector2D<TypeParam> vec1(a, b);
+	const math::Vector2D<TypeParam> vec2(c, d);
 
-    // When a Vector4D is initialized with those vectors
-    const math::Vector4D<TypeParam> vec(vec1, vec2);
+	// When a Vector4D is initialized with those vectors
+	const math::Vector4D<TypeParam> vec(vec1, vec2);
 
-    // Then, the 2D vector elements form the 4D vector
-    EXPECT_VEQ_CONTAINS(vec, a, b, c, d);
+	// Then, the 2D vector elements form the 4D vector
+	EXPECT_VEQ_CONTAINS(vec, a, b, c, d);
 }
 
 TYPED_TEST(VectorInitialization, One3DVectorAndScalarCanInitializeA4DVector)
 {
-    // Given a 3D Vector and a scalar
-    TypeParam a = static_cast<TypeParam>(3);
-    TypeParam b = static_cast<TypeParam>(1);
-    TypeParam c = static_cast<TypeParam>(6);
-    const math::Vector3D vec1(a, b, c);
-    TypeParam scalar = static_cast<TypeParam>(4);
+	// Given a 3D Vector and a scalar
+	TypeParam a = static_cast<TypeParam>(3);
+	TypeParam b = static_cast<TypeParam>(1);
+	TypeParam c = static_cast<TypeParam>(6);
+	const math::Vector3D vec1(a, b, c);
+	TypeParam scalar = static_cast<TypeParam>(4);
 
-    // When a Vector4D is initialized with those vectors
-    const math::Vector4D vec(vec1, scalar);
+	// When a Vector4D is initialized with those vectors
+	const math::Vector4D vec(vec1, scalar);
 
-    // Then, the 3D vector elements + scalar form the 4D vector in the passed-in format
-    EXPECT_VEQ_CONTAINS(vec, a, b, c, scalar);
+	// Then, the 3D vector elements + scalar form the 4D vector in the passed-in format
+	EXPECT_VEQ_CONTAINS(vec, a, b, c, scalar);
 }
 
 TEST(Vector4DConversionConstructor, ConversionConstructorCreatesNewVectorWithPromotedType)
 {
-    // Given a float vector
-    math::Vector4D vec1(3.0f, 1.0f, 6.0f, 2.0f);
+	// Given a float vector
+	math::Vector4D vec1(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // When it is converted to a double vector
-    math::Vector4D<double> vec2(vec1);
-    // And some values of new vector is mutated
+	// When it is converted to a double vector
+	math::Vector4D<double> vec2(vec1);
+	// And some values of new vector is mutated
 	vec2.x = 5;
 
-    // Then, the float vector remains unchanged
-    ASSERT_FLOAT_EQ(3.0f, vec1.x);
-    ASSERT_FLOAT_EQ(1.0f, vec1.y);
-    ASSERT_FLOAT_EQ(6.0f, vec1.z);
-    ASSERT_FLOAT_EQ(2.0f, vec1.w);
+	// Then, the float vector remains unchanged
+	ASSERT_FLOAT_EQ(3.0f, vec1.x);
+	ASSERT_FLOAT_EQ(1.0f, vec1.y);
+	ASSERT_FLOAT_EQ(6.0f, vec1.z);
+	ASSERT_FLOAT_EQ(2.0f, vec1.w);
 
-    // And, the new vector is of type double with the mutated value
-    static_assert(std::is_same_v<typename decltype(vec2)::value_type, double>);
-    ASSERT_DOUBLE_EQ(5.0, vec2.x);
-    ASSERT_DOUBLE_EQ(1.0, vec2.y);
-    ASSERT_DOUBLE_EQ(6.0, vec2.z);
-    ASSERT_DOUBLE_EQ(2.0, vec2.w);
+	// And, the new vector is of type double with the mutated value
+	static_assert(std::is_same_v<typename decltype(vec2)::value_type, double>);
+	ASSERT_DOUBLE_EQ(5.0, vec2.x);
+	ASSERT_DOUBLE_EQ(1.0, vec2.y);
+	ASSERT_DOUBLE_EQ(6.0, vec2.z);
+	ASSERT_DOUBLE_EQ(2.0, vec2.w);
 }
 
 TEST(Vector4DConversionConstructor, ConversionConstructorCreatesNewVectorWithDemotedType)
 {
-    // Given a double vector
-    math::Vector4D vec1(3.0, 1.0, 6.0, 2.0);
+	// Given a double vector
+	math::Vector4D vec1(3.0, 1.0, 6.0, 2.0);
 
-    // When it is converted to a float vector
-    math::Vector4D<float> vec2(vec1);
-    // And some values of new vector is mutated
-    vec2.x = 5;
+	// When it is converted to a float vector
+	math::Vector4D<float> vec2(vec1);
+	// And some values of new vector is mutated
+	vec2.x = 5;
 
-    // Then, the float vector remains unchanged
-    ASSERT_DOUBLE_EQ(3.0, vec1.x);
-    ASSERT_DOUBLE_EQ(1.0, vec1.y);
-    ASSERT_DOUBLE_EQ(6.0, vec1.z);
-    ASSERT_DOUBLE_EQ(2.0, vec1.w);
+	// Then, the float vector remains unchanged
+	ASSERT_DOUBLE_EQ(3.0, vec1.x);
+	ASSERT_DOUBLE_EQ(1.0, vec1.y);
+	ASSERT_DOUBLE_EQ(6.0, vec1.z);
+	ASSERT_DOUBLE_EQ(2.0, vec1.w);
 
-    // And, the new vector is of type float with the mutated value
-    static_assert(std::is_same_v<typename decltype(vec2)::value_type, float>);
-    ASSERT_FLOAT_EQ(5.0f, vec2.x);
-    ASSERT_FLOAT_EQ(1.0f, vec2.y);
-    ASSERT_FLOAT_EQ(6.0f, vec2.z);
-    ASSERT_FLOAT_EQ(2.0f, vec2.w);
+	// And, the new vector is of type float with the mutated value
+	static_assert(std::is_same_v<typename decltype(vec2)::value_type, float>);
+	ASSERT_FLOAT_EQ(5.0f, vec2.x);
+	ASSERT_FLOAT_EQ(1.0f, vec2.y);
+	ASSERT_FLOAT_EQ(6.0f, vec2.z);
+	ASSERT_FLOAT_EQ(2.0f, vec2.w);
 
 }
 
 TEST(Vector4DMutation, ElementsCanBeMutatedAtGivenIndex)
 {
-    // Given a vector initialization without parameters
-    math::Vector4D<float> vec;
+	// Given a vector initialization without parameters
+	math::Vector4D<float> vec;
 
-    // When it's elements are mutated at a particular index
-    vec[0] = 3.0f;
-    vec[1] = 1.0f;
-    vec[2] = 6.0f;
-    vec[3] = 2.0f;
+	// When it's elements are mutated at a particular index
+	vec[0] = 3.0f;
+	vec[1] = 1.0f;
+	vec[2] = 6.0f;
+	vec[3] = 2.0f;
 
-    // Then, it's element reflect the change
-    EXPECT_FLOAT_EQ(3.0f, vec[0]);
-    EXPECT_FLOAT_EQ(1.0f, vec[1]);
-    EXPECT_FLOAT_EQ(6.0f, vec[2]);
-    EXPECT_FLOAT_EQ(2.0f, vec[3]);
+	// Then, it's element reflect the change
+	EXPECT_FLOAT_EQ(3.0f, vec[0]);
+	EXPECT_FLOAT_EQ(1.0f, vec[1]);
+	EXPECT_FLOAT_EQ(6.0f, vec[2]);
+	EXPECT_FLOAT_EQ(2.0f, vec[3]);
 }
 
 TEST(Vector4DAccess, AccessibleAsXYZ)
 {
-    // Given a vector with arbitrary values passed in
-    const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+	// Given a vector with arbitrary values passed in
+	const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // Then, it's elements are accessible as x, y, z, w
-    EXPECT_FLOAT_EQ(3.0f, vec.x);
-    EXPECT_FLOAT_EQ(1.0f, vec.y);
-    EXPECT_FLOAT_EQ(6.0f, vec.z);
-    EXPECT_FLOAT_EQ(2.0f, vec.w);
+	// Then, it's elements are accessible as x, y, z, w
+	EXPECT_FLOAT_EQ(3.0f, vec.x);
+	EXPECT_FLOAT_EQ(1.0f, vec.y);
+	EXPECT_FLOAT_EQ(6.0f, vec.z);
+	EXPECT_FLOAT_EQ(2.0f, vec.w);
 }
 
 TEST(Vector4DAccess, AccessibleAsSTP)
 {
-    // Given a vector with arbitrary values passed in
-    const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+	// Given a vector with arbitrary values passed in
+	const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // Then, it's elements are accessible as s, t, p, q
-    EXPECT_FLOAT_EQ(3.0f, vec.s);
-    EXPECT_FLOAT_EQ(1.0f, vec.t);
-    EXPECT_FLOAT_EQ(6.0f, vec.p);
-    EXPECT_FLOAT_EQ(2.0f, vec.q);
+	// Then, it's elements are accessible as s, t, p, q
+	EXPECT_FLOAT_EQ(3.0f, vec.s);
+	EXPECT_FLOAT_EQ(1.0f, vec.t);
+	EXPECT_FLOAT_EQ(6.0f, vec.p);
+	EXPECT_FLOAT_EQ(2.0f, vec.q);
 }
 
 TEST(Vector4DAccess, AccessibleAsRGB)
 {
-    // Given a vector with arbitrary values passed in
-    const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+	// Given a vector with arbitrary values passed in
+	const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // Then, it's elements are accessible as r, g, b, a
-    EXPECT_FLOAT_EQ(3.0f, vec.r);
-    EXPECT_FLOAT_EQ(1.0f, vec.g);
-    EXPECT_FLOAT_EQ(6.0f, vec.b);
-    EXPECT_FLOAT_EQ(2.0f, vec.a);
+	// Then, it's elements are accessible as r, g, b, a
+	EXPECT_FLOAT_EQ(3.0f, vec.r);
+	EXPECT_FLOAT_EQ(1.0f, vec.g);
+	EXPECT_FLOAT_EQ(6.0f, vec.b);
+	EXPECT_FLOAT_EQ(2.0f, vec.a);
 }
 
 TEST(Vector4DAccess, AccessibleAsArray)
 {
-    // Given a vector with arbitrary values passed in
-    const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+	// Given a vector with arbitrary values passed in
+	const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // Then, it's elements are accessible as array elements
-    EXPECT_FLOAT_EQ(3.0f, vec.elements[0]);
-    EXPECT_FLOAT_EQ(1.0f, vec.elements[1]);
-    EXPECT_FLOAT_EQ(6.0f, vec.elements[2]);
-    EXPECT_FLOAT_EQ(2.0f, vec.elements[3]);
+	// Then, it's elements are accessible as array elements
+	EXPECT_FLOAT_EQ(3.0f, vec.elements[0]);
+	EXPECT_FLOAT_EQ(1.0f, vec.elements[1]);
+	EXPECT_FLOAT_EQ(6.0f, vec.elements[2]);
+	EXPECT_FLOAT_EQ(2.0f, vec.elements[3]);
 }
 
 TEST(Vector4DAccess, vec4Return4DFloatVector)
 {
-    // Given a vector is accessed as vec4
-    constexpr bool isCorrectType = std::is_same_v<math::vec4::value_type, float>;
+	// Given a vector is accessed as vec4
+	constexpr bool isCorrectType = std::is_same_v<math::vec4::value_type, float>;
 
-    // Then, it's value_type is float
-    EXPECT_TRUE(isCorrectType);
+	// Then, it's value_type is float
+	EXPECT_TRUE(isCorrectType);
 }
 
 TEST(Vector4DHelper, dvec4Return4DDoubleVector)
 {
-    // Given a vector is accessed as dvec4
-    constexpr bool isCorrectType = std::is_same_v<math::dvec4::value_type, double>;
+	// Given a vector is accessed as dvec4
+	constexpr bool isCorrectType = std::is_same_v<math::dvec4::value_type, double>;
 
-    // Then, it's value_type is double
-    EXPECT_TRUE(isCorrectType);
+	// Then, it's value_type is double
+	EXPECT_TRUE(isCorrectType);
 }
 
 TEST(Vector4DHelper, ivec4Return4DIntegerVector)
 {
-    // Given a vector is accessed as ivec4
-    constexpr bool isCorrectType = std::is_same_v<math::ivec4::value_type, int>;
+	// Given a vector is accessed as ivec4
+	constexpr bool isCorrectType = std::is_same_v<math::ivec4::value_type, int>;
 
-    // Then, it's value_type is integer
-    EXPECT_TRUE(isCorrectType);
+	// Then, it's value_type is integer
+	EXPECT_TRUE(isCorrectType);
 }
 
 
@@ -290,301 +308,304 @@ TEST(Vector4DHelper, ivec4Return4DIntegerVector)
 
 TYPED_TEST(VectorAddition, VectorPlusVectorReturnsNewVectorWithSum)
 {
-    // Given two vectors
-    // When they are added together
-    const math::Vector4D result = this->vecA + this->vecB;
+	// Given two vectors
+	// When they are added together
+	const math::Vector4D result = this->vecA + this->vecB;
 
-    // Then the output vector contains sum of elements
-    EXPECT_VEC_EQ(this->expected, result);
+	// Then the output vector contains sum of elements
+	EXPECT_VEC_EQ(this->expected, result);
 }
 
 TYPED_TEST(VectorAddition, VectorPlusEqualsReturnsSameVectorWithSum)
 {
-    //Given two vectors
-    // When one vector is added to the other(+=)
-    this->vecA += this->vecB;
+	//Given two vectors
+	// When one vector is added to the other(+=)
+	this->vecA += this->vecB;
 
-   // Then, the original vector contains the sum of the elements added together
-   EXPECT_VEC_EQ(this->expected, this->vecA);
+	// Then, the original vector contains the sum of the elements added together
+	EXPECT_VEC_EQ(this->expected, this->vecA);
 }
 
 TEST(VectorAddition, MixedTypeAdditionPromotesType)
 {
-    // Given vectors with arbitrary values
-    const math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
-    const math::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
-    const math::Vector4D expected(12.0, -5.0, 9.0, 5.0);
+	// Given vectors with arbitrary values
+	const math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
+	const math::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
+	const math::Vector4D expected(12.0, -5.0, 9.0, 5.0);
 
-    // When they are added together
-    const math::Vector4D result = vec1 + vec2;
+	// When they are added together
+	const math::Vector4D result = vec1 + vec2;
 
-    // Then the new vector is type promoted
-    static_assert(std::is_same_v<typename decltype(result)::value_type, double>);
-    // And contains sum of elements
-    EXPECT_VEC_EQ(expected, result);
+	// Then the new vector is type promoted
+	static_assert(std::is_same_v<typename decltype(result)::value_type, double>);
+	// And contains sum of elements
+	EXPECT_VEC_EQ(expected, result);
 }
 
 TEST(VectorAddition, MixedTypeAdditionAssignmentDoesNotPromoteType)
 {
-    // Given vectors with arbitrary values
-    math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
-    const math::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
-    const math::Vector4D expected(12.0f, -5.0f, 9.0f, 5.0f);
+	// Given vectors with arbitrary values
+	math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
+	const math::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
+	const math::Vector4D expected(12.0f, -5.0f, 9.0f, 5.0f);
 
-    // When one vector is added to the other(+=)
-    vec1 += vec2;
+	// When one vector is added to the other(+=)
+	vec1 += vec2;
 
-    // Then, the original vector's type is preserved
-    static_assert(std::is_same_v<typename decltype(vec1)::value_type, float>);
-    // and contains sum of elements
-    EXPECT_VEC_EQ(expected, vec1);
+	// Then, the original vector's type is preserved
+	static_assert(std::is_same_v<typename decltype(vec1)::value_type, float>);
+	// and contains sum of elements
+	EXPECT_VEC_EQ(expected, vec1);
 }
 
 TYPED_TEST(VectorSubtraction, VectorMinusVectorReturnsNewVectorWithDifference)
 {
-    // Given two vectors
-    // When they are added together
-    const math::Vector4D result = this->vecA - this->vecB;
+	// Given two vectors
+	// When they are added together
+	const math::Vector4D result = this->vecA - this->vecB;
 
-    // Then the output vector contains the difference between elements
-    EXPECT_VEC_EQ(this->expected, result);
+	// Then the output vector contains the difference between elements
+	EXPECT_VEC_EQ(this->expected, result);
 }
 
 TYPED_TEST(VectorSubtraction, VectorMinusEqualsVectorReturnsSameVectorWithDifference)
 {
-    //Given two vectors
-    // When one vector is added to the other(+=)
-    this->vecA -= this->vecB;
+	//Given two vectors
+	// When one vector is added to the other(+=)
+	this->vecA -= this->vecB;
 
-    // Then, the original vector contains the difference between elements
-    EXPECT_VEC_EQ(this->expected, this->vecA);
+	// Then, the original vector contains the difference between elements
+	EXPECT_VEC_EQ(this->expected, this->vecA);
 }
 
 TEST(VectorSubtraction, MixedTypeSubtractionPromotesType)
 {
-    // Given vectors with arbitrary values
-    const math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
-    const math::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
-    const math::Vector4D expected(-6.0, 5.0, -11.0, -1.0);
+	// Given vectors with arbitrary values
+	const math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
+	const math::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
+	const math::Vector4D expected(-6.0, 5.0, -11.0, -1.0);
 
-    // When they are subtracted
-    const math::Vector4D result = vec1 - vec2;
+	// When they are subtracted
+	const math::Vector4D result = vec1 - vec2;
 
-    // Then the new vector is type promoted
-    static_assert(std::is_same_v<typename decltype(result)::value_type, double>);
-    // And contains difference between the elements
-    EXPECT_VEC_EQ(expected, result);
+	// Then the new vector is type promoted
+	static_assert(std::is_same_v<typename decltype(result)::value_type, double>);
+	// And contains difference between the elements
+	EXPECT_VEC_EQ(expected, result);
 }
 
 TEST(VectorSubtraction, MixedTypeSubtractionAssignmentDoesNotPromoteType)
 {
-    // Given vectors with arbitrary values
-    math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
-    const math::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
-    const math::Vector4D expected(-6.0, 5.0, -11.0, -1.0);
+	// Given vectors with arbitrary values
+	math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
+	const math::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
+	const math::Vector4D expected(-6.0, 5.0, -11.0, -1.0);
 
-    // When one vector is subtracted from the other(-=)
-    vec1 -= vec2;
+	// When one vector is subtracted from the other(-=)
+	vec1 -= vec2;
 
-    // Then, the original vector's type is preserved
-    static_assert(std::is_same_v<typename decltype(vec1)::value_type, float>);
-    // And contains difference between the elements
-    EXPECT_VEC_EQ(expected, vec1);
+	// Then, the original vector's type is preserved
+	static_assert(std::is_same_v<typename decltype(vec1)::value_type, float>);
+	// And contains difference between the elements
+	EXPECT_VEC_EQ(expected, vec1);
 }
 
-TEST(VectorScalarMultiplication, VectorTimesZeroIsZeroVector)
+TEST(VectorScalarMultiplication, VectorTimesZeroReturnsZeroVector)
 {
-    // Given an arbitrary vector
-    const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+	// Given an arbitrary vector
+	const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // When multiplied with 0
-    const math::Vector4D result = vec * 0;
+	// When multiplied with 0
+	const math::Vector4D result = vec * 0;
 
-    // Then, we get a zero vector
-    EXPECT_VEC_ZERO(result);
+	// Then, we get a zero vector
+	EXPECT_VEC_ZERO(result);
 }
 
-TEST(VectorScalarMultiplication, VectorTimesOneIsVectorWithSameValues)
+TEST(VectorScalarMultiplication, VectorTimesOneReturnsVectorWithSameValues)
 {
-    // Given an arbitrary vector
-    const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+	// Given an arbitrary vector
+	const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // When multiplied with 1
-    const math::Vector4D result = vec * 1;
+	// When multiplied with 1
+	const math::Vector4D result = vec * 1;
 
-    // Then, we get the same vector
-    EXPECT_VEC_EQ(vec, result);
+	// Then, we get the same vector
+	EXPECT_VEC_EQ(vec, result);
 }
 
-TYPED_TEST(VectorScalarMultiplication, VectorTimesANumberIsAScaledVector)
+TYPED_TEST(VectorScalarMultiplication, VectorTimesANumberReturnsAScaledVector)
 {
-    // Given an arbitrary vector and a scalar
+	// Given an arbitrary vector and a scalar
 
-    // When multiplied (vec * scalar)
-    const math::Vector4D result = this->vec * this->scalar;
+	// When multiplied (vec * scalar)
+	const math::Vector4D result = this->vec * this->scalar;
 
-    // Then, new vector contains elements multiplied(scaled) with the scalar
-    EXPECT_VEC_EQ(this->expected, result);
+	// Then, new vector contains elements multiplied(scaled) with the scalar
+	EXPECT_VEC_EQ(this->expected, result);
 }
 
-TYPED_TEST(VectorScalarMultiplication, NumberTimesAVectorIsAScaledVector)
+TYPED_TEST(VectorScalarMultiplication, NumberTimesAVectorReturnsAScaledVector)
 {
-    // Given an arbitrary vector and a scalar
+	// Given an arbitrary vector and a scalar
 
-    // When multiplied (vec * scalar)
-    const math::Vector4D result =  this->scalar * this->vec;
+	// When multiplied (vec * scalar)
+	const math::Vector4D result = this->scalar * this->vec;
 
-    // Then, new vector contains elements multiplied(scaled) with the scalar
-    EXPECT_VEC_EQ(this->expected, result);
+	// Then, new vector contains elements multiplied(scaled) with the scalar
+	EXPECT_VEC_EQ(this->expected, result);
 }
 
-TYPED_TEST(VectorScalarMultiplication, VectorTimesEqualAScalarIsSameVectorScaled)
+TYPED_TEST(VectorScalarMultiplication, VectorTimesEqualAScalarIsTheSameVectorScaled)
 {
-    // Given an arbitrary vector and a scalar
+	// Given an arbitrary vector and a scalar
 
-    // When multiplied (vec * scalar)
-    this->vec *= this->scalar;
+	// When multiplied (vec * scalar)
+	this->vec *= this->scalar;
 
-    // Then, the original vector is scaled by the scalar
-    EXPECT_VEC_EQ(this->expected, this->vec);
+	// Then, the original vector is scaled by the scalar
+	EXPECT_VEC_EQ(this->expected, this->vec);
 }
 
 TEST(VectorScalarMultiplication, MixedTypeScalarMulitplicationPromotesType)
 {
-    // Given a vector and scalar with arbitrary values
-    const math::Vector4D vec(3.0f, 0.0f, -1.0f, 2.0f);
-    constexpr double scalar = 5.0;
-    const math::Vector4D expected(15.0, 0.0, -5.0, 10.0);
+	// Given a vector and scalar with arbitrary values
+	const math::Vector4D vec(3.0f, 0.0f, -1.0f, 2.0f);
+	constexpr double scalar = 5.0;
+	const math::Vector4D expected(15.0, 0.0, -5.0, 10.0);
 
-    // When they are multiplied
-    const math::Vector4D result = vec * scalar;
+	// When they are multiplied
+	const math::Vector4D result = vec * scalar;
 
-    // Then the new vector is type promoted
-    static_assert(std::is_same_v<typename decltype(result)::value_type, double>);
-    // And the vector is scaled by `scalar`
-    EXPECT_VEC_EQ(expected, result);
+	// Then the new vector is type promoted
+	static_assert(std::is_same_v<typename decltype(result)::value_type, double>);
+	// And the vector is scaled by `scalar`
+	EXPECT_VEC_EQ(expected, result);
 }
 
 TEST(VectorScalarMultiplication, MixedTypeScalarMulitplicationAssignmentDoesNotPromoteType)
 {
-    // Given a vector and scalar with arbitrary values
-    math::Vector4D vec(3.0f, 0.0f, -1.0f, 2.0f);
-    constexpr double scalar = 5.0;
-    const math::Vector4D expected(15.0f, 0.0f, -5.0f, 10.0f);
+	// Given a vector and scalar with arbitrary values
+	math::Vector4D vec(3.0f, 0.0f, -1.0f, 2.0f);
+	constexpr double scalar = 5.0;
+	const math::Vector4D expected(15.0f, 0.0f, -5.0f, 10.0f);
 
-    // When vector is multiplied by the scalar and assigned (*=)
-    vec *= scalar;
+	// When vector is multiplied by the scalar and assigned (*=)
+	vec *= scalar;
 
-    // Then the vector type is preserved
-    static_assert(std::is_same_v<typename decltype(vec)::value_type, float>);
-    // And the vector is scaled by `scalar`
-    EXPECT_VEC_EQ(expected, vec);
+	// Then the vector type is preserved
+	static_assert(std::is_same_v<typename decltype(vec)::value_type, float>);
+	// And the vector is scaled by `scalar`
+	EXPECT_VEC_EQ(expected, vec);
 }
 
 TEST(VectorScalarMultiplication, MixedTypeScalarMulitplicationAssignmentGivesResultWithMinimalPrecisionLoss)
 {
-    // Given a vector and scalar with arbitrary values
-    math::Vector4D vec(3, 0, -1, 8);
-    constexpr double scalar = 2.5;
-    const math::Vector4D expected(7, 0, -2, 20);
+	// Given a vector and scalar with arbitrary values
+	math::Vector4D vec(3, 0, -1, 8);
+	constexpr double scalar = 2.5;
+	const math::Vector4D expected(7, 0, -2, 20);
 
-    // When vector is multiplied by the scalar and assigned (*=)
-    vec *= scalar;
+	// When vector is multiplied by the scalar and assigned (*=)
+	vec *= scalar;
 
-    // And the vector is scaled by `scalar`
-    EXPECT_VEC_EQ(expected, vec);
+	// And the vector is scaled by `scalar` with minimal precision loss
+	EXPECT_VEC_EQ(expected, vec);
 }
 
 
-TEST(Vector4D, VectorDividedByZeroIsInfinity)
+TYPED_TEST(VectorScalarDivision, VectorDividedByZeroReturnsInfinityVector)
 {
-    // Arrange
-    const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+	// Given an arbitrary vector
 
-    // Act
-    const math::Vector4D newVec = vec / 0;
+	// When divided by zero
+	const math::Vector4D result = this->vec / 0;
 
-    // Assert
-    EXPECT_FLOAT_EQ(INFINITY, newVec.x);
-    EXPECT_FLOAT_EQ(INFINITY, newVec.y);
-    EXPECT_FLOAT_EQ(INFINITY, newVec.z);
-    EXPECT_FLOAT_EQ(INFINITY, newVec.w);
+	// Then, the resultant vector is an infinity vector
+	EXPECT_VEC_INF(result);
 }
 
-TEST(Vector4D, VectorDividedByOneIsItself)
+TYPED_TEST(VectorScalarDivision, VectorDividedByOneReturnsAVectorWithSameValues)
 {
-    // Arrange
-    const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+	// Given an arbitrary vector
 
-    // Act
-    const math::Vector4D newVec = vec / 1;
+	// When divided by one
+	const math::Vector4D result = this->vec / 1;
 
-    // Assert
-    EXPECT_FLOAT_EQ(3.0f, newVec.x);
-    EXPECT_FLOAT_EQ(1.0f, newVec.y);
-    EXPECT_FLOAT_EQ(6.0f, newVec.z);
-    EXPECT_FLOAT_EQ(2.0f, newVec.w);
+	// Then, the resultant vector is an infinity vector
+	EXPECT_VEC_EQ(result, this->vec);
 }
 
-TEST(Vector4D, VectorDividedByANumberIsANewVector)
+TYPED_TEST(VectorScalarDivision, VectorDividedByANumberReturnsAScaledVector)
 {
-    // Arrange
-    const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+	// Given an arbitrary vector
 
-    // Act
-    const math::Vector4D newVec = vec / 2;
+	// When divided by a scalar
+	const math::Vector4D result = this->vec / this->scalar;
 
-    // Assert
-    EXPECT_FLOAT_EQ(1.5f, newVec.x);
-    EXPECT_FLOAT_EQ(0.5f, newVec.y);
-    EXPECT_FLOAT_EQ(3.0f, newVec.z);
-    EXPECT_FLOAT_EQ(1.0f, newVec.w);
+	// Then, the resultant vector is a new vector with elements divided by the scalar
+	EXPECT_VEC_EQ(this->expected, result);
 }
 
-TEST(Vector4D, VectorDividedByAFloatIsANewVector)
+TYPED_TEST(VectorScalarDivision, VectorDivideEqualsANumberIsTheSameVectorScaled)
 {
-    // Arrange
-    const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+	// Given an arbitrary vector
 
-    // Act
-    const math::Vector4D newVec = vec / 2.0;
+	// When divide equals by a scalar
+	this->vec /= this->scalar;
 
-    // Assert
-    EXPECT_FLOAT_EQ(1.5f, newVec.x);
-    EXPECT_FLOAT_EQ(0.5f, newVec.y);
-    EXPECT_FLOAT_EQ(3.0f, newVec.z);
-    EXPECT_FLOAT_EQ(1.0f, newVec.w);
+	// Then, the resultant vector is the same vector with elements divided by the scalar
+	EXPECT_VEC_EQ(this->expected, this->vec);
 }
 
-TEST(Vector4D, VectorDividesEqualAScalarIsSameVectorWithNewValues)
+TEST(VectorScalarMultiplication, MixedTypeScalarDivisionPromotesType)
 {
-    // Arrange
-    math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+	// Given an arbitrary vector
+	const math::Vector4D vec(15.0, 0.0, -5.0, 10.0);
+	constexpr double scalar = 5.0;
+	const math::Vector4D expected(3.0f, 0.0f, -1.0f, 2.0f);
 
-    // Act
-    vec /= 2;
+	// When divided by a scalar
+	const math::Vector4D result = vec / scalar;
 
-    // Assert
-    EXPECT_FLOAT_EQ(1.5f, vec.x);
-    EXPECT_FLOAT_EQ(0.5f, vec.y);
-    EXPECT_FLOAT_EQ(3.0f, vec.z);
-    EXPECT_FLOAT_EQ(1.0f, vec.w);
+	// Then the new vector is type promoted
+	static_assert(std::is_same_v<typename decltype(result)::value_type, double>);
+	// And the vector is scaled by `scalar`
+	EXPECT_VEC_EQ(expected, result);
 }
 
-TEST(Vector4D, VectorDividesEqualAFloatIsSameVectorWithNewValues)
+TEST(VectorScalarMultiplication, MixedTypeScalarDivisonAssignmentDoesNotPromoteType)
 {
-    // Arrange
-    math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+	// Given an arbitrary vector
+	math::Vector4D vec(15.0f, 0.0f, -5.0f, 10.0f);
+	constexpr double scalar = 5.0;
 
-    // Act
-    vec /= 2.0;
+	const math::Vector4D expected(3.0f, 0.0f, -1.0f, 2.0f);
 
-    // Assert
-    EXPECT_FLOAT_EQ(1.5f, vec.x);
-    EXPECT_FLOAT_EQ(0.5f, vec.y);
-    EXPECT_FLOAT_EQ(3.0f, vec.z);
-    EXPECT_FLOAT_EQ(1.0f, vec.w);
+	// When divide equals by a scalar
+	vec /= scalar;
+
+	// Then the vector type is preserved
+	static_assert(std::is_same_v<typename decltype(vec)::value_type, float>);
+	// And the vector is scaled by `scalar`
+	EXPECT_VEC_EQ(expected, vec);
 }
+
+TEST(VectorScalarMultiplication, MixedTypeScalarDivisionAssignmentGivesResultWithMinimalPrecisionLoss)
+{
+	// Given an arbitrary vector
+	math::Vector4D vec(10, 25, -30, 2);
+	constexpr double scalar = 2.5;
+	const math::Vector4D expected(4, 10, -12, 0);
+
+	// When vector divides equal by a scalar
+	vec /= scalar;
+
+	// And the vector is scaled by `scalar` with minimal precision loss
+	EXPECT_VEC_EQ(expected, vec);
+}
+
+
 
 /***************************************
  *                                     *
@@ -594,53 +615,53 @@ TEST(Vector4D, VectorDividesEqualAFloatIsSameVectorWithNewValues)
 
 TEST(Vector4D, ZeroVectorReturnsMagnitudeZero)
 {
-    // Arrange
-    const math::Vector4D vec(0.0f, 0.0f, 0.0f, 0.0f);
+	// Arrange
+	const math::Vector4D vec(0.0f, 0.0f, 0.0f, 0.0f);
 
-    // Act
-    const float magnitude = vec.mag();
+	// Act
+	const float magnitude = vec.mag();
 
-    // Assert
-    EXPECT_FLOAT_EQ(0.0f, magnitude);
+	// Assert
+	EXPECT_FLOAT_EQ(0.0f, magnitude);
 }
 
 TEST(Vector4D, OneVectorReturnsMagnitudeNotEqualToOne)
 {
-    // Arrange
-    const math::Vector4D vec(1.0f, 1.0f, 1.0f, 1.0f);
+	// Arrange
+	const math::Vector4D vec(1.0f, 1.0f, 1.0f, 1.0f);
 
-    // Act
-    const float magnitude = vec.mag();
+	// Act
+	const float magnitude = vec.mag();
 
-    // Assert
-    EXPECT_NE(1.0f, magnitude);
+	// Assert
+	EXPECT_NE(1.0f, magnitude);
 }
 
 TEST(Vector4D, NonUnitVectorReturnsCorrectMagnitude)
 {
-    // Arrange
-    const math::Vector4D vec(1.0f, 2.0f, 2.0f, 4.0f);
+	// Arrange
+	const math::Vector4D vec(1.0f, 2.0f, 2.0f, 4.0f);
 
-    // Act
-    const float magnitude = vec.mag();
+	// Act
+	const float magnitude = vec.mag();
 
-    // Assert
-    EXPECT_FLOAT_EQ(5.0f, magnitude);
+	// Assert
+	EXPECT_FLOAT_EQ(5.0f, magnitude);
 }
 
 TEST(Vector4D, VectorWhenNormalizedReturnsANormalVector)
 {
-    // Arrange
-    const math::Vector4D vec(1.0f, 2.0f, 2.0f, 4.0f);
+	// Arrange
+	const math::Vector4D vec(1.0f, 2.0f, 2.0f, 4.0f);
 
-    // Act
-    const math::Vector4D normalized = vec.normalize();
+	// Act
+	const math::Vector4D normalized = vec.normalize();
 
-    // Assert
-    EXPECT_FLOAT_EQ(0.2f, normalized.x);
-    EXPECT_FLOAT_EQ(0.4f, normalized.y);
-    EXPECT_FLOAT_EQ(0.4f, normalized.z);
-    EXPECT_FLOAT_EQ(0.8f, normalized.w);
+	// Assert
+	EXPECT_FLOAT_EQ(0.2f, normalized.x);
+	EXPECT_FLOAT_EQ(0.4f, normalized.y);
+	EXPECT_FLOAT_EQ(0.4f, normalized.z);
+	EXPECT_FLOAT_EQ(0.8f, normalized.w);
 }
 
 
@@ -653,39 +674,39 @@ TEST(Vector4D, VectorWhenNormalizedReturnsANormalVector)
 TEST(Vector4D, VectorWhenDotWithItselfReturnsOne)
 {
 	// Arrange
-    const math::Vector4D<float> vec(1.0, 0.0, 0.0, 0.0);
+	const math::Vector4D<float> vec(1.0, 0.0, 0.0, 0.0);
 
-    // Act
-    const float res = vec.dot(vec);
+	// Act
+	const float res = vec.dot(vec);
 
-    // Assert
-    EXPECT_FLOAT_EQ(1.0, res);
+	// Assert
+	EXPECT_FLOAT_EQ(1.0, res);
 }
 
 TEST(Vector4D, VectorWhenDotWithOrthogonalVectorReturnZero)
 {
-    // Arrange
-    const math::Vector4D<float> vec1(1.0, 0.0, 0.0, 0.0);
-    const math::Vector4D<float> vec2(0.0, 1.0, 0.0, 0.0);
+	// Arrange
+	const math::Vector4D<float> vec1(1.0, 0.0, 0.0, 0.0);
+	const math::Vector4D<float> vec2(0.0, 1.0, 0.0, 0.0);
 
-    // Act
-    const float res = vec1.dot(vec2);
+	// Act
+	const float res = vec1.dot(vec2);
 
-    // Assert
-    EXPECT_FLOAT_EQ(0.0, res);
+	// Assert
+	EXPECT_FLOAT_EQ(0.0, res);
 }
 
 TEST(Vector4D, VectorWhenDotWithOppositeParallelVectorReturnsNegativeOne)
 {
-    // Arrange
-    const math::Vector4D<float> vec1(1.0, 0.0, 0.0, 0.0);
-    const math::Vector4D<float> vec2(-1.0, 0.0, 0.0, 0.0);
+	// Arrange
+	const math::Vector4D<float> vec1(1.0, 0.0, 0.0, 0.0);
+	const math::Vector4D<float> vec2(-1.0, 0.0, 0.0, 0.0);
 
-    // Act
-    const float res = vec1.dot(vec2);
+	// Act
+	const float res = vec1.dot(vec2);
 
-    // Assert
-    EXPECT_FLOAT_EQ(-1.0, res);
+	// Assert
+	EXPECT_FLOAT_EQ(-1.0, res);
 }
 
 
@@ -697,238 +718,238 @@ TEST(Vector4D, VectorWhenDotWithOppositeParallelVectorReturnsNegativeOne)
 
 TEST(Vector4D, ParallelVectorsWhenProjectedReturnsNonZeroVector)
 {
-    // Arrange
-    const math::Vector4D a(1.0f, 2.0f, 3.0f, 5.0f);
-    const math::Vector4D b(2.0f, 4.0f, 6.0f, 10.0f);
-    const math::Vector4D expectedProjection(1.0f, 2.0f, 3.0f, 5.0f);
+	// Arrange
+	const math::Vector4D a(1.0f, 2.0f, 3.0f, 5.0f);
+	const math::Vector4D b(2.0f, 4.0f, 6.0f, 10.0f);
+	const math::Vector4D expectedProjection(1.0f, 2.0f, 3.0f, 5.0f);
 
-    // Act
-    const math::Vector4D<float> actualProjection = a.project(b);
+	// Act
+	const math::Vector4D<float> actualProjection = a.project(b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Assert
+	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
 }
 
 TEST(Vector4D, VectorWhenProjectedOntoXAxisProducesVectorWithOnlyXComponent)
 {
-    // Arrange
-    const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.f);
-    const math::Vector4D b(1.0f, 0.0f, 0.0f, 0.0f);
-    const math::Vector4D expectedProjection(10.0f, 0.0f, 0.0f, 0.0f);
+	// Arrange
+	const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.f);
+	const math::Vector4D b(1.0f, 0.0f, 0.0f, 0.0f);
+	const math::Vector4D expectedProjection(10.0f, 0.0f, 0.0f, 0.0f);
 
-    // Act
-    const math::Vector4D<float> actualProjection = a.project(b);
+	// Act
+	const math::Vector4D<float> actualProjection = a.project(b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Assert
+	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
 }
 
 TEST(Vector4D, VectorWhenProjectedOntoWAxisProducesVectorWithOnlyWComponent)
 {
-    // Arrange
-    const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.f);
-    const math::Vector4D b(0.0f, 0.0f, 0.0f, 1.0f);
-    const math::Vector4D expectedProjection(0.0f, 0.0f, 0.0f, 40.0f);
+	// Arrange
+	const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.f);
+	const math::Vector4D b(0.0f, 0.0f, 0.0f, 1.0f);
+	const math::Vector4D expectedProjection(0.0f, 0.0f, 0.0f, 40.0f);
 
-    // Act
-    const math::Vector4D<float> actualProjection = a.project(b);
+	// Act
+	const math::Vector4D<float> actualProjection = a.project(b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Assert
+	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
 }
 
 TEST(Vector4D, VectorsWhenProjectedReturnsNonZeroVector)
 {
-    // Arrange
-    const math::Vector4D a(1.0f, 2.0f, 0.0f, 1.0f);
-    const math::Vector4D b(2.0f, 0.0f, 1.0f, 1.0f);
-    const math::Vector4D expectedProjection(1.0f, 0.0f, 0.5f, 0.5f);
+	// Arrange
+	const math::Vector4D a(1.0f, 2.0f, 0.0f, 1.0f);
+	const math::Vector4D b(2.0f, 0.0f, 1.0f, 1.0f);
+	const math::Vector4D expectedProjection(1.0f, 0.0f, 0.5f, 0.5f);
 
-    // Act
-    const math::Vector4D<float> actualProjection = a.project(b);
+	// Act
+	const math::Vector4D<float> actualProjection = a.project(b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Assert
+	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
 }
 
 TEST(Vector4D, VectorsWhenProjectedOntoNormalizedVectorReturnsNonZeroVector)
 {
-    // Arrange
-    const math::Vector4D a(1.0f, 2.0f, 3.0f, 4.0f);
-    const math::Vector4D b(1.0f, 0.0f, 0.0f, 0.0f);
-    const math::Vector4D expectedProjection(1.0f, 0.0f, 0.0f, 0.0f);
+	// Arrange
+	const math::Vector4D a(1.0f, 2.0f, 3.0f, 4.0f);
+	const math::Vector4D b(1.0f, 0.0f, 0.0f, 0.0f);
+	const math::Vector4D expectedProjection(1.0f, 0.0f, 0.0f, 0.0f);
 
-    // Act
-    const math::Vector4D<float> actualProjection = a.project(b, true);
+	// Act
+	const math::Vector4D<float> actualProjection = a.project(b, true);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Assert
+	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
 }
 
 TEST(Vector4D, VectorsWhenProjectedOntoNegativeVectorReturnsNonZeroVectorInSameDirection)
 {
-    // Arrange
-    const math::Vector4D a(4.0f, 4.0f, 4.0f, 4.0f);
-    const math::Vector4D b(0.0f, 0.0f, -1.0f, 0.0f);
-    const math::Vector4D expectedProjection(0.0f, 0.0f, 4.0f, 0.0f);
+	// Arrange
+	const math::Vector4D a(4.0f, 4.0f, 4.0f, 4.0f);
+	const math::Vector4D b(0.0f, 0.0f, -1.0f, 0.0f);
+	const math::Vector4D expectedProjection(0.0f, 0.0f, 4.0f, 0.0f);
 
-    // Act
-    const math::Vector4D<float> actualProjection = a.project(b);
+	// Act
+	const math::Vector4D<float> actualProjection = a.project(b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Assert
+	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
 }
 
 TEST(Vector4D, VectorsWhenProjectedUsingStaticWrapperReturnsNonZeroVector)
 {
-    // Arrange
-    const math::Vector4D a(1.0f, 2.0f, 0.0f, 1.0f);
-    const math::Vector4D b(2.0f, 0.0f, 1.0f, 1.0f);
-    const math::Vector4D expectedProjection(1.0f, 0.0f, 0.5f, 0.5f);
+	// Arrange
+	const math::Vector4D a(1.0f, 2.0f, 0.0f, 1.0f);
+	const math::Vector4D b(2.0f, 0.0f, 1.0f, 1.0f);
+	const math::Vector4D expectedProjection(1.0f, 0.0f, 0.5f, 0.5f);
 
-    // Act
-    const math::Vector4D<float> actualProjection = math::Vector4D<float>::project(a, b);
+	// Act
+	const math::Vector4D<float> actualProjection = math::Vector4D<float>::project(a, b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Assert
+	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
 }
 
 
 TEST(Vector4D, ParallelVectorsWhenRejectedReturnsZeroVector)
 {
-    // Arrange
-    const math::Vector4D a(1.0f, 2.0f, 3.0f, 5.0f);
-    const math::Vector4D b(2.0f, 4.0f, 6.0f, 10.0f);
-    const math::Vector4D expectedProjection(0.0f, 0.0f, 0.0f, 0.0f);
+	// Arrange
+	const math::Vector4D a(1.0f, 2.0f, 3.0f, 5.0f);
+	const math::Vector4D b(2.0f, 4.0f, 6.0f, 10.0f);
+	const math::Vector4D expectedProjection(0.0f, 0.0f, 0.0f, 0.0f);
 
-    // Act
-    const math::Vector4D<float> actualProjection = a.reject(b);
+	// Act
+	const math::Vector4D<float> actualProjection = a.reject(b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Assert
+	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
 }
 
 TEST(Vector4D, PerpendicularVectorsWhenRejectedWReturnsNonZeroVectorWithZeroWComponent)
 {
-    // Arrange
-    const math::Vector4D a(1.0f, 2.0f, 3.0f, 4.0f);
-    const math::Vector4D b(0.0f, 0.0f, 0.0f, 1.0f);
-    const math::Vector4D expectedProjection(1.0f, 2.0f, 3.0f, 0.0f);
+	// Arrange
+	const math::Vector4D a(1.0f, 2.0f, 3.0f, 4.0f);
+	const math::Vector4D b(0.0f, 0.0f, 0.0f, 1.0f);
+	const math::Vector4D expectedProjection(1.0f, 2.0f, 3.0f, 0.0f);
 
-    // Act
-    const math::Vector4D<float> actualProjection = a.reject(b);
+	// Act
+	const math::Vector4D<float> actualProjection = a.reject(b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Assert
+	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
 }
 
 TEST(Vector4D, RejectingNonExistantComponentReturnsSameVector)
 {
-    // Arrange
-    const math::Vector4D a(1.0f, 2.0f, 3.0f, 0.0f);
-    const math::Vector4D b(0.0f, 0.0f, 0.0f, 1.0f);
+	// Arrange
+	const math::Vector4D a(1.0f, 2.0f, 3.0f, 0.0f);
+	const math::Vector4D b(0.0f, 0.0f, 0.0f, 1.0f);
 
-    // Act
-    const math::Vector4D<float> actualProjection = a.reject(b);
+	// Act
+	const math::Vector4D<float> actualProjection = a.reject(b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(a.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(a.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(a.z, actualProjection.z);
-    EXPECT_FLOAT_EQ(a.w, actualProjection.w);
+	// Assert
+	EXPECT_FLOAT_EQ(a.x, actualProjection.x);
+	EXPECT_FLOAT_EQ(a.y, actualProjection.y);
+	EXPECT_FLOAT_EQ(a.z, actualProjection.z);
+	EXPECT_FLOAT_EQ(a.w, actualProjection.w);
 }
 
 TEST(Vector4D, VectorsWhenRejectedReturnNonZeroVector)
 {
-    // Arrange
-    const math::Vector4D a(1.0f, 2.0f, 0.0f, 1.0f);
-    const math::Vector4D b(2.0f, 0.0f, 1.0f, 1.0f);
-    const math::Vector4D expectedProjection(0.0f, 2.0f, -0.5f, 0.5f);
+	// Arrange
+	const math::Vector4D a(1.0f, 2.0f, 0.0f, 1.0f);
+	const math::Vector4D b(2.0f, 0.0f, 1.0f, 1.0f);
+	const math::Vector4D expectedProjection(0.0f, 2.0f, -0.5f, 0.5f);
 
-    // Act
-    const math::Vector4D<float> actualProjection = a.reject(b);
+	// Act
+	const math::Vector4D<float> actualProjection = a.reject(b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Assert
+	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
 }
 
 TEST(Vector4D, VectorsWhenRejectedOntoNormalizedVectorReturnNonZeroVector)
 {
-    // Arrange
-    const math::Vector4D a(1.0f, 2.0f, 3.0f, 4.0f);
-    const math::Vector4D b(1.0f, 0.0f, 0.0f, 0.0f);
-    const math::Vector4D expectedProjection(0.0f, 2.0f, 3.0f, 4.0f);
+	// Arrange
+	const math::Vector4D a(1.0f, 2.0f, 3.0f, 4.0f);
+	const math::Vector4D b(1.0f, 0.0f, 0.0f, 0.0f);
+	const math::Vector4D expectedProjection(0.0f, 2.0f, 3.0f, 4.0f);
 
-    // Act
-    const math::Vector4D<float> actualProjection = a.reject(b, true);
+	// Act
+	const math::Vector4D<float> actualProjection = a.reject(b, true);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Assert
+	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
 }
 
 TEST(Vector4D, PositiveVectorsWhenRejectedOntoNegativeVectorReturnsNonZeroVectorNonZeroPositiveVector)
 {
-    // Arrange
-    const math::Vector4D a(4.0f, 4.0f, 4.0f, 4.0f);
-    const math::Vector4D b(0.0f, 0.0f, -1.0f, 0.0f);
-    const math::Vector4D expectedProjection(4.0f, 4.0f, 0.0f, 4.0f);
+	// Arrange
+	const math::Vector4D a(4.0f, 4.0f, 4.0f, 4.0f);
+	const math::Vector4D b(0.0f, 0.0f, -1.0f, 0.0f);
+	const math::Vector4D expectedProjection(4.0f, 4.0f, 0.0f, 4.0f);
 
-    // Act
-    const math::Vector4D<float> actualProjection = a.reject(b);
+	// Act
+	const math::Vector4D<float> actualProjection = a.reject(b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Assert
+	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
 }
 
 TEST(Vector4D, VectorsWhenProjectedUsingStaticWrapperReturnNonZeroVector)
 {
-    // Arrange
-    const math::Vector4D a(1.0f, 2.0f, 0.0f, 1.0f);
-    const math::Vector4D b(2.0f, 0.0f, 1.0f, 1.0f);
-    const math::Vector4D expectedProjection(0.0f, 2.0f, -0.5f, 0.5f);
+	// Arrange
+	const math::Vector4D a(1.0f, 2.0f, 0.0f, 1.0f);
+	const math::Vector4D b(2.0f, 0.0f, 1.0f, 1.0f);
+	const math::Vector4D expectedProjection(0.0f, 2.0f, -0.5f, 0.5f);
 
-    // Act
-    const math::Vector4D<float> actualProjection = math::Vector4D<float>::reject(a, b);
+	// Act
+	const math::Vector4D<float> actualProjection = math::Vector4D<float>::reject(a, b);
 
-    // Assert
-    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Assert
+	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
 }
