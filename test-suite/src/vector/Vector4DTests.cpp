@@ -110,7 +110,7 @@ TYPED_TEST_SUITE(Vector4DScalarDivision, SupportedTypes);
 
 
 template <typename T>
-class Vector4DMagnitude: public ::testing::Test
+class Vector4DCleanMagnitude: public ::testing::Test
 {
 protected:
 	math::Vector4D<T> vec;
@@ -122,7 +122,23 @@ protected:
 		magnitude = math::Magnitude<T>(5);
 	}
 };
-TYPED_TEST_SUITE(Vector4DMagnitude, SupportedTypes);
+TYPED_TEST_SUITE(Vector4DCleanMagnitude, SupportedTypes);
+
+
+template <typename T>
+class Vector4DMagnitude : public ::testing::Test
+{
+protected:
+	math::Vector4D<T> vec;
+	math::Magnitude<T> magnitude;
+
+	void SetUp() override
+	{
+		vec = { T(1), T(2), T(3), T(4) };
+		magnitude = math::Magnitude<T>(5.477225575051661);
+	}
+};
+TYPED_TEST_SUITE(Vector4DCleanMagnitude, SupportedTypes);
 
 
 /***********************************************
@@ -643,69 +659,6 @@ TEST(Vector4DScalarDivision, MixedTypeScalarDivisionAssignmentGivesResultWithMin
 	EXPECT_VEC_EQ(expected, vec);
 }
 
-
-/***************************************
- *                                     *
- *  MAGNITUDE AND NORMALIZATION TESTS  *
- *                                     *
- ***************************************/
-
-TEST(Vector4DMagnitude, ZeroVectorReturnsZero)
-{
-	// Given a zero vector
-	const math::Vector4D vec(0.0f, 0.0f, 0.0f, 0.0f);
-
-	// When its magnitude is taken
-	const float magnitude = vec.mag();
-
-	// Then, zero is returned
-	EXPECT_FLOAT_EQ(0.0f, magnitude);
-}
-
-TEST(Vector4DMagnitude, UnitVectorReturnsNonUnitScalar)
-{
-	// Given a unit vector
-	const math::Vector4D vec(1.0f, 1.0f, 1.0f, 1.0f);
-
-	// When its magnitude is taken
-	const float magnitude = vec.mag();
-
-	// Then, non-unit number is returned
-	EXPECT_NE(1.0f, magnitude);
-}
-
-TYPED_TEST(Vector4DMagnitude, NonUnitVectorReturnsCorrectMagnitude)
-{
-	// Given an arbitrary vector
-
-	// When its magnitude is taken
-	const math::Magnitude<TypeParam> result = this->vec.mag();
-
-	// Assert
-	if constexpr (std::is_same_v<TypeParam, double>)
-		ASSERT_DOUBLE_EQ(this->magnitude, result);
-	else if constexpr (std::is_floating_point_v<TypeParam>)
-		ASSERT_FLOAT_EQ(this->magnitude, result);
-	else
-		ASSERT_EQ(this->magnitude, result);
-}	
-
-TEST(Vector4DNormalisation, VectorWhenNormalizedReturnsANormalVector)
-{
-	// Given a normalized vector
-	const math::Vector4D vec(1.0f, 2.0f, 2.0f, 4.0f);
-
-	// When it is normalized
-	const math::Vector4D normalized = vec.normalize();
-
-	// Then, the resultant vector is normalized
-	EXPECT_FLOAT_EQ(0.2f, normalized.x);
-	EXPECT_FLOAT_EQ(0.4f, normalized.y);
-	EXPECT_FLOAT_EQ(0.4f, normalized.z);
-	EXPECT_FLOAT_EQ(0.8f, normalized.w);
-}
-
-
 /***********************
  *                     *
  *  DOT PRODUCT TESTS  *
@@ -749,6 +702,87 @@ TEST(Vector4D, VectorWhenDotWithOppositeParallelVectorReturnsNegativeOne)
 	// Assert
 	EXPECT_FLOAT_EQ(-1.0, res);
 }
+
+
+/***************************************
+ *                                     *
+ *  MAGNITUDE AND NORMALIZATION TESTS  *
+ *                                     *
+ ***************************************/
+
+TEST(Vector4DMagnitude, ZeroVectorReturnsZero)
+{
+	// Given a zero vector
+	const math::Vector4D vec(0.0f, 0.0f, 0.0f, 0.0f);
+
+	// When its magnitude is taken
+	const float magnitude = vec.mag();
+
+	// Then, zero is returned
+	EXPECT_FLOAT_EQ(0.0f, magnitude);
+}
+
+TEST(Vector4DMagnitude, UnitVectorReturnsNonUnitScalar)
+{
+	// Given a unit vector
+	const math::Vector4D vec(1.0f, 1.0f, 1.0f, 1.0f);
+
+	// When its magnitude is taken
+	const float magnitude = vec.mag();
+
+	// Then, non-unit number is returned
+	EXPECT_NE(1.0f, magnitude);
+}
+
+TYPED_TEST(Vector4DCleanMagnitude, NonUnitVectorReturnsCorrectMagnitude)
+{
+	// Given an arbitrary vector
+
+	// When its magnitude is taken
+	using M = math::Magnitude<TypeParam>;
+	const M result = this->vec.mag();
+
+	// Assert
+	if constexpr (std::is_same_v<M, double>)
+		ASSERT_DOUBLE_EQ(this->magnitude, result);
+	else if constexpr (std::is_floating_point_v<M>)
+		ASSERT_FLOAT_EQ(this->magnitude, result);
+	else
+		ASSERT_EQ(this->magnitude, result);
+}
+
+
+TYPED_TEST(Vector4DCleanMagnitude, StaticWrapper_NonUnitVectorReturnsCorrectMagnitude)
+{
+	// Given an arbitrary vector
+
+	// When its magnitude is taken
+	const math::Magnitude<TypeParam> result = math::Vector4D<TypeParam>::mag(this->vec);
+
+	// Assert
+	if constexpr (std::is_same_v<TypeParam, double>)
+		ASSERT_DOUBLE_EQ(this->magnitude, result);
+	else if constexpr (std::is_floating_point_v<TypeParam>)
+		ASSERT_FLOAT_EQ(this->magnitude, result);
+	else
+		ASSERT_EQ(this->magnitude, result);
+}
+
+TEST(Vector4DNormalization, VectorWhenNormalizedReturnsANormalVector)
+{
+	// Given a normalized vector
+	const math::Vector4D vec(1.0f, 2.0f, 2.0f, 4.0f);
+
+	// When it is normalized
+	const math::Vector4D normalized = vec.normalize();
+
+	// Then, the resultant vector is normalized
+	EXPECT_FLOAT_EQ(0.2f, normalized.x);
+	EXPECT_FLOAT_EQ(0.4f, normalized.y);
+	EXPECT_FLOAT_EQ(0.4f, normalized.z);
+	EXPECT_FLOAT_EQ(0.8f, normalized.w);
+}
+
 
 
 /************************************
