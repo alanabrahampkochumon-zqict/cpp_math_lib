@@ -18,14 +18,24 @@ using namespace TestUtils;
 
 using SupportedTypes = ::testing::Types<unsigned char, int, unsigned int, float, double, std::size_t, long long>;
 
+/**************************
+ *                        *
+ *  INITIALIZATION SETUP  *
+ *                        *
+ **************************/
 
 template<typename T>
 class VectorInitialization : public ::testing::Test { };
 TYPED_TEST_SUITE(VectorInitialization, SupportedTypes);
 
+/*********************************
+ *                               *
+ *  ARITHMETIC OPERATIONS SETUP  *
+ *                               *
+ *********************************/
 
 template <typename T>
-class VectorAddition : public ::testing::Test
+class Vector4DAddition : public ::testing::Test
 {
 protected:
 	math::Vector4D<T> vecA;
@@ -39,10 +49,11 @@ protected:
 		expected = { T(-5) , T(6), T(4), T(7) };
 	}
 };
-TYPED_TEST_SUITE(VectorAddition, SupportedTypes);
+TYPED_TEST_SUITE(Vector4DAddition, SupportedTypes);
+
 
 template <typename T>
-class VectorSubtraction : public ::testing::Test
+class Vector4DSubtraction : public ::testing::Test
 {
 protected:
 	math::Vector4D<T> vecA;
@@ -56,10 +67,11 @@ protected:
 		expected = { T(103) , T(6), T(-4), T(7) };
 	}
 };
-TYPED_TEST_SUITE(VectorSubtraction, SupportedTypes);
+TYPED_TEST_SUITE(Vector4DSubtraction, SupportedTypes);
+
 
 template <typename T>
-class VectorScalarMultiplication : public ::testing::Test
+class Vector4DScalarMultiplication : public ::testing::Test
 {
 protected:
 	math::Vector4D<T> vec;
@@ -73,10 +85,11 @@ protected:
 		expected = { T(25), T(45), T(-40), T(-10) };
 	}
 };
-TYPED_TEST_SUITE(VectorScalarMultiplication, SupportedTypes);
+TYPED_TEST_SUITE(Vector4DScalarMultiplication, SupportedTypes);
+
 
 template<typename T>
-class VectorScalarDivision : public ::testing::Test
+class Vector4DScalarDivision : public ::testing::Test
 {
 protected:
 	math::Vector4D<T> vec;
@@ -91,14 +104,31 @@ protected:
 	}
 
 };
-TYPED_TEST_SUITE(VectorScalarDivision, SupportedTypes);
+TYPED_TEST_SUITE(Vector4DScalarDivision, SupportedTypes);
+
+
+
+template <typename T>
+class Vector4DMagnitude: public ::testing::Test
+{
+protected:
+	math::Vector4D<T> vec;
+	T magnitude;
+
+	void SetUp() override
+	{
+		vec = { T(1), T(2), T(2), T(4) };
+		magnitude = T(5);
+	}
+};
+TYPED_TEST_SUITE(Vector4DMagnitude, SupportedTypes);
+
 
 /***********************************************
  *                                             *
  *  INITIALIZATION, ACCESS AND MUTATION TESTS  *
  *                                             *
  ***********************************************/
-
 
 TEST(VectorInitialization, EmptyConstructorInitializesZeroVector)
 {
@@ -306,7 +336,7 @@ TEST(Vector4DHelper, ivec4Return4DIntegerVector)
  *                               *
  *********************************/
 
-TYPED_TEST(VectorAddition, VectorPlusVectorReturnsNewVectorWithSum)
+TYPED_TEST(Vector4DAddition, VectorPlusVectorReturnsNewVectorWithSum)
 {
 	// Given two vectors
 	// When they are added together
@@ -316,7 +346,7 @@ TYPED_TEST(VectorAddition, VectorPlusVectorReturnsNewVectorWithSum)
 	EXPECT_VEC_EQ(this->expected, result);
 }
 
-TYPED_TEST(VectorAddition, VectorPlusEqualsReturnsSameVectorWithSum)
+TYPED_TEST(Vector4DAddition, VectorPlusEqualsReturnsSameVectorWithSum)
 {
 	//Given two vectors
 	// When one vector is added to the other(+=)
@@ -326,7 +356,7 @@ TYPED_TEST(VectorAddition, VectorPlusEqualsReturnsSameVectorWithSum)
 	EXPECT_VEC_EQ(this->expected, this->vecA);
 }
 
-TEST(VectorAddition, MixedTypeAdditionPromotesType)
+TEST(Vector4DAddition, MixedTypeAdditionPromotesType)
 {
 	// Given vectors with arbitrary values
 	const math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
@@ -342,7 +372,7 @@ TEST(VectorAddition, MixedTypeAdditionPromotesType)
 	EXPECT_VEC_EQ(expected, result);
 }
 
-TEST(VectorAddition, MixedTypeAdditionAssignmentDoesNotPromoteType)
+TEST(Vector4DAddition, MixedTypeAdditionAssignmentDoesNotPromoteType)
 {
 	// Given vectors with arbitrary values
 	math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
@@ -358,7 +388,7 @@ TEST(VectorAddition, MixedTypeAdditionAssignmentDoesNotPromoteType)
 	EXPECT_VEC_EQ(expected, vec1);
 }
 
-TYPED_TEST(VectorSubtraction, VectorMinusVectorReturnsNewVectorWithDifference)
+TYPED_TEST(Vector4DSubtraction, VectorMinusVectorReturnsNewVectorWithDifference)
 {
 	// Given two vectors
 	// When they are added together
@@ -368,7 +398,7 @@ TYPED_TEST(VectorSubtraction, VectorMinusVectorReturnsNewVectorWithDifference)
 	EXPECT_VEC_EQ(this->expected, result);
 }
 
-TYPED_TEST(VectorSubtraction, VectorMinusEqualsVectorReturnsSameVectorWithDifference)
+TYPED_TEST(Vector4DSubtraction, VectorMinusEqualsVectorReturnsSameVectorWithDifference)
 {
 	//Given two vectors
 	// When one vector is added to the other(+=)
@@ -378,7 +408,7 @@ TYPED_TEST(VectorSubtraction, VectorMinusEqualsVectorReturnsSameVectorWithDiffer
 	EXPECT_VEC_EQ(this->expected, this->vecA);
 }
 
-TEST(VectorSubtraction, MixedTypeSubtractionPromotesType)
+TEST(Vector4DSubtraction, MixedTypeSubtractionPromotesType)
 {
 	// Given vectors with arbitrary values
 	const math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
@@ -394,7 +424,7 @@ TEST(VectorSubtraction, MixedTypeSubtractionPromotesType)
 	EXPECT_VEC_EQ(expected, result);
 }
 
-TEST(VectorSubtraction, MixedTypeSubtractionAssignmentDoesNotPromoteType)
+TEST(Vector4DSubtraction, MixedTypeSubtractionAssignmentDoesNotPromoteType)
 {
 	// Given vectors with arbitrary values
 	math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
@@ -410,7 +440,7 @@ TEST(VectorSubtraction, MixedTypeSubtractionAssignmentDoesNotPromoteType)
 	EXPECT_VEC_EQ(expected, vec1);
 }
 
-TEST(VectorScalarMultiplication, VectorTimesZeroReturnsZeroVector)
+TEST(Vector4DScalarMultiplication, VectorTimesZeroReturnsZeroVector)
 {
 	// Given an arbitrary vector
 	const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
@@ -422,7 +452,7 @@ TEST(VectorScalarMultiplication, VectorTimesZeroReturnsZeroVector)
 	EXPECT_VEC_ZERO(result);
 }
 
-TEST(VectorScalarMultiplication, VectorTimesOneReturnsVectorWithSameValues)
+TEST(Vector4DScalarMultiplication, VectorTimesOneReturnsVectorWithSameValues)
 {
 	// Given an arbitrary vector
 	const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
@@ -434,7 +464,7 @@ TEST(VectorScalarMultiplication, VectorTimesOneReturnsVectorWithSameValues)
 	EXPECT_VEC_EQ(vec, result);
 }
 
-TYPED_TEST(VectorScalarMultiplication, VectorTimesANumberReturnsAScaledVector)
+TYPED_TEST(Vector4DScalarMultiplication, VectorTimesANumberReturnsAScaledVector)
 {
 	// Given an arbitrary vector and a scalar
 
@@ -445,7 +475,7 @@ TYPED_TEST(VectorScalarMultiplication, VectorTimesANumberReturnsAScaledVector)
 	EXPECT_VEC_EQ(this->expected, result);
 }
 
-TYPED_TEST(VectorScalarMultiplication, NumberTimesAVectorReturnsAScaledVector)
+TYPED_TEST(Vector4DScalarMultiplication, NumberTimesAVectorReturnsAScaledVector)
 {
 	// Given an arbitrary vector and a scalar
 
@@ -456,7 +486,7 @@ TYPED_TEST(VectorScalarMultiplication, NumberTimesAVectorReturnsAScaledVector)
 	EXPECT_VEC_EQ(this->expected, result);
 }
 
-TYPED_TEST(VectorScalarMultiplication, VectorTimesEqualAScalarIsTheSameVectorScaled)
+TYPED_TEST(Vector4DScalarMultiplication, VectorTimesEqualAScalarIsTheSameVectorScaled)
 {
 	// Given an arbitrary vector and a scalar
 
@@ -467,7 +497,7 @@ TYPED_TEST(VectorScalarMultiplication, VectorTimesEqualAScalarIsTheSameVectorSca
 	EXPECT_VEC_EQ(this->expected, this->vec);
 }
 
-TEST(VectorScalarMultiplication, MixedTypeScalarMulitplicationPromotesType)
+TEST(Vector4DScalarMultiplication, MixedTypeScalarMulitplicationPromotesType)
 {
 	// Given a vector and scalar with arbitrary values
 	const math::Vector4D vec(3.0f, 0.0f, -1.0f, 2.0f);
@@ -483,7 +513,7 @@ TEST(VectorScalarMultiplication, MixedTypeScalarMulitplicationPromotesType)
 	EXPECT_VEC_EQ(expected, result);
 }
 
-TEST(VectorScalarMultiplication, MixedTypeScalarMulitplicationAssignmentDoesNotPromoteType)
+TEST(Vector4DScalarMultiplication, MixedTypeScalarMulitplicationAssignmentDoesNotPromoteType)
 {
 	// Given a vector and scalar with arbitrary values
 	math::Vector4D vec(3.0f, 0.0f, -1.0f, 2.0f);
@@ -499,7 +529,7 @@ TEST(VectorScalarMultiplication, MixedTypeScalarMulitplicationAssignmentDoesNotP
 	EXPECT_VEC_EQ(expected, vec);
 }
 
-TEST(VectorScalarMultiplication, MixedTypeScalarMulitplicationAssignmentGivesResultWithMinimalPrecisionLoss)
+TEST(Vector4DScalarMultiplication, MixedTypeScalarMulitplicationAssignmentGivesResultWithMinimalPrecisionLoss)
 {
 	// Given a vector and scalar with arbitrary values
 	math::Vector4D vec(3, 0, -1, 8);
@@ -513,8 +543,7 @@ TEST(VectorScalarMultiplication, MixedTypeScalarMulitplicationAssignmentGivesRes
 	EXPECT_VEC_EQ(expected, vec);
 }
 
-
-TYPED_TEST(VectorScalarDivision, VectorDividedByZeroReturnsInfinityVector)
+TYPED_TEST(Vector4DScalarDivision, VectorDividedByZeroReturnsInfinityVector)
 {
 	// Given an arbitrary vector
 
@@ -533,7 +562,7 @@ TYPED_TEST(VectorScalarDivision, VectorDividedByZeroReturnsInfinityVector)
 	}
 }
 
-TYPED_TEST(VectorScalarDivision, VectorDividedByOneReturnsAVectorWithSameValues)
+TYPED_TEST(Vector4DScalarDivision, VectorDividedByOneReturnsAVectorWithSameValues)
 {
 	// Given an arbitrary vector
 
@@ -544,7 +573,7 @@ TYPED_TEST(VectorScalarDivision, VectorDividedByOneReturnsAVectorWithSameValues)
 	EXPECT_VEC_EQ(result, this->vec);
 }
 
-TYPED_TEST(VectorScalarDivision, VectorDividedByANumberReturnsAScaledVector)
+TYPED_TEST(Vector4DScalarDivision, VectorDividedByANumberReturnsAScaledVector)
 {
 	// Given an arbitrary vector
 
@@ -555,7 +584,7 @@ TYPED_TEST(VectorScalarDivision, VectorDividedByANumberReturnsAScaledVector)
 	EXPECT_VEC_EQ(this->expected, result);
 }
 
-TYPED_TEST(VectorScalarDivision, VectorDivideEqualsANumberIsTheSameVectorScaled)
+TYPED_TEST(Vector4DScalarDivision, VectorDivideEqualsANumberIsTheSameVectorScaled)
 {
 	// Given an arbitrary vector
 
@@ -566,7 +595,7 @@ TYPED_TEST(VectorScalarDivision, VectorDivideEqualsANumberIsTheSameVectorScaled)
 	EXPECT_VEC_EQ(this->expected, this->vec);
 }
 
-TEST(VectorScalarMultiplication, MixedTypeScalarDivisionPromotesType)
+TEST(Vector4DScalarDivision, MixedTypeScalarDivisionPromotesType)
 {
 	// Given an arbitrary vector
 	const math::Vector4D vec(15.0, 0.0, -5.0, 10.0);
@@ -582,7 +611,7 @@ TEST(VectorScalarMultiplication, MixedTypeScalarDivisionPromotesType)
 	EXPECT_VEC_EQ(expected, result);
 }
 
-TEST(VectorScalarMultiplication, MixedTypeScalarDivisonAssignmentDoesNotPromoteType)
+TEST(Vector4DScalarDivision, MixedTypeScalarDivisonAssignmentDoesNotPromoteType)
 {
 	// Given an arbitrary vector
 	math::Vector4D vec(15.0f, 0.0f, -5.0f, 10.0f);
@@ -599,7 +628,7 @@ TEST(VectorScalarMultiplication, MixedTypeScalarDivisonAssignmentDoesNotPromoteT
 	EXPECT_VEC_EQ(expected, vec);
 }
 
-TEST(VectorScalarMultiplication, MixedTypeScalarDivisionAssignmentGivesResultWithMinimalPrecisionLoss)
+TEST(Vector4DScalarDivision, MixedTypeScalarDivisionAssignmentGivesResultWithMinimalPrecisionLoss)
 {
 	// Given an arbitrary vector
 	math::Vector4D vec(10, 25, -30, 2);
@@ -614,58 +643,61 @@ TEST(VectorScalarMultiplication, MixedTypeScalarDivisionAssignmentGivesResultWit
 }
 
 
-
 /***************************************
  *                                     *
  *  MAGNITUDE AND NORMALIZATION TESTS  *
  *                                     *
  ***************************************/
 
-TEST(Vector4D, ZeroVectorReturnsMagnitudeZero)
+TEST(Vector4DMagnitude, ZeroVectorReturnsZero)
 {
-	// Arrange
+	// Given a zero vector
 	const math::Vector4D vec(0.0f, 0.0f, 0.0f, 0.0f);
 
-	// Act
+	// When its magnitude is taken
 	const float magnitude = vec.mag();
 
-	// Assert
+	// Then, zero is returned
 	EXPECT_FLOAT_EQ(0.0f, magnitude);
 }
 
-TEST(Vector4D, OneVectorReturnsMagnitudeNotEqualToOne)
+TEST(Vector4DMagnitude, UnitVectorReturnsNonUnitScalar)
 {
-	// Arrange
+	// Given a unit vector
 	const math::Vector4D vec(1.0f, 1.0f, 1.0f, 1.0f);
 
-	// Act
+	// When its magnitude is taken
 	const float magnitude = vec.mag();
 
-	// Assert
+	// Then, non-unit number is returned
 	EXPECT_NE(1.0f, magnitude);
 }
 
-TEST(Vector4D, NonUnitVectorReturnsCorrectMagnitude)
+TYPED_TEST(Vector4DMagnitude, NonUnitVectorReturnsCorrectMagnitude)
 {
-	// Arrange
-	const math::Vector4D vec(1.0f, 2.0f, 2.0f, 4.0f);
+	// Given an arbitrary vector
 
-	// Act
-	const float magnitude = vec.mag();
+	// When its magnitude is taken
+	const float result = this->vec.mag();
 
 	// Assert
-	EXPECT_FLOAT_EQ(5.0f, magnitude);
-}
+	if constexpr (std::is_same_v<TypeParam(), double>)
+		ASSERT_DOUBLE_EQ(this->magnitude, result);
+	else if constexpr (std::is_floating_point_v<TypeParam()>)
+		ASSERT_FLOAT_EQ(this->magnitude, result);
+	else
+		ASSERT_EQ(this->magnitude, result);
+}	
 
-TEST(Vector4D, VectorWhenNormalizedReturnsANormalVector)
+TEST(Vector4DNormalisation, VectorWhenNormalizedReturnsANormalVector)
 {
-	// Arrange
+	// Given a normalized vector
 	const math::Vector4D vec(1.0f, 2.0f, 2.0f, 4.0f);
 
-	// Act
+	// When it is normalized
 	const math::Vector4D normalized = vec.normalize();
 
-	// Assert
+	// Then, the resultant vector is normalized
 	EXPECT_FLOAT_EQ(0.2f, normalized.x);
 	EXPECT_FLOAT_EQ(0.4f, normalized.y);
 	EXPECT_FLOAT_EQ(0.4f, normalized.z);
