@@ -19,6 +19,7 @@ using namespace TestUtils;
 
 using SupportedTypes = ::testing::Types<unsigned char, int, unsigned int, float, double, std::size_t, long long>;
 
+
 /**************************
  *                        *
  *  INITIALIZATION SETUP  *
@@ -28,6 +29,7 @@ using SupportedTypes = ::testing::Types<unsigned char, int, unsigned int, float,
 template<typename T>
 class VectorInitialization : public ::testing::Test { };
 TYPED_TEST_SUITE(VectorInitialization, SupportedTypes);
+
 
 /*********************************
  *                               *
@@ -108,9 +110,14 @@ protected:
 TYPED_TEST_SUITE(Vector4DScalarDivision, SupportedTypes);
 
 
+/***************************************
+ *                                     *
+ *  MAGNITUDE AND NORMALIZATION SETUP  *
+ *                                     *
+ ***************************************/
 
 template <typename T>
-class Vector4DCleanMagnitude: public ::testing::Test
+class Vector4DMagnitude: public ::testing::Test
 {
 protected:
 	math::Vector4D<T> vec;
@@ -122,11 +129,11 @@ protected:
 		magnitude = math::Magnitude<T>(5);
 	}
 };
-TYPED_TEST_SUITE(Vector4DCleanMagnitude, SupportedTypes);
+TYPED_TEST_SUITE(Vector4DMagnitude, SupportedTypes);
 
 
 template <typename T>
-class Vector4DMagnitude : public ::testing::Test
+class Vector4DUncleanMagnitude : public ::testing::Test
 {
 protected:
 	math::Vector4D<T> vec;
@@ -138,7 +145,38 @@ protected:
 		magnitude = math::Magnitude<T>(5.477225575051661);
 	}
 };
-TYPED_TEST_SUITE(Vector4DCleanMagnitude, SupportedTypes);
+TYPED_TEST_SUITE(Vector4DUncleanMagnitude, SupportedTypes);
+
+
+template <typename T>
+class Vector4DNormalization : public ::testing::Test
+{
+	using R = math::Magnitude<T>;
+protected:
+	math::Vector4D<T> vec;
+	math::Vector4D<R> expectedVector;
+
+	void SetUp() override
+	{
+		vec = { T(14), T(27), T(83), T(52) };
+		expectedVector = { static_cast<R>(0.1365089938063065), static_cast<R>(0.2632673451978768), static_cast<R>(0.809303310060269), static_cast<R>(0.5070336912699849) };
+	}
+};
+TYPED_TEST_SUITE(Vector4DNormalization, SupportedTypes);
+
+
+template <typename T>
+class Vector4DZeroNormalization : public ::testing::Test
+{
+protected:
+	math::Vector4D<T> vec;
+
+	void SetUp() override
+	{
+		vec = { T(0), T(0), T(0), T(0) };
+	}
+};
+TYPED_TEST_SUITE(Vector4DZeroNormalization, SupportedTypes);
 
 
 /***********************************************
@@ -722,7 +760,7 @@ TEST(Vector4DMagnitude, ZeroVectorReturnsZero)
 	EXPECT_FLOAT_EQ(0.0f, magnitude);
 }
 
-TEST(Vector4DMagnitude, UnitVectorReturnsNonUnitScalar)
+TEST(Vector4DMagnitude, VectorWithOneComponentsReturnsNonUnitScalar)
 {
 	// Given a unit vector
 	const math::Vector4D vec(1.0f, 1.0f, 1.0f, 1.0f);
@@ -734,55 +772,82 @@ TEST(Vector4DMagnitude, UnitVectorReturnsNonUnitScalar)
 	EXPECT_NE(1.0f, magnitude);
 }
 
-TYPED_TEST(Vector4DCleanMagnitude, NonUnitVectorReturnsCorrectMagnitude)
+TYPED_TEST(Vector4DMagnitude, NonUnitVectorReturnsCorrectMagnitude)
 {
 	// Given an arbitrary vector
 
 	// When its magnitude is taken
-	using M = math::Magnitude<TypeParam>;
-	const M result = this->vec.mag();
+	const auto result = this->vec.mag();
 
-	// Assert
-	if constexpr (std::is_same_v<M, double>)
-		ASSERT_DOUBLE_EQ(this->magnitude, result);
-	else if constexpr (std::is_floating_point_v<M>)
-		ASSERT_FLOAT_EQ(this->magnitude, result);
-	else
-		ASSERT_EQ(this->magnitude, result);
+	// Then, a non-unit number is returned which is a floating_v
+	static_assert(std::is_floating_point_v<decltype(result)>);
+	EXPECT_MAG_EQ(this->magnitude, result);
+	
 }
 
-
-TYPED_TEST(Vector4DCleanMagnitude, StaticWrapper_NonUnitVectorReturnsCorrectMagnitude)
+TYPED_TEST(Vector4DMagnitude, StaticWrapper_NonUnitVectorReturnsCorrectMagnitude)
 {
 	// Given an arbitrary vector
 
 	// When its magnitude is taken
-	const math::Magnitude<TypeParam> result = math::Vector4D<TypeParam>::mag(this->vec);
+	const auto result = math::Vector4D<TypeParam>::mag(this->vec);
 
-	// Assert
-	if constexpr (std::is_same_v<TypeParam, double>)
-		ASSERT_DOUBLE_EQ(this->magnitude, result);
-	else if constexpr (std::is_floating_point_v<TypeParam>)
-		ASSERT_FLOAT_EQ(this->magnitude, result);
-	else
-		ASSERT_EQ(this->magnitude, result);
+	// Then, a non-unit number is returned which is a floating_v
+	static_assert(std::is_floating_point_v<decltype(result)>);
+	EXPECT_MAG_EQ(this->magnitude, result);
 }
 
-TEST(Vector4DNormalization, VectorWhenNormalizedReturnsANormalVector)
+TYPED_TEST(Vector4DUncleanMagnitude, NonUnitVectorReturnsCorrectMagnitudeWithPrecision)
 {
-	// Given a normalized vector
-	const math::Vector4D vec(1.0f, 2.0f, 2.0f, 4.0f);
+	// Given an arbitrary vector
+
+	// When its magnitude is taken
+	const auto result = this->vec.mag();
+
+	// Then, a non-unit number is returned which is a floating_v
+	static_assert(std::is_floating_point_v<decltype(result)>);
+	EXPECT_MAG_EQ(this->magnitude, result);
+}
+
+TYPED_TEST(Vector4DUncleanMagnitude, StaticWrapper_NonUnitVectorReturnsCorrectMagnitudeWithPrecision)
+{
+	// Given an arbitrary vector
+
+	// When its magnitude is taken
+	const auto result = math::Vector4D<TypeParam>::mag(this->vec);
+
+	// Then, a non-unit number is returned which is a floating_v
+	static_assert(std::is_floating_point_v<decltype(result)>);
+	EXPECT_MAG_EQ(this->magnitude, result);
+}
+
+TEST(Vector4DNormalization, ZeroVectorWhenNormalizedCausesDeath)
+{
+	// TODO: Implementation
+}
+
+TYPED_TEST(Vector4DNormalization, VectorWhenNormalizedReturnsANormalVector)
+{
+	// Given a non-normalized vector
 
 	// When it is normalized
-	const math::Vector4D normalized = vec.normalize();
+	const math::Vector4D normalized = this->vec.normalize();
 
 	// Then, the resultant vector is normalized
-	EXPECT_FLOAT_EQ(0.2f, normalized.x);
-	EXPECT_FLOAT_EQ(0.4f, normalized.y);
-	EXPECT_FLOAT_EQ(0.4f, normalized.z);
-	EXPECT_FLOAT_EQ(0.8f, normalized.w);
+	EXPECT_VEC_EQ(this->expectedVector, normalized);
 }
 
+//TODO: Change to use wrapper
+TYPED_TEST(Vector4DNormalization, StaticWrapper_VectorWhenNormalizedReturnsANormalVector)
+{
+	// Given a non-normalized vector
+	
+	// When it is normalized
+	const math::Vector4D normalized = math::Vector4D<TypeParam>::normalize(this->vec);
+
+	// Then, the resultant vector is normalized
+	EXPECT_VEC_EQ(this->expectedVector, normalized);
+}
 
 
 /************************************

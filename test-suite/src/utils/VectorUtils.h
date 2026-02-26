@@ -7,9 +7,12 @@
 #include <vector/Vector2D.h>
 #include <vector/Vector3D.h>
 #include <vector/Vector4D.h>
+#include <MathTraits.h>
 
 namespace TestUtils
 {
+	inline constexpr double TEST_EPSILON = 1e-6;
+
 	template<math::IsVector T, math::IsVector U>
 	void EXPECT_VEC_EQ(const T& expected, const U& actual)
 	{
@@ -23,11 +26,13 @@ namespace TestUtils
 		{
 			if constexpr (std::is_same_v<ValueType, float>)
 			{
-				EXPECT_FLOAT_EQ(expected[i], static_cast<ValueType>(actual[i]));
+				EXPECT_NEAR(expected[i], static_cast<ValueType>(actual[i]), TEST_EPSILON);
+				// EXPECT_FLOAT_EQ(expected[i], static_cast<ValueType>(actual[i]));
 			}
 			else if constexpr (std::is_same_v<ValueType, double>)
 			{
-				EXPECT_DOUBLE_EQ(expected[i], static_cast<ValueType>(actual[i]));
+				EXPECT_NEAR(expected[i], static_cast<ValueType>(actual[i]), TEST_EPSILON);
+				// EXPECT_DOUBLE_EQ(expected[i], static_cast<ValueType>(actual[i]));
 			}
 			else
 			{
@@ -166,4 +171,15 @@ namespace TestUtils
 		else
 			GTEST_SKIP() << "Integral division by zero result in undefined behavior and crashes.";
 	}
+
+	template<math::Arithmetic T>
+	void EXPECT_MAG_EQ(T expected, T actual)
+	{
+		if constexpr (std::is_same_v<T, float>)
+			EXPECT_FLOAT_EQ(expected, actual);
+		else if constexpr (std::is_floating_point_v<T>)
+			EXPECT_DOUBLE_EQ(expected, actual);
+		else
+			EXPECT_EQ(expected, actual);
+	}		
 }

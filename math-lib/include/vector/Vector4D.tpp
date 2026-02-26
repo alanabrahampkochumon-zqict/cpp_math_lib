@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cassert>
+
 namespace math
 {
 	/*************************************
@@ -193,12 +195,12 @@ namespace math
 	{
 		using M = Magnitude<T>;
 
-		M _x = static_cast<M>(x);
-		M _y = static_cast<M>(y);
-		M _z = static_cast<M>(z);
-		M _w = static_cast<M>(w);
+		M tX = static_cast<M>(x);
+		M tY = static_cast<M>(y);
+		M tZ = static_cast<M>(z);
+		M tW = static_cast<M>(w);
 
-		return sqrt(_x * _x + _y * _y + _z * _z + _w * _w);
+		return sqrt(tX * tX + tY * tY + tZ * tZ + tW * tW);
 	}
 
 	template <Arithmetic T>
@@ -215,9 +217,24 @@ namespace math
 	 *************************************/
 
 	template <Arithmetic T>
-	Vector4D<T> Vector4D<T>::normalize() const
+	Vector4D<Magnitude<T>> Vector4D<T>::normalize() const
 	{
-		return *this / mag();
+		using R = Magnitude<T>;
+		R magnitude = mag();
+
+		if constexpr (std::is_same_v<R, double>)
+			assert(magnitude > DOUBLE_EPSILON && "[Vector4D Normalization] : Division by 0");
+		else
+			assert(magnitude > FLOAT_EPSILON && "[Vector4D Normalization] : Division by 0");
+
+		return *this / magnitude;
+
+	}
+
+	template <Arithmetic T>
+	Vector4D<Magnitude<T>> Vector4D<T>::normalize(const Vector4D& vec)
+	{
+		return vec.normalize();
 	}
 
 	/*************************************

@@ -110,7 +110,14 @@ namespace math
          *       VECTOR NORMALIZATION        *
          *                                   *
          *************************************/
-        Vector4D normalize() const;
+
+		 /*
+		  * Returns a normalized vector.
+		  * Special Note: Vector will be type promoted to math::Magnitude's type.
+		  * @return normalized floating point vector.
+		  */
+        Vector4D<Magnitude<T>> normalize() const;
+        static Vector4D<Magnitude<T>> normalize(const Vector4D& vec);
 
 
         /*************************************
