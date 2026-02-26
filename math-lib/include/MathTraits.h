@@ -31,4 +31,8 @@ namespace math {
 		{ matrix[c] };
 	} && Arithmetic<typename T::value_type>;
 
+	// Custom typedef used for vector magnitudes as integral magnitudes can cause imprecision.
+	template <typename T>
+	requires Arithmetic<T>
+	using Magnitude = std::conditional_t<std::is_same_v<T, float>, float, double>;
 }

@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <vector/Vector4D.h>
+#include <MathTraits.h>
 
 #include "../utils/VectorUtils.h"
 
@@ -113,12 +114,12 @@ class Vector4DMagnitude: public ::testing::Test
 {
 protected:
 	math::Vector4D<T> vec;
-	T magnitude;
+	math::Magnitude<T> magnitude;
 
 	void SetUp() override
 	{
 		vec = { T(1), T(2), T(2), T(4) };
-		magnitude = T(5);
+		magnitude = math::Magnitude<T>(5);
 	}
 };
 TYPED_TEST_SUITE(Vector4DMagnitude, SupportedTypes);
@@ -678,12 +679,12 @@ TYPED_TEST(Vector4DMagnitude, NonUnitVectorReturnsCorrectMagnitude)
 	// Given an arbitrary vector
 
 	// When its magnitude is taken
-	const float result = this->vec.mag();
+	const math::Magnitude<TypeParam> result = this->vec.mag();
 
 	// Assert
-	if constexpr (std::is_same_v<TypeParam(), double>)
+	if constexpr (std::is_same_v<TypeParam, double>)
 		ASSERT_DOUBLE_EQ(this->magnitude, result);
-	else if constexpr (std::is_floating_point_v<TypeParam()>)
+	else if constexpr (std::is_floating_point_v<TypeParam>)
 		ASSERT_FLOAT_EQ(this->magnitude, result);
 	else
 		ASSERT_EQ(this->magnitude, result);

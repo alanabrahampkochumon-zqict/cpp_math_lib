@@ -96,7 +96,13 @@ namespace math
          *         VECTOR MAGNITUDE          *
          *                                   *
          *************************************/
-        T mag() const;
+
+		/*
+		 * Returns the magnitude of the vector.
+		 * @return If the type of T float, then a float is returned, else a float.
+		 */
+        Magnitude<T> mag() const;
+		static Magnitude<T> mag(const Vector4D& vec);
 
 
         /*************************************

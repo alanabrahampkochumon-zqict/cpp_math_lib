@@ -162,33 +162,6 @@ namespace math
 		return *this;
 	}
 
-
-	/*************************************
-	 *                                   *
-	 *         VECTOR MAGNITUDE          *
-	 *                                   *
-	 *************************************/
-
-	template <Arithmetic T>
-	T Vector4D<T>::mag() const
-	{
-		return sqrt(x * x + y * y + z * z + w * w);
-	}
-
-
-	/*************************************
-	 *                                   *
-	 *       VECTOR NORMALIZATION        *
-	 *                                   *
-	 *************************************/
-
-	template <Arithmetic T>
-	Vector4D<T> Vector4D<T>::normalize() const
-	{
-		return *this / mag();
-	}
-
-
 	/*************************************
 	 *                                   *
 	 *        VECTOR DOT PRODUCT         *
@@ -207,6 +180,45 @@ namespace math
 		return vecA.dot(vecB);
 	}
 
+
+
+	/*************************************
+	 *                                   *
+	 *         VECTOR MAGNITUDE          *
+	 *                                   *
+	 *************************************/
+
+	template <Arithmetic T>
+	Magnitude<T> Vector4D<T>::mag() const
+	{
+		using M = Magnitude<T>;
+
+		M _x = static_cast<M>(x);
+		M _y = static_cast<M>(y);
+		M _z = static_cast<M>(z);
+		M _w = static_cast<M>(w);
+
+		return sqrt(_x * _x + _y * _y + _z * _z + _w * _w);
+	}
+
+	template <Arithmetic T>
+	Magnitude<T> Vector4D<T>::mag(const Vector4D& vec)
+	{
+		return vec.mag();
+	}
+
+
+	/*************************************
+	 *                                   *
+	 *       VECTOR NORMALIZATION        *
+	 *                                   *
+	 *************************************/
+
+	template <Arithmetic T>
+	Vector4D<T> Vector4D<T>::normalize() const
+	{
+		return *this / mag();
+	}
 
 	/*************************************
 	 *                                   *
