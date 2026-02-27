@@ -87,8 +87,11 @@ namespace math
          *                                   *
          *************************************/
 
-        T dot(const Vector4D& other) const;
-        static T dot(const Vector4D& vecA, const Vector4D& vecB);
+		template<Arithmetic U>
+        auto dot(const Vector4D<U>& other) const -> std::common_type_t<T, U>;
+
+		template<Arithmetic U>
+        static auto dot(const Vector4D& vecA, const Vector4D<U>& vecB) -> std::common_type_t<T, U>;
 
 
         /*************************************

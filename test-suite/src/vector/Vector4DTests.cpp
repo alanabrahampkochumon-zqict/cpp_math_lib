@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
-#include <vector/Vector4D.h>
 #include <MathTraits.h>
+#include <vector/Vector4D.h>
 
 #include "../utils/VectorUtils.h"
 
@@ -128,6 +128,8 @@ protected:
 	math::Vector4D<T> vecBOrtho;
 
 	T expected;
+	
+	T aDotA;
 
 	void SetUp() override
 	{
@@ -136,6 +138,8 @@ protected:
 		vecAOrtho = { T(3), T(0), T(4), T(0) };
 		vecBOrtho = { T(0), T(5), T(0), T(6) };
 		expected = static_cast<T>(110);
+
+		aDotA = static_cast<T>(54);
 	}
 };
 TYPED_TEST_SUITE(Vector4DDotProduct, SupportedTypes);
@@ -744,9 +748,9 @@ TEST(Vector4DScalarDivision, MixedTypeScalarDivisionAssignmentGivesResultWithMin
  *                     *
  ***********************/
 
-TYPED_TEST(Vector4DDotProduct, OneVectorWhenDotWithItselfReturnsOne)
+// TODO: Replace
+TYPED_TEST(Vector4DDotProduct, VectorWhenDotWithItselfSquareMagnitude)
 {
-	//FIXME: Change
 	// Given an arbitrary vector
 
 	// When dot with itself
@@ -754,11 +758,11 @@ TYPED_TEST(Vector4DDotProduct, OneVectorWhenDotWithItselfReturnsOne)
 
 	// Then, the dot product is 1
 	if (std::is_same_v<TypeParam, double>)
-		EXPECT_DOUBLE_EQ(1.0, result);
+		EXPECT_DOUBLE_EQ(this->aDotA, result);
 	else if (std::is_floating_point_v<TypeParam>)
-		EXPECT_FLOAT_EQ(1.0f, result);
+		EXPECT_FLOAT_EQ(this->aDotA, result);
 	else
-		EXPECT_EQ(1, result);
+		EXPECT_EQ(this->aDotA, result);
 }
 
 TYPED_TEST(Vector4DDotProduct, VectorWhenDotWithOrthogonalVectorReturnZero)
@@ -777,7 +781,7 @@ TYPED_TEST(Vector4DDotProduct, VectorWhenDotWithOrthogonalVectorReturnZero)
 		EXPECT_EQ(0, result);
 }
 
-TYPED_TEST(Vector4DDotProduct, VectorDotWithNonParallelVectorIsNonZeroNumber)
+TYPED_TEST(Vector4DDotProduct, VectorDotWithNonOrthogonalVectorIsNonZeroNumber)
 {
 	// Given two non-orthogonal vectors
 
@@ -786,11 +790,11 @@ TYPED_TEST(Vector4DDotProduct, VectorDotWithNonParallelVectorIsNonZeroNumber)
 
 	// Then, the dot product is non-zero
 	if (std::is_same_v<TypeParam, double>)
-		EXPECT_DOUBLE_EQ(0.0, this->expected);
+		EXPECT_DOUBLE_EQ(this->expected, result);
 	else if (std::is_floating_point_v<TypeParam>)
-		EXPECT_FLOAT_EQ(0.0f, this->expected);
+		EXPECT_FLOAT_EQ(this->expected, result);
 	else
-		EXPECT_EQ(0, this->expected);
+		EXPECT_EQ(this->expected, result);
 }
 
 TYPED_TEST(Vector4DDotProduct, StaticWrapper_VectorDotWithNonParallelVectorIsNonZeroNumber)
@@ -802,28 +806,41 @@ TYPED_TEST(Vector4DDotProduct, StaticWrapper_VectorDotWithNonParallelVectorIsNon
 
 	// Then, the dot product is non-zero
 	if (std::is_same_v<TypeParam, double>)
-		EXPECT_DOUBLE_EQ(0.0, this->expected);
+		EXPECT_DOUBLE_EQ(this->expected, result);
 	else if (std::is_floating_point_v<TypeParam>)
-		EXPECT_FLOAT_EQ(0.0f, this->expected);
+		EXPECT_FLOAT_EQ(this->expected, result);
 	else
-		EXPECT_EQ(0, this->expected);
+		EXPECT_EQ(this->expected, result);
 }
 
-TEST(Vector4DDotProduct, VectorDotWithOppositeNonParallelVectorIsMinusOne)
+TEST(Vector4DDotProduct, VectorDotWithOppositeVectorIsNegative)
 {
-	// Given two non-orthogonal vectors
+	// Given two opposite vectors
 	const math::Vector4D vecA(-1.0, 0.0, 0.0, 0.0);
 	const math::Vector4D vecB(1.0, 0.0, 0.0, 0.0);
 
-	// When dot with itself
+	// When dot with each other
 	const double result = vecA.dot(vecB);
 
-	// Then, the dot product is non-zero
+	// Then, the dot product is -1
 	EXPECT_DOUBLE_EQ(-1.0, result);
 }
 
+TEST(Vector4DDotProduct, MixedTypeDotProductPromotesType)
+{
+	// Given two vectors of different type
+	const math::Vector4D vecA( 7, 13, 29, 41 );
+	const math::Vector4D vecB(1.123456789, 2.123456789, 3.123456789, 4.123456789);
 
-//TODO: Static wrapper tests, type promotion test.
+	// When dot with each other
+	const auto result = vecA.dot(vecB);
+
+	// Then, the dot product is type promoted
+	static_assert(std::is_same_v<decltype(result), const double>);
+
+	// Then, the dot product is non-zero
+	EXPECT_DOUBLE_EQ(295.11111101, result);
+}
 
 /***************************************
  *                                     *
