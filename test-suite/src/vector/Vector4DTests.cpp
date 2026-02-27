@@ -835,7 +835,12 @@ TYPED_TEST(Vector4DUncleanMagnitude, StaticWrapper_NonUnitVectorReturnsCorrectMa
 
 TEST(Vector4DNormalization, ZeroVectorWhenNormalizedCausesDeath)
 {
-	// TODO: Implementation
+	// Given a zero vector
+	const math::Vector4D vec(0.0, 0.0, 0.0, 0.0);
+
+	// When its magnitude is taken
+	// Assertion is thrown
+	EXPECT_DEATH({ vec.normalize(); }, "Vector4D Normalization : Division by 0");
 }
 
 TYPED_TEST(Vector4DNormalization, VectorWhenNormalizedReturnsANormalVector)
@@ -849,7 +854,6 @@ TYPED_TEST(Vector4DNormalization, VectorWhenNormalizedReturnsANormalVector)
 	EXPECT_VEC_EQ(this->expectedVector, normalized);
 }
 
-//TODO: Change to use wrapper
 TYPED_TEST(Vector4DNormalization, StaticWrapper_VectorWhenNormalizedReturnsANormalVector)
 {
 	// Given a non-normalized vector
