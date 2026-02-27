@@ -132,6 +132,7 @@ namespace math
 		}
 		else
 		{
+			assert(scalar != 0 && "Integral division by zero");
 			R tScalar = static_cast<R>(scalar);
 			return Vector4D<R>(
 				static_cast<R>(x) / tScalar,
