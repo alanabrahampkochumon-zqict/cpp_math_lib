@@ -112,6 +112,35 @@ protected:
 TYPED_TEST_SUITE(Vector4DScalarDivision, SupportedTypes);
 
 
+/***********************
+ *                     *
+ *  DOT PRODUCT SETUP  *
+ *                     *
+ ***********************/
+template <typename T>
+class Vector4DDotProduct : public ::testing::Test
+{
+protected:
+	math::Vector4D<T> vecA;
+	math::Vector4D<T> vecB;
+
+	math::Vector4D<T> vecAOrtho;
+	math::Vector4D<T> vecBOrtho;
+
+	T expected;
+
+	void SetUp() override
+	{
+		vecA = { T(2), T(3), T(4), T(5) };
+		vecB = { T(6), T(7), T(8), T(9) };
+		vecAOrtho = { T(3), T(0), T(4), T(0) };
+		vecBOrtho = { T(0), T(5), T(0), T(6) };
+		expected = static_cast<T>(110);
+	}
+};
+TYPED_TEST_SUITE(Vector4DDotProduct, SupportedTypes);
+
+
 /***************************************
  *                                     *
  *  MAGNITUDE AND NORMALIZATION SETUP  *
@@ -119,7 +148,7 @@ TYPED_TEST_SUITE(Vector4DScalarDivision, SupportedTypes);
  ***************************************/
 
 template <typename T>
-class Vector4DMagnitude: public ::testing::Test
+class Vector4DMagnitude : public ::testing::Test
 {
 protected:
 	math::Vector4D<T> vec;
@@ -715,44 +744,86 @@ TEST(Vector4DScalarDivision, MixedTypeScalarDivisionAssignmentGivesResultWithMin
  *                     *
  ***********************/
 
-TEST(Vector4D, VectorWhenDotWithItselfReturnsOne)
+TYPED_TEST(Vector4DDotProduct, OneVectorWhenDotWithItselfReturnsOne)
 {
-	// Arrange
-	const math::Vector4D<float> vec(1.0, 0.0, 0.0, 0.0);
+	//FIXME: Change
+	// Given an arbitrary vector
 
-	// Act
-	const float res = vec.dot(vec);
+	// When dot with itself
+	const TypeParam result = this->vecA.dot(this->vecA);
 
-	// Assert
-	EXPECT_FLOAT_EQ(1.0, res);
+	// Then, the dot product is 1
+	if (std::is_same_v<TypeParam, double>)
+		EXPECT_DOUBLE_EQ(1.0, result);
+	else if (std::is_floating_point_v<TypeParam>)
+		EXPECT_FLOAT_EQ(1.0f, result);
+	else
+		EXPECT_EQ(1, result);
 }
 
-TEST(Vector4D, VectorWhenDotWithOrthogonalVectorReturnZero)
+TYPED_TEST(Vector4DDotProduct, VectorWhenDotWithOrthogonalVectorReturnZero)
 {
-	// Arrange
-	const math::Vector4D<float> vec1(1.0, 0.0, 0.0, 0.0);
-	const math::Vector4D<float> vec2(0.0, 1.0, 0.0, 0.0);
+	// Given two orthogonal vectors
 
-	// Act
-	const float res = vec1.dot(vec2);
+	// When dot with each other
+	const TypeParam result = this->vecAOrtho.dot(this->vecBOrtho);
 
-	// Assert
-	EXPECT_FLOAT_EQ(0.0, res);
+	// Then, the dot product is 0
+	if (std::is_same_v<TypeParam, double>)
+		EXPECT_DOUBLE_EQ(0.0, result);
+	else if (std::is_floating_point_v<TypeParam>)
+		EXPECT_FLOAT_EQ(0.0f, result);
+	else
+		EXPECT_EQ(0, result);
 }
 
-TEST(Vector4D, VectorWhenDotWithOppositeParallelVectorReturnsNegativeOne)
+TYPED_TEST(Vector4DDotProduct, VectorDotWithNonParallelVectorIsNonZeroNumber)
 {
-	// Arrange
-	const math::Vector4D<float> vec1(1.0, 0.0, 0.0, 0.0);
-	const math::Vector4D<float> vec2(-1.0, 0.0, 0.0, 0.0);
+	// Given two non-orthogonal vectors
 
-	// Act
-	const float res = vec1.dot(vec2);
+	// When dot with each other
+	const TypeParam result = this->vecA.dot(this->vecB);
 
-	// Assert
-	EXPECT_FLOAT_EQ(-1.0, res);
+	// Then, the dot product is non-zero
+	if (std::is_same_v<TypeParam, double>)
+		EXPECT_DOUBLE_EQ(0.0, this->expected);
+	else if (std::is_floating_point_v<TypeParam>)
+		EXPECT_FLOAT_EQ(0.0f, this->expected);
+	else
+		EXPECT_EQ(0, this->expected);
 }
 
+TYPED_TEST(Vector4DDotProduct, StaticWrapper_VectorDotWithNonParallelVectorIsNonZeroNumber)
+{
+	// Given two non-orthogonal vectors
+
+	// When dot with each other with static wrapper
+	const TypeParam result = math::Vector4D<TypeParam>::dot(this->vecA, this->vecB);
+
+	// Then, the dot product is non-zero
+	if (std::is_same_v<TypeParam, double>)
+		EXPECT_DOUBLE_EQ(0.0, this->expected);
+	else if (std::is_floating_point_v<TypeParam>)
+		EXPECT_FLOAT_EQ(0.0f, this->expected);
+	else
+		EXPECT_EQ(0, this->expected);
+}
+
+TEST(Vector4DDotProduct, VectorDotWithOppositeNonParallelVectorIsMinusOne)
+{
+	// Given two non-orthogonal vectors
+	const math::Vector4D vecA(-1.0, 0.0, 0.0, 0.0);
+	const math::Vector4D vecB(1.0, 0.0, 0.0, 0.0);
+
+	// When dot with itself
+	const double result = vecA.dot(vecB);
+
+	// Then, the dot product is non-zero
+	EXPECT_DOUBLE_EQ(-1.0, result);
+}
+
+
+//TODO: Static wrapper tests, type promotion test.
 
 /***************************************
  *                                     *
@@ -794,7 +865,7 @@ TYPED_TEST(Vector4DMagnitude, NonUnitVectorReturnsCorrectMagnitude)
 	// Then, a non-unit number is returned which is a floating_v
 	static_assert(std::is_floating_point_v<decltype(result)>);
 	EXPECT_MAG_EQ(this->magnitude, result);
-	
+
 }
 
 TYPED_TEST(Vector4DMagnitude, StaticWrapper_NonUnitVectorReturnsCorrectMagnitude)
@@ -857,7 +928,7 @@ TYPED_TEST(Vector4DNormalization, VectorWhenNormalizedReturnsANormalVector)
 TYPED_TEST(Vector4DNormalization, StaticWrapper_VectorWhenNormalizedReturnsANormalVector)
 {
 	// Given a non-normalized vector
-	
+
 	// When it is normalized
 	const math::Vector4D normalized = math::Vector4D<TypeParam>::normalize(this->vec);
 

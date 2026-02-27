@@ -186,8 +186,6 @@ namespace math
 		return vecA.dot(vecB);
 	}
 
-
-
 	/*************************************
 	 *                                   *
 	 *         VECTOR MAGNITUDE          *
