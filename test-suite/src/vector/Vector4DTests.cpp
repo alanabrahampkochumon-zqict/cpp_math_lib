@@ -161,7 +161,7 @@ protected:
 	void SetUp() override
 	{
 		vec = { T(14), T(27), T(83), T(52) };
-		expectedVector = { static_cast<R>(0.1365089938063065), static_cast<R>(0.2632673451978768), static_cast<R>(0.809303310060269), static_cast<R>(0.5070336912699849) };
+		expectedVector = { static_cast<R>(0.13650905255670645), static_cast<R>(0.2632674585022196), static_cast<R>(0.8093036687290455), static_cast<R>(0.5070336237820525) };
 	}
 };
 TYPED_TEST_SUITE(Vector4DNormalization, SupportedTypes);
