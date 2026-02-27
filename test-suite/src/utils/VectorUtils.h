@@ -24,8 +24,10 @@ namespace TestUtils
 
 		for (std::size_t i = 0; i < elementCount; ++i)
 		{
-			if constexpr (std::is_floating_point_v<ValueType>)
-				EXPECT_NEAR(expected[i], static_cast<ValueType>(actual[i]), TEST_EPSILON);
+			if constexpr (std::is_same_v<ValueType, double>)
+				EXPECT_NEAR(expected[i], static_cast<ValueType>(actual[i]), math::DOUBLE_EPSILON);
+			else if constexpr (std::is_floating_point_v<ValueType>)
+				EXPECT_NEAR(expected[i], static_cast<ValueType>(actual[i]), math::FLOAT_EPSILON);
 			else
 				EXPECT_EQ(expected[i], static_cast<ValueType>(actual[i]));
 		}

@@ -95,7 +95,7 @@ namespace math
 
 	template <Arithmetic T>
 	template <Arithmetic S>
-	auto Vector4D<T>::operator*(const S& scalar) const -> Vector4D<std::common_type_t<T, S>>
+	auto Vector4D<T>::operator*(S scalar) const -> Vector4D<std::common_type_t<T, S>>
 	{
 
 		using R = std::common_type_t<T, S>;
@@ -110,7 +110,7 @@ namespace math
 
 	template <Arithmetic T>
 	template <Arithmetic S>
-	Vector4D<T>& Vector4D<T>::operator*=(const S& scalar)
+	Vector4D<T>& Vector4D<T>::operator*=(S scalar)
 	{
 
 		x = static_cast<T>(scalar * x);
@@ -122,25 +122,29 @@ namespace math
 
 	template <Arithmetic T>
 	template <Arithmetic S>
-	auto Vector4D<T>::operator/(const S& scalar) const -> Vector4D<std::common_type_t<T, S>>
+	auto Vector4D<T>::operator/(S scalar) const -> Vector4D<std::common_type_t<T, S>>
 	{
 		using R = std::common_type_t<T, S>;
 		if constexpr (std::is_floating_point_v<R>)
 		{
 			R factor = R(1) / static_cast<R>(scalar);
 			return Vector4D<R>(x * factor, y * factor, z * factor, w * factor);
-
 		}
 		else
 		{
-			assert(scalar != 0 && "Integral division by zero");
-			return Vector4D<R>(x / static_cast<T>(scalar), y / static_cast<T>(scalar), z / static_cast<T>(scalar), w / static_cast<T>(scalar));
+			R tScalar = static_cast<R>(scalar);
+			return Vector4D<R>(
+				static_cast<R>(x) / tScalar,
+				static_cast<R>(y) / tScalar,
+				static_cast<R>(z) / tScalar,
+				static_cast<R>(w) / tScalar
+			);
 		}
 	}
 
 	template <Arithmetic T>
 	template <Arithmetic S>
-	Vector4D<T>& Vector4D<T>::operator/=(const S& scalar)
+	Vector4D<T>& Vector4D<T>::operator/=(S scalar)
 	{
 		using R = std::common_type_t<T, S>;
 		if constexpr (std::is_floating_point_v<R>)
