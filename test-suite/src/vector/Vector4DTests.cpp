@@ -79,13 +79,15 @@ class Vector4DScalarMultiplication : public ::testing::Test
 protected:
 	math::Vector4D<T> vec;
 	T scalar;
-	math::Vector4D<T> expected;
+	math::Vector4D<T> expectedFloating;
+	math::Vector4D<T> expectedIntegral;
 
 	void SetUp() override
 	{
-		vec = { T(5), T(9), T(-8), T(-2) };
-		scalar = T(5);
-		expected = { T(25), T(45), T(-40), T(-10) };
+		vec = { T(7), T(13), T(29), T(41) };
+		scalar = T(2.123456789123456);
+		expectedFloating = { T(14.864197523864192), T(27.604938258604928), T(61.580246884580224), T(87.061728354061696) };
+		expectedIntegral = { T(14), T(26), T(58), T(82) };
 	}
 };
 TYPED_TEST_SUITE(Vector4DScalarMultiplication, SupportedTypes);
@@ -527,7 +529,10 @@ TYPED_TEST(Vector4DScalarMultiplication, VectorTimesANumberReturnsAScaledVector)
 	const math::Vector4D result = this->vec * this->scalar;
 
 	// Then, new vector contains elements multiplied(scaled) with the scalar
-	EXPECT_VEC_EQ(this->expected, result);
+	if (std::is_floating_point_v<TypeParam>)
+		EXPECT_VEC_EQ(this->expectedFloating, result);
+	else
+		EXPECT_VEC_EQ(this->expectedIntegral, result);
 }
 
 TYPED_TEST(Vector4DScalarMultiplication, NumberTimesAVectorReturnsAScaledVector)
@@ -538,7 +543,10 @@ TYPED_TEST(Vector4DScalarMultiplication, NumberTimesAVectorReturnsAScaledVector)
 	const math::Vector4D result = this->scalar * this->vec;
 
 	// Then, new vector contains elements multiplied(scaled) with the scalar
-	EXPECT_VEC_EQ(this->expected, result);
+	if (std::is_floating_point_v<TypeParam>)
+		EXPECT_VEC_EQ(this->expectedFloating, result);
+	else
+		EXPECT_VEC_EQ(this->expectedIntegral, result);
 }
 
 TYPED_TEST(Vector4DScalarMultiplication, VectorTimesEqualAScalarIsTheSameVectorScaled)
@@ -549,21 +557,24 @@ TYPED_TEST(Vector4DScalarMultiplication, VectorTimesEqualAScalarIsTheSameVectorS
 	this->vec *= this->scalar;
 
 	// Then, the original vector is scaled by the scalar
-	EXPECT_VEC_EQ(this->expected, this->vec);
+	if (std::is_floating_point_v<TypeParam>)
+		EXPECT_VEC_EQ(this->expectedFloating, this->vec);
+	else
+		EXPECT_VEC_EQ(this->expectedIntegral, this->vec);
 }
 
-TEST(Vector4DScalarMultiplication, MixedTypeScalarMulitplicationPromotesType)
+TYPED_TEST(Vector4DScalarMultiplication, MixedTypeScalarMulitplicationPromotesType)
 {
 	// Given a vector and scalar with arbitrary values
-	const math::Vector4D vec(3.0f, 0.0f, -1.0f, 2.0f);
-	constexpr double scalar = 5.0;
-	const math::Vector4D expected(15.0, 0.0, -5.0, 10.0);
+	constexpr double scalar = 2.123456789123456;
+	const math::Vector4D expected(14.864197523864192, 27.604938258604928, 61.580246884580224, 87.061728354061696);
 
 	// When they are multiplied
-	const math::Vector4D result = vec * scalar;
+	const math::Vector4D result = this->vec * scalar;
 
 	// Then the new vector is type promoted
 	static_assert(std::is_same_v<typename decltype(result)::value_type, double>);
+
 	// And the vector is scaled by `scalar`
 	EXPECT_VEC_EQ(expected, result);
 }
@@ -696,6 +707,7 @@ TEST(Vector4DScalarDivision, MixedTypeScalarDivisionAssignmentGivesResultWithMin
 	// And the vector is scaled by `scalar` with minimal precision loss
 	EXPECT_VEC_EQ(expected, vec);
 }
+
 
 /***********************
  *                     *

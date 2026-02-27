@@ -97,9 +97,8 @@ namespace math
 	template <Arithmetic S>
 	auto Vector4D<T>::operator*(S scalar) const -> Vector4D<std::common_type_t<T, S>>
 	{
-
 		using R = std::common_type_t<T, S>;
-		return Vector4D<R>(x * scalar, y * scalar, z * scalar, w * scalar);
+		return Vector4D<R>(x * scalar,	y * scalar,	z * scalar,	w * scalar);
 	}
 
 	template<Arithmetic T, Arithmetic S>
