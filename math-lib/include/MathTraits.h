@@ -7,7 +7,7 @@
 namespace math {
 
 	template<typename T>
-	concept Arithmetic = std::integral<T> || std::floating_point<T>;
+	concept Arithmetic = (std::integral<T> || std::floating_point<T>) && !std::is_same_v<T, bool>;
 
 	template<typename T>
 	concept weak_arithmetic = std::is_arithmetic_v<std::decay_t<T>>;

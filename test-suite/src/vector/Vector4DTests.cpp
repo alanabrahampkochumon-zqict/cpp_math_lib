@@ -437,14 +437,14 @@ TEST(Vector4DAccess, AccessibleAsArray)
 	EXPECT_FLOAT_EQ(2.0f, vec.elements[3]);
 }
 
-TEST(Vector4DHelper, bVec4Return4DBoolVector)
-{
-	// Given a vector is accessed as bVec4
-	constexpr bool isCorrectType = std::is_same_v<math::bVec4::value_type, bool>;
-
-	// Then, it's value_type is bool
-	EXPECT_TRUE(isCorrectType);
-}
+//TEST(Vector4DHelper, bVec4Return4DBoolVector)
+//{
+//	// Given a vector is accessed as bVec4
+//	constexpr bool isCorrectType = std::is_same_v<math::bVec4::value_type, bool>;
+//
+//	// Then, it's value_type is bool
+//	EXPECT_TRUE(isCorrectType);
+//}
 
 TEST(Vector4DHelper, iVec4Return4DIntVector)
 {
