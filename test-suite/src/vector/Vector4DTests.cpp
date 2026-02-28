@@ -757,9 +757,9 @@ TYPED_TEST(Vector4DDotProduct, VectorWhenDotWithItselfSquareMagnitude)
 	const TypeParam result = this->vecA.dot(this->vecA);
 
 	// Then, the dot product is 1
-	if (std::is_same_v<TypeParam, double>)
+	if constexpr (std::is_same_v<TypeParam, double>)
 		EXPECT_DOUBLE_EQ(this->aDotA, result);
-	else if (std::is_floating_point_v<TypeParam>)
+	else if constexpr (std::is_floating_point_v<TypeParam>)
 		EXPECT_FLOAT_EQ(this->aDotA, result);
 	else
 		EXPECT_EQ(this->aDotA, result);
@@ -773,9 +773,9 @@ TYPED_TEST(Vector4DDotProduct, VectorWhenDotWithOrthogonalVectorReturnZero)
 	const TypeParam result = this->vecAOrtho.dot(this->vecBOrtho);
 
 	// Then, the dot product is 0
-	if (std::is_same_v<TypeParam, double>)
+	if constexpr (std::is_same_v<TypeParam, double>)
 		EXPECT_DOUBLE_EQ(0.0, result);
-	else if (std::is_floating_point_v<TypeParam>)
+	else if constexpr (std::is_floating_point_v<TypeParam>)
 		EXPECT_FLOAT_EQ(0.0f, result);
 	else
 		EXPECT_EQ(0, result);
@@ -789,9 +789,9 @@ TYPED_TEST(Vector4DDotProduct, VectorDotWithNonOrthogonalVectorIsNonZeroNumber)
 	const TypeParam result = this->vecA.dot(this->vecB);
 
 	// Then, the dot product is non-zero
-	if (std::is_same_v<TypeParam, double>)
+	if constexpr (std::is_same_v<TypeParam, double>)
 		EXPECT_DOUBLE_EQ(this->expected, result);
-	else if (std::is_floating_point_v<TypeParam>)
+	else if constexpr (std::is_floating_point_v<TypeParam>)
 		EXPECT_FLOAT_EQ(this->expected, result);
 	else
 		EXPECT_EQ(this->expected, result);

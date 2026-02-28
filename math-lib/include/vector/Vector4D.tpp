@@ -134,10 +134,10 @@ namespace math
 			assert(scalar != 0 && "Integral division by zero");
 			R tScalar = static_cast<R>(scalar);
 			return Vector4D<R>(
-				static_cast<R>(x) / tScalar,
-				static_cast<R>(y) / tScalar,
-				static_cast<R>(z) / tScalar,
-				static_cast<R>(w) / tScalar
+				x / tScalar,
+				y / tScalar,
+				z / tScalar,
+				w / tScalar
 			);
 		}
 	}
@@ -178,13 +178,12 @@ namespace math
 	template<Arithmetic U>
 	auto Vector4D<T>::dot(const Vector4D<U>& other) const -> std::common_type_t<T, U>
 	{
-		using R = std::common_type_t<T, U>;
 		return x * other.x + y * other.y + z * other.z + w * other.w;
 	}
 
 	template <Arithmetic T>
 	template<Arithmetic U>
-	static auto Vector4D<T>::dot(const Vector4D& vecA, const Vector4D<U>& vecB) ->std::common_type_t<T, U>
+	auto Vector4D<T>::dot(const Vector4D& vecA, const Vector4D<U>& vecB) ->std::common_type_t<T, U>
 	{
 		return vecA.dot(vecB);
 	}
