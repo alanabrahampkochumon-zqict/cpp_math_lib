@@ -1123,6 +1123,22 @@ TEST(Vector4DProjection, VectorsProjectedOntoNegativeVectorReturnsNonZeroVectorI
 	EXPECT_VEC_EQ(expectedProjection, actualProjection);
 }
 
+TEST(Vector4DProjection, MixedTypeVectorProjectionPromotesType)
+{
+	// Given two arbitrary vectors
+	const math::Vector4D vec(7, 13, 29, 41);
+	const math::Vector4D onto(2.0, 4.0, 4.0, 2.0);
+	const math::Vector4D expectedProjection(13.2, 26.4, 26.4, 13.2);
+
+	// When projected onto another
+	const math::Vector4D actualProjection = vec.project(onto);
+
+	// Then, the resultant vector is type promoted
+	static_assert(std::is_same_v<typename decltype(actualProjection)::value_type, double>);
+	// and is the projection
+	EXPECT_VEC_EQ(expectedProjection, actualProjection);
+}
+
 
 TEST(Vector4D, ParallelVectorsWhenRejectedReturnsZeroVector)
 {
@@ -1241,3 +1257,19 @@ TEST(Vector4D, VectorsWhenProjectedUsingStaticWrapperReturnNonZeroVector)
 	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
 	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
 }
+
+//TEST(Vector4DRejection, MixedTypeVectorRejectionPromotesType)
+//{
+//	// Given two arbitrary vectors
+//	const math::Vector4D vec(7, 13, 29, 41);
+//	const math::Vector4D onto(2.0, 4.0, 4.0, 2.0);
+//	const math::Vector4D expectedRejection(-6.2, -13.4, 2.6, 27.8);
+//
+//	// When projected onto another
+//	const math::Vector4D actualRejection = vec.reject(onto);
+//
+//	// Then, the resultant vector is type promoted
+//	static_assert(std::is_same_v<typename decltype(actualRejection)::value_type, double>);
+//	// and is the rejection
+//	EXPECT_VEC_EQ(expectedRejection, actualRejection);
+//}
