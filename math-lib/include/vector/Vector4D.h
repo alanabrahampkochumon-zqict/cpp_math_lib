@@ -196,9 +196,13 @@ namespace math
      *             ALIASES               *
      *                                   *
      *************************************/
+	using bVec4 = Vector4D<bool>;
+    using iVec4 = Vector4D<int>;
+    using uVec4 = Vector4D<unsigned int>;
     using vec4 = Vector4D<float>;
-    using dvec4 = Vector4D<double>;
-    using ivec4 = Vector4D<int>;
+    using lVec4 = Vector4D<long long>;
+    using dVec4 = Vector4D<double>;
+    using ulVec4 = Vector4D<unsigned long long>;
 
 }
 

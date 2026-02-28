@@ -437,7 +437,34 @@ TEST(Vector4DAccess, AccessibleAsArray)
 	EXPECT_FLOAT_EQ(2.0f, vec.elements[3]);
 }
 
-TEST(Vector4DAccess, vec4Return4DFloatVector)
+TEST(Vector4DHelper, bVec4Return4DBoolVector)
+{
+	// Given a vector is accessed as bVec4
+	constexpr bool isCorrectType = std::is_same_v<math::bVec4::value_type, bool>;
+
+	// Then, it's value_type is bool
+	EXPECT_TRUE(isCorrectType);
+}
+
+TEST(Vector4DHelper, iVec4Return4DIntVector)
+{
+	// Given a vector is accessed as iVec4
+	constexpr bool isCorrectType = std::is_same_v<math::iVec4::value_type, int>;
+
+	// Then, it's value_type is int
+	EXPECT_TRUE(isCorrectType);
+}
+
+TEST(Vector4DHelper, uVec4Return4DUnsignedIntVector)
+{
+	// Given a vector is accessed as uVec4
+	constexpr bool isCorrectType = std::is_same_v<math::uVec4::value_type, unsigned int>;
+
+	// Then, it's value_type is unsigned int
+	EXPECT_TRUE(isCorrectType);
+}
+
+TEST(Vector4DHelper, vec4Return4DFloatVector)
 {
 	// Given a vector is accessed as vec4
 	constexpr bool isCorrectType = std::is_same_v<math::vec4::value_type, float>;
@@ -446,21 +473,30 @@ TEST(Vector4DAccess, vec4Return4DFloatVector)
 	EXPECT_TRUE(isCorrectType);
 }
 
-TEST(Vector4DHelper, dvec4Return4DDoubleVector)
+TEST(Vector4DHelper, lVec4Return4DLongLongVector)
 {
-	// Given a vector is accessed as dvec4
-	constexpr bool isCorrectType = std::is_same_v<math::dvec4::value_type, double>;
+	// Given a vector is accessed as lVec4
+	constexpr bool isCorrectType = std::is_same_v<math::lVec4::value_type, long long>;
+
+	// Then, it's value_type is long long
+	EXPECT_TRUE(isCorrectType);
+}
+
+TEST(Vector4DHelper, dVec4Return4DUnsignedLongLongVector)
+{
+	// Given a vector is accessed as dVec4
+	constexpr bool isCorrectType = std::is_same_v<math::dVec4::value_type, double>;
 
 	// Then, it's value_type is double
 	EXPECT_TRUE(isCorrectType);
 }
 
-TEST(Vector4DHelper, ivec4Return4DIntegerVector)
+TEST(Vector4DHelper, ulVec4Return4DFloatVector)
 {
-	// Given a vector is accessed as ivec4
-	constexpr bool isCorrectType = std::is_same_v<math::ivec4::value_type, int>;
+	// Given a vector is accessed as ulVec4
+	constexpr bool isCorrectType = std::is_same_v<math::ulVec4::value_type, unsigned long long>;
 
-	// Then, it's value_type is integer
+	// Then, it's value_type is unsigned long long
 	EXPECT_TRUE(isCorrectType);
 }
 
@@ -1167,7 +1203,7 @@ TEST(Vector4DRejection, VectorRejectedOntoXAxisReturnsVectorWithoutXComponent)
 	EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
 
-TEST(Vector4DRejection, VectorRejectedOntoYAxisReturnsVectorWithOnlyYComponent)
+TEST(Vector4DRejection, VectorRejectedOntoYAxisReturnsVectorWithoutYComponent)
 {
 	// Given an arbitrary vector
 	const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.0f);
@@ -1181,7 +1217,7 @@ TEST(Vector4DRejection, VectorRejectedOntoYAxisReturnsVectorWithOnlyYComponent)
 	EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
 
-TEST(Vector4DRejection, VectorRejectedOntoZAxisReturnsVectorWithOnlyZComponent)
+TEST(Vector4DRejection, VectorRejectedOntoZAxisReturnsVectorWithoutZComponent)
 {
 	// Given an arbitrary vector
 	const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.0f);
@@ -1195,7 +1231,7 @@ TEST(Vector4DRejection, VectorRejectedOntoZAxisReturnsVectorWithOnlyZComponent)
 	EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
 
-TEST(Vector4DRejection, VectorRejectedOntoWAxisReturnsVectorWithOnlyWComponent)
+TEST(Vector4DRejection, VectorRejectedOntoWAxisReturnsVectorWithoutWComponent)
 {
 	// Given an arbitrary vector
 	const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.0f);
@@ -1251,11 +1287,11 @@ TEST(Vector4DRejection, VectorRejectedOntoNegativeVectorReturnsNonZeroVectorInSa
 {
 	// Given an arbitrary vector
 	const math::Vector4D a(4.0f, 4.0f, 4.0f, 4.0f);
-	const math::Vector4D negativeYAxis(0.0f, 0.0f, -1.0f, 0.0f);
+	const math::Vector4D negativeZAxis(0.0f, 0.0f, -1.0f, 0.0f);
 	const math::Vector4D expectedRejection(4.0f, 4.0f, 0.0f, 4.0f);
 
 	// When rejection onto a vector in opposite direction
-	const math::Vector4D actualRejection = a.reject(negativeYAxis);
+	const math::Vector4D actualRejection = a.reject(negativeZAxis);
 
 	// Then, the resultant vector has components non-parallel to onto vector in the same direction.
 	EXPECT_VEC_EQ(expectedRejection, actualRejection);
