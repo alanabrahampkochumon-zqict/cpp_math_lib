@@ -165,7 +165,7 @@ namespace math
          * @return Projected vector.
          */
         template<Arithmetic U>
-        Vector4D<T> reject(const Vector4D<U>& onto, bool ontoNormalized = false) const;
+        auto reject(const Vector4D<U>& onto, bool ontoNormalized = false) const -> Vector4D<std::common_type_t<T, U>>;
 
 
         /**
@@ -177,7 +177,7 @@ namespace math
          * @return Projected vector.
          */
         template<Arithmetic U>
-        static Vector4D reject(const Vector4D& vector, const Vector4D<U>& onto, bool ontoNormalized = false);
+        static auto reject(const Vector4D& vector, const Vector4D<U>& onto, bool ontoNormalized = false) -> Vector4D<std::common_type_t<T, U>>;
 
     };
 

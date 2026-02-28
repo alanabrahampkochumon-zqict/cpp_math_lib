@@ -128,7 +128,7 @@ protected:
 	math::Vector4D<T> vecBOrtho;
 
 	T expected;
-	
+
 	T aDotA;
 
 	void SetUp() override
@@ -220,7 +220,7 @@ TYPED_TEST_SUITE(Vector4DZeroNormalization, SupportedTypes);
  *                                   *
  *************************************/
 template <typename T>
-class Vector4DProjection: public ::testing::Test
+class Vector4DProjection : public ::testing::Test
 {
 protected:
 	math::Vector4D<T> vec;
@@ -230,10 +230,10 @@ protected:
 
 	void SetUp() override
 	{
-		vec = {T(5), T(6), T(7), T(8)};
-		perpendicularVec = {T(10), T(0), T(14), T(16)};
-		onto = {T(0), T(2), T(0), T(0)};
-		expectedProjection = {T(0), T(6), T(0), T(0)};
+		vec = { T(5), T(6), T(7), T(8) };
+		perpendicularVec = { T(10), T(0), T(14), T(16) };
+		onto = { T(0), T(2), T(0), T(0) };
+		expectedProjection = { T(0), T(6), T(0), T(0) };
 	}
 };
 TYPED_TEST_SUITE(Vector4DProjection, SupportedTypes);
@@ -243,17 +243,19 @@ class Vector4DRejection : public ::testing::Test
 {
 protected:
 	math::Vector4D<T> vec;
+	math::Vector4D<T> parallelVec;
 	math::Vector4D<T> onto;
 	math::Vector4D<T> expectedRejection;
 
 	void SetUp() override
 	{
 		vec = { T(5), T(6), T(7), T(8) };
+		parallelVec = { T(10), T(12), T(14), T(16) };
 		onto = { T(0), T(2), T(0), T(0) };
 		expectedRejection = { T(5), T(0), T(7), T(8) };
 	}
 };
-TYPED_TEST_SUITE(Vector4DProjection, SupportedTypes);
+TYPED_TEST_SUITE(Vector4DRejection, SupportedTypes);
 
 
 
@@ -871,7 +873,7 @@ TEST(Vector4DDotProduct, VectorDotWithOppositeVectorIsNegative)
 TEST(Vector4DDotProduct, MixedTypeDotProductPromotesType)
 {
 	// Given two vectors of different type
-	const math::Vector4D vecA( 7, 13, 29, 41 );
+	const math::Vector4D vecA(7, 13, 29, 41);
 	const math::Vector4D vecB(1.123456789, 2.123456789, 3.123456789, 4.123456789);
 
 	// When dot with each other
@@ -1017,7 +1019,7 @@ TYPED_TEST(Vector4DProjection, OrthogonalVectorsWhenProjectedReturnsNonZeroVecto
 TEST(Vector4DProjection, VectorProjectedOntoXAxisProducesVectorWithOnlyXComponent)
 {
 	// Given an arbitrary vector
-	const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.f);
+	const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.0f);
 	const math::Vector4D xAxis(1.0f, 0.0f, 0.0f, 0.0f);
 	const math::Vector4D expectedProjection(10.0f, 0.0f, 0.0f, 0.0f);
 
@@ -1031,7 +1033,7 @@ TEST(Vector4DProjection, VectorProjectedOntoXAxisProducesVectorWithOnlyXComponen
 TEST(Vector4DProjection, VectorProjectedOntoYAxisProducesVectorWithOnlyYComponent)
 {
 	// Given an arbitrary vector
-	const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.f);
+	const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.0f);
 	const math::Vector4D yAxis(0.0f, 1.0f, 0.0f, 0.0f);
 	const math::Vector4D expectedProjection(0.0f, 20.0f, 0.0f, 0.0f);
 
@@ -1045,7 +1047,7 @@ TEST(Vector4DProjection, VectorProjectedOntoYAxisProducesVectorWithOnlyYComponen
 TEST(Vector4DProjection, VectorProjectedOntoZAxisProducesVectorWithOnlyZComponent)
 {
 	// Given an arbitrary vector
-	const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.f);
+	const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.0f);
 	const math::Vector4D zAxis(0.0f, 0.0f, 1.0f, 0.0f);
 	const math::Vector4D expectedProjection(0.0f, 0.0f, 30.0f, 0.0f);
 
@@ -1059,7 +1061,7 @@ TEST(Vector4DProjection, VectorProjectedOntoZAxisProducesVectorWithOnlyZComponen
 TEST(Vector4DProjection, VectorProjectedOntoWAxisProducesVectorWithOnlyWComponent)
 {
 	// Given an arbitrary vector
-	const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.f);
+	const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.0f);
 	const math::Vector4D wAxis(0.0f, 0.0f, 0.0f, 1.0f);
 	const math::Vector4D expectedProjection(0.0f, 0.0f, 0.0f, 40.0f);
 
@@ -1092,7 +1094,7 @@ TYPED_TEST(Vector4DProjection, StaticWrapper_VectorsWhenProjectedReturnsNonZeroV
 	EXPECT_VEC_EQ(this->expectedProjection, actualProjection);
 }
 
-TEST(Vector4DProjection, VectorsProjectedOntoNormalizedVectorReturnsNonZeroVector)
+TEST(Vector4DProjection, VectorProjectedOntoNormalizedVectorReturnsNonZeroVector)
 {
 	// Given an arbitrary vector and a normalized vector
 	const math::Vector4D a(1.0f, 2.0f, 3.0f, 4.0f);
@@ -1109,7 +1111,7 @@ TEST(Vector4DProjection, VectorsProjectedOntoNormalizedVectorReturnsNonZeroVecto
 	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
 }
 
-TEST(Vector4DProjection, VectorsProjectedOntoNegativeVectorReturnsNonZeroVectorInSameDirection)
+TEST(Vector4DProjection, VectorProjectedOntoNegativeVectorReturnsNonZeroVectorInSameDirection)
 {
 	// Given an arbitrary vector and a vector in the opposite Direction
 	const math::Vector4D a(4.0f, 4.0f, 4.0f, 4.0f);
@@ -1140,136 +1142,148 @@ TEST(Vector4DProjection, MixedTypeVectorProjectionPromotesType)
 }
 
 
-TEST(Vector4D, ParallelVectorsWhenRejectedReturnsZeroVector)
+TYPED_TEST(Vector4DRejection, ParallelVectorsWhenRejectedReturnsZeroVector)
 {
-	// Arrange
-	const math::Vector4D a(1.0f, 2.0f, 3.0f, 5.0f);
-	const math::Vector4D b(2.0f, 4.0f, 6.0f, 10.0f);
-	const math::Vector4D expectedProjection(0.0f, 0.0f, 0.0f, 0.0f);
+	// Given two parallel vectors
 
-	// Act
-	const math::Vector4D<float> actualProjection = a.reject(b);
+	// When rejected onto another
+	const math::Vector4D actualRejection = this->vec.reject(this->parallelVec);
 
-	// Assert
-	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Then, the resultant vector is zero
+	EXPECT_VEC_ZERO(actualRejection);
 }
 
-TEST(Vector4D, PerpendicularVectorsWhenRejectedWReturnsNonZeroVectorWithZeroWComponent)
+TEST(Vector4DRejection, VectorRejectedOntoXAxisReturnsVectorWithoutXComponent)
 {
-	// Arrange
-	const math::Vector4D a(1.0f, 2.0f, 3.0f, 4.0f);
-	const math::Vector4D b(0.0f, 0.0f, 0.0f, 1.0f);
-	const math::Vector4D expectedProjection(1.0f, 2.0f, 3.0f, 0.0f);
+	// Given an arbitrary vector
+	const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.0f);
+	const math::Vector4D xAxis(1.0f, 0.0f, 0.0f, 0.0f);
+	const math::Vector4D expectedRejection(0.0f, 20.0f, 30.0f, 40.f);
 
-	// Act
-	const math::Vector4D<float> actualProjection = a.reject(b);
+	// When rejected onto x-axis
+	const math::Vector4D actualRejection = a.reject(xAxis);
 
-	// Assert
-	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Then, the resultant vector has no x-component
+	EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
 
-TEST(Vector4D, RejectingNonExistantComponentReturnsSameVector)
+TEST(Vector4DRejection, VectorRejectedOntoYAxisReturnsVectorWithOnlyYComponent)
 {
-	// Arrange
+	// Given an arbitrary vector
+	const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.0f);
+	const math::Vector4D yAxis(0.0f, 1.0f, 0.0f, 0.0f);
+	const math::Vector4D expectedRejection(10.0f, 0.0f, 30.0f, 40.0f);
+
+	// When rejected onto y-axis
+	const math::Vector4D actualRejection = a.reject(yAxis);
+
+	// Then, the resultant vector has no y-component
+	EXPECT_VEC_EQ(expectedRejection, actualRejection);
+}
+
+TEST(Vector4DRejection, VectorRejectedOntoZAxisReturnsVectorWithOnlyZComponent)
+{
+	// Given an arbitrary vector
+	const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.0f);
+	const math::Vector4D zAxis(0.0f, 0.0f, 1.0f, 0.0f);
+	const math::Vector4D expectedRejection(10.0f, 20.0f, 0.0f, 40.0f);
+
+	// When rejected onto z-axis
+	const math::Vector4D actualRejection = a.reject(zAxis);
+
+	// Then, the resultant vector has no z-component
+	EXPECT_VEC_EQ(expectedRejection, actualRejection);
+}
+
+TEST(Vector4DRejection, VectorRejectedOntoWAxisReturnsVectorWithOnlyWComponent)
+{
+	// Given an arbitrary vector
+	const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.0f);
+	const math::Vector4D wAxis(0.0f, 0.0f, 0.0f, 1.0f);
+	const math::Vector4D expectedRejection(10.0f, 20.0f, 30.0f, 0.0f);
+
+	// When rejected onto w-axis
+	const math::Vector4D actualRejection = a.reject(wAxis);
+
+	// Then, the resultant vector has no w-component
+	EXPECT_VEC_EQ(expectedRejection, actualRejection);
+}
+
+TEST(Vector4DRejection, VectorRejectedOntoNonExistantComponentReturnsSameVector)
+{
+	// Given an arbitrary vector
 	const math::Vector4D a(1.0f, 2.0f, 3.0f, 0.0f);
 	const math::Vector4D b(0.0f, 0.0f, 0.0f, 1.0f);
 
-	// Act
-	const math::Vector4D<float> actualProjection = a.reject(b);
+	// When rejected on to non-existent component vector
+	const math::Vector4D actualRejection = a.reject(b);
 
-	// Assert
-	EXPECT_FLOAT_EQ(a.x, actualProjection.x);
-	EXPECT_FLOAT_EQ(a.y, actualProjection.y);
-	EXPECT_FLOAT_EQ(a.z, actualProjection.z);
-	EXPECT_FLOAT_EQ(a.w, actualProjection.w);
+	// Then, the resultant is same the original vector
+	EXPECT_VEC_EQ(a, actualRejection);
 }
 
-TEST(Vector4D, VectorsWhenRejectedReturnNonZeroVector)
+TYPED_TEST(Vector4DRejection, VectorWhenRejectedReturnNonZeroVector)
 {
-	// Arrange
-	const math::Vector4D a(1.0f, 2.0f, 0.0f, 1.0f);
-	const math::Vector4D b(2.0f, 0.0f, 1.0f, 1.0f);
-	const math::Vector4D expectedProjection(0.0f, 2.0f, -0.5f, 0.5f);
+	// Given an arbitrary vector
 
-	// Act
-	const math::Vector4D<float> actualProjection = a.reject(b);
+	// When rejected onto another
+	const math::Vector4D actualRejection = this->vec.reject(this->onto);
 
-	// Assert
-	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Then, the resultant vector has components non-parallel to onto vector.
+	EXPECT_VEC_EQ(this->expectedRejection, actualRejection);
 }
 
-TEST(Vector4D, VectorsWhenRejectedOntoNormalizedVectorReturnNonZeroVector)
+TEST(Vector4DRejection, VectorRejectedOntoNormalizedVectorReturnNonZeroVector)
 {
-	// Arrange
+	// Given an arbitrary vector and a normalized vector
 	const math::Vector4D a(1.0f, 2.0f, 3.0f, 4.0f);
 	const math::Vector4D b(1.0f, 0.0f, 0.0f, 0.0f);
-	const math::Vector4D expectedProjection(0.0f, 2.0f, 3.0f, 4.0f);
+	const math::Vector4D expectedRejection(0.0f, 2.0f, 3.0f, 4.0f);
 
-	// Act
-	const math::Vector4D<float> actualProjection = a.reject(b, true);
+	// When rejected onto another
+	const math::Vector4D actualRejection = a.reject(b, true);
 
-	// Assert
-	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Then, the resultant vector has components non-parallel to onto vector.
+	EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
 
-TEST(Vector4D, PositiveVectorsWhenRejectedOntoNegativeVectorReturnsNonZeroVectorNonZeroPositiveVector)
+TEST(Vector4DRejection, VectorRejectedOntoNegativeVectorReturnsNonZeroVectorInSameDirection)
 {
-	// Arrange
+	// Given an arbitrary vector
 	const math::Vector4D a(4.0f, 4.0f, 4.0f, 4.0f);
-	const math::Vector4D b(0.0f, 0.0f, -1.0f, 0.0f);
-	const math::Vector4D expectedProjection(4.0f, 4.0f, 0.0f, 4.0f);
+	const math::Vector4D negativeYAxis(0.0f, 0.0f, -1.0f, 0.0f);
+	const math::Vector4D expectedRejection(4.0f, 4.0f, 0.0f, 4.0f);
 
-	// Act
-	const math::Vector4D<float> actualProjection = a.reject(b);
+	// When rejection onto a vector in opposite direction
+	const math::Vector4D actualRejection = a.reject(negativeYAxis);
 
-	// Assert
-	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Then, the resultant vector has components non-parallel to onto vector in the same direction.
+	EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
 
-TEST(Vector4D, VectorsWhenProjectedUsingStaticWrapperReturnNonZeroVector)
+TYPED_TEST(Vector4DRejection, StaticWrapper_VectorWhenRejectedReturnNonZeroVector)
 {
-	// Arrange
-	const math::Vector4D a(1.0f, 2.0f, 0.0f, 1.0f);
-	const math::Vector4D b(2.0f, 0.0f, 1.0f, 1.0f);
-	const math::Vector4D expectedProjection(0.0f, 2.0f, -0.5f, 0.5f);
+	// Given an arbitrary vector
 
-	// Act
-	const math::Vector4D<float> actualProjection = math::Vector4D<float>::reject(a, b);
+	// When rejected onto another
+	const math::Vector4D actualRejection = math::Vector4D<TypeParam>::reject(this->vec, this->onto);
 
-	// Assert
-	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Then, the resultant vector has components non-parallel to onto vector.
+	EXPECT_VEC_EQ(this->expectedRejection, actualRejection);
 }
 
-//TEST(Vector4DRejection, MixedTypeVectorRejectionPromotesType)
-//{
-//	// Given two arbitrary vectors
-//	const math::Vector4D vec(7, 13, 29, 41);
-//	const math::Vector4D onto(2.0, 4.0, 4.0, 2.0);
-//	const math::Vector4D expectedRejection(-6.2, -13.4, 2.6, 27.8);
-//
-//	// When projected onto another
-//	const math::Vector4D actualRejection = vec.reject(onto);
-//
-//	// Then, the resultant vector is type promoted
-//	static_assert(std::is_same_v<typename decltype(actualRejection)::value_type, double>);
-//	// and is the rejection
-//	EXPECT_VEC_EQ(expectedRejection, actualRejection);
-//}
+TEST(Vector4DRejection, MixedTypeVectorRejectionPromotesType)
+{
+	// Given two arbitrary vectors
+	const math::Vector4D vec(7, 13, 29, 41);
+	const math::Vector4D onto(2.0, 4.0, 4.0, 2.0);
+	const math::Vector4D expectedRejection(-6.2, -13.4, 2.6, 27.8);
+
+	// When projected onto another
+	const math::Vector4D actualRejection = vec.reject(onto);
+
+	// Then, the resultant vector is type promoted
+	static_assert(std::is_same_v<typename decltype(actualRejection)::value_type, double>);
+	// and is the rejection
+	EXPECT_VEC_EQ(expectedRejection, actualRejection);
+}

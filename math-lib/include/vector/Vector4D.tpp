@@ -252,9 +252,11 @@ namespace math
 	template <Arithmetic U>
 	auto Vector4D<T>::project(const Vector4D<U>& onto, bool ontoNormalized) const -> Vector4D<std::common_type_t<T, U>>
 	{
+		using R = std::common_type_t<T, U>;
 		if (ontoNormalized)
 			return this->dot(onto) * onto; // a.dot(b) * b
-		return this->dot(onto) / onto.dot(onto) * onto; // a.dot(b) / b.dot(b) * b
+		// Static cast is need to ensure that integral type dots don't lose much precision
+		return this->dot(onto) / static_cast<Magnitude<R>>(onto.dot(onto)) * onto; // a.dot(b) / b.dot(b) * b
 	}
 
 	template <Arithmetic T>
@@ -273,15 +275,16 @@ namespace math
 	 *************************************/
 
 	template <Arithmetic T>
-	template <Arithmetic S>
-	Vector4D<T> Vector4D<T>::reject(const Vector4D<S>& onto, bool ontoNormalized) const
+	template <Arithmetic U>
+	auto Vector4D<T>::reject(const Vector4D<U>& onto, bool ontoNormalized) const -> Vector4D<std::common_type_t<T, U>>
 	{
 		return *this - this->project(onto, ontoNormalized);
 	}
 
 	template <Arithmetic T>
-	template <Arithmetic S>
-	Vector4D<T> Vector4D<T>::reject(const Vector4D& vector, const Vector4D<S>& onto, bool ontoNormalized)
+	template <Arithmetic U>
+	auto Vector4D<T>::reject(const Vector4D& vector, const Vector4D<U>& onto,
+							 bool ontoNormalized) -> Vector4D<std::common_type_t<T, U>>
 	{
 		return vector.reject(onto, ontoNormalized);
 	}
