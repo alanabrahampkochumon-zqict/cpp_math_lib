@@ -137,7 +137,7 @@ namespace math
          * @return Projected vector.
          */
         template<Arithmetic U>
-        Vector4D<T> project(const Vector4D<U>& onto, bool ontoNormalized = false) const;
+        auto project(const Vector4D<U>& onto, bool ontoNormalized = false) const -> Vector4D<std::common_type_t<T, U>>;
 
         /**
 		 * Static wrapper for vector projection.
@@ -148,7 +148,7 @@ namespace math
 		 * @return Projected vector.
 		 */
         template<Arithmetic U>
-        static Vector4D project(const Vector4D& vector, const Vector4D<U>& onto, bool ontoNormalized = false);
+        static auto project(const Vector4D& vector, const Vector4D<U>& onto, bool ontoNormalized = false) -> Vector4D<std::common_type_t<T, U>>;
 
     	
     	/*************************************

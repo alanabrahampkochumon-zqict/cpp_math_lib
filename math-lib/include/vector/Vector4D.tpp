@@ -98,7 +98,7 @@ namespace math
 	auto Vector4D<T>::operator*(S scalar) const -> Vector4D<std::common_type_t<T, S>>
 	{
 		using R = std::common_type_t<T, S>;
-		return Vector4D<R>(x * scalar,	y * scalar,	z * scalar,	w * scalar);
+		return Vector4D<R>(x * scalar, y * scalar, z * scalar, w * scalar);
 	}
 
 	template<Arithmetic T, Arithmetic S>
@@ -241,6 +241,7 @@ namespace math
 		return vec.normalize();
 	}
 
+
 	/*************************************
 	 *                                   *
 	 *        VECTOR PROJECTION          *
@@ -248,24 +249,18 @@ namespace math
 	 *************************************/
 
 	template <Arithmetic T>
-	template <Arithmetic S>
-	Vector4D<T> Vector4D<T>::project(const Vector4D<S>& onto, bool ontoNormalized) const
+	template <Arithmetic U>
+	auto Vector4D<T>::project(const Vector4D<U>& onto, bool ontoNormalized) const -> Vector4D<std::common_type_t<T, U>>
 	{
 		if (ontoNormalized)
-		{
-			// a.dot(b) * b
-			return this->dot(onto) * onto;
-		}
-		else
-		{
-			// a.dot(b) / b.dot(b) * b
-			return this->dot(onto) / onto.dot(onto) * onto;
-		}
+			return this->dot(onto) * onto; // a.dot(b) * b
+		return this->dot(onto) / onto.dot(onto) * onto; // a.dot(b) / b.dot(b) * b
 	}
 
 	template <Arithmetic T>
-	template <Arithmetic S>
-	Vector4D<T> Vector4D<T>::project(const Vector4D& vector, const Vector4D<S>& onto, bool ontoNormalized)
+	template <Arithmetic U>
+	auto Vector4D<T>::project(const Vector4D& vector, const Vector4D<U>& onto,
+							  bool ontoNormalized) -> Vector4D<std::common_type_t<T, U>>
 	{
 		return vector.project(onto, ontoNormalized);
 	}

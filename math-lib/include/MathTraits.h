@@ -37,6 +37,6 @@ namespace math {
 	using Magnitude = std::conditional_t<std::is_same_v<T, float>, float, double>;
 
 	// Custom Epsilon
-	inline constexpr float FLOAT_EPSILON = 1e-5;
+	inline constexpr double FLOAT_EPSILON = 1e-5;
 	inline constexpr double DOUBLE_EPSILON = 1e-11;
 }

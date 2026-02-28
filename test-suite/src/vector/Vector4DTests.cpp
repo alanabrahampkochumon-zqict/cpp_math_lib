@@ -214,6 +214,49 @@ protected:
 TYPED_TEST_SUITE(Vector4DZeroNormalization, SupportedTypes);
 
 
+/*************************************
+ *                                   *
+ *  PROJECTIONS AND REJECTION SETUP  *
+ *                                   *
+ *************************************/
+template <typename T>
+class Vector4DProjection: public ::testing::Test
+{
+protected:
+	math::Vector4D<T> vec;
+	math::Vector4D<T> perpendicularVec;
+	math::Vector4D<T> onto;
+	math::Vector4D<T> expectedProjection;
+
+	void SetUp() override
+	{
+		vec = {T(5), T(6), T(7), T(8)};
+		perpendicularVec = {T(10), T(0), T(14), T(16)};
+		onto = {T(0), T(2), T(0), T(0)};
+		expectedProjection = {T(0), T(6), T(0), T(0)};
+	}
+};
+TYPED_TEST_SUITE(Vector4DProjection, SupportedTypes);
+
+template <typename T>
+class Vector4DRejection : public ::testing::Test
+{
+protected:
+	math::Vector4D<T> vec;
+	math::Vector4D<T> onto;
+	math::Vector4D<T> expectedRejection;
+
+	void SetUp() override
+	{
+		vec = { T(5), T(6), T(7), T(8) };
+		onto = { T(0), T(2), T(0), T(0) };
+		expectedRejection = { T(5), T(0), T(7), T(8) };
+	}
+};
+TYPED_TEST_SUITE(Vector4DProjection, SupportedTypes);
+
+
+
 /***********************************************
  *                                             *
  *  INITIALIZATION, ACCESS AND MUTATION TESTS  *
@@ -748,7 +791,6 @@ TEST(Vector4DScalarDivision, MixedTypeScalarDivisionAssignmentGivesResultWithMin
  *                     *
  ***********************/
 
-// TODO: Replace
 TYPED_TEST(Vector4DDotProduct, VectorWhenDotWithItselfSquareMagnitude)
 {
 	// Given an arbitrary vector
@@ -805,9 +847,9 @@ TYPED_TEST(Vector4DDotProduct, StaticWrapper_VectorDotWithNonParallelVectorIsNon
 	const TypeParam result = math::Vector4D<TypeParam>::dot(this->vecA, this->vecB);
 
 	// Then, the dot product is non-zero
-	if (std::is_same_v<TypeParam, double>)
+	if constexpr (std::is_same_v<TypeParam, double>)
 		EXPECT_DOUBLE_EQ(this->expected, result);
-	else if (std::is_floating_point_v<TypeParam>)
+	else if constexpr (std::is_floating_point_v<TypeParam>)
 		EXPECT_FLOAT_EQ(this->expected, result);
 	else
 		EXPECT_EQ(this->expected, result);
@@ -841,6 +883,7 @@ TEST(Vector4DDotProduct, MixedTypeDotProductPromotesType)
 	// Then, the dot product is non-zero
 	EXPECT_DOUBLE_EQ(295.11111101, result);
 }
+
 
 /***************************************
  *                                     *
@@ -960,123 +1003,124 @@ TYPED_TEST(Vector4DNormalization, StaticWrapper_VectorWhenNormalizedReturnsANorm
  *                                  *
  ************************************/
 
-TEST(Vector4D, ParallelVectorsWhenProjectedReturnsNonZeroVector)
+TYPED_TEST(Vector4DProjection, OrthogonalVectorsWhenProjectedReturnsNonZeroVector)
 {
-	// Arrange
-	const math::Vector4D a(1.0f, 2.0f, 3.0f, 5.0f);
-	const math::Vector4D b(2.0f, 4.0f, 6.0f, 10.0f);
-	const math::Vector4D expectedProjection(1.0f, 2.0f, 3.0f, 5.0f);
+	// Given two orthogonal vectors
 
-	// Act
-	const math::Vector4D<float> actualProjection = a.project(b);
+	// When projected onto another
+	const math::Vector4D actualProjection = this->perpendicularVec.project(this->onto);
 
-	// Assert
-	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Then, the resultant is a zero vector
+	EXPECT_VEC_ZERO(actualProjection);
 }
 
-TEST(Vector4D, VectorWhenProjectedOntoXAxisProducesVectorWithOnlyXComponent)
+TEST(Vector4DProjection, VectorProjectedOntoXAxisProducesVectorWithOnlyXComponent)
 {
-	// Arrange
+	// Given an arbitrary vector
 	const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.f);
-	const math::Vector4D b(1.0f, 0.0f, 0.0f, 0.0f);
+	const math::Vector4D xAxis(1.0f, 0.0f, 0.0f, 0.0f);
 	const math::Vector4D expectedProjection(10.0f, 0.0f, 0.0f, 0.0f);
 
-	// Act
-	const math::Vector4D<float> actualProjection = a.project(b);
+	// When projected onto x-axis
+	const math::Vector4D actualProjection = a.project(xAxis);
 
-	// Assert
-	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Then, the resultant vector only has x-component as non-zero
+	EXPECT_VEC_EQ(expectedProjection, actualProjection);
 }
 
-TEST(Vector4D, VectorWhenProjectedOntoWAxisProducesVectorWithOnlyWComponent)
+TEST(Vector4DProjection, VectorProjectedOntoYAxisProducesVectorWithOnlyYComponent)
 {
-	// Arrange
+	// Given an arbitrary vector
 	const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.f);
-	const math::Vector4D b(0.0f, 0.0f, 0.0f, 1.0f);
+	const math::Vector4D yAxis(0.0f, 1.0f, 0.0f, 0.0f);
+	const math::Vector4D expectedProjection(0.0f, 20.0f, 0.0f, 0.0f);
+
+	// When projected onto y-axis
+	const math::Vector4D actualProjection = a.project(yAxis);
+
+	// Then, the resultant vector only has y-component as non-zero
+	EXPECT_VEC_EQ(expectedProjection, actualProjection);
+}
+
+TEST(Vector4DProjection, VectorProjectedOntoZAxisProducesVectorWithOnlyZComponent)
+{
+	// Given an arbitrary vector
+	const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.f);
+	const math::Vector4D zAxis(0.0f, 0.0f, 1.0f, 0.0f);
+	const math::Vector4D expectedProjection(0.0f, 0.0f, 30.0f, 0.0f);
+
+	// When projected onto z-axis
+	const math::Vector4D actualProjection = a.project(zAxis);
+
+	// Then, the resultant vector only has z-component as non-zero
+	EXPECT_VEC_EQ(expectedProjection, actualProjection);
+}
+
+TEST(Vector4DProjection, VectorProjectedOntoWAxisProducesVectorWithOnlyWComponent)
+{
+	// Given an arbitrary vector
+	const math::Vector4D a(10.0f, 20.0f, 30.0f, 40.f);
+	const math::Vector4D wAxis(0.0f, 0.0f, 0.0f, 1.0f);
 	const math::Vector4D expectedProjection(0.0f, 0.0f, 0.0f, 40.0f);
 
-	// Act
-	const math::Vector4D<float> actualProjection = a.project(b);
+	// When projected onto w-axis
+	const math::Vector4D actualProjection = a.project(wAxis);
 
-	// Assert
-	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Then, the resultant vector only has w-component as non-zero
+	EXPECT_VEC_EQ(expectedProjection, actualProjection);
 }
 
-TEST(Vector4D, VectorsWhenProjectedReturnsNonZeroVector)
+TYPED_TEST(Vector4DProjection, VectorsWhenProjectedReturnsNonZeroVector)
 {
-	// Arrange
-	const math::Vector4D a(1.0f, 2.0f, 0.0f, 1.0f);
-	const math::Vector4D b(2.0f, 0.0f, 1.0f, 1.0f);
-	const math::Vector4D expectedProjection(1.0f, 0.0f, 0.5f, 0.5f);
+	// Given an arbitrary vector
 
-	// Act
-	const math::Vector4D<float> actualProjection = a.project(b);
+	// When projected onto another vector
+	const math::Vector4D actualProjection = this->vec.project(this->onto);
 
-	// Assert
-	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Then, the resultant vector has components that is parallel to the projected vector
+	EXPECT_VEC_EQ(this->expectedProjection, actualProjection);
 }
 
-TEST(Vector4D, VectorsWhenProjectedOntoNormalizedVectorReturnsNonZeroVector)
+TYPED_TEST(Vector4DProjection, StaticWrapper_VectorsWhenProjectedReturnsNonZeroVector)
 {
-	// Arrange
+	// Given an arbitrary vector
+
+	// When projected onto another vector
+	const math::Vector4D actualProjection = math::Vector4D<TypeParam>::project(this->vec, this->onto);
+
+	// Then, the resultant vector has components that is parallel to the projected vector
+	EXPECT_VEC_EQ(this->expectedProjection, actualProjection);
+}
+
+TEST(Vector4DProjection, VectorsProjectedOntoNormalizedVectorReturnsNonZeroVector)
+{
+	// Given an arbitrary vector and a normalized vector
 	const math::Vector4D a(1.0f, 2.0f, 3.0f, 4.0f);
 	const math::Vector4D b(1.0f, 0.0f, 0.0f, 0.0f);
 	const math::Vector4D expectedProjection(1.0f, 0.0f, 0.0f, 0.0f);
 
-	// Act
-	const math::Vector4D<float> actualProjection = a.project(b, true);
+	// When the vector is projected onto the normalized vector
+	const math::Vector4D actualProjection = a.project(b, true);
 
-	// Assert
+	// Then, the resultant vector has components that is parallel to the projected vector
 	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
 	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
 	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
 	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
 }
 
-TEST(Vector4D, VectorsWhenProjectedOntoNegativeVectorReturnsNonZeroVectorInSameDirection)
+TEST(Vector4DProjection, VectorsProjectedOntoNegativeVectorReturnsNonZeroVectorInSameDirection)
 {
-	// Arrange
+	// Given an arbitrary vector and a vector in the opposite Direction
 	const math::Vector4D a(4.0f, 4.0f, 4.0f, 4.0f);
-	const math::Vector4D b(0.0f, 0.0f, -1.0f, 0.0f);
+	const math::Vector4D negativeZAxis(0.0f, 0.0f, -1.0f, 0.0f);
 	const math::Vector4D expectedProjection(0.0f, 0.0f, 4.0f, 0.0f);
 
-	// Act
-	const math::Vector4D<float> actualProjection = a.project(b);
+	// When projected
+	const math::Vector4D<float> actualProjection = a.project(negativeZAxis);
 
-	// Assert
-	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
-}
-
-TEST(Vector4D, VectorsWhenProjectedUsingStaticWrapperReturnsNonZeroVector)
-{
-	// Arrange
-	const math::Vector4D a(1.0f, 2.0f, 0.0f, 1.0f);
-	const math::Vector4D b(2.0f, 0.0f, 1.0f, 1.0f);
-	const math::Vector4D expectedProjection(1.0f, 0.0f, 0.5f, 0.5f);
-
-	// Act
-	const math::Vector4D<float> actualProjection = math::Vector4D<float>::project(a, b);
-
-	// Assert
-	EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
-	EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
-	EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
-	EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+	// Then, the resultant vector is non-zero and in the same direction
+	EXPECT_VEC_EQ(expectedProjection, actualProjection);
 }
 
 
