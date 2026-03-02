@@ -17,7 +17,8 @@ using namespace TestUtils;
  // Turn off SIMD
 #define FORCE_NO_SIMD // TODO: Update
 
-using SupportedTypes = ::testing::Types<unsigned char, int, unsigned int, float, double, std::size_t, long long>;
+using SupportedTypes = ::testing::Types<unsigned char, bool, int, unsigned int, float, double, std::size_t, long long>;
+using SupportedArithmeticTypes = ::testing::Types<unsigned char, int, unsigned int, float, double, std::size_t, long long>;
 
 
 /**************************
@@ -52,7 +53,7 @@ protected:
 		expected = { T(-5) , T(6), T(4), T(7) };
 	}
 };
-TYPED_TEST_SUITE(Vector4DAddition, SupportedTypes);
+TYPED_TEST_SUITE(Vector4DAddition, SupportedArithmeticTypes);
 
 
 template <typename T>
@@ -70,7 +71,7 @@ protected:
 		expected = { T(103) , T(6), T(-4), T(7) };
 	}
 };
-TYPED_TEST_SUITE(Vector4DSubtraction, SupportedTypes);
+TYPED_TEST_SUITE(Vector4DSubtraction, SupportedArithmeticTypes);
 
 
 template <typename T>
@@ -90,7 +91,7 @@ protected:
 		expectedIntegral = { T(14), T(26), T(58), T(82) };
 	}
 };
-TYPED_TEST_SUITE(Vector4DScalarMultiplication, SupportedTypes);
+TYPED_TEST_SUITE(Vector4DScalarMultiplication, SupportedArithmeticTypes);
 
 
 template<typename T>
@@ -109,7 +110,7 @@ protected:
 	}
 
 };
-TYPED_TEST_SUITE(Vector4DScalarDivision, SupportedTypes);
+TYPED_TEST_SUITE(Vector4DScalarDivision, SupportedArithmeticTypes);
 
 
 /***********************
@@ -142,7 +143,7 @@ protected:
 		aDotA = static_cast<T>(54);
 	}
 };
-TYPED_TEST_SUITE(Vector4DDotProduct, SupportedTypes);
+TYPED_TEST_SUITE(Vector4DDotProduct, SupportedArithmeticTypes);
 
 
 /***************************************
@@ -164,7 +165,7 @@ protected:
 		magnitude = math::Magnitude<T>(5);
 	}
 };
-TYPED_TEST_SUITE(Vector4DMagnitude, SupportedTypes);
+TYPED_TEST_SUITE(Vector4DMagnitude, SupportedArithmeticTypes);
 
 
 template <typename T>
@@ -180,7 +181,7 @@ protected:
 		magnitude = math::Magnitude<T>(5.477225575051661);
 	}
 };
-TYPED_TEST_SUITE(Vector4DUncleanMagnitude, SupportedTypes);
+TYPED_TEST_SUITE(Vector4DUncleanMagnitude, SupportedArithmeticTypes);
 
 
 template <typename T>
@@ -197,7 +198,7 @@ protected:
 		expectedVector = { static_cast<R>(0.13650905255670645), static_cast<R>(0.2632674585022196), static_cast<R>(0.8093036687290455), static_cast<R>(0.5070336237820525) };
 	}
 };
-TYPED_TEST_SUITE(Vector4DNormalization, SupportedTypes);
+TYPED_TEST_SUITE(Vector4DNormalization, SupportedArithmeticTypes);
 
 
 template <typename T>
@@ -211,7 +212,7 @@ protected:
 		vec = { T(0), T(0), T(0), T(0) };
 	}
 };
-TYPED_TEST_SUITE(Vector4DZeroNormalization, SupportedTypes);
+TYPED_TEST_SUITE(Vector4DZeroNormalization, SupportedArithmeticTypes);
 
 
 /*************************************
@@ -236,7 +237,7 @@ protected:
 		expectedProjection = { T(0), T(6), T(0), T(0) };
 	}
 };
-TYPED_TEST_SUITE(Vector4DProjection, SupportedTypes);
+TYPED_TEST_SUITE(Vector4DProjection, SupportedArithmeticTypes);
 
 template <typename T>
 class Vector4DRejection : public ::testing::Test
@@ -255,7 +256,7 @@ protected:
 		expectedRejection = { T(5), T(0), T(7), T(8) };
 	}
 };
-TYPED_TEST_SUITE(Vector4DRejection, SupportedTypes);
+TYPED_TEST_SUITE(Vector4DRejection, SupportedArithmeticTypes);
 
 
 
@@ -437,14 +438,14 @@ TEST(Vector4DAccess, AccessibleAsArray)
 	EXPECT_FLOAT_EQ(2.0f, vec.elements[3]);
 }
 
-//TEST(Vector4DHelper, bVec4Return4DBoolVector)
-//{
-//	// Given a vector is accessed as bVec4
-//	constexpr bool isCorrectType = std::is_same_v<math::bVec4::value_type, bool>;
-//
-//	// Then, it's value_type is bool
-//	EXPECT_TRUE(isCorrectType);
-//}
+TEST(Vector4DHelper, bVec4Return4DBoolVector)
+{
+	// Given a vector is accessed as bVec4
+	constexpr bool isCorrectType = std::is_same_v<math::bVec4::value_type, bool>;
+
+	// Then, it's value_type is bool
+	EXPECT_TRUE(isCorrectType);
+}
 
 TEST(Vector4DHelper, iVec4Return4DIntVector)
 {

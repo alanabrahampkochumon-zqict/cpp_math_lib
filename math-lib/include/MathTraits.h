@@ -7,12 +7,17 @@
 namespace math {
 
 	template<typename T>
-	concept Arithmetic = (std::integral<T> || std::floating_point<T>) && !std::is_same_v<T, bool>;
+	concept Arithmetic = (std::integral<T> || std::floating_point<T>);
+
+	// A stricter concept that doesn't allow bool as datatype
+	// Use for operations like +, -, *, / etc.. which are not defined for bool.
+	template<typename T>
+	concept StrictArithmetic = Arithmetic<T> && !std::is_same_v<T, bool>;
 
 	template<typename T>
 	concept weak_arithmetic = std::is_arithmetic_v<std::decay_t<T>>;
 
-	// Vector requires a value_type, dimension, [] accessor, and its value_type needs to be of Arithmetic.
+	// Vector requires a value_type, dimension, [] accessor, and its value_type needs to be of StrictArithmetic.
 	template <typename T>
 	concept IsVector = requires(T v, std::size_t i) {
 		typename T::value_type;
@@ -20,7 +25,7 @@ namespace math {
 		{ v[i] } -> std::convertible_to<typename T::value_type>;
 	}&& Arithmetic<typename T::value_type>;
 
-	// Matrix requires a value_type, rows, columns, [] accessor, (r, c) accessor, and its value_type needs to be Arithmetic.
+	// Matrix requires a value_type, rows, columns, [] accessor, (r, c) accessor, and its value_type needs to be StrictArithmetic.
 	template <typename T>
 	concept Matrix = requires(T matrix, std::size_t r, std::size_t c)
 	{

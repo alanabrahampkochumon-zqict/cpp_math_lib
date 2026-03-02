@@ -54,16 +54,16 @@ namespace math
 	 *************************************/
 
 	template <Arithmetic T>
-	template <Arithmetic U>
-	auto Vector4D<T>::operator+(const Vector4D<U>& other) const -> Vector4D<std::common_type_t<T, U>>
+	template <StrictArithmetic U>
+	auto Vector4D<T>::operator+(const Vector4D<U>& other) const -> Vector4D<std::common_type_t<T, U>> requires StrictArithmetic<T>
 	{
 		using R = std::common_type_t<T, U>;
 		return Vector4D<R>(x + other.x, y + other.y, z + other.z, w + other.w);
 	}
 
 	template <Arithmetic T>
-	template <Arithmetic U>
-	Vector4D<T>& Vector4D<T>::operator+=(const Vector4D<U>& other)
+	template <StrictArithmetic U>
+	Vector4D<T>& Vector4D<T>::operator+=(const Vector4D<U>& other) requires StrictArithmetic<T>
 	{
 		x += static_cast<T>(other.x);
 		y += static_cast<T>(other.y);
@@ -74,16 +74,16 @@ namespace math
 
 
 	template <Arithmetic T>
-	template <Arithmetic U>
-	auto Vector4D<T>::operator-(const Vector4D<U>& other) const -> Vector4D<std::common_type_t<T, U>>
+	template <StrictArithmetic U>
+	auto Vector4D<T>::operator-(const Vector4D<U>& other) const -> Vector4D<std::common_type_t<T, U>> requires StrictArithmetic<T>
 	{
 		using R = std::common_type_t<T, U>;
 		return Vector4D<R>(x - other.x, y - other.y, z - other.z, w - other.w);
 	}
 
 	template <Arithmetic T>
-	template <Arithmetic U>
-	Vector4D<T>& Vector4D<T>::operator-=(const Vector4D<U>& other)
+	template <StrictArithmetic U>
+	Vector4D<T>& Vector4D<T>::operator-=(const Vector4D<U>& other) requires StrictArithmetic<T>
 	{
 		x -= static_cast<T>(other.x);
 		y -= static_cast<T>(other.y);
@@ -94,22 +94,22 @@ namespace math
 
 
 	template <Arithmetic T>
-	template <Arithmetic S>
-	auto Vector4D<T>::operator*(S scalar) const -> Vector4D<std::common_type_t<T, S>>
+	template <StrictArithmetic S>
+	auto Vector4D<T>::operator*(S scalar) const -> Vector4D<std::common_type_t<T, S>> requires StrictArithmetic<T>
 	{
 		using R = std::common_type_t<T, S>;
 		return Vector4D<R>(x * scalar, y * scalar, z * scalar, w * scalar);
 	}
 
-	template<Arithmetic T, Arithmetic S>
-	auto operator*(S scalar, const Vector4D<T>& vector) -> Vector4D<std::common_type_t<T, S>>
+	template<StrictArithmetic T, StrictArithmetic S>
+	auto operator*(S scalar, const Vector4D<T>& vector) -> Vector4D<std::common_type_t<T, S>> requires StrictArithmetic<T>
 	{
 		return vector * scalar;
 	}
 
 	template <Arithmetic T>
-	template <Arithmetic S>
-	Vector4D<T>& Vector4D<T>::operator*=(S scalar)
+	template <StrictArithmetic S>
+	Vector4D<T>& Vector4D<T>::operator*=(S scalar) requires StrictArithmetic<T>
 	{
 
 		x = static_cast<T>(scalar * x);
@@ -120,8 +120,8 @@ namespace math
 	}
 
 	template <Arithmetic T>
-	template <Arithmetic S>
-	auto Vector4D<T>::operator/(S scalar) const -> Vector4D<std::common_type_t<T, S>>
+	template <StrictArithmetic S>
+	auto Vector4D<T>::operator/(S scalar) const -> Vector4D<std::common_type_t<T, S>> requires StrictArithmetic<T>
 	{
 		using R = std::common_type_t<T, S>;
 		if constexpr (std::is_floating_point_v<R>)
@@ -143,8 +143,8 @@ namespace math
 	}
 
 	template <Arithmetic T>
-	template <Arithmetic S>
-	Vector4D<T>& Vector4D<T>::operator/=(S scalar)
+	template <StrictArithmetic S>
+	Vector4D<T>& Vector4D<T>::operator/=(S scalar) requires StrictArithmetic<T>
 	{
 		using R = std::common_type_t<T, S>;
 		if constexpr (std::is_floating_point_v<R>)
@@ -175,15 +175,15 @@ namespace math
 	 *************************************/
 
 	template<Arithmetic T>
-	template<Arithmetic U>
-	auto Vector4D<T>::dot(const Vector4D<U>& other) const -> std::common_type_t<T, U>
+	template<StrictArithmetic U>
+	auto Vector4D<T>::dot(const Vector4D<U>& other) const -> std::common_type_t<T, U> requires StrictArithmetic<T>
 	{
 		return x * other.x + y * other.y + z * other.z + w * other.w;
 	}
 
 	template <Arithmetic T>
-	template<Arithmetic U>
-	auto Vector4D<T>::dot(const Vector4D& vecA, const Vector4D<U>& vecB) ->std::common_type_t<T, U>
+	template<StrictArithmetic U>
+	auto Vector4D<T>::dot(const Vector4D& vecA, const Vector4D<U>& vecB) ->std::common_type_t<T, U> requires StrictArithmetic<T>
 	{
 		return vecA.dot(vecB);
 	}
@@ -195,7 +195,7 @@ namespace math
 	 *************************************/
 
 	template <Arithmetic T>
-	Magnitude<T> Vector4D<T>::mag() const
+	Magnitude<T> Vector4D<T>::mag() const requires StrictArithmetic<T>
 	{
 		using M = Magnitude<T>;
 
@@ -208,7 +208,7 @@ namespace math
 	}
 
 	template <Arithmetic T>
-	Magnitude<T> Vector4D<T>::mag(const Vector4D& vec)
+	Magnitude<T> Vector4D<T>::mag(const Vector4D& vec) requires StrictArithmetic<T>
 	{
 		return vec.mag();
 	}
@@ -221,7 +221,7 @@ namespace math
 	 *************************************/
 
 	template <Arithmetic T>
-	Vector4D<Magnitude<T>> Vector4D<T>::normalize() const
+	Vector4D<Magnitude<T>> Vector4D<T>::normalize() const requires StrictArithmetic<T>
 	{
 		using R = Magnitude<T>;
 		R magnitude = mag();
@@ -236,7 +236,7 @@ namespace math
 	}
 
 	template <Arithmetic T>
-	Vector4D<Magnitude<T>> Vector4D<T>::normalize(const Vector4D& vec)
+	Vector4D<Magnitude<T>> Vector4D<T>::normalize(const Vector4D& vec) requires StrictArithmetic<T>
 	{
 		return vec.normalize();
 	}
@@ -249,8 +249,8 @@ namespace math
 	 *************************************/
 
 	template <Arithmetic T>
-	template <Arithmetic U>
-	auto Vector4D<T>::project(const Vector4D<U>& onto, bool ontoNormalized) const -> Vector4D<std::common_type_t<T, U>>
+	template <StrictArithmetic U>
+	auto Vector4D<T>::project(const Vector4D<U>& onto, bool ontoNormalized) const -> Vector4D<std::common_type_t<T, U>> requires StrictArithmetic<T>
 	{
 		using R = std::common_type_t<T, U>;
 		if (ontoNormalized)
@@ -260,9 +260,9 @@ namespace math
 	}
 
 	template <Arithmetic T>
-	template <Arithmetic U>
+	template <StrictArithmetic U>
 	auto Vector4D<T>::project(const Vector4D& vector, const Vector4D<U>& onto,
-							  bool ontoNormalized) -> Vector4D<std::common_type_t<T, U>>
+							  bool ontoNormalized) -> Vector4D<std::common_type_t<T, U>> requires StrictArithmetic<T>
 	{
 		return vector.project(onto, ontoNormalized);
 	}
@@ -275,16 +275,16 @@ namespace math
 	 *************************************/
 
 	template <Arithmetic T>
-	template <Arithmetic U>
-	auto Vector4D<T>::reject(const Vector4D<U>& onto, bool ontoNormalized) const -> Vector4D<std::common_type_t<T, U>>
+	template <StrictArithmetic U>
+	auto Vector4D<T>::reject(const Vector4D<U>& onto, bool ontoNormalized) const -> Vector4D<std::common_type_t<T, U>> requires StrictArithmetic<T>
 	{
 		return *this - this->project(onto, ontoNormalized);
 	}
 
 	template <Arithmetic T>
-	template <Arithmetic U>
+	template <StrictArithmetic U>
 	auto Vector4D<T>::reject(const Vector4D& vector, const Vector4D<U>& onto,
-							 bool ontoNormalized) -> Vector4D<std::common_type_t<T, U>>
+							 bool ontoNormalized) -> Vector4D<std::common_type_t<T, U>> requires StrictArithmetic<T>
 	{
 		return vector.reject(onto, ontoNormalized);
 	}

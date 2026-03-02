@@ -8,7 +8,7 @@ namespace math
 	*                                   *
 	*************************************/
 
-	template <Arithmetic T>
+	template <StrictArithmetic T>
 	Matrix4D<T>::Matrix4D()
 	{
 		// First Column
@@ -36,7 +36,7 @@ namespace math
 		elements[3][3] = 1;
 	}
 
-	template <Arithmetic T>
+	template <StrictArithmetic T>
 	Matrix4D<T>::Matrix4D(
 		T v_0_0, T v_0_1, T v_0_2, T v_0_3,
 		T v_1_0, T v_1_1, T v_1_2, T v_1_3,
@@ -68,7 +68,7 @@ namespace math
 		elements[3][3] = v_3_3;
 	}
 
-	template <Arithmetic T>
+	template <StrictArithmetic T>
 	Matrix4D<T>::Matrix4D(Vector4D<T> col0, Vector4D<T> col1, Vector4D<T> col2, Vector4D<T> col3)
 	{
 		col_vectors[0] = col0;
@@ -77,8 +77,8 @@ namespace math
 		col_vectors[3] = col3;
 	}
 
-	template <Arithmetic T>
-	template <Arithmetic U>
+	template <StrictArithmetic T>
+	template <StrictArithmetic U>
 	Matrix4D<T>::Matrix4D(const Matrix4D<U>& other)
 	{
 		col_vectors[0] = Vector4D<T>(other.col_vectors[0]);
@@ -94,25 +94,25 @@ namespace math
 	 *                                   *
 	 *************************************/
 
-	template <Arithmetic T>
+	template <StrictArithmetic T>
 	Vector4D<T>& Matrix4D<T>::operator[](std::size_t index)
 	{
 		return col_vectors[index];
 	}
 
-	template <Arithmetic T>
+	template <StrictArithmetic T>
 	const Vector4D<T>& Matrix4D<T>::operator[](std::size_t index) const
 	{
 		return col_vectors[index];
 	}
 
-	template <Arithmetic T>
+	template <StrictArithmetic T>
 	T& Matrix4D<T>::operator()(std::size_t row, std::size_t col)
 	{
 		return elements[col][row];
 	}
 
-	template <Arithmetic T>
+	template <StrictArithmetic T>
 	const T& Matrix4D<T>::operator()(std::size_t row, std::size_t col) const
 	{
 		return elements[col][row];
@@ -125,8 +125,8 @@ namespace math
 	 *                                   *
 	 *************************************/
 
-	template<Arithmetic T>
-	template<Arithmetic U>
+	template<StrictArithmetic T>
+	template<StrictArithmetic U>
 	auto Matrix4D<T>::operator+(const Matrix4D<U>& other) const->Matrix4D<std::common_type_t<T, U>>
 	{
 		using R = std::common_type_t<T, U>;
@@ -138,8 +138,8 @@ namespace math
 		);
 	}
 
-	template <Arithmetic T>
-	template <Arithmetic U>
+	template <StrictArithmetic T>
+	template <StrictArithmetic U>
 	Matrix4D<T>& Matrix4D<T>::operator+=(const Matrix4D<U>& other)
 	{
 		col_vectors[0] += other.col_vectors[0];

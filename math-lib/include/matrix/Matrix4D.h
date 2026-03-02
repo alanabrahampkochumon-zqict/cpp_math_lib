@@ -7,7 +7,7 @@
 
 namespace math
 {
-	template <Arithmetic T>
+	template <StrictArithmetic T>
 	struct alignas(16) Matrix4D
 	{
 		using value_type = T;
@@ -40,7 +40,7 @@ namespace math
 			Vector4D<T> col0, Vector4D<T> col1, Vector4D<T> col2, Vector4D<T> col3
 		);
 
-		template<Arithmetic U>
+		template<StrictArithmetic U>
 		Matrix4D(const Matrix4D<U>& other);
 
 
@@ -62,10 +62,10 @@ namespace math
 		 *      ARITHMETIC OPERATORS         *
 		 *                                   *
 		 *************************************/
-		template<Arithmetic U>
+		template<StrictArithmetic U>
 		auto operator+(const Matrix4D<U>& other) const -> Matrix4D<std::common_type_t<T, U>>;
 
-		template<Arithmetic U>
+		template<StrictArithmetic U>
 		Matrix4D& operator+=(const Matrix4D<U>& other);
 	};
 	
