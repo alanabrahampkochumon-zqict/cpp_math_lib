@@ -71,12 +71,13 @@ namespace falcon::simd
 			using reg = __m512i;
 		#elif defined(FALCON_AVX2_SUPPORTED) || defined(FALCON_AVX_SUPPORTED)
 			using reg = __m256i;
-		elif defined(FALCON_SSE_SUPPORTED)
+		#elif defined(FALCON_SSE_SUPPORTED)
 			using reg = __m128i;
-		else
-			using reg = {};
+		#else
+			using reg = void;
 		#endif
 	};
+
 
 
 }

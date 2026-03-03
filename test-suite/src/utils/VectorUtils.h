@@ -33,7 +33,7 @@ namespace TestUtils
 		}
 	}
 
-	template<math::StrictArithmetic T>
+	template<math::Arithmetic T>
 	void EXPECT_VEQ_CONTAINS(const math::Vector2D<T>& vector, T x, T y)
 	{
 		if constexpr (std::is_same_v<T, float>)
@@ -53,7 +53,7 @@ namespace TestUtils
 		}
 	}
 
-	template<math::StrictArithmetic T>
+	template<math::Arithmetic T>
 	void EXPECT_VEQ_CONTAINS(const math::Vector3D<T>& vector, T x, T y, T z)
 	{
 		if constexpr (std::is_same_v<T, float>)
@@ -76,7 +76,7 @@ namespace TestUtils
 		}
 	}
 
-	template<math::StrictArithmetic T>
+	template<math::Arithmetic T>
 	void EXPECT_VEQ_CONTAINS(const math::Vector4D<T>& vector, T x, T y, T z, T w)
 	{
 		if constexpr (std::is_same_v<T, float>)

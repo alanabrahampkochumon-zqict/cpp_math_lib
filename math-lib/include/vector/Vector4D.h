@@ -52,6 +52,16 @@ namespace math
 		T& operator[](std::size_t i);
 		const T& operator[](std::size_t i) const;
 
+		/***************************************
+		 *                                     *
+		 *            COMPARISONS              *
+		 *                                     *
+		 ***************************************/
+		template <Arithmetic U>
+		bool equals(const Vector4D<U>& other, double epsilon = std::is_same_v<U, double>? DOUBLE_EPSILON: FLOAT_EPSILON) const;
+
+		template <Arithmetic U>
+		static bool equals(const Vector4D& vecA, const Vector4D<U>& vecB, double epsilon = std::is_same_v<U, double> ? DOUBLE_EPSILON : FLOAT_EPSILON);
 
 		/*************************************
 		 *                                   *

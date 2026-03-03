@@ -46,6 +46,23 @@ namespace math
 		return (&x)[i];
 	}
 
+	template <Arithmetic T>
+	template <Arithmetic U>
+	bool Vector4D<T>::equals(const Vector4D<U>& other, double epsilon) const
+	{
+		if constexpr (std::is_integral_v<T> && std::is_integral_v<U>)
+			return x == other.x && y == other.y && z == other.z && w == other.w;
+		else
+			return std::abs(x - other.x) <= epsilon && std::abs(y - other.y) <= epsilon && std::abs(z - other.z) <= epsilon && std::abs(w - other.w) <= epsilon;
+	}
+
+	template <Arithmetic T>
+	template <Arithmetic U>
+	bool Vector4D<T>::equals(const Vector4D& vecA, const Vector4D<U>& vecB, double epsilon)
+	{
+		return vecA.equals(vecB);
+	}
+
 
 	/*************************************
 	 *                                   *

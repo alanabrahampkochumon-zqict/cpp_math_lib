@@ -4,6 +4,7 @@
 #include <vector/Vector4D.h>
 
 #include "../utils/VectorUtils.h"
+#include "matrix/Matrix4D.h"
 
 
 using namespace TestUtils;
@@ -30,6 +31,28 @@ using SupportedArithmeticTypes = ::testing::Types<unsigned char, int, unsigned i
 template<typename T>
 class VectorInitialization : public ::testing::Test { };
 TYPED_TEST_SUITE(VectorInitialization, SupportedTypes);
+
+/************************
+ *                      *
+ *  VECTOR COMPARISONS  *
+ *                      *
+ ************************/
+template <typename T>
+class VectorEquality: public ::testing::Test
+{
+protected:
+	math::Vector4D<T> eqVecA;
+	math::Vector4D<T> eqVecB;
+	math::Vector4D<T> uneqVec;
+
+	void SetUp() override
+	{
+		eqVecA = {T(1.1234568789), T(2.123458319), T(5.123412593891), T(123.123489172589)};
+		eqVecB = {T(1.1234568789), T(2.123458319), T(5.123412593891), T(123.123489172589)};
+		uneqVec = {T(7.1234568789), T(2.123458319), T(24.00), T(123.123489172589)};
+	}
+};
+TYPED_TEST_SUITE(VectorEquality, SupportedArithmeticTypes);
 
 
 /*********************************
@@ -501,6 +524,46 @@ TEST(Vector4DHelper, ulVec4Return4DFloatVector)
 	EXPECT_TRUE(isCorrectType);
 }
 
+/**********************
+ *                    *
+ *  COMPARISON TESTS  *
+ *                    *
+ **********************/
+TYPED_TEST(VectorEquality, SimilarVectorsAreEqual)
+{
+	// When two equal vectors are compared for equality
+	bool equality = this->eqVecA.equals(this->eqVecB);
+
+	// Then, they are equal
+	EXPECT_TRUE(equality);
+}
+
+TYPED_TEST(VectorEquality, DissimilarVectorsAreNoEqual)
+{
+	// When two equal vectors are compared for equality
+	bool equality = this->eqVecA.equals(this->uneqVec);
+
+	// Then, they are equal
+	EXPECT_FALSE(equality);
+}
+
+TYPED_TEST(VectorEquality, StaticWrapper_SimilarVectorsAreEqual)
+{
+	// When two equal vectors are compared for equality
+	bool equality = this->eqVecA.equals(this->eqVecB);
+
+	// Then, they are equal
+	EXPECT_TRUE(equality);
+}
+
+TYPED_TEST(VectorEquality, StaticWrapper_DissimilarVectorsAreNoEqual)
+{
+	// When two equal vectors are compared for equality
+	bool equality = math::Vector4D<TypeParam>::equals(this->eqVecA, this->uneqVec);
+
+	// Then, they are equal
+	EXPECT_FALSE(equality);
+}
 
 /*********************************
  *                               *
