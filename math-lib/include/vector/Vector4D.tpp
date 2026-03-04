@@ -60,7 +60,7 @@ namespace math
 	template <Arithmetic U>
 	bool Vector4D<T>::equals(const Vector4D& vecA, const Vector4D<U>& vecB, double epsilon)
 	{
-		return vecA.equals(vecB);
+		return vecA.equals(vecB, epsilon);
 	}
 
 	template <Arithmetic T>
@@ -75,6 +75,23 @@ namespace math
 	bool Vector4D<T>::operator!=(const Vector4D<U>& other) const
 	{
 		return !this->equals(other);
+	}
+
+	template <Arithmetic T>
+	template <StrictArithmetic U>
+	Vector4D<bool> Vector4D<T>::greaterThan(const Vector4D<U>& other) const requires StrictArithmetic<T>
+	{
+				//if constexpr (std::is_floating_point_v<T> || std::is_floating_point_v<U>)
+		//	return Vector4D(std::abs(x - other.x) > epsilon, std::abs(y - other.y) > epsilon, std::abs(z - other.z) > epsilon, std::abs(w - other.w) > epsilon);
+		return Vector4D(x > other.x, y > other.y, z > other.z, w > other.w);
+	}
+
+	template <Arithmetic T>
+	template <StrictArithmetic U>
+	Vector4D<bool> Vector4D<T>::greaterThan(const Vector4D& vecA, const Vector4D<U>& vecB) requires
+		StrictArithmetic<T>
+	{
+		return vecA.greaterThan(vecB);
 	}
 
 

@@ -4,7 +4,7 @@ set_property(TARGET MathLib PROPERTY CXX_STANDARD 20)
 set_property(TARGET MathLib PROPERTY CXX_STANDARD_REQUIRED ON)
 
 target_compile_options(MathLib INTERFACE # TODO: Change to the compile target
-    $<$<CXX_COMPILER_ID:MSVC>:/W4;/wd4201>
+    $<$<CXX_COMPILER_ID:MSVC>:/W4;/wd4201;/wd26495;/wd26439>
     $<$<CXX_COMPILER_ID:GNU>:-Wall;-Wextra;-Wpedantic;-Wno-gnu-anonymous-struct;-Werror;>
     $<$<CXX_COMPILER_ID:Clang>:-Wall;-Wextra;-Wpedantic;-Wno-gnu-anonymous-struct;-Werror;>
 )

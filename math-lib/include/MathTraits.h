@@ -43,5 +43,5 @@ namespace math {
 
 	// Custom Epsilon
 	inline constexpr double FLOAT_EPSILON = 1e-5;
-	inline constexpr double DOUBLE_EPSILON = 1e-11;
+	inline constexpr double DOUBLE_EPSILON = 1e-12;
 }

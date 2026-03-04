@@ -7,6 +7,7 @@ FetchContent_Declare(
     GIT_REPOSITORY https://github.com/google/googletest.git
     GIT_TAG 52eb8108c5bdec04579160ae17225d66034bd723 # release-1.17.0
     SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/vendors/googletest"
+    SYSTEM
 )
 
 FetchContent_MakeAvailable(googletest)
@@ -16,3 +17,8 @@ set_target_properties(
     gtest gtest_main gmock gmock_main
     PROPERTIES FOLDER "Google Test"
 )
+
+if(MSVC)
+    target_compile_options(gtest PRIVATE /WX- /W0)
+    target_compile_options(gtest_main PRIVATE /WX- /W0)
+endif()

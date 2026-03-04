@@ -116,7 +116,7 @@ namespace TestUtils
 			{
 				EXPECT_FLOAT_EQ(expected, static_cast<ValueType>(vector[i]));
 			}
-			else if (std::is_same_v<ValueType, double>)
+			else if constexpr (std::is_same_v<ValueType, double>)
 			{
 				EXPECT_DOUBLE_EQ(expected, static_cast<ValueType>(vector[i]));
 			}
@@ -140,7 +140,7 @@ namespace TestUtils
 			{
 				EXPECT_FLOAT_EQ(0.0f, static_cast<ValueType>(vector[i]));
 			}
-			else if (std::is_same_v<ValueType, double>)
+			else if constexpr (std::is_same_v<ValueType, double>)
 			{
 				EXPECT_DOUBLE_EQ(0.0, static_cast<ValueType>(vector[i]));
 			}

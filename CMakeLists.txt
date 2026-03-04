@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.23)
+cmake_minimum_required(VERSION 3.25)
 project(CPPMathLib)
 
 option(ENABLE_STRICT "Enable ASan and Strict Warnings" OFF) # To turn on ASan, use cmake -D
@@ -23,6 +23,8 @@ add_subdirectory(math-lib)
 add_subdirectory(playground)
 add_subdirectory(test-suite)
 add_subdirectory(simd)
+
+# target_compile_options(GTest::gtest_main PRIVATE "$<$<CXX_COMPILER_ID:MSVC>:/W0>")
 
 include(dependencies.cmake)
 

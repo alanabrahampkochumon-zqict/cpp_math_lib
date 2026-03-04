@@ -69,6 +69,13 @@ namespace math
 		template <Arithmetic U>
 		bool operator!=(const Vector4D<U>& other) const;
 
+		// NOTE: All comparison operator expect equality and inequality performs element-wise comparison
+		template <StrictArithmetic U>
+		Vector4D<bool> greaterThan(const Vector4D<U>& other) const requires StrictArithmetic<T>;
+
+		template <StrictArithmetic U>
+		static Vector4D<bool> greaterThan(const Vector4D& vecA, const Vector4D<U>& vecB) requires StrictArithmetic<T>;
+
 		/*************************************
 		 *                                   *
 		 *      ARITHMETIC OPERATORS         *
