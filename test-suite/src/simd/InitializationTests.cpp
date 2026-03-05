@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <SIMD.h>
 
 struct ScalarBackend{};
 struct SSEBackend{};

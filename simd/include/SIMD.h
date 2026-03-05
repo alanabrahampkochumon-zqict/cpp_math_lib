@@ -3,6 +3,9 @@
 #include <cstddef>
 #include <immintrin.h>
 #include <zmmintrin.h>
+#include <concepts>
+
+#include "SIMDUtils.h"
 
 /*************************************
  *                                   *
@@ -60,23 +63,51 @@
 	#endif
 #endif
 
+#ifdef FALCON_AVX512_SUPPORTED
+	#define MAX_HARDWARE_ALIGNMENT = 64;
+#elif defined(FALCON_AVX2_SUPPORTED) || defined(FALCON_AVX_SUPPORTED)
+	#define MAX_HARDWARE_ALIGNMENT = 32;
+#elif defined(FALCON_SSE_SUPPORTED)
+	#define MAX_HARDWARE_ALIGNMENT = 16;
+#else	
+#define MAX_HARDWARE_ALIGNMENT = 0;
+#endif
+
+
+
 namespace falcon::simd
 {
-	template <typename T>
+	template<typename T, std::size_t RegWidth>
+	struct RegisterMap;
+
+
+	template<> struct RegisterMap<float, 16> { using type = __m128; };
+	template<> struct RegisterMap<double, 16> { using type = __m128d; };
+	template<std::integral T> struct RegisterMap<T, 16> { using type = __m128i; };
+
+	template<> struct RegisterMap<float, 32> { using type = __m256; };
+	template<> struct RegisterMap<double, 32> { using type = __m256d; };
+	template<std::integral T> struct RegisterMap<T, 32> { using type = __m256i; };
+
+	template<> struct RegisterMap<float, 64> { using type = __m512; };
+	template<> struct RegisterMap<double, 64> { using type = __m512d; };
+	template<std::integral T> struct RegisterMap<T, 64> { using type = __m512i; };
+
+	template <typename T, std::size_t TotalBytes>
 	struct SIMDReg {};
 
-	template<> struct SIMDReg<int>
+	template<std::size_t TotalBytes> struct SIMDReg<float, TotalBytes>
 	{	
-		#if defined(FALCON_AVX512_SUPPORTED)
-			using reg = __m512i;
-		#elif defined(FALCON_AVX2_SUPPORTED) || defined(FALCON_AVX_SUPPORTED)
-			using reg = __m256i;
-		#elif defined(FALCON_SSE_SUPPORTED)
-			using reg = __m128i;
-		#else
-			using reg = void;
+		
+
+
+		#if defined(MAX_ALIGNMENT) && MAX_ALIGNMENT > 0
+		const PackingParams packingParams = calculatePackedSize(TotalBytes, MAX_ALIGNMENT);
+
 		#endif
 	};
+
+	SIMDReg<float, 256>;
 
 
 
