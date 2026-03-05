@@ -99,6 +99,15 @@ namespace math
 		template <StrictArithmetic U>
 		Vector4D<bool> operator<(const Vector4D<U>& other) const requires StrictArithmetic<T>;
 
+		template <StrictArithmetic U>
+		Vector4D<bool> lessThanOrEqual(const Vector4D<U>& other) const requires StrictArithmetic<T>;
+
+		template <StrictArithmetic U>
+		static Vector4D<bool> lessThanOrEqual(const Vector4D& vecA, const Vector4D<U>& vecB) requires StrictArithmetic<T>;
+
+		template <StrictArithmetic U>
+		Vector4D<bool> operator<=(const Vector4D<U>& other) const requires StrictArithmetic<T>;
+
 
 		/*************************************
 		 *                                   *
