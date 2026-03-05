@@ -733,6 +733,7 @@ TEST(VectorEquality, InequalityOperator_DissimilarBooleanVectorsReturnsFalse)
  *  COMPARISION TESTS  *
  *                     *
  ***********************/
+
 TYPED_TEST(VectorComparison, GreaterThan_ReturnsBooleanVectorWithElementsGreaterThanAsTrue)
 {
 	// Given two arbitrary vectors
@@ -789,8 +790,72 @@ TEST(VectorComparison, MixedType_GreaterThan_ReturnsBooleanVectorWithCorrectValu
 	math::Vector4D vecB(5, 6, 7, 8);
 	math::Vector4D expected(false, false, true, true);
 
-	// When compared with greater than
+	// When compared with greater than or equal
 	const math::Vector4D<bool> result = vecA.greaterThan(vecB);
+
+	// Then, the resulting elements are as expected
+	EXPECT_VEC_EQ(expected, result);
+}
+
+
+TYPED_TEST(VectorComparison, GreaterThanOrEqual_ReturnsBooleanVectorWithElementsGreaterThanAsTrue)
+{
+	// Given two arbitrary vectors
+	// When compared with greater than or equal
+	const math::Vector4D<bool> result = this->vecA.greaterThanOrEqual(this->vecB);
+
+	// Then, the resulting elements are true iff first elements are greater than second
+	EXPECT_VEC_EQ(this->expectedGTE, result);
+}
+
+TYPED_TEST(VectorComparison, StaticWrapper_GreaterThanOrEqual_ReturnsBooleanVectorWithElementsGreaterThanAsTrue)
+{
+	// Given two arbitrary vectors
+	// When compared with greater than or equal static wrapper
+	const math::Vector4D<bool> result = math::Vector4D<TypeParam>::greaterThanOrEqual(this->vecA, this->vecB);
+
+	// Then, the resulting elements are true iff first elements are greater or equal to second
+	EXPECT_VEC_EQ(this->expectedGTE, result);
+}
+
+TEST(VectorComparison, InfinityVector_GreaterThanOrEqual_ReturnsBooleanVectorWithCorrectValues)
+{
+	// Given an arbitrary vector and an infinity vector
+	math::Vector4D vec(1.2, 4.5, 6.8, 9.5);
+	math::Vector4D infVec(INFINITY, INFINITY, -INFINITY, -INFINITY);
+	math::Vector4D expected(false, false, true, true);
+
+	// When compared with greater than or equal static wrapper
+	const math::Vector4D<bool> result = vec.greaterThanOrEqual(infVec);
+
+	// Then, the resulting elements are true for INFINITY and FALSE FOR -INFINITY
+	EXPECT_VEC_EQ(expected, result);
+}
+
+TEST(VectorComparison, NanVector_GreaterThanOrEqual_ReturnsBooleanVectorWithCorrectValues)
+{
+	// Given an arbitrary vector and a nan vector
+	double nan = std::numeric_limits<double>::quiet_NaN();
+	math::Vector4D vec(1.2, 4.5, 6.8, 9.5);
+	math::Vector4D infVec(nan, nan, -5.9, nan);
+	math::Vector4D expected(false, false, true, false);
+
+	// When compared with greater than or equal static wrapper
+	const math::Vector4D<bool> result = vec.greaterThanOrEqual(infVec);
+
+	// Then, the resulting elements are false for Nan
+	EXPECT_VEC_EQ(expected, result);
+}
+
+TEST(VectorComparison, MixedType_GreaterThanOrEqual_ReturnsBooleanVectorWithCorrectValues)
+{
+	// Given two arbitrary vectors of different types
+	math::Vector4D vecA(1.2, 4.5, 7.5, 9.5);
+	math::Vector4D vecB(5, 6, 7, 8);
+	math::Vector4D expected(false, false, true, true);
+
+	// When compared with greater or equal than
+	const math::Vector4D<bool> result = vecA.greaterThanOrEqual(vecB);
 
 	// Then, the resulting elements are as expected
 	EXPECT_VEC_EQ(expected, result);
