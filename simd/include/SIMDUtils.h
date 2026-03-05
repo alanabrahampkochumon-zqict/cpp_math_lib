@@ -5,7 +5,7 @@
 
 namespace falcon::simd
 {
-	struct PackedSize
+	struct PackingParams
 	{
 		std::size_t alignedByteSize;
 		std::size_t padding;
@@ -20,13 +20,13 @@ namespace falcon::simd
 	 * @param maxAlignAs Max possible alignment for a given CPU architecture. 16 for SSE, 32 for AVX and AVX2, and 64 for AVX512
 	 * @return PackedSize containing alignedByteSize, padding, register width and register count.
 	 */
-	constexpr PackedSize calculatePackedSize(std::size_t totalByteSize, std::size_t maxAlignAs)
+	constexpr PackingParams calculatePackedSize(std::size_t totalByteSize, std::size_t maxAlignAs)
 	{
 		if (totalByteSize < 16)
-			return PackedSize { 16, 16 - totalByteSize, 0, 0 };
+			return PackingParams { 16, 16 - totalByteSize, 0, 0 };
 		
 		const std::size_t packedSize = std::bit_ceil(totalByteSize);
 
-		return PackedSize { packedSize, packedSize - totalByteSize, 0, 0 };
+		return PackingParams { packedSize, packedSize - totalByteSize, 0, 0 };
 	}
 }
