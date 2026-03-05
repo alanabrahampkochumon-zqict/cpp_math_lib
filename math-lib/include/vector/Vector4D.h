@@ -52,11 +52,13 @@ namespace math
 		T& operator[](std::size_t i);
 		const T& operator[](std::size_t i) const;
 
+
 		/***************************************
 		 *                                     *
 		 *            COMPARISONS              *
 		 *                                     *
 		 ***************************************/
+
 		template <Arithmetic U>
 		bool equals(const Vector4D<U>& other, double epsilon = (std::is_same_v<T, double> && std::is_same_v<U, double>) ? DOUBLE_EPSILON: FLOAT_EPSILON) const;
 
@@ -87,6 +89,16 @@ namespace math
 
 		template <StrictArithmetic U>
 		Vector4D<bool> operator>=(const Vector4D<U>& other) const requires StrictArithmetic<T>;
+
+		template <StrictArithmetic U>
+		Vector4D<bool> lessThan(const Vector4D<U>& other) const requires StrictArithmetic<T>;
+
+		template <StrictArithmetic U>
+		static Vector4D<bool> lessThan(const Vector4D& vecA, const Vector4D<U>& vecB) requires StrictArithmetic<T>;
+
+		template <StrictArithmetic U>
+		Vector4D<bool> operator<(const Vector4D<U>& other) const requires StrictArithmetic<T>;
+
 
 		/*************************************
 		 *                                   *

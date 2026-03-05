@@ -129,6 +129,27 @@ namespace math
 		return this->greaterThanOrEqual(other);
 	}
 
+	template <Arithmetic T>
+	template <StrictArithmetic U>
+	Vector4D<bool> Vector4D<T>::lessThan(const Vector4D<U>& other) const requires StrictArithmetic<T>
+	{
+		return Vector4D(x < other.x, y < other.y, z < other.z, w < other.w);
+	}
+
+	template <Arithmetic T>
+	template <StrictArithmetic U>
+	Vector4D<bool> Vector4D<T>::lessThan(const Vector4D& vecA, const Vector4D<U>& vecB) requires StrictArithmetic<T>
+	{
+		return vecA.lessThan(vecB);
+	}
+
+	template <Arithmetic T>
+	template <StrictArithmetic U>
+	Vector4D<bool> Vector4D<T>::operator<(const Vector4D<U>& other) const requires StrictArithmetic<T>
+	{
+		return this->lessThan(other);
+	}
+
 
 	/*************************************
 	 *                                   *

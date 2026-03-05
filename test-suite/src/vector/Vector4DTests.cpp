@@ -808,7 +808,7 @@ TEST(VectorComparison, MixedType_GreaterThan_ReturnsBooleanVectorWithCorrectValu
 }
 
 
-TYPED_TEST(VectorComparison, GreaterThanOrEqual_ReturnsBooleanVectorWithElementsGreaterThanAsTrue)
+TYPED_TEST(VectorComparison, GreaterThanOrEqual_ReturnsBooleanVectorWithElementsGreaterThanOrEqualAsTrue)
 {
 	// Given two arbitrary vectors
 	// When compared with greater than or equal
@@ -818,7 +818,7 @@ TYPED_TEST(VectorComparison, GreaterThanOrEqual_ReturnsBooleanVectorWithElements
 	EXPECT_VEC_EQ(this->expectedGTE, result);
 }
 
-TYPED_TEST(VectorComparison, GreaterThanOrEqualOperator_ReturnsBooleanVectorWithElementsGreaterThanAsTrue)
+TYPED_TEST(VectorComparison, GreaterThanOrEqualOperator_ReturnsBooleanVectorWithElementsGreaterThanOrEqualAsTrue)
 {
 	// Given two arbitrary vectors
 	// When compared with greater than or equal
@@ -828,7 +828,7 @@ TYPED_TEST(VectorComparison, GreaterThanOrEqualOperator_ReturnsBooleanVectorWith
 	EXPECT_VEC_EQ(this->expectedGTE, result);
 }
 
-TYPED_TEST(VectorComparison, StaticWrapper_GreaterThanOrEqual_ReturnsBooleanVectorWithElementsGreaterThanAsTrue)
+TYPED_TEST(VectorComparison, StaticWrapper_GreaterThanOrEqual_ReturnsBooleanVectorWithElementsGreaterThanOrEqualAsTrue)
 {
 	// Given two arbitrary vectors
 	// When compared with greater than or equal static wrapper
@@ -881,6 +881,79 @@ TEST(VectorComparison, MixedType_GreaterThanOrEqual_ReturnsBooleanVectorWithCorr
 	EXPECT_VEC_EQ(expected, result);
 }
 
+
+TYPED_TEST(VectorComparison, LessThan_ReturnsBooleanVectorWithElementsLessThanAsTrue)
+{
+	// Given two arbitrary vectors
+	// When compared with less than
+	const math::Vector4D<bool> result = this->vecA.lessThan(this->vecB);
+
+	// Then, the resulting elements are true iff first elements are less than second
+	EXPECT_VEC_EQ(this->expectedLT, result);
+}
+
+TYPED_TEST(VectorComparison, LessThanOperator_ReturnsBooleanVectorWithElementsLessThanAsTrue)
+{
+	// Given two arbitrary vectors
+	// When compared with less than operator
+	const math::Vector4D<bool> result = this->vecA < this->vecB;
+
+	// Then, the resulting elements are true iff first elements are less than second
+	EXPECT_VEC_EQ(this->expectedLT, result);
+}
+
+TYPED_TEST(VectorComparison, StaticWrapper_LessThan_ReturnsBooleanVectorWithElementsLessThanAsTrue)
+{
+	// Given two arbitrary vectors
+	// When compared with less than static wrapper
+	const math::Vector4D<bool> result = math::Vector4D<TypeParam>::lessThan(this->vecA, this->vecB);
+
+	// Then, the resulting elements are true iff first elements are less than second
+	EXPECT_VEC_EQ(this->expectedLT, result);
+}
+
+TEST(VectorComparison, InfinityVector_LessThan_ReturnsBooleanVectorWithCorrectValues)
+{
+	// Given an arbitrary vector and an infinity vector
+	math::Vector4D vec(1.2, 4.5, 6.8, 9.5);
+	math::Vector4D infVec(INFINITY, INFINITY, -INFINITY, -INFINITY);
+	math::Vector4D expected(true, true, false, false);
+
+	// When compared with less than static wrapper
+	const math::Vector4D<bool> result = vec.lessThan(infVec);
+
+	// Then, the resulting elements are FALSE for INFINITY and TRUE FOR -INFINITY
+	EXPECT_VEC_EQ(expected, result);
+}
+
+TEST(VectorComparison, NanVector_LessThan_ReturnsBooleanVectorWithCorrectValues)
+{
+	// Given an arbitrary vector and a nan vector
+	double nan = std::numeric_limits<double>::quiet_NaN();
+	math::Vector4D vec(1.2, 4.5, 6.8, 9.5);
+	math::Vector4D infVec(nan, nan, -5.9, nan);
+	math::Vector4D expected(false, false, false, false);
+
+	// When compared with less than static wrapper
+	const math::Vector4D<bool> result = vec.lessThan(infVec);
+
+	// Then, the resulting elements are false for Nan
+	EXPECT_VEC_EQ(expected, result);
+}
+
+TEST(VectorComparison, MixedType_LessThan_ReturnsBooleanVectorWithCorrectValues)
+{
+	// Given two arbitrary vectors of different types
+	math::Vector4D vecA(1.2, 4.5, 7.5, 9.5);
+	math::Vector4D vecB(5, 6, 7, 8);
+	math::Vector4D expected(true, true, false, false);
+
+	// When compared with less than or equal
+	const math::Vector4D<bool> result = vecA.lessThan(vecB);
+
+	// Then, the resulting elements are as expected
+	EXPECT_VEC_EQ(expected, result);
+}
 
 /*********************************
  *                               *
