@@ -43,3 +43,14 @@ TEST_F(BooleanVectorBitOperations, BitwiseOrReturnsComponentwiseOr)
 	// Then, we get another vector with componentwise OR applied
 	EXPECT_VEC_EQ(this->expectedOrVector, result);
 }
+
+TEST_F(BooleanVectorBitOperations, BitwiseNotReturnsInvertedVector)
+{
+	// Given a bool vector
+
+	// When they are `OR` together
+	auto result = !this->vecA;
+
+	// Then, we get another vector with componentwise NOT applied
+	EXPECT_VEC_EQ(this->expectedNotAVector, result);
+}

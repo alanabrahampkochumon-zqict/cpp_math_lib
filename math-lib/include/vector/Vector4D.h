@@ -125,6 +125,8 @@ namespace math
 
 		Vector4D<bool> operator|(const Vector4D<bool>& other) const requires std::is_same_v<T, bool>;
 
+		Vector4D<bool> operator!() const requires std::is_same_v<T, bool>;
+
 
 		/*************************************
 		 *                                   *

@@ -184,13 +184,19 @@ namespace math
 	template <Arithmetic T>
 	Vector4D<bool> Vector4D<T>::operator&(const Vector4D<bool>& other) const requires std::is_same_v<T, bool>
 	{
-		return Vector4D(x && other.x, y && other.y, z && other.z, w && other.w);
+		return Vector4D(x & other.x, y & other.y, z & other.z, w & other.w);
 	}
 
 	template <Arithmetic T>
 	Vector4D<bool> Vector4D<T>::operator|(const Vector4D<bool>& other) const requires std::is_same_v<T, bool>
 	{
 		return Vector4D(x | other.x, y | other.y, z | other.z, w | other.w);
+	}
+
+	template <Arithmetic T>
+	Vector4D<bool> Vector4D<T>::operator!() const requires std::is_same_v<T, bool>
+	{
+		return Vector4D(!x, !y, !z, !w);
 	}
 
 
