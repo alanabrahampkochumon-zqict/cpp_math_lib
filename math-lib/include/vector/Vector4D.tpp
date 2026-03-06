@@ -143,6 +143,7 @@ namespace math
 		return vecA.lessThanOrEqual(vecB);
 	}
 
+
 	#ifdef ENABLE_FGM_SHADER_OPERATORS
 	template <Arithmetic T>
 	template <StrictArithmetic U>
@@ -172,6 +173,20 @@ namespace math
 		return this->lessThanOrEqual(other);
 	}
 	#endif
+
+
+	/***************************************
+	 *                                     *
+	 *      BOOLEAN BITWISE OPERATORS      *
+	 *                                     *
+	 ***************************************/
+
+	template <Arithmetic T>
+	Vector4D<bool> Vector4D<T>::operator&(const Vector4D<bool>& other) const requires std::is_same_v<T, bool>
+	{
+		return Vector4D(x && other.x, y && other.y, z && other.z, w && other.w);
+	}
+
 
 	/*************************************
 	 *                                   *

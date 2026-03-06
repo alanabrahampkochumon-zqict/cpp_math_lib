@@ -1,21 +1,34 @@
 #include "Vector4DTestSetup.h"
 
+using namespace TestUtils;
+
 class BooleanVectorBitOperations : public ::testing::Test
 {
 protected:
 	math::Vector4D<bool> vecA;
 	math::Vector4D<bool> vecB;
-	math::Vector4D<bool> expectedAnd;
-	math::Vector4D<bool> expectedOr;
-	math::Vector4D<bool> expectedNotA;
+	math::Vector4D<bool> expectedAndVector;
+	math::Vector4D<bool> expectedOrVector;
+	math::Vector4D<bool> expectedNotAVector;
 
 	void SetUp() override
 	{
 		vecA = { true, false, true, false };
 		vecB = { true, true, false, false };
-		expectedAnd = { true, false, false, false };
-		expectedOr = { true, true, true, false };
-		expectedNotA = { false, true, false, true };
+		expectedAndVector = { true, false, false, false };
+		expectedOrVector = { true, true, true, false };
+		expectedNotAVector = { false, true, false, true };
 	}
 };
 // TODO: Add Tests
+
+TEST_F(BooleanVectorBitOperations, BitwiseAndReturnsComponentwiseAnd)
+{
+	// Given two bool vectors
+
+	// When they are `AND` together
+	auto result = this->vecA & this->vecB;
+
+	// Then, we get another vector with componentwise AND applied
+	EXPECT_VEC_EQ(this->expectedAndVector, result);
+}

@@ -115,6 +115,14 @@ namespace math
 		Vector4D<bool> operator<=(const Vector4D<U>& other) const requires StrictArithmetic<T>;
 		#endif
 
+		/***************************************
+		 *                                     *
+		 *      BOOLEAN BITWISE OPERATORS      *
+		 *                                     *
+		 ***************************************/
+
+		Vector4D<bool> operator&(const Vector4D<bool>& other) const requires std::is_same_v<T, bool>;
+
 
 		/*************************************
 		 *                                   *
