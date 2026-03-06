@@ -8,6 +8,10 @@ target_compile_features(TestSuite PRIVATE cxx_std_20)
 #     $<$<CXX_COMPILER_ID:Clang>:-Wall;-Wextra;-Wpedantic;-Wno-gnu-anonymous-struct;-Werror;>
 # )
 
+set(IncludeDirectory "include/")
+set(SetupFiles "Vector4DTestSetup.h")
+list(TRANSFORM SetupFiles PREPEND ${IncludeDirectory})
+
 # Vector Test Sources
 set(Vector4DTestDirectory "src/vectors/vector4d/")
 set(Vector4DTestFiles "AccessorTests.cpp;ArithmeticOperationTests.cpp;BooleanBitOperationTests.cpp;ComparisonTests.cpp;GeometricTests.cpp;InitializationTests.cpp")
@@ -22,7 +26,7 @@ set(MatrixTestDirectory "src/matrix/")
 set(MatrixTestFiles Matrix2DTests.cpp Matrix3DTests.cpp Matrix4DTests.cpp )
 list(TRANSFORM MatrixTestFiles PREPEND ${MatrixTestDirectory})
 
-set(UtilityDirectory "src/utils/")
+set(UtilityDirectory "include/utils/")
 set(Utilities "FloatEquals.h;MatrixUtils.h;VectorUtils.h")
 list(TRANSFORM Utilities PREPEND ${UtilityDirectory})
 
@@ -36,8 +40,14 @@ target_sources(
         ${Vector4DTestFiles}
         ${VectorTestFiles}
         ${MatrixTestFiles}
-        ${Utilities}
         ${SimdTestFiles}
+    
+    PRIVATE
+    FILE_SET HEADERS
+    BASE_DIRS ${HeaderDirectory}
+    FILES
+        ${SetupFiles}
+        ${Utilities}
 )
 
 target_precompile_headers(
@@ -57,6 +67,12 @@ target_link_libraries(
     MathLib
     FalconSIMD
     GTest::gtest_main # googletest
+)
+
+target_include_directories(
+    TestSuite
+    PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
 enable_testing()
