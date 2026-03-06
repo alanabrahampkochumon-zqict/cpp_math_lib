@@ -3,8 +3,8 @@
 #include <vector/Vector2D.h>
 #include <type_traits>
 
-#include "../utils/MatrixUtils.h"
-#include "../utils/VectorUtils.h"
+#include "utils/MatrixUtils.h"
+#include "utils/VectorUtils.h"
 
 using namespace TestUtils;
 

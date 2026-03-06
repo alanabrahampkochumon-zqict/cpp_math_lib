@@ -3,7 +3,7 @@
 #include <vector/Vector3D.h>
 #include <vector/Vector2D.h>
 
-#include "../utils/VectorUtils.h"
+#include "utils/VectorUtils.h"
 
 
 using namespace TestUtils;

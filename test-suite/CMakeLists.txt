@@ -14,11 +14,11 @@ list(TRANSFORM SetupFiles PREPEND ${IncludeDirectory})
 
 # Vector Test Sources
 set(Vector4DTestDirectory "src/vectors/vector4d/")
-set(Vector4DTestFiles "AccessAndMutationTests.cpp;ArithmeticOperationTests.cpp;BooleanBitOperationTests.cpp;ComparisonTests.cpp;GeometricTests.cpp;InitializationTests.cpp;TypeConversionTests.cpp;AliasTests.cpp")
+set(Vector4DTestFiles "AccessAndMutationTests.cpp;ArithmeticOperationTests.cpp;BooleanBitOperationTests.cpp;ComparisonTests.cpp;InitializationTests.cpp;TypeConversionTests.cpp;AliasTests.cpp;EqualityTests.cpp;ProductTests.cpp;MagnitudeTests.cpp;ProjectionTests.cpp")
 list(TRANSFORM Vector4DTestFiles PREPEND ${Vector4DTestDirectory})
 
 set(VectorTestDirectory "src/vectors/") # TODO: Remove after migration to different test
-set(VectorTestFiles Vector2DTests.cpp Vector3DTests.cpp Vector4DTests.cpp)
+set(VectorTestFiles Vector2DTests.cpp Vector3DTests.cpp)
 list(TRANSFORM VectorTestFiles PREPEND ${VectorTestDirectory})
 
 # Matrix Test Sources

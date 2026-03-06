@@ -4,9 +4,9 @@
 #include <vector/Vector3D.h>
 #include <cstddef>
 
-#include "../utils/FloatEquals.h"
-#include "../utils/MatrixUtils.h"
-#include "../utils/VectorUtils.h"
+#include "utils/FloatEquals.h"
+#include "utils/MatrixUtils.h"
+#include "utils/VectorUtils.h"
 
 using namespace TestUtils::Matrix3D;
 // TODO: Add test for integer precision on multiplication -> [[2]] * 2.5 = [[5]] not 4

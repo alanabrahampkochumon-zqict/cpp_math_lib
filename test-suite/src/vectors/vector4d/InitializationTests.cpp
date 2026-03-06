@@ -3,11 +3,11 @@
 using namespace TestUtils;
 
 template<typename T>
-class VectorInitialization : public ::testing::Test {};
-TYPED_TEST_SUITE(VectorInitialization, SupportedTypes);
+class Vector4DInitialization : public ::testing::Test {};
+TYPED_TEST_SUITE(Vector4DInitialization, SupportedTypes);
 
 
-TEST(VectorInitialization, EmptyConstructorInitializesZeroVector)
+TEST(Vector4DInitialization, EmptyConstructorInitializesZeroVector)
 {
 	// Given a vector initialized without parameters
 	const math::Vector4D<float> vec;
@@ -16,7 +16,7 @@ TEST(VectorInitialization, EmptyConstructorInitializesZeroVector)
 	EXPECT_VEC_ZERO(vec);
 }
 
-TYPED_TEST(VectorInitialization, ConstructorInitializesVectorsWithCorrectValue)
+TYPED_TEST(Vector4DInitialization, ConstructorInitializesVectorsWithCorrectValue)
 {
 	// Given 4 different values
 	TypeParam a = static_cast<TypeParam>(3);
@@ -31,7 +31,7 @@ TYPED_TEST(VectorInitialization, ConstructorInitializesVectorsWithCorrectValue)
 	EXPECT_VEQ_CONTAINS(vec, a, b, c, d);
 }
 
-TYPED_TEST(VectorInitialization, Two2DVectorsCanInitializeA4DVector)
+TYPED_TEST(Vector4DInitialization, Two2DVectorsCanInitializeA4DVector)
 {
 	// Given two 2D Vectors
 	TypeParam a = static_cast<TypeParam>(3);
@@ -48,7 +48,7 @@ TYPED_TEST(VectorInitialization, Two2DVectorsCanInitializeA4DVector)
 	EXPECT_VEQ_CONTAINS(vec, a, b, c, d);
 }
 
-TYPED_TEST(VectorInitialization, One3DVectorAndScalarCanInitializeA4DVector)
+TYPED_TEST(Vector4DInitialization, One3DVectorAndScalarCanInitializeA4DVector)
 {
 	// Given a 3D Vector and a scalar
 	TypeParam a = static_cast<TypeParam>(3);
