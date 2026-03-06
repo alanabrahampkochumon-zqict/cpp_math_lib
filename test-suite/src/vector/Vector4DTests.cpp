@@ -1,3 +1,7 @@
+// Preprocessor Declarations
+// #define FORCE_NO_SIMD // TODO: Update
+#define ENABLE_FGM_SHADER_OPERATORS
+
 #include <gtest/gtest.h>
 
 #include <MathTraits.h>
@@ -16,8 +20,7 @@ using namespace TestUtils;
  *              *
  ****************/
 
- // Turn off SIMD
-#define FORCE_NO_SIMD // TODO: Update
+
 
 using SupportedTypes = ::testing::Types<unsigned char, bool, int, unsigned int, float, double, std::size_t, long long>;
 using SupportedArithmeticTypes = ::testing::Types<unsigned char, int, unsigned int, float, double, std::size_t, long long>;

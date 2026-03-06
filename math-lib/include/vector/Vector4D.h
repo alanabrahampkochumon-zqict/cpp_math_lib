@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 
 #include "Vector2D.h"
 #include "Vector3D.h"
@@ -11,6 +10,12 @@
 
 namespace math
 {
+	/*
+	 * Data structure representing a 4D Vector.
+	 * Options:
+	 *	       Use `#define ENABLE_FGM_SHADER_OPERATORS` to enable operators like >, <, >=, <= which are turned off by default.
+	 *	       Even if operators are disable you can use functions like `greaterThan` for comparisons.
+	 */
 	template<Arithmetic T>
 	struct Vector4D
 	{
@@ -60,7 +65,7 @@ namespace math
 		 ***************************************/
 
 		template <Arithmetic U>
-		bool equals(const Vector4D<U>& other, double epsilon = (std::is_same_v<T, double> && std::is_same_v<U, double>) ? DOUBLE_EPSILON: FLOAT_EPSILON) const;
+		bool equals(const Vector4D<U>& other, double epsilon = (std::is_same_v<T, double> && std::is_same_v<U, double>) ? DOUBLE_EPSILON : FLOAT_EPSILON) const;
 
 		template <Arithmetic U>
 		static bool equals(const Vector4D& vecA, const Vector4D<U>& vecB, double epsilon = (std::is_same_v<T, double> && std::is_same_v<U, double>) ? DOUBLE_EPSILON : FLOAT_EPSILON);
@@ -79,16 +84,10 @@ namespace math
 		static Vector4D<bool> greaterThan(const Vector4D& vecA, const Vector4D<U>& vecB) requires StrictArithmetic<T>;
 
 		template <StrictArithmetic U>
-		Vector4D<bool> operator>(const Vector4D<U>& other) const requires StrictArithmetic<T>;
-
-		template <StrictArithmetic U>
 		Vector4D<bool> greaterThanOrEqual(const Vector4D<U>& other) const requires StrictArithmetic<T>;
 
 		template <StrictArithmetic U>
 		static Vector4D<bool> greaterThanOrEqual(const Vector4D& vecA, const Vector4D<U>& vecB) requires StrictArithmetic<T>;
-
-		template <StrictArithmetic U>
-		Vector4D<bool> operator>=(const Vector4D<U>& other) const requires StrictArithmetic<T>;
 
 		template <StrictArithmetic U>
 		Vector4D<bool> lessThan(const Vector4D<U>& other) const requires StrictArithmetic<T>;
@@ -97,16 +96,24 @@ namespace math
 		static Vector4D<bool> lessThan(const Vector4D& vecA, const Vector4D<U>& vecB) requires StrictArithmetic<T>;
 
 		template <StrictArithmetic U>
-		Vector4D<bool> operator<(const Vector4D<U>& other) const requires StrictArithmetic<T>;
-
-		template <StrictArithmetic U>
 		Vector4D<bool> lessThanOrEqual(const Vector4D<U>& other) const requires StrictArithmetic<T>;
 
 		template <StrictArithmetic U>
 		static Vector4D<bool> lessThanOrEqual(const Vector4D& vecA, const Vector4D<U>& vecB) requires StrictArithmetic<T>;
 
+		#ifdef ENABLE_FGM_SHADER_OPERATORS
+		template <StrictArithmetic U>
+		Vector4D<bool> operator>(const Vector4D<U>& other) const requires StrictArithmetic<T>;
+
+		template <StrictArithmetic U>
+		Vector4D<bool> operator>=(const Vector4D<U>& other) const requires StrictArithmetic<T>;
+
+		template <StrictArithmetic U>
+		Vector4D<bool> operator<(const Vector4D<U>& other) const requires StrictArithmetic<T>;
+
 		template <StrictArithmetic U>
 		Vector4D<bool> operator<=(const Vector4D<U>& other) const requires StrictArithmetic<T>;
+		#endif
 
 
 		/*************************************
