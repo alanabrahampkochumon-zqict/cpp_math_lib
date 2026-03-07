@@ -54,7 +54,7 @@ TYPED_TEST_SUITE(Vector4DRejection, SupportedArithmeticTypes);
  *                    *
  **********************/
 
-TYPED_TEST(Vector4DProjection, OrthogonalVectorsWhenProjectedReturnsNonZeroVector)
+TYPED_TEST(Vector4DProjection, OrthogonalVectorsWhenProjectedReturnsZeroVector)
 {
     // Given two orthogonal vectors
 
@@ -264,7 +264,7 @@ TEST(Vector4DRejection, VectorRejectedOntoWAxisReturnsVectorWithoutWComponent)
     EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
 
-TEST(Vector4DRejection, VectorRejectedOntoNonExistantComponentReturnsSameVector)
+TEST(Vector4DRejection, VectorRejectedOntoNonExistentComponentReturnsSameVector)
 {
     // Given an arbitrary vector
     const math::Vector4D a(1.0f, 2.0f, 3.0f, 0.0f);

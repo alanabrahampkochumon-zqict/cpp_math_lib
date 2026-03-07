@@ -166,7 +166,7 @@ TEST(Vector4DNormalization, ZeroVectorWhenNormalizedCausesDeath)
     EXPECT_DEATH({ vec.normalize(); }, "Vector4D Normalization : Division by 0");
 }
 
-TYPED_TEST(Vector4DNormalization, VectorWhenNormalizedReturnsANormalVector)
+TYPED_TEST(Vector4DNormalization, VectorWhenNormalizedReturnsAUnitVector)
 {
     // Given a non-normalized vector
 
@@ -177,7 +177,7 @@ TYPED_TEST(Vector4DNormalization, VectorWhenNormalizedReturnsANormalVector)
     EXPECT_VEC_EQ(this->expectedVector, normalized);
 }
 
-TYPED_TEST(Vector4DNormalization, StaticWrapper_VectorWhenNormalizedReturnsANormalVector)
+TYPED_TEST(Vector4DNormalization, StaticWrapper_VectorWhenNormalizedReturnsAUnitVector)
 {
     // Given a non-normalized vector
 

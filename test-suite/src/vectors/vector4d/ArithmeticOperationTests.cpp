@@ -274,7 +274,7 @@ TYPED_TEST(Vector4DScalarMultiplication, VectorTimesEqualAScalarIsTheSameVectorS
         EXPECT_VEC_EQ(this->expectedIntegral, this->vec);
 }
 
-TYPED_TEST(Vector4DScalarMultiplication, MixedTypeScalarMulitplicationPromotesType)
+TYPED_TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationPromotesType)
 {
     // Given a vector and scalar with arbitrary values
     constexpr double scalar = 2.123456789123456;
@@ -290,7 +290,7 @@ TYPED_TEST(Vector4DScalarMultiplication, MixedTypeScalarMulitplicationPromotesTy
     EXPECT_VEC_EQ(expected, result);
 }
 
-TEST(Vector4DScalarMultiplication, MixedTypeScalarMulitplicationAssignmentDoesNotPromoteType)
+TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationAssignmentDoesNotPromoteType)
 {
     // Given a vector and scalar with arbitrary values
     math::Vector4D vec(3.0f, 0.0f, -1.0f, 2.0f);
@@ -306,7 +306,7 @@ TEST(Vector4DScalarMultiplication, MixedTypeScalarMulitplicationAssignmentDoesNo
     EXPECT_VEC_EQ(expected, vec);
 }
 
-TEST(Vector4DScalarMultiplication, MixedTypeScalarMulitplicationAssignmentGivesResultWithMinimalPrecisionLoss)
+TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationAssignmentGivesResultWithMinimalPrecisionLoss)
 {
     // Given a vector and scalar with arbitrary values
     math::Vector4D vec(3, 0, -1, 8);
@@ -395,7 +395,7 @@ TEST(Vector4DScalarDivision, MixedTypeScalarDivisionPromotesType)
     EXPECT_VEC_EQ(expected, result);
 }
 
-TEST(Vector4DScalarDivision, MixedTypeScalarDivisonAssignmentDoesNotPromoteType)
+TEST(Vector4DScalarDivision, MixedTypeScalarDivisionAssignmentDoesNotPromoteType)
 {
     // Given an arbitrary vector
     math::Vector4D vec(15.0f, 0.0f, -5.0f, 10.0f);

@@ -31,7 +31,7 @@ class Vector4DDotProduct: public ::testing::Test
 TYPED_TEST_SUITE(Vector4DDotProduct, SupportedArithmeticTypes);
 
 
-TYPED_TEST(Vector4DDotProduct, VectorWhenDotWithItselfSquareMagnitude)
+TYPED_TEST(Vector4DDotProduct, VectorWhenDotWithItselfReturnsSquareMagnitude)
 {
     // Given an arbitrary vector
 

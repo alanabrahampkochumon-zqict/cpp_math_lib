@@ -117,7 +117,7 @@ TEST(Vector4DEquality, EqualityOperator_SimilarBooleanVectorsReturnsTrue)
     EXPECT_TRUE(equality);
 }
 
-TEST(Vector4DEquality, EqualityOperator_DissimilarSimilarVectorsReturnsFalse)
+TEST(Vector4DEquality, EqualityOperator_DissimilarBooleanVectorsReturnsFalse)
 {
     // Given two dissimilar boolean vectors
     const math::Vector4D vecA(true, false, true, false);
