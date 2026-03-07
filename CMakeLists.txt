@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.25)
 project(CPPMathLib)
 
+include(dependencies.cmake)
+include(simdcheck.cmake)
+
 find_program(CLANG_FORMATTER NAMES clang-format)
 
 if(CLANG_FORMATTER)
@@ -39,8 +42,7 @@ add_subdirectory(playground)
 add_subdirectory(test-suite)
 add_subdirectory(simd)
 
-# target_compile_options(GTest::gtest_main PRIVATE "$<$<CXX_COMPILER_ID:MSVC>:/W0>")
+AddSIMDCompilerFlag(TestSuite)
 
-include(dependencies.cmake)
 
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Playground)

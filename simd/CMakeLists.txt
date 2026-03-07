@@ -7,6 +7,8 @@ list(TRANSFORM HeaderFiles PREPEND ${IncludeDirectory})
 set(TemplateFiles "SIMD.tpp")
 list(TRANSFORM TemplateFiles PREPEND ${IncludeDirectory})
 
+
+
 target_compile_options(FalconSIMD INTERFACE # TODO: Change to the compile target
     $<$<CXX_COMPILER_ID:MSVC>:/W4;/wd4201;/wd26495;/wd26439>
     $<$<CXX_COMPILER_ID:GNU>:-Wall;-Wextra;-Wpedantic;-Wno-gnu-anonymous-struct;-Werror;>
