@@ -1,34 +1,40 @@
 #pragma once
 
-#include <type_traits>
 #include "Vector2D.h"
 
-namespace math {
+#include <type_traits>
+
+namespace math
+{
 
     /*************************************
-	 *                                   *
-	 *            INITIALIZERS           *
-	 *                                   *
-	 *************************************/
+     *                                   *
+     *            INITIALIZERS           *
+     *                                   *
+     *************************************/
 
     template <Arithmetic T>
-    Vector2D<T>::Vector2D(): x(T(0)), y(T(0)) { }
+    Vector2D<T>::Vector2D(): x(T(0)), y(T(0))
+    {
+    }
 
     template <Arithmetic T>
-    Vector2D<T>::Vector2D(T v1, T v2): x(v1), y(v2) { }
+    Vector2D<T>::Vector2D(T v1, T v2): x(v1), y(v2)
+    {
+    }
 
     template <Arithmetic T>
     template <Arithmetic U>
-    Vector2D<T>::Vector2D(const Vector2D<U>& other):
-    x(static_cast<T>(other.x)), y(static_cast<T>(other.y))
-	{ }
+    Vector2D<T>::Vector2D(const Vector2D<U>& other): x(static_cast<T>(other.x)), y(static_cast<T>(other.y))
+    {
+    }
 
 
     /*************************************
-	 *                                   *
-	 *            ACCESSORS              *
-	 *                                   *
-	 *************************************/
+     *                                   *
+     *            ACCESSORS              *
+     *                                   *
+     *************************************/
 
     template <Arithmetic T>
     T& Vector2D<T>::operator[](std::size_t i)
@@ -44,10 +50,10 @@ namespace math {
 
 
     /*************************************
-	 *                                   *
-	 *      ARITHMETIC OPERATORS         *
-	 *                                   *
-	 *************************************/
+     *                                   *
+     *      ARITHMETIC OPERATORS         *
+     *                                   *
+     *************************************/
 
     template <Arithmetic T>
     template <Arithmetic S>
@@ -129,10 +135,10 @@ namespace math {
 
 
     /*************************************
-	 *                                   *
-	 *        VECTOR DOT PRODUCT         *
-	 *                                   *
-	 *************************************/
+     *                                   *
+     *        VECTOR DOT PRODUCT         *
+     *                                   *
+     *************************************/
 
     template <Arithmetic T>
     template <Arithmetic S>
@@ -171,10 +177,10 @@ namespace math {
 
 
     /*************************************
-    *                                   *
-    *         VECTOR MAGNITUDE          *
-    *                                   *
-    *************************************/
+     *                                   *
+     *         VECTOR MAGNITUDE          *
+     *                                   *
+     *************************************/
 
     template <Arithmetic T>
     T Vector2D<T>::mag() const
@@ -195,7 +201,7 @@ namespace math {
         return (*this) / this->mag();
     }
 
-    
+
     /*************************************
      *                                   *
      *        VECTOR PROJECTION          *
@@ -220,7 +226,8 @@ namespace math {
 
     template <Arithmetic T>
     template <Arithmetic U>
-    auto Vector2D<T>::project(const Vector2D& vector, const Vector2D<U>& onto, bool ontoNormalized) -> Vector2D<std::common_type_t<T, U>>
+    auto Vector2D<T>::project(const Vector2D& vector, const Vector2D<U>& onto, bool ontoNormalized)
+        -> Vector2D<std::common_type_t<T, U>>
     {
         return vector.project(onto, ontoNormalized);
     }
@@ -241,9 +248,9 @@ namespace math {
 
     template <Arithmetic T>
     template <Arithmetic U>
-    auto Vector2D<T>::reject(const Vector2D& vector, const Vector2D<U>& onto,
-	    bool ontoNormalized) -> Vector2D<std::common_type_t<T, U>>
+    auto Vector2D<T>::reject(const Vector2D& vector, const Vector2D<U>& onto, bool ontoNormalized)
+        -> Vector2D<std::common_type_t<T, U>>
     {
         return vector.reject(onto, ontoNormalized);
     }
-}
+} // namespace math

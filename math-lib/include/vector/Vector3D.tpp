@@ -2,251 +2,263 @@
 
 // TODO: Enable strict types using `using R = std::common_type_t<T, U>`
 
-namespace math {
+namespace math
+{
 
 
-	/*************************************
-	 *                                   *
-	 *            INITIALIZERS           *
-	 *                                   *
-	 *************************************/
+    /*************************************
+     *                                   *
+     *            INITIALIZERS           *
+     *                                   *
+     *************************************/
 
-	template <Arithmetic T>
-	Vector3D<T>::Vector3D() : x(T(0)), y(T(0)), z(T(0)) {}
+    template <Arithmetic T>
+    Vector3D<T>::Vector3D(): x(T(0)), y(T(0)), z(T(0))
+    {
+    }
 
-	template <Arithmetic T>
-	Vector3D<T>::Vector3D(T v1, T v2, T v3) : x(v1), y(v2), z(v3) {}
+    template <Arithmetic T>
+    Vector3D<T>::Vector3D(T v1, T v2, T v3): x(v1), y(v2), z(v3)
+    {
+    }
 
-	template <Arithmetic T>
-	Vector3D<T>::Vector3D(Vector2D<T> vec, T v) : x(vec.x), y(vec.y), z(v) {}
+    template <Arithmetic T>
+    Vector3D<T>::Vector3D(Vector2D<T> vec, T v): x(vec.x), y(vec.y), z(v)
+    {
+    }
 
-	template <Arithmetic T>
-	template <Arithmetic U>
-	Vector3D<T>::Vector3D(const Vector3D<U>& other) :
-		x(static_cast<T>(other.x)), y(static_cast<T>(other.y)), z(static_cast<T>(other.z))
-	{ }
-
-
-	/*************************************
-	 *                                   *
-	 *            ACCESSORS              *
-	 *                                   *
-	 *************************************/
-
-	template <Arithmetic T>
-	T& Vector3D<T>::operator[](std::size_t i) { return ((&x)[i]); }
-
-	template <Arithmetic T>
-	const T& Vector3D<T>::operator[](std::size_t i) const { return ((&x)[i]); }
+    template <Arithmetic T>
+    template <Arithmetic U>
+    Vector3D<T>::Vector3D(const Vector3D<U>& other)
+        : x(static_cast<T>(other.x)), y(static_cast<T>(other.y)), z(static_cast<T>(other.z))
+    {
+    }
 
 
-	/*************************************
-	 *                                   *
-	 *      ARITHMETIC OPERATORS         *
-	 *                                   *
-	 *************************************/
+    /*************************************
+     *                                   *
+     *            ACCESSORS              *
+     *                                   *
+     *************************************/
 
-	template <Arithmetic T>
-	template <Arithmetic U>
-	auto Vector3D<T>::operator+(const Vector3D<U>& other) const -> Vector3D<std::common_type_t<T, U>>
-	{
-		using R = std::common_type_t<T, U>;
-		return Vector3D<R>(x + other.x, y + other.y, z + other.z);
-	}
+    template <Arithmetic T>
+    T& Vector3D<T>::operator[](std::size_t i)
+    {
+        return ((&x)[i]);
+    }
 
-	template <Arithmetic T>
-	template <Arithmetic U>
-	Vector3D<T>& Vector3D<T>::operator+=(const Vector3D<U>& other)
-	{
-		x += static_cast<T>(other.x);
-		y += static_cast<T>(other.y);
-		z += static_cast<T>(other.z);
-		return *this;
-	}
-
-	template <Arithmetic T>
-	template <Arithmetic U>
-	auto Vector3D<T>::operator-(const Vector3D<U>& other) const -> Vector3D<std::common_type_t<T, U>>
-	{
-		using R = std::common_type_t<T, U>;
-		return Vector3D<R>(x - other.x, y - other.y, z - other.z);
-	}
-
-	template <Arithmetic T>
-	template <Arithmetic U>
-	Vector3D<T>& Vector3D<T>::operator-=(const Vector3D<U>& other)
-	{
-		x -= static_cast<T>(other.x);
-		y -= static_cast<T>(other.y);
-		z -= static_cast<T>(other.z);
-		return *this;
-	}
-
-	template <Arithmetic T>
-	template <Arithmetic S>
-	auto Vector3D<T>::operator*(S scalar) const -> Vector3D<std::common_type_t<T, S>>
-	{
-		using R = std::common_type_t<T, S>;
-		return Vector3D<R>(x * scalar, y * scalar, z * scalar);
-	}
+    template <Arithmetic T>
+    const T& Vector3D<T>::operator[](std::size_t i) const
+    {
+        return ((&x)[i]);
+    }
 
 
-	template <Arithmetic T, Arithmetic S>
-	auto operator*(S scalar, const Vector3D<T>& vector) -> Vector3D<std::common_type_t<T, S>>
-	{
-		return vector * scalar;
-	}
+    /*************************************
+     *                                   *
+     *      ARITHMETIC OPERATORS         *
+     *                                   *
+     *************************************/
 
-	template <Arithmetic T>
-	template <Arithmetic S>
-	Vector3D<T>& Vector3D<T>::operator*=(S scalar)
-	{
-		x = static_cast<T>(scalar * x);
-		y = static_cast<T>(scalar * y);
-		z = static_cast<T>(scalar * z);
-		return (*this);
-	}
+    template <Arithmetic T>
+    template <Arithmetic U>
+    auto Vector3D<T>::operator+(const Vector3D<U>& other) const -> Vector3D<std::common_type_t<T, U>>
+    {
+        using R = std::common_type_t<T, U>;
+        return Vector3D<R>(x + other.x, y + other.y, z + other.z);
+    }
 
-	template <Arithmetic T>
-	template <Arithmetic S>
-	auto Vector3D<T>::operator/(S scalar) const -> Vector3D<std::common_type_t<T, S>>
-	{
-		using R = std::common_type_t<T, S>;
-		R factor = R(1) / scalar;
-		return Vector3D<R>(factor * x, factor * y, factor * z) ;
-	}
+    template <Arithmetic T>
+    template <Arithmetic U>
+    Vector3D<T>& Vector3D<T>::operator+=(const Vector3D<U>& other)
+    {
+        x += static_cast<T>(other.x);
+        y += static_cast<T>(other.y);
+        z += static_cast<T>(other.z);
+        return *this;
+    }
 
-	template <Arithmetic T>
-	template <Arithmetic S>
-	Vector3D<T>& Vector3D<T>::operator/=(S scalar)
-	{
-		using R = std::common_type_t<T, S>;
-		R factor = R(1) / scalar;
-		x = static_cast<T>(x * factor);
-		y = static_cast<T>(y * factor);
-		z = static_cast<T>(z * factor);
-		return (*this);
-	}
-	
+    template <Arithmetic T>
+    template <Arithmetic U>
+    auto Vector3D<T>::operator-(const Vector3D<U>& other) const -> Vector3D<std::common_type_t<T, U>>
+    {
+        using R = std::common_type_t<T, U>;
+        return Vector3D<R>(x - other.x, y - other.y, z - other.z);
+    }
 
-	/*************************************
-	 *                                   *
-	 *         VECTOR MAGNITUDE          *
-	 *                                   *
-	 *************************************/
+    template <Arithmetic T>
+    template <Arithmetic U>
+    Vector3D<T>& Vector3D<T>::operator-=(const Vector3D<U>& other)
+    {
+        x -= static_cast<T>(other.x);
+        y -= static_cast<T>(other.y);
+        z -= static_cast<T>(other.z);
+        return *this;
+    }
 
-	template <Arithmetic T>
-	T Vector3D<T>::mag() const
-	{
-		return sqrt(x * x + y * y + z * z);
-	}
-
-
-	/*************************************
-	 *                                   *
-	 *       VECTOR NORMALIZATION        *
-	 *                                   *
-	 *************************************/
-	template <Arithmetic T>
-	Vector3D<T> Vector3D<T>::normalize() const
-	{
-		return (*this) / mag();
-	}
-
-	/*************************************
-	 *                                   *
-	 *        VECTOR DOT PRODUCT         *
-	 *                                   *
-	 *************************************/
-	template <Arithmetic T>
-	template <Arithmetic U>
-	auto Vector3D<T>::dot(const Vector3D<U>& other) const -> std::common_type_t<T, U>
-	{
-		return x * other.x + y * other.y + z * other.z;
-	}
-
-	template <Arithmetic T>
-	template <Arithmetic U>
-	auto Vector3D<T>::dot(const Vector3D& vecA, const Vector3D<U>& vecB) -> std::common_type_t<T, U>
-	{
-		return vecA.dot(vecB);
-	}
+    template <Arithmetic T>
+    template <Arithmetic S>
+    auto Vector3D<T>::operator*(S scalar) const -> Vector3D<std::common_type_t<T, S>>
+    {
+        using R = std::common_type_t<T, S>;
+        return Vector3D<R>(x * scalar, y * scalar, z * scalar);
+    }
 
 
-	/*************************************
-	 *                                   *
-	 *       VECTOR CROSS PRODUCT        *
-	 *                                   *
-	 *************************************/
+    template <Arithmetic T, Arithmetic S>
+    auto operator*(S scalar, const Vector3D<T>& vector) -> Vector3D<std::common_type_t<T, S>>
+    {
+        return vector * scalar;
+    }
 
-	template <Arithmetic T>
-	template <Arithmetic U>
-	auto Vector3D<T>::cross(const Vector3D<U>& other) const -> Vector3D<std::common_type_t<T, U>>
-	{
-		using R = std::common_type_t<T, U>;
-		return Vector3D<R>(y * other.z - z * other.y, z * other.x - x * other.z, x * other.y - y * other.x);
-	}
+    template <Arithmetic T>
+    template <Arithmetic S>
+    Vector3D<T>& Vector3D<T>::operator*=(S scalar)
+    {
+        x = static_cast<T>(scalar * x);
+        y = static_cast<T>(scalar * y);
+        z = static_cast<T>(scalar * z);
+        return (*this);
+    }
 
-	template <Arithmetic T>
-	template <Arithmetic U>
-	auto Vector3D<T>::cross(const Vector3D& vecA, const Vector3D<U>& vecB) -> Vector3D<std::common_type_t<T, U>>
-	{
-		return vecA.cross(vecB);
-	}
+    template <Arithmetic T>
+    template <Arithmetic S>
+    auto Vector3D<T>::operator/(S scalar) const -> Vector3D<std::common_type_t<T, S>>
+    {
+        using R = std::common_type_t<T, S>;
+        R factor = R(1) / scalar;
+        return Vector3D<R>(factor * x, factor * y, factor * z);
+    }
 
-	
-	/*************************************
-	 *                                   *
-	 *        VECTOR PROJECTION          *
-	 *                                   *
-	 *************************************/
-
-	template <Arithmetic T>
-	template <Arithmetic U>
-	auto Vector3D<T>::project(const Vector3D<U>& onto, bool ontoNormalized) const -> Vector3D<std::common_type_t<T, U>>
-	{
-		if (ontoNormalized)
-		{
-			// Pb||a^ = a.dot(b) * b
-			return this->dot(onto) * onto;
-		}
-		else
-		{
-			// Pb||a^ = a.dot(b) / b.dot(b) * b
-			return this->dot(onto) / onto.dot(onto) * onto;
-		}
-	}
-
-	template <Arithmetic T>
-	template <Arithmetic U>
-	auto Vector3D<T>::project(const Vector3D& vector, const Vector3D<U>& onto,
-		bool ontoNormalized) -> Vector3D<std::common_type_t<T, U>>
-	{
-		return vector.project(onto, ontoNormalized);
-	}
+    template <Arithmetic T>
+    template <Arithmetic S>
+    Vector3D<T>& Vector3D<T>::operator/=(S scalar)
+    {
+        using R = std::common_type_t<T, S>;
+        R factor = R(1) / scalar;
+        x = static_cast<T>(x * factor);
+        y = static_cast<T>(y * factor);
+        z = static_cast<T>(z * factor);
+        return (*this);
+    }
 
 
-	/*************************************
-	 *                                   *
-	 *         VECTOR REJECTION          *
-	 *                                   *
-	 *************************************/
+    /*************************************
+     *                                   *
+     *         VECTOR MAGNITUDE          *
+     *                                   *
+     *************************************/
 
-	template <Arithmetic T>
-	template <Arithmetic U>
-	auto Vector3D<T>::reject(const Vector3D<U>& onto, bool ontoNormalized) const -> Vector3D<std::common_type_t<T, U>>
-	{
-		return *this - this->project(onto, ontoNormalized);
-	}
-
-	template <Arithmetic T>
-	template <Arithmetic U>
-	auto Vector3D<T>::reject(const Vector3D& vector, const Vector3D<U>& onto,
-		bool ontoNormalized) -> Vector3D<std::common_type_t<T, U>>
-	{
-		return vector.reject(onto, ontoNormalized);
-	}
-
-}
+    template <Arithmetic T>
+    T Vector3D<T>::mag() const
+    {
+        return sqrt(x * x + y * y + z * z);
+    }
 
 
+    /*************************************
+     *                                   *
+     *       VECTOR NORMALIZATION        *
+     *                                   *
+     *************************************/
+    template <Arithmetic T>
+    Vector3D<T> Vector3D<T>::normalize() const
+    {
+        return (*this) / mag();
+    }
+
+    /*************************************
+     *                                   *
+     *        VECTOR DOT PRODUCT         *
+     *                                   *
+     *************************************/
+    template <Arithmetic T>
+    template <Arithmetic U>
+    auto Vector3D<T>::dot(const Vector3D<U>& other) const -> std::common_type_t<T, U>
+    {
+        return x * other.x + y * other.y + z * other.z;
+    }
+
+    template <Arithmetic T>
+    template <Arithmetic U>
+    auto Vector3D<T>::dot(const Vector3D& vecA, const Vector3D<U>& vecB) -> std::common_type_t<T, U>
+    {
+        return vecA.dot(vecB);
+    }
+
+
+    /*************************************
+     *                                   *
+     *       VECTOR CROSS PRODUCT        *
+     *                                   *
+     *************************************/
+
+    template <Arithmetic T>
+    template <Arithmetic U>
+    auto Vector3D<T>::cross(const Vector3D<U>& other) const -> Vector3D<std::common_type_t<T, U>>
+    {
+        using R = std::common_type_t<T, U>;
+        return Vector3D<R>(y * other.z - z * other.y, z * other.x - x * other.z, x * other.y - y * other.x);
+    }
+
+    template <Arithmetic T>
+    template <Arithmetic U>
+    auto Vector3D<T>::cross(const Vector3D& vecA, const Vector3D<U>& vecB) -> Vector3D<std::common_type_t<T, U>>
+    {
+        return vecA.cross(vecB);
+    }
+
+
+    /*************************************
+     *                                   *
+     *        VECTOR PROJECTION          *
+     *                                   *
+     *************************************/
+
+    template <Arithmetic T>
+    template <Arithmetic U>
+    auto Vector3D<T>::project(const Vector3D<U>& onto, bool ontoNormalized) const -> Vector3D<std::common_type_t<T, U>>
+    {
+        if (ontoNormalized)
+        {
+            // Pb||a^ = a.dot(b) * b
+            return this->dot(onto) * onto;
+        }
+        else
+        {
+            // Pb||a^ = a.dot(b) / b.dot(b) * b
+            return this->dot(onto) / onto.dot(onto) * onto;
+        }
+    }
+
+    template <Arithmetic T>
+    template <Arithmetic U>
+    auto Vector3D<T>::project(const Vector3D& vector, const Vector3D<U>& onto, bool ontoNormalized)
+        -> Vector3D<std::common_type_t<T, U>>
+    {
+        return vector.project(onto, ontoNormalized);
+    }
+
+
+    /*************************************
+     *                                   *
+     *         VECTOR REJECTION          *
+     *                                   *
+     *************************************/
+
+    template <Arithmetic T>
+    template <Arithmetic U>
+    auto Vector3D<T>::reject(const Vector3D<U>& onto, bool ontoNormalized) const -> Vector3D<std::common_type_t<T, U>>
+    {
+        return *this - this->project(onto, ontoNormalized);
+    }
+
+    template <Arithmetic T>
+    template <Arithmetic U>
+    auto Vector3D<T>::reject(const Vector3D& vector, const Vector3D<U>& onto, bool ontoNormalized)
+        -> Vector3D<std::common_type_t<T, U>>
+    {
+        return vector.reject(onto, ontoNormalized);
+    }
+
+} // namespace math

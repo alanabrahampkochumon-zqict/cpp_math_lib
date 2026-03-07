@@ -1,6 +1,21 @@
 cmake_minimum_required(VERSION 3.25)
 project(CPPMathLib)
 
+find_program(CLANG_FORMATTER NAMES clang-format)
+
+if(CLANG_FORMATTER)
+    file(GLOB_RECURSE ALL_SOURCE_FILES *.cpp *.h *.cxx *.hxx *.hpp *.cc *.hh *.tpp *.inl)
+
+    add_custom_target(format
+        COMMAND ${CLANG_FORMATTER} -i -style=file ${ALL_SOURCE_FILES}
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        COMMENT "Formatting source files..."
+    )
+else()
+    message(WARNING "clang-format not found")
+endif()
+
+
 option(ENABLE_STRICT "Enable ASan and Strict Warnings" OFF) # To turn on ASan, use cmake -D
 
 # Turn on solution folders

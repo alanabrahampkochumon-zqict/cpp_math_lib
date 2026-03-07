@@ -1,47 +1,48 @@
 #pragma once
 
 #include <concepts>
-#include <type_traits>
 #include <cstddef>
+#include <type_traits>
 
-namespace math {
+namespace math
+{
 
-	template<typename T>
-	concept Arithmetic = (std::integral<T> || std::floating_point<T>);
+    template <typename T>
+    concept Arithmetic = (std::integral<T> || std::floating_point<T>);
 
-	// A stricter concept that doesn't allow bool as datatype
-	// Use for operations like +, -, *, / etc.. which are not defined for bool.
-	template<typename T>
-	concept StrictArithmetic = Arithmetic<T> && !std::is_same_v<T, bool>;
+    // A stricter concept that doesn't allow bool as datatype
+    // Use for operations like +, -, *, / etc.. which are not defined for bool.
+    template <typename T>
+    concept StrictArithmetic = Arithmetic<T> && !std::is_same_v<T, bool>;
 
-	template<typename T>
-	concept weak_arithmetic = std::is_arithmetic_v<std::decay_t<T>>;
+    template <typename T>
+    concept weak_arithmetic = std::is_arithmetic_v<std::decay_t<T>>;
 
-	// Vector requires a value_type, dimension, [] accessor, and its value_type needs to be of StrictArithmetic.
-	template <typename T>
-	concept IsVector = requires(T v, std::size_t i) {
-		typename T::value_type;
-		{ T::dimension } -> std::same_as<const std::size_t&>;
-		{ v[i] } -> std::convertible_to<typename T::value_type>;
-	}&& Arithmetic<typename T::value_type>;
+    // Vector requires a value_type, dimension, [] accessor, and its value_type needs to be of StrictArithmetic.
+    template <typename T>
+    concept IsVector = requires(T v, std::size_t i) {
+        typename T::value_type;
+        { T::dimension } -> std::same_as<const std::size_t&>;
+        { v[i] } -> std::convertible_to<typename T::value_type>;
+    } && Arithmetic<typename T::value_type>;
 
-	// Matrix requires a value_type, rows, columns, [] accessor, (r, c) accessor, and its value_type needs to be StrictArithmetic.
-	template <typename T>
-	concept Matrix = requires(T matrix, std::size_t r, std::size_t c)
-	{
-		typename T::value_type;
-		{ T::rows } -> std::same_as<const std::size_t&>;
-		{ T::columns } -> std::same_as<const std::size_t&>;
-		{ matrix(r, c) } -> std::convertible_to<typename T::value_type>;
-		{ matrix[c] };
-	} && Arithmetic<typename T::value_type>;
+    // Matrix requires a value_type, rows, columns, [] accessor, (r, c) accessor, and its value_type needs to be
+    // StrictArithmetic.
+    template <typename T>
+    concept Matrix = requires(T matrix, std::size_t r, std::size_t c) {
+        typename T::value_type;
+        { T::rows } -> std::same_as<const std::size_t&>;
+        { T::columns } -> std::same_as<const std::size_t&>;
+        { matrix(r, c) } -> std::convertible_to<typename T::value_type>;
+        { matrix[c] };
+    } && Arithmetic<typename T::value_type>;
 
-	// Custom typedef used for vector magnitudes as integral magnitudes can cause imprecision.
-	template <typename T>
-	requires Arithmetic<T>
-	using Magnitude = std::conditional_t<std::is_same_v<T, float>, float, double>;
+    // Custom typedef used for vector magnitudes as integral magnitudes can cause imprecision.
+    template <typename T>
+        requires Arithmetic<T>
+    using Magnitude = std::conditional_t<std::is_same_v<T, float>, float, double>;
 
-	// Custom Epsilon
-	inline constexpr double FLOAT_EPSILON = 1e-5;
-	inline constexpr double DOUBLE_EPSILON = 1e-12;
-}
+    // Custom Epsilon
+    inline constexpr double FLOAT_EPSILON = 1e-5;
+    inline constexpr double DOUBLE_EPSILON = 1e-12;
+} // namespace math

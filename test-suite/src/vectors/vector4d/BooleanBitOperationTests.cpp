@@ -2,55 +2,55 @@
 
 using namespace TestUtils;
 
-class BooleanVectorBitOperations : public ::testing::Test
+class BooleanVectorBitOperations: public ::testing::Test
 {
-protected:
-	math::Vector4D<bool> vecA;
-	math::Vector4D<bool> vecB;
-	math::Vector4D<bool> expectedAndVector;
-	math::Vector4D<bool> expectedOrVector;
-	math::Vector4D<bool> expectedNotAVector;
+    protected:
+    math::Vector4D<bool> vecA;
+    math::Vector4D<bool> vecB;
+    math::Vector4D<bool> expectedAndVector;
+    math::Vector4D<bool> expectedOrVector;
+    math::Vector4D<bool> expectedNotAVector;
 
-	void SetUp() override
-	{
-		vecA = { true, false, true, false };
-		vecB = { true, true, false, false };
-		expectedAndVector = { true, false, false, false };
-		expectedOrVector = { true, true, true, false };
-		expectedNotAVector = { false, true, false, true };
-	}
+    void SetUp() override
+    {
+        vecA = { true, false, true, false };
+        vecB = { true, true, false, false };
+        expectedAndVector = { true, false, false, false };
+        expectedOrVector = { true, true, true, false };
+        expectedNotAVector = { false, true, false, true };
+    }
 };
 // TODO: Add Tests
 
 TEST_F(BooleanVectorBitOperations, BitwiseAndReturnsComponentwiseAnd)
 {
-	// Given two bool vectors
+    // Given two bool vectors
 
-	// When they are `AND` together
-	auto result = this->vecA & this->vecB;
+    // When they are `AND` together
+    auto result = this->vecA & this->vecB;
 
-	// Then, we get another vector with componentwise AND applied
-	EXPECT_VEC_EQ(this->expectedAndVector, result);
+    // Then, we get another vector with componentwise AND applied
+    EXPECT_VEC_EQ(this->expectedAndVector, result);
 }
 
 TEST_F(BooleanVectorBitOperations, BitwiseOrReturnsComponentwiseOr)
 {
-	// Given two bool vectors
+    // Given two bool vectors
 
-	// When they are `OR` together
-	auto result = this->vecA | this->vecB;
+    // When they are `OR` together
+    auto result = this->vecA | this->vecB;
 
-	// Then, we get another vector with componentwise OR applied
-	EXPECT_VEC_EQ(this->expectedOrVector, result);
+    // Then, we get another vector with componentwise OR applied
+    EXPECT_VEC_EQ(this->expectedOrVector, result);
 }
 
 TEST_F(BooleanVectorBitOperations, BitwiseNotReturnsInvertedVector)
 {
-	// Given a bool vector
+    // Given a bool vector
 
-	// When they are `OR` together
-	auto result = !this->vecA;
+    // When they are `OR` together
+    auto result = !this->vecA;
 
-	// Then, we get another vector with componentwise NOT applied
-	EXPECT_VEC_EQ(this->expectedNotAVector, result);
+    // Then, we get another vector with componentwise NOT applied
+    EXPECT_VEC_EQ(this->expectedNotAVector, result);
 }

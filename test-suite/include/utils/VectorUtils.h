@@ -1,175 +1,174 @@
 #pragma once
 
+#include <MathTraits.h>
 #include <cmath>
-#include <type_traits>
-
 #include <gtest/gtest.h>
+#include <type_traits>
 #include <vector/Vector2D.h>
 #include <vector/Vector3D.h>
 #include <vector/Vector4D.h>
-#include <MathTraits.h>
 
 namespace TestUtils
 {
-	template<math::IsVector T, math::IsVector U>
-	void EXPECT_VEC_EQ(const T& expected, const U& actual)
-	{
-		using ValueType = T::value_type;
+    template <math::IsVector T, math::IsVector U>
+    void EXPECT_VEC_EQ(const T& expected, const U& actual)
+    {
+        using ValueType = T::value_type;
 
-		static_assert(T::dimension == U::dimension, "Vectors must have the same dimension (e.g. both 3D)");
+        static_assert(T::dimension == U::dimension, "Vectors must have the same dimension (e.g. both 3D)");
 
-		constexpr std::size_t elementCount = T::dimension;
+        constexpr std::size_t elementCount = T::dimension;
 
-		for (std::size_t i = 0; i < elementCount; ++i)
-		{
-			if constexpr (std::is_same_v<ValueType, double>)
-				EXPECT_NEAR(expected[i], static_cast<ValueType>(actual[i]), math::DOUBLE_EPSILON);
-			else if constexpr (std::is_floating_point_v<ValueType>)
-				EXPECT_NEAR(expected[i], static_cast<ValueType>(actual[i]), math::FLOAT_EPSILON);
-			else
-				EXPECT_EQ(expected[i], static_cast<ValueType>(actual[i]));
-		}
-	}
+        for (std::size_t i = 0; i < elementCount; ++i)
+        {
+            if constexpr (std::is_same_v<ValueType, double>)
+                EXPECT_NEAR(expected[i], static_cast<ValueType>(actual[i]), math::DOUBLE_EPSILON);
+            else if constexpr (std::is_floating_point_v<ValueType>)
+                EXPECT_NEAR(expected[i], static_cast<ValueType>(actual[i]), math::FLOAT_EPSILON);
+            else
+                EXPECT_EQ(expected[i], static_cast<ValueType>(actual[i]));
+        }
+    }
 
-	template<math::Arithmetic T>
-	void EXPECT_VEQ_CONTAINS(const math::Vector2D<T>& vector, T x, T y)
-	{
-		if constexpr (std::is_same_v<T, float>)
-		{
-			EXPECT_FLOAT_EQ(x, vector.x);
-			EXPECT_FLOAT_EQ(y, vector.y);
-		}
-		else if constexpr (std::is_same_v<T, double>)
-		{
-			EXPECT_DOUBLE_EQ(x, vector.x);
-			EXPECT_DOUBLE_EQ(y, vector.y);
-		}
-		else
-		{
-			EXPECT_EQ(x, vector.x);
-			EXPECT_EQ(y, vector.y);
-		}
-	}
+    template <math::Arithmetic T>
+    void EXPECT_VEQ_CONTAINS(const math::Vector2D<T>& vector, T x, T y)
+    {
+        if constexpr (std::is_same_v<T, float>)
+        {
+            EXPECT_FLOAT_EQ(x, vector.x);
+            EXPECT_FLOAT_EQ(y, vector.y);
+        }
+        else if constexpr (std::is_same_v<T, double>)
+        {
+            EXPECT_DOUBLE_EQ(x, vector.x);
+            EXPECT_DOUBLE_EQ(y, vector.y);
+        }
+        else
+        {
+            EXPECT_EQ(x, vector.x);
+            EXPECT_EQ(y, vector.y);
+        }
+    }
 
-	template<math::Arithmetic T>
-	void EXPECT_VEQ_CONTAINS(const math::Vector3D<T>& vector, T x, T y, T z)
-	{
-		if constexpr (std::is_same_v<T, float>)
-		{
-			EXPECT_FLOAT_EQ(x, vector.x);
-			EXPECT_FLOAT_EQ(y, vector.y);
-			EXPECT_FLOAT_EQ(z, vector.z);
-		}
-		else if constexpr (std::is_same_v<T, double>)
-		{
-			EXPECT_DOUBLE_EQ(x, vector.x);
-			EXPECT_DOUBLE_EQ(y, vector.y);
-			EXPECT_DOUBLE_EQ(z, vector.z);
-		}
-		else
-		{
-			EXPECT_EQ(x, vector.x);
-			EXPECT_EQ(y, vector.y);
-			EXPECT_EQ(z, vector.z);
-		}
-	}
+    template <math::Arithmetic T>
+    void EXPECT_VEQ_CONTAINS(const math::Vector3D<T>& vector, T x, T y, T z)
+    {
+        if constexpr (std::is_same_v<T, float>)
+        {
+            EXPECT_FLOAT_EQ(x, vector.x);
+            EXPECT_FLOAT_EQ(y, vector.y);
+            EXPECT_FLOAT_EQ(z, vector.z);
+        }
+        else if constexpr (std::is_same_v<T, double>)
+        {
+            EXPECT_DOUBLE_EQ(x, vector.x);
+            EXPECT_DOUBLE_EQ(y, vector.y);
+            EXPECT_DOUBLE_EQ(z, vector.z);
+        }
+        else
+        {
+            EXPECT_EQ(x, vector.x);
+            EXPECT_EQ(y, vector.y);
+            EXPECT_EQ(z, vector.z);
+        }
+    }
 
-	template<math::Arithmetic T>
-	void EXPECT_VEQ_CONTAINS(const math::Vector4D<T>& vector, T x, T y, T z, T w)
-	{
-		if constexpr (std::is_same_v<T, float>)
-		{
-			EXPECT_FLOAT_EQ(x, vector.x);
-			EXPECT_FLOAT_EQ(y, vector.y);
-			EXPECT_FLOAT_EQ(z, vector.z);
-			EXPECT_FLOAT_EQ(w, vector.w);
-		}
-		else if constexpr (std::is_floating_point_v<T>)
-		{
-			EXPECT_DOUBLE_EQ(x, vector.x);
-			EXPECT_DOUBLE_EQ(y, vector.y);
-			EXPECT_DOUBLE_EQ(z, vector.z);
-			EXPECT_DOUBLE_EQ(w, vector.w);
-		}
-		else
-		{
-			EXPECT_EQ(x, vector.x);
-			EXPECT_EQ(y, vector.y);
-			EXPECT_EQ(z, vector.z);
-			EXPECT_EQ(w, vector.w);
-		}
-	}
+    template <math::Arithmetic T>
+    void EXPECT_VEQ_CONTAINS(const math::Vector4D<T>& vector, T x, T y, T z, T w)
+    {
+        if constexpr (std::is_same_v<T, float>)
+        {
+            EXPECT_FLOAT_EQ(x, vector.x);
+            EXPECT_FLOAT_EQ(y, vector.y);
+            EXPECT_FLOAT_EQ(z, vector.z);
+            EXPECT_FLOAT_EQ(w, vector.w);
+        }
+        else if constexpr (std::is_floating_point_v<T>)
+        {
+            EXPECT_DOUBLE_EQ(x, vector.x);
+            EXPECT_DOUBLE_EQ(y, vector.y);
+            EXPECT_DOUBLE_EQ(z, vector.z);
+            EXPECT_DOUBLE_EQ(w, vector.w);
+        }
+        else
+        {
+            EXPECT_EQ(x, vector.x);
+            EXPECT_EQ(y, vector.y);
+            EXPECT_EQ(z, vector.z);
+            EXPECT_EQ(w, vector.w);
+        }
+    }
 
-	template <math::IsVector T>
-	void EXPECT_VEC_UNIT(const T& vector)
-	{
-		using ValueType = T::value_type;
-		ValueType expected = ValueType(1);
+    template <math::IsVector T>
+    void EXPECT_VEC_UNIT(const T& vector)
+    {
+        using ValueType = T::value_type;
+        ValueType expected = ValueType(1);
 
-		constexpr std::size_t elementCount = T::dimension;
+        constexpr std::size_t elementCount = T::dimension;
 
-		for (std::size_t i = 0; i < elementCount; ++i)
-		{
-			if constexpr (std::is_same_v<ValueType, float>)
-			{
-				EXPECT_FLOAT_EQ(expected, static_cast<ValueType>(vector[i]));
-			}
-			else if constexpr (std::is_same_v<ValueType, double>)
-			{
-				EXPECT_DOUBLE_EQ(expected, static_cast<ValueType>(vector[i]));
-			}
-			else
-			{
-				EXPECT_EQ(expected, static_cast<ValueType>(vector[i]));
-			}
-		}
-	}
+        for (std::size_t i = 0; i < elementCount; ++i)
+        {
+            if constexpr (std::is_same_v<ValueType, float>)
+            {
+                EXPECT_FLOAT_EQ(expected, static_cast<ValueType>(vector[i]));
+            }
+            else if constexpr (std::is_same_v<ValueType, double>)
+            {
+                EXPECT_DOUBLE_EQ(expected, static_cast<ValueType>(vector[i]));
+            }
+            else
+            {
+                EXPECT_EQ(expected, static_cast<ValueType>(vector[i]));
+            }
+        }
+    }
 
-	template <math::IsVector T>
-	void EXPECT_VEC_ZERO(const T& vector)
-	{
-		using ValueType = T::value_type;
+    template <math::IsVector T>
+    void EXPECT_VEC_ZERO(const T& vector)
+    {
+        using ValueType = T::value_type;
 
-		constexpr std::size_t elementCount = T::dimension;
+        constexpr std::size_t elementCount = T::dimension;
 
-		for (std::size_t i = 0; i < elementCount; ++i)
-		{
-			if constexpr (std::is_same_v<ValueType, float>)
-			{
-				EXPECT_FLOAT_EQ(0.0f, static_cast<ValueType>(vector[i]));
-			}
-			else if constexpr (std::is_same_v<ValueType, double>)
-			{
-				EXPECT_DOUBLE_EQ(0.0, static_cast<ValueType>(vector[i]));
-			}
-			else
-			{
-				EXPECT_EQ(ValueType(0), static_cast<ValueType>(vector[i]));
-			}
-		}
-	}
+        for (std::size_t i = 0; i < elementCount; ++i)
+        {
+            if constexpr (std::is_same_v<ValueType, float>)
+            {
+                EXPECT_FLOAT_EQ(0.0f, static_cast<ValueType>(vector[i]));
+            }
+            else if constexpr (std::is_same_v<ValueType, double>)
+            {
+                EXPECT_DOUBLE_EQ(0.0, static_cast<ValueType>(vector[i]));
+            }
+            else
+            {
+                EXPECT_EQ(ValueType(0), static_cast<ValueType>(vector[i]));
+            }
+        }
+    }
 
-	template<math::IsVector T>
-	void EXPECT_VEC_INF(const T& vector)
-	{
-		constexpr std::size_t elementCount = T::dimension;
-		if (std::is_floating_point_v<T>)
-			for (std::size_t i = 0; i < elementCount; ++i)
-			{
-				EXPECT_TRUE(std::isinf(vector[i]));
-			}
-		else
-			GTEST_SKIP() << "Integral division by zero result in undefined behavior and crashes.";
-	}
+    template <math::IsVector T>
+    void EXPECT_VEC_INF(const T& vector)
+    {
+        constexpr std::size_t elementCount = T::dimension;
+        if (std::is_floating_point_v<T>)
+            for (std::size_t i = 0; i < elementCount; ++i)
+            {
+                EXPECT_TRUE(std::isinf(vector[i]));
+            }
+        else
+            GTEST_SKIP() << "Integral division by zero result in undefined behavior and crashes.";
+    }
 
-	template<math::StrictArithmetic T>
-	void EXPECT_MAG_EQ(T expected, T actual)
-	{
-		if constexpr (std::is_same_v<T, float>)
-			EXPECT_FLOAT_EQ(expected, actual);
-		else if constexpr (std::is_floating_point_v<T>)
-			EXPECT_DOUBLE_EQ(expected, actual);
-		else
-			EXPECT_EQ(expected, actual);
-	}		
-}
+    template <math::StrictArithmetic T>
+    void EXPECT_MAG_EQ(T expected, T actual)
+    {
+        if constexpr (std::is_same_v<T, float>)
+            EXPECT_FLOAT_EQ(expected, actual);
+        else if constexpr (std::is_floating_point_v<T>)
+            EXPECT_DOUBLE_EQ(expected, actual);
+        else
+            EXPECT_EQ(expected, actual);
+    }
+} // namespace TestUtils
