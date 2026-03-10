@@ -2,7 +2,7 @@
 /**
  * @file Vector4D.h
  * @author Alan Abraham P Kochumon
- * @date Created on: March 07, 2026
+ * @date Created on: January 26, 2026
  *
  * @brief Templated 4D Vector supporting integral, floating-point and boolean types.
  * @note Arithmetic operations are limited to numeric types via `StrictArithmetic` concept.
@@ -353,8 +353,6 @@ namespace math
     using dVec4 = Vector4D<double>;
     using ulVec4 = Vector4D<unsigned long long>;
 
-
-    // TODO: Add &&, ||, ==, !=, ! for bool vectors
 } // namespace math
 
 #include "Vector4D.tpp"

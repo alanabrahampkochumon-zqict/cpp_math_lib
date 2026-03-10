@@ -1,4 +1,14 @@
 #pragma once
+/**
+ * @file Vector3D.tpp
+ * @author Alan Abraham P Kochumon
+ * @date Created on: January 19, 2026
+ *
+ * @brief `Vector3D` implementation.
+ * 
+ * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
+ */
+
 
 // TODO: Enable strict types using `using R = std::common_type_t<T, U>`
 

@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 project(CPPMathLib)
 
-include(dependencies.cmake)
-include(simdcheck.cmake)
 
 find_program(CLANG_FORMATTER NAMES clang-format)
 
@@ -29,13 +27,15 @@ if(ENABLE_STRICT)
     message("Turning ASan on")
     if(MSVC)
         add_compile_options(/fsanitize=address)
-        add_link_options(/fsanitize=address)
     else()
         add_compile_options(-fsanitize=address -fno-omit-frame-pointer)
         add_link_options(-fsanitize=address)
     endif()
 endif()
 
+
+include(dependencies.cmake)
+include(simdcheck.cmake)
 
 add_subdirectory(math-lib)
 add_subdirectory(playground)

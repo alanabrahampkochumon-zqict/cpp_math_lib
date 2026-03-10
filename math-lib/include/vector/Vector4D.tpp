@@ -2,9 +2,9 @@
 /**
  * @file Vector4D.tpp
  * @author Alan Abraham P Kochumon
- * @date Created on: March 07, 2026
+ * @date Created on: January 26, 2026
  *
- * @brief Implementation of Vector4D
+ * @brief `Vector4D` implementation.
  * 
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */

@@ -9,7 +9,6 @@
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */
 
-
 #define FORCE_SCALAR
 #define ENABLE_FGM_SHADER_OPERATORS
 

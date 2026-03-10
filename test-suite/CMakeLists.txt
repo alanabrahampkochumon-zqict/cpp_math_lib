@@ -19,7 +19,7 @@ list(TRANSFORM Vector4DTestFiles PREPEND ${Vector4DTestDirectory})
 
 # Vector Test Sources
 set(Vector3DTestDirectory "src/vectors/vector3d/")
-set(Vector3DTestFiles "InitializationTests.cpp;")
+set(Vector3DTestFiles "AccessAndMutationTests.cpp;InitializationTests.cpp;")
 list(TRANSFORM Vector3DTestFiles PREPEND ${Vector3DTestDirectory})
 
 

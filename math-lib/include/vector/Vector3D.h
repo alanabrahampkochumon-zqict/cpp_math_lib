@@ -1,8 +1,25 @@
 #pragma once
+/**
+ * @file Vector3D.h
+ * @author Alan Abraham P Kochumon
+ * @date Created on: January 19, 2026
+ *
+ * @brief Templated 3D Vector supporting integral, floating-point and boolean types.
+ * @note Arithmetic operations are limited to numeric types via `StrictArithmetic` concept.
+ *
+ * @par Configuration
+ * Define `ENABLE_FGM_SHADER_OPERATORS` to enable comparison operators (>, <, etc.).
+ * Even if disabled, functional comparisons like `greaterThan()` remain available.
+ * Define `FORCE_SCALAR` to turn off SIMD which is on by default on supported hardware.
+ * 
+ * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
+ */
+
 
 #include "Vector2D.h"
 
 #include <type_traits>
+
 
 namespace math
 {
@@ -16,15 +33,21 @@ namespace math
         union {
             struct
             {
-                T x, y, z;
+                T x; ///< X-axis component
+                T y; ///< Y-axis component
+                T z; ///< Z-axis component
             };
             struct
             {
-                T r, g, b;
+                T r; ///< Red channel
+                T g; ///< Green channel
+                T b; ///< Blue channel
             };
             struct
             {
-                T s, t, p;
+                T s; ///< S-coordinate
+                T t; ///< T-coordinate
+                T p; ///< P-coordinate
             };
 
             T elements[dimension];

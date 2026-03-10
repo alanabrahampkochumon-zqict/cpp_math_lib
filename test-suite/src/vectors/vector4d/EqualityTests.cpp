@@ -11,6 +11,7 @@
 
 #include "Vector4DTestSetup.h"
 
+
 template <typename T>
 class Vector4DEquality: public ::testing::Test
 {

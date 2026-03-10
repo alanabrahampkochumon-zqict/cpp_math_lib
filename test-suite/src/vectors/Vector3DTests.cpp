@@ -57,65 +57,7 @@ TEST(Vector3D_ConversionConstructor, ConversionConstructorCreatesNewVectorWithDe
     ASSERT_FLOAT_EQ(6.0f, vec2.z);
 }
 
-TEST(Vector3D_Access, AccessibleAsXYZ)
-{
-    // Arrange & Act
-    const math::Vector3D vec(3.0f, 1.0f, 6.0f);
 
-    // Assert
-    EXPECT_FLOAT_EQ(3.0f, vec.x);
-    EXPECT_FLOAT_EQ(1.0f, vec.y);
-    EXPECT_FLOAT_EQ(6.0f, vec.z);
-}
-
-TEST(Vector3D_Access, AccessibleAsSTP)
-{
-    // Arrange & Act
-    const math::Vector3D vec(3.0f, 1.0f, 6.0f);
-
-    // Assert
-    EXPECT_FLOAT_EQ(3.0f, vec.s);
-    EXPECT_FLOAT_EQ(1.0f, vec.t);
-    EXPECT_FLOAT_EQ(6.0f, vec.p);
-}
-
-TEST(Vector3D_Access, AccessibleAsRGB)
-{
-    // Arrange & Act
-    const math::Vector3D vec(3.0f, 1.0f, 6.0f);
-
-    // Assert
-    EXPECT_FLOAT_EQ(3.0f, vec.r);
-    EXPECT_FLOAT_EQ(1.0f, vec.g);
-    EXPECT_FLOAT_EQ(6.0f, vec.b);
-}
-
-TEST(Vector3D_Access, AccessibleAsArray)
-{
-    // Arrange & Act
-    const math::Vector3D vec(3.0f, 1.0f, 6.0f);
-
-    // Assert
-    EXPECT_FLOAT_EQ(3.0f, vec.elements[0]);
-    EXPECT_FLOAT_EQ(1.0f, vec.elements[1]);
-    EXPECT_FLOAT_EQ(6.0f, vec.elements[2]);
-}
-
-TEST(Vector3D_Access, IndexBasedAssignmentAndRetrivalSupport)
-{
-    // Arrange
-    math::Vector3D<float> vec;
-
-    // Act
-    vec[0] = 3.0f;
-    vec[1] = 1.0f;
-    vec[2] = 6.0f;
-
-    // Assert
-    EXPECT_FLOAT_EQ(3.0f, vec[0]);
-    EXPECT_FLOAT_EQ(1.0f, vec[1]);
-    EXPECT_FLOAT_EQ(6.0f, vec[2]);
-}
 
 TEST(Vector3D_Helper, vec3Return3DFloatVector)
 {
