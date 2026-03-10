@@ -1,3 +1,4 @@
+#pragma once
 /**
  * @file MatrixUtils.h
  * @author Alan Abraham P Kochumon
@@ -8,8 +9,6 @@
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */
 
-
-#pragma once
 
 #include <MathTraits.h>
 #include <cmath>

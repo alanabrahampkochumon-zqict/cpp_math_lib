@@ -1,3 +1,4 @@
+#pragma once
 /**
  * @file Vector4D.tpp
  * @author Alan Abraham P Kochumon
@@ -9,9 +10,8 @@
  */
 
 
-#pragma once
-
 #include <cassert>
+
 
 namespace math
 {

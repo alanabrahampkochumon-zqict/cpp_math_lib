@@ -55,7 +55,8 @@ namespace math
 
 
     /**
-     * @brief `Matrix` requires a value_type, rows, columns, [] accessor, (r, c) accessor, and its value_type needs to be `Arithmetic`.
+     * @brief `Matrix` requires a value_type, rows, columns, [] accessor, (r, c) accessor, and its value_type needs to
+     * be `Arithmetic`.
      */
     template <typename T>
     concept Matrix = requires(T matrix, std::size_t r, std::size_t c) {

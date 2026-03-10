@@ -1,3 +1,4 @@
+#pragma once
 /**
  * @file MatrixUtils.h
  * @author Alan Abraham P Kochumon
@@ -9,13 +10,12 @@
  */
 
 
-#pragma once
-
 #include <MathTraits.h>
 #include <cmath>
 #include <gtest/gtest.h>
 #include <matrix/Matrix2D.h>
 #include <matrix/Matrix3D.h>
+
 
 namespace testutils
 {

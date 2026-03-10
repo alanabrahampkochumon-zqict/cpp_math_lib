@@ -1,25 +1,6 @@
-/**
- * @file InitializationTests.cpp
- * @author Alan Abraham P Kochumon
- * @date Created on: March 07, 2026
- *
- * @brief `Vector3D` initialization tests.
- * 
- * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
- */
-
-
 #include "Vector3DTestSetup.h"
 
-
 using namespace testutils;
-
-
-/**************************************
- *                                    *
- *               SETUP                *
- *                                    *
- **************************************/
 
 template <typename T>
 class Vector3DInitialization: public ::testing::Test
@@ -27,12 +8,6 @@ class Vector3DInitialization: public ::testing::Test
 };
 TYPED_TEST_SUITE(Vector3DInitialization, SupportedTypes);
 
-
-/**************************************
- *                                    *
- *               TESTS                *
- *                                    *
- **************************************/
 
 TYPED_TEST(Vector3DInitialization, EmptyConstructorInitializesZeroVector)
 {

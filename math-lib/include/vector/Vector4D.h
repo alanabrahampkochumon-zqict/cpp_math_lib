@@ -1,3 +1,4 @@
+#pragma once
 /**
  * @file Vector4D.h
  * @author Alan Abraham P Kochumon
@@ -15,12 +16,11 @@
  */
 
 
-#pragma once
-
 #include "Vector2D.h"
 #include "Vector3D.h"
 
 #include <cstddef>
+
 
 namespace math
 {
