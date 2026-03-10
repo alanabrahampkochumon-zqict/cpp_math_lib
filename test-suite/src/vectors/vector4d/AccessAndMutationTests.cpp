@@ -18,7 +18,7 @@
  *                                    *
  **************************************/
 
-TEST(Vector4DAccess, AccessibleAsXYZ)
+TEST(Vector4DAccess, AccessibleAsXYZW)
 {
     // Given a vector with arbitrary values passed in
     const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
@@ -30,7 +30,7 @@ TEST(Vector4DAccess, AccessibleAsXYZ)
     EXPECT_FLOAT_EQ(2.0f, vec.w);
 }
 
-TEST(Vector4DAccess, AccessibleAsSTP)
+TEST(Vector4DAccess, AccessibleAsSTPQ)
 {
     // Given a vector with arbitrary values passed in
     const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
@@ -42,7 +42,7 @@ TEST(Vector4DAccess, AccessibleAsSTP)
     EXPECT_FLOAT_EQ(2.0f, vec.q);
 }
 
-TEST(Vector4DAccess, AccessibleAsRGB)
+TEST(Vector4DAccess, AccessibleAsRGBA)
 {
     // Given a vector with arbitrary values passed in
     const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
@@ -72,6 +72,60 @@ TEST(Vector4DAccess, AccessibleAsArray)
  *           MUTATION TESTS           *
  *                                    *
  **************************************/
+
+TEST(Vector4DAccess, MutableAsXYZW)
+{
+    // Given a default initialized vector
+    math::Vector4D<float> vec;
+
+    // When, it's elements are modified using x, y, z, w
+    vec.x = 3.0f;
+    vec.y = 1.0f;
+    vec.z = 6.0f;
+    vec.w = 2.0f;
+
+    // Then, it's elements are modified
+    EXPECT_FLOAT_EQ(3.0f, vec.x);
+    EXPECT_FLOAT_EQ(1.0f, vec.y);
+    EXPECT_FLOAT_EQ(6.0f, vec.z);
+    EXPECT_FLOAT_EQ(2.0f, vec.w);
+}
+
+TEST(Vector4DAccess, MutableAsSTPQ)
+{
+    // Given a default initialized vector
+    math::Vector4D<float> vec;
+
+    // When, it's elements are modified using s, t, p, q
+    vec.s = 3.0f;
+    vec.t = 1.0f;
+    vec.p = 6.0f;
+    vec.q = 2.0f;
+
+    // Then, it's elements are modified
+    EXPECT_FLOAT_EQ(3.0f, vec.s);
+    EXPECT_FLOAT_EQ(1.0f, vec.t);
+    EXPECT_FLOAT_EQ(6.0f, vec.p);
+    EXPECT_FLOAT_EQ(2.0f, vec.q);
+}
+
+TEST(Vector4DAccess, MutableAsRGBA)
+{
+    // Given a default initialized vector
+    math::Vector4D<float> vec;
+
+    // When, it's elements are modified using r, g, b, a
+    vec.r = 3.0f;
+    vec.g = 1.0f;
+    vec.b = 6.0f;
+    vec.a = 2.0f;
+
+    // Then, it's elements are modified
+    EXPECT_FLOAT_EQ(3.0f, vec.r);
+    EXPECT_FLOAT_EQ(1.0f, vec.g);
+    EXPECT_FLOAT_EQ(6.0f, vec.b);
+    EXPECT_FLOAT_EQ(2.0f, vec.a);
+}
 
 TEST(Vector4DMutation, ElementsCanBeMutatedAtGivenIndex)
 {
