@@ -11,11 +11,22 @@
 
 #include "SIMDTestSetup.h"
 
+/**************************************
+ *                                    *
+ *                SETUP               *
+ *                                    *
+ **************************************/
 
 template<typename T>
 class RegisterMapTest: public ::testing::Test{};
 TYPED_TEST_SUITE(RegisterMapTest, SupportedSIMDIntegralTypes);
 
+
+/**************************************
+ *                                    *
+ *                TESTS               *
+ *                                    *
+ **************************************/
 
 TEST(RegisterMapTest, FloatMapsToCorrectSIMDIntrinsics)
 {
