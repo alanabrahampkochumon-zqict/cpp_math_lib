@@ -19,6 +19,9 @@ class Vector4DEquality: public ::testing::Test
     math::Vector4D<T> eqVecA;
     math::Vector4D<T> eqVecB;
     math::Vector4D<T> uneqVec;
+    math::Vector<bool> equalityMask;
+    math::Vector<bool> inequalityMask;
+
 
     void SetUp() override
     {

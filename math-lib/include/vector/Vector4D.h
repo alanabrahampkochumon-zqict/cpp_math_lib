@@ -89,25 +89,61 @@ namespace math
          *                                     *
          ***************************************/
 
+        /**
+         * @brief Checks the equality of all the vector elements.
+         * @note For Vector<bool> mask use `neq` for inequality and `eq` for equality.
+         *
+         * @tparam U type of the `Vector4D` being compared against.
+         * @param other `Vector4D` to check equality against.
+         * @param epsilon Epsilon to use for comparison. Only affects `std::floating_point` types.
+         * @returns bool whether the entire vectors are equal.
+         */
         template <Arithmetic U>
-        bool eq(const Vector4D<U>& other,
-                    double epsilon = (std::is_same_v<T, double> && std::is_same_v<U, double>) ? DOUBLE_EPSILON
-                                                                                              : FLOAT_EPSILON) const;
+        bool allEq(const Vector4D<U>& other,
+                    double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>) ? DOUBLE_EPSILON: FLOAT_EPSILON) const;
 
+
+        /**
+         * @brief Static wrapper for `Vector4D` equality checks.
+         * @note For Vector<bool> mask use `neq` for inequality and `eq` for equality.
+         *
+         * @tparam U type of the `Vector4D` being compared against.
+         * @param vecA `Vector4D` being compared.
+         * @param vecB `Vector4D` being compared against.
+         * @param epsilon Epsilon to use for comparison. Only affects `std::floating_point` types.
+         * @returns bool whether the entire vectors are equal.
+         */
         template <Arithmetic U>
-        static bool eq(const Vector4D& vecA, const Vector4D<U>& vecB,
-                           double epsilon = (std::is_same_v<T, double> && std::is_same_v<U, double>) ? DOUBLE_EPSILON
-                                                                                                     : FLOAT_EPSILON);
+        static bool allEq(const Vector4D& vecA, const Vector4D<U>& vecB,
+                           double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>) ? DOUBLE_EPSILON: FLOAT_EPSILON);
 
+
+        /**
+         * @brief Equality operator overload for vector comparison, that check for equality of entire vectors.
+         * @note For Vector<bool> mask use `eq`.
+         * @tparam U type of the `Vector4D` being compared against.
+         * @param other `Vector4D` being compared against.
+         * @return bool whether the entire vector are equal.
+         */
         template <Arithmetic U>
         bool operator==(const Vector4D<U>& other) const;
 
+
+        /**
+         * @brief Inequality operator overload for vector comparison, that check for inequality of entire vectors.
+         * @note For Vector<bool> mask use `neq`.
+         *
+         * @tparam U type of the `Vector4D` being compared against.
+         * @param other `Vector4D` being compared against.
+         * @return bool whether the entire vector are equal.
+         */
         template <Arithmetic U>
         bool operator!=(const Vector4D<U>& other) const;
 
+
         /**
          *
-         * @note All comparison operator expect equality and inequality performs element-wise comparison
+         * @note All comparisons except equality operator(==), inequality operator(!=), and `allEq` performs element-wise comparison.
          *
          */
         template <StrictArithmetic U>
