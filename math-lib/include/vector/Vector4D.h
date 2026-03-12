@@ -5,7 +5,9 @@
  * @date Created on: January 26, 2026
  *
  * @brief Templated 4D Vector supporting integral, floating-point and boolean types.
- * @note Arithmetic operations are limited to numeric types via `StrictArithmetic` concept.
+ * @tparam T Type of Vector4D components. Must satisfy @ref Arithmetic concept.
+ *
+ * @note Arithmetic operations are limited to numeric types via @ref StrictArithmetic concept.
  *
  * @par Configuration
  * Define `ENABLE_FGM_SHADER_OPERATORS` to enable comparison operators (>, <, etc.).
@@ -58,19 +60,56 @@ namespace math
         };
 
 
+
+
         /*************************************
          *                                   *
          *            INITIALIZERS           *
          *                                   *
          *************************************/
 
+
+        /**
+         * @brief Initialize @ref Vector4D with zeros.
+         */
         Vector4D();
+
+
+        /**
+         * @brief Initialize @ref Vector4D with passed in values.
+         * @param v1 First entry of @ref Vector4D.
+         * @param v2 Second entry of @ref Vector4D.
+         * @param v3 Third entry of @ref Vector4D.
+         * @param v4 Fourth entry of @ref Vector4D.
+         */
         Vector4D(T v1, T v2, T v3, T v4);
+
+
+        /**
+         * @brief Initialize @ref Vector4D with 2 @ref Vector2D.
+         * @param vec1 First two entries of @ref Vector4D.
+         * @param vec2 Last two entries of @ref Vector4D.
+         */
         Vector4D(Vector2D<T> vec1, Vector2D<T> vec2);
+
+
+        /**
+         * @brief Initialize @ref Vector4D with 1 @ref Vector3D and 1 T value
+         * @param vec First three entries of @ref Vector4D.
+         * @param v Last entry for @ref Vector4D.
+         */
         Vector4D(Vector3D<T> vec, T v);
 
+
+        /**
+         * @brief Initialize @ref Vector4D from another @ref Vector4D of a different type.
+         * @tparam U Numeric type of the source vector.
+         * @param[in] other Source vector to be converted.
+         */
         template <Arithmetic U>
         Vector4D(const Vector4D<U>& other);
+
+
 
 
         /*************************************
@@ -81,6 +120,8 @@ namespace math
 
         T& operator[](std::size_t i);
         const T& operator[](std::size_t i) const;
+
+
 
 
         /***************************************

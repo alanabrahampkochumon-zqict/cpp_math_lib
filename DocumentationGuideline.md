@@ -1,4 +1,4 @@
-# Documentation Guideline for Falcon Math Library (FGM)
+# Documentation Guideline for Falcon Game Math Library (FGM)
 
 ## 1. General Language & Formatting
 
@@ -73,7 +73,9 @@
  * @date Created on: January 26, 2026
  *
  * @brief Templated 4D Vector supporting integral, floating-point and boolean types.
- * @note Arithmetic operations are limited to numeric types via `StrictArithmetic` concept.
+ * @tparam T Type of Vector4D components. Must satisfy @ref Arithmetic concept.
+ *
+ * @note Arithmetic operations are limited to numeric types via @ref StrictArithmetic concept.
  *
  * @par Configuration
  * Define `ENABLE_FGM_SHADER_OPERATORS` to enable comparison operators (>, <, etc.).
@@ -82,5 +84,4 @@
  *
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */
-
 ```
