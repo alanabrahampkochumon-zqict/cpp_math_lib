@@ -4,7 +4,7 @@
  * @author Alan Abraham P Kochumon
  * @date Created on: March 07, 2026
  *
- * @brief Test setups common to all `Vector4D` tests.
+ * @brief Define test setups common to all @ref Vector4D tests.
  *
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */

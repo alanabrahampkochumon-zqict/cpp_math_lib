@@ -3,8 +3,8 @@
  * @author Alan Abraham P Kochumon
  * @date Created on: March 07, 2026
  *
- * @brief `Vector4D` tests for conversion constructor.
- * 
+ * @brief Verifies @ref Vector4D<bool> conversion constructor logic.
+ *
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */
 

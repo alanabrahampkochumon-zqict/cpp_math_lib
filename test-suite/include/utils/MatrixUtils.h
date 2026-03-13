@@ -4,7 +4,7 @@
  * @author Alan Abraham P Kochumon
  * @date Created on: February 16, 2026
  *
- * @brief Helper functions for testing Matrices like `Matrix2D`, `Matrix3D` etc.
+ * @brief Helper functions for testing Matrices like @ref Matrix2D, @ref Matrix3D etc.
  * 
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */

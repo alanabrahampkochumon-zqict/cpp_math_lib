@@ -3,7 +3,7 @@
  * @author Alan Abraham P Kochumon
  * @date Created on: March 07, 2026
  *
- * @brief `Vector4D` projection and rejection tests.
+ * @brief Verifies @ref Vector4D<bool> projection and rejection logic.
  * 
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */

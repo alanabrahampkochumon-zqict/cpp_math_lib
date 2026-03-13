@@ -3,7 +3,7 @@
  * @author Alan Abraham P Kochumon
  * @date Created on: March 07, 2026
  *
- * @brief `Vector4D` alias (`vec4`, `bVec4`, ...) tests.
+ * @brief Verify alias for @ref Vector4D returning correct data type.
  *
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */

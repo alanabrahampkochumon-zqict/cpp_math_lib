@@ -3,7 +3,7 @@
  * @author Alan Abraham P Kochumon
  * @date Created on: March 07, 2026
  *
- * @brief Boolean `Vector4D` bitwise operation (!, &, |) tests.
+ * @brief Verifies @ref Vector4D<bool> bitwise operator(&, |, !) logic.
  *
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */
@@ -54,7 +54,7 @@ TEST_F(BooleanVectorBitOperations, BitwiseAndReturnsComponentwiseAnd)
     // When they are `AND` together
     auto result = this->vecA & this->vecB;
 
-    // Then, we get another vector with componentwise AND applied
+    // Then, we get another vector with component-wise AND applied
     EXPECT_VEC_EQ(this->expectedAndVector, result);
 }
 
@@ -65,7 +65,7 @@ TEST_F(BooleanVectorBitOperations, BitwiseOrReturnsComponentwiseOr)
     // When they are `OR` together
     auto result = this->vecA | this->vecB;
 
-    // Then, we get another vector with componentwise OR applied
+    // Then, we get another vector with component-wise OR applied
     EXPECT_VEC_EQ(this->expectedOrVector, result);
 }
 
@@ -76,6 +76,6 @@ TEST_F(BooleanVectorBitOperations, BitwiseNotReturnsInvertedVector)
     // When they are `OR` together
     auto result = !this->vecA;
 
-    // Then, we get another vector with componentwise NOT applied
+    // Then, we get another vector with component-wise NOT applied
     EXPECT_VEC_EQ(this->expectedNotAVector, result);
 }

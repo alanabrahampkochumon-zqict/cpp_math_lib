@@ -21,6 +21,7 @@ namespace fgm
      *            INITIALIZERS           *
      *                                   *
      *************************************/
+
     template <Arithmetic T>
     Vector4D<T>::Vector4D(): x(T(0)), y(T(0)), z(T(0)), w(T(0))
     {
@@ -387,6 +388,7 @@ namespace fgm
         return *this;
     }
 
+
     /*************************************
      *                                   *
      *        VECTOR DOT PRODUCT         *
@@ -408,6 +410,7 @@ namespace fgm
     {
         return vecA.dot(vecB);
     }
+
 
     /*************************************
      *                                   *

@@ -3,7 +3,7 @@
  * @author Alan Abraham P Kochumon
  * @date Created on: March 07, 2026
  *
- * @brief `Vector4D` access and mutation tests.
+ * @brief Verifies @ref Vector4D accessors and mutators.
  * 
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */

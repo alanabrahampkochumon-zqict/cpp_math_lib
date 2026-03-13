@@ -3,7 +3,7 @@
  * @author Alan Abraham P Kochumon
  * @date Created on: March 07, 2026
  *
- * @brief `Vector4D` equality (==, != and their functional counterparts) tests.
+ * @brief Verifies @ref Vector4D<bool> equality operator (==, !=) and their functional counterpart's (eq, neq, allEq, allNeq) logic.
  * 
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */
