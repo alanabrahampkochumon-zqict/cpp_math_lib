@@ -75,7 +75,7 @@ TYPED_TEST(Vector4DInitialization, Two2DVectorsCanInitializeA4DVector)
     EXPECT_VEQ_CONTAINS(vec, a, b, c, d);
 }
 
-TYPED_TEST(Vector4DInitialization, One3DVectorAndScalarCanInitializeA4DVector)
+TYPED_TEST(Vector4DInitialization, 3DVectorAndScalarCanInitializeA4DVector)
 {
     // Given one 3D Vector and a scalar
     TypeParam a = static_cast<TypeParam>(3);
@@ -89,4 +89,20 @@ TYPED_TEST(Vector4DInitialization, One3DVectorAndScalarCanInitializeA4DVector)
 
     // Then, the 3D vector elements + scalar form the 4D vector in the passed-in format
     EXPECT_VEQ_CONTAINS(vec, a, b, c, scalar);
+}
+
+TYPED_TEST(Vector4DInitialization, ScalarAnd3DVectorCanInitializeA4DVector)
+{
+    // Given one 3D Vector and a scalar
+    TypeParam a = static_cast<TypeParam>(3);
+    TypeParam b = static_cast<TypeParam>(1);
+    TypeParam c = static_cast<TypeParam>(6);
+    const fgm::Vector3D vec1(a, b, c);
+    TypeParam scalar = static_cast<TypeParam>(4);
+
+    // When a Vector4D is initialized with those vectors
+    const fgm::Vector4D vec(scalar, vec1);
+
+    // Then, the 3D vector scalar + element form the 4D vector in the passed-in format
+    EXPECT_VEQ_CONTAINS(vec, scalar, a, b, c);
 }

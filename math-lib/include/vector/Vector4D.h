@@ -95,11 +95,19 @@ namespace fgm
 
 
         /**
-         * @brief Initialize @ref Vector4D with 1 @ref Vector3D and 1 T value
+         * @brief Initialize @ref Vector4D with 1 @ref Vector3D and 1 T value.
          * @param[in]  vec First three entries of @ref Vector4D.
          * @param[in]  v Last entry for @ref Vector4D.
          */
         Vector4D(Vector3D<T> vec, T v);
+
+
+        /**
+         * @brief Initialize @ref Vector4D with 1 T value and 1 @ref Vector3D.
+         * @param[in]  vec First three entries of @ref Vector4D.
+         * @param[in]  v Last entry for @ref Vector4D.
+         */
+        Vector4D(T v, Vector3D<T> vec);
 
 
         /**

@@ -42,6 +42,11 @@ namespace fgm
     {
     }
 
+
+    template <Arithmetic T>
+    Vector4D<T>::Vector4D(T v, Vector3D<T> vec): x(v), y(vec.x), z(vec.y), w(vec.z) {}
+
+
     template <Arithmetic T>
     template <Arithmetic U>
     Vector4D<T>::Vector4D(const Vector4D<U>& other)
