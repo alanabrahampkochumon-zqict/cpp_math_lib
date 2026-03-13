@@ -4,7 +4,7 @@
 #include <cstddef>
 #include <type_traits>
 
-namespace math
+namespace fgm
 {
     template <typename T>
     struct Matrix2D
@@ -115,6 +115,6 @@ namespace math
     Vector2D<T> operator*=(Vector2D<S>& vec, const Matrix2D<T>& mat);
 
 
-} // namespace math
+} // namespace fgm
 
 #include "Matrix2D.tpp"

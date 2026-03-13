@@ -5,7 +5,7 @@
 
 #include <cstddef>
 
-namespace math
+namespace fgm
 {
     template <StrictArithmetic T>
     struct alignas(16) Matrix4D
@@ -62,6 +62,6 @@ namespace math
         Matrix4D& operator+=(const Matrix4D<U>& other);
     };
 
-} // namespace math
+} // namespace fgm
 
 #include "Matrix4D.tpp"

@@ -26,11 +26,11 @@ template <typename T>
 class Vector4DDotProduct: public ::testing::Test
 {
     protected:
-    math::Vector4D<T> vecA;
-    math::Vector4D<T> vecB;
+    fgm::Vector4D<T> vecA;
+    fgm::Vector4D<T> vecB;
 
-    math::Vector4D<T> vecAOrtho;
-    math::Vector4D<T> vecBOrtho;
+    fgm::Vector4D<T> vecAOrtho;
+    fgm::Vector4D<T> vecBOrtho;
 
     T expected;
 
@@ -109,7 +109,7 @@ TYPED_TEST(Vector4DDotProduct, StaticWrapper_VectorDotWithNonParallelVectorIsNon
     // Given two non-orthogonal vectors
 
     // When dot with each other with static wrapper
-    const TypeParam result = math::Vector4D<TypeParam>::dot(this->vecA, this->vecB);
+    const TypeParam result = fgm::Vector4D<TypeParam>::dot(this->vecA, this->vecB);
 
     // Then, the dot product is non-zero
     if constexpr (std::is_same_v<TypeParam, double>)
@@ -123,8 +123,8 @@ TYPED_TEST(Vector4DDotProduct, StaticWrapper_VectorDotWithNonParallelVectorIsNon
 TEST(Vector4DDotProduct, VectorDotWithOppositeVectorIsNegative)
 {
     // Given two opposite vectors
-    const math::Vector4D vecA(-1.0, 0.0, 0.0, 0.0);
-    const math::Vector4D vecB(1.0, 0.0, 0.0, 0.0);
+    const fgm::Vector4D vecA(-1.0, 0.0, 0.0, 0.0);
+    const fgm::Vector4D vecB(1.0, 0.0, 0.0, 0.0);
 
     // When dot with each other
     const double result = vecA.dot(vecB);
@@ -136,8 +136,8 @@ TEST(Vector4DDotProduct, VectorDotWithOppositeVectorIsNegative)
 TEST(Vector4DDotProduct, MixedTypeDotProductPromotesType)
 {
     // Given two vectors of different type
-    const math::Vector4D vecA(7, 13, 29, 41);
-    const math::Vector4D vecB(1.123456789, 2.123456789, 3.123456789, 4.123456789);
+    const fgm::Vector4D vecA(7, 13, 29, 41);
+    const fgm::Vector4D vecB(1.123456789, 2.123456789, 3.123456789, 4.123456789);
 
     // When dot with each other
     const auto result = vecA.dot(vecB);

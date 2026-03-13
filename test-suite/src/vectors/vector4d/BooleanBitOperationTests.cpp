@@ -24,11 +24,11 @@ using namespace testutils;
 class BooleanVectorBitOperations: public ::testing::Test
 {
     protected:
-    math::Vector4D<bool> vecA;
-    math::Vector4D<bool> vecB;
-    math::Vector4D<bool> expectedAndVector;
-    math::Vector4D<bool> expectedOrVector;
-    math::Vector4D<bool> expectedNotAVector;
+    fgm::Vector4D<bool> vecA;
+    fgm::Vector4D<bool> vecB;
+    fgm::Vector4D<bool> expectedAndVector;
+    fgm::Vector4D<bool> expectedOrVector;
+    fgm::Vector4D<bool> expectedNotAVector;
 
     void SetUp() override
     {

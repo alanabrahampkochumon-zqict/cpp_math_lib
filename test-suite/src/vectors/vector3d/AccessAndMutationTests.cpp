@@ -20,7 +20,7 @@
 TEST(Vector3DAccess, AccessibleAsXYZ)
 {
     // Given a vector with arbitrary values passed in
-    const math::Vector3D vec(3.0f, 1.0f, 6.0f);
+    const fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
 
     // Then, it's elements are accessible as x, y, z
     EXPECT_FLOAT_EQ(3.0f, vec.x);
@@ -31,7 +31,7 @@ TEST(Vector3DAccess, AccessibleAsXYZ)
 TEST(Vector3DAccess, AccessibleAsSTP)
 {
     // Given a vector with arbitrary values passed in
-    const math::Vector3D vec(3.0f, 1.0f, 6.0f);
+    const fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
 
     // Then, it's elements are accessible as s, t, p
     EXPECT_FLOAT_EQ(3.0f, vec.s);
@@ -42,7 +42,7 @@ TEST(Vector3DAccess, AccessibleAsSTP)
 TEST(Vector3DAccess, AccessibleAsRGB)
 {
     // Given a vector with arbitrary values passed in
-    const math::Vector3D vec(3.0f, 1.0f, 6.0f);
+    const fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
 
     // Then, it's elements are accessible as r, g, b
     EXPECT_FLOAT_EQ(3.0f, vec.r);
@@ -53,7 +53,7 @@ TEST(Vector3DAccess, AccessibleAsRGB)
 TEST(Vector3DAccess, AccessibleAsArray)
 {
     // Given a vector with arbitrary values passed in
-    const math::Vector3D vec(3.0f, 1.0f, 6.0f);
+    const fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
 
     // Then, it's elements are accessible as array elements
     EXPECT_FLOAT_EQ(3.0f, vec.elements[0]);
@@ -71,7 +71,7 @@ TEST(Vector3DAccess, AccessibleAsArray)
 TEST(Vector3DMutation, ElementsCanBeMutatedUsingXYZ)
 {
     // Given a default initialized vector
-    math::Vector3D<float> vec;
+    fgm::Vector3D<float> vec;
 
     // When, it's elements are modified using x, y, z
     vec.x = 3.0f;
@@ -87,7 +87,7 @@ TEST(Vector3DMutation, ElementsCanBeMutatedUsingXYZ)
 TEST(Vector3DMutation, ElementsCanBeMutatedUsingSTP)
 {
     // Given a default initialized vector
-    math::Vector3D<float> vec;
+    fgm::Vector3D<float> vec;
 
     // When, it's elements are modified using s, t, p
     vec.s = 3.0f;
@@ -103,7 +103,7 @@ TEST(Vector3DMutation, ElementsCanBeMutatedUsingSTP)
 TEST(Vector3DMutation, ElementsCanBeMutatedUsingRGB)
 {
     // Given a default initialized vector
-    math::Vector3D<float> vec;
+    fgm::Vector3D<float> vec;
 
     // When, it's elements are modified using r, g, b
     vec.r = 3.0f;
@@ -119,7 +119,7 @@ TEST(Vector3DMutation, ElementsCanBeMutatedUsingRGB)
 TEST(Vector3DMutation, ElementsCanBeMutatedUsingIndex)
 {
     // Given a vector initialization without parameters
-    math::Vector3D<float> vec;
+    fgm::Vector3D<float> vec;
 
     // When it's elements are mutated at a particular index
     vec[0] = 3.0f;

@@ -4,7 +4,7 @@
 
 #include <type_traits>
 
-namespace math
+namespace fgm
 {
 
     /*************************************
@@ -253,4 +253,4 @@ namespace math
     {
         return vector.reject(onto, ontoNormalized);
     }
-} // namespace math
+} // namespace fgm

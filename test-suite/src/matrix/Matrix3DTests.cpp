@@ -23,7 +23,7 @@ constexpr int rowSize = 3;
 TEST(Matrix3D_Initialization, InitializedWithOutParametersProvidesIdentityMatrix)
 {
     // Given a matrix initialized without parameters
-    const math::Matrix3D<float> mat;
+    const fgm::Matrix3D<float> mat;
 
     // Then it's elements form an identity matrix
     EXPECT_MAT_IDENTITY(mat);
@@ -32,7 +32,7 @@ TEST(Matrix3D_Initialization, InitializedWithOutParametersProvidesIdentityMatrix
 TEST(Matrix3D_Initialization, InitializationSupportedForIntegers)
 {
     // Given an integer matrix initialized without parameters
-    const math::Matrix3D<int> mat;
+    const fgm::Matrix3D<int> mat;
 
     // Then it's value_type is int, and elements form an identity matrix
     static_assert(std::is_same_v<typename decltype(mat)::value_type, int>);
@@ -42,7 +42,7 @@ TEST(Matrix3D_Initialization, InitializationSupportedForIntegers)
 TEST(Matrix3D_Initialization, InitializedWithParametersProvidesCorrectMatrix)
 {
     // Given a matrix with arbitrary values passed in
-    const math::Matrix3D mat(0.0f, 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f);
+    const fgm::Matrix3D mat(0.0f, 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f);
 
     // Then it's elements reflect the correct values
     for (size_t i = 0; i < size; ++i)
@@ -52,11 +52,11 @@ TEST(Matrix3D_Initialization, InitializedWithParametersProvidesCorrectMatrix)
 TEST(Matrix3D_Initialization, InitializedWithThree3DVectorsProvidesCorrectMatrix)
 {
     // Arrange & Act
-    const math::Vector3D col0(0.0f, 3.0f, 6.0f);
-    const math::Vector3D col1(1.0f, 4.0f, 7.0f);
-    const math::Vector3D col2(2.0f, 5.0f, 8.0f);
+    const fgm::Vector3D col0(0.0f, 3.0f, 6.0f);
+    const fgm::Vector3D col1(1.0f, 4.0f, 7.0f);
+    const fgm::Vector3D col2(2.0f, 5.0f, 8.0f);
 
-    const math::Matrix3D mat(col0, col1, col2);
+    const fgm::Matrix3D mat(col0, col1, col2);
 
 
     // Assert
@@ -67,8 +67,8 @@ TEST(Matrix3D_Initialization, InitializedWithThree3DVectorsProvidesCorrectMatrix
 TEST(Matrix3D_Initialization, CanMutateVectorAtIndex)
 {
     // Arrange
-    math::Matrix3D<float> mat;
-    math::Vector3D vec(3.0f, 1.0f, 6.0f);
+    fgm::Matrix3D<float> mat;
+    fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
 
     // Act
     mat[2] = vec;
@@ -90,7 +90,7 @@ TEST(Matrix3D_Initialization, CanMutateVectorAtIndex)
 TEST(Matrix3D_Initialization, CanMutateValueAtRowColumn)
 {
     // Arrange
-    math::Matrix3D<float> mat;
+    fgm::Matrix3D<float> mat;
 
     // Act
     for (std::size_t i = 0; i < size; ++i)
@@ -104,11 +104,11 @@ TEST(Matrix3D_Initialization, CanMutateValueAtRowColumn)
 TEST(Matrix3D_Initialization, ConversionConstructorHandlesTypeDemotion)
 {
     // Arrange
-    math::Matrix3D<double> mat;
+    fgm::Matrix3D<double> mat;
 
 
     // Act
-    math::Matrix3D<float> copy(mat);
+    fgm::Matrix3D<float> copy(mat);
     copy(0, 0) = 5.0f;
 
     // Assert
@@ -123,10 +123,10 @@ TEST(Matrix3D_Initialization, ConversionConstructorHandlesTypeDemotion)
 TEST(Matrix3D_Initialization, ConversionConstructorHandlesTypePromotion)
 {
     // Arrange
-    math::Matrix3D<float> mat;
+    fgm::Matrix3D<float> mat;
 
     // Act
-    math::Matrix3D<double> copy(mat);
+    fgm::Matrix3D<double> copy(mat);
     copy(0, 0) = 5.0;
 
     // Assert
@@ -142,10 +142,10 @@ TEST(Matrix3D_Initialization, ConversionConstructorHandlesTypePromotion)
 TEST(Matrix3D_Access, CanBeAccessedAsAVectorAtIndex)
 {
     // Arrange
-    math::Matrix3D<float> mat;
+    fgm::Matrix3D<float> mat;
 
     // Act
-    math::Vector3D vec = mat[1];
+    fgm::Vector3D vec = mat[1];
 
     // Assert
     EXPECT_FLOAT_EQ(0.0f, vec.x);
@@ -156,7 +156,7 @@ TEST(Matrix3D_Access, CanBeAccessedAsAVectorAtIndex)
 TEST(Matrix3D_Access, CanBeAccessedAsAValueAtRowColumn)
 {
     // Arrange & Act
-    const math::Matrix3D mat(0.0f, 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f);
+    const fgm::Matrix3D mat(0.0f, 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f);
 
 
     // Assert
@@ -174,12 +174,12 @@ TEST(Matrix3D_Access, CanBeAccessedAsAValueAtRowColumn)
 TEST(Matrix3D_Sum, SumOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
 {
     // Arrange
-    const math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
-    const math::Matrix3D b = { 3.0f, 2.0f, 255.0f, -8.0f, 24.0f, 6.0f, 7.0f, 16.0f, -98.0f };
-    const math::Matrix3D c = { 4.0f, 4.0f, 258.0f, -4.0f, 29.0f, 12.0f, 14.0f, 8.0f, -89.0f };
+    const fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    const fgm::Matrix3D b = { 3.0f, 2.0f, 255.0f, -8.0f, 24.0f, 6.0f, 7.0f, 16.0f, -98.0f };
+    const fgm::Matrix3D c = { 4.0f, 4.0f, 258.0f, -4.0f, 29.0f, 12.0f, 14.0f, 8.0f, -89.0f };
 
     // Act
-    const math::Matrix3D<float> res = a + b;
+    const fgm::Matrix3D<float> res = a + b;
 
     // Assert
     EXPECT_MAT_EQ(c, res);
@@ -188,9 +188,9 @@ TEST(Matrix3D_Sum, SumOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
 TEST(Matrix3D_Sum, PlusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValues)
 {
     // Arrange
-    math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
-    const math::Matrix3D b = { 3.0f, 2.0f, 255.0f, -8.0f, 24.0f, 6.0f, 7.0f, 16.0f, -98.0f };
-    const math::Matrix3D c = { 4.0f, 4.0f, 258.0f, -4.0f, 29.0f, 12.0f, 14.0f, 8.0f, -89.0f };
+    fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    const fgm::Matrix3D b = { 3.0f, 2.0f, 255.0f, -8.0f, 24.0f, 6.0f, 7.0f, 16.0f, -98.0f };
+    const fgm::Matrix3D c = { 4.0f, 4.0f, 258.0f, -4.0f, 29.0f, 12.0f, 14.0f, 8.0f, -89.0f };
 
     // Act
     a += b;
@@ -202,9 +202,9 @@ TEST(Matrix3D_Sum, PlusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrect
 TEST(Matrix3D_Sum, SumOfTwoMatricesOfDifferentTypeReturnsAnotherMatrixPromotedType)
 {
     // Arrange
-    const math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
-    const math::Matrix3D b = { 3.0, 2.0, 255.0, -8.0, 24.0, 6.0, 7.0, 16.0, -98.0 };
-    const math::Matrix3D c = { 4.0, 4.0, 258.0, -4.0, 29.0, 12.0, 14.0, 8.0, -89.0 };
+    const fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    const fgm::Matrix3D b = { 3.0, 2.0, 255.0, -8.0, 24.0, 6.0, 7.0, 16.0, -98.0 };
+    const fgm::Matrix3D c = { 4.0, 4.0, 258.0, -4.0, 29.0, 12.0, 14.0, 8.0, -89.0 };
 
     // Act
     const auto res = a + b;
@@ -218,12 +218,12 @@ TEST(Matrix3D_Sum, SumOfTwoMatricesOfDifferentTypeReturnsAnotherMatrixPromotedTy
 TEST(Matrix3D_Difference, DifferenceOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
 {
     // Arrange
-    const math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
-    const math::Matrix3D b = { 3.0f, 2.0f, 255.0f, -8.0f, 24.0f, 6.0f, 2.0f, 16.0f, -98.0f };
-    const math::Matrix3D c = { -2.0f, 0.0f, -252.0f, 12.0f, -19.0f, 0.0f, 5.0f, -24.0f, 107.0f };
+    const fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    const fgm::Matrix3D b = { 3.0f, 2.0f, 255.0f, -8.0f, 24.0f, 6.0f, 2.0f, 16.0f, -98.0f };
+    const fgm::Matrix3D c = { -2.0f, 0.0f, -252.0f, 12.0f, -19.0f, 0.0f, 5.0f, -24.0f, 107.0f };
 
     // Act
-    const math::Matrix3D<float> res = a - b;
+    const fgm::Matrix3D<float> res = a - b;
 
     // Assert
     EXPECT_MAT_EQ(c, res);
@@ -232,9 +232,9 @@ TEST(Matrix3D_Difference, DifferenceOfTwoMatricesReturnsAnotherMatrixWithCorrect
 TEST(Matrix3D_Difference, DifferenceOfTwoMatricesOfDifferentTypeReturnsAnotherMatrixPromotedType)
 {
     // Arrange
-    const math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
-    const math::Matrix3D b = { 3.0, 2.0, 255.0, -8.0, 24.0, 6.0, 2.0, 16.0, -98.0 };
-    const math::Matrix3D c = { -2.0, 0.0, -252.0, 12.0, -19.0, 0.0, 5.0, -24.0, 107.0 };
+    const fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    const fgm::Matrix3D b = { 3.0, 2.0, 255.0, -8.0, 24.0, 6.0, 2.0, 16.0, -98.0 };
+    const fgm::Matrix3D c = { -2.0, 0.0, -252.0, 12.0, -19.0, 0.0, 5.0, -24.0, 107.0 };
 
     // Act
     const auto res = a - b;
@@ -248,9 +248,9 @@ TEST(Matrix3D_Difference, DifferenceOfTwoMatricesOfDifferentTypeReturnsAnotherMa
 TEST(Matrix3D_Sum, PlusEqualsMatrixWithMatrixOfAnotherTypeReturnsSameMatrixWithoutTypePromotion)
 {
     // Arrange
-    math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
-    const math::Matrix3D b = { 3.0, 2.0, 255.0, -8.0, 24.0, 6.0, 7.0, 16.0, -98.0 };
-    const math::Matrix3D c = { 4.0f, 4.0f, 258.0f, -4.0f, 29.0f, 12.0f, 14.0f, 8.0f, -89.0f };
+    fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    const fgm::Matrix3D b = { 3.0, 2.0, 255.0, -8.0, 24.0, 6.0, 7.0, 16.0, -98.0 };
+    const fgm::Matrix3D c = { 4.0f, 4.0f, 258.0f, -4.0f, 29.0f, 12.0f, 14.0f, 8.0f, -89.0f };
 
     // Act
     a += b;
@@ -264,9 +264,9 @@ TEST(Matrix3D_Sum, PlusEqualsMatrixWithMatrixOfAnotherTypeReturnsSameMatrixWitho
 TEST(Matrix3D_Difference, MinusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsSameMatrixWithoutTypePromotion)
 {
     // Arrange
-    math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
-    const math::Matrix3D b = { 3.0, 2.0, 255.0, -8.0, 24.0, 6.0, 2.0, 16.0, -98.0 };
-    const math::Matrix3D c = { -2.0f, 0.0f, -252.0f, 12.0f, -19.0f, 0.0f, 5.0f, -24.0f, 107.0f };
+    fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    const fgm::Matrix3D b = { 3.0, 2.0, 255.0, -8.0, 24.0, 6.0, 2.0, 16.0, -98.0 };
+    const fgm::Matrix3D c = { -2.0f, 0.0f, -252.0f, 12.0f, -19.0f, 0.0f, 5.0f, -24.0f, 107.0f };
 
     // Act
     a -= b;
@@ -280,12 +280,12 @@ TEST(Matrix3D_Difference, MinusEqualsMatrixWithAnotherMatrixOfDifferentTypeRetur
 TEST(Matrix3D_Product, MatrixTimesAIntegerScalarReturnsCorrectMatrix)
 {
     // Arrange
-    const math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
-    const math::Matrix3D expected = { 2.0f, 4.0f, 6.0f, 8.0f, 10.0f, 12.0f, 14.0f, -16.0f, 18.0f };
+    const fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    const fgm::Matrix3D expected = { 2.0f, 4.0f, 6.0f, 8.0f, 10.0f, 12.0f, 14.0f, -16.0f, 18.0f };
     constexpr int scalar = 2;
 
     // Act
-    const math::Matrix3D actual = a * scalar;
+    const fgm::Matrix3D actual = a * scalar;
 
     // Assert
     EXPECT_MAT_EQ(expected, actual);
@@ -294,12 +294,12 @@ TEST(Matrix3D_Product, MatrixTimesAIntegerScalarReturnsCorrectMatrix)
 TEST(Matrix3D_Product, IntegerScalarTimesAMatrixReturnsCorrectMatrix)
 {
     // Arrange
-    const math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
-    const math::Matrix3D expected = { 2.0f, 4.0f, 6.0f, 8.0f, 10.0f, 12.0f, 14.0f, -16.0f, 18.0f };
+    const fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    const fgm::Matrix3D expected = { 2.0f, 4.0f, 6.0f, 8.0f, 10.0f, 12.0f, 14.0f, -16.0f, 18.0f };
     constexpr int scalar = 2;
 
     // Act
-    const math::Matrix3D<float> actual = scalar * a;
+    const fgm::Matrix3D<float> actual = scalar * a;
 
     // Assert
     EXPECT_MAT_EQ(expected, actual);
@@ -308,8 +308,8 @@ TEST(Matrix3D_Product, IntegerScalarTimesAMatrixReturnsCorrectMatrix)
 TEST(Matrix3D_Product, MatrixTimesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)
 {
     // Arrange
-    math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
-    const math::Matrix3D b = { 2.0f, 4.0f, 6.0f, 8.0f, 10.0f, 12.0f, 14.0f, -16.0f, 18.0f };
+    fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    const fgm::Matrix3D b = { 2.0f, 4.0f, 6.0f, 8.0f, 10.0f, 12.0f, 14.0f, -16.0f, 18.0f };
     constexpr int scalar = 2;
 
     // Act
@@ -322,10 +322,10 @@ TEST(Matrix3D_Product, MatrixTimesEqualIntegerScalarIsTheSameMatrixWithCorrectVa
 TEST(Matrix3D_Product, MatrixTimesOneReturnANewMatrixWithOriginalMatrixValues)
 {
     // Arrange
-    const math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    const fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
 
     // Act
-    const math::Matrix3D<float> b = a * 1;
+    const fgm::Matrix3D<float> b = a * 1;
 
     // Assert
     EXPECT_MAT_EQ(a, b);
@@ -334,10 +334,10 @@ TEST(Matrix3D_Product, MatrixTimesOneReturnANewMatrixWithOriginalMatrixValues)
 TEST(Matrix3D_Product, MatrixTimesZeroScalarReturnsZeroMatrix)
 {
     // Arrange
-    const math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    const fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
 
     // Act
-    const math::Matrix3D<float> b = a * 0;
+    const fgm::Matrix3D<float> b = a * 0;
 
     // Assert
     EXPECT_MAT_ZERO(b);
@@ -346,13 +346,13 @@ TEST(Matrix3D_Product, MatrixTimesZeroScalarReturnsZeroMatrix)
 TEST(Matrix3D_Product, MatrixTimesAFloatScalarReturnsCorrectMatrix)
 {
     // Arrange
-    const math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    const fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
     constexpr float scalar = 2.5f;
 
-    const math::Matrix3D expected = { 2.5f, 5.0f, 7.5f, 10.0f, 12.5f, 15.0f, 17.5f, -20.0f, 22.5f };
+    const fgm::Matrix3D expected = { 2.5f, 5.0f, 7.5f, 10.0f, 12.5f, 15.0f, 17.5f, -20.0f, 22.5f };
 
     // Act
-    const math::Matrix3D<float> b = a * scalar;
+    const fgm::Matrix3D<float> b = a * scalar;
 
     // Assert
     EXPECT_MAT_EQ(expected, b);
@@ -361,10 +361,10 @@ TEST(Matrix3D_Product, MatrixTimesAFloatScalarReturnsCorrectMatrix)
 TEST(Matrix3D_Product, IntegerMatrixTimesEqualAFloatScalarReturnsCorrectMatrixWithMinimalPrecisionLoss)
 {
     // Arrange
-    math::Matrix3D a = { 1, 2, 3, 4, 5, 6, 7, -8, 9 };
+    fgm::Matrix3D a = { 1, 2, 3, 4, 5, 6, 7, -8, 9 };
     constexpr float scalar = 2.5f;
 
-    const math::Matrix3D expected = { 2, 5, 7, 10, 12, 15, 17, -20, 22 };
+    const fgm::Matrix3D expected = { 2, 5, 7, 10, 12, 15, 17, -20, 22 };
 
     // Act
     a *= scalar;
@@ -376,12 +376,12 @@ TEST(Matrix3D_Product, IntegerMatrixTimesEqualAFloatScalarReturnsCorrectMatrixWi
 TEST(Matrix3D_Product, MatrixTimesNegativeFloatScalarFlipsSigns)
 {
     // Arrange
-    const math::Matrix3D a = { 1.0f, -2.0f, 0.0f, -4.0f, 5.0f, -6.0f, 0.0f, 8.0f, 9.0f };
-    const math::Matrix3D expected = { -2.0f, 4.0f, 0.0f, 8.0f, -10.0f, 12.0f, 0.0f, -16.0f, -18.0f };
+    const fgm::Matrix3D a = { 1.0f, -2.0f, 0.0f, -4.0f, 5.0f, -6.0f, 0.0f, 8.0f, 9.0f };
+    const fgm::Matrix3D expected = { -2.0f, 4.0f, 0.0f, 8.0f, -10.0f, 12.0f, 0.0f, -16.0f, -18.0f };
     constexpr float scalar = -2.0f;
 
     // Act
-    const math::Matrix3D<float> b = a * scalar;
+    const fgm::Matrix3D<float> b = a * scalar;
 
     // Assert
     EXPECT_MAT_EQ(expected, b);
@@ -390,12 +390,12 @@ TEST(Matrix3D_Product, MatrixTimesNegativeFloatScalarFlipsSigns)
 TEST(Matrix3D_Product, MatrixTimesVectorReturnsANewMatrixWithCorrectValues)
 {
     // Arrange
-    const math::Matrix3D mat = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
-    const math::vec3 vec(2.0f, 1.0f, 3.0f);
-    const math::vec3 expected(13.0f, 31.0f, 49.0f);
+    const fgm::Matrix3D mat = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
+    const fgm::vec3 vec(2.0f, 1.0f, 3.0f);
+    const fgm::vec3 expected(13.0f, 31.0f, 49.0f);
 
     // Act
-    const math::vec3 actual = mat * vec;
+    const fgm::vec3 actual = mat * vec;
 
     // Assert
     testutils::EXPECT_VEC_EQ(expected, actual);
@@ -404,11 +404,11 @@ TEST(Matrix3D_Product, MatrixTimesVectorReturnsANewMatrixWithCorrectValues)
 TEST(Matrix3D_Product, IdentityMatrixTimesAVectorReturnsTheSameMatrix)
 {
     // Arrange
-    const math::Matrix3D<float> mat;
-    const math::vec3 vec(2.0f, 1.0f, 3.0f);
+    const fgm::Matrix3D<float> mat;
+    const fgm::vec3 vec(2.0f, 1.0f, 3.0f);
 
     // Act
-    const math::vec3 actual = mat * vec;
+    const fgm::vec3 actual = mat * vec;
 
     // Assert
     testutils::EXPECT_VEC_EQ(vec, actual);
@@ -417,9 +417,9 @@ TEST(Matrix3D_Product, IdentityMatrixTimesAVectorReturnsTheSameMatrix)
 TEST(Matrix3D_Product, VectorTimesAMatrixReturnsANewVectorWithCorrectValues)
 {
     // Arrange
-    const math::Matrix3D mat = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
-    math::Vector3D vec(2.0f, 1.0f, 3.0f);
-    const math::Vector3D expected(27.0f, 33.0f, 39.0f);
+    const fgm::Matrix3D mat = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
+    fgm::Vector3D vec(2.0f, 1.0f, 3.0f);
+    const fgm::Vector3D expected(27.0f, 33.0f, 39.0f);
 
     // Act
     const auto actual = vec * mat;
@@ -432,11 +432,11 @@ TEST(Matrix3D_Product, VectorTimesAMatrixReturnsANewVectorWithCorrectValues)
 TEST(Matrix3D_Product, VectorTimesIdentityMatrixReturnsTheSameMatrix)
 {
     // Arrange
-    const math::Matrix3D<float> mat;
-    math::vec3 vec(2.0f, 1.0f, 3.0f);
+    const fgm::Matrix3D<float> mat;
+    fgm::vec3 vec(2.0f, 1.0f, 3.0f);
 
     // Act
-    const math::vec3 actual = vec * mat;
+    const fgm::vec3 actual = vec * mat;
 
     // Assert
     testutils::EXPECT_VEC_EQ(vec, actual);
@@ -445,9 +445,9 @@ TEST(Matrix3D_Product, VectorTimesIdentityMatrixReturnsTheSameMatrix)
 TEST(Matrix3D_Product, VectorTimesEqualMatrixReturnTheSameVectorWithNewValues)
 {
     // Arrange
-    const math::Matrix3D mat = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
-    math::vec3 vec(2.0f, 1.0f, 3.0f);
-    const math::vec3 expected(27.0f, 33.0f, 39.0f);
+    const fgm::Matrix3D mat = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
+    fgm::vec3 vec(2.0f, 1.0f, 3.0f);
+    const fgm::vec3 expected(27.0f, 33.0f, 39.0f);
 
     // Act
     vec *= mat;
@@ -459,12 +459,12 @@ TEST(Matrix3D_Product, VectorTimesEqualMatrixReturnTheSameVectorWithNewValues)
 TEST(Matrix3D_Product, MatrixTimesMatrixGivesAnotherMatrixWithCorrectValues)
 {
     // Arrange
-    const math::Matrix3D mat1 = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
-    const math::Matrix3D mat2 = { 2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0, 16.0, 18.0 };
-    const math::Matrix3D expected = { 60.0f, 72.0f, 84.0f, 132.0f, 162.0f, 192.0f, 204.0f, 252.0f, 300.0f };
+    const fgm::Matrix3D mat1 = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
+    const fgm::Matrix3D mat2 = { 2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0, 16.0, 18.0 };
+    const fgm::Matrix3D expected = { 60.0f, 72.0f, 84.0f, 132.0f, 162.0f, 192.0f, 204.0f, 252.0f, 300.0f };
 
     // Act
-    const math::Matrix3D actual = mat1 * mat2;
+    const fgm::Matrix3D actual = mat1 * mat2;
 
     // Assert
     EXPECT_MAT_EQ(expected, actual);
@@ -473,11 +473,11 @@ TEST(Matrix3D_Product, MatrixTimesMatrixGivesAnotherMatrixWithCorrectValues)
 TEST(Matrix3D_Product, MatrixTimesIdentityMatrixReturnsSameMatrix)
 {
     // Arrange
-    const math::Matrix3D mat = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
-    const math::Matrix3D<float> eye;
+    const fgm::Matrix3D mat = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
+    const fgm::Matrix3D<float> eye;
 
     // Act
-    const math::Matrix3D actual = mat * eye;
+    const fgm::Matrix3D actual = mat * eye;
 
     // Assert
     EXPECT_MAT_EQ(mat, actual);
@@ -486,9 +486,9 @@ TEST(Matrix3D_Product, MatrixTimesIdentityMatrixReturnsSameMatrix)
 TEST(Matrix3D_Product, MatrixTimesEqualAnotherMatrixReturnsSameMatrixWithCorrectValues)
 {
     // Arrange
-    math::Matrix3D mat1 = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
-    const math::Matrix3D mat2 = { 2.0f, 4.0f, 6.0f, 8.0f, 10.0f, 12.0f, 14.0f, 16.0f, 18.0f };
-    const math::Matrix3D expected = { 60.0f, 72.0f, 84.0f, 132.0f, 162.0f, 192.0f, 204.0f, 252.0f, 300.0f };
+    fgm::Matrix3D mat1 = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
+    const fgm::Matrix3D mat2 = { 2.0f, 4.0f, 6.0f, 8.0f, 10.0f, 12.0f, 14.0f, 16.0f, 18.0f };
+    const fgm::Matrix3D expected = { 60.0f, 72.0f, 84.0f, 132.0f, 162.0f, 192.0f, 204.0f, 252.0f, 300.0f };
 
     // Act
     mat1 *= mat2;
@@ -501,12 +501,12 @@ TEST(Matrix3D_Product, MatrixTimesEqualAnotherMatrixReturnsSameMatrixWithCorrect
 TEST(Matrix3D_Product, Matrix3DProductIsAntiCommutative)
 {
     // Arrange
-    const math::Matrix3D mat1 = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
-    const math::Matrix3D mat2 = { 3.0f, 6.0f, 3.0f, 12.0f, 0.0f, 2.0f, 15.0f, 11.0f, 6.0f };
+    const fgm::Matrix3D mat1 = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
+    const fgm::Matrix3D mat2 = { 3.0f, 6.0f, 3.0f, 12.0f, 0.0f, 2.0f, 15.0f, 11.0f, 6.0f };
 
     // Act
-    const math::Matrix3D result1 = mat1 * mat2;
-    const math::Matrix3D result2 = mat2 * mat1;
+    const fgm::Matrix3D result1 = mat1 * mat2;
+    const fgm::Matrix3D result2 = mat2 * mat1;
 
     // Assert
     bool commutative = true;
@@ -520,12 +520,12 @@ TEST(Matrix3D_Product, Matrix3DProductIsAntiCommutative)
 TEST(Matrix3D_Product, Matrix3DProductWithScalarMultiplesAreCommutative)
 {
     // Arrange
-    const math::Matrix3D mat1 = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
-    const math::Matrix3D mat2 = mat1 * 5.0f;
+    const fgm::Matrix3D mat1 = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
+    const fgm::Matrix3D mat2 = mat1 * 5.0f;
 
     // Act
-    const math::Matrix3D result1 = mat1 * mat2;
-    const math::Matrix3D result2 = mat2 * mat1;
+    const fgm::Matrix3D result1 = mat1 * mat2;
+    const fgm::Matrix3D result2 = mat2 * mat1;
 
     // Assert
     bool commutative = true;
@@ -539,10 +539,10 @@ TEST(Matrix3D_Product, Matrix3DProductWithScalarMultiplesAreCommutative)
 TEST(Matrix3D_Product, MatrixTimesADoubleScalarReturnsMatrixWithPromotedType)
 {
     // Arrange
-    const math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    const fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
     constexpr double scalar = 2.5;
 
-    const math::Matrix3D expected = { 2.5, 5.0, 7.5, 10.0, 12.5, 15.0, 17.5, -20.0, 22.5 };
+    const fgm::Matrix3D expected = { 2.5, 5.0, 7.5, 10.0, 12.5, 15.0, 17.5, -20.0, 22.5 };
 
     // Act
     const auto b = a * scalar;
@@ -556,10 +556,10 @@ TEST(Matrix3D_Product, MatrixTimesADoubleScalarReturnsMatrixWithPromotedType)
 TEST(Matrix3D_Product, MatrixTimesEqualDoubleScalarReturnsMatrixWithoutTypePromotion)
 {
     // Arrange
-    math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
     constexpr double scalar = 2.5;
 
-    const math::Matrix3D expected = { 2.5, 5.0, 7.5, 10.0, 12.5, 15.0, 17.5, -20.0, 22.5 };
+    const fgm::Matrix3D expected = { 2.5, 5.0, 7.5, 10.0, 12.5, 15.0, 17.5, -20.0, 22.5 };
 
     // Act
     a *= scalar;
@@ -573,13 +573,13 @@ TEST(Matrix3D_Product, MatrixTimesEqualDoubleScalarReturnsMatrixWithoutTypePromo
 TEST(Matrix3D_Product, DoubleVectorTimesAMatrixReturnsANewVectorWithPromotedType)
 {
     // Arrange
-    const math::Matrix3D mat = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
+    const fgm::Matrix3D mat = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
 
-    math::dvec3 vec(2.0, 1.0, 3.0);
-    const math::dvec3 expected(27.0, 33.0, 39.0);
+    fgm::dvec3 vec(2.0, 1.0, 3.0);
+    const fgm::dvec3 expected(27.0, 33.0, 39.0);
 
     // Act
-    const math::dvec3 actual = vec * mat;
+    const fgm::dvec3 actual = vec * mat;
 
     // Assert
     static_assert(std::is_same_v<typename decltype(actual)::value_type, double>,
@@ -590,10 +590,10 @@ TEST(Matrix3D_Product, DoubleVectorTimesAMatrixReturnsANewVectorWithPromotedType
 TEST(Matrix3D_Product, DoubleVectorTimesEqualAMatrixReturnsANewVectorWithPromotedType)
 {
     // Arrange
-    const math::Matrix3D mat = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
+    const fgm::Matrix3D mat = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
 
-    math::vec3 vec(2.0f, 1.0f, 3.0f);
-    const math::dvec3 expected(27.0, 33.0, 39.0);
+    fgm::vec3 vec(2.0f, 1.0f, 3.0f);
+    const fgm::dvec3 expected(27.0, 33.0, 39.0);
 
     // Act
     vec *= mat;
@@ -607,12 +607,12 @@ TEST(Matrix3D_Product, DoubleVectorTimesEqualAMatrixReturnsANewVectorWithPromote
 TEST(Matrix3D_Product, MatrixTimesMatrixGivesAnotherMatrixWithTypePromotion)
 {
     // Arrange
-    const math::Matrix3D mat1 = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
-    const math::Matrix3D mat2 = { 2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0, 16.0, 18.0 };
-    const math::Matrix3D expected = { 60.0, 72.0, 84.0, 132.0, 162.0, 192.0, 204.0, 252.0, 300.0 };
+    const fgm::Matrix3D mat1 = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
+    const fgm::Matrix3D mat2 = { 2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0, 16.0, 18.0 };
+    const fgm::Matrix3D expected = { 60.0, 72.0, 84.0, 132.0, 162.0, 192.0, 204.0, 252.0, 300.0 };
 
     // Act
-    const math::Matrix3D actual = mat1 * mat2;
+    const fgm::Matrix3D actual = mat1 * mat2;
 
     // Assert
     static_assert(std::is_same_v<typename decltype(actual)::value_type, double>,
@@ -623,9 +623,9 @@ TEST(Matrix3D_Product, MatrixTimesMatrixGivesAnotherMatrixWithTypePromotion)
 TEST(Matrix3D_Product, MatrixTimesEqualAnotherMatrixReturnsSameMatrixWithoutTypePromotion)
 {
     // Arrange
-    math::Matrix3D mat1 = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
-    const math::Matrix3D mat2 = { 2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0, 16.0, 18.0 };
-    const math::Matrix3D expected = { 60.0, 72.0, 84.0, 132.0, 162.0, 192.0, 204.0, 252.0, 300.0 };
+    fgm::Matrix3D mat1 = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f };
+    const fgm::Matrix3D mat2 = { 2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0, 16.0, 18.0 };
+    const fgm::Matrix3D expected = { 60.0, 72.0, 84.0, 132.0, 162.0, 192.0, 204.0, 252.0, 300.0 };
 
     // Act
     mat1 *= mat2;
@@ -640,12 +640,12 @@ TEST(Matrix3D_Product, MatrixTimesEqualAnotherMatrixReturnsSameMatrixWithoutType
 TEST(Matrix3D_Division, MatrixDividedByAIntegerScalarReturnsCorrectMatrix)
 {
     // Arrange
-    const math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
-    const math::Matrix3D expected = { 0.5f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 3.5f, -4.0f, 4.5f };
+    const fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    const fgm::Matrix3D expected = { 0.5f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 3.5f, -4.0f, 4.5f };
     constexpr int scalar = 2;
 
     // Act
-    const math::Matrix3D<float> actual = a / scalar;
+    const fgm::Matrix3D<float> actual = a / scalar;
 
     // Assert
     EXPECT_MAT_EQ(expected, actual);
@@ -654,8 +654,8 @@ TEST(Matrix3D_Division, MatrixDividedByAIntegerScalarReturnsCorrectMatrix)
 TEST(Matrix3D_Division, MatrixDividesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)
 {
     // Arrange
-    math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
-    const math::Matrix3D b = { 0.5f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 3.5f, -4.0f, 4.5f };
+    fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    const fgm::Matrix3D b = { 0.5f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 3.5f, -4.0f, 4.5f };
     constexpr int scalar = 2;
 
     // Act
@@ -668,10 +668,10 @@ TEST(Matrix3D_Division, MatrixDividesEqualIntegerScalarIsTheSameMatrixWithCorrec
 TEST(Matrix3D_Division, MatrixDividedByOneReturnANewMatrixWithOriginalMatrixValues)
 {
     // Arrange
-    const math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    const fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
 
     // Act
-    const math::Matrix3D<float> b = a / 1;
+    const fgm::Matrix3D<float> b = a / 1;
 
     // Assert
     EXPECT_MAT_EQ(a, b);
@@ -680,10 +680,10 @@ TEST(Matrix3D_Division, MatrixDividedByOneReturnANewMatrixWithOriginalMatrixValu
 TEST(Matrix3D_Division, MatrixDividedByZeroScalarReturnsInfinityMatrix)
 {
     // Arrange
-    const math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    const fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
 
     // Act
-    const math::Matrix3D<float> b = a / 0;
+    const fgm::Matrix3D<float> b = a / 0;
 
     // Assert
     EXPECT_MAT_INF(b);
@@ -692,14 +692,14 @@ TEST(Matrix3D_Division, MatrixDividedByZeroScalarReturnsInfinityMatrix)
 TEST(Matrix3D_Division, MatrixDividedByAFloatScalarReturnsCorrectMatrix)
 {
     // Arrange
-    const math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    const fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
 
-    const math::Matrix3D expected = { 0.4f, 0.8f, 1.2f, 1.6f, 2.0f, 2.4f, 2.8f, -3.2f, 3.6f };
+    const fgm::Matrix3D expected = { 0.4f, 0.8f, 1.2f, 1.6f, 2.0f, 2.4f, 2.8f, -3.2f, 3.6f };
 
     constexpr float scalar = 2.5f;
 
     // Act
-    const math::Matrix3D<float> actual = a / scalar;
+    const fgm::Matrix3D<float> actual = a / scalar;
 
     // Assert
     EXPECT_MAT_NEAR(expected, actual);
@@ -708,12 +708,12 @@ TEST(Matrix3D_Division, MatrixDividedByAFloatScalarReturnsCorrectMatrix)
 TEST(Matrix3D_Division, MatrixDividedNegativeFloatScalarFlipsSigns)
 {
     // Arrange
-    const math::Matrix3D a = { 1.0f, -2.0f, 22.0f, -4.0f, 5.0f, -6.0f, 4.0f, 8.0f, 9.0f };
-    const math::Matrix3D expected = { -0.5f, 1.0f, -11.0f, 2.0f, -2.5f, 3.0f, -2.0f, -4.0f, -4.5f };
+    const fgm::Matrix3D a = { 1.0f, -2.0f, 22.0f, -4.0f, 5.0f, -6.0f, 4.0f, 8.0f, 9.0f };
+    const fgm::Matrix3D expected = { -0.5f, 1.0f, -11.0f, 2.0f, -2.5f, 3.0f, -2.0f, -4.0f, -4.5f };
     constexpr float scalar = -2.0f;
 
     // Act
-    const math::Matrix3D<float> actual = a / scalar;
+    const fgm::Matrix3D<float> actual = a / scalar;
 
     // Assert
     EXPECT_MAT_EQ(expected, actual);
@@ -722,8 +722,8 @@ TEST(Matrix3D_Division, MatrixDividedNegativeFloatScalarFlipsSigns)
 TEST(Matrix3D_Division, MatrixDividedByDoubleScalarReturnsMatrixWithTypePromotion)
 {
     // Arrange
-    const math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
-    const math::Matrix3D expected = { 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, -4.0, 4.5 };
+    const fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    const fgm::Matrix3D expected = { 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, -4.0, 4.5 };
     constexpr double scalar = 2.0;
 
     // Act
@@ -738,8 +738,8 @@ TEST(Matrix3D_Division, MatrixDividedByDoubleScalarReturnsMatrixWithTypePromotio
 TEST(Matrix3D_Division, MatrixDividesEqualDoubleScalarIsTheSameMatrixWithoutTypePromotion)
 {
     // Arrange
-    math::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
-    const math::Matrix3D b = { 0.5f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 3.5f, -4.0f, 4.5f };
+    fgm::Matrix3D a = { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, -8.0f, 9.0f };
+    const fgm::Matrix3D b = { 0.5f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 3.5f, -4.0f, 4.5f };
     constexpr double scalar = 2.0;
 
     // Act
@@ -754,8 +754,8 @@ TEST(Matrix3D_Division, MatrixDividesEqualDoubleScalarIsTheSameMatrixWithoutType
 TEST(Matrix3D_Division, IntegerMatrixDivideEqualFloatScalarIsTheSameMatrixWithMinimalPrecisionLoss)
 {
     // Arrange
-    math::Matrix3D a = { 1, 2, 3, 4, 5, 6, 7, -8, 9 };
-    const math::Matrix3D b = { 4, 8, 12, 16, 20, 24, 28, -32, 36 };
+    fgm::Matrix3D a = { 1, 2, 3, 4, 5, 6, 7, -8, 9 };
+    const fgm::Matrix3D b = { 4, 8, 12, 16, 20, 24, 28, -32, 36 };
     constexpr float scalar = 0.25f;
 
     // Act
@@ -775,7 +775,7 @@ TEST(Matrix3D_Division, IntegerMatrixDivideEqualFloatScalarIsTheSameMatrixWithMi
 TEST(Matrix3D_Determinant, IdentityMatrixReturnsDeterminantOfOne)
 {
     // Arrange
-    const math::Matrix3D<float> mat;
+    const fgm::Matrix3D<float> mat;
     constexpr float expectedDeterminant = 1.0f;
 
     // Act
@@ -788,7 +788,7 @@ TEST(Matrix3D_Determinant, IdentityMatrixReturnsDeterminantOfOne)
 TEST(Matrix3D_Determinant, DiagonalMatrixReturnsProductOfDiagonalEntriesAsDeterminant)
 {
     // Arrange
-    const math::Matrix3D mat(2.0f, 0.0f, 0.0f, 0.0f, 3.0f, 0.0f, 0.0f, 0.0f, 4.0f);
+    const fgm::Matrix3D mat(2.0f, 0.0f, 0.0f, 0.0f, 3.0f, 0.0f, 0.0f, 0.0f, 4.0f);
     constexpr float expectedDeterminant = 24.0f;
 
     // Act
@@ -800,7 +800,7 @@ TEST(Matrix3D_Determinant, DiagonalMatrixReturnsProductOfDiagonalEntriesAsDeterm
 
 TEST(Matrix3D_Determinant, MatrixWithScalarMultipleColumnsReturnsDeterminantOfZero)
 {
-    const math::Matrix3D mat(2.0f, 1.0f, 3.0f, 4.0f, 2.0f, 6.0f, 1.0f, 5.0f, 4.0f);
+    const fgm::Matrix3D mat(2.0f, 1.0f, 3.0f, 4.0f, 2.0f, 6.0f, 1.0f, 5.0f, 4.0f);
 
     constexpr float expectedDeterminant = 0.0f;
 
@@ -813,7 +813,7 @@ TEST(Matrix3D_Determinant, MatrixWithScalarMultipleColumnsReturnsDeterminantOfZe
 
 TEST(Matrix3D_Determinant, MatrixWithScalarMultipleRowsReturnsDeterminantOfZero)
 {
-    const math::Matrix3D mat(2.0f, 4.0f, 3.0f, 4.0f, 8.0f, 6.0f, 1.0f, 2.0f, 4.0f);
+    const fgm::Matrix3D mat(2.0f, 4.0f, 3.0f, 4.0f, 8.0f, 6.0f, 1.0f, 2.0f, 4.0f);
 
     constexpr float expectedDeterminant = 0.0f;
 
@@ -826,7 +826,7 @@ TEST(Matrix3D_Determinant, MatrixWithScalarMultipleRowsReturnsDeterminantOfZero)
 
 TEST(Matrix3D_Determinant, IdentityMatrixWithSwappedRowsReturnsDeterminantOfNegativeOne)
 {
-    const math::Matrix3D mat(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f);
+    const fgm::Matrix3D mat(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f);
 
     constexpr float expectedDeterminant = -1.0f;
 
@@ -839,7 +839,7 @@ TEST(Matrix3D_Determinant, IdentityMatrixWithSwappedRowsReturnsDeterminantOfNega
 
 TEST(Matrix3D_Determinant, IdentityMatrixWithSwappedColumnsReturnsDeterminantOfNegativeOne)
 {
-    const math::Matrix3D mat(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f);
+    const fgm::Matrix3D mat(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f);
 
     constexpr float expectedDeterminant = -1.0f;
 
@@ -852,7 +852,7 @@ TEST(Matrix3D_Determinant, IdentityMatrixWithSwappedColumnsReturnsDeterminantOfN
 
 TEST(Matrix3D_Determinant, IdentityMatrixWithShearAppliedsReturnsDeterminantOfOne)
 {
-    const math::Matrix3D mat(1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+    const fgm::Matrix3D mat(1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f);
 
     constexpr float expectedDeterminant = 1.0f;
 
@@ -865,7 +865,7 @@ TEST(Matrix3D_Determinant, IdentityMatrixWithShearAppliedsReturnsDeterminantOfOn
 
 TEST(Matrix3D_Determinant, MatrixDeterminantReturnsCorrectValue)
 {
-    const math::Matrix3D mat(1.0f, 2.0f, 3.0f, 0.0f, 4.0f, 1.0f, 5.0f, 6.0f, 0.0f);
+    const fgm::Matrix3D mat(1.0f, 2.0f, 3.0f, 0.0f, 4.0f, 1.0f, 5.0f, 6.0f, 0.0f);
 
     constexpr float expectedDeterminant = -56.0f;
 
@@ -878,12 +878,12 @@ TEST(Matrix3D_Determinant, MatrixDeterminantReturnsCorrectValue)
 
 TEST(Matrix3D_Determinant, MatrixDeterminantWithStaticWrapperReturnsCorrectValue)
 {
-    const math::Matrix3D mat(1.0f, 2.0f, 3.0f, 0.0f, 4.0f, 1.0f, 5.0f, 6.0f, 0.0f);
+    const fgm::Matrix3D mat(1.0f, 2.0f, 3.0f, 0.0f, 4.0f, 1.0f, 5.0f, 6.0f, 0.0f);
 
     constexpr float expectedDeterminant = -56.0f;
 
     // Act
-    const float actualDeterminant = math::Matrix3D<float>::determinant(mat);
+    const float actualDeterminant = fgm::Matrix3D<float>::determinant(mat);
 
     // Assert
     EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
@@ -891,7 +891,7 @@ TEST(Matrix3D_Determinant, MatrixDeterminantWithStaticWrapperReturnsCorrectValue
 
 TEST(Matrix3D_Determinant, DeterminantofTransposedMatrixIsEqualToDeterminantOfTheMatrix)
 {
-    const math::Matrix3D a(1.0f, 2.0f, 3.0f, 0.0f, 4.0f, 1.0f, 5.0f, 6.0f, 0.0f);
+    const fgm::Matrix3D a(1.0f, 2.0f, 3.0f, 0.0f, 4.0f, 1.0f, 5.0f, 6.0f, 0.0f);
 
     // Act
     const float detA = a.determinant();
@@ -904,11 +904,11 @@ TEST(Matrix3D_Determinant, DeterminantofTransposedMatrixIsEqualToDeterminantOfTh
 TEST(Matrix3D_Determinant, DeterminantOfProductOfMatricesIsSameAsProductOfDeterminantOfMatrix)
 {
     // det(A*B) = det(A) * det(B)
-    const math::Matrix3D a(1.0f, 2.0f, 3.0f, 0.0f, 4.0f, 1.0f, 5.0f, 6.0f, 0.0f);
-    const math::Matrix3D b(1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f);
+    const fgm::Matrix3D a(1.0f, 2.0f, 3.0f, 0.0f, 4.0f, 1.0f, 5.0f, 6.0f, 0.0f);
+    const fgm::Matrix3D b(1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f);
 
     // Act
-    const float determinantOfProduct = math::Matrix3D<float>::determinant(a * b);
+    const float determinantOfProduct = fgm::Matrix3D<float>::determinant(a * b);
     const float productOfDeterminant = a.determinant() * b.determinant();
 
     // Assert
@@ -918,11 +918,11 @@ TEST(Matrix3D_Determinant, DeterminantOfProductOfMatricesIsSameAsProductOfDeterm
 TEST(Matrix3D_Determinant, DeterminantOfAMatrixMultipledByScalarIsScalarPowNTimesTheDeterminantOfOriginalMatrix)
 {
     // det(t*A) = (t^n)det(A)
-    const math::Matrix3D a(1.0f, 2.0f, 3.0f, 0.0f, 4.0f, 1.0f, 5.0f, 6.0f, 0.0f);
+    const fgm::Matrix3D a(1.0f, 2.0f, 3.0f, 0.0f, 4.0f, 1.0f, 5.0f, 6.0f, 0.0f);
     constexpr float scalar = 5.0f;
 
     // Act
-    const float determinantOfProduct = math::Matrix3D<float>::determinant(scalar * a);
+    const float determinantOfProduct = fgm::Matrix3D<float>::determinant(scalar * a);
     const float productOfDeterminant = (scalar * scalar * scalar) * a.determinant(); // n = 3 for 3x3 matrix
 
     // Assert
@@ -939,10 +939,10 @@ TEST(Matrix3D_Determinant, DeterminantOfAMatrixMultipledByScalarIsScalarPowNTime
 TEST(Matrix3D_Transpose, TransposeOfIdentityMatrixIsItself)
 {
     // Arrange
-    const math::Matrix3D<float> mat;
+    const fgm::Matrix3D<float> mat;
 
     // Act
-    const math::Matrix3D<float> actual = mat.transpose();
+    const fgm::Matrix3D<float> actual = mat.transpose();
 
     // Assert
     EXPECT_MAT_EQ(mat, actual);
@@ -951,11 +951,11 @@ TEST(Matrix3D_Transpose, TransposeOfIdentityMatrixIsItself)
 TEST(Matrix3D_Transpose, TransposeOfAMatrixReturnsMatrixWithRowsAndColumnsSwapped)
 {
     // Arrange
-    const math::Matrix3D mat(1.0f, 2.0f, 3.0f, 0.0f, 4.0f, 1.0f, 5.0f, 6.0f, 0.0f);
-    const math::Matrix3D expected(1.0f, 0.0f, 5.0f, 2.0f, 4.0f, 6.0f, 3.0f, 1.0f, 0.0f);
+    const fgm::Matrix3D mat(1.0f, 2.0f, 3.0f, 0.0f, 4.0f, 1.0f, 5.0f, 6.0f, 0.0f);
+    const fgm::Matrix3D expected(1.0f, 0.0f, 5.0f, 2.0f, 4.0f, 6.0f, 3.0f, 1.0f, 0.0f);
 
     // Act
-    const math::Matrix3D<float> actual = mat.transpose();
+    const fgm::Matrix3D<float> actual = mat.transpose();
 
     // Assert
     EXPECT_MAT_EQ(expected, actual);
@@ -964,11 +964,11 @@ TEST(Matrix3D_Transpose, TransposeOfAMatrixReturnsMatrixWithRowsAndColumnsSwappe
 TEST(Matrix3D_Transpose, TransposeOfAMatrixUsingStaticWrapperReturnsMatrixWithRowsAndColumnsSwapped)
 {
     // Arrange
-    const math::Matrix3D mat(1.0f, 2.0f, 3.0f, 0.0f, 4.0f, 1.0f, 5.0f, 6.0f, 0.0f);
-    const math::Matrix3D expected(1.0f, 0.0f, 5.0f, 2.0f, 4.0f, 6.0f, 3.0f, 1.0f, 0.0f);
+    const fgm::Matrix3D mat(1.0f, 2.0f, 3.0f, 0.0f, 4.0f, 1.0f, 5.0f, 6.0f, 0.0f);
+    const fgm::Matrix3D expected(1.0f, 0.0f, 5.0f, 2.0f, 4.0f, 6.0f, 3.0f, 1.0f, 0.0f);
 
     // Act
-    const math::Matrix3D<float> actual = math::Matrix3D<float>::transpose(mat);
+    const fgm::Matrix3D<float> actual = fgm::Matrix3D<float>::transpose(mat);
 
     // Assert
     EXPECT_MAT_EQ(expected, actual);
@@ -984,11 +984,11 @@ TEST(Matrix3D_Transpose, TransposeOfAMatrixUsingStaticWrapperReturnsMatrixWithRo
 TEST(Matrix3D_Inverse, InverseReturnsAnotherMatrixWithCorrectValues)
 {
     // Given
-    const math::Matrix3D mat(1.0f, 2.0f, 3.0f, 0.0f, 1.0f, 4.0f, 5.0f, 6.0f, 0.0f);
-    const math::Matrix3D expectedInverse(-24.0f, 18.0f, 5.0f, 20.0f, -15.0f, -4.0f, -5.0f, 4.0f, 1.0f);
+    const fgm::Matrix3D mat(1.0f, 2.0f, 3.0f, 0.0f, 1.0f, 4.0f, 5.0f, 6.0f, 0.0f);
+    const fgm::Matrix3D expectedInverse(-24.0f, 18.0f, 5.0f, 20.0f, -15.0f, -4.0f, -5.0f, 4.0f, 1.0f);
 
     // Act
-    const math::Matrix3D actualInverse = mat.inverse();
+    const fgm::Matrix3D actualInverse = mat.inverse();
 
     // Assert
     EXPECT_MAT_EQ(expectedInverse, actualInverse);
@@ -996,11 +996,11 @@ TEST(Matrix3D_Inverse, InverseReturnsAnotherMatrixWithCorrectValues)
 
 TEST(Matrix3D_Inverse, StaticWrapperForInverseReturnsAnotherMatrixWithCorrectValues)
 {
-    const math::Matrix3D mat(1.0f, 2.0f, 3.0f, 0.0f, 1.0f, 4.0f, 5.0f, 6.0f, 0.0f);
-    const math::Matrix3D expectedInverse(-24.0f, 18.0f, 5.0f, 20.0f, -15.0f, -4.0f, -5.0f, 4.0f, 1.0f);
+    const fgm::Matrix3D mat(1.0f, 2.0f, 3.0f, 0.0f, 1.0f, 4.0f, 5.0f, 6.0f, 0.0f);
+    const fgm::Matrix3D expectedInverse(-24.0f, 18.0f, 5.0f, 20.0f, -15.0f, -4.0f, -5.0f, 4.0f, 1.0f);
 
     // Act
-    const math::Matrix3D<float> actualInverse = math::Matrix3D<float>::inverse(mat);
+    const fgm::Matrix3D<float> actualInverse = fgm::Matrix3D<float>::inverse(mat);
 
     // Assert
     EXPECT_MAT_EQ(expectedInverse, actualInverse);
@@ -1009,10 +1009,10 @@ TEST(Matrix3D_Inverse, StaticWrapperForInverseReturnsAnotherMatrixWithCorrectVal
 TEST(Matrix3D_Inverse, IdentityMatrixInverseReturnsAnotherIdentityMatrix)
 {
     // Given
-    const math::Matrix3D<float> identity;
+    const fgm::Matrix3D<float> identity;
 
     // Act
-    const math::Matrix3D<float> actualInverse = identity.inverse();
+    const fgm::Matrix3D<float> actualInverse = identity.inverse();
 
     // Assert
     EXPECT_MAT_IDENTITY(actualInverse);
@@ -1020,11 +1020,11 @@ TEST(Matrix3D_Inverse, IdentityMatrixInverseReturnsAnotherIdentityMatrix)
 
 TEST(Matrix3D_Inverse, MatrixTimeInverseReturnsIdentityMatrix)
 {
-    const math::Matrix3D mat(1.0f, 2.0f, 3.0f, 0.0f, 1.0f, 4.0f, 5.0f, 6.0f, 0.0f);
+    const fgm::Matrix3D mat(1.0f, 2.0f, 3.0f, 0.0f, 1.0f, 4.0f, 5.0f, 6.0f, 0.0f);
 
     // Act
-    const math::Matrix3D<float> inverse = math::Matrix3D<float>::inverse(mat);
-    const math::Matrix3D<float> product = mat * inverse;
+    const fgm::Matrix3D<float> inverse = fgm::Matrix3D<float>::inverse(mat);
+    const fgm::Matrix3D<float> product = mat * inverse;
 
     // Assert
     EXPECT_MAT_IDENTITY(product);
@@ -1032,11 +1032,11 @@ TEST(Matrix3D_Inverse, MatrixTimeInverseReturnsIdentityMatrix)
 
 TEST(Matrix3D_Inverse, InverseTimesMatrixReturnsIdentityMatrix)
 {
-    const math::Matrix3D mat(1.0f, 2.0f, 3.0f, 0.0f, 1.0f, 4.0f, 5.0f, 6.0f, 0.0f);
+    const fgm::Matrix3D mat(1.0f, 2.0f, 3.0f, 0.0f, 1.0f, 4.0f, 5.0f, 6.0f, 0.0f);
 
     // Act
-    const math::Matrix3D<float> inverse = math::Matrix3D<float>::inverse(mat);
-    const math::Matrix3D<float> product = inverse * mat;
+    const fgm::Matrix3D<float> inverse = fgm::Matrix3D<float>::inverse(mat);
+    const fgm::Matrix3D<float> product = inverse * mat;
 
     // Assert
     EXPECT_MAT_IDENTITY(product);
@@ -1044,10 +1044,10 @@ TEST(Matrix3D_Inverse, InverseTimesMatrixReturnsIdentityMatrix)
 
 TEST(Matrix3D_Inverse, SingularMatrixProducesIdentityMatrix)
 {
-    const math::Matrix3D singularMatrix(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+    const fgm::Matrix3D singularMatrix(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
 
     // Act
-    const math::Matrix3D<float> actualInverse = math::Matrix3D<float>::inverse(singularMatrix);
+    const fgm::Matrix3D<float> actualInverse = fgm::Matrix3D<float>::inverse(singularMatrix);
 
     // Assert
     EXPECT_MAT_IDENTITY(actualInverse);
@@ -1055,12 +1055,12 @@ TEST(Matrix3D_Inverse, SingularMatrixProducesIdentityMatrix)
 
 TEST(Matrix3D_Inverse, NearSingularMatrixProducesNonIdentityMatrix)
 {
-    const math::Matrix3D nearSingularMatrix(1.0f, 0.0f, 0.0f, 0.0f, 0.1f, 0.0f, 0.0f, 0.0f, 0.1f);
+    const fgm::Matrix3D nearSingularMatrix(1.0f, 0.0f, 0.0f, 0.0f, 0.1f, 0.0f, 0.0f, 0.0f, 0.1f);
 
-    const math::Matrix3D expectedInverse(1.0f, 0.0f, 0.0f, 0.0f, 10.0f, 0.0f, 0.0f, 0.0f, 10.0f);
+    const fgm::Matrix3D expectedInverse(1.0f, 0.0f, 0.0f, 0.0f, 10.0f, 0.0f, 0.0f, 0.0f, 10.0f);
 
     // Act
-    const math::Matrix3D<float> actualInverse = math::Matrix3D<float>::inverse(nearSingularMatrix);
+    const fgm::Matrix3D<float> actualInverse = fgm::Matrix3D<float>::inverse(nearSingularMatrix);
 
     // Assert
     EXPECT_MAT_NEAR(expectedInverse, actualInverse);
@@ -1068,11 +1068,11 @@ TEST(Matrix3D_Inverse, NearSingularMatrixProducesNonIdentityMatrix)
 
 TEST(Matrix3D_Inverse, InversionOfRotationOnlyMatrixReturnsTranspose)
 {
-    const math::Matrix3D mat(0.0f, -1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
-    const math::Matrix3D transpose(0.0f, 1.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+    const fgm::Matrix3D mat(0.0f, -1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+    const fgm::Matrix3D transpose(0.0f, 1.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
 
     // Act
-    const math::Matrix3D<float> actualInverse = math::Matrix3D<float>::inverse(mat);
+    const fgm::Matrix3D<float> actualInverse = fgm::Matrix3D<float>::inverse(mat);
 
     // Assert
     EXPECT_MAT_EQ(transpose, actualInverse);

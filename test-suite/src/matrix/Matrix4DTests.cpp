@@ -17,13 +17,13 @@ using namespace testutils;
  *                                             *
  ***********************************************/
 
-static constexpr std::size_t rows = math::Matrix4D<float>::rows;
-static constexpr std::size_t cols = math::Matrix4D<float>::columns;
+static constexpr std::size_t rows = fgm::Matrix4D<float>::rows;
+static constexpr std::size_t cols = fgm::Matrix4D<float>::columns;
 
 TEST(Matrix4D_Initialization, InitializedWithOutParametersProvidesIdentityMatrix)
 {
     // Given a matrix initialized without parameters
-    const math::Matrix4D<float> mat;
+    const fgm::Matrix4D<float> mat;
 
     // Then, it's elements form an identity matrix
     EXPECT_MAT_IDENTITY(mat);
@@ -32,7 +32,7 @@ TEST(Matrix4D_Initialization, InitializedWithOutParametersProvidesIdentityMatrix
 TEST(Matrix4D_Initialization, InitializationSupportedForIntegers)
 {
     // Given an integer matrix initialized without parameters
-    const math::Matrix4D<int> mat;
+    const fgm::Matrix4D<int> mat;
 
     // Then, it's value_type is int, and elements form an identity matrix
     static_assert(std::is_same_v<typename decltype(mat)::value_type, int>);
@@ -44,7 +44,7 @@ TEST(Matrix4D_Initialization, InitializationSupportedForIntegers)
 TEST(Matrix4D_Initialization, InitializedWithParametersProvidesCorrectMatrix)
 {
     // Given a matrix with arbitrary values passed in
-    const math::Matrix4D mat(0.0f, 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f, 10.0f, 11.0f, 12.0f, 13.0f,
+    const fgm::Matrix4D mat(0.0f, 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f, 10.0f, 11.0f, 12.0f, 13.0f,
                              14.0f, 15.0f);
 
     // Then, it's elements reflect the correct values
@@ -56,13 +56,13 @@ TEST(Matrix4D_Initialization, InitializedWithParametersProvidesCorrectMatrix)
 TEST(Matrix4D_Initialization, InitializedWithFour4DVectorsProvidesCorrectMatrix)
 {
     // Given four 4D vectors
-    const math::Vector4D col0(0.0f, 4.0f, 8.0f, 12.0f);
-    const math::Vector4D col1(1.0f, 5.0f, 9.0f, 13.0f);
-    const math::Vector4D col2(2.0f, 6.0f, 10.0f, 14.0f);
-    const math::Vector4D col3(3.0f, 7.0f, 11.0f, 15.0f);
+    const fgm::Vector4D col0(0.0f, 4.0f, 8.0f, 12.0f);
+    const fgm::Vector4D col1(1.0f, 5.0f, 9.0f, 13.0f);
+    const fgm::Vector4D col2(2.0f, 6.0f, 10.0f, 14.0f);
+    const fgm::Vector4D col3(3.0f, 7.0f, 11.0f, 15.0f);
 
     // When a matrix is initialized with those vectors
-    const math::Matrix4D mat(col0, col1, col2, col3);
+    const fgm::Matrix4D mat(col0, col1, col2, col3);
 
 
     // Then, it's elements reflect the vectors put in column major order
@@ -74,8 +74,8 @@ TEST(Matrix4D_Initialization, InitializedWithFour4DVectorsProvidesCorrectMatrix)
 TEST(Matrix4D_Initialization, CanMutateVectorAtIndex)
 {
     // Given an identity matrix and a vector
-    math::Matrix4D<float> mat;
-    math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+    fgm::Matrix4D<float> mat;
+    fgm::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
     // When the vector is put into the matrices column
     mat[2] = vec;
@@ -105,7 +105,7 @@ TEST(Matrix4D_Initialization, CanMutateVectorAtIndex)
 TEST(Matrix4D_Initialization, CanMutateValueAtRowColumn)
 {
     // Given an identity matrix
-    math::Matrix4D<float> mat;
+    fgm::Matrix4D<float> mat;
 
     // When populated with elements using loop indices at (row, col)
     for (std::size_t i = 0; i < rows; ++i)
@@ -121,10 +121,10 @@ TEST(Matrix4D_Initialization, CanMutateValueAtRowColumn)
 TEST(Matrix4D_Initialization, ConversionConstructorHandlesTypePromotion)
 {
     // Given a float matrix
-    math::Matrix4D<float> mat;
+    fgm::Matrix4D<float> mat;
 
     // When copied to a double matrix
-    math::Matrix4D<double> copy(mat);
+    fgm::Matrix4D<double> copy(mat);
     // And some value of the new matrix mutated
     copy(0, 0) = 5.0;
     copy(0, 1) = 4.0;
@@ -150,10 +150,10 @@ TEST(Matrix4D_Initialization, ConversionConstructorHandlesTypePromotion)
 TEST(Matrix4D_Initialization, ConversionConstructorHandlesTypeDemotion)
 {
     // Given a double matrix
-    math::Matrix4D<double> mat;
+    fgm::Matrix4D<double> mat;
 
     // When copied to a float matrix
-    math::Matrix4D<float> copy(mat);
+    fgm::Matrix4D<float> copy(mat);
     // And some value of the new matrix mutated
     copy(0, 0) = 5.0f;
     copy(0, 1) = 4.0f;
@@ -179,10 +179,10 @@ TEST(Matrix4D_Initialization, ConversionConstructorHandlesTypeDemotion)
 TEST(Matrix4D_Access, CanBeAccessedAsAVectorAtIndex)
 {
     // Given an identity matrix
-    math::Matrix4D<float> mat;
+    fgm::Matrix4D<float> mat;
 
     // When accessed by index[] operator
-    math::Vector4D vec = mat[1];
+    fgm::Vector4D vec = mat[1];
 
     // Returns a vector with the correct value
     EXPECT_FLOAT_EQ(0.0f, vec.x);
@@ -194,7 +194,7 @@ TEST(Matrix4D_Access, CanBeAccessedAsAVectorAtIndex)
 TEST(Matrix4D_Access, CanBeAccessedAsAValueAtRowColumn)
 {
     // Given a matrix initialized with arbitrary values
-    const math::Matrix4D mat(0.0f, 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f, 10.0f, 11.0f, 12.0f, 13.0f,
+    const fgm::Matrix4D mat(0.0f, 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f, 10.0f, 11.0f, 12.0f, 13.0f,
                              14.0f, 15.0f);
 
     // Then, its elements can be accessed using (row, col)
@@ -213,16 +213,16 @@ TEST(Matrix4D_Access, CanBeAccessedAsAValueAtRowColumn)
 TEST(Matrix4D_Addition, SumOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
 {
     // Given two matrices with arbitrary values
-    const math::Matrix4D a = { 1.0f, 2.0f,  3.0f, 5.0f, 4.0f,  5.0f,  6.0f,  2.0f,
+    const fgm::Matrix4D a = { 1.0f, 2.0f,  3.0f, 5.0f, 4.0f,  5.0f,  6.0f,  2.0f,
                                7.0f, -8.0f, 9.0f, 8.0f, 12.0f, -3.0f, -20.f, 2.0f };
-    const math::Matrix4D b = { 3.0f, 2.0f,  255.0f, 55.0f, -8.0f, 24.0f, 6.0f,  -23.0f,
+    const fgm::Matrix4D b = { 3.0f, 2.0f,  255.0f, 55.0f, -8.0f, 24.0f, 6.0f,  -23.0f,
                                7.0f, 16.0f, -98.0f, 11.0f, 1.0f,  55.0f, 11.0f, -316.0f };
 
-    const math::Matrix4D expected = { 4.0f,  4.0f, 258.0f, 60.0f, -4.0f, 29.0f, 12.0f, -21.0f,
+    const fgm::Matrix4D expected = { 4.0f,  4.0f, 258.0f, 60.0f, -4.0f, 29.0f, 12.0f, -21.0f,
                                       14.0f, 8.0f, -89.0f, 19.0f, 13.0f, 52.0f, -9.0f, -314.0f };
 
     // When they are added together
-    const math::Matrix4D result = a + b;
+    const fgm::Matrix4D result = a + b;
 
     // Then, the result is the sum of individual elements
     EXPECT_MAT_EQ(expected, result);
@@ -232,13 +232,13 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCo
 {
 
     // Given two matrices with arbitrary values
-    math::Matrix4D a = { 1.0f, 2.0f,  3.0f, 5.0f, 4.0f,  5.0f,  6.0f,  2.0f,
+    fgm::Matrix4D a = { 1.0f, 2.0f,  3.0f, 5.0f, 4.0f,  5.0f,  6.0f,  2.0f,
                          7.0f, -8.0f, 9.0f, 8.0f, 12.0f, -3.0f, -20.f, 2.0f };
 
-    const math::Matrix4D b = { 3.0f, 2.0f,  255.0f, 55.0f, -8.0f, 24.0f, 6.0f,  -23.0f,
+    const fgm::Matrix4D b = { 3.0f, 2.0f,  255.0f, 55.0f, -8.0f, 24.0f, 6.0f,  -23.0f,
                                7.0f, 16.0f, -98.0f, 11.0f, 1.0f,  55.0f, 11.0f, -316.0f };
 
-    const math::Matrix4D expected = { 4.0f,  4.0f, 258.0f, 60.0f, -4.0f, 29.0f, 12.0f, -21.0f,
+    const fgm::Matrix4D expected = { 4.0f,  4.0f, 258.0f, 60.0f, -4.0f, 29.0f, 12.0f, -21.0f,
                                       14.0f, 8.0f, -89.0f, 19.0f, 13.0f, 52.0f, -9.0f, -314.0f };
 
     // When one matrix is added to the other(+=)
@@ -251,13 +251,13 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCo
 TEST(Matrix4D_Addition, SumOfTwoMatricesOfDifferentTypeReturnsAnotherMatrixWithTypePromotion)
 {
     // Given two matrices with arbitrary values and different types
-    const math::Matrix4D a = { 1.0f, 2.0f,  3.0f, 5.0f, 4.0f,  5.0f,  6.0f,  2.0f,
+    const fgm::Matrix4D a = { 1.0f, 2.0f,  3.0f, 5.0f, 4.0f,  5.0f,  6.0f,  2.0f,
                                7.0f, -8.0f, 9.0f, 8.0f, 12.0f, -3.0f, -20.f, 2.0f };
 
-    const math::Matrix4D b = { 3.0, 2.0,  255.0, 55.0, -8.0, 24.0, 6.0,  -23.0,
+    const fgm::Matrix4D b = { 3.0, 2.0,  255.0, 55.0, -8.0, 24.0, 6.0,  -23.0,
                                7.0, 16.0, -98.0, 11.0, 1.0,  55.0, 11.0, -316.0 };
 
-    const math::Matrix4D expected = { 4.0,  4.0, 258.0, 60.0, -4.0, 29.0, 12.0, -21.0,
+    const fgm::Matrix4D expected = { 4.0,  4.0, 258.0, 60.0, -4.0, 29.0, 12.0, -21.0,
                                       14.0, 8.0, -89.0, 19.0, 13.0, 52.0, -9.0, -314.0 };
 
     // When they are added together
@@ -272,13 +272,13 @@ TEST(Matrix4D_Addition, SumOfTwoMatricesOfDifferentTypeReturnsAnotherMatrixWithT
 TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsSameMatrixWithoutTypePromotion)
 {
     // Given two matrices with arbitrary values with different types
-    math::Matrix4D a = { 1.0f, 2.0f,  3.0f, 5.0f, 4.0f,  5.0f,  6.0f,  2.0f,
+    fgm::Matrix4D a = { 1.0f, 2.0f,  3.0f, 5.0f, 4.0f,  5.0f,  6.0f,  2.0f,
                          7.0f, -8.0f, 9.0f, 8.0f, 12.0f, -3.0f, -20.f, 2.0f };
 
-    const math::Matrix4D b = { 3.0, 2.0,  255.0, 55.0, -8.0, 24.0, 6.0,  -23.0,
+    const fgm::Matrix4D b = { 3.0, 2.0,  255.0, 55.0, -8.0, 24.0, 6.0,  -23.0,
                                7.0, 16.0, -98.0, 11.0, 1.0,  55.0, 11.0, -316.0 };
 
-    const math::Matrix4D expected = { 4.0f,  4.0f, 258.0f, 60.0f, -4.0f, 29.0f, 12.0f, -21.0f,
+    const fgm::Matrix4D expected = { 4.0f,  4.0f, 258.0f, 60.0f, -4.0f, 29.0f, 12.0f, -21.0f,
                                       14.0f, 8.0f, -89.0f, 19.0f, 13.0f, 52.0f, -9.0f, -314.0f };
 
     // When one matrix is added to the other(+=)
@@ -293,21 +293,21 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Difference, DifferenceOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
 //{
 //	// Arrange
-//	const math::Matrix4D a = {
+//	const fgm::Matrix4D a = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, -8.0f, 9.0f };
-//	const math::Matrix4D b = {
+//	const fgm::Matrix4D b = {
 //		3.0f, 2.0f, 255.0f,
 //		-8.0f, 24.0f, 6.0f,
 //		2.0f, 16.0f, -98.0f };
-//	const math::Matrix4D c = {
+//	const fgm::Matrix4D c = {
 //		-2.0f, 0.0f, -252.0f,
 //		12.0f, -19.0f, 0.0f,
 //		5.0f, -24.0f, 107.0f };
 //
 //	// Act
-//	const math::Matrix4D<float> res = a - b;
+//	const fgm::Matrix4D<float> res = a - b;
 //
 //	// Assert
 //	EXPECT_MAT_EQ(c, res);
@@ -316,15 +316,15 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Difference, DifferenceOfTwoMatricesOfDifferentTypeReturnsAnotherMatrixPromotedType)
 //{
 //	// Arrange
-//	const math::Matrix4D a = {
+//	const fgm::Matrix4D a = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, -8.0f, 9.0f };
-//	const math::Matrix4D b = {
+//	const fgm::Matrix4D b = {
 //		3.0, 2.0, 255.0,
 //		-8.0, 24.0, 6.0,
 //		2.0, 16.0, -98.0 };
-//	const math::Matrix4D c = {
+//	const fgm::Matrix4D c = {
 //		-2.0, 0.0, -252.0,
 //		12.0, -19.0, 0.0,
 //		5.0, -24.0, 107.0 };
@@ -340,15 +340,15 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Addition, PlusEqualsMatrixWithMatrixOfAnotherTypeReturnsSameMatrixWithoutTypePromotion)
 //{
 //	// Arrange
-//	math::Matrix4D a = {
+//	fgm::Matrix4D a = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, -8.0f, 9.0f };
-//	const math::Matrix4D b = {
+//	const fgm::Matrix4D b = {
 //		3.0, 2.0, 255.0,
 //		-8.0, 24.0, 6.0,
 //		7.0, 16.0, -98.0 };
-//	const math::Matrix4D c = {
+//	const fgm::Matrix4D c = {
 //		4.0f, 4.0f, 258.0f,
 //		-4.0f, 29.0f, 12.0f,
 //		14.0f, 8.0f, -89.0f };
@@ -364,15 +364,15 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Difference, MinusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsSameMatrixWithoutTypePromotion)
 //{
 //	// Arrange
-//	math::Matrix4D a = {
+//	fgm::Matrix4D a = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, -8.0f, 9.0f };
-//	const math::Matrix4D b = {
+//	const fgm::Matrix4D b = {
 //		3.0, 2.0, 255.0,
 //		-8.0, 24.0, 6.0,
 //		2.0, 16.0, -98.0 };
-//	const math::Matrix4D c = {
+//	const fgm::Matrix4D c = {
 //		-2.0f, 0.0f, -252.0f,
 //		12.0f, -19.0f, 0.0f,
 //		5.0f, -24.0f, 107.0f };
@@ -388,18 +388,18 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, MatrixTimesAIntegerScalarReturnsCorrectMatrix)
 //{
 //	// Arrange
-//	const math::Matrix4D a = {
+//	const fgm::Matrix4D a = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, -8.0f, 9.0f };
-//	const math::Matrix4D expected = {
+//	const fgm::Matrix4D expected = {
 //		2.0f, 4.0f, 6.0f,
 //		8.0f, 10.0f, 12.0f,
 //		14.0f, -16.0f, 18.0f };
 //	constexpr int scalar = 2;
 //
 //	// Act
-//	const math::Matrix4D actual = a * scalar;
+//	const fgm::Matrix4D actual = a * scalar;
 //
 //	// Assert
 //	EXPECT_MAT_EQ(expected, actual);
@@ -408,18 +408,18 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, IntegerScalarTimesAMatrixReturnsCorrectMatrix)
 //{
 //	// Arrange
-//	const math::Matrix4D a = {
+//	const fgm::Matrix4D a = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, -8.0f, 9.0f };
-//	const math::Matrix4D expected = {
+//	const fgm::Matrix4D expected = {
 //		2.0f, 4.0f, 6.0f,
 //		8.0f, 10.0f, 12.0f,
 //		14.0f, -16.0f, 18.0f };
 //	constexpr int scalar = 2;
 //
 //	// Act
-//	const math::Matrix4D<float> actual = scalar * a;
+//	const fgm::Matrix4D<float> actual = scalar * a;
 //
 //	// Assert
 //	EXPECT_MAT_EQ(expected, actual);
@@ -428,11 +428,11 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, MatrixTimesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)
 //{
 //	// Arrange
-//	math::Matrix4D a = {
+//	fgm::Matrix4D a = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, -8.0f, 9.0f };
-//	const math::Matrix4D b = {
+//	const fgm::Matrix4D b = {
 //		2.0f, 4.0f, 6.0f,
 //		8.0f, 10.0f, 12.0f,
 //		14.0f, -16.0f, 18.0f };
@@ -448,13 +448,13 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, MatrixTimesOneReturnANewMatrixWithOriginalMatrixValues)
 //{
 //	// Arrange
-//	const math::Matrix4D a = {
+//	const fgm::Matrix4D a = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, -8.0f, 9.0f };
 //
 //	// Act
-//	const math::Matrix4D<float> b = a * 1;
+//	const fgm::Matrix4D<float> b = a * 1;
 //
 //	// Assert
 //	EXPECT_MAT_EQ(a, b);
@@ -463,13 +463,13 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, MatrixTimesZeroScalarReturnsZeroMatrix)
 //{
 //	// Arrange
-//	const math::Matrix4D a = {
+//	const fgm::Matrix4D a = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, -8.0f, 9.0f };
 //
 //	// Act
-//	const math::Matrix4D<float> b = a * 0;
+//	const fgm::Matrix4D<float> b = a * 0;
 //
 //	// Assert
 //	EXPECT_MAT_ZERO(b);
@@ -478,19 +478,19 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, MatrixTimesAFloatScalarReturnsCorrectMatrix)
 //{
 //	// Arrange
-//	const math::Matrix4D a = {
+//	const fgm::Matrix4D a = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, -8.0f, 9.0f };
 //	constexpr float scalar = 2.5f;
 //
-//	const math::Matrix4D expected = {
+//	const fgm::Matrix4D expected = {
 //		2.5f, 5.0f, 7.5f,
 //		10.0f, 12.5f, 15.0f,
 //		17.5f, -20.0f, 22.5f };
 //
 //	// Act
-//	const math::Matrix4D<float> b = a * scalar;
+//	const fgm::Matrix4D<float> b = a * scalar;
 //
 //	// Assert
 //	EXPECT_MAT_EQ(expected, b);
@@ -499,13 +499,13 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, IntegerMatrixTimesEqualAFloatScalarReturnsCorrectMatrixWithMinimalPrecisionLoss)
 //{
 //	// Arrange
-//	math::Matrix4D a = {
+//	fgm::Matrix4D a = {
 //		1, 2, 3,
 //		4, 5, 6,
 //		7, -8, 9 };
 //	constexpr float scalar = 2.5f;
 //
-//	const math::Matrix4D expected = {
+//	const fgm::Matrix4D expected = {
 //		2, 5, 7,
 //		10, 12, 15,
 //		17, -20, 22 };
@@ -520,18 +520,18 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, MatrixTimesNegativeFloatScalarFlipsSigns)
 //{
 //	// Arrange
-//	const math::Matrix4D a = {
+//	const fgm::Matrix4D a = {
 //		1.0f, -2.0f, 0.0f,
 //		-4.0f, 5.0f, -6.0f,
 //		0.0f, 8.0f, 9.0f };
-//	const math::Matrix4D expected = {
+//	const fgm::Matrix4D expected = {
 //		-2.0f, 4.0f, 0.0f,
 //		8.0f, -10.0f, 12.0f,
 //		0.0f, -16.0f, -18.0f };
 //	constexpr float scalar = -2.0f;
 //
 //	// Act
-//	const math::Matrix4D<float> b = a * scalar;
+//	const fgm::Matrix4D<float> b = a * scalar;
 //
 //	// Assert
 //	EXPECT_MAT_EQ(expected, b);
@@ -540,15 +540,15 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, MatrixTimesVectorReturnsANewMatrixWithCorrectValues)
 //{
 //	// Arrange
-//	const math::Matrix4D mat = {
+//	const fgm::Matrix4D mat = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, 8.0f, 9.0f };
-//	const math::vec3 vec(2.0f, 1.0f, 3.0f);
-//	const math::vec3 expected(13.0f, 31.0f, 49.0f);
+//	const fgm::vec3 vec(2.0f, 1.0f, 3.0f);
+//	const fgm::vec3 expected(13.0f, 31.0f, 49.0f);
 //
 //	// Act
-//	const math::vec3 actual = mat * vec;
+//	const fgm::vec3 actual = mat * vec;
 //
 //	// Assert
 //	testutils::EXPECT_VEC_EQ(expected, actual);
@@ -557,11 +557,11 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, IdentityMatrixTimesAVectorReturnsTheSameMatrix)
 //{
 //	// Arrange
-//	const math::Matrix4D<float> mat;
-//	const math::vec3 vec(2.0f, 1.0f, 3.0f);
+//	const fgm::Matrix4D<float> mat;
+//	const fgm::vec3 vec(2.0f, 1.0f, 3.0f);
 //
 //	// Act
-//	const math::vec3 actual = mat * vec;
+//	const fgm::vec3 actual = mat * vec;
 //
 //	// Assert
 //	testutils::EXPECT_VEC_EQ(vec, actual);
@@ -570,12 +570,12 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, VectorTimesAMatrixReturnsANewVectorWithCorrectValues)
 //{
 //	// Arrange
-//	const math::Matrix4D mat = {
+//	const fgm::Matrix4D mat = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, 8.0f, 9.0f };
-//	math::Vector3D vec(2.0f, 1.0f, 3.0f);
-//	const math::Vector3D expected(27.0f, 33.0f, 39.0f);
+//	fgm::Vector3D vec(2.0f, 1.0f, 3.0f);
+//	const fgm::Vector3D expected(27.0f, 33.0f, 39.0f);
 //
 //	// Act
 //	const auto actual = vec * mat;
@@ -588,11 +588,11 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, VectorTimesIdentityMatrixReturnsTheSameMatrix)
 //{
 //	// Arrange
-//	const math::Matrix4D<float> mat;
-//	math::vec3 vec(2.0f, 1.0f, 3.0f);
+//	const fgm::Matrix4D<float> mat;
+//	fgm::vec3 vec(2.0f, 1.0f, 3.0f);
 //
 //	// Act
-//	const math::vec3 actual = vec * mat;
+//	const fgm::vec3 actual = vec * mat;
 //
 //	// Assert
 //	testutils::EXPECT_VEC_EQ(vec, actual);
@@ -601,12 +601,12 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, VectorTimesEqualMatrixReturnTheSameVectorWithNewValues)
 //{
 //	// Arrange
-//	const math::Matrix4D mat = {
+//	const fgm::Matrix4D mat = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, 8.0f, 9.0f };
-//	math::vec3 vec(2.0f, 1.0f, 3.0f);
-//	const math::vec3 expected(27.0f, 33.0f, 39.0f);
+//	fgm::vec3 vec(2.0f, 1.0f, 3.0f);
+//	const fgm::vec3 expected(27.0f, 33.0f, 39.0f);
 //
 //	// Act
 //	vec *= mat;
@@ -618,21 +618,21 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, MatrixTimesMatrixGivesAnotherMatrixWithCorrectValues)
 //{
 //	// Arrange
-//	const math::Matrix4D mat1 = {
+//	const fgm::Matrix4D mat1 = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, 8.0f, 9.0f };
-//	const math::Matrix4D mat2 = {
+//	const fgm::Matrix4D mat2 = {
 //		2.0, 4.0, 6.0,
 //		8.0, 10.0, 12.0,
 //		14.0, 16.0, 18.0 };
-//	const math::Matrix4D expected = {
+//	const fgm::Matrix4D expected = {
 //		60.0f, 72.0f, 84.0f,
 //		132.0f, 162.0f, 192.0f,
 //		204.0f, 252.0f, 300.0f };
 //
 //	// Act
-//	const math::Matrix4D actual = mat1 * mat2;
+//	const fgm::Matrix4D actual = mat1 * mat2;
 //
 //	// Assert
 //	EXPECT_MAT_EQ(expected, actual);
@@ -641,14 +641,14 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, MatrixTimesIdentityMatrixReturnsSameMatrix)
 //{
 //	// Arrange
-//	const math::Matrix4D mat = {
+//	const fgm::Matrix4D mat = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, 8.0f, 9.0f };
-//	const math::Matrix4D<float> eye;
+//	const fgm::Matrix4D<float> eye;
 //
 //	// Act
-//	const math::Matrix4D actual = mat * eye;
+//	const fgm::Matrix4D actual = mat * eye;
 //
 //	// Assert
 //	EXPECT_MAT_EQ(mat, actual);
@@ -657,15 +657,15 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, MatrixTimesEqualAnotherMatrixReturnsSameMatrixWithCorrectValues)
 //{
 //	// Arrange
-//	math::Matrix4D mat1 = {
+//	fgm::Matrix4D mat1 = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, 8.0f, 9.0f };
-//	const math::Matrix4D mat2 = {
+//	const fgm::Matrix4D mat2 = {
 //		2.0f, 4.0f, 6.0f,
 //		8.0f, 10.0f, 12.0f,
 //		14.0f, 16.0f, 18.0f };
-//	const math::Matrix4D expected = {
+//	const fgm::Matrix4D expected = {
 //		60.0f, 72.0f, 84.0f,
 //		132.0f, 162.0f, 192.0f,
 //		204.0f, 252.0f, 300.0f };
@@ -681,18 +681,18 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, Matrix4DProductIsAntiCommutative)
 //{
 //	// Arrange
-//	const math::Matrix4D mat1 = {
+//	const fgm::Matrix4D mat1 = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, 8.0f, 9.0f };
-//	const math::Matrix4D mat2 = {
+//	const fgm::Matrix4D mat2 = {
 //		3.0f, 6.0f, 3.0f,
 //		12.0f, 0.0f, 2.0f,
 //		15.0f, 11.0f, 6.0f };
 //
 //	// Act
-//	const math::Matrix4D result1 = mat1 * mat2;
-//	const math::Matrix4D result2 = mat2 * mat1;
+//	const fgm::Matrix4D result1 = mat1 * mat2;
+//	const fgm::Matrix4D result2 = mat2 * mat1;
 //
 //	// Assert
 //	bool commutative = true;
@@ -706,15 +706,15 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, Matrix4DProductWithScalarMultiplesAreCommutative)
 //{
 //	// Arrange
-//	const math::Matrix4D mat1 = {
+//	const fgm::Matrix4D mat1 = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, 8.0f, 9.0f };
-//	const math::Matrix4D mat2 = mat1 * 5.0f;
+//	const fgm::Matrix4D mat2 = mat1 * 5.0f;
 //
 //	// Act
-//	const math::Matrix4D result1 = mat1 * mat2;
-//	const math::Matrix4D result2 = mat2 * mat1;
+//	const fgm::Matrix4D result1 = mat1 * mat2;
+//	const fgm::Matrix4D result2 = mat2 * mat1;
 //
 //	// Assert
 //	bool commutative = true;
@@ -728,13 +728,13 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, MatrixTimesADoubleScalarReturnsMatrixWithPromotedType)
 //{
 //	// Arrange
-//	const math::Matrix4D a = {
+//	const fgm::Matrix4D a = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, -8.0f, 9.0f };
 //	constexpr double scalar = 2.5;
 //
-//	const math::Matrix4D expected = {
+//	const fgm::Matrix4D expected = {
 //		2.5, 5.0, 7.5,
 //		10.0, 12.5, 15.0,
 //		17.5, -20.0, 22.5 };
@@ -750,13 +750,13 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, MatrixTimesEqualDoubleScalarReturnsMatrixWithoutTypePromotion)
 //{
 //	// Arrange
-//	math::Matrix4D a = {
+//	fgm::Matrix4D a = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, -8.0f, 9.0f };
 //	constexpr double scalar = 2.5;
 //
-//	const math::Matrix4D expected = {
+//	const fgm::Matrix4D expected = {
 //		2.5, 5.0, 7.5,
 //		10.0, 12.5, 15.0,
 //		17.5, -20.0, 22.5 };
@@ -772,16 +772,16 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, DoubleVectorTimesAMatrixReturnsANewVectorWithPromotedType)
 //{
 //	// Arrange
-//	const math::Matrix4D mat = {
+//	const fgm::Matrix4D mat = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, 8.0f, 9.0f };
 //
-//	math::dvec3 vec(2.0, 1.0, 3.0);
-//	const math::dvec3 expected(27.0, 33.0, 39.0);
+//	fgm::dvec3 vec(2.0, 1.0, 3.0);
+//	const fgm::dvec3 expected(27.0, 33.0, 39.0);
 //
 //	// Act
-//	const math::dvec3 actual = vec * mat;
+//	const fgm::dvec3 actual = vec * mat;
 //
 //	// Assert
 //	static_assert(std::is_same_v<typename decltype(actual)::value_type, double>, "Assertion Failed (Matrix4D): Float *
@@ -791,13 +791,13 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, DoubleVectorTimesEqualAMatrixReturnsANewVectorWithPromotedType)
 //{
 //	// Arrange
-//	const math::Matrix4D mat = {
+//	const fgm::Matrix4D mat = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, 8.0f, 9.0f };
 //
-//	math::vec3 vec(2.0f, 1.0f, 3.0f);
-//	const math::dvec3 expected(27.0, 33.0, 39.0);
+//	fgm::vec3 vec(2.0f, 1.0f, 3.0f);
+//	const fgm::dvec3 expected(27.0, 33.0, 39.0);
 //
 //	// Act
 //	vec *= mat;
@@ -810,21 +810,21 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, MatrixTimesMatrixGivesAnotherMatrixWithTypePromotion)
 //{
 //	// Arrange
-//	const math::Matrix4D mat1 = {
+//	const fgm::Matrix4D mat1 = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, 8.0f, 9.0f };
-//	const math::Matrix4D mat2 = {
+//	const fgm::Matrix4D mat2 = {
 //		2.0, 4.0, 6.0,
 //		8.0, 10.0, 12.0,
 //		14.0, 16.0, 18.0 };
-//	const math::Matrix4D expected = {
+//	const fgm::Matrix4D expected = {
 //		60.0, 72.0, 84.0,
 //		132.0, 162.0, 192.0,
 //		204.0, 252.0, 300.0 };
 //
 //	// Act
-//	const math::Matrix4D actual = mat1 * mat2;
+//	const fgm::Matrix4D actual = mat1 * mat2;
 //
 //	// Assert
 //	static_assert(std::is_same_v<typename decltype(actual)::value_type, double>, "Assertion Failed (Matrix4D): Float *
@@ -834,15 +834,15 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Product, MatrixTimesEqualAnotherMatrixReturnsSameMatrixWithoutTypePromotion)
 //{
 //	// Arrange
-//	math::Matrix4D mat1 = {
+//	fgm::Matrix4D mat1 = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, 8.0f, 9.0f };
-//	const math::Matrix4D mat2 = {
+//	const fgm::Matrix4D mat2 = {
 //		2.0, 4.0, 6.0,
 //		8.0, 10.0, 12.0,
 //		14.0, 16.0, 18.0 };
-//	const math::Matrix4D expected = {
+//	const fgm::Matrix4D expected = {
 //		60.0, 72.0, 84.0,
 //		132.0, 162.0, 192.0,
 //		204.0, 252.0, 300.0 };
@@ -859,18 +859,18 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Division, MatrixDividedByAIntegerScalarReturnsCorrectMatrix)
 //{
 //	// Arrange
-//	const math::Matrix4D a = {
+//	const fgm::Matrix4D a = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, -8.0f, 9.0f };
-//	const math::Matrix4D expected = {
+//	const fgm::Matrix4D expected = {
 //		0.5f, 1.0f, 1.5f,
 //		2.0f, 2.5f, 3.0f,
 //		3.5f, -4.0f, 4.5f };
 //	constexpr int scalar = 2;
 //
 //	// Act
-//	const math::Matrix4D<float> actual = a / scalar;
+//	const fgm::Matrix4D<float> actual = a / scalar;
 //
 //	// Assert
 //	EXPECT_MAT_EQ(expected, actual);
@@ -879,11 +879,11 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Division, MatrixDividesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)
 //{
 //	// Arrange
-//	math::Matrix4D a = {
+//	fgm::Matrix4D a = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, -8.0f, 9.0f };
-//	const math::Matrix4D b = {
+//	const fgm::Matrix4D b = {
 //		0.5f, 1.0f, 1.5f,
 //		2.0f, 2.5f, 3.0f,
 //		3.5f, -4.0f, 4.5f };
@@ -899,13 +899,13 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Division, MatrixDividedByOneReturnANewMatrixWithOriginalMatrixValues)
 //{
 //	// Arrange
-//	const math::Matrix4D a = {
+//	const fgm::Matrix4D a = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, -8.0f, 9.0f };
 //
 //	// Act
-//	const math::Matrix4D<float> b = a / 1;
+//	const fgm::Matrix4D<float> b = a / 1;
 //
 //	// Assert
 //	EXPECT_MAT_EQ(a, b);
@@ -914,13 +914,13 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Division, MatrixDividedByZeroScalarReturnsInfinityMatrix)
 //{
 //	// Arrange
-//	const math::Matrix4D a = {
+//	const fgm::Matrix4D a = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, -8.0f, 9.0f };
 //
 //	// Act
-//	const math::Matrix4D<float> b = a / 0;
+//	const fgm::Matrix4D<float> b = a / 0;
 //
 //	// Assert
 //	EXPECT_MAT_INF(b);
@@ -929,12 +929,12 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Division, MatrixDividedByAFloatScalarReturnsCorrectMatrix)
 //{
 //	// Arrange
-//	const math::Matrix4D a = {
+//	const fgm::Matrix4D a = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, -8.0f, 9.0f };
 //
-//	const math::Matrix4D expected = {
+//	const fgm::Matrix4D expected = {
 //		0.4f, 0.8f, 1.2f,
 //		1.6f, 2.0f, 2.4f,
 //		2.8f, -3.2f, 3.6f };
@@ -942,7 +942,7 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //	constexpr float scalar = 2.5f;
 //
 //	// Act
-//	const math::Matrix4D<float> actual = a / scalar;
+//	const fgm::Matrix4D<float> actual = a / scalar;
 //
 //	// Assert
 //	EXPECT_MAT_NEAR(expected, actual);
@@ -951,18 +951,18 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Division, MatrixDividedNegativeFloatScalarFlipsSigns)
 //{
 //	// Arrange
-//	const math::Matrix4D a = {
+//	const fgm::Matrix4D a = {
 //		1.0f, -2.0f, 22.0f,
 //		-4.0f, 5.0f, -6.0f,
 //		4.0f, 8.0f, 9.0f };
-//	const math::Matrix4D expected = {
+//	const fgm::Matrix4D expected = {
 //		-0.5f, 1.0f, -11.0f,
 //		2.0f, -2.5f, 3.0f,
 //		-2.0f, -4.0f, -4.5f };
 //	constexpr float scalar = -2.0f;
 //
 //	// Act
-//	const math::Matrix4D<float> actual = a / scalar;
+//	const fgm::Matrix4D<float> actual = a / scalar;
 //
 //	// Assert
 //	EXPECT_MAT_EQ(expected, actual);
@@ -971,11 +971,11 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Division, MatrixDividedByDoubleScalarReturnsMatrixWithTypePromotion)
 //{
 //	// Arrange
-//	const math::Matrix4D a = {
+//	const fgm::Matrix4D a = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, -8.0f, 9.0f };
-//	const math::Matrix4D expected = {
+//	const fgm::Matrix4D expected = {
 //		0.5, 1.0, 1.5,
 //		2.0, 2.5, 3.0,
 //		3.5, -4.0, 4.5 };
@@ -992,11 +992,11 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Division, MatrixDividesEqualDoubleScalarIsTheSameMatrixWithoutTypePromotion)
 //{
 //	// Arrange
-//	math::Matrix4D a = {
+//	fgm::Matrix4D a = {
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, -8.0f, 9.0f };
-//	const math::Matrix4D b = {
+//	const fgm::Matrix4D b = {
 //		0.5f, 1.0f, 1.5f,
 //		2.0f, 2.5f, 3.0f,
 //		3.5f, -4.0f, 4.5f };
@@ -1013,11 +1013,11 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Division, IntegerMatrixDivideEqualFloatScalarIsTheSameMatrixWithMinimalPrecisionLoss)
 //{
 //	// Arrange
-//	math::Matrix4D a = {
+//	fgm::Matrix4D a = {
 //		1, 2, 3,
 //		4, 5, 6,
 //		7, -8, 9 };
-//	const math::Matrix4D b = {
+//	const fgm::Matrix4D b = {
 //		4, 8, 12,
 //		16, 20, 24,
 //		28, -32, 36 };
@@ -1040,7 +1040,7 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Determinant, IdentityMatrixReturnsDeterminantOfOne)
 //{
 //	// Arrange
-//	const math::Matrix4D<float> mat;
+//	const fgm::Matrix4D<float> mat;
 //	constexpr float expectedDeterminant = 1.0f;
 //
 //	// Act
@@ -1053,7 +1053,7 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Determinant, DiagonalMatrixReturnsProductOfDiagonalEntriesAsDeterminant)
 //{
 //	// Arrange
-//	const math::Matrix4D mat(
+//	const fgm::Matrix4D mat(
 //		2.0f, 0.0f, 0.0f,
 //		0.0f, 3.0f, 0.0f,
 //		0.0f, 0.0f, 4.0f);
@@ -1068,7 +1068,7 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 // TEST(Matrix4D_Determinant, MatrixWithScalarMultipleColumnsReturnsDeterminantOfZero)
 //{
-//	const math::Matrix4D mat(
+//	const fgm::Matrix4D mat(
 //		2.0f, 1.0f, 3.0f,
 //		4.0f, 2.0f, 6.0f,
 //		1.0f, 5.0f, 4.0f);
@@ -1084,7 +1084,7 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 // TEST(Matrix4D_Determinant, MatrixWithScalarMultipleRowsReturnsDeterminantOfZero)
 //{
-//	const math::Matrix4D mat(
+//	const fgm::Matrix4D mat(
 //		2.0f, 4.0f, 3.0f,
 //		4.0f, 8.0f, 6.0f,
 //		1.0f, 2.0f, 4.0f);
@@ -1100,7 +1100,7 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 // TEST(Matrix4D_Determinant, IdentityMatrixWithSwappedRowsReturnsDeterminantOfNegativeOne)
 //{
-//	const math::Matrix4D mat(
+//	const fgm::Matrix4D mat(
 //		1.0f, 0.0f, 0.0f,
 //		0.0f, 0.0f, 1.0f,
 //		0.0f, 1.0f, 0.0f);
@@ -1116,7 +1116,7 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 // TEST(Matrix4D_Determinant, IdentityMatrixWithSwappedColumnsReturnsDeterminantOfNegativeOne)
 //{
-//	const math::Matrix4D mat(
+//	const fgm::Matrix4D mat(
 //		1.0f, 0.0f, 0.0f,
 //		0.0f, 0.0f, 1.0f,
 //		0.0f, 1.0f, 0.0f);
@@ -1132,7 +1132,7 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 // TEST(Matrix4D_Determinant, IdentityMatrixWithShearAppliedsReturnsDeterminantOfOne)
 //{
-//	const math::Matrix4D mat(
+//	const fgm::Matrix4D mat(
 //		1.0f, 1.0f, 0.0f,
 //		0.0f, 1.0f, 0.0f,
 //		0.0f, 0.0f, 1.0f);
@@ -1148,7 +1148,7 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 // TEST(Matrix4D_Determinant, MatrixDeterminantReturnsCorrectValue)
 //{
-//	const math::Matrix4D mat(
+//	const fgm::Matrix4D mat(
 //		1.0f, 2.0f, 3.0f,
 //		0.0f, 4.0f, 1.0f,
 //		5.0f, 6.0f, 0.0f);
@@ -1164,7 +1164,7 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 // TEST(Matrix4D_Determinant, MatrixDeterminantWithStaticWrapperReturnsCorrectValue)
 //{
-//	const math::Matrix4D mat(
+//	const fgm::Matrix4D mat(
 //		1.0f, 2.0f, 3.0f,
 //		0.0f, 4.0f, 1.0f,
 //		5.0f, 6.0f, 0.0f);
@@ -1172,7 +1172,7 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //	constexpr float expectedDeterminant = -56.0f;
 //
 //	// Act
-//	const float actualDeterminant = math::Matrix4D<float>::determinant(mat);
+//	const float actualDeterminant = fgm::Matrix4D<float>::determinant(mat);
 //
 //	// Assert
 //	EXPECT_FLOAT_EQ(expectedDeterminant, actualDeterminant);
@@ -1180,7 +1180,7 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 // TEST(Matrix4D_Determinant, DeterminantOfTransposedMatrixIsEqualToDeterminantOfTheMatrix)
 //{
-//	const math::Matrix4D a(
+//	const fgm::Matrix4D a(
 //		1.0f, 2.0f, 3.0f,
 //		0.0f, 4.0f, 1.0f,
 //		5.0f, 6.0f, 0.0f);
@@ -1196,17 +1196,17 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Determinant, DeterminantOfProductOfMatricesIsSameAsProductOfDeterminantOfMatrix)
 //{
 //	// det(A*B) = det(A) * det(B)
-//	const math::Matrix4D a(
+//	const fgm::Matrix4D a(
 //		1.0f, 2.0f, 3.0f,
 //		0.0f, 4.0f, 1.0f,
 //		5.0f, 6.0f, 0.0f);
-//	const math::Matrix4D b(
+//	const fgm::Matrix4D b(
 //		1.0f, 2.0f, 3.0f,
 //		4.0f, 5.0f, 6.0f,
 //		7.0f, 8.0f, 9.0f);
 //
 //	// Act
-//	const float determinantOfProduct = math::Matrix4D<float>::determinant(a * b);
+//	const float determinantOfProduct = fgm::Matrix4D<float>::determinant(a * b);
 //	const float productOfDeterminant = a.determinant() * b.determinant();
 //
 //	// Assert
@@ -1216,14 +1216,14 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Determinant, DeterminantOfAMatrixMultipliedByScalarIsScalarPowNTimesTheDeterminantOfOriginalMatrix)
 //{
 //	// det(t*A) = (t^n)det(A)
-//	const math::Matrix4D a(
+//	const fgm::Matrix4D a(
 //		1.0f, 2.0f, 3.0f,
 //		0.0f, 4.0f, 1.0f,
 //		5.0f, 6.0f, 0.0f);
 //	constexpr float scalar = 5.0f;
 //
 //	// Act
-//	const float determinantOfProduct = math::Matrix4D<float>::determinant(scalar * a);
+//	const float determinantOfProduct = fgm::Matrix4D<float>::determinant(scalar * a);
 //	const float productOfDeterminant = (scalar * scalar * scalar) * a.determinant(); // n = 3 for 3x3 matrix
 //
 //	// Assert
@@ -1240,10 +1240,10 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Transpose, TransposeOfIdentityMatrixIsItself)
 //{
 //	// Arrange
-//	const math::Matrix4D<float> mat;
+//	const fgm::Matrix4D<float> mat;
 //
 //	// Act
-//	const math::Matrix4D<float> actual = mat.transpose();
+//	const fgm::Matrix4D<float> actual = mat.transpose();
 //
 //	// Assert
 //	EXPECT_MAT_EQ(mat, actual);
@@ -1252,17 +1252,17 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Transpose, TransposeOfAMatrixReturnsMatrixWithRowsAndColumnsSwapped)
 //{
 //	// Arrange
-//	const math::Matrix4D mat(
+//	const fgm::Matrix4D mat(
 //		1.0f, 2.0f, 3.0f,
 //		0.0f, 4.0f, 1.0f,
 //		5.0f, 6.0f, 0.0f);
-//	const math::Matrix4D expected(
+//	const fgm::Matrix4D expected(
 //		1.0f, 0.0f, 5.0f,
 //		2.0f, 4.0f, 6.0f,
 //		3.0f, 1.0f, 0.0f);
 //
 //	// Act
-//	const math::Matrix4D<float> actual = mat.transpose();
+//	const fgm::Matrix4D<float> actual = mat.transpose();
 //
 //	// Assert
 //	EXPECT_MAT_EQ(expected, actual);
@@ -1271,17 +1271,17 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Transpose, TransposeOfAMatrixUsingStaticWrapperReturnsMatrixWithRowsAndColumnsSwapped)
 //{
 //	// Arrange
-//	const math::Matrix4D mat(
+//	const fgm::Matrix4D mat(
 //		1.0f, 2.0f, 3.0f,
 //		0.0f, 4.0f, 1.0f,
 //		5.0f, 6.0f, 0.0f);
-//	const math::Matrix4D expected(
+//	const fgm::Matrix4D expected(
 //		1.0f, 0.0f, 5.0f,
 //		2.0f, 4.0f, 6.0f,
 //		3.0f, 1.0f, 0.0f);
 //
 //	// Act
-//	const math::Matrix4D<float> actual = math::Matrix4D<float>::transpose(mat);
+//	const fgm::Matrix4D<float> actual = fgm::Matrix4D<float>::transpose(mat);
 //
 //	// Assert
 //	EXPECT_MAT_EQ(expected, actual);
@@ -1297,17 +1297,17 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Inverse, InverseReturnsAnotherMatrixWithCorrectValues)
 //{
 //	// Given
-//	const math::Matrix4D mat(
+//	const fgm::Matrix4D mat(
 //		1.0f, 2.0f, 3.0f,
 //		0.0f, 1.0f, 4.0f,
 //		5.0f, 6.0f, 0.0f);
-//	const math::Matrix4D expectedInverse(
+//	const fgm::Matrix4D expectedInverse(
 //		-24.0f, 18.0f, 5.0f,
 //		20.0f, -15.0f, -4.0f,
 //		-5.0f, 4.0f, 1.0f);
 //
 //	// Act
-//	const math::Matrix4D actualInverse = mat.inverse();
+//	const fgm::Matrix4D actualInverse = mat.inverse();
 //
 //	// Assert
 //	EXPECT_MAT_EQ(expectedInverse, actualInverse);
@@ -1315,17 +1315,17 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 // TEST(Matrix4D_Inverse, StaticWrapperForInverseReturnsAnotherMatrixWithCorrectValues)
 //{
-//	const math::Matrix4D mat(
+//	const fgm::Matrix4D mat(
 //		1.0f, 2.0f, 3.0f,
 //		0.0f, 1.0f, 4.0f,
 //		5.0f, 6.0f, 0.0f);
-//	const math::Matrix4D expectedInverse(
+//	const fgm::Matrix4D expectedInverse(
 //		-24.0f, 18.0f, 5.0f,
 //		20.0f, -15.0f, -4.0f,
 //		-5.0f, 4.0f, 1.0f);
 //
 //	// Act
-//	const math::Matrix4D<float> actualInverse = math::Matrix4D<float>::inverse(mat);
+//	const fgm::Matrix4D<float> actualInverse = fgm::Matrix4D<float>::inverse(mat);
 //
 //	// Assert
 //	EXPECT_MAT_EQ(expectedInverse, actualInverse);
@@ -1334,10 +1334,10 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 // TEST(Matrix4D_Inverse, IdentityMatrixInverseReturnsAnotherIdentityMatrix)
 //{
 //	// Given
-//	const math::Matrix4D<float> identity;
+//	const fgm::Matrix4D<float> identity;
 //
 //	// Act
-//	const math::Matrix4D<float> actualInverse = identity.inverse();
+//	const fgm::Matrix4D<float> actualInverse = identity.inverse();
 //
 //	// Assert
 //	EXPECT_MAT_IDENTITY(actualInverse);
@@ -1345,14 +1345,14 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 // TEST(Matrix4D_Inverse, MatrixTimeInverseReturnsIdentityMatrix)
 //{
-//	const math::Matrix4D mat(
+//	const fgm::Matrix4D mat(
 //		1.0f, 2.0f, 3.0f,
 //		0.0f, 1.0f, 4.0f,
 //		5.0f, 6.0f, 0.0f);
 //
 //	// Act
-//	const math::Matrix4D<float> inverse = math::Matrix4D<float>::inverse(mat);
-//	const math::Matrix4D<float> product = mat * inverse;
+//	const fgm::Matrix4D<float> inverse = fgm::Matrix4D<float>::inverse(mat);
+//	const fgm::Matrix4D<float> product = mat * inverse;
 //
 //	// Assert
 //	EXPECT_MAT_IDENTITY(product);
@@ -1360,14 +1360,14 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 // TEST(Matrix4D_Inverse, InverseTimesMatrixReturnsIdentityMatrix)
 //{
-//	const math::Matrix4D mat(
+//	const fgm::Matrix4D mat(
 //		1.0f, 2.0f, 3.0f,
 //		0.0f, 1.0f, 4.0f,
 //		5.0f, 6.0f, 0.0f);
 //
 //	// Act
-//	const math::Matrix4D<float> inverse = math::Matrix4D<float>::inverse(mat);
-//	const math::Matrix4D<float> product = inverse * mat;
+//	const fgm::Matrix4D<float> inverse = fgm::Matrix4D<float>::inverse(mat);
+//	const fgm::Matrix4D<float> product = inverse * mat;
 //
 //	// Assert
 //	EXPECT_MAT_IDENTITY(product);
@@ -1375,13 +1375,13 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 // TEST(Matrix4D_Inverse, SingularMatrixProducesIdentityMatrix)
 //{
-//	const math::Matrix4D singularMatrix(
+//	const fgm::Matrix4D singularMatrix(
 //		0.0f, 0.0f, 0.0f,
 //		0.0f, 0.0f, 0.0f,
 //		0.0f, 0.0f, 0.0f);
 //
 //	// Act
-//	const math::Matrix4D<float> actualInverse = math::Matrix4D<float>::inverse(singularMatrix);
+//	const fgm::Matrix4D<float> actualInverse = fgm::Matrix4D<float>::inverse(singularMatrix);
 //
 //	// Assert
 //	EXPECT_MAT_IDENTITY(actualInverse);
@@ -1389,20 +1389,20 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 // TEST(Matrix4D_Inverse, NearSingularMatrixProducesNonIdentityMatrix)
 //{
-//	const math::Matrix4D nearSingularMatrix(
+//	const fgm::Matrix4D nearSingularMatrix(
 //		1.0f, 0.0f, 0.0f,
 //		0.0f, 0.1f, 0.0f,
 //		0.0f, 0.0f, 0.1f
 //	);
 //
-//	const math::Matrix4D expectedInverse(
+//	const fgm::Matrix4D expectedInverse(
 //		1.0f, 0.0f, 0.0f,
 //		0.0f, 10.0f, 0.0f,
 //		0.0f, 0.0f, 10.0f
 //	);
 //
 //	// Act
-//	const math::Matrix4D<float> actualInverse = math::Matrix4D<float>::inverse(nearSingularMatrix);
+//	const fgm::Matrix4D<float> actualInverse = fgm::Matrix4D<float>::inverse(nearSingularMatrix);
 //
 //	// Assert
 //	EXPECT_MAT_NEAR(expectedInverse, actualInverse);
@@ -1410,17 +1410,17 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 // TEST(Matrix4D_Inverse, InversionOfRotationOnlyMatrixReturnsTranspose)
 //{
-//	const math::Matrix4D mat(
+//	const fgm::Matrix4D mat(
 //		0.0f, -1.0f, 0.0f,
 //		1.0f, 0.0f, 0.0f,
 //		0.0f, 0.0f, 1.0f);
-//	const math::Matrix4D transpose(
+//	const fgm::Matrix4D transpose(
 //		0.0f, 1.0f, 0.0f,
 //		-1.0f, 0.0f, 0.0f,
 //		0.0f, 0.0f, 1.0f);
 //
 //	// Act
-//	const math::Matrix4D<float> actualInverse = math::Matrix4D<float>::inverse(mat);
+//	const fgm::Matrix4D<float> actualInverse = fgm::Matrix4D<float>::inverse(mat);
 //
 //	// Assert
 //	EXPECT_MAT_EQ(transpose, actualInverse);

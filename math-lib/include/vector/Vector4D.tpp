@@ -4,7 +4,7 @@
  * @author Alan Abraham P Kochumon
  * @date Created on: January 26, 2026
  *
- * @brief `Vector4D` implementation.
+ * @brief @ref Vector4D implementation.
  * 
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */
@@ -13,8 +13,9 @@
 #include <cassert>
 
 
-namespace math
+namespace fgm
 {
+
     /*************************************
      *                                   *
      *            INITIALIZERS           *
@@ -516,4 +517,4 @@ namespace math
         return vector.reject(onto, ontoNormalized);
     }
 
-} // namespace math
+} // namespace fgm

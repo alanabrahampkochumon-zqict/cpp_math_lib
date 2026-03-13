@@ -19,11 +19,11 @@ template <typename T>
 class Vector4DEquality: public ::testing::Test
 {
     protected:
-    math::Vector4D<T> eqVecA;
-    math::Vector4D<T> eqVecB;
-    math::Vector4D<T> dissimilarVec;
-    math::Vector4D<bool> equalityMask;
-    math::Vector4D<bool> inequalityMask;
+    fgm::Vector4D<T> eqVecA;
+    fgm::Vector4D<T> eqVecB;
+    fgm::Vector4D<T> dissimilarVec;
+    fgm::Vector4D<bool> equalityMask;
+    fgm::Vector4D<bool> inequalityMask;
 
 
     void SetUp() override
@@ -74,7 +74,7 @@ TYPED_TEST(Vector4DEquality, StaticWrapper_SimilarVectorsAreEqual)
 TYPED_TEST(Vector4DEquality, StaticWrapper_DissimilarVectorsAreNotEqual)
 {
     // When two equal vectors are compared for equality
-    bool equality = math::Vector4D<TypeParam>::allEq(this->eqVecA, this->dissimilarVec);
+    bool equality = fgm::Vector4D<TypeParam>::allEq(this->eqVecA, this->dissimilarVec);
 
     // Then, they are not equal
     EXPECT_FALSE(equality);
@@ -101,8 +101,8 @@ TYPED_TEST(Vector4DEquality, EqualityOperator_DissimilarVectorsReturnsFalse)
 TYPED_TEST(Vector4DEquality, MixedTypeEquality_SimilarVectorsReturnsTrue)
 {
     // Given two similar vectors of different types
-    const math::Vector4D vecA(1, 2, 3, 4);
-    const math::Vector4D vecB(1.0, 2.0, 3.0, 4.0);
+    const fgm::Vector4D vecA(1, 2, 3, 4);
+    const fgm::Vector4D vecB(1.0, 2.0, 3.0, 4.0);
 
     // When they are compared for equality
     bool equality = vecA == vecB;
@@ -114,8 +114,8 @@ TYPED_TEST(Vector4DEquality, MixedTypeEquality_SimilarVectorsReturnsTrue)
 TYPED_TEST(Vector4DEquality, MixedTypeEquality_DissimilarVectorsReturnsFalse)
 {
     // Given two dissimilar vectors of different types
-    const math::Vector4D vecA(5, 6, 7, 8);
-    const math::Vector4D vecB(1.0, 2.0, 3.0, 4.0);
+    const fgm::Vector4D vecA(5, 6, 7, 8);
+    const fgm::Vector4D vecB(1.0, 2.0, 3.0, 4.0);
 
     // When they are compared for inequality
     bool equality = vecA == vecB;
@@ -127,8 +127,8 @@ TYPED_TEST(Vector4DEquality, MixedTypeEquality_DissimilarVectorsReturnsFalse)
 TEST(Vector4DEquality, EqualityOperator_SimilarBooleanVectorsReturnsTrue)
 {
     // Given two similar boolean vectors
-    const math::Vector4D vecA(true, false, true, false);
-    const math::Vector4D vecB(true, false, true, false);
+    const fgm::Vector4D vecA(true, false, true, false);
+    const fgm::Vector4D vecB(true, false, true, false);
 
     // When they are compared for equality
     bool equality = vecA == vecB;
@@ -140,8 +140,8 @@ TEST(Vector4DEquality, EqualityOperator_SimilarBooleanVectorsReturnsTrue)
 TEST(Vector4DEquality, EqualityOperator_DissimilarBooleanVectorsReturnsFalse)
 {
     // Given two dissimilar boolean vectors
-    const math::Vector4D vecA(true, false, true, false);
-    const math::Vector4D vecB(true, true, true, false);
+    const fgm::Vector4D vecA(true, false, true, false);
+    const fgm::Vector4D vecB(true, true, true, false);
 
     // When they are compared for inequality
     bool equality = vecA == vecB;
@@ -154,7 +154,7 @@ TEST(Vector4DEquality, EqualityOperator_DissimilarBooleanVectorsReturnsFalse)
 TYPED_TEST(Vector4DEquality, eqReturnsCorrectBooleanMask)
 {
     // When two vectors are compared for component-wise equality
-    math::Vector4D<bool> mask = this->eqVecA.eq(this->dissimilarVec);
+    fgm::Vector4D<bool> mask = this->eqVecA.eq(this->dissimilarVec);
 
     // Then, correct boolean mask is returned
     EXPECT_VEC_EQ(this->equalityMask, mask);
@@ -163,11 +163,11 @@ TYPED_TEST(Vector4DEquality, eqReturnsCorrectBooleanMask)
 TEST(Vector4DEquality, MixedType_eqReturnsCorrectBooleanMask)
 {
     // When two different type vectors are compared for component-wise equality
-    math::Vector4D vecA = {1, 2, 3, 4};
-    math::Vector4D vecB = {1.0, 4.0, 0.0, 4.0};
-    math::Vector4D expectedMask = {true, false, false, true};
+    fgm::Vector4D vecA = {1, 2, 3, 4};
+    fgm::Vector4D vecB = {1.0, 4.0, 0.0, 4.0};
+    fgm::Vector4D expectedMask = {true, false, false, true};
 
-    math::Vector4D<bool> mask = vecA.eq(vecB);
+    fgm::Vector4D<bool> mask = vecA.eq(vecB);
 
     // Then, correct boolean mask is returned
     EXPECT_VEC_EQ(expectedMask, mask);
@@ -178,7 +178,7 @@ TEST(Vector4DEquality, MixedType_eqReturnsCorrectBooleanMask)
 TYPED_TEST(Vector4DEquality, StaticWrapper_eqReturnsCorrectBooleanMask)
 {
     // When two vectors are compared for component-wise equality
-    math::Vector4D<bool> mask = math::Vector4D<TypeParam>::eq(this->eqVecA, this->dissimilarVec);
+    fgm::Vector4D<bool> mask = fgm::Vector4D<TypeParam>::eq(this->eqVecA, this->dissimilarVec);
 
     // Then, correct boolean mask is returned
     EXPECT_VEC_EQ(this->equalityMask, mask);
@@ -212,8 +212,8 @@ TYPED_TEST(Vector4DEquality, InEqualityOperator_DissimilarVectorsReturnsTrue)
 TYPED_TEST(Vector4DEquality, MixedTypeInequality_SimilarVectorsReturnsFalse)
 {
     // Given two similar vectors of different types
-    const math::Vector4D vecA(1, 2, 3, 4);
-    const math::Vector4D vecB(1.0, 2.0, 3.0, 4.0);
+    const fgm::Vector4D vecA(1, 2, 3, 4);
+    const fgm::Vector4D vecB(1.0, 2.0, 3.0, 4.0);
 
     // When they are compared for equality
     bool equality = vecA != vecB;
@@ -225,8 +225,8 @@ TYPED_TEST(Vector4DEquality, MixedTypeInequality_SimilarVectorsReturnsFalse)
 TYPED_TEST(Vector4DEquality, MixedTypeInequality_DissimilarVectorsReturnsTrue)
 {
     // Given two dissimilar vectors of different types
-    const math::Vector4D vecA(5, 6, 7, 8);
-    const math::Vector4D vecB(1.0, 2.0, 3.0, 4.0);
+    const fgm::Vector4D vecA(5, 6, 7, 8);
+    const fgm::Vector4D vecB(1.0, 2.0, 3.0, 4.0);
 
     // When they are compared for inequality
     bool equality = vecA != vecB;
@@ -238,8 +238,8 @@ TYPED_TEST(Vector4DEquality, MixedTypeInequality_DissimilarVectorsReturnsTrue)
 TEST(Vector4DEquality, InequalityOperator_SimilarBooleanVectorsReturnsFalse)
 {
     // Given two similar boolean vectors
-    const math::Vector4D vecA(true, false, true, false);
-    const math::Vector4D vecB(true, false, true, false);
+    const fgm::Vector4D vecA(true, false, true, false);
+    const fgm::Vector4D vecB(true, false, true, false);
 
     // When they are compared for equality
     bool equality = vecA != vecB;
@@ -251,8 +251,8 @@ TEST(Vector4DEquality, InequalityOperator_SimilarBooleanVectorsReturnsFalse)
 TEST(Vector4DEquality, InequalityOperator_DissimilarBooleanVectorsReturnsFalse)
 {
     // Given two dissimilar boolean vectors
-    const math::Vector4D vecA(true, false, true, false);
-    const math::Vector4D vecB(true, true, true, false);
+    const fgm::Vector4D vecA(true, false, true, false);
+    const fgm::Vector4D vecB(true, true, true, false);
 
     // When they are compared for inequality
     bool equality = vecA != vecB;

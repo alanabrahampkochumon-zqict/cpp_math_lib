@@ -24,13 +24,13 @@ template <typename T>
 class Vector4DMagnitude: public ::testing::Test
 {
     protected:
-    math::Vector4D<T> vec;
-    math::Magnitude<T> magnitude;
+    fgm::Vector4D<T> vec;
+    fgm::Magnitude<T> magnitude;
 
     void SetUp() override
     {
         vec = { T(1), T(2), T(2), T(4) };
-        magnitude = math::Magnitude<T>(5);
+        magnitude = fgm::Magnitude<T>(5);
     }
 };
 TYPED_TEST_SUITE(Vector4DMagnitude, SupportedArithmeticTypes);
@@ -40,13 +40,13 @@ template <typename T>
 class Vector4DUncleanMagnitude: public ::testing::Test
 {
     protected:
-    math::Vector4D<T> vec;
-    math::Magnitude<T> magnitude;
+    fgm::Vector4D<T> vec;
+    fgm::Magnitude<T> magnitude;
 
     void SetUp() override
     {
         vec = { T(1), T(2), T(3), T(4) };
-        magnitude = math::Magnitude<T>(5.477225575051661);
+        magnitude = fgm::Magnitude<T>(5.477225575051661);
     }
 };
 TYPED_TEST_SUITE(Vector4DUncleanMagnitude, SupportedArithmeticTypes);
@@ -55,11 +55,11 @@ TYPED_TEST_SUITE(Vector4DUncleanMagnitude, SupportedArithmeticTypes);
 template <typename T>
 class Vector4DNormalization: public ::testing::Test
 {
-    using R = math::Magnitude<T>;
+    using R = fgm::Magnitude<T>;
 
     protected:
-    math::Vector4D<T> vec;
-    math::Vector4D<R> expectedVector;
+    fgm::Vector4D<T> vec;
+    fgm::Vector4D<R> expectedVector;
 
     void SetUp() override
     {
@@ -75,7 +75,7 @@ template <typename T>
 class Vector4DZeroNormalization: public ::testing::Test
 {
     protected:
-    math::Vector4D<T> vec;
+    fgm::Vector4D<T> vec;
 
     void SetUp() override { vec = { T(0), T(0), T(0), T(0) }; }
 };
@@ -91,7 +91,7 @@ TYPED_TEST_SUITE(Vector4DZeroNormalization, SupportedArithmeticTypes);
 TEST(Vector4DMagnitude, ZeroVectorReturnsZero)
 {
     // Given a zero vector
-    const math::Vector4D vec(0.0f, 0.0f, 0.0f, 0.0f);
+    const fgm::Vector4D vec(0.0f, 0.0f, 0.0f, 0.0f);
 
     // When its magnitude is taken
     const float magnitude = vec.mag();
@@ -103,7 +103,7 @@ TEST(Vector4DMagnitude, ZeroVectorReturnsZero)
 TEST(Vector4DMagnitude, VectorWithOneComponentsReturnsNonUnitScalar)
 {
     // Given a unit vector
-    const math::Vector4D vec(1.0f, 1.0f, 1.0f, 1.0f);
+    const fgm::Vector4D vec(1.0f, 1.0f, 1.0f, 1.0f);
 
     // When its magnitude is taken
     const float magnitude = vec.mag();
@@ -129,7 +129,7 @@ TYPED_TEST(Vector4DMagnitude, StaticWrapper_NonUnitVectorReturnsCorrectMagnitude
     // Given an arbitrary vector
 
     // When its magnitude is taken
-    const auto result = math::Vector4D<TypeParam>::mag(this->vec);
+    const auto result = fgm::Vector4D<TypeParam>::mag(this->vec);
 
     // Then, a non-unit number is returned which is a floating_v
     static_assert(std::is_floating_point_v<decltype(result)>);
@@ -153,7 +153,7 @@ TYPED_TEST(Vector4DUncleanMagnitude, StaticWrapper_NonUnitVectorReturnsCorrectMa
     // Given an arbitrary vector
 
     // When its magnitude is taken
-    const auto result = math::Vector4D<TypeParam>::mag(this->vec);
+    const auto result = fgm::Vector4D<TypeParam>::mag(this->vec);
 
     // Then, a non-unit number is returned which is a floating_v
     static_assert(std::is_floating_point_v<decltype(result)>);
@@ -170,7 +170,7 @@ TYPED_TEST(Vector4DUncleanMagnitude, StaticWrapper_NonUnitVectorReturnsCorrectMa
 TEST(Vector4DNormalization, ZeroVectorWhenNormalizedCausesDeath)
 {
     // Given a zero vector
-    const math::Vector4D vec(0.0, 0.0, 0.0, 0.0);
+    const fgm::Vector4D vec(0.0, 0.0, 0.0, 0.0);
 
     // When its magnitude is taken
     // Assertion is thrown
@@ -182,7 +182,7 @@ TYPED_TEST(Vector4DNormalization, VectorWhenNormalizedReturnsAUnitVector)
     // Given a non-normalized vector
 
     // When it is normalized
-    const math::Vector4D normalized = this->vec.normalize();
+    const fgm::Vector4D normalized = this->vec.normalize();
 
     // Then, the resultant vector is normalized
     EXPECT_VEC_EQ(this->expectedVector, normalized);
@@ -194,7 +194,7 @@ TYPED_TEST(Vector4DNormalization,
     // Given a non-normalized vector
 
     // When it is normalized
-    const math::Vector4D normalized = math::Vector4D<TypeParam>::normalize(this->vec);
+    const fgm::Vector4D normalized = fgm::Vector4D<TypeParam>::normalize(this->vec);
 
     // Then, the resultant vector is normalized
     EXPECT_VEC_EQ(this->expectedVector, normalized);

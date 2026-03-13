@@ -21,7 +21,7 @@
 #include <type_traits>
 
 
-namespace math
+namespace fgm
 {
     template <Arithmetic T>
     struct Vector3D
@@ -226,6 +226,6 @@ namespace math
     using vec3 = Vector3D<float>;
     using dvec3 = Vector3D<double>;
 
-} // namespace math
+} // namespace fgm
 
 #include "Vector3D.tpp"

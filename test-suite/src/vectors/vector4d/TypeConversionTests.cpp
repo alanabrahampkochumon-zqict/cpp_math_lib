@@ -15,10 +15,10 @@
 TEST(Vector4DConversionConstructor, ConversionConstructorCreatesNewVectorWithPromotedType)
 {
     // Given a float vector
-    math::Vector4D vec1(3.0f, 1.0f, 6.0f, 2.0f);
+    fgm::Vector4D vec1(3.0f, 1.0f, 6.0f, 2.0f);
 
     // When it is converted to a double vector
-    math::Vector4D<double> vec2(vec1);
+    fgm::Vector4D<double> vec2(vec1);
     // And some values of new vector is mutated
     vec2.x = 5;
 
@@ -39,10 +39,10 @@ TEST(Vector4DConversionConstructor, ConversionConstructorCreatesNewVectorWithPro
 TEST(Vector4DConversionConstructor, ConversionConstructorCreatesNewVectorWithDemotedType)
 {
     // Given a double vector
-    math::Vector4D vec1(3.0, 1.0, 6.0, 2.0);
+    fgm::Vector4D vec1(3.0, 1.0, 6.0, 2.0);
 
     // When it is converted to a float vector
-    math::Vector4D<float> vec2(vec1);
+    fgm::Vector4D<float> vec2(vec1);
     // And some values of new vector is mutated
     vec2.x = 5;
 

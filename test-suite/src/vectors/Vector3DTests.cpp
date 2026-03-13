@@ -18,10 +18,10 @@ using namespace testutils;
 TEST(Vector3D_ConversionConstructor, ConversionConstructorCreatesNewVectorWithPromotedType)
 {
     // Arrange
-    math::Vector3D vec1(3.0f, 1.0f, 6.0f);
+    fgm::Vector3D vec1(3.0f, 1.0f, 6.0f);
 
     // Act
-    math::Vector3D<double> vec2(vec1);
+    fgm::Vector3D<double> vec2(vec1);
     vec2.x = 5;
 
     // Assert
@@ -39,10 +39,10 @@ TEST(Vector3D_ConversionConstructor, ConversionConstructorCreatesNewVectorWithPr
 TEST(Vector3D_ConversionConstructor, ConversionConstructorCreatesNewVectorWithDemotedType)
 {
     // Arrange
-    math::Vector3D vec1(3.0, 1.0, 6.0);
+    fgm::Vector3D vec1(3.0, 1.0, 6.0);
 
     // Act
-    math::Vector3D<float> vec2 = vec1;
+    fgm::Vector3D<float> vec2 = vec1;
     vec2.x = 5;
 
     // Assert
@@ -62,7 +62,7 @@ TEST(Vector3D_ConversionConstructor, ConversionConstructorCreatesNewVectorWithDe
 TEST(Vector3D_Helper, vec3Return3DFloatVector)
 {
     // Arrange & Act
-    constexpr bool isCorrectType = std::is_same_v<math::vec3, math::Vector3D<float>>;
+    constexpr bool isCorrectType = std::is_same_v<fgm::vec3, fgm::Vector3D<float>>;
 
     // Assert
     EXPECT_TRUE(isCorrectType);
@@ -71,7 +71,7 @@ TEST(Vector3D_Helper, vec3Return3DFloatVector)
 TEST(Vector3D_Helper, dvec3Return3DDoubleVector)
 {
     // Arrange & Act
-    constexpr bool isCorrectType = std::is_same_v<math::dvec3, math::Vector3D<double>>;
+    constexpr bool isCorrectType = std::is_same_v<fgm::dvec3, fgm::Vector3D<double>>;
 
     // Assert
     EXPECT_TRUE(isCorrectType);
@@ -87,12 +87,12 @@ TEST(Vector3D_Helper, dvec3Return3DDoubleVector)
 TEST(Vector3D_Addition, VectorPlusVectorReturnsNewVectorWithEachComponentsSummedUp)
 {
     // Arrange
-    const math::Vector3D vec1(3.0f, 0.0f, -1.0f);
-    const math::Vector3D vec2(9.0f, -5.0f, 10.0f);
-    const math::Vector3D expected(12.0f, -5.0f, 9.0f);
+    const fgm::Vector3D vec1(3.0f, 0.0f, -1.0f);
+    const fgm::Vector3D vec2(9.0f, -5.0f, 10.0f);
+    const fgm::Vector3D expected(12.0f, -5.0f, 9.0f);
 
     // Act
-    const math::Vector3D actual = vec1 + vec2;
+    const fgm::Vector3D actual = vec1 + vec2;
 
     // Assert
     EXPECT_VEC_EQ(expected, actual);
@@ -101,9 +101,9 @@ TEST(Vector3D_Addition, VectorPlusVectorReturnsNewVectorWithEachComponentsSummed
 TEST(Vector3D_Addition, VectorPlusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
 {
     // Arrange
-    math::Vector3D vec1(3.0f, 0.0f, -1.0f);
-    const math::Vector3D vec2(9.0f, -5.0f, 10.0f);
-    const math::Vector3D expected(12.0f, -5.0f, 9.0f);
+    fgm::Vector3D vec1(3.0f, 0.0f, -1.0f);
+    const fgm::Vector3D vec2(9.0f, -5.0f, 10.0f);
+    const fgm::Vector3D expected(12.0f, -5.0f, 9.0f);
 
     // Act
     vec1 += vec2;
@@ -115,12 +115,12 @@ TEST(Vector3D_Addition, VectorPlusEqualsAnotherVectorReturnsFirstVectorWithCorre
 TEST(Vector3D_Addition, VectorPlusVectorOfDifferentTypeReturnsNewVectorWithPromotedType)
 {
     // Arrange
-    const math::Vector3D vec1(3.0f, 0.0f, -1.0f);
-    const math::Vector3D vec2(9.0, -5.0, 10.0);
-    const math::Vector3D expected(12.0, -5.0, 9.0);
+    const fgm::Vector3D vec1(3.0f, 0.0f, -1.0f);
+    const fgm::Vector3D vec2(9.0, -5.0, 10.0);
+    const fgm::Vector3D expected(12.0, -5.0, 9.0);
 
     // Act
-    const math::Vector3D actual = vec1 + vec2;
+    const fgm::Vector3D actual = vec1 + vec2;
 
     // Assert
     static_assert(std::is_same_v<typename decltype(actual)::value_type, double>);
@@ -130,9 +130,9 @@ TEST(Vector3D_Addition, VectorPlusVectorOfDifferentTypeReturnsNewVectorWithPromo
 TEST(Vector3D_Addition, VectorPlusEqualsVectorOfDifferentTypeReturnsNewVectorWithoutPromotedType)
 {
     // Arrange
-    math::Vector3D vec1(3.0f, 0.0f, -1.0f);
-    const math::Vector3D vec2(9.0, -5.0, 10.0);
-    const math::Vector3D expected(12.0, -5.0, 9.0);
+    fgm::Vector3D vec1(3.0f, 0.0f, -1.0f);
+    const fgm::Vector3D vec2(9.0, -5.0, 10.0);
+    const fgm::Vector3D expected(12.0, -5.0, 9.0);
 
     // Act
     vec1 += vec2;
@@ -145,12 +145,12 @@ TEST(Vector3D_Addition, VectorPlusEqualsVectorOfDifferentTypeReturnsNewVectorWit
 TEST(Vector3D_Subraction, VectorSubtraction)
 {
     // Arrange
-    const math::Vector3D vec1(3.0f, 0.0f, -1.0f);
-    const math::Vector3D vec2(9.0f, -5.0f, 10.0f);
-    const math::Vector3D expected(-6.0f, 5.0f, -11.0f);
+    const fgm::Vector3D vec1(3.0f, 0.0f, -1.0f);
+    const fgm::Vector3D vec2(9.0f, -5.0f, 10.0f);
+    const fgm::Vector3D expected(-6.0f, 5.0f, -11.0f);
 
     // Act
-    const math::Vector3D actual = vec1 - vec2;
+    const fgm::Vector3D actual = vec1 - vec2;
 
     // Assert
     EXPECT_VEC_EQ(expected, actual);
@@ -159,9 +159,9 @@ TEST(Vector3D_Subraction, VectorSubtraction)
 TEST(Vector3D_Subraction, VectorMinusEqualsAnotherVectorReturnsFirstVectorWithCorrectValues)
 {
     // Arrange
-    math::Vector3D vec1(3.0f, 0.0f, -1.0f);
-    const math::Vector3D vec2(9.0f, -5.0f, 10.0f);
-    const math::Vector3D expected(-6.0f, 5.0f, -11.0f);
+    fgm::Vector3D vec1(3.0f, 0.0f, -1.0f);
+    const fgm::Vector3D vec2(9.0f, -5.0f, 10.0f);
+    const fgm::Vector3D expected(-6.0f, 5.0f, -11.0f);
 
     // Act
     vec1 -= vec2;
@@ -173,12 +173,12 @@ TEST(Vector3D_Subraction, VectorMinusEqualsAnotherVectorReturnsFirstVectorWithCo
 TEST(Vector3D_Subraction, VectorMinusVectorOfDifferentTypeReturnsNewVectorWithPromotedType)
 {
     // Arrange
-    const math::Vector3D vec1(3.0f, 0.0f, -1.0f);
-    const math::Vector3D vec2(9.0, -5.0, 10.0);
-    const math::Vector3D expected(-6.0, 5.0, -11.0);
+    const fgm::Vector3D vec1(3.0f, 0.0f, -1.0f);
+    const fgm::Vector3D vec2(9.0, -5.0, 10.0);
+    const fgm::Vector3D expected(-6.0, 5.0, -11.0);
 
     // Act
-    const math::Vector3D actual = vec1 - vec2;
+    const fgm::Vector3D actual = vec1 - vec2;
 
     // Assert
     static_assert(std::is_same_v<typename decltype(actual)::value_type, double>);
@@ -188,9 +188,9 @@ TEST(Vector3D_Subraction, VectorMinusVectorOfDifferentTypeReturnsNewVectorWithPr
 TEST(Vector3D_Subraction, VectorMinusEqualsVectorOfDifferentTypeReturnsNewVectorWithoutPromotedType)
 {
     // Arrange
-    math::Vector3D vec1(3.0f, 0.0f, -1.0f);
-    const math::Vector3D vec2(9.0, -5.0, 10.0);
-    const math::Vector3D expected(-6.0, 5.0, -11.0);
+    fgm::Vector3D vec1(3.0f, 0.0f, -1.0f);
+    const fgm::Vector3D vec2(9.0, -5.0, 10.0);
+    const fgm::Vector3D expected(-6.0, 5.0, -11.0);
 
     // Act
     vec1 -= vec2;
@@ -203,10 +203,10 @@ TEST(Vector3D_Subraction, VectorMinusEqualsVectorOfDifferentTypeReturnsNewVector
 TEST(Vector3D_Product, VectorTimesZeroIsZero)
 {
     // Arrange
-    const math::Vector3D vec(3.0f, 1.0f, 6.0f);
+    const fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
 
     // Act
-    const math::Vector3D result = vec * 0;
+    const fgm::Vector3D result = vec * 0;
 
     // Assert
     EXPECT_VEC_ZERO(result);
@@ -215,10 +215,10 @@ TEST(Vector3D_Product, VectorTimesZeroIsZero)
 TEST(Vector3D_Product, VectorTimesOneIsItself)
 {
     // Arrange
-    const math::Vector3D vec(3.0f, 1.0f, 6.0f);
+    const fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
 
     // Act
-    const math::Vector3D result = vec * 1;
+    const fgm::Vector3D result = vec * 1;
 
     // Assert
     EXPECT_VEC_EQ(vec, result);
@@ -227,12 +227,12 @@ TEST(Vector3D_Product, VectorTimesOneIsItself)
 TEST(Vector3D_Product, VectorTimesAnIntegerIsANewVector)
 {
     // Arrange
-    const math::Vector3D vec(3.0f, 1.0f, 6.0f);
-    const math::Vector3D expected(6.0f, 2.0f, 12.0f);
+    const fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
+    const fgm::Vector3D expected(6.0f, 2.0f, 12.0f);
     constexpr int scalar = 2;
 
     // Act
-    const math::Vector3D actual = vec * scalar;
+    const fgm::Vector3D actual = vec * scalar;
 
     // Assert
     EXPECT_VEC_EQ(expected, actual);
@@ -241,12 +241,12 @@ TEST(Vector3D_Product, VectorTimesAnIntegerIsANewVector)
 TEST(Vector3D_Product, VectorTimesAFloatIsANewVector)
 {
     // Arrange
-    const math::Vector3D vec(3.0f, 1.0f, 6.0f);
-    const math::Vector3D expected(6.0f, 2.0f, 12.0f);
+    const fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
+    const fgm::Vector3D expected(6.0f, 2.0f, 12.0f);
     constexpr float scalar = 2.0f;
 
     // Act
-    const math::Vector3D actual = vec * scalar;
+    const fgm::Vector3D actual = vec * scalar;
 
     // Assert
     EXPECT_VEC_EQ(expected, actual);
@@ -255,12 +255,12 @@ TEST(Vector3D_Product, VectorTimesAFloatIsANewVector)
 TEST(Vector3D_Product, IntegerTimesAVectorIsANewVector)
 {
     // Arrange
-    const math::Vector3D vec(3.0f, 1.0f, 6.0f);
-    const math::Vector3D expected(6.0f, 2.0f, 12.0f);
+    const fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
+    const fgm::Vector3D expected(6.0f, 2.0f, 12.0f);
     constexpr int scalar = 2;
 
     // Act
-    const math::Vector3D actual = scalar * vec;
+    const fgm::Vector3D actual = scalar * vec;
 
     // Assert
     EXPECT_VEC_EQ(expected, actual);
@@ -269,8 +269,8 @@ TEST(Vector3D_Product, IntegerTimesAVectorIsANewVector)
 TEST(Vector3D_Product, VectorTimesEqualAScalarIsSameVectorWithNewValues)
 {
     // Arrange
-    math::Vector3D vec(3.0f, 1.0f, 6.0f);
-    const math::Vector3D expected(6.0f, 2.0f, 12.0f);
+    fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
+    const fgm::Vector3D expected(6.0f, 2.0f, 12.0f);
     constexpr int scalar = 2;
 
     // Act
@@ -283,8 +283,8 @@ TEST(Vector3D_Product, VectorTimesEqualAScalarIsSameVectorWithNewValues)
 TEST(Vector3D_Product, VectorTimesEqualAScalarFloatIsSameVectorWithNewValues)
 {
     // Arrange
-    math::Vector3D vec(3.0f, 1.0f, 6.0f);
-    const math::Vector3D expected(6.0f, 2.0f, 12.0f);
+    fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
+    const fgm::Vector3D expected(6.0f, 2.0f, 12.0f);
     constexpr float scalar = 2.0f;
 
     // Act
@@ -297,8 +297,8 @@ TEST(Vector3D_Product, VectorTimesEqualAScalarFloatIsSameVectorWithNewValues)
 TEST(Vector3D_Product, VectorTimesAScalarDoubleIsReturnsVectorWithoutPromotedType)
 {
     // Arrange
-    math::Vector3D vec(3.0f, 1.0f, 6.0f);
-    const math::Vector3D expected(6.0f, 2.0f, 12.0f);
+    fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
+    const fgm::Vector3D expected(6.0f, 2.0f, 12.0f);
     constexpr double scalar = 2.0;
 
     // Act
@@ -312,8 +312,8 @@ TEST(Vector3D_Product, VectorTimesAScalarDoubleIsReturnsVectorWithoutPromotedTyp
 TEST(Vector3D_Product, VectorTimesEqualAScalarDoubleIsSameVectorWithPromotedType)
 {
     // Arrange
-    const math::Vector3D vec(3.0f, 1.0f, 6.0f);
-    const math::Vector3D expected(6.0f, 2.0f, 12.0f);
+    const fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
+    const fgm::Vector3D expected(6.0f, 2.0f, 12.0f);
     constexpr double scalar = 2.0;
 
     // Act
@@ -327,8 +327,8 @@ TEST(Vector3D_Product, VectorTimesEqualAScalarDoubleIsSameVectorWithPromotedType
 TEST(Vector3D_Product, IntegerVectorTimesEqualAScalarFloatReturnsInMinimalPrecisionLoss)
 {
     // Arrange
-    const math::Vector3D vec(2, 4, 8);
-    const math::Vector3D expected(5.0f, 10.0f, 20.0f);
+    const fgm::Vector3D vec(2, 4, 8);
+    const fgm::Vector3D expected(5.0f, 10.0f, 20.0f);
     constexpr double scalar = 2.5;
 
     // Act
@@ -342,10 +342,10 @@ TEST(Vector3D_Product, IntegerVectorTimesEqualAScalarFloatReturnsInMinimalPrecis
 TEST(Vector3D_Division, VectorDividedByZeroIsInfinity)
 {
     // Arrange
-    const math::Vector3D vec(3.0f, 1.0f, 6.0f);
+    const fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
 
     // Act
-    const math::Vector3D result = vec / 0;
+    const fgm::Vector3D result = vec / 0;
 
     // Assert
     EXPECT_VEC_INF(result);
@@ -354,10 +354,10 @@ TEST(Vector3D_Division, VectorDividedByZeroIsInfinity)
 TEST(Vector3D_Division, VectorDividedByOneIsItself)
 {
     // Arrange
-    const math::Vector3D vec(3.0f, 1.0f, 6.0f);
+    const fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
 
     // Act
-    const math::Vector3D result = vec / 1;
+    const fgm::Vector3D result = vec / 1;
 
     // Assert
     EXPECT_VEC_EQ(vec, result);
@@ -366,11 +366,11 @@ TEST(Vector3D_Division, VectorDividedByOneIsItself)
 TEST(Vector3D_Division, VectorDividedByANumberIsANewVector)
 {
     // Arrange
-    const math::Vector3D vec(3.0f, 1.0f, 6.0f);
-    const math::Vector3D expected(1.5f, 0.5f, 3.0f);
+    const fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
+    const fgm::Vector3D expected(1.5f, 0.5f, 3.0f);
     constexpr int scalar = 2;
     // Act
-    const math::Vector3D actual = vec / scalar;
+    const fgm::Vector3D actual = vec / scalar;
 
     // Assert
     EXPECT_VEC_EQ(expected, actual);
@@ -379,11 +379,11 @@ TEST(Vector3D_Division, VectorDividedByANumberIsANewVector)
 TEST(Vector3D_Division, VectorDividedByAFloatIsANewVector)
 {
     // Arrange
-    const math::Vector3D vec(3.0f, 1.0f, 6.0f);
-    const math::Vector3D expected(1.5f, 0.5f, 3.0f);
+    const fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
+    const fgm::Vector3D expected(1.5f, 0.5f, 3.0f);
     constexpr float scalar = 2.0f;
     // Act
-    const math::Vector3D actual = vec / scalar;
+    const fgm::Vector3D actual = vec / scalar;
 
     // Assert
     EXPECT_VEC_EQ(expected, actual);
@@ -392,8 +392,8 @@ TEST(Vector3D_Division, VectorDividedByAFloatIsANewVector)
 TEST(Vector3D_Division, VectorDivideEqualAScalarIsSameVectorWithNewValues)
 {
     // Arrange
-    math::Vector3D vec(3.0f, 1.0f, 6.0f);
-    const math::Vector3D expected(1.5f, 0.5f, 3.0f);
+    fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
+    const fgm::Vector3D expected(1.5f, 0.5f, 3.0f);
     constexpr int scalar = 2;
 
     // Act
@@ -406,8 +406,8 @@ TEST(Vector3D_Division, VectorDivideEqualAScalarIsSameVectorWithNewValues)
 TEST(Vector3D_Division, VectorDivideEqualAFloatIsSameVectorWithNewValues)
 {
     // Arrange
-    math::Vector3D vec(3.0f, 1.0f, 6.0f);
-    const math::Vector3D expected(1.5f, 0.5f, 3.0f);
+    fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
+    const fgm::Vector3D expected(1.5f, 0.5f, 3.0f);
     constexpr float scalar = 2.0f;
 
     // Act
@@ -420,8 +420,8 @@ TEST(Vector3D_Division, VectorDivideEqualAFloatIsSameVectorWithNewValues)
 TEST(Vector3D_Division, VectorDivideEqualADoubleScalarIsSameVectorWithoutPromotedType)
 {
     // Arrange
-    math::Vector3D vec(3.0f, 1.0f, 6.0f);
-    const math::Vector3D expected(1.5f, 0.5f, 3.0f);
+    fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
+    const fgm::Vector3D expected(1.5f, 0.5f, 3.0f);
     constexpr double scalar = 2.0;
 
     // Act
@@ -435,8 +435,8 @@ TEST(Vector3D_Division, VectorDivideEqualADoubleScalarIsSameVectorWithoutPromote
 TEST(Vector3D_Division, VectorDividedByADoubleScalarIsAVectorWithPromotedType)
 {
     // Arrange
-    math::Vector3D vec(3.0f, 1.0f, 6.0f);
-    const math::Vector3D expected(1.5f, 0.5f, 3.0f);
+    fgm::Vector3D vec(3.0f, 1.0f, 6.0f);
+    const fgm::Vector3D expected(1.5f, 0.5f, 3.0f);
     constexpr double scalar = 2.0;
 
     // Act
@@ -450,8 +450,8 @@ TEST(Vector3D_Division, VectorDividedByADoubleScalarIsAVectorWithPromotedType)
 TEST(Vector3D_Division, IntegerVectorDividedByAScalarFloatResultsInMinimalPrecisionLoss)
 {
     // Arrange
-    const math::Vector3D vec(2, 4, 8);
-    const math::Vector3D expected(4.0, 8.0, 16.0);
+    const fgm::Vector3D vec(2, 4, 8);
+    const fgm::Vector3D expected(4.0, 8.0, 16.0);
     constexpr double scalar = 0.5;
 
     // Act
@@ -472,7 +472,7 @@ TEST(Vector3D_Division, IntegerVectorDividedByAScalarFloatResultsInMinimalPrecis
 TEST(Vector3D_Magnitude, ZeroVectorReturnsMagnitudeZero)
 {
     // Arrange
-    const math::Vector3D vec(0.0f, 0.0f, 0.0f);
+    const fgm::Vector3D vec(0.0f, 0.0f, 0.0f);
 
     // Act
     const float magnitude = vec.mag();
@@ -484,7 +484,7 @@ TEST(Vector3D_Magnitude, ZeroVectorReturnsMagnitudeZero)
 TEST(Vector3D_Magnitude, OneVectorReturnsMagnitudeNotEqualToOne)
 {
     // Arrange
-    const math::Vector3D vec(1.0f, 1.0f, 1.0f);
+    const fgm::Vector3D vec(1.0f, 1.0f, 1.0f);
 
     // Act
     const float magnitude = vec.mag();
@@ -496,7 +496,7 @@ TEST(Vector3D_Magnitude, OneVectorReturnsMagnitudeNotEqualToOne)
 TEST(Vector3D_Magnitude, NonUnitVectorReturnsCorrectMagnitude)
 {
     // Arrange
-    const math::Vector3D vec(2.0f, 3.0f, 6.0f);
+    const fgm::Vector3D vec(2.0f, 3.0f, 6.0f);
 
     // Act
     const float magnitude = vec.mag();
@@ -508,11 +508,11 @@ TEST(Vector3D_Magnitude, NonUnitVectorReturnsCorrectMagnitude)
 TEST(Vector3D_Normalization, VectorWhenNormalizedReturnsANormalVector)
 {
     // Arrange
-    const math::Vector3D vec(0.0f, 3.0f, 4.0f);
-    const math::Vector3D expected(0.0f, 0.6f, 0.8f);
+    const fgm::Vector3D vec(0.0f, 3.0f, 4.0f);
+    const fgm::Vector3D expected(0.0f, 0.6f, 0.8f);
 
     // Act
-    const math::Vector3D normalized = vec.normalize();
+    const fgm::Vector3D normalized = vec.normalize();
 
     // Assert
     EXPECT_VEC_EQ(expected, normalized);
@@ -528,7 +528,7 @@ TEST(Vector3D_Normalization, VectorWhenNormalizedReturnsANormalVector)
 TEST(Vector3D_Dot, VectorWhenDotWithItselfReturnsOne)
 {
     // Arrange
-    const math::Vector3D vec(1.0f, 0.0f, 0.0f);
+    const fgm::Vector3D vec(1.0f, 0.0f, 0.0f);
 
     // Act
     const float res = vec.dot(vec);
@@ -540,8 +540,8 @@ TEST(Vector3D_Dot, VectorWhenDotWithItselfReturnsOne)
 TEST(Vector3D_Dot, VectorWhenDotWithOrthogonalVectorReturnZero)
 {
     // Arrange
-    const math::Vector3D vec1(1.0f, 0.0f, 0.0f);
-    const math::Vector3D vec2(0.0f, 1.0f, 0.0f);
+    const fgm::Vector3D vec1(1.0f, 0.0f, 0.0f);
+    const fgm::Vector3D vec2(0.0f, 1.0f, 0.0f);
 
     // Act
     const float res = vec1.dot(vec2);
@@ -553,8 +553,8 @@ TEST(Vector3D_Dot, VectorWhenDotWithOrthogonalVectorReturnZero)
 TEST(Vector3D_Dot, VectorWhenDotWithOppositeParallelVectorReturnsNegativeOne)
 {
     // Arrange
-    const math::Vector3D vec1(1.0f, 0.0f, 0.0f);
-    const math::Vector3D vec2(-1.0f, 0.0f, 0.0f);
+    const fgm::Vector3D vec1(1.0f, 0.0f, 0.0f);
+    const fgm::Vector3D vec2(-1.0f, 0.0f, 0.0f);
 
     // Act
     const float res = vec1.dot(vec2);
@@ -566,8 +566,8 @@ TEST(Vector3D_Dot, VectorWhenDotWithOppositeParallelVectorReturnsNegativeOne)
 TEST(Vector3D_Dot, VectorWhenDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
 {
     // Arrange
-    const math::Vector3D<float> vec1(1.0f, 2.0f, 3.0f);
-    const math::Vector3D<float> vec2(4.0f, -5.0f, 6.0f);
+    const fgm::Vector3D<float> vec1(1.0f, 2.0f, 3.0f);
+    const fgm::Vector3D<float> vec2(4.0f, -5.0f, 6.0f);
 
     // Act
     const float res = vec1.dot(vec2);
@@ -579,11 +579,11 @@ TEST(Vector3D_Dot, VectorWhenDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumb
 TEST(Vector3D_Dot, VectorWhenStaticWrapperDotWithAnotherNonOrthogonalVectorReturnsNonZeroNumber)
 {
     // Arrange
-    const math::Vector3D vec1(1.0f, 2.0f, 3.0f);
-    const math::Vector3D vec2(4.0f, -5.0f, 6.0f);
+    const fgm::Vector3D vec1(1.0f, 2.0f, 3.0f);
+    const fgm::Vector3D vec2(4.0f, -5.0f, 6.0f);
 
     // Act
-    const float res = math::Vector3D<float>::dot(vec1, vec2);
+    const float res = fgm::Vector3D<float>::dot(vec1, vec2);
 
     // Assert
     EXPECT_FLOAT_EQ(12.0, res);
@@ -592,8 +592,8 @@ TEST(Vector3D_Dot, VectorWhenStaticWrapperDotWithAnotherNonOrthogonalVectorRetur
 TEST(Vector3D_Dot, VectorWhenDotWithAnotherNonOrthogonalVectorOfDifferentTypeReturnsNonZeroNumberWithPromotedType)
 {
     // Arrange
-    const math::Vector3D vec1(1.0f, 2.0f, 3.0f);
-    const math::Vector3D vec2(4.0, -5.0, 6.0);
+    const fgm::Vector3D vec1(1.0f, 2.0f, 3.0f);
+    const fgm::Vector3D vec2(4.0, -5.0, 6.0);
 
     // Act
     const auto res = vec1.dot(vec2);
@@ -606,12 +606,12 @@ TEST(Vector3D_Dot, VectorWhenDotWithAnotherNonOrthogonalVectorOfDifferentTypeRet
 TEST(Vector3D_Cross, UnitXVectorWhenCrossWithUnitYVectorReturnsUnitZVector)
 {
     // Arrange
-    const math::Vector3D vec1(1.0f, 0.0f, 0.0f);
-    const math::Vector3D vec2(0.0f, 1.0f, 0.0f);
-    const math::Vector3D expected(0.0f, 0.0f, 1.0f);
+    const fgm::Vector3D vec1(1.0f, 0.0f, 0.0f);
+    const fgm::Vector3D vec2(0.0f, 1.0f, 0.0f);
+    const fgm::Vector3D expected(0.0f, 0.0f, 1.0f);
 
     // Act
-    const math::Vector3D actual = vec1.cross(vec2);
+    const fgm::Vector3D actual = vec1.cross(vec2);
 
     // Assert
     EXPECT_VEC_EQ(expected, actual);
@@ -620,12 +620,12 @@ TEST(Vector3D_Cross, UnitXVectorWhenCrossWithUnitYVectorReturnsUnitZVector)
 TEST(Vector3D_Cross, UnitYVectorWhenCrossWithUnitXVectorReturnsUnitNegativeZVector)
 {
     // Arrange
-    const math::Vector3D vec1(0.0f, 1.0f, 0.0f);
-    const math::Vector3D vec2(1.0f, 0.0f, 0.0f);
-    const math::Vector3D expected(0.0f, 0.0f, -1.0f);
+    const fgm::Vector3D vec1(0.0f, 1.0f, 0.0f);
+    const fgm::Vector3D vec2(1.0f, 0.0f, 0.0f);
+    const fgm::Vector3D expected(0.0f, 0.0f, -1.0f);
 
     // Act
-    const math::Vector3D actual = vec1.cross(vec2);
+    const fgm::Vector3D actual = vec1.cross(vec2);
 
     // Assert
     EXPECT_VEC_EQ(expected, actual);
@@ -634,12 +634,12 @@ TEST(Vector3D_Cross, UnitYVectorWhenCrossWithUnitXVectorReturnsUnitNegativeZVect
 TEST(Vector3D_Cross, UnitZVectorWhenCrossWithUnitYVectorReturnsUnitNegativeVector)
 {
     // Arrange
-    const math::Vector3D vec1(0.0f, 0.0f, 1.0f);
-    const math::Vector3D vec2(0.0f, 1.0f, 0.0f);
-    const math::Vector3D expected(-1.0f, 0.0f, 0.0f);
+    const fgm::Vector3D vec1(0.0f, 0.0f, 1.0f);
+    const fgm::Vector3D vec2(0.0f, 1.0f, 0.0f);
+    const fgm::Vector3D expected(-1.0f, 0.0f, 0.0f);
 
     // Act
-    const math::Vector3D actual = vec1.cross(vec2);
+    const fgm::Vector3D actual = vec1.cross(vec2);
 
     // Assert
     EXPECT_VEC_EQ(expected, actual);
@@ -648,12 +648,12 @@ TEST(Vector3D_Cross, UnitZVectorWhenCrossWithUnitYVectorReturnsUnitNegativeVecto
 TEST(Vector3D_Cross, UnitVectorCrossWithItselfReturnZeroVector)
 {
     // Arrange
-    const math::Vector3D vec(0.0f, 0.0f, 1.0f);
+    const fgm::Vector3D vec(0.0f, 0.0f, 1.0f);
 
-    const math::Vector3D expected(0.0f, 0.0f, 0.0f);
+    const fgm::Vector3D expected(0.0f, 0.0f, 0.0f);
 
     // Act
-    const math::Vector3D actual = vec.cross(vec);
+    const fgm::Vector3D actual = vec.cross(vec);
 
     // Assert
     EXPECT_VEC_EQ(expected, actual);
@@ -662,13 +662,13 @@ TEST(Vector3D_Cross, UnitVectorCrossWithItselfReturnZeroVector)
 TEST(Vector3D_Cross, VectorCrossWithAnotherNonParallelVectorReturnsNewPerpendicularVector)
 {
     // Arrange
-    const math::Vector3D vec1(2.0f, 3.0f, 4.0f);
-    const math::Vector3D vec2(5.0f, 6.0f, 7.0f);
+    const fgm::Vector3D vec1(2.0f, 3.0f, 4.0f);
+    const fgm::Vector3D vec2(5.0f, 6.0f, 7.0f);
 
-    const math::Vector3D expected(-3.0f, 6.0f, -3.0f);
+    const fgm::Vector3D expected(-3.0f, 6.0f, -3.0f);
 
     // Act
-    const math::Vector3D actual = vec1.cross(vec2);
+    const fgm::Vector3D actual = vec1.cross(vec2);
 
     // Assert
     EXPECT_VEC_EQ(expected, actual);
@@ -684,20 +684,20 @@ TEST(Vector3D_Cross, VectorCrossWithAnotherNonParallelVectorReturnsNewPerpendicu
 TEST(Vector3D_Cross, VectorCrossStaticWrapperWithAnotherNonParallelVectorReturnsNewPerpendicularVector)
 {
     // Arrange
-    const math::Vector3D vec1(2.0f, 3.0f, 4.0f);
-    const math::Vector3D vec2(5.0f, 6.0f, 7.0f);
+    const fgm::Vector3D vec1(2.0f, 3.0f, 4.0f);
+    const fgm::Vector3D vec2(5.0f, 6.0f, 7.0f);
 
-    math::Vector3D expected(-3.0f, 6.0f, -3.0f);
+    fgm::Vector3D expected(-3.0f, 6.0f, -3.0f);
 
     // Act
-    math::Vector3D actual = math::Vector3D<float>::cross(vec1, vec2);
+    fgm::Vector3D actual = fgm::Vector3D<float>::cross(vec1, vec2);
 
     // Assert
     EXPECT_VEC_EQ(expected, actual);
 
     // Orientation Check: Dot must be zero
-    const float dotProduct1 = math::Vector3D<float>::dot(vec1, actual);
-    const float dotProduct2 = math::Vector3D<float>::dot(vec2, actual);
+    const float dotProduct1 = fgm::Vector3D<float>::dot(vec1, actual);
+    const float dotProduct2 = fgm::Vector3D<float>::dot(vec2, actual);
 
     EXPECT_FLOAT_EQ(0.0f, dotProduct1);
     EXPECT_FLOAT_EQ(0.0f, dotProduct2);
@@ -707,12 +707,12 @@ TEST(Vector3D_Cross, VectorCrossProductsAreAntiCommutative)
 {
     // vec1 x(cross) vec2 = - (vec2 x vec1)
     // Arrange
-    const math::Vector3D vec1(2.0f, 3.0f, 4.0f);
-    const math::Vector3D vec2(3.0f, 5.0f, 9.0f);
+    const fgm::Vector3D vec1(2.0f, 3.0f, 4.0f);
+    const fgm::Vector3D vec2(3.0f, 5.0f, 9.0f);
 
     // Act
-    math::Vector3D result1 = math::Vector3D<float>::cross(vec1, vec2);
-    math::Vector3D result2 = -1.0f * (math::Vector3D<float>::cross(vec2, vec1));
+    fgm::Vector3D result1 = fgm::Vector3D<float>::cross(vec1, vec2);
+    fgm::Vector3D result2 = -1.0f * (fgm::Vector3D<float>::cross(vec2, vec1));
 
     // Assert
     EXPECT_VEC_EQ(result1, result2);
@@ -722,12 +722,12 @@ TEST(Vector3D_Cross, VectorCrossProductsOfScalarMultiplesAreCommutative)
 {
     // vec1 x(cross) vec2 = vec2 x vec1, given vec2 = a * vec1
     // Arrange
-    const math::Vector3D vec1(2.0f, 3.0f, 4.0f);
-    const math::Vector3D vec2 = vec1 * 2.0f;
+    const fgm::Vector3D vec1(2.0f, 3.0f, 4.0f);
+    const fgm::Vector3D vec2 = vec1 * 2.0f;
 
     // Act
-    math::Vector3D result1 = math::Vector3D<float>::cross(vec1, vec2);
-    math::Vector3D result2 = math::Vector3D<float>::cross(vec2, vec1);
+    fgm::Vector3D result1 = fgm::Vector3D<float>::cross(vec1, vec2);
+    fgm::Vector3D result2 = fgm::Vector3D<float>::cross(vec2, vec1);
 
     // Assert
     EXPECT_VEC_EQ(result1, result2);
@@ -737,13 +737,13 @@ TEST(Vector3D_Cross,
      VectorCrossWithAnotherNonParallelVectorOfDifferentTypeReturnsNewPerpendicularVectorWithPromotedType)
 {
     // Arrange
-    const math::Vector3D vec1(2.0f, 3.0f, 4.0f);
-    const math::Vector3D vec2(5.0, 6.0, 7.0);
+    const fgm::Vector3D vec1(2.0f, 3.0f, 4.0f);
+    const fgm::Vector3D vec2(5.0, 6.0, 7.0);
 
-    const math::Vector3D expected(-3.0, 6.0, -3.0);
+    const fgm::Vector3D expected(-3.0, 6.0, -3.0);
 
     // Act
-    const math::Vector3D actual = vec1.cross(vec2);
+    const fgm::Vector3D actual = vec1.cross(vec2);
 
     // Assert
     static_assert(std::is_same_v<typename decltype(actual)::value_type, double>);
@@ -767,12 +767,12 @@ TEST(Vector3D_Cross,
 TEST(Vector3D_Projection, ParallelVectorsWhenProjectedReturnsNonZeroVector)
 {
     // Arrange
-    const math::Vector3D a(1.0f, 2.0f, 3.0f);
-    const math::Vector3D b(2.0f, 4.0f, 6.0f);
-    const math::Vector3D expectedProjection(1.0f, 2.0f, 3.0f);
+    const fgm::Vector3D a(1.0f, 2.0f, 3.0f);
+    const fgm::Vector3D b(2.0f, 4.0f, 6.0f);
+    const fgm::Vector3D expectedProjection(1.0f, 2.0f, 3.0f);
 
     // Act
-    const math::Vector3D<float> actualProjection = a.project(b);
+    const fgm::Vector3D<float> actualProjection = a.project(b);
 
     // Assert
     EXPECT_VEC_EQ(expectedProjection, actualProjection);
@@ -781,12 +781,12 @@ TEST(Vector3D_Projection, ParallelVectorsWhenProjectedReturnsNonZeroVector)
 TEST(Vector3D_Projection, PerpendicularVectorsWhenProjectedReturnsZeroVector)
 {
     // Arrange
-    const math::Vector3D a(1.0f, 0.0f, 0.0f);
-    const math::Vector3D b(0.0f, 1.0f, 0.0f);
-    const math::Vector3D expectedProjection(0.0f, 0.0f, 0.0f);
+    const fgm::Vector3D a(1.0f, 0.0f, 0.0f);
+    const fgm::Vector3D b(0.0f, 1.0f, 0.0f);
+    const fgm::Vector3D expectedProjection(0.0f, 0.0f, 0.0f);
 
     // Act
-    const math::Vector3D<float> actualProjection = a.project(b);
+    const fgm::Vector3D<float> actualProjection = a.project(b);
 
     // Assert
     EXPECT_VEC_EQ(expectedProjection, actualProjection);
@@ -795,12 +795,12 @@ TEST(Vector3D_Projection, PerpendicularVectorsWhenProjectedReturnsZeroVector)
 TEST(Vector3D_Projection, VectorsWhenProjectedReturnsNonZeroVector)
 {
     // Arrange
-    const math::Vector3D a(2.0f, 1.0f, -1.0f);
-    const math::Vector3D b(1.0f, 0.0f, 1.0f);
-    const math::Vector3D expectedProjection(0.5f, 0.0f, 0.5f);
+    const fgm::Vector3D a(2.0f, 1.0f, -1.0f);
+    const fgm::Vector3D b(1.0f, 0.0f, 1.0f);
+    const fgm::Vector3D expectedProjection(0.5f, 0.0f, 0.5f);
 
     // Act
-    const math::Vector3D<float> actualProjection = a.project(b);
+    const fgm::Vector3D<float> actualProjection = a.project(b);
 
     // Assert
     EXPECT_VEC_EQ(expectedProjection, actualProjection);
@@ -809,12 +809,12 @@ TEST(Vector3D_Projection, VectorsWhenProjectedReturnsNonZeroVector)
 TEST(Vector3D_Projection, VectorsWhenProjectedOntoNormalizedVectorReturnsNonZeroVector)
 {
     // Arrange
-    const math::Vector3D a(10.0f, 5.0f, 2.0f);
-    const math::Vector3D b(0.8f, 0.6f, 0.0f);
-    const math::Vector3D expectedProjection(8.8f, 6.6f, 0.0f);
+    const fgm::Vector3D a(10.0f, 5.0f, 2.0f);
+    const fgm::Vector3D b(0.8f, 0.6f, 0.0f);
+    const fgm::Vector3D expectedProjection(8.8f, 6.6f, 0.0f);
 
     // Act
-    const math::Vector3D<float> actualProjection = a.project(b, true);
+    const fgm::Vector3D<float> actualProjection = a.project(b, true);
 
     // Assert
     EXPECT_VEC_EQ(expectedProjection, actualProjection);
@@ -823,12 +823,12 @@ TEST(Vector3D_Projection, VectorsWhenProjectedOntoNormalizedVectorReturnsNonZero
 TEST(Vector3D_Projection, VectorsWhenProjectedOntoNegativeVectorReturnsNonZeroVectorInSameDirection)
 {
     // Arrange
-    const math::Vector3D a(4.0f, 4.0f, 4.0f);
-    const math::Vector3D b(0.0f, 0.0f, -1.0f);
-    const math::Vector3D expectedProjection(0.0f, 0.0f, 4.0f);
+    const fgm::Vector3D a(4.0f, 4.0f, 4.0f);
+    const fgm::Vector3D b(0.0f, 0.0f, -1.0f);
+    const fgm::Vector3D expectedProjection(0.0f, 0.0f, 4.0f);
 
     // Act
-    const math::Vector3D<float> actualProjection = a.project(b);
+    const fgm::Vector3D<float> actualProjection = a.project(b);
 
     // Assert
     EXPECT_VEC_EQ(expectedProjection, actualProjection);
@@ -837,12 +837,12 @@ TEST(Vector3D_Projection, VectorsWhenProjectedOntoNegativeVectorReturnsNonZeroVe
 TEST(Vector3D_Projection, VectorsWhenProjectedUsingStaticWrapperReturnsNonZeroVector)
 {
     // Arrange
-    const math::Vector3D a(2.0f, 1.0f, -1.0f);
-    const math::Vector3D b(1.0f, 0.0f, 1.0f);
-    const math::Vector3D expectedProjection(0.5f, 0.0f, 0.5f);
+    const fgm::Vector3D a(2.0f, 1.0f, -1.0f);
+    const fgm::Vector3D b(1.0f, 0.0f, 1.0f);
+    const fgm::Vector3D expectedProjection(0.5f, 0.0f, 0.5f);
 
     // Act
-    const math::Vector3D<float> actualProjection = math::Vector3D<float>::project(a, b);
+    const fgm::Vector3D<float> actualProjection = fgm::Vector3D<float>::project(a, b);
 
     // Assert
     EXPECT_VEC_EQ(expectedProjection, actualProjection);
@@ -851,9 +851,9 @@ TEST(Vector3D_Projection, VectorsWhenProjectedUsingStaticWrapperReturnsNonZeroVe
 TEST(Vector3D_Projection, VectorsWhenProjectedOntoVectorOfDifferentTypeReturnsVectorWithPromotedType)
 {
     // Arrange
-    const math::Vector3D a(2.0f, 1.0f, -1.0f);
-    const math::Vector3D b(1.0, 0.0, 1.0);
-    const math::Vector3D expectedProjection(0.5, 0.0, 0.5);
+    const fgm::Vector3D a(2.0f, 1.0f, -1.0f);
+    const fgm::Vector3D b(1.0, 0.0, 1.0);
+    const fgm::Vector3D expectedProjection(0.5, 0.0, 0.5);
 
     // Act
     const auto actualProjection = a.project(b);
@@ -867,12 +867,12 @@ TEST(Vector3D_Projection, VectorsWhenProjectedOntoVectorOfDifferentTypeReturnsVe
 TEST(Vector3D_Rejection, ParallelVectorsWhenRejectedReturnsZeroVector)
 {
     // Arrange
-    const math::Vector3D a(1.0f, 2.0f, 3.0f);
-    const math::Vector3D b(2.0f, 4.0f, 6.0f);
-    const math::Vector3D expectedRejection(0.0f, 0.0f, 0.0f);
+    const fgm::Vector3D a(1.0f, 2.0f, 3.0f);
+    const fgm::Vector3D b(2.0f, 4.0f, 6.0f);
+    const fgm::Vector3D expectedRejection(0.0f, 0.0f, 0.0f);
 
     // Act
-    const math::Vector3D<float> actualRejection = a.reject(b);
+    const fgm::Vector3D<float> actualRejection = a.reject(b);
 
     // Assert
     EXPECT_VEC_EQ(expectedRejection, actualRejection);
@@ -881,12 +881,12 @@ TEST(Vector3D_Rejection, ParallelVectorsWhenRejectedReturnsZeroVector)
 TEST(Vector3D_Rejection, PerpendicularVectorsWhenRejectedReturnsNonZeroVector)
 {
     // Arrange
-    const math::Vector3D a(1.0f, 0.0f, 0.0f);
-    const math::Vector3D b(0.0f, 1.0f, 0.0f);
-    const math::Vector3D expectedRejection(1.0f, 0.0f, 0.0f);
+    const fgm::Vector3D a(1.0f, 0.0f, 0.0f);
+    const fgm::Vector3D b(0.0f, 1.0f, 0.0f);
+    const fgm::Vector3D expectedRejection(1.0f, 0.0f, 0.0f);
 
     // Act
-    const math::Vector3D<float> actualRejection = a.reject(b);
+    const fgm::Vector3D<float> actualRejection = a.reject(b);
 
     // Assert
     EXPECT_VEC_EQ(expectedRejection, actualRejection);
@@ -895,12 +895,12 @@ TEST(Vector3D_Rejection, PerpendicularVectorsWhenRejectedReturnsNonZeroVector)
 TEST(Vector3D_Rejection, VectorsWhenRejectedReturnNonZeroVector)
 {
     // Arrange
-    const math::Vector3D a(2.0f, 1.0f, -1.0f);
-    const math::Vector3D b(1.0f, 0.0f, 1.0f);
-    const math::Vector3D expectedRejection(1.5f, 1.0f, -1.5f);
+    const fgm::Vector3D a(2.0f, 1.0f, -1.0f);
+    const fgm::Vector3D b(1.0f, 0.0f, 1.0f);
+    const fgm::Vector3D expectedRejection(1.5f, 1.0f, -1.5f);
 
     // Act
-    const math::Vector3D<float> actualRejection = a.reject(b);
+    const fgm::Vector3D<float> actualRejection = a.reject(b);
 
     // Assert
     EXPECT_VEC_EQ(expectedRejection, actualRejection);
@@ -909,12 +909,12 @@ TEST(Vector3D_Rejection, VectorsWhenRejectedReturnNonZeroVector)
 TEST(Vector3D_Rejection, VectorsWhenRejectedOntoNormalizedVectorReturnNonZeroVector)
 {
     // Arrange
-    const math::Vector3D a(10.0f, 5.0f, 2.0f);
-    const math::Vector3D b(0.8f, 0.6f, 0.0f);
-    const math::Vector3D expectedRejection(1.2f, -1.6f, 2.0f);
+    const fgm::Vector3D a(10.0f, 5.0f, 2.0f);
+    const fgm::Vector3D b(0.8f, 0.6f, 0.0f);
+    const fgm::Vector3D expectedRejection(1.2f, -1.6f, 2.0f);
 
     // Act
-    const math::Vector3D<float> actualRejection = a.reject(b, true);
+    const fgm::Vector3D<float> actualRejection = a.reject(b, true);
 
     // Assert
     EXPECT_VEC_EQ(expectedRejection, actualRejection);
@@ -923,12 +923,12 @@ TEST(Vector3D_Rejection, VectorsWhenRejectedOntoNormalizedVectorReturnNonZeroVec
 TEST(Vector3D_Rejection, PositiveVectorsWhenRejectedOntoNegativeVectorReturnsNonZeroPositiveVector)
 {
     // Arrange
-    const math::Vector3D a(4.0f, 4.0f, 4.0f);
-    const math::Vector3D b(0.0f, 0.0f, -1.0f);
-    const math::Vector3D expectedRejection(4.0f, 4.0f, 0.0f);
+    const fgm::Vector3D a(4.0f, 4.0f, 4.0f);
+    const fgm::Vector3D b(0.0f, 0.0f, -1.0f);
+    const fgm::Vector3D expectedRejection(4.0f, 4.0f, 0.0f);
 
     // Act
-    const math::Vector3D<float> actualRejection = a.reject(b);
+    const fgm::Vector3D<float> actualRejection = a.reject(b);
 
     // Assert
     EXPECT_VEC_EQ(expectedRejection, actualRejection);
@@ -937,12 +937,12 @@ TEST(Vector3D_Rejection, PositiveVectorsWhenRejectedOntoNegativeVectorReturnsNon
 TEST(Vector3D_Rejection, VectorsWhenRejectedUsingStaticWrapperReturnNonZeroVector)
 {
     // Arrange
-    const math::Vector3D a(2.0f, 1.0f, -1.0f);
-    const math::Vector3D b(1.0f, 0.0f, 1.0f);
-    const math::Vector3D expectedRejection(1.5f, 1.0f, -1.5f);
+    const fgm::Vector3D a(2.0f, 1.0f, -1.0f);
+    const fgm::Vector3D b(1.0f, 0.0f, 1.0f);
+    const fgm::Vector3D expectedRejection(1.5f, 1.0f, -1.5f);
 
     // Act
-    const math::Vector3D<float> actualRejection = math::Vector3D<float>::reject(a, b);
+    const fgm::Vector3D<float> actualRejection = fgm::Vector3D<float>::reject(a, b);
 
     // Assert
     EXPECT_VEC_EQ(expectedRejection, actualRejection);
@@ -951,12 +951,12 @@ TEST(Vector3D_Rejection, VectorsWhenRejectedUsingStaticWrapperReturnNonZeroVecto
 TEST(Vector3D_Rejection, VectorsWhenRejectedOntoVectorOfDifferentTypeReturnsVectorWithPromotedType)
 {
     // Arrange
-    const math::Vector3D a(4.0f, 4.0f, 4.0f);
-    const math::Vector3D b(0.0, 0.0, -1.0);
-    const math::Vector3D expectedRejection(4.0, 4.0, 0.0);
+    const fgm::Vector3D a(4.0f, 4.0f, 4.0f);
+    const fgm::Vector3D b(0.0, 0.0, -1.0);
+    const fgm::Vector3D expectedRejection(4.0, 4.0, 0.0);
 
     // Act
-    const math::Vector3D actualRejection = a.reject(b);
+    const fgm::Vector3D actualRejection = a.reject(b);
 
     // Assert
     static_assert(std::is_same_v<typename decltype(actualRejection)::value_type, double>);

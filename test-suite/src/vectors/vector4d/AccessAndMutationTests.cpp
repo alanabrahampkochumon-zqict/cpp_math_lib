@@ -21,7 +21,7 @@
 TEST(Vector4DAccess, AccessibleAsXYZW)
 {
     // Given a vector with arbitrary values passed in
-    const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+    const fgm::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
     // Then, it's elements are accessible as x, y, z, w
     EXPECT_FLOAT_EQ(3.0f, vec.x);
@@ -33,7 +33,7 @@ TEST(Vector4DAccess, AccessibleAsXYZW)
 TEST(Vector4DAccess, AccessibleAsSTPQ)
 {
     // Given a vector with arbitrary values passed in
-    const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+    const fgm::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
     // Then, it's elements are accessible as s, t, p, q
     EXPECT_FLOAT_EQ(3.0f, vec.s);
@@ -45,7 +45,7 @@ TEST(Vector4DAccess, AccessibleAsSTPQ)
 TEST(Vector4DAccess, AccessibleAsRGBA)
 {
     // Given a vector with arbitrary values passed in
-    const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+    const fgm::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
     // Then, it's elements are accessible as r, g, b, a
     EXPECT_FLOAT_EQ(3.0f, vec.r);
@@ -57,7 +57,7 @@ TEST(Vector4DAccess, AccessibleAsRGBA)
 TEST(Vector4DAccess, AccessibleAsArray)
 {
     // Given a vector with arbitrary values passed in
-    const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+    const fgm::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
     // Then, it's elements are accessible as array elements
     EXPECT_FLOAT_EQ(3.0f, vec.elements[0]);
@@ -76,7 +76,7 @@ TEST(Vector4DAccess, AccessibleAsArray)
 TEST(Vector4DMutation, ElementsCanBeMutatedUsingXYZW)
 {
     // Given a default initialized vector
-    math::Vector4D<float> vec;
+    fgm::Vector4D<float> vec;
 
     // When, it's elements are modified using x, y, z, w
     vec.x = 3.0f;
@@ -94,7 +94,7 @@ TEST(Vector4DMutation, ElementsCanBeMutatedUsingXYZW)
 TEST(Vector4DMutation, ElementsCanBeMutatedUsingSTPQ)
 {
     // Given a default initialized vector
-    math::Vector4D<float> vec;
+    fgm::Vector4D<float> vec;
 
     // When, it's elements are modified using s, t, p, q
     vec.s = 3.0f;
@@ -112,7 +112,7 @@ TEST(Vector4DMutation, ElementsCanBeMutatedUsingSTPQ)
 TEST(Vector4DMutation, ElementsCanBeMutatedUsingRGBA)
 {
     // Given a default initialized vector
-    math::Vector4D<float> vec;
+    fgm::Vector4D<float> vec;
 
     // When, it's elements are modified using r, g, b, a
     vec.r = 3.0f;
@@ -130,7 +130,7 @@ TEST(Vector4DMutation, ElementsCanBeMutatedUsingRGBA)
 TEST(Vector4DMutation, ElementsCanBeMutatedUsingIndex)
 {
     // Given a vector initialization without parameters
-    math::Vector4D<float> vec;
+    fgm::Vector4D<float> vec;
 
     // When it's elements are mutated at a particular index
     vec[0] = 3.0f;

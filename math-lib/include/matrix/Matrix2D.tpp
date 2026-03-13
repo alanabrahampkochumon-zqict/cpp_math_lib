@@ -3,7 +3,7 @@
 #include <type_traits>
 #include <valarray>
 
-namespace math
+namespace fgm
 {
     template <typename T>
     Matrix2D<T>::Matrix2D()
@@ -236,4 +236,4 @@ namespace math
         vec = Vector2D(vec.x * mat(0, 0) + vec.y * mat(1, 0), vec.x * mat(0, 1) + vec.y * mat(1, 1));
         return vec;
     }
-} // namespace math
+} // namespace fgm

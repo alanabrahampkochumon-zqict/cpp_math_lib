@@ -20,7 +20,7 @@
 
 namespace testutils
 {
-    template <math::Vector T, math::Vector U>
+    template <fgm::Vector T, fgm::Vector U>
     void EXPECT_VEC_EQ(const T& expected, const U& actual)
     {
         using ValueType = T::value_type;
@@ -32,16 +32,16 @@ namespace testutils
         for (std::size_t i = 0; i < elementCount; ++i)
         {
             if constexpr (std::is_same_v<ValueType, double>)
-                EXPECT_NEAR(expected[i], static_cast<ValueType>(actual[i]), math::DOUBLE_EPSILON);
+                EXPECT_NEAR(expected[i], static_cast<ValueType>(actual[i]), fgm::DOUBLE_EPSILON);
             else if constexpr (std::is_floating_point_v<ValueType>)
-                EXPECT_NEAR(expected[i], static_cast<ValueType>(actual[i]), math::FLOAT_EPSILON);
+                EXPECT_NEAR(expected[i], static_cast<ValueType>(actual[i]), fgm::FLOAT_EPSILON);
             else
                 EXPECT_EQ(expected[i], static_cast<ValueType>(actual[i]));
         }
     }
 
-    template <math::Arithmetic T>
-    void EXPECT_VEQ_CONTAINS(const math::Vector2D<T>& vector, T x, T y)
+    template <fgm::Arithmetic T>
+    void EXPECT_VEQ_CONTAINS(const fgm::Vector2D<T>& vector, T x, T y)
     {
         if constexpr (std::is_same_v<T, float>)
         {
@@ -60,8 +60,8 @@ namespace testutils
         }
     }
 
-    template <math::Arithmetic T>
-    void EXPECT_VEQ_CONTAINS(const math::Vector3D<T>& vector, T x, T y, T z)
+    template <fgm::Arithmetic T>
+    void EXPECT_VEQ_CONTAINS(const fgm::Vector3D<T>& vector, T x, T y, T z)
     {
         if constexpr (std::is_same_v<T, float>)
         {
@@ -83,8 +83,8 @@ namespace testutils
         }
     }
 
-    template <math::Arithmetic T>
-    void EXPECT_VEQ_CONTAINS(const math::Vector4D<T>& vector, T x, T y, T z, T w)
+    template <fgm::Arithmetic T>
+    void EXPECT_VEQ_CONTAINS(const fgm::Vector4D<T>& vector, T x, T y, T z, T w)
     {
         if constexpr (std::is_same_v<T, float>)
         {
@@ -109,7 +109,7 @@ namespace testutils
         }
     }
 
-    template <math::Vector T>
+    template <fgm::Vector T>
     void EXPECT_VEC_UNIT(const T& vector)
     {
         using ValueType = T::value_type;
@@ -134,7 +134,7 @@ namespace testutils
         }
     }
 
-    template <math::Vector T>
+    template <fgm::Vector T>
     void EXPECT_VEC_ZERO(const T& vector)
     {
         using ValueType = T::value_type;
@@ -158,7 +158,7 @@ namespace testutils
         }
     }
 
-    template <math::Vector T>
+    template <fgm::Vector T>
     void EXPECT_VEC_INF(const T& vector)
     {
         constexpr std::size_t elementCount = T::dimension;
@@ -171,7 +171,7 @@ namespace testutils
             GTEST_SKIP() << "Integral division by zero result in undefined behavior and crashes.";
     }
 
-    template <math::StrictArithmetic T>
+    template <fgm::StrictArithmetic T>
     void EXPECT_MAG_EQ(T expected, T actual)
     {
         if constexpr (std::is_same_v<T, float>)

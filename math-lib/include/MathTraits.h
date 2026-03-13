@@ -15,7 +15,7 @@
 #include <type_traits>
 
 
-namespace math
+namespace fgm
 {
 
 
@@ -86,4 +86,4 @@ namespace math
     inline constexpr double DOUBLE_EPSILON = 1e-12;
 
 
-} // namespace math
+} // namespace fgm

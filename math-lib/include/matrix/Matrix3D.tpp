@@ -5,7 +5,7 @@
 
 // TODO: When supporting integer, check this to ensure that 2 * 2.5 = 5, not 4 ADD TEST
 
-namespace math
+namespace fgm
 {
 
     template <typename T>
@@ -361,4 +361,4 @@ namespace math
     {
         return matrix.inverse();
     }
-} // namespace math
+} // namespace fgm

@@ -4,7 +4,7 @@
 
 #include <type_traits>
 
-namespace math
+namespace fgm
 {
     template <Arithmetic T>
     struct Vector2D
@@ -203,6 +203,6 @@ namespace math
      *************************************/
     using vec2 = Vector2D<float>;
     using dvec2 = Vector2D<double>;
-} // namespace math
+} // namespace fgm
 
 #include "Vector2D.tpp"

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace math
+namespace fgm
 {
     /*************************************
      *                                   *
@@ -142,4 +142,4 @@ namespace math
         return *this;
     }
 
-} // namespace math
+} // namespace fgm

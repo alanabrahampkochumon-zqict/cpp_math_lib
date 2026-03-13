@@ -25,9 +25,9 @@ template <typename T>
 class Vector4DAddition: public ::testing::Test
 {
     protected:
-    math::Vector4D<T> vecA;
-    math::Vector4D<T> vecB;
-    math::Vector4D<T> expected;
+    fgm::Vector4D<T> vecA;
+    fgm::Vector4D<T> vecB;
+    fgm::Vector4D<T> expected;
 
     void SetUp() override
     {
@@ -43,9 +43,9 @@ template <typename T>
 class Vector4DSubtraction: public ::testing::Test
 {
     protected:
-    math::Vector4D<T> vecA;
-    math::Vector4D<T> vecB;
-    math::Vector4D<T> expected;
+    fgm::Vector4D<T> vecA;
+    fgm::Vector4D<T> vecB;
+    fgm::Vector4D<T> expected;
 
     void SetUp() override
     {
@@ -61,10 +61,10 @@ template <typename T>
 class Vector4DScalarMultiplication: public ::testing::Test
 {
     protected:
-    math::Vector4D<T> vec;
+    fgm::Vector4D<T> vec;
     T scalar;
-    math::Vector4D<T> expectedFloating;
-    math::Vector4D<T> expectedIntegral;
+    fgm::Vector4D<T> expectedFloating;
+    fgm::Vector4D<T> expectedIntegral;
 
     void SetUp() override
     {
@@ -82,9 +82,9 @@ template <typename T>
 class Vector4DScalarDivision: public ::testing::Test
 {
     protected:
-    math::Vector4D<T> vec;
+    fgm::Vector4D<T> vec;
     T scalar;
-    math::Vector4D<T> expected;
+    fgm::Vector4D<T> expected;
 
     void SetUp() override
     {
@@ -107,7 +107,7 @@ TYPED_TEST(Vector4DAddition, VectorPlusVectorReturnsNewVectorWithSum)
 {
     // Given two vectors
     // When they are added together
-    const math::Vector4D result = this->vecA + this->vecB;
+    const fgm::Vector4D result = this->vecA + this->vecB;
 
     // Then the output vector contains sum of elements
     EXPECT_VEC_EQ(this->expected, result);
@@ -126,12 +126,12 @@ TYPED_TEST(Vector4DAddition, VectorPlusEqualsReturnsSameVectorWithSum)
 TEST(Vector4DAddition, MixedTypeAdditionPromotesType)
 {
     // Given vectors with arbitrary values
-    const math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
-    const math::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
-    const math::Vector4D expected(12.0, -5.0, 9.0, 5.0);
+    const fgm::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
+    const fgm::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
+    const fgm::Vector4D expected(12.0, -5.0, 9.0, 5.0);
 
     // When they are added together
-    const math::Vector4D result = vec1 + vec2;
+    const fgm::Vector4D result = vec1 + vec2;
 
     // Then the new vector is type promoted
     static_assert(std::is_same_v<decltype(result)::value_type, double>);
@@ -142,9 +142,9 @@ TEST(Vector4DAddition, MixedTypeAdditionPromotesType)
 TEST(Vector4DAddition, MixedTypeAdditionAssignmentDoesNotPromoteType)
 {
     // Given vectors with arbitrary values
-    math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
-    const math::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
-    const math::Vector4D expected(12.0f, -5.0f, 9.0f, 5.0f);
+    fgm::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
+    const fgm::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
+    const fgm::Vector4D expected(12.0f, -5.0f, 9.0f, 5.0f);
 
     // When one vector is added to the other(+=)
     vec1 += vec2;
@@ -166,7 +166,7 @@ TYPED_TEST(Vector4DSubtraction, VectorMinusVectorReturnsNewVectorWithDifference)
 {
     // Given two vectors
     // When they are added together
-    const math::Vector4D result = this->vecA - this->vecB;
+    const fgm::Vector4D result = this->vecA - this->vecB;
 
     // Then the output vector contains the difference between elements
     EXPECT_VEC_EQ(this->expected, result);
@@ -185,12 +185,12 @@ TYPED_TEST(Vector4DSubtraction, VectorMinusEqualsVectorReturnsSameVectorWithDiff
 TEST(Vector4DSubtraction, MixedTypeSubtractionPromotesType)
 {
     // Given vectors with arbitrary values
-    const math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
-    const math::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
-    const math::Vector4D expected(-6.0, 5.0, -11.0, -1.0);
+    const fgm::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
+    const fgm::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
+    const fgm::Vector4D expected(-6.0, 5.0, -11.0, -1.0);
 
     // When they are subtracted
-    const math::Vector4D result = vec1 - vec2;
+    const fgm::Vector4D result = vec1 - vec2;
 
     // Then the new vector is type promoted
     static_assert(std::is_same_v<decltype(result)::value_type, double>);
@@ -201,9 +201,9 @@ TEST(Vector4DSubtraction, MixedTypeSubtractionPromotesType)
 TEST(Vector4DSubtraction, MixedTypeSubtractionAssignmentDoesNotPromoteType)
 {
     // Given vectors with arbitrary values
-    math::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
-    const math::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
-    const math::Vector4D expected(-6.0, 5.0, -11.0, -1.0);
+    fgm::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
+    const fgm::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
+    const fgm::Vector4D expected(-6.0, 5.0, -11.0, -1.0);
 
     // When one vector is subtracted from the other(-=)
     vec1 -= vec2;
@@ -225,10 +225,10 @@ TEST(Vector4DSubtraction, MixedTypeSubtractionAssignmentDoesNotPromoteType)
 TEST(Vector4DScalarMultiplication, VectorTimesZeroReturnsZeroVector)
 {
     // Given an arbitrary vector
-    const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+    const fgm::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
     // When multiplied with 0
-    const math::Vector4D result = vec * 0;
+    const fgm::Vector4D result = vec * 0;
 
     // Then, we get a zero vector
     EXPECT_VEC_ZERO(result);
@@ -237,10 +237,10 @@ TEST(Vector4DScalarMultiplication, VectorTimesZeroReturnsZeroVector)
 TEST(Vector4DScalarMultiplication, VectorTimesOneReturnsVectorWithSameValues)
 {
     // Given an arbitrary vector
-    const math::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
+    const fgm::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
     // When multiplied with 1
-    const math::Vector4D result = vec * 1;
+    const fgm::Vector4D result = vec * 1;
 
     // Then, we get the same vector
     EXPECT_VEC_EQ(vec, result);
@@ -251,7 +251,7 @@ TYPED_TEST(Vector4DScalarMultiplication, VectorTimesANumberReturnsAScaledVector)
     // Given an arbitrary vector and a scalar
 
     // When multiplied (vec * scalar)
-    const math::Vector4D result = this->vec * this->scalar;
+    const fgm::Vector4D result = this->vec * this->scalar;
 
     // Then, new vector contains elements multiplied(scaled) with the scalar
     if (std::is_floating_point_v<TypeParam>)
@@ -265,7 +265,7 @@ TYPED_TEST(Vector4DScalarMultiplication, NumberTimesAVectorReturnsAScaledVector)
     // Given an arbitrary vector and a scalar
 
     // When multiplied (vec * scalar)
-    const math::Vector4D result = this->scalar * this->vec;
+    const fgm::Vector4D result = this->scalar * this->vec;
 
     // Then, new vector contains elements multiplied(scaled) with the scalar
     if (std::is_floating_point_v<TypeParam>)
@@ -292,10 +292,10 @@ TYPED_TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationPromotesTy
 {
     // Given a vector and scalar with arbitrary values
     constexpr double scalar = 2.123456789123456;
-    const math::Vector4D expected(14.864197523864192, 27.604938258604928, 61.580246884580224, 87.061728354061696);
+    const fgm::Vector4D expected(14.864197523864192, 27.604938258604928, 61.580246884580224, 87.061728354061696);
 
     // When they are multiplied
-    const math::Vector4D result = this->vec * scalar;
+    const fgm::Vector4D result = this->vec * scalar;
 
     // Then the new vector is type promoted
     static_assert(std::is_same_v<typename decltype(result)::value_type, double>);
@@ -307,9 +307,9 @@ TYPED_TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationPromotesTy
 TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationAssignmentDoesNotPromoteType)
 {
     // Given a vector and scalar with arbitrary values
-    math::Vector4D vec(3.0f, 0.0f, -1.0f, 2.0f);
+    fgm::Vector4D vec(3.0f, 0.0f, -1.0f, 2.0f);
     constexpr double scalar = 5.0;
-    const math::Vector4D expected(15.0f, 0.0f, -5.0f, 10.0f);
+    const fgm::Vector4D expected(15.0f, 0.0f, -5.0f, 10.0f);
 
     // When vector is multiplied by the scalar and assigned (*=)
     vec *= scalar;
@@ -323,9 +323,9 @@ TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationAssignmentDoesNo
 TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationAssignmentGivesResultWithMinimalPrecisionLoss)
 {
     // Given a vector and scalar with arbitrary values
-    math::Vector4D vec(3, 0, -1, 8);
+    fgm::Vector4D vec(3, 0, -1, 8);
     constexpr double scalar = 2.5;
-    const math::Vector4D expected(7, 0, -2, 20);
+    const fgm::Vector4D expected(7, 0, -2, 20);
 
     // When vector is multiplied by the scalar and assigned (*=)
     vec *= scalar;
@@ -349,7 +349,7 @@ TYPED_TEST(Vector4DScalarDivision, VectorDividedByZeroReturnsInfinityVector)
     if constexpr (std::is_floating_point_v<TypeParam>)
     {
         // When divided by zero
-        const math::Vector4D result = this->vec / 0;
+        const fgm::Vector4D result = this->vec / 0;
 
         // Then, the resultant vector is an infinity vector
         EXPECT_VEC_INF(result);
@@ -365,7 +365,7 @@ TYPED_TEST(Vector4DScalarDivision, VectorDividedByOneReturnsAVectorWithSameValue
     // Given an arbitrary vector
 
     // When divided by one
-    const math::Vector4D result = this->vec / 1;
+    const fgm::Vector4D result = this->vec / 1;
 
     // Then, the resultant vector is an infinity vector
     EXPECT_VEC_EQ(result, this->vec);
@@ -376,7 +376,7 @@ TYPED_TEST(Vector4DScalarDivision, VectorDividedByANumberReturnsAScaledVector)
     // Given an arbitrary vector
 
     // When divided by a scalar
-    const math::Vector4D result = this->vec / this->scalar;
+    const fgm::Vector4D result = this->vec / this->scalar;
 
     // Then, the resultant vector is a new vector with elements divided by the scalar
     EXPECT_VEC_EQ(this->expected, result);
@@ -396,12 +396,12 @@ TYPED_TEST(Vector4DScalarDivision, VectorDivideEqualsANumberIsTheSameVectorScale
 TEST(Vector4DScalarDivision, MixedTypeScalarDivisionPromotesType)
 {
     // Given an arbitrary vector
-    const math::Vector4D vec(15.0, 0.0, -5.0, 10.0);
+    const fgm::Vector4D vec(15.0, 0.0, -5.0, 10.0);
     constexpr double scalar = 5.0;
-    const math::Vector4D expected(3.0f, 0.0f, -1.0f, 2.0f);
+    const fgm::Vector4D expected(3.0f, 0.0f, -1.0f, 2.0f);
 
     // When divided by a scalar
-    const math::Vector4D result = vec / scalar;
+    const fgm::Vector4D result = vec / scalar;
 
     // Then the new vector is type promoted
     static_assert(std::is_same_v<decltype(result)::value_type, double>);
@@ -412,10 +412,10 @@ TEST(Vector4DScalarDivision, MixedTypeScalarDivisionPromotesType)
 TEST(Vector4DScalarDivision, MixedTypeScalarDivisionAssignmentDoesNotPromoteType)
 {
     // Given an arbitrary vector
-    math::Vector4D vec(15.0f, 0.0f, -5.0f, 10.0f);
+    fgm::Vector4D vec(15.0f, 0.0f, -5.0f, 10.0f);
     constexpr double scalar = 5.0;
 
-    const math::Vector4D expected(3.0f, 0.0f, -1.0f, 2.0f);
+    const fgm::Vector4D expected(3.0f, 0.0f, -1.0f, 2.0f);
 
     // When divide equals by a scalar
     vec /= scalar;
@@ -429,9 +429,9 @@ TEST(Vector4DScalarDivision, MixedTypeScalarDivisionAssignmentDoesNotPromoteType
 TEST(Vector4DScalarDivision, MixedTypeScalarDivisionAssignmentGivesResultWithMinimalPrecisionLoss)
 {
     // Given an arbitrary vector
-    math::Vector4D vec(10, 25, -30, 2);
+    fgm::Vector4D vec(10, 25, -30, 2);
     constexpr double scalar = 2.5;
-    const math::Vector4D expected(4, 10, -12, 0);
+    const fgm::Vector4D expected(4, 10, -12, 0);
 
     // When vector divides equal by a scalar
     vec /= scalar;

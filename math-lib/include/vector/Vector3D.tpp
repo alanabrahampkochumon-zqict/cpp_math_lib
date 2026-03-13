@@ -12,7 +12,7 @@
 
 // TODO: Enable strict types using `using R = std::common_type_t<T, U>`
 
-namespace math
+namespace fgm
 {
 
 
@@ -271,4 +271,4 @@ namespace math
         return vector.reject(onto, ontoNormalized);
     }
 
-} // namespace math
+} // namespace fgm

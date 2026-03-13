@@ -4,7 +4,7 @@
 #include <cstddef>
 #include <type_traits>
 
-namespace math
+namespace fgm
 {
     template <typename T>
     struct Matrix3D
@@ -142,6 +142,6 @@ namespace math
     auto operator*=(Vector3D<S>& vec, const Matrix3D<T>& mat) -> Vector3D<std::common_type_t<T, S>>;
 
 
-}; // namespace math
+}; // namespace fgm
 
 #include "Matrix3D.tpp"
