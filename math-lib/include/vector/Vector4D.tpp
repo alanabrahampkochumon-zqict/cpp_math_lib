@@ -87,7 +87,7 @@ namespace fgm
     template <Arithmetic U>
     bool Vector4D<T>::allEq(const Vector4D<U>& other, double epsilon) const
     {
-        
+
         if constexpr (std::is_integral_v<T> && std::is_integral_v<U>)
             return x == other.x && y == other.y && z == other.z && w == other.w;
         else
@@ -110,14 +110,15 @@ namespace fgm
     template <Arithmetic U>
     bool Vector4D<T>::allNeq(const Vector4D<U>& other, double epsilon) const
     {
-        
+
         if constexpr (std::is_integral_v<T> && std::is_integral_v<U>)
             return x != other.x || y != other.y || z != other.z || w != other.w;
         else
-            return std::abs(x - other.x) > epsilon ||
-                std::abs(y - other.y) > epsilon ||
-                std::abs(z - other.z) > epsilon ||
-                std::abs(w - other.w) > epsilon;
+            /** @note Identity check and inverted logic handle NaN and INFINITY per IEEE 754. */
+            return (x != other.x && !(std::abs(x - other.x) <= epsilon)) ||
+                (y != other.y && !(std::abs(y - other.y) <= epsilon)) ||
+                (z != other.z && !(std::abs(z - other.z) <= epsilon)) ||
+                (w != other.w && !(std::abs(w - other.w) <= epsilon));
     }
 
 
@@ -151,6 +152,7 @@ namespace fgm
         if constexpr (std::is_integral_v<T> && std::is_integral_v<U>)
             return Vector4D(x == other.x, y == other.y, z == other.z, w == other.w);
         else
+            /** @note Direct equality check is required to handle @ref INFINITY cases, as Inf - Inf results in NaN. */
             return Vector4D(
                 (x == other.x || std::abs(x - other.x) <= epsilon), (y == other.y || std::abs(y - other.y) <= epsilon),
                 (z == other.z || std::abs(z - other.z) <= epsilon), (w == other.w || std::abs(w - other.w) <= epsilon));
@@ -162,6 +164,29 @@ namespace fgm
     Vector4D<bool> Vector4D<T>::eq(const Vector4D& vecA, const Vector4D<U>& vecB, double epsilon)
     {
         return vecA.eq(vecB, epsilon);
+    }
+
+
+    template <Arithmetic T>
+    template <Arithmetic U>
+    Vector4D<bool> Vector4D<T>::neq(const Vector4D<U>& other, double epsilon) const
+    {
+        if constexpr (std::is_integral_v<T> && std::is_integral_v<U>)
+            return Vector4D(x != other.x, y != other.y, z != other.z, w != other.w);
+        else
+            /** @note Identity check and inverted logic handle NaN and INFINITY per IEEE 754. */
+            return Vector4D<bool>((x != other.x) && !(std::abs(x - other.x) <= epsilon),
+                                  (y != other.y) && !(std::abs(y - other.y) <= epsilon),
+                                  (z != other.z) && !(std::abs(z - other.z) <= epsilon),
+                                  (w != other.w) && !(std::abs(w - other.w) <= epsilon));
+    }
+
+
+    template <Arithmetic T>
+    template <Arithmetic U>
+    Vector4D<bool> Vector4D<T>::neq(const Vector4D& vecA, const Vector4D<U>& vecB, double epsilon)
+    {
+        return vecA.neq(vecB, epsilon);
     }
 
 

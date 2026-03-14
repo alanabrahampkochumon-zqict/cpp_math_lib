@@ -290,6 +290,41 @@ namespace fgm
                                      ? DOUBLE_EPSILON
                                      : FLOAT_EPSILON);
 
+        /**
+         * @brief Perform component-wise inequality check.
+         * Compares each component pair and returns a boolean mask.
+         *
+         * @note To obtain a single scalar result, use @ref allNeq or @ref operator!=.
+         *
+         * @tparam U Numeric type of the RHS vector. Must satisfy @ref Arithmetic.
+         * @param[in] other The vector to compare against.
+         * @param[in] epsilon Maximum allowable difference for `std::floating_point` types.
+         *            Defaults to @ref DOUBLE_EPSILON or @ref FLOAT_EPSILON based on type promotion.
+         * @return A @ref Vector4D<bool> mask containing the results of each component comparison.
+         */
+        template <Arithmetic U>
+        Vector4D<bool> neq(const Vector4D<U>& other,
+                          double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>)
+                              ? DOUBLE_EPSILON
+                              : FLOAT_EPSILON) const;
+
+
+        /**
+         * @copybrief neq(const Vector4D<U>&, double) const
+         *
+         * @tparam U Numeric type of the RHS vector. Must satisfy @ref Arithmetic.
+         * @param[in]  vecA First vector to compare.
+         * @param[in]  vecB Second vector to compare against.
+         * @param[in] epsilon Maximum allowable difference for `std::floating_point` types.
+         *            Defaults to @ref DOUBLE_EPSILON or @ref FLOAT_EPSILON based on type promotion.
+         * @return A @ref Vector4D<bool> mask containing the results of each component comparison.
+         */
+        template <Arithmetic U>
+        static Vector4D<bool> neq(const Vector4D& vecA, const Vector4D<U>& vecB,
+                                 double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>)
+                                     ? DOUBLE_EPSILON
+                                     : FLOAT_EPSILON);
+
 
 
 
