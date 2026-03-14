@@ -42,6 +42,7 @@ TYPED_TEST_SUITE(Vector4DEquality, SupportedArithmeticTypes);
 
 
 
+
 /**************************************
  *                                    *
  *           EQUALITY TESTS           *
@@ -80,6 +81,42 @@ TYPED_TEST(Vector4DEquality, StaticWrapper_IdenticalVectorsAreEqual)
 TYPED_TEST(Vector4DEquality, StaticWrapper_DissimilarVectorsAreNotEqual)
 {
     bool equality = fgm::Vector4D<TypeParam>::allEq(this->eqVecA, this->dissimilarVec);
+
+    EXPECT_FALSE(equality);
+}
+
+
+/** @test Verify @ref fgm::Vector4D::allEq follows IEEE 754 for NaN comparisons. */
+TEST(Vector4DEquality, NanEqualityReturnsFalse)
+{
+    fgm::Vector4D vecA = { NAN, NAN, NAN, NAN };
+    fgm::Vector4D<double> vecB = { 1.0, -5.88874789, INFINITY, NAN };
+
+    bool equality = vecA.allEq(vecB);
+
+    EXPECT_FALSE(equality);
+}
+
+
+/** @test Verify @ref fgm::Vector4D::allEq follows IEEE 754 for INFINITY comparisons. */
+TEST(Vector4DEquality, InfinityEquality_IdenticalVectorsReturnsTrue)
+{
+    fgm::Vector4D vecA = { INFINITY, -INFINITY, INFINITY, -INFINITY };
+    fgm::Vector4D vecB = { INFINITY, -INFINITY, INFINITY, -INFINITY };
+
+    bool equality = vecA.allEq(vecB);
+
+    EXPECT_TRUE(equality);
+}
+
+
+/** @test Verify @ref fgm::Vector4D::allEq follows IEEE 754 for INFINITY comparisons. */
+TEST(Vector4DEquality, InfinityEquality_DifferentVectorsReturnsFalse)
+{
+    fgm::Vector4D vecA = { INFINITY, INFINITY, INFINITY, -INFINITY };
+    fgm::Vector4D vecB = { INFINITY, -INFINITY, INFINITY, INFINITY };
+
+    bool equality = vecA.allEq(vecB);
 
     EXPECT_FALSE(equality);
 }
@@ -173,13 +210,12 @@ TEST(Vector4DEquality, MixedType_EqualityMaskReturnsCorrectBooleanMask)
 }
 
 
-/** @test Verify @ref fgm::Vector4D::eq follow IEEE 754 for NaN comparisons. */
+/** @test Verify @ref fgm::Vector4D::eq follows IEEE 754 for NaN comparisons. */
 TEST(Vector4DEquality, NanEqualityReturnsFalseBooleanMask)
 {
-    // When a vector with only nan is compared with another vector
-    double nan = std::numeric_limits<double>::quiet_NaN();
-    fgm::Vector4D vecA = { nan, nan, nan, nan };
-    fgm::Vector4D<double> vecB = { 1.0, -5.88874789, INFINITY, nan };
+    // When a vector with only NAN is compared with another vector
+    fgm::Vector4D vecA = { NAN, NAN, NAN, NAN };
+    fgm::Vector4D<double> vecB = { 1.0, -5.88874789, INFINITY, NAN };
     fgm::Vector4D expectedMask = { false, false, false, false };
 
     fgm::Vector4D mask = vecA.eq(vecB);
@@ -189,7 +225,7 @@ TEST(Vector4DEquality, NanEqualityReturnsFalseBooleanMask)
 }
 
 
-/** @test Verify @ref fgm::Vector4D::eq follow IEEE 754 for INFINITY comparisons. */
+/** @test Verify @ref fgm::Vector4D::eq follows IEEE 754 for INFINITY comparisons. */
 TEST(Vector4DEquality, InfinityEqualityReturnsCorrectBooleanMask)
 {
     // When an infinity vector is compared with another
@@ -279,7 +315,7 @@ TEST(Vector4DEquality, InequalityOperator_IdenticalBooleanVectorsReturnsFalse)
 
 
 /** @test Verify @ref fgm::Vector4D equality operator works for @ref fgm::Vector4D<bool> with different components. */
-TEST(Vector4DEquality, InequalityOperator_DissimilarBooleanVectorsReturnsFalse)
+TEST(Vector4DEquality, InequalityOperator_DissimilarBooleanVectorsReturnsTrue)
 {
     const fgm::Vector4D vecA(true, false, true, false);
     const fgm::Vector4D vecB(true, true, true, false);

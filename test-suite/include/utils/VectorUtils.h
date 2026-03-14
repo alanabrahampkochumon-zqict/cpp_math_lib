@@ -20,6 +20,7 @@
 
 namespace testutils
 {
+
     template <fgm::Vector T, fgm::Vector U>
     void EXPECT_VEC_EQ(const T& expected, const U& actual)
     {
