@@ -26,7 +26,7 @@
 
 #include <cstddef>
 
-// TODO:Add NEQ (+ Static), neq, Unit, Zero, Inf Vectors
+// TODO: neq, Unit, Zero, Inf Vectors
 
 namespace fgm
 {
@@ -179,9 +179,7 @@ namespace fgm
 
 
         /**
-         * @brief Compare all components for equality across two vectors.
-         * Performs a component-wise comparison and returns true only if every element pair
-         * satisfies the equality condition within the given @p epsilon.
+         * @copybrief allEq(const Vector4D<U>&, double) const
          *
          * @note To obtain a component-wise boolean mask, use @ref eq.
          *
@@ -194,6 +192,42 @@ namespace fgm
          */
         template <Arithmetic U>
         static bool allEq(const Vector4D& vecA, const Vector4D<U>& vecB,
+                          double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>) ? DOUBLE_EPSILON
+                                                                                                    : FLOAT_EPSILON);
+
+        /**
+         * @brief Compare components for inequality across two vectors.
+         * Performs a component-wise comparison and returns true if any of the pair satisfies inequality condition
+         * within the given @p epsilon.
+         *
+         * @note To obtain a component-wise boolean mask, use @ref neq.
+         *
+         * @tparam U Numeric type of the RHS vector. Must satisfy @ref Arithmetic.
+         * @param[in] other The vector to compare against.
+         * @param[in] epsilon Maximum allowable difference for `std::floating_point` types.
+         *            Defaults to @ref DOUBLE_EPSILON or @ref FLOAT_EPSILON based on type promotion.
+         * @return True if any of the components are not equivalent within the default epsilon.
+         */
+        template <Arithmetic U>
+        bool allNeq(const Vector4D<U>& other,
+                    double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>) ? DOUBLE_EPSILON
+                                                                                              : FLOAT_EPSILON) const;
+
+
+        /**
+         * @copybrief allNeq(const Vector4D<U>&, double) const
+         *
+         * @note To obtain a component-wise boolean mask, use @ref neq.
+         *
+         * @tparam U Numeric type of the RHS vector. Must satisfy @ref Arithmetic.
+         * @param[in]  vecA First vector to compare.
+         * @param[in]  vecB Second vector to compare against.
+         * @param[in] epsilon Maximum allowable difference for `std::floating_point` types.
+         *            Defaults to @ref DOUBLE_EPSILON or @ref FLOAT_EPSILON based on type promotion.
+         * @return True if any of the components are not equivalent within the default epsilon.
+         */
+        template <Arithmetic U>
+        static bool allNeq(const Vector4D& vecA, const Vector4D<U>& vecB,
                           double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>) ? DOUBLE_EPSILON
                                                                                                     : FLOAT_EPSILON);
 
@@ -488,7 +522,7 @@ namespace fgm
             requires StrictArithmetic<T>;
 
 
-        
+
         /**
          * @brief Subtract two vectors component-wise.
          * Computes the difference between each component pair and returns a new vector.
@@ -664,7 +698,7 @@ namespace fgm
          *       VECTOR NORMALIZATION        *
          *                                   *
          *************************************/
-        
+
 
         /**
          * @brief Calculate the normalized (unit) form of the vector.
@@ -785,7 +819,7 @@ namespace fgm
     /**
      * @brief Scale the vector by a scalar value.
      * Multiplies @p scalar by each component of the vector and returns a new vector.
-     * 
+     *
      * @note Promotes the result to the `std::common_type_t` of `T` and `S`.
      * @note Operation is restricted to numeric types via @ref StrictArithmetic.
      *
