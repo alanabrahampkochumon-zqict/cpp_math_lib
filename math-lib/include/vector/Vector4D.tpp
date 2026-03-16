@@ -13,9 +13,6 @@
 
 #include <cassert>
 #include <type_traits>
-#include <iomanip>
-
-#include "Config.h"
 
 namespace fgm
 {
@@ -548,7 +545,7 @@ namespace fgm
         using R = std::common_type_t<T, U>;
         if (ontoNormalized)
             return this->dot(onto) * onto; // a.dot(b) * b
-        // Static cast is need to ensure that integral type dots don't lose much precision
+        /** @note Static cast ensures integral type dots don't lose much precision */
         return this->dot(onto) / static_cast<Magnitude<R>>(onto.dot(onto)) * onto; // a.dot(b) / b.dot(b) * b
     }
 
