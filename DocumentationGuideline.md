@@ -2,7 +2,7 @@
 
 ## 1. General Language & Formatting
 
-- **Tense:** Use imperative present tense (e.g., "Calculate", not "Calculates").
+- **Tense:** Use present tense.
 - **Dialect:** Use American English.
 - **Entity References:** - Use `@ref` for internal classes, structs, and concepts to generate hyperlinks.
     - Use backticks ( \` \` ) for variables, constants, and `std` library types.
@@ -12,7 +12,7 @@
 
 ### Brief (`@brief`)
 
-- **Style:** Single imperative sentence. Do not repeat the function signature.
+- **Style:** Single imperative sentence (e.g., "Calculate", not "Calculates"). Do not repeat the function signature.
 - **Good:** `@brief Computes the dot product.`
 - **Bad:** `@brief This function returns the dot product as a T.`
 

@@ -593,7 +593,7 @@ namespace fgm
         else if constexpr(std::is_floating_point_v<T>)
             os << std::setprecision(FLOAT_EPSILON);
 
-        os << vector.x << ", " << vector.y << ", " << ", " << vector.z << ", " << vector.w;
+        os << vector.x << ", " << vector.y << ", " << vector.z << ", " << vector.w;
         os << ">\n";
         return os;
     }
