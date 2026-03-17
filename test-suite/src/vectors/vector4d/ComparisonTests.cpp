@@ -56,9 +56,9 @@ TYPED_TEST_SUITE(Vector4DComparison, SupportedArithmeticTypes);
  */
 TYPED_TEST(Vector4DComparison, GreaterThan_ReturnsBooleanVectorWithElementsGreaterThanAsTrue)
 {
-    const fgm::Vector4D<bool> result = this->vecA.gt(this->vecB);
+    const fgm::Vector4D<bool> mask = this->vecA.gt(this->vecB);
 
-    EXPECT_VEC_EQ(this->expectedGT, result);
+    EXPECT_VEC_EQ(this->expectedGT, mask);
 }
 
 
@@ -68,9 +68,9 @@ TYPED_TEST(Vector4DComparison, GreaterThan_ReturnsBooleanVectorWithElementsGreat
  */
 TYPED_TEST(Vector4DComparison, GreaterThanOperator_ReturnsBooleanVectorWithElementsGreaterThanAsTrue)
 {
-    const fgm::Vector4D<bool> result = this->vecA > this->vecB;
+    const fgm::Vector4D<bool> mask = this->vecA > this->vecB;
 
-    EXPECT_VEC_EQ(this->expectedGT, result);
+    EXPECT_VEC_EQ(this->expectedGT, mask);
 }
 
 
@@ -80,9 +80,9 @@ TYPED_TEST(Vector4DComparison, GreaterThanOperator_ReturnsBooleanVectorWithEleme
  */
 TYPED_TEST(Vector4DComparison, StaticWrapper_GreaterThan_ReturnsBooleanVectorWithElementsGreaterThanAsTrue)
 {
-    const fgm::Vector4D<bool> result = fgm::Vector4D<TypeParam>::gt(this->vecA, this->vecB);
+    const fgm::Vector4D<bool> mask = fgm::Vector4D<TypeParam>::gt(this->vecA, this->vecB);
 
-    EXPECT_VEC_EQ(this->expectedGT, result);
+    EXPECT_VEC_EQ(this->expectedGT, mask);
 }
 
 
@@ -92,16 +92,13 @@ TYPED_TEST(Vector4DComparison, StaticWrapper_GreaterThan_ReturnsBooleanVectorWit
  */
 TEST(Vector4DComparison, InfinityVector_GreaterThan_ReturnsBooleanVectorWithCorrectValues)
 {
-    // Given an arbitrary vector and an infinity vector
     fgm::Vector4D vec(1.2, 4.5, 6.8, 9.5);
     fgm::Vector4D infVec(INFINITY, INFINITY, -INFINITY, -INFINITY);
     fgm::Vector4D expected(false, false, true, true);
 
-    // When compared with greater than
-    const fgm::Vector4D<bool> result = vec.gt(infVec);
+    const fgm::Vector4D<bool> mask = vec.gt(infVec);
 
-    // Then, the resulting elements are true for INFINITY and FALSE FOR -INFINITY
-    EXPECT_VEC_EQ(expected, result);
+    EXPECT_VEC_EQ(expected, mask);
 }
 
 
@@ -115,9 +112,9 @@ TEST(Vector4DComparison, NaNVector_GreaterThan_ReturnsBooleanVectorWithCorrectVa
     fgm::Vector4D infVec(NAN, NAN, -5.9f, NAN);
     fgm::Vector4D expected(false, false, true, false);
 
-    const fgm::Vector4D<bool> result = vec.gt(infVec);
+    const fgm::Vector4D<bool> mask = vec.gt(infVec);
 
-    EXPECT_VEC_EQ(expected, result);
+    EXPECT_VEC_EQ(expected, mask);
 }
 
 
@@ -133,10 +130,10 @@ TEST(Vector4DComparison, MixedType_GreaterThan_ReturnsBooleanVectorWithCorrectVa
     fgm::Vector4D expected(false, false, true, true);
 
     // When compared with greater than or equal
-    const fgm::Vector4D<bool> result = vecA.gt(vecB);
+    const fgm::Vector4D<bool> mask = vecA.gt(vecB);
 
     // Then, the resulting elements are as expected
-    EXPECT_VEC_EQ(expected, result);
+    EXPECT_VEC_EQ(expected, mask);
 }
 
 
@@ -154,9 +151,9 @@ TEST(Vector4DComparison, MixedType_GreaterThan_ReturnsBooleanVectorWithCorrectVa
  */
 TYPED_TEST(Vector4DComparison, GreaterThanOrEqual_ReturnsBooleanVectorWithElementsGreaterThanOrEqualAsTrue)
 {
-    const fgm::Vector4D<bool> result = this->vecA.gte(this->vecB);
+    const fgm::Vector4D<bool> mask = this->vecA.gte(this->vecB);
 
-    EXPECT_VEC_EQ(this->expectedGTE, result);
+    EXPECT_VEC_EQ(this->expectedGTE, mask);
 }
 
 
@@ -166,9 +163,9 @@ TYPED_TEST(Vector4DComparison, GreaterThanOrEqual_ReturnsBooleanVectorWithElemen
  */
 TYPED_TEST(Vector4DComparison, GreaterThanOrEqualOperator_ReturnsBooleanVectorWithElementsGreaterThanOrEqualAsTrue)
 {
-    const fgm::Vector4D<bool> result = this->vecA >= this->vecB;
+    const fgm::Vector4D<bool> mask = this->vecA >= this->vecB;
 
-    EXPECT_VEC_EQ(this->expectedGTE, result);
+    EXPECT_VEC_EQ(this->expectedGTE, mask);
 }
 
 
@@ -179,9 +176,9 @@ TYPED_TEST(Vector4DComparison, GreaterThanOrEqualOperator_ReturnsBooleanVectorWi
 TYPED_TEST(Vector4DComparison,
            StaticWrapper_GreaterThanOrEqual_ReturnsBooleanVectorWithElementsGreaterThanOrEqualAsTrue)
 {
-    const fgm::Vector4D<bool> result = fgm::Vector4D<TypeParam>::gte(this->vecA, this->vecB);
+    const fgm::Vector4D<bool> mask = fgm::Vector4D<TypeParam>::gte(this->vecA, this->vecB);
 
-    EXPECT_VEC_EQ(this->expectedGTE, result);
+    EXPECT_VEC_EQ(this->expectedGTE, mask);
 }
 
 
@@ -195,9 +192,9 @@ TEST(Vector4DComparison, InfinityVector_GreaterThanOrEqual_ReturnsBooleanVectorW
     fgm::Vector4D infVec(INFINITY, INFINITY, -INFINITY, -INFINITY);
     fgm::Vector4D expected(false, false, true, true);
 
-    const fgm::Vector4D<bool> result = vec.gte(infVec);
+    const fgm::Vector4D<bool> mask = vec.gte(infVec);
 
-    EXPECT_VEC_EQ(expected, result);
+    EXPECT_VEC_EQ(expected, mask);
 }
 
 
@@ -211,9 +208,9 @@ TEST(Vector4DComparison, NanVector_GreaterThanOrEqual_ReturnsBooleanVectorWithCo
     fgm::Vector4D infVec(NAN, NAN, -5.9f, NAN);
     fgm::Vector4D expected(false, false, true, false);
 
-    const fgm::Vector4D<bool> result = vec.gte(infVec);
+    const fgm::Vector4D<bool> mask = vec.gte(infVec);
 
-    EXPECT_VEC_EQ(expected, result);
+    EXPECT_VEC_EQ(expected, mask);
 }
 
 /**
@@ -228,10 +225,10 @@ TEST(Vector4DComparison, MixedType_GreaterThanOrEqual_ReturnsBooleanVectorWithCo
     fgm::Vector4D expected(false, false, true, true);
 
     // When compared with greater or equal than
-    const fgm::Vector4D<bool> result = vecA.gte(vecB);
+    const fgm::Vector4D<bool> mask = vecA.gte(vecB);
 
     // Then, the resulting elements are as expected
-    EXPECT_VEC_EQ(expected, result);
+    EXPECT_VEC_EQ(expected, mask);
 }
 
 
@@ -249,9 +246,9 @@ TEST(Vector4DComparison, MixedType_GreaterThanOrEqual_ReturnsBooleanVectorWithCo
  */
 TYPED_TEST(Vector4DComparison, LessThan_ReturnsBooleanVectorWithElementsLessThanAsTrue)
 {
-    const fgm::Vector4D<bool> result = this->vecA.lt(this->vecB);
+    const fgm::Vector4D<bool> mask = this->vecA.lt(this->vecB);
 
-    EXPECT_VEC_EQ(this->expectedLT, result);
+    EXPECT_VEC_EQ(this->expectedLT, mask);
 }
 
 
@@ -261,9 +258,9 @@ TYPED_TEST(Vector4DComparison, LessThan_ReturnsBooleanVectorWithElementsLessThan
  */
 TYPED_TEST(Vector4DComparison, LessThanOperator_ReturnsBooleanVectorWithElementsLessThanAsTrue)
 {
-    const fgm::Vector4D<bool> result = this->vecA < this->vecB;
+    const fgm::Vector4D<bool> mask = this->vecA < this->vecB;
 
-    EXPECT_VEC_EQ(this->expectedLT, result);
+    EXPECT_VEC_EQ(this->expectedLT, mask);
 }
 
 
@@ -273,9 +270,9 @@ TYPED_TEST(Vector4DComparison, LessThanOperator_ReturnsBooleanVectorWithElements
  */
 TYPED_TEST(Vector4DComparison, StaticWrapper_LessThan_ReturnsBooleanVectorWithElementsLessThanAsTrue)
 {
-    const fgm::Vector4D<bool> result = fgm::Vector4D<TypeParam>::lt(this->vecA, this->vecB);
+    const fgm::Vector4D<bool> mask = fgm::Vector4D<TypeParam>::lt(this->vecA, this->vecB);
 
-    EXPECT_VEC_EQ(this->expectedLT, result);
+    EXPECT_VEC_EQ(this->expectedLT, mask);
 }
 
 
@@ -289,9 +286,9 @@ TEST(Vector4DComparison, InfinityVector_LessThan_ReturnsBooleanVectorWithCorrect
     fgm::Vector4D infVec(INFINITY, INFINITY, -INFINITY, -INFINITY);
     fgm::Vector4D expected(true, true, false, false);
 
-    const fgm::Vector4D<bool> result = vec.lt(infVec);
+    const fgm::Vector4D<bool> mask = vec.lt(infVec);
 
-    EXPECT_VEC_EQ(expected, result);
+    EXPECT_VEC_EQ(expected, mask);
 }
 
 
@@ -305,9 +302,9 @@ TEST(Vector4DComparison, NanVector_LessThan_ReturnsBooleanVectorWithCorrectValue
     fgm::Vector4D infVec(NAN, NAN, -5.9f, NAN);
     fgm::Vector4D expected(false, false, false, false);
 
-    const fgm::Vector4D<bool> result = vec.lt(infVec);
+    const fgm::Vector4D<bool> mask = vec.lt(infVec);
 
-    EXPECT_VEC_EQ(expected, result);
+    EXPECT_VEC_EQ(expected, mask);
 }
 
 
@@ -323,10 +320,10 @@ TEST(Vector4DComparison, MixedType_LessThan_ReturnsBooleanVectorWithCorrectValue
     fgm::Vector4D expected(true, true, false, false);
 
     // When compared with less than or equal
-    const fgm::Vector4D<bool> result = vecA.lt(vecB);
+    const fgm::Vector4D<bool> mask = vecA.lt(vecB);
 
     // Then, the resulting elements are as expected
-    EXPECT_VEC_EQ(expected, result);
+    EXPECT_VEC_EQ(expected, mask);
 }
 
 
@@ -344,9 +341,9 @@ TEST(Vector4DComparison, MixedType_LessThan_ReturnsBooleanVectorWithCorrectValue
  */
 TYPED_TEST(Vector4DComparison, LessThanOrEqual_ReturnsBooleanVectorWithElementsLessThanOrEqualAsTrue)
 {
-    const fgm::Vector4D<bool> result = this->vecA.lte(this->vecB);
+    const fgm::Vector4D<bool> mask = this->vecA.lte(this->vecB);
 
-    EXPECT_VEC_EQ(this->expectedLTE, result);
+    EXPECT_VEC_EQ(this->expectedLTE, mask);
 }
 
 
@@ -356,9 +353,9 @@ TYPED_TEST(Vector4DComparison, LessThanOrEqual_ReturnsBooleanVectorWithElementsL
  */
 TYPED_TEST(Vector4DComparison, LessThanOrEqualOperator_ReturnsBooleanVectorWithElementsLessThanOrEqualAsTrue)
 {
-    const fgm::Vector4D<bool> result = this->vecA <= this->vecB;
+    const fgm::Vector4D<bool> mask = this->vecA <= this->vecB;
 
-    EXPECT_VEC_EQ(this->expectedLTE, result);
+    EXPECT_VEC_EQ(this->expectedLTE, mask);
 }
 
 
@@ -368,9 +365,9 @@ TYPED_TEST(Vector4DComparison, LessThanOrEqualOperator_ReturnsBooleanVectorWithE
  */
 TYPED_TEST(Vector4DComparison, StaticWrapper_LessThanOrEqual_ReturnsBooleanVectorWithElementsLessThanOrEqualAsTrue)
 {
-    const fgm::Vector4D<bool> result = fgm::Vector4D<TypeParam>::lte(this->vecA, this->vecB);
+    const fgm::Vector4D<bool> mask = fgm::Vector4D<TypeParam>::lte(this->vecA, this->vecB);
 
-    EXPECT_VEC_EQ(this->expectedLTE, result);
+    EXPECT_VEC_EQ(this->expectedLTE, mask);
 }
 
 
@@ -384,9 +381,9 @@ TEST(Vector4DComparison, InfinityVector_LessThanOrEqual_ReturnsBooleanVectorWith
     fgm::Vector4D infVec(INFINITY, INFINITY, -INFINITY, -INFINITY);
     fgm::Vector4D expected(true, true, false, false);
 
-    const fgm::Vector4D<bool> result = vec.lte(infVec);
+    const fgm::Vector4D<bool> mask = vec.lte(infVec);
 
-    EXPECT_VEC_EQ(expected, result);
+    EXPECT_VEC_EQ(expected, mask);
 }
 
 
@@ -400,9 +397,9 @@ TEST(Vector4DComparison, NanVector_LessThanOrEqual_ReturnsBooleanVectorWithCorre
     fgm::Vector4D infVec(NAN, NAN, -5.9f, NAN);
     fgm::Vector4D expected(false, false, false, false);
 
-    const fgm::Vector4D<bool> result = vec.lte(infVec);
+    const fgm::Vector4D<bool> mask = vec.lte(infVec);
 
-    EXPECT_VEC_EQ(expected, result);
+    EXPECT_VEC_EQ(expected, mask);
 }
 
 
@@ -418,8 +415,8 @@ TEST(Vector4DComparison, MixedType_LessThanOrEqual_ReturnsBooleanVectorWithCorre
     fgm::Vector4D expected(true, true, false, false);
 
     // When compared with less than or equal
-    const fgm::Vector4D<bool> result = vecA.lte(vecB);
+    const fgm::Vector4D<bool> mask = vecA.lte(vecB);
 
     // Then, the resulting elements are as expected
-    EXPECT_VEC_EQ(expected, result);
+    EXPECT_VEC_EQ(expected, mask);
 }
