@@ -4,7 +4,7 @@
  * @date Created on: March 07, 2026
  *
  * @brief Verifies @ref Vector4D<bool> dot product logic.
- * 
+ *
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */
 
@@ -20,7 +20,6 @@ using namespace testutils;
  *               SETUP                *
  *                                    *
  **************************************/
-
 
 template <typename T>
 class Vector4DDotProduct: public ::testing::Test
@@ -47,6 +46,7 @@ class Vector4DDotProduct: public ::testing::Test
         aDotA = static_cast<T>(54);
     }
 };
+/** @brief Test fixture for @ref fgm::Vector4D dot project, parameterized by @ref SupportedTypes */
 TYPED_TEST_SUITE(Vector4DDotProduct, SupportedArithmeticTypes);
 
 
@@ -56,14 +56,12 @@ TYPED_TEST_SUITE(Vector4DDotProduct, SupportedArithmeticTypes);
  *                                    *
  **************************************/
 
-TYPED_TEST(Vector4DDotProduct, VectorWhenDotWithItselfReturnsSquareMagnitude)
+/** @test Verify that the dot product of a @ref fgm::Vector4D with itself returns its squared magnitude. */
+TYPED_TEST(Vector4DDotProduct, SelfDotProductReturnsSquareMagnitude)
 {
-    // Given an arbitrary vector
 
-    // When dot with itself
     const TypeParam result = this->vecA.dot(this->vecA);
 
-    // Then, the dot product is 1
     if constexpr (std::is_same_v<TypeParam, double>)
         EXPECT_DOUBLE_EQ(this->aDotA, result);
     else if constexpr (std::is_floating_point_v<TypeParam>)
@@ -72,14 +70,12 @@ TYPED_TEST(Vector4DDotProduct, VectorWhenDotWithItselfReturnsSquareMagnitude)
         EXPECT_EQ(this->aDotA, result);
 }
 
-TYPED_TEST(Vector4DDotProduct, VectorWhenDotWithOrthogonalVectorReturnZero)
-{
-    // Given two orthogonal vectors
 
-    // When dot with each other
+/** @test Verify that the dot product of a @ref fgm::Vector4D with an orthogonal vector returns zero. */
+TYPED_TEST(Vector4DDotProduct, OrthogonalDotProductReturnZero)
+{
     const TypeParam result = this->vecAOrtho.dot(this->vecBOrtho);
 
-    // Then, the dot product is 0
     if constexpr (std::is_same_v<TypeParam, double>)
         EXPECT_DOUBLE_EQ(0.0, result);
     else if constexpr (std::is_floating_point_v<TypeParam>)
@@ -88,14 +84,12 @@ TYPED_TEST(Vector4DDotProduct, VectorWhenDotWithOrthogonalVectorReturnZero)
         EXPECT_EQ(0, result);
 }
 
-TYPED_TEST(Vector4DDotProduct, VectorDotWithNonOrthogonalVectorIsNonZeroNumber)
-{
-    // Given two non-orthogonal vectors
 
-    // When dot with each other
+/** @test Verify that the dot product of a @ref fgm::Vector4D with a non-orthogonal vector returns a non-zero scalar. */
+TYPED_TEST(Vector4DDotProduct, NonOrthogonalDotProductReturnsNonZeroScalar)
+{
     const TypeParam result = this->vecA.dot(this->vecB);
 
-    // Then, the dot product is non-zero
     if constexpr (std::is_same_v<TypeParam, double>)
         EXPECT_DOUBLE_EQ(this->expected, result);
     else if constexpr (std::is_floating_point_v<TypeParam>)
@@ -104,14 +98,12 @@ TYPED_TEST(Vector4DDotProduct, VectorDotWithNonOrthogonalVectorIsNonZeroNumber)
         EXPECT_EQ(this->expected, result);
 }
 
-TYPED_TEST(Vector4DDotProduct, StaticWrapper_VectorDotWithNonParallelVectorIsNonZeroNumber)
-{
-    // Given two non-orthogonal vectors
 
-    // When dot with each other with static wrapper
+/** @test Verify that the static dot product wrapper of @ref fgm::Vector4D returns a non-zero scalar. */
+TYPED_TEST(Vector4DDotProduct, StaticWrapper_NonOrthogonalDotProductReturnsNonZeroScalar)
+{
     const TypeParam result = fgm::Vector4D<TypeParam>::dot(this->vecA, this->vecB);
 
-    // Then, the dot product is non-zero
     if constexpr (std::is_same_v<TypeParam, double>)
         EXPECT_DOUBLE_EQ(this->expected, result);
     else if constexpr (std::is_floating_point_v<TypeParam>)
@@ -120,7 +112,10 @@ TYPED_TEST(Vector4DDotProduct, StaticWrapper_VectorDotWithNonParallelVectorIsNon
         EXPECT_EQ(this->expected, result);
 }
 
-TEST(Vector4DDotProduct, VectorDotWithOppositeVectorIsNegative)
+
+/** @test Verify that the dot product of a @ref fgm::Vector4D with another @ref fgm::Vector4D in opposite direction
+ *        returns a negative scalar. */
+TEST(Vector4DDotProduct, AntiParallelDotProductReturnsNegativeScalar)
 {
     // Given two opposite vectors
     const fgm::Vector4D vecA(-1.0, 0.0, 0.0, 0.0);
@@ -133,6 +128,9 @@ TEST(Vector4DDotProduct, VectorDotWithOppositeVectorIsNegative)
     EXPECT_DOUBLE_EQ(-1.0, result);
 }
 
+
+/** @test Verify that the dot product of a @ref fgm::Vector4D with another @ref fgm::Vector4D of different type
+ *        returns a type promoted vector. */
 TEST(Vector4DDotProduct, MixedTypeDotProductPromotesType)
 {
     // Given two vectors of different type

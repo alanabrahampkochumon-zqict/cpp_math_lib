@@ -414,9 +414,8 @@ TEST(Vector4DRejection, RejectionFromVectorInOppositeDirectionReturnsVectorWithP
 /**
  * @test Verify that rejecting a @ref fgm::Vector4D from another @ref fgm::Vector4D of a different numeric
  *       type returns a type-promoted vector.
- *
  */
-TEST(Vector4DRejection, MixedTypeVectorRejectionPromotesType)
+TEST(Vector4DRejection, MixedTypeRejectionPromotesType)
 {
     // Given two arbitrary vectors
     const fgm::Vector4D vec(7, 13, 29, 41);
