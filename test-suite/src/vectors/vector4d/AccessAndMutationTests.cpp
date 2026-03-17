@@ -18,53 +18,54 @@
  *                                    *
  **************************************/
 
+/** @test Verify that @ref fgm::Vector4D components are accessible via named spatial aliases (x, y, z, w). */
 TEST(Vector4DAccess, AccessibleAsXYZW)
 {
-    // Given a vector with arbitrary values passed in
     const fgm::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // Then, it's elements are accessible as x, y, z, w
     EXPECT_FLOAT_EQ(3.0f, vec.x);
     EXPECT_FLOAT_EQ(1.0f, vec.y);
     EXPECT_FLOAT_EQ(6.0f, vec.z);
     EXPECT_FLOAT_EQ(2.0f, vec.w);
 }
 
+
+/** @test Verify that @ref fgm::Vector4D components are accessible via named spatial aliases (s, t, p, q). */
 TEST(Vector4DAccess, AccessibleAsSTPQ)
 {
-    // Given a vector with arbitrary values passed in
     const fgm::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // Then, it's elements are accessible as s, t, p, q
     EXPECT_FLOAT_EQ(3.0f, vec.s);
     EXPECT_FLOAT_EQ(1.0f, vec.t);
     EXPECT_FLOAT_EQ(6.0f, vec.p);
     EXPECT_FLOAT_EQ(2.0f, vec.q);
 }
 
+
+/** @test Verify that @ref fgm::Vector4D components are accessible via named spatial aliases (r, g, b, a). */
 TEST(Vector4DAccess, AccessibleAsRGBA)
 {
-    // Given a vector with arbitrary values passed in
     const fgm::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // Then, it's elements are accessible as r, g, b, a
     EXPECT_FLOAT_EQ(3.0f, vec.r);
     EXPECT_FLOAT_EQ(1.0f, vec.g);
     EXPECT_FLOAT_EQ(6.0f, vec.b);
     EXPECT_FLOAT_EQ(2.0f, vec.a);
 }
 
+
+/** @test Verify that @ref fgm::Vector4D components are accessible via subscript indexing for reads. */
 TEST(Vector4DAccess, AccessibleAsArray)
 {
-    // Given a vector with arbitrary values passed in
     const fgm::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // Then, it's elements are accessible as array elements
     EXPECT_FLOAT_EQ(3.0f, vec.elements[0]);
     EXPECT_FLOAT_EQ(1.0f, vec.elements[1]);
     EXPECT_FLOAT_EQ(6.0f, vec.elements[2]);
     EXPECT_FLOAT_EQ(2.0f, vec.elements[3]);
 }
+
+
 
 
 /**************************************
@@ -73,72 +74,66 @@ TEST(Vector4DAccess, AccessibleAsArray)
  *                                    *
  **************************************/
 
+/** @test Verify that @ref fgm::Vector4D components can be mutated via named spatial aliases (x, y, z, w). */
 TEST(Vector4DMutation, ElementsCanBeMutatedUsingXYZW)
 {
-    // Given a default initialized vector
     fgm::Vector4D<float> vec;
 
-    // When, it's elements are modified using x, y, z, w
     vec.x = 3.0f;
     vec.y = 1.0f;
     vec.z = 6.0f;
     vec.w = 2.0f;
 
-    // Then, it's element reflect the change
     EXPECT_FLOAT_EQ(3.0f, vec.x);
     EXPECT_FLOAT_EQ(1.0f, vec.y);
     EXPECT_FLOAT_EQ(6.0f, vec.z);
     EXPECT_FLOAT_EQ(2.0f, vec.w);
 }
 
+
+/** @test Verify that @ref fgm::Vector4D components can be mutated via named spatial aliases (s, t, p, q). */
 TEST(Vector4DMutation, ElementsCanBeMutatedUsingSTPQ)
 {
-    // Given a default initialized vector
     fgm::Vector4D<float> vec;
 
-    // When, it's elements are modified using s, t, p, q
     vec.s = 3.0f;
     vec.t = 1.0f;
     vec.p = 6.0f;
     vec.q = 2.0f;
 
-    // Then, it's elements are modified
     EXPECT_FLOAT_EQ(3.0f, vec.s);
     EXPECT_FLOAT_EQ(1.0f, vec.t);
     EXPECT_FLOAT_EQ(6.0f, vec.p);
     EXPECT_FLOAT_EQ(2.0f, vec.q);
 }
 
+
+/** @test Verify that @ref fgm::Vector4D components can be mutated via named spatial aliases (r, g, b, a). */
 TEST(Vector4DMutation, ElementsCanBeMutatedUsingRGBA)
 {
-    // Given a default initialized vector
     fgm::Vector4D<float> vec;
 
-    // When, it's elements are modified using r, g, b, a
     vec.r = 3.0f;
     vec.g = 1.0f;
     vec.b = 6.0f;
     vec.a = 2.0f;
 
-    // Then, it's element reflect the change
     EXPECT_FLOAT_EQ(3.0f, vec.r);
     EXPECT_FLOAT_EQ(1.0f, vec.g);
     EXPECT_FLOAT_EQ(6.0f, vec.b);
     EXPECT_FLOAT_EQ(2.0f, vec.a);
 }
 
+/** @test Verify that @ref fgm::Vector4D components are accessible via subscript indexing for writing. */
 TEST(Vector4DMutation, ElementsCanBeMutatedUsingIndex)
 {
-    // Given a vector initialization without parameters
     fgm::Vector4D<float> vec;
 
-    // When it's elements are mutated at a particular index
     vec[0] = 3.0f;
     vec[1] = 1.0f;
     vec[2] = 6.0f;
     vec[3] = 2.0f;
 
-    // Then, it's element reflect the change
     EXPECT_FLOAT_EQ(3.0f, vec[0]);
     EXPECT_FLOAT_EQ(1.0f, vec[1]);
     EXPECT_FLOAT_EQ(6.0f, vec[2]);

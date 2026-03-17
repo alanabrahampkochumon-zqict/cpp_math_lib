@@ -54,7 +54,7 @@ class BooleanVectorBitOperations: public ::testing::Test
  */
 TEST_F(BooleanVectorBitOperations, BitwiseAndReturnsComponentwiseAnd)
 {
-    auto mask = this->vecA & this->vecB;
+    const auto mask = this->vecA & this->vecB;
 
     EXPECT_VEC_EQ(this->expectedAndVector, mask);
 }
@@ -66,7 +66,7 @@ TEST_F(BooleanVectorBitOperations, BitwiseAndReturnsComponentwiseAnd)
  */
 TEST_F(BooleanVectorBitOperations, BitwiseOrReturnsComponentwiseOr)
 {
-    auto mask = this->vecA | this->vecB;
+    const auto mask = this->vecA | this->vecB;
 
     EXPECT_VEC_EQ(this->expectedOrVector, mask);
 }
@@ -78,7 +78,7 @@ TEST_F(BooleanVectorBitOperations, BitwiseOrReturnsComponentwiseOr)
  */
 TEST_F(BooleanVectorBitOperations, BitwiseNotReturnsInvertedVector)
 {
-    auto mask = !this->vecA;
+    const auto mask = !this->vecA;
 
     EXPECT_VEC_EQ(this->expectedNotAVector, mask);
 }
