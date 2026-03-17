@@ -1,5 +1,5 @@
 /**
- * @file StringStreamTests.cpp
+ * @file StringRepresentationTests.cpp
  * @author Alan Abraham P Kochumon
  * @date Created on: March 16, 2026
  *
