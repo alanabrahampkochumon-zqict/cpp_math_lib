@@ -70,7 +70,7 @@ TYPED_TEST_SUITE(Vector4DRejection, SupportedArithmeticTypes);
  **************************************/
 
 /** @test Verify that projecting orthogonal @ref fgm::Vector4D instances returns a zero vector. */
-TYPED_TEST(Vector4DProjection, OrthogonalVectorsWhenProjectedReturnsZeroVector)
+TYPED_TEST(Vector4DProjection, OrthogonalVectorsReturnsZeroVector)
 {
     const fgm::Vector4D actualProjection = this->perpendicularVec.project(this->onto);
 
@@ -82,7 +82,7 @@ TYPED_TEST(Vector4DProjection, OrthogonalVectorsWhenProjectedReturnsZeroVector)
  * @test Verify that projecting a @ref fgm::Vector4D onto another @ref fgm::Vector4D containing only an x-component
  *       returns a vector containing only an x-component.
  */
-TEST(Vector4DProjection, VectorProjectedOntoXAxisProducesVectorWithOnlyXComponent)
+TEST(Vector4DProjection, ProjectionOntoXAxisReturnsVectorWithOnlyXComponent)
 {
     // Given an arbitrary vector
     const fgm::Vector4D a(10.0f, 20.0f, 30.0f, 40.0f);
@@ -101,7 +101,7 @@ TEST(Vector4DProjection, VectorProjectedOntoXAxisProducesVectorWithOnlyXComponen
  * @test Verify that projecting a @ref fgm::Vector4D onto another @ref fgm::Vector4D containing only a y-component
  *       returns a vector containing only a y-component.
  */
-TEST(Vector4DProjection, VectorProjectedOntoYAxisProducesVectorWithOnlyYComponent)
+TEST(Vector4DProjection, ProjectionOntoYAxisReturnsVectorWithOnlyYComponent)
 {
     // Given an arbitrary vector
     const fgm::Vector4D a(10.0f, 20.0f, 30.0f, 40.0f);
@@ -120,7 +120,7 @@ TEST(Vector4DProjection, VectorProjectedOntoYAxisProducesVectorWithOnlyYComponen
  * @test Verify that projecting a @ref fgm::Vector4D onto another @ref fgm::Vector4D containing only a z-component
  *       returns a vector containing only a z-component.
  */
-TEST(Vector4DProjection, VectorProjectedOntoZAxisProducesVectorWithOnlyZComponent)
+TEST(Vector4DProjection, ProjectionOntoZAxisReturnsVectorWithOnlyZComponent)
 {
     // Given an arbitrary vector
     const fgm::Vector4D a(10.0f, 20.0f, 30.0f, 40.0f);
@@ -139,7 +139,7 @@ TEST(Vector4DProjection, VectorProjectedOntoZAxisProducesVectorWithOnlyZComponen
  * @test Verify that projecting a @ref fgm::Vector4D onto another @ref fgm::Vector4D containing only a w-component
  *       returns a vector containing only a w-component.
  */
-TEST(Vector4DProjection, VectorProjectedOntoWAxisProducesVectorWithOnlyWComponent)
+TEST(Vector4DProjection, ProjectionOntoWAxisReturnsVectorWithOnlyWComponent)
 {
     // Given an arbitrary vector
     const fgm::Vector4D a(10.0f, 20.0f, 30.0f, 40.0f);
@@ -158,7 +158,7 @@ TEST(Vector4DProjection, VectorProjectedOntoWAxisProducesVectorWithOnlyWComponen
  * @test Verify that projecting a @ref fgm::Vector4D onto a non-orthogonal @ref fgm::Vector4D returns a non-zero
  *       vector.
  */
-TYPED_TEST(Vector4DProjection, VectorsWhenProjectedReturnsNonZeroVector)
+TYPED_TEST(Vector4DProjection, NonOrthogonalProjectionReturnsNonZeroVector)
 {
     const fgm::Vector4D actualProjection = this->vec.project(this->onto);
 
@@ -170,7 +170,7 @@ TYPED_TEST(Vector4DProjection, VectorsWhenProjectedReturnsNonZeroVector)
  * @test Verify that the @ref fgm::Vector4D static projection wrapper returns a non-zero vector when projecting
  *        non-orthogonal instances.
  */
-TYPED_TEST(Vector4DProjection, StaticWrapper_VectorsWhenProjectedReturnsNonZeroVector)
+TYPED_TEST(Vector4DProjection, StaticWrapper_NonOrthogonalProjectionReturnsNonZeroVector)
 {
     const fgm::Vector4D actualProjection = fgm::Vector4D<TypeParam>::project(this->vec, this->onto);
 
@@ -182,7 +182,7 @@ TYPED_TEST(Vector4DProjection, StaticWrapper_VectorsWhenProjectedReturnsNonZeroV
  * @test Verify that projecting onto a non-orthogonal unit vector with the @p ontoNormalized flag enabled returns a
  *        non-zero vector.
  */
-TEST(Vector4DProjection, VectorProjectedOntoNormalizedVectorReturnsNonZeroVector)
+TEST(Vector4DProjection, ProjectionOntoNormalizedVectorReturnsNonZeroVector)
 {
     // Given an arbitrary vector and a normalized vector
     const fgm::Vector4D a(1.0f, 2.0f, 3.0f, 4.0f);
@@ -204,7 +204,7 @@ TEST(Vector4DProjection, VectorProjectedOntoNormalizedVectorReturnsNonZeroVector
  * @test Verify that projecting a @ref fgm::Vector4D onto a non-orthogonal @ref fgm::Vector4D pointing in the opposite
  *        direction returns a non-zero vector. 
  */
-TEST(Vector4DProjection, VectorProjectedOntoNegativeVectorReturnsNonZeroVectorInSameDirection)
+TEST(Vector4DProjection, ProjectionOntoVectorInOppositeDirectionReturnsNonZeroVectorInSameDirection)
 {
     // Given an arbitrary vector and a vector in the opposite Direction
     const fgm::Vector4D a(4.0f, 4.0f, 4.0f, 4.0f);
@@ -221,7 +221,7 @@ TEST(Vector4DProjection, VectorProjectedOntoNegativeVectorReturnsNonZeroVectorIn
 
 /** @test Verify that projecting a @ref fgm::Vector4D onto a non-orthogonal @ref fgm::Vector4D of a different numeric
  *        type returns a type-promoted vector. */
-TEST(Vector4DProjection, MixedTypeVectorProjectionPromotesType)
+TEST(Vector4DProjection, MixedTypeProjectionPromotesType)
 {
     // Given two arbitrary vectors
     const fgm::Vector4D vec(7, 13, 29, 41);
@@ -247,7 +247,7 @@ TEST(Vector4DProjection, MixedTypeVectorProjectionPromotesType)
  **************************************/
 
 /** @test Verify that rejecting parallel @ref fgm::Vector4D instances returns a zero vector. */
-TYPED_TEST(Vector4DRejection, ParallelVectorsWhenRejectedReturnsZeroVector)
+TYPED_TEST(Vector4DRejection, ParallelVectorsReturnsZeroVector)
 {
     const fgm::Vector4D actualRejection = this->vec.reject(this->parallelVec);
 
@@ -259,17 +259,17 @@ TYPED_TEST(Vector4DRejection, ParallelVectorsWhenRejectedReturnsZeroVector)
  * @test Verify that rejecting a @ref fgm::Vector4D from a target @ref fgm::Vector4D containing only an x-component
  *       returns a vector with a zero x-component.
  */
-TEST(Vector4DRejection, VectorRejectedOntoXAxisReturnsVectorWithoutXComponent)
+TEST(Vector4DRejection, RejectionFromXAxisReturnsVectorWithZeroXComponent)
 {
     // Given an arbitrary vector
     const fgm::Vector4D a(10.0f, 20.0f, 30.0f, 40.0f);
     const fgm::Vector4D xAxis(1.0f, 0.0f, 0.0f, 0.0f);
     const fgm::Vector4D expectedRejection(0.0f, 20.0f, 30.0f, 40.f);
 
-    // When rejected onto x-axis
+    // When rejected from x-axis
     const fgm::Vector4D actualRejection = a.reject(xAxis);
 
-    // Then, the resultant vector has no x-component
+    // Then, the resultant vector has zero x-component
     EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
 
@@ -278,7 +278,7 @@ TEST(Vector4DRejection, VectorRejectedOntoXAxisReturnsVectorWithoutXComponent)
  * @test Verify that rejecting a @ref fgm::Vector4D from a target @ref fgm::Vector4D containing only a y-component
  *       returns a vector with a zero y-component.
  */
-TEST(Vector4DRejection, VectorRejectedOntoYAxisReturnsVectorWithoutYComponent)
+TEST(Vector4DRejection, RejectionFromYAxisReturnsVectorWithZeroYComponent)
 {
     // Given an arbitrary vector
     const fgm::Vector4D a(10.0f, 20.0f, 30.0f, 40.0f);
@@ -288,7 +288,7 @@ TEST(Vector4DRejection, VectorRejectedOntoYAxisReturnsVectorWithoutYComponent)
     // When rejected from y-axis
     const fgm::Vector4D actualRejection = a.reject(yAxis);
 
-    // Then, the resultant vector has no y-component
+    // Then, the resultant vector has zero y-component
     EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
 
@@ -297,7 +297,7 @@ TEST(Vector4DRejection, VectorRejectedOntoYAxisReturnsVectorWithoutYComponent)
  *@test Verify that rejecting a @ref fgm::Vector4D from a target @ref fgm::Vector4D containing only a z-component
  *        returns a vector with a zero z-component.
  */
-TEST(Vector4DRejection, VectorRejectedOntoZAxisReturnsVectorWithoutZComponent)
+TEST(Vector4DRejection, RejectionFromZAxisReturnsVectorWithZeroZComponent)
 {
     // Given an arbitrary vector
     const fgm::Vector4D a(10.0f, 20.0f, 30.0f, 40.0f);
@@ -307,7 +307,7 @@ TEST(Vector4DRejection, VectorRejectedOntoZAxisReturnsVectorWithoutZComponent)
     // When rejected from z-axis
     const fgm::Vector4D actualRejection = a.reject(zAxis);
 
-    // Then, the resultant vector has no z-component
+    // Then, the resultant vector has zero z-component
     EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
 
@@ -316,17 +316,17 @@ TEST(Vector4DRejection, VectorRejectedOntoZAxisReturnsVectorWithoutZComponent)
  * @test Verify that rejecting a @ref fgm::Vector4D from a target @ref fgm::Vector4D containing only a w-component
  *        returns a vector with a zero w-component.
  */
-TEST(Vector4DRejection, VectorRejectedOntoWAxisReturnsVectorWithoutWComponent)
+TEST(Vector4DRejection, RejectionFromWAxisReturnsVectorWithZeroWComponent)
 {
     // Given an arbitrary vector
     const fgm::Vector4D a(10.0f, 20.0f, 30.0f, 40.0f);
     const fgm::Vector4D wAxis(0.0f, 0.0f, 0.0f, 1.0f);
     const fgm::Vector4D expectedRejection(10.0f, 20.0f, 30.0f, 0.0f);
 
-    // When rejected onto w-axis
+    // When rejected from w-axis
     const fgm::Vector4D actualRejection = a.reject(wAxis);
 
-    // Then, the resultant vector has no w-component
+    // Then, the resultant vector has zero w-component
     EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
 
@@ -335,7 +335,7 @@ TEST(Vector4DRejection, VectorRejectedOntoWAxisReturnsVectorWithoutWComponent)
  * @test Verify that rejecting a @ref fgm::Vector4D from a target @ref fgm::Vector4D that is orthogonal returns the
  *       original vector.
  */
-TEST(Vector4DRejection, VectorRejectedOntoOrthogonalVectorReturnsSameVector)
+TEST(Vector4DRejection, OrthogonalRejectionReturnsOriginalVector)
 {
     // Given an arbitrary vector
     const fgm::Vector4D a(1.0f, 2.0f, 3.0f, 0.0f);
@@ -353,7 +353,7 @@ TEST(Vector4DRejection, VectorRejectedOntoOrthogonalVectorReturnsSameVector)
  * @test Verify that rejecting a @ref fgm::Vector4D from a non-orthogonal @ref fgm::Vector4D returns a non-zero
  *       vector with perpendicular component.
  */
-TYPED_TEST(Vector4DRejection, VectorWhenRejectedReturnNonZeroVector)
+TYPED_TEST(Vector4DRejection, NonOrthogonalRejectionReturnsNonZeroVector)
 {
     const fgm::Vector4D actualRejection = this->vec.reject(this->onto);
 
@@ -365,7 +365,7 @@ TYPED_TEST(Vector4DRejection, VectorWhenRejectedReturnNonZeroVector)
  * @test Verify that the @ref fgm::Vector4D static rejection wrapper returns a non-zero vector when rejecting from
  *        orthogonal instances.
  */
-TYPED_TEST(Vector4DRejection, StaticWrapper_VectorWhenRejectedReturnNonZeroVector)
+TYPED_TEST(Vector4DRejection, StaticWrapper_NonOrthogonalRejectionReturnsNonZeroVector)
 {
     const fgm::Vector4D actualRejection = fgm::Vector4D<TypeParam>::reject(this->vec, this->onto);
 
@@ -377,7 +377,7 @@ TYPED_TEST(Vector4DRejection, StaticWrapper_VectorWhenRejectedReturnNonZeroVecto
  * @test Verify that rejecting from an orthogonal unit vector with the @p ontoNormalized flag enabled returns a non-zero
  *       vector with perpendicular component.
  */
-TEST(Vector4DRejection, VectorRejectedFromNormalizedVectorReturnNonZeroVector)
+TEST(Vector4DRejection, RejectionFromNormalizedVectorReturnsNonZeroVector)
 {
     // Given an arbitrary vector and a normalized vector
     const fgm::Vector4D a(1.0f, 2.0f, 3.0f, 4.0f);
@@ -387,7 +387,7 @@ TEST(Vector4DRejection, VectorRejectedFromNormalizedVectorReturnNonZeroVector)
     // When rejected from another
     const fgm::Vector4D actualRejection = a.reject(b, true);
 
-    // Then, the resultant vector has components non-parallel to onto vector.
+    // Then, the resultant vector has components perpendicular to the `from` vector.
     EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
 
@@ -396,7 +396,7 @@ TEST(Vector4DRejection, VectorRejectedFromNormalizedVectorReturnNonZeroVector)
  * @test Verify that rejecting a @ref fgm::Vector4D from an orthogonal @ref fgm::Vector4D pointing in the opposite
  *        direction returns a non-zero vector with perpendicular components.
  */
-TEST(Vector4DRejection, VectorRejectedOntoNegativeVectorReturnsNonZeroVectorInSameDirection)
+TEST(Vector4DRejection, RejectionFromVectorInOppositeDirectionReturnsVectorWithPerpendicularComponents)
 {
     // Given an arbitrary vector
     const fgm::Vector4D a(4.0f, 4.0f, 4.0f, 4.0f);
@@ -406,7 +406,7 @@ TEST(Vector4DRejection, VectorRejectedOntoNegativeVectorReturnsNonZeroVectorInSa
     // When rejection onto a vector in opposite direction
     const fgm::Vector4D actualRejection = a.reject(negativeZAxis);
 
-    // Then, the resultant vector has components non-parallel to onto vector in the same direction.
+    // Then, the resultant vector has components perpendicular to the `from` vector in the same direction.
     EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
 
