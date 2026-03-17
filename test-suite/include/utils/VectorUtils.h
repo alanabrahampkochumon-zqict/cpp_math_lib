@@ -4,8 +4,11 @@
  * @author Alan Abraham P Kochumon
  * @date Created on: February 16, 2026
  *
- * @brief Define helper functions for testing Vectors like @ref fgm::Vector2D, @ref fgm::Vector3D etc.
- *
+ * @brief Diagnostic and validation utilities for Vector types.
+ *        Provides specialized testing helpers and assertion wrappers for @ref Vector2D,
+ *        @ref Vector3D, and @ref Vector4D to ensure numerical stability and
+ *        geometric correctness across the fgm library.
+ *      
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */
 
@@ -21,6 +24,18 @@
 namespace testutils
 {
 
+    /**
+     * @brief Perform a component-wise equality comparison between two vectors of the same dimensions.
+     *
+     * @tparam T Numeric type of the expected vector components.
+     * @tparam U Numeric type of the actual vector components.
+     * @param expected The vector serving as the reference for comparison.
+     * @param actual The vector being evaluated.
+     *
+     * @note Uses GoogleTest macros for validation. This function will trigger a non-fatal test failure
+     *       if the vectors are not equal.
+     * @note Triggers an assertion failure if vector dimensions are mismatched.
+     */
     template <fgm::Vector T, fgm::Vector U>
     void EXPECT_VEC_EQ(const T& expected, const U& actual)
     {
@@ -41,6 +56,18 @@ namespace testutils
         }
     }
 
+
+    /**
+     * @brief Performs a strict component-wise validation of a @ref fgm::Vector2D against discrete scalar values.
+     *
+     * @tparam T Numeric type of the vector and scalar components.
+     * @param vector The 2D vector instance being evaluated.
+     * @param x The expected value for the x-component.
+     * @param y The expected value for the y-component.
+     *
+     * @note Uses GoogleTest macros. Triggers a non-fatal test failure if the vector's
+     *       internal state does not match the provided scalars.
+     */
     template <fgm::Arithmetic T>
     void EXPECT_VEC_CONTAINS(const fgm::Vector2D<T>& vector, T x, T y)
     {
@@ -61,6 +88,19 @@ namespace testutils
         }
     }
 
+
+    /**
+     * @brief Performs a strict component-wise validation of a @ref fgm::Vector3D against discrete scalar values.
+     *
+     * @tparam T Numeric type of the vector and scalar components.
+     * @param vector The 3D vector instance being evaluated.
+     * @param x The expected value for the x-component.
+     * @param y The expected value for the y-component.
+     * @param z The expected value for the z-component.
+     *
+     * @note Uses GoogleTest macros. Triggers a non-fatal test failure if the vector's
+     *       internal state does not match the provided scalars.
+     */
     template <fgm::Arithmetic T>
     void EXPECT_VEC_CONTAINS(const fgm::Vector3D<T>& vector, T x, T y, T z)
     {
@@ -84,6 +124,20 @@ namespace testutils
         }
     }
 
+
+    /**
+     * @brief Performs a strict component-wise validation of a @ref fgm::Vector4D against discrete scalar values.
+     *
+     * @tparam T Numeric type of the vector and scalar components.
+     * @param vector The 4D vector instance being evaluated.
+     * @param x The expected value for the x-component.
+     * @param y The expected value for the y-component.
+     * @param z The expected value for the z-component.
+     * @param w The expected value for the w-component.
+     *
+     * @note Uses GoogleTest macros. Triggers a non-fatal test failure if the vector's
+     *       internal state does not match the provided scalars.
+     */
     template <fgm::Arithmetic T>
     void EXPECT_VEC_CONTAINS(const fgm::Vector4D<T>& vector, T x, T y, T z, T w)
     {
@@ -110,8 +164,18 @@ namespace testutils
         }
     }
 
+
+    /**
+     * @brief Validates that the provided vector contains only unit components.
+     *
+     * @tparam T Numeric type of the actual vector components.
+     * @param vector The vector being evaluated.
+     *
+     * @note Uses GoogleTest macros for validation. This function will trigger a non-fatal test failure
+     *       if any of the vectors components are not unit.
+     */
     template <fgm::Vector T>
-    void EXPECT_VEC_UNIT(const T& vector)
+    void EXPECT_VEC_ONE(const T& vector)
     {
         using ValueType = T::value_type;
         ValueType expected = ValueType(1);
@@ -135,6 +199,16 @@ namespace testutils
         }
     }
 
+
+    /**
+     * @brief Validates that the provided vector contains only zero components.
+     *
+     * @tparam T Numeric type of the actual vector components.
+     * @param vector The vector being evaluated.
+     *
+     * @note Uses GoogleTest macros for validation. This function will trigger a non-fatal test failure
+     *       if any of the vectors components are not zero.
+     */
     template <fgm::Vector T>
     void EXPECT_VEC_ZERO(const T& vector)
     {
@@ -159,6 +233,16 @@ namespace testutils
         }
     }
 
+
+    /**
+     * @brief Validates that the provided vector contains only @ref INFINITY components.
+     *
+     * @tparam T Numeric type of the actual vector components.
+     * @param vector The vector being evaluated.
+     *
+     * @note Uses GoogleTest macros for validation. This function will trigger a non-fatal test failure
+     *       if any of the vectors components are not @ref `INFINITY` or `-INFINITY`.
+     */
     template <fgm::Vector T>
     void EXPECT_VEC_INF(const T& vector)
     {
@@ -172,6 +256,17 @@ namespace testutils
             GTEST_SKIP() << "Integral division by zero result in undefined behavior and crashes.";
     }
 
+
+    /**
+     * @brief Validates that two scalar values are equal within a defined numerical tolerance.
+     *
+     * @tparam T Numeric type of the values being compared.
+     * @param expected The ground-truth reference value.
+     * @param actual The value being evaluated.
+     *
+     * @note Uses GoogleTest macros. Triggers a non-fatal failure if the absolute difference
+     *       between expected and actual exceeds the library's standard epsilon.
+     */
     template <fgm::StrictArithmetic T>
     void EXPECT_MAG_EQ(T expected, T actual)
     {
