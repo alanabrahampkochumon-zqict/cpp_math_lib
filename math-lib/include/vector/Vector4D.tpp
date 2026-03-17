@@ -567,19 +567,19 @@ namespace fgm
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    auto Vector4D<T>::reject(const Vector4D<U>& onto, bool ontoNormalized) const -> Vector4D<std::common_type_t<T, U>>
+    auto Vector4D<T>::reject(const Vector4D<U>& from, bool ontoNormalized) const -> Vector4D<std::common_type_t<T, U>>
         requires StrictArithmetic<T>
     {
-        return *this - this->project(onto, ontoNormalized);
+        return *this - this->project(from, ontoNormalized);
     }
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    auto Vector4D<T>::reject(const Vector4D& vector, const Vector4D<U>& onto, bool ontoNormalized)
+    auto Vector4D<T>::reject(const Vector4D& vector, const Vector4D<U>& from, bool ontoNormalized)
         -> Vector4D<std::common_type_t<T, U>>
         requires StrictArithmetic<T>
     {
-        return vector.reject(onto, ontoNormalized);
+        return vector.reject(from, ontoNormalized);
     }
 
 } // namespace fgm
