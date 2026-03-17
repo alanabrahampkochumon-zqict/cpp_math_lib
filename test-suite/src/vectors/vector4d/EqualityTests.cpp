@@ -36,9 +36,9 @@ class Vector4DEquality: public ::testing::Test
         inequalityMask = { true, false, true, false };
     }
 };
-/** @brief Typed test suite for Vector Equality and Inequality checks. */
-TYPED_TEST_SUITE(Vector4DEquality, SupportedArithmeticTypes);
 
+/** @brief Test fixture for @ref fgm::Vector4D, parameterized by @ref SupportedArithmeticTypes. */
+TYPED_TEST_SUITE(Vector4DEquality, SupportedArithmeticTypes);
 
 
 
@@ -240,7 +240,8 @@ TEST(Vector4DEquality, InfinityEqualityReturnsCorrectBooleanMask)
 }
 
 
-/** @test Verify static variant of @ref fgm::Vector4D::eq returns @ref fgm::Vector4D<bool> mask for different vectors. */
+/** @test Verify static variant of @ref fgm::Vector4D::eq returns @ref fgm::Vector4D<bool> mask for different vectors.
+ */
 TYPED_TEST(Vector4DEquality, StaticWrapper_EqualityReturnsCorrectBooleanMask)
 {
     // When two vectors are compared for component-wise equality
@@ -450,7 +451,9 @@ TEST(Vector4DEquality, InfinityInequalityReturnsCorrectBooleanMask)
 }
 
 
-/** @test Verify static variant of @ref fgm::Vector4D::neq returns @ref fgm::Vector4D<bool> mask for different vectors. */
+/**
+ * @test Verify static variant of @ref fgm::Vector4D::neq returns @ref fgm::Vector4D<bool> mask for different vectors.
+ */
 TYPED_TEST(Vector4DEquality, StaticWrapper_InequalityReturnsCorrectBooleanMask)
 {
     // When two vectors are compared for component-wise equality

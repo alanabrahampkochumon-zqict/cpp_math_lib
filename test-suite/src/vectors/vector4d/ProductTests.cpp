@@ -46,7 +46,7 @@ class Vector4DDotProduct: public ::testing::Test
         aDotA = static_cast<T>(54);
     }
 };
-/** @brief Test fixture for @ref fgm::Vector4D dot project, parameterized by @ref SupportedTypes */
+/** @brief Test fixture for @ref fgm::Vector4D dot project, parameterized by @ref SupportedArithmeticTypes */
 TYPED_TEST_SUITE(Vector4DDotProduct, SupportedArithmeticTypes);
 
 

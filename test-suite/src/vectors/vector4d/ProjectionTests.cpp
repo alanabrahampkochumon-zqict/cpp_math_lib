@@ -38,7 +38,7 @@ class Vector4DProjection: public ::testing::Test
         expectedProjection = { T(0), T(6), T(0), T(0) };
     }
 };
-/** @brief Test fixture for @ref Vector4D projection, parameterized by @ref SupportedTypes. */
+/** @brief Test fixture for @ref Vector4D projection, parameterized by @ref SupportedArithmeticTypes. */
 TYPED_TEST_SUITE(Vector4DProjection, SupportedArithmeticTypes);
 
 
@@ -59,7 +59,7 @@ class Vector4DRejection: public ::testing::Test
         expectedRejection = { T(5), T(0), T(7), T(8) };
     }
 };
-/** @brief Test fixture for @ref fgm::Vector4D rejection, parameterized by @ref SupportedTypes. */
+/** @brief Test fixture for @ref fgm::Vector4D rejection, parameterized by @ref SupportedArithmeticTypes. */
 TYPED_TEST_SUITE(Vector4DRejection, SupportedArithmeticTypes);
 
 

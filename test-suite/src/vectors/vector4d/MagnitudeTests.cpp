@@ -33,7 +33,7 @@ class Vector4DMagnitude: public ::testing::Test
         magnitude = fgm::Magnitude<T>(5);
     }
 };
-/** @brief Test fixture for @ref fgm::Vector4D magnitude, parameterized by Supported types. */
+/** @brief Test fixture for @ref fgm::Vector4D magnitude, parameterized by SupportedArithmeticTypes. */
 TYPED_TEST_SUITE(Vector4DMagnitude, SupportedArithmeticTypes);
 
 
@@ -50,7 +50,7 @@ class Vector4DUncleanMagnitude: public ::testing::Test
         magnitude = fgm::Magnitude<T>(5.477225575051661);
     }
 };
-/** @brief Test fixture for @ref fgm::Vector4D magnitude, parameterized by Supported types, for testing high-precision
+/** @brief Test fixture for @ref fgm::Vector4D magnitude, parameterized by SupportedArithmeticTypes, for testing high-precision
  * magnitude. */
 TYPED_TEST_SUITE(Vector4DUncleanMagnitude, SupportedArithmeticTypes);
 
@@ -71,7 +71,7 @@ class Vector4DNormalization: public ::testing::Test
                            static_cast<R>(0.8093036687290455), static_cast<R>(0.5070336237820525) };
     }
 };
-/** @brief Test fixture for @ref fgm::Vector4D normalization, parameterized by Supported types. */
+/** @brief Test fixture for @ref fgm::Vector4D normalization, parameterized by SupportedArithmeticTypes. */
 TYPED_TEST_SUITE(Vector4DNormalization, SupportedArithmeticTypes);
 
 
@@ -83,7 +83,7 @@ class Vector4DZeroNormalization: public ::testing::Test
 
     void SetUp() override { vec = { T(0), T(0), T(0), T(0) }; }
 };
-/** @brief Test fixture for @ref fgm::Vector4D zero-vector normalization, parameterized by Supported types. */
+/** @brief Test fixture for @ref fgm::Vector4D zero-vector normalization, parameterized by SupportedArithmeticTypes. */
 TYPED_TEST_SUITE(Vector4DZeroNormalization, SupportedArithmeticTypes);
 
 
