@@ -36,6 +36,7 @@ class Vector4DAddition: public ::testing::Test
         expected = { T(-5), T(6), T(4), T(7) };
     }
 };
+/** @brief Test fixture for @ref fgm::Vector4D addition, parameterized by SupportedArithmeticTypes */
 TYPED_TEST_SUITE(Vector4DAddition, SupportedArithmeticTypes);
 
 
@@ -54,6 +55,7 @@ class Vector4DSubtraction: public ::testing::Test
         expected = { T(103), T(6), T(-4), T(7) };
     }
 };
+/** @brief Test fixture for @ref fgm::Vector4D subtraction, parameterized by SupportedArithmeticTypes */
 TYPED_TEST_SUITE(Vector4DSubtraction, SupportedArithmeticTypes);
 
 
@@ -75,6 +77,7 @@ class Vector4DScalarMultiplication: public ::testing::Test
         expectedIntegral = { T(14), T(26), T(58), T(82) };
     }
 };
+/** @brief Test fixture for @ref fgm::Vector4D scalar multiplication, parameterized by SupportedArithmeticTypes */
 TYPED_TEST_SUITE(Vector4DScalarMultiplication, SupportedArithmeticTypes);
 
 
@@ -94,7 +97,10 @@ class Vector4DScalarDivision: public ::testing::Test
                      T(5.61538461538461538462) };
     }
 };
+/** @brief Test fixture for @ref fgm::Vector4D division, parameterized by SupportedArithmeticTypes */
 TYPED_TEST_SUITE(Vector4DScalarDivision, SupportedArithmeticTypes);
+
+
 
 
 /**************************************
@@ -103,57 +109,57 @@ TYPED_TEST_SUITE(Vector4DScalarDivision, SupportedArithmeticTypes);
  *                                    *
  **************************************/
 
-TYPED_TEST(Vector4DAddition, VectorPlusVectorReturnsNewVectorWithSum)
+/**
+ * @test Verify that the binary addition operator performs a component-wise sum and returns a new @ref fgm::Vector4D
+ *       instance.
+ */
+TYPED_TEST(Vector4DAddition, PlusOperator_ReturnsVectorSum)
 {
-    // Given two vectors
-    // When they are added together
     const fgm::Vector4D result = this->vecA + this->vecB;
 
-    // Then the output vector contains sum of elements
     EXPECT_VEC_EQ(this->expected, result);
 }
 
-TYPED_TEST(Vector4DAddition, VectorPlusEqualsReturnsSameVectorWithSum)
+
+/**
+ * @test Verify that the compound addition assignment operator performs a component-wise sum and mutates the @ref
+ *       fgm::Vector4D in-place.
+ */
+TYPED_TEST(Vector4DAddition, PlusEqualsOperator_ReturnsSameVectorWithSum)
 {
-    // Given two vectors
-    //  When one vector is added to the other(+=)
     this->vecA += this->vecB;
 
-    // Then, the original vector contains the sum of the elements added together
     EXPECT_VEC_EQ(this->expected, this->vecA);
 }
 
+
+/** @test Verify that the binary addition operator performs automatic type promotion to the wider numeric type. */
 TEST(Vector4DAddition, MixedTypeAdditionPromotesType)
 {
-    // Given vectors with arbitrary values
     const fgm::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
     const fgm::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
-    const fgm::Vector4D expected(12.0, -5.0, 9.0, 5.0);
 
-    // When they are added together
-    const fgm::Vector4D result = vec1 + vec2;
+    [[maybe_unused]] const fgm::Vector4D result = vec1 + vec2;
 
-    // Then the new vector is type promoted
     static_assert(std::is_same_v<decltype(result)::value_type, double>);
-    // And contains sum of elements
-    EXPECT_VEC_EQ(expected, result);
 }
 
+
+/**
+ * @test Verify that the compound addition assignment operator maintains the destination type and performs an implicit
+ *       cast.
+ */
 TEST(Vector4DAddition, MixedTypeAdditionAssignmentDoesNotPromoteType)
 {
-    // Given vectors with arbitrary values
     fgm::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
     const fgm::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
-    const fgm::Vector4D expected(12.0f, -5.0f, 9.0f, 5.0f);
 
-    // When one vector is added to the other(+=)
     vec1 += vec2;
 
-    // Then, the original vector's type is preserved
     static_assert(std::is_same_v<decltype(vec1)::value_type, float>);
-    // and contains sum of elements
-    EXPECT_VEC_EQ(expected, vec1);
 }
+
+
 
 
 /**************************************
@@ -162,57 +168,55 @@ TEST(Vector4DAddition, MixedTypeAdditionAssignmentDoesNotPromoteType)
  *                                    *
  **************************************/
 
-TYPED_TEST(Vector4DSubtraction, VectorMinusVectorReturnsNewVectorWithDifference)
+/**
+ * @test Verify that the binary subtraction operator performs a component-wise difference and returns a new @ref
+ * fgm::Vector4D instance.
+ */
+TYPED_TEST(Vector4DSubtraction, MinusOperator_ReturnsDifference)
 {
-    // Given two vectors
-    // When they are added together
     const fgm::Vector4D result = this->vecA - this->vecB;
 
-    // Then the output vector contains the difference between elements
     EXPECT_VEC_EQ(this->expected, result);
 }
 
-TYPED_TEST(Vector4DSubtraction, VectorMinusEqualsVectorReturnsSameVectorWithDifference)
+
+/**
+ * @test Verify that the compound subtraction assignment operator performs a component-wise difference and mutates the
+ * @ref fgm::Vector4D in-place.
+ */
+TYPED_TEST(Vector4DSubtraction, MinusEqualsOperator_ReturnsSameVectorWithDifference)
 {
-    // Given two vectors
-    //  When one vector is added to the other(+=)
     this->vecA -= this->vecB;
 
-    // Then, the original vector contains the difference between elements
     EXPECT_VEC_EQ(this->expected, this->vecA);
 }
 
+
+/** @test Verify that the binary subtraction operator performs automatic type promotion to the wider numeric type. */
 TEST(Vector4DSubtraction, MixedTypeSubtractionPromotesType)
 {
-    // Given vectors with arbitrary values
     const fgm::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
     const fgm::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
-    const fgm::Vector4D expected(-6.0, 5.0, -11.0, -1.0);
 
-    // When they are subtracted
-    const fgm::Vector4D result = vec1 - vec2;
+    [[maybe_unused]] const fgm::Vector4D result = vec1 - vec2;
 
-    // Then the new vector is type promoted
     static_assert(std::is_same_v<decltype(result)::value_type, double>);
-    // And contains difference between the elements
-    EXPECT_VEC_EQ(expected, result);
 }
 
+/**
+ * @test Verify that the compound subtraction assignment operator maintains the destination type and performs an
+ * implicit cast.
+ */
 TEST(Vector4DSubtraction, MixedTypeSubtractionAssignmentDoesNotPromoteType)
 {
-    // Given vectors with arbitrary values
     fgm::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
     const fgm::Vector4D vec2(9.0, -5.0, 10.0, 3.0);
-    const fgm::Vector4D expected(-6.0, 5.0, -11.0, -1.0);
 
-    // When one vector is subtracted from the other(-=)
     vec1 -= vec2;
 
-    // Then, the original vector's type is preserved
     static_assert(std::is_same_v<decltype(vec1)::value_type, float>);
-    // And contains difference between the elements
-    EXPECT_VEC_EQ(expected, vec1);
 }
+
 
 
 
@@ -222,115 +226,108 @@ TEST(Vector4DSubtraction, MixedTypeSubtractionAssignmentDoesNotPromoteType)
  *                                    *
  **************************************/
 
-TEST(Vector4DScalarMultiplication, VectorTimesZeroReturnsZeroVector)
+/** @test Verify that the binary multiplication of a @ref fgm::Vector4D by a zero scalar returns a zero-vector. */
+TEST(Vector4DScalarMultiplication, MultiplicationByZeroReturnsZeroVector)
 {
-    // Given an arbitrary vector
     const fgm::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // When multiplied with 0
     const fgm::Vector4D result = vec * 0;
 
-    // Then, we get a zero vector
     EXPECT_VEC_ZERO(result);
 }
 
-TEST(Vector4DScalarMultiplication, VectorTimesOneReturnsVectorWithSameValues)
+
+/** @test Verify that the binary multiplication of a @ref fgm::Vector4D by one returns the original vector. */
+TEST(Vector4DScalarMultiplication, MultiplicationByOneReturnsOriginalVector)
 {
-    // Given an arbitrary vector
     const fgm::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
 
-    // When multiplied with 1
     const fgm::Vector4D result = vec * 1;
 
-    // Then, we get the same vector
     EXPECT_VEC_EQ(vec, result);
 }
 
-TYPED_TEST(Vector4DScalarMultiplication, VectorTimesANumberReturnsAScaledVector)
-{
-    // Given an arbitrary vector and a scalar
 
-    // When multiplied (vec * scalar)
+/**
+ * @test Verify that the binary multiplication operator (vector * scalar) performs a component-wise (Hadamard) product
+ * and returns a new @ref fgm::Vector4D instance.
+ */
+TYPED_TEST(Vector4DScalarMultiplication, VectorTimesScalarReturnsScaledVector)
+{
     const fgm::Vector4D result = this->vec * this->scalar;
 
-    // Then, new vector contains elements multiplied(scaled) with the scalar
     if (std::is_floating_point_v<TypeParam>)
         EXPECT_VEC_EQ(this->expectedFloating, result);
     else
         EXPECT_VEC_EQ(this->expectedIntegral, result);
 }
 
-TYPED_TEST(Vector4DScalarMultiplication, NumberTimesAVectorReturnsAScaledVector)
-{
-    // Given an arbitrary vector and a scalar
 
-    // When multiplied (vec * scalar)
+/**
+ * @test Verify that the binary multiplication operator (scalar * vector) performs a component-wise (Hadamard) product
+ * and returns a new
+ *        @ref fgm::Vector4D instance.
+ */
+TYPED_TEST(Vector4DScalarMultiplication, ScalarTimesAVectorReturnsScaledVector)
+{
     const fgm::Vector4D result = this->scalar * this->vec;
 
-    // Then, new vector contains elements multiplied(scaled) with the scalar
     if (std::is_floating_point_v<TypeParam>)
         EXPECT_VEC_EQ(this->expectedFloating, result);
     else
         EXPECT_VEC_EQ(this->expectedIntegral, result);
 }
 
-TYPED_TEST(Vector4DScalarMultiplication, VectorTimesEqualAScalarIsTheSameVectorScaled)
-{
-    // Given an arbitrary vector and a scalar
 
-    // When multiplied (vec * scalar)
+/**
+ * @test Verify that the compound multiplication assignment operator performs a component-wise (Hadamard) product
+ *       and mutates the @ref fgm::Vector4D in-place.
+ */
+TYPED_TEST(Vector4DScalarMultiplication, VectorTimesEqualScalarIsTheSameVectorScaled)
+{
     this->vec *= this->scalar;
 
-    // Then, the original vector is scaled by the scalar
     if (std::is_floating_point_v<TypeParam>)
         EXPECT_VEC_EQ(this->expectedFloating, this->vec);
     else
         EXPECT_VEC_EQ(this->expectedIntegral, this->vec);
 }
 
+
+/** @test Verify that the binary multiplication operator performs automatic type promotion to the wider numeric type. */
 TYPED_TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationPromotesType)
 {
-    // Given a vector and scalar with arbitrary values
     constexpr double scalar = 2.123456789123456;
-    const fgm::Vector4D expected(14.864197523864192, 27.604938258604928, 61.580246884580224, 87.061728354061696);
 
-    // When they are multiplied
-    const fgm::Vector4D result = this->vec * scalar;
+    [[maybe_unused]] const fgm::Vector4D result = this->vec * scalar;
 
-    // Then the new vector is type promoted
     static_assert(std::is_same_v<typename decltype(result)::value_type, double>);
-
-    // And the vector is scaled by `scalar`
-    EXPECT_VEC_EQ(expected, result);
 }
 
+
+/**
+ * @test Verify that the compound multiplication assignment operator maintains the destination type and performs an
+ *       implicit cast.
+ */
 TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationAssignmentDoesNotPromoteType)
 {
-    // Given a vector and scalar with arbitrary values
     fgm::Vector4D vec(3.0f, 0.0f, -1.0f, 2.0f);
     constexpr double scalar = 5.0;
-    const fgm::Vector4D expected(15.0f, 0.0f, -5.0f, 10.0f);
-
-    // When vector is multiplied by the scalar and assigned (*=)
     vec *= scalar;
 
-    // Then the vector type is preserved
     static_assert(std::is_same_v<decltype(vec)::value_type, float>);
-    // And the vector is scaled by `scalar`
-    EXPECT_VEC_EQ(expected, vec);
 }
 
-TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationAssignmentGivesResultWithMinimalPrecisionLoss)
+
+/** @test Verify that the compound multiplication operator for mixed types ensures minimal precision loss. */
+TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationAssignmentEnsuresMinimalPrecisionLoss)
 {
-    // Given a vector and scalar with arbitrary values
     fgm::Vector4D vec(3, 0, -1, 8);
     constexpr double scalar = 2.5;
     const fgm::Vector4D expected(7, 0, -2, 20);
 
-    // When vector is multiplied by the scalar and assigned (*=)
     vec *= scalar;
 
-    // And the vector is scaled by `scalar` with minimal precision loss
     EXPECT_VEC_EQ(expected, vec);
 }
 
@@ -341,101 +338,87 @@ TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationAssignmentGivesR
  *                                    *
  **************************************/
 
-TYPED_TEST(Vector4DScalarDivision, VectorDividedByZeroReturnsInfinityVector)
+/**
+ * @test Verify that the binary division of a @ref fgm::Vector4D by a zero scalar returns an infinity-vector for
+ *       floating-point types and triggers program termination for integral types.
+ */
+TYPED_TEST(Vector4DScalarDivision, DivisionByZeroReturnsInfinityVector)
 {
-    // Given an arbitrary vector
-
-    // Floating point
     if constexpr (std::is_floating_point_v<TypeParam>)
-    {
-        // When divided by zero
-        const fgm::Vector4D result = this->vec / 0;
-
-        // Then, the resultant vector is an infinity vector
-        EXPECT_VEC_INF(result);
-    } // Integrals
+        EXPECT_VEC_INF(this->vec / 0);
     else
-    {
         EXPECT_DEATH({ this->vec / 0; }, "Integral division by zero");
-    }
 }
 
-TYPED_TEST(Vector4DScalarDivision, VectorDividedByOneReturnsAVectorWithSameValues)
-{
-    // Given an arbitrary vector
 
-    // When divided by one
+/** @test Verify that the binary division of a @ref fgm::Vector4D by one returns the original vector. */
+TYPED_TEST(Vector4DScalarDivision, DivisionByOneReturnsOriginalVector)
+{
     const fgm::Vector4D result = this->vec / 1;
 
-    // Then, the resultant vector is an infinity vector
     EXPECT_VEC_EQ(result, this->vec);
 }
 
+
+/**
+ * @test Verify that the binary division operator (vector / scalar) performs a component-wise divide
+ *       and returns a new @ref fgm::Vector4D instance.
+ */
 TYPED_TEST(Vector4DScalarDivision, VectorDividedByANumberReturnsAScaledVector)
 {
-    // Given an arbitrary vector
-
-    // When divided by a scalar
     const fgm::Vector4D result = this->vec / this->scalar;
 
-    // Then, the resultant vector is a new vector with elements divided by the scalar
     EXPECT_VEC_EQ(this->expected, result);
 }
 
+
+/**
+ * @test Verify that the compound division assignment operator performs a component-wise divide
+ *       and mutates the @ref fgm::Vector4D in-place.
+ */
 TYPED_TEST(Vector4DScalarDivision, VectorDivideEqualsANumberIsTheSameVectorScaled)
 {
-    // Given an arbitrary vector
-
-    // When divide equals by a scalar
     this->vec /= this->scalar;
 
-    // Then, the resultant vector is the same vector with elements divided by the scalar
     EXPECT_VEC_EQ(this->expected, this->vec);
 }
 
+
+/** @test Verify that the binary division operator performs automatic type promotion to the wider numeric type. */
 TEST(Vector4DScalarDivision, MixedTypeScalarDivisionPromotesType)
 {
-    // Given an arbitrary vector
     const fgm::Vector4D vec(15.0, 0.0, -5.0, 10.0);
     constexpr double scalar = 5.0;
-    const fgm::Vector4D expected(3.0f, 0.0f, -1.0f, 2.0f);
 
-    // When divided by a scalar
-    const fgm::Vector4D result = vec / scalar;
+    [[maybe_unused]] const fgm::Vector4D result = vec / scalar;
 
-    // Then the new vector is type promoted
     static_assert(std::is_same_v<decltype(result)::value_type, double>);
-    // And the vector is scaled by `scalar`
-    EXPECT_VEC_EQ(expected, result);
 }
 
+
+/**
+ * @test Verify that the compound division assignment operator maintains the destination type and performs an
+ *       implicit cast.
+ */
 TEST(Vector4DScalarDivision, MixedTypeScalarDivisionAssignmentDoesNotPromoteType)
 {
-    // Given an arbitrary vector
     fgm::Vector4D vec(15.0f, 0.0f, -5.0f, 10.0f);
     constexpr double scalar = 5.0;
 
-    const fgm::Vector4D expected(3.0f, 0.0f, -1.0f, 2.0f);
-
-    // When divide equals by a scalar
     vec /= scalar;
 
-    // Then the vector type is preserved
     static_assert(std::is_same_v<decltype(vec)::value_type, float>);
-    // And the vector is scaled by `scalar`
-    EXPECT_VEC_EQ(expected, vec);
 }
 
+
+/** @test Verify that the compound division operator for mixed types ensures minimal precision loss. */
 TEST(Vector4DScalarDivision, MixedTypeScalarDivisionAssignmentGivesResultWithMinimalPrecisionLoss)
 {
-    // Given an arbitrary vector
     fgm::Vector4D vec(10, 25, -30, 2);
     constexpr double scalar = 2.5;
     const fgm::Vector4D expected(4, 10, -12, 0);
 
-    // When vector divides equal by a scalar
     vec /= scalar;
 
-    // And the vector is scaled by `scalar` with minimal precision loss
     EXPECT_VEC_EQ(expected, vec);
 }
