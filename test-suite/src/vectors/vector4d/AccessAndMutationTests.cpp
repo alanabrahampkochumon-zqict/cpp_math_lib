@@ -18,6 +18,11 @@
  *                                    *
  **************************************/
 
+/**
+ * @addtogroup FGM_Vec4_Access
+ * @{
+ */
+
 /** @test Verify that @ref fgm::Vector4D components are accessible via named spatial aliases (x, y, z, w). */
 TEST(Vector4DAccess, AccessibleAsXYZW)
 {
@@ -28,7 +33,6 @@ TEST(Vector4DAccess, AccessibleAsXYZW)
     EXPECT_FLOAT_EQ(6.0f, vec.z);
     EXPECT_FLOAT_EQ(2.0f, vec.w);
 }
-
 
 /** @test Verify that @ref fgm::Vector4D components are accessible via named spatial aliases (s, t, p, q). */
 TEST(Vector4DAccess, AccessibleAsSTPQ)
@@ -41,7 +45,6 @@ TEST(Vector4DAccess, AccessibleAsSTPQ)
     EXPECT_FLOAT_EQ(2.0f, vec.q);
 }
 
-
 /** @test Verify that @ref fgm::Vector4D components are accessible via named spatial aliases (r, g, b, a). */
 TEST(Vector4DAccess, AccessibleAsRGBA)
 {
@@ -52,7 +55,6 @@ TEST(Vector4DAccess, AccessibleAsRGBA)
     EXPECT_FLOAT_EQ(6.0f, vec.b);
     EXPECT_FLOAT_EQ(2.0f, vec.a);
 }
-
 
 /** @test Verify that @ref fgm::Vector4D components are accessible via subscript indexing for reads. */
 TEST(Vector4DAccess, AccessibleAsArray)
@@ -65,6 +67,8 @@ TEST(Vector4DAccess, AccessibleAsArray)
     EXPECT_FLOAT_EQ(2.0f, vec.elements[3]);
 }
 
+/** @} */
+
 
 
 
@@ -73,6 +77,11 @@ TEST(Vector4DAccess, AccessibleAsArray)
  *           MUTATION TESTS           *
  *                                    *
  **************************************/
+
+/**
+ * @addtogroup FGM_Vec4_Mutation
+ * @{
+ */
 
 /** @test Verify that @ref fgm::Vector4D components can be mutated via named spatial aliases (x, y, z, w). */
 TEST(Vector4DMutation, ElementsCanBeMutatedUsingXYZW)
@@ -139,3 +148,5 @@ TEST(Vector4DMutation, ElementsCanBeMutatedUsingIndex)
     EXPECT_FLOAT_EQ(6.0f, vec[2]);
     EXPECT_FLOAT_EQ(2.0f, vec[3]);
 }
+
+/** @} */

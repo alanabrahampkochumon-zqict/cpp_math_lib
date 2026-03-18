@@ -64,5 +64,4 @@
     /** @} */ // End of MathTests
 
 /** @} */ // End of FGMTestSuite
-
 // clang-format on

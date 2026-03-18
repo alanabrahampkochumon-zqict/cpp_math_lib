@@ -114,7 +114,7 @@ $(function(){initNavTree('_register_type_tests_8cpp_source.html','',''); });
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment"> **************************************/</span></div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
 <div class="foldopen" id="foldopen00031" data-start="{" data-end="}">
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="_register_type_tests_8cpp.html#a4b438da7c32294d9d902a75b25a124d5">   31</a></span><a class="code hl_function" href="_register_type_tests_8cpp.html#a4b438da7c32294d9d902a75b25a124d5">TEST</a>(<a class="code hl_class" href="class_register_map_test.html">RegisterMapTest</a>, FloatMapsToCorrectSIMDIntrinsics)</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="_register_type_tests_8cpp.html#a7b3786e6b232179909436f72e16eaf97">   31</a></span>TEST(<a class="code hl_class" href="class_register_map_test.html">RegisterMapTest</a>, FloatMapsToCorrectSIMDIntrinsics)</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>{</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="comment">// Float with alignment of 16 correctly maps to __m128</span></div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    ::testing::StaticAssertTypeEq&lt;falcon::simd::RegisterMap&lt;float, 16&gt;::type, __m128&gt;();</div>
@@ -128,7 +128,7 @@ $(function(){initNavTree('_register_type_tests_8cpp_source.html','',''); });
 </div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
 <div class="foldopen" id="foldopen00043" data-start="{" data-end="}">
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="_register_type_tests_8cpp.html#a4ea401f5417f43c18fb46b76a86261ce">   43</a></span><a class="code hl_function" href="_register_type_tests_8cpp.html#a4b438da7c32294d9d902a75b25a124d5">TEST</a>(<a class="code hl_class" href="class_register_map_test.html">RegisterMapTest</a>, DoubleMapsToCorrectSIMDIntrinsics)</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="_register_type_tests_8cpp.html#a4cefa64a297d3c62566f373a714c87a2">   43</a></span>TEST(<a class="code hl_class" href="class_register_map_test.html">RegisterMapTest</a>, DoubleMapsToCorrectSIMDIntrinsics)</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>{</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="comment">// Double with alignment of 16 correctly maps to __m128</span></div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    ::testing::StaticAssertTypeEq&lt;falcon::simd::RegisterMap&lt;double, 16&gt;::type, __m128d&gt;();</div>
@@ -156,7 +156,6 @@ $(function(){initNavTree('_register_type_tests_8cpp_source.html','',''); });
 </div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
 <div class="ttc" id="a_register_type_tests_8cpp_html_a40f1eedf2b1a34a7a841d8bc8ebf19ce"><div class="ttname"><a href="_register_type_tests_8cpp.html#a40f1eedf2b1a34a7a841d8bc8ebf19ce">TYPED_TEST_SUITE</a></div><div class="ttdeci">TYPED_TEST_SUITE(RegisterMapTest, SupportedSIMDIntegralTypes)</div></div>
-<div class="ttc" id="a_register_type_tests_8cpp_html_a4b438da7c32294d9d902a75b25a124d5"><div class="ttname"><a href="_register_type_tests_8cpp.html#a4b438da7c32294d9d902a75b25a124d5">TEST</a></div><div class="ttdeci">TEST(RegisterMapTest, FloatMapsToCorrectSIMDIntrinsics)</div><div class="ttdef"><b>Definition</b> <a href="#l00031">RegisterTypeTests.cpp:31</a></div></div>
 <div class="ttc" id="a_register_type_tests_8cpp_html_adb280dede2ad54424d4e1a2601a5fc8e"><div class="ttname"><a href="_register_type_tests_8cpp.html#adb280dede2ad54424d4e1a2601a5fc8e">TYPED_TEST</a></div><div class="ttdeci">TYPED_TEST(RegisterMapTest, IntegralsMapToCorrectSIMDIntrinsics)</div><div class="ttdef"><b>Definition</b> <a href="#l00055">RegisterTypeTests.cpp:55</a></div></div>
 <div class="ttc" id="a_s_i_m_d_test_setup_8h_html"><div class="ttname"><a href="_s_i_m_d_test_setup_8h.html">SIMDTestSetup.h</a></div><div class="ttdoc">Define test setups common to all SIMD tests.</div></div>
 <div class="ttc" id="a_s_i_m_d_test_setup_8h_html_ab11ade80b6fec4f85a9c4def5a1d1992"><div class="ttname"><a href="_s_i_m_d_test_setup_8h.html#ab11ade80b6fec4f85a9c4def5a1d1992">SupportedSIMDIntegralTypes</a></div><div class="ttdeci">::testing::Types&lt; unsigned char, bool, int, unsigned int, std::size_t, long long &gt; SupportedSIMDIntegralTypes</div><div class="ttdef"><b>Definition</b> <a href="_s_i_m_d_test_setup_8h_source.html#l00017">SIMDTestSetup.h:17</a></div></div>

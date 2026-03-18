@@ -24,9 +24,9 @@ class \doxymbox{\hyperlink{class_vector4_d_dot_product}{Vector4\+DDot\+Product$<
 \item 
 \doxymbox{\hyperlink{_product_tests_8cpp_a994c37da972c99e84324198a12e2cfbe}{TYPED\+\_\+\+TEST}} (\doxymbox{\hyperlink{class_vector4_d_dot_product}{Vector4\+DDot\+Product}}, Static\+Wrapper\+\_\+\+Non\+Orthogonal\+Dot\+Product\+Returns\+Non\+Zero\+Scalar)
 \item 
-\doxymbox{\hyperlink{_product_tests_8cpp_a51ad932ec681906beb8f4dd119771c39}{TEST}} (\doxymbox{\hyperlink{class_vector4_d_dot_product}{Vector4\+DDot\+Product}}, Anti\+Parallel\+Dot\+Product\+Returns\+Negative\+Scalar)
+void \doxymbox{\hyperlink{_product_tests_8cpp_a4ce7ca6be0e057f649edb97cc08fd82c}{Vector4\+DDot\+Product\+\_\+\+Anti\+Parallel\+Dot\+Product\+Returns\+Negative\+Scalar}} ()
 \item 
-\doxymbox{\hyperlink{_product_tests_8cpp_a946dc138984e2d414ff3d35643b6686e}{TEST}} (\doxymbox{\hyperlink{class_vector4_d_dot_product}{Vector4\+DDot\+Product}}, Mixed\+Type\+Dot\+Product\+Promotes\+Type)
+void \doxymbox{\hyperlink{_product_tests_8cpp_a26e51f21b6148a59ce7e29928ed19309}{Vector4\+DDot\+Product\+\_\+\+Mixed\+Type\+Dot\+Product\+Promotes\+Type}} ()
 \end{DoxyCompactItemize}
 
 
@@ -53,30 +53,6 @@ Definition in file \doxymbox{\hyperlink{_product_tests_8cpp_source}{Product\+Tes
 \label{doc-func-members}
 \Hypertarget{_product_tests_8cpp_doc-func-members}
 \doxysubsection{Function Documentation}
-\Hypertarget{_product_tests_8cpp_a51ad932ec681906beb8f4dd119771c39}\index{ProductTests.cpp@{ProductTests.cpp}!TEST@{TEST}}
-\index{TEST@{TEST}!ProductTests.cpp@{ProductTests.cpp}}
-\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily \label{_product_tests_8cpp_a51ad932ec681906beb8f4dd119771c39} 
-TEST (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector4_d_dot_product}{Vector4\+DDot\+Product}}}]{}{, }\item[{Anti\+Parallel\+Dot\+Product\+Returns\+Negative\+Scalar}]{}{}\end{DoxyParamCaption})}
-
-\begin{DoxyRefDesc}{Test}
-\item[\doxymbox{\hyperlink{test__test000123}{Test}}]Verify that the dot product of a \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} with another \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} in opposite direction returns a negative scalar. \end{DoxyRefDesc}
-
-
-Definition at line \doxymbox{\hyperlink{_product_tests_8cpp_source_l00118}{118}} of file \doxymbox{\hyperlink{_product_tests_8cpp_source}{Product\+Tests.\+cpp}}.
-
-\Hypertarget{_product_tests_8cpp_a946dc138984e2d414ff3d35643b6686e}\index{ProductTests.cpp@{ProductTests.cpp}!TEST@{TEST}}
-\index{TEST@{TEST}!ProductTests.cpp@{ProductTests.cpp}}
-\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily \label{_product_tests_8cpp_a946dc138984e2d414ff3d35643b6686e} 
-TEST (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector4_d_dot_product}{Vector4\+DDot\+Product}}}]{}{, }\item[{Mixed\+Type\+Dot\+Product\+Promotes\+Type}]{}{}\end{DoxyParamCaption})}
-
-\begin{DoxyRefDesc}{Test}
-\item[\doxymbox{\hyperlink{test__test000124}{Test}}]Verify that the dot product of a \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} with another \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} of different type returns a type promoted vector. \end{DoxyRefDesc}
-
-
-Definition at line \doxymbox{\hyperlink{_product_tests_8cpp_source_l00134}{134}} of file \doxymbox{\hyperlink{_product_tests_8cpp_source}{Product\+Tests.\+cpp}}.
-
 \Hypertarget{_product_tests_8cpp_a9019737a5725cc56c058afee2b190121}\index{ProductTests.cpp@{ProductTests.cpp}!TYPED\_TEST@{TYPED\_TEST}}
 \index{TYPED\_TEST@{TYPED\_TEST}!ProductTests.cpp@{ProductTests.cpp}}
 \doxysubsubsection{\texorpdfstring{TYPED\_TEST()}{TYPED\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
@@ -134,4 +110,28 @@ TYPED\+\_\+\+TEST\+\_\+\+SUITE (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperl
 
 
 Test fixture for \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} dot project, parameterized by \doxylink{_vector3_d_test_setup_8h_a419bc60d90bfcd4724a953b51402235e}{Supported\+Arithmetic\+Types}. 
+
+\Hypertarget{_product_tests_8cpp_a4ce7ca6be0e057f649edb97cc08fd82c}\index{ProductTests.cpp@{ProductTests.cpp}!Vector4DDotProduct\_AntiParallelDotProductReturnsNegativeScalar@{Vector4DDotProduct\_AntiParallelDotProductReturnsNegativeScalar}}
+\index{Vector4DDotProduct\_AntiParallelDotProductReturnsNegativeScalar@{Vector4DDotProduct\_AntiParallelDotProductReturnsNegativeScalar}!ProductTests.cpp@{ProductTests.cpp}}
+\doxysubsubsection{\texorpdfstring{Vector4DDotProduct\_AntiParallelDotProductReturnsNegativeScalar()}{Vector4DDotProduct\_AntiParallelDotProductReturnsNegativeScalar()}}
+{\footnotesize\ttfamily \label{_product_tests_8cpp_a4ce7ca6be0e057f649edb97cc08fd82c} 
+void Vector4\+DDot\+Product\+\_\+\+Anti\+Parallel\+Dot\+Product\+Returns\+Negative\+Scalar (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Test}
+\item[\doxymbox{\hyperlink{test__test000123}{Test}}]Verify that the dot product of a \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} with another \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} in opposite direction returns a negative scalar. \end{DoxyRefDesc}
+
+
+Definition at line \doxymbox{\hyperlink{_product_tests_8cpp_source_l00118}{118}} of file \doxymbox{\hyperlink{_product_tests_8cpp_source}{Product\+Tests.\+cpp}}.
+
+\Hypertarget{_product_tests_8cpp_a26e51f21b6148a59ce7e29928ed19309}\index{ProductTests.cpp@{ProductTests.cpp}!Vector4DDotProduct\_MixedTypeDotProductPromotesType@{Vector4DDotProduct\_MixedTypeDotProductPromotesType}}
+\index{Vector4DDotProduct\_MixedTypeDotProductPromotesType@{Vector4DDotProduct\_MixedTypeDotProductPromotesType}!ProductTests.cpp@{ProductTests.cpp}}
+\doxysubsubsection{\texorpdfstring{Vector4DDotProduct\_MixedTypeDotProductPromotesType()}{Vector4DDotProduct\_MixedTypeDotProductPromotesType()}}
+{\footnotesize\ttfamily \label{_product_tests_8cpp_a26e51f21b6148a59ce7e29928ed19309} 
+void Vector4\+DDot\+Product\+\_\+\+Mixed\+Type\+Dot\+Product\+Promotes\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Test}
+\item[\doxymbox{\hyperlink{test__test000124}{Test}}]Verify that the dot product of a \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} with another \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} of different type returns a type promoted vector. \end{DoxyRefDesc}
+
+
+Definition at line \doxymbox{\hyperlink{_product_tests_8cpp_source_l00134}{134}} of file \doxymbox{\hyperlink{_product_tests_8cpp_source}{Product\+Tests.\+cpp}}.
 

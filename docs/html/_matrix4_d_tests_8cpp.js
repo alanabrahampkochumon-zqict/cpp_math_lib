@@ -1,17 +1,17 @@
 var _matrix4_d_tests_8cpp =
 [
-    [ "TEST", "_matrix4_d_tests_8cpp.html#a9a696681ab2382bdb04756b9753c4a87", null ],
-    [ "TEST", "_matrix4_d_tests_8cpp.html#a989d42256dd6f927a392446e0b51ed35", null ],
-    [ "TEST", "_matrix4_d_tests_8cpp.html#a26866bd44de4f3f2a9696923ae1cbec6", null ],
-    [ "TEST", "_matrix4_d_tests_8cpp.html#aad84a105ccfffbdc3f88b1c03df132c6", null ],
-    [ "TEST", "_matrix4_d_tests_8cpp.html#a54c4e23943615e9feabc7e4a01e97282", null ],
-    [ "TEST", "_matrix4_d_tests_8cpp.html#a4a65e59fa3d2edbf097632e7fca6c533", null ],
-    [ "TEST", "_matrix4_d_tests_8cpp.html#a4daf38413b9a0e109c0f532a056fa4c8", null ],
-    [ "TEST", "_matrix4_d_tests_8cpp.html#ab47a20fb5918eb1fd73597ee76b89f62", null ],
-    [ "TEST", "_matrix4_d_tests_8cpp.html#adbe3523afd05bd33a0aac1f5469daa26", null ],
-    [ "TEST", "_matrix4_d_tests_8cpp.html#a21e1016964fac0a5759914d1e9bb9de8", null ],
-    [ "TEST", "_matrix4_d_tests_8cpp.html#aed980b5fdf5f58a62c01660e76ff362f", null ],
-    [ "TEST", "_matrix4_d_tests_8cpp.html#a5e5aa8c2d2795f598993a6c12038b26d", null ],
-    [ "TEST", "_matrix4_d_tests_8cpp.html#a0da301c49a87025fc69134c064150693", null ],
-    [ "TEST", "_matrix4_d_tests_8cpp.html#a3e9e710084ed67ac669fe1a222d5cb53", null ]
+    [ "Matrix4D_Access_CanBeAccessedAsAValueAtRowColumn", "_matrix4_d_tests_8cpp.html#a0ad0b883a40bc63b4939dc4d73cadff4", null ],
+    [ "Matrix4D_Access_CanBeAccessedAsAVectorAtIndex", "_matrix4_d_tests_8cpp.html#ad43f719be0e3302da5ac65c85bc23113", null ],
+    [ "Matrix4D_Addition_PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsSameMatrixWithoutTypePromotion", "_matrix4_d_tests_8cpp.html#a40d4e7c35c57f53b0d37b1ecae5b5076", null ],
+    [ "Matrix4D_Addition_PlusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValues", "_matrix4_d_tests_8cpp.html#a62f1ab2668ea396b38d06da09b752248", null ],
+    [ "Matrix4D_Addition_SumOfTwoMatricesOfDifferentTypeReturnsAnotherMatrixWithTypePromotion", "_matrix4_d_tests_8cpp.html#aacf9e2af75b086d0b5e5c476c827a208", null ],
+    [ "Matrix4D_Addition_SumOfTwoMatricesReturnsAnotherMatrixWithCorrectValues", "_matrix4_d_tests_8cpp.html#ad9b7ed1a3d0d8ae3c2109f88e0fdfe9f", null ],
+    [ "Matrix4D_Initialization_CanMutateValueAtRowColumn", "_matrix4_d_tests_8cpp.html#a38bcde2b99f620c7c89dd2c494e60024", null ],
+    [ "Matrix4D_Initialization_CanMutateVectorAtIndex", "_matrix4_d_tests_8cpp.html#ab604e4f8c460bf3e9f04ada65c51783b", null ],
+    [ "Matrix4D_Initialization_ConversionConstructorHandlesTypeDemotion", "_matrix4_d_tests_8cpp.html#adefcaf8aa02ae8029a5e6bb0e3a243b0", null ],
+    [ "Matrix4D_Initialization_ConversionConstructorHandlesTypePromotion", "_matrix4_d_tests_8cpp.html#a0621634c1ae42f2aa6151f78ef522267", null ],
+    [ "Matrix4D_Initialization_InitializationSupportedForIntegers", "_matrix4_d_tests_8cpp.html#a30a507460396af49d3357645b3bc71b0", null ],
+    [ "Matrix4D_Initialization_InitializedWithFour4DVectorsProvidesCorrectMatrix", "_matrix4_d_tests_8cpp.html#aea1af1af09b6a83dbab96cd716531278", null ],
+    [ "Matrix4D_Initialization_InitializedWithOutParametersProvidesIdentityMatrix", "_matrix4_d_tests_8cpp.html#ac860bac5cca4039da41907af04b7107e", null ],
+    [ "Matrix4D_Initialization_InitializedWithParametersProvidesCorrectMatrix", "_matrix4_d_tests_8cpp.html#afe14ffbdc399cb8086b67c3b4714d856", null ]
 ];

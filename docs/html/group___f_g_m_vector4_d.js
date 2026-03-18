@@ -1,6 +1,6 @@
 var group___f_g_m_vector4_d =
 [
-    [ "Component Access", "group___f_g_m___vec4___access.html", null ],
+    [ "Component Access", "group___f_g_m___vec4___access.html", "group___f_g_m___vec4___access" ],
     [ "Component Mutation", "group___f_g_m___vec4___mutation.html", null ],
     [ "Spatial Aliasing", "group___f_g_m___vec4___alias.html", null ],
     [ "Addition", "group___f_g_m___vec4___addition.html", null ],

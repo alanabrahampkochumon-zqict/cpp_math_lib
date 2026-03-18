@@ -1,18 +1,6 @@
 var _comparison_tests_8cpp =
 [
     [ "Vector4DComparison&lt; T &gt;", "class_vector4_d_comparison.html", "class_vector4_d_comparison" ],
-    [ "TEST", "_comparison_tests_8cpp.html#a5863d5abf650c422c034852029037ca9", null ],
-    [ "TEST", "_comparison_tests_8cpp.html#a4051f8ab9bd9b619b9a28eed515d9c55", null ],
-    [ "TEST", "_comparison_tests_8cpp.html#aa528ff23890f64be0332f3fcc5de1957", null ],
-    [ "TEST", "_comparison_tests_8cpp.html#a65fe90cf0fca7ceb899d60aed56b509b", null ],
-    [ "TEST", "_comparison_tests_8cpp.html#a9b77d2d49d4495c7e203f4863c0d9820", null ],
-    [ "TEST", "_comparison_tests_8cpp.html#afc94e1ede20fd961f8bb1ebd8f425cb1", null ],
-    [ "TEST", "_comparison_tests_8cpp.html#ac1bebb0125a0c48797db2ad70c22fe61", null ],
-    [ "TEST", "_comparison_tests_8cpp.html#aa9faa5deb474800d3b5db49ca67c4cc4", null ],
-    [ "TEST", "_comparison_tests_8cpp.html#ac11be36583fc759c8a79c9d677326f5b", null ],
-    [ "TEST", "_comparison_tests_8cpp.html#a8f35442a2cbdae45e26f0ee9592af85e", null ],
-    [ "TEST", "_comparison_tests_8cpp.html#ac911a81c503a1cd2155eae51b67196a0", null ],
-    [ "TEST", "_comparison_tests_8cpp.html#a89d18655c402d46ce09c9beb50db350d", null ],
     [ "TYPED_TEST", "_comparison_tests_8cpp.html#ad616d60cae96ac195ba7c97f9b5ad7bd", null ],
     [ "TYPED_TEST", "_comparison_tests_8cpp.html#a1cf4379e6048caba22827d0000d4f76f", null ],
     [ "TYPED_TEST", "_comparison_tests_8cpp.html#a3fa44fde982b0b68d43d5ac554b9c48d", null ],
@@ -25,5 +13,17 @@ var _comparison_tests_8cpp =
     [ "TYPED_TEST", "_comparison_tests_8cpp.html#a1f72e0443c39159524c05acbe8e4c537", null ],
     [ "TYPED_TEST", "_comparison_tests_8cpp.html#a09dac51c008ed482c3432876278813be", null ],
     [ "TYPED_TEST", "_comparison_tests_8cpp.html#aa613048febba28d0e783a1252546de4c", null ],
-    [ "TYPED_TEST_SUITE", "_comparison_tests_8cpp.html#a885d6bacff4a6d2b2f065aafc5a0dc51", null ]
+    [ "TYPED_TEST_SUITE", "_comparison_tests_8cpp.html#a885d6bacff4a6d2b2f065aafc5a0dc51", null ],
+    [ "Vector4DComparison_InfinityVector_GreaterThan_ReturnsBooleanVectorWithCorrectValues", "_comparison_tests_8cpp.html#a30438033db6402787a233bbd206258a1", null ],
+    [ "Vector4DComparison_InfinityVector_GreaterThanOrEqual_ReturnsBooleanVectorWithCorrectValues", "_comparison_tests_8cpp.html#a8e19507625dae566ec1399d7ecdbd9c9", null ],
+    [ "Vector4DComparison_InfinityVector_LessThan_ReturnsBooleanVectorWithCorrectValues", "_comparison_tests_8cpp.html#a1e5d486f6ee6246651733a3eb0dd5a77", null ],
+    [ "Vector4DComparison_InfinityVector_LessThanOrEqual_ReturnsBooleanVectorWithCorrectValues", "_comparison_tests_8cpp.html#af5e6c50f572c1a1e7450b60046bfe7a4", null ],
+    [ "Vector4DComparison_MixedType_GreaterThan_ReturnsBooleanVectorWithCorrectValues", "_comparison_tests_8cpp.html#a01af216d9cd55739cb9eb63221a8f516", null ],
+    [ "Vector4DComparison_MixedType_GreaterThanOrEqual_ReturnsBooleanVectorWithCorrectValues", "_comparison_tests_8cpp.html#a9d5793aa6315ed836be0c04b05fe17f0", null ],
+    [ "Vector4DComparison_MixedType_LessThan_ReturnsBooleanVectorWithCorrectValues", "_comparison_tests_8cpp.html#a5205f88615eb7aceacd127676c9e97f9", null ],
+    [ "Vector4DComparison_MixedType_LessThanOrEqual_ReturnsBooleanVectorWithCorrectValues", "_comparison_tests_8cpp.html#afd67f17de1f8dc4847623501957a9be0", null ],
+    [ "Vector4DComparison_NaNVector_GreaterThan_ReturnsBooleanVectorWithCorrectValues", "_comparison_tests_8cpp.html#a6561e269785dc47791e52a67a4eefb39", null ],
+    [ "Vector4DComparison_NanVector_GreaterThanOrEqual_ReturnsBooleanVectorWithCorrectValues", "_comparison_tests_8cpp.html#a0e50405ca0c67ea445d84349a4b1a26d", null ],
+    [ "Vector4DComparison_NanVector_LessThan_ReturnsBooleanVectorWithCorrectValues", "_comparison_tests_8cpp.html#a0435145d7a7fb23e428995ea416f25d6", null ],
+    [ "Vector4DComparison_NanVector_LessThanOrEqual_ReturnsBooleanVectorWithCorrectValues", "_comparison_tests_8cpp.html#af21f984e92f8867b0832d3e0cf5d1eb3", null ]
 ];

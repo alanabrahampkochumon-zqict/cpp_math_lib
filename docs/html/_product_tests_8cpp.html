@@ -110,8 +110,8 @@ Functions</h2></td></tr>
 <tr class="memitem:a9426a7ffd1dee3fb7e7f29359a530a45" id="r_a9426a7ffd1dee3fb7e7f29359a530a45"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a9426a7ffd1dee3fb7e7f29359a530a45">TYPED_TEST</a> (<a class="el" href="class_vector4_d_dot_product.html">Vector4DDotProduct</a>, OrthogonalDotProductReturnZero)</td></tr>
 <tr class="memitem:a9019737a5725cc56c058afee2b190121" id="r_a9019737a5725cc56c058afee2b190121"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a9019737a5725cc56c058afee2b190121">TYPED_TEST</a> (<a class="el" href="class_vector4_d_dot_product.html">Vector4DDotProduct</a>, NonOrthogonalDotProductReturnsNonZeroScalar)</td></tr>
 <tr class="memitem:a994c37da972c99e84324198a12e2cfbe" id="r_a994c37da972c99e84324198a12e2cfbe"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a994c37da972c99e84324198a12e2cfbe">TYPED_TEST</a> (<a class="el" href="class_vector4_d_dot_product.html">Vector4DDotProduct</a>, StaticWrapper_NonOrthogonalDotProductReturnsNonZeroScalar)</td></tr>
-<tr class="memitem:a51ad932ec681906beb8f4dd119771c39" id="r_a51ad932ec681906beb8f4dd119771c39"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a51ad932ec681906beb8f4dd119771c39">TEST</a> (<a class="el" href="class_vector4_d_dot_product.html">Vector4DDotProduct</a>, AntiParallelDotProductReturnsNegativeScalar)</td></tr>
-<tr class="memitem:a946dc138984e2d414ff3d35643b6686e" id="r_a946dc138984e2d414ff3d35643b6686e"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a946dc138984e2d414ff3d35643b6686e">TEST</a> (<a class="el" href="class_vector4_d_dot_product.html">Vector4DDotProduct</a>, MixedTypeDotProductPromotesType)</td></tr>
+<tr class="memitem:a4ce7ca6be0e057f649edb97cc08fd82c" id="r_a4ce7ca6be0e057f649edb97cc08fd82c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4ce7ca6be0e057f649edb97cc08fd82c">Vector4DDotProduct_AntiParallelDotProductReturnsNegativeScalar</a> ()</td></tr>
+<tr class="memitem:a26e51f21b6148a59ce7e29928ed19309" id="r_a26e51f21b6148a59ce7e29928ed19309"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a26e51f21b6148a59ce7e29928ed19309">Vector4DDotProduct_MixedTypeDotProductPromotesType</a> ()</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Verifies Vector4D&lt;bool&gt; dot product logic. </p>
@@ -121,54 +121,6 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition in file <a class="el" href="_product_tests_8cpp_source.html">ProductTests.cpp</a>.</p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
-<a id="a51ad932ec681906beb8f4dd119771c39" name="a51ad932ec681906beb8f4dd119771c39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51ad932ec681906beb8f4dd119771c39">&#9670;&#160;</a></span>TEST() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">TEST </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_vector4_d_dot_product.html">Vector4DDotProduct</a></td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">AntiParallelDotProductReturnsNegativeScalar</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="test"><dt><b><a class="el" href="test.html#_test000123">Test</a></b></dt><dd>Verify that the dot product of a <a class="el" href="structfgm_1_1_vector4_d.html" title="fgm::Vector4D">fgm::Vector4D</a> with another <a class="el" href="structfgm_1_1_vector4_d.html" title="fgm::Vector4D">fgm::Vector4D</a> in opposite direction returns a negative scalar. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="_product_tests_8cpp_source.html#l00118">118</a> of file <a class="el" href="_product_tests_8cpp_source.html">ProductTests.cpp</a>.</p>
-
-</div>
-</div>
-<a id="a946dc138984e2d414ff3d35643b6686e" name="a946dc138984e2d414ff3d35643b6686e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a946dc138984e2d414ff3d35643b6686e">&#9670;&#160;</a></span>TEST() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">TEST </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_vector4_d_dot_product.html">Vector4DDotProduct</a></td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">MixedTypeDotProductPromotesType</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="test"><dt><b><a class="el" href="test.html#_test000124">Test</a></b></dt><dd>Verify that the dot product of a <a class="el" href="structfgm_1_1_vector4_d.html" title="fgm::Vector4D">fgm::Vector4D</a> with another <a class="el" href="structfgm_1_1_vector4_d.html" title="fgm::Vector4D">fgm::Vector4D</a> of different type returns a type promoted vector. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="_product_tests_8cpp_source.html#l00134">134</a> of file <a class="el" href="_product_tests_8cpp_source.html">ProductTests.cpp</a>.</p>
-
-</div>
-</div>
 <a id="a9019737a5725cc56c058afee2b190121" name="a9019737a5725cc56c058afee2b190121"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9019737a5725cc56c058afee2b190121">&#9670;&#160;</a></span>TYPED_TEST() <span class="overload">[1/4]</span></h2>
 
@@ -285,6 +237,46 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Test fixture for <a class="el" href="structfgm_1_1_vector4_d.html" title="fgm::Vector4D">fgm::Vector4D</a> dot project, parameterized by <a class="el" href="_vector3_d_test_setup_8h.html#a419bc60d90bfcd4724a953b51402235e" title="SupportedArithmeticTypes">SupportedArithmeticTypes</a>. </p>
+
+</div>
+</div>
+<a id="a4ce7ca6be0e057f649edb97cc08fd82c" name="a4ce7ca6be0e057f649edb97cc08fd82c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ce7ca6be0e057f649edb97cc08fd82c">&#9670;&#160;</a></span>Vector4DDotProduct_AntiParallelDotProductReturnsNegativeScalar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vector4DDotProduct_AntiParallelDotProductReturnsNegativeScalar </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="test"><dt><b><a class="el" href="test.html#_test000123">Test</a></b></dt><dd>Verify that the dot product of a <a class="el" href="structfgm_1_1_vector4_d.html" title="fgm::Vector4D">fgm::Vector4D</a> with another <a class="el" href="structfgm_1_1_vector4_d.html" title="fgm::Vector4D">fgm::Vector4D</a> in opposite direction returns a negative scalar. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_product_tests_8cpp_source.html#l00118">118</a> of file <a class="el" href="_product_tests_8cpp_source.html">ProductTests.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a26e51f21b6148a59ce7e29928ed19309" name="a26e51f21b6148a59ce7e29928ed19309"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26e51f21b6148a59ce7e29928ed19309">&#9670;&#160;</a></span>Vector4DDotProduct_MixedTypeDotProductPromotesType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vector4DDotProduct_MixedTypeDotProductPromotesType </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="test"><dt><b><a class="el" href="test.html#_test000124">Test</a></b></dt><dd>Verify that the dot product of a <a class="el" href="structfgm_1_1_vector4_d.html" title="fgm::Vector4D">fgm::Vector4D</a> with another <a class="el" href="structfgm_1_1_vector4_d.html" title="fgm::Vector4D">fgm::Vector4D</a> of different type returns a type promoted vector. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_product_tests_8cpp_source.html#l00134">134</a> of file <a class="el" href="_product_tests_8cpp_source.html">ProductTests.cpp</a>.</p>
 
 </div>
 </div>

@@ -24,7 +24,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00020}00020\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00021}00021\ \textcolor{comment}{\ ***********************************************/}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00022}00022\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00023}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{00023}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Initialization,\ InitializedWithOutParametersProvidesIdentityMatrix)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00023}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a60ecb0930d52486c711539b9ce70b5c8}{00023}}\ TEST(Matrix2D\_Initialization,\ InitializedWithOutParametersProvidesIdentityMatrix)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00024}00024\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00025}00025\ \ \ \ \ \textcolor{comment}{//\ Arrange\ \&\ Act}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D<float>}}\ mat;}
@@ -33,7 +33,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00029}00029\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_a9126a1165c9650f059be41e8edea775c}{EXPECT\_MAT\_IDENTITY}}(mat);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00030}00030\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00031}00031\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00032}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a65582c669cc9aed530f7f60588e2b829}{00032}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Initialization,\ InitializationSupportedForIntegers)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00032}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a4f12a74abf445e8b34001f6c618ce34f}{00032}}\ TEST(Matrix2D\_Initialization,\ InitializationSupportedForIntegers)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00033}00033\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{comment}{//\ Arrange\ and\ Act}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D<int>}}\ mat;}
@@ -43,7 +43,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00039}00039\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_a9126a1165c9650f059be41e8edea775c}{EXPECT\_MAT\_IDENTITY}}(mat);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00040}00040\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00041}00041\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00042}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_aba2ef5cf23265e986621194fadd4cdbc}{00042}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Initialization,\ InitializedWithParametersProvidesCorrectMatrix)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00042}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a50004699e9a3f7bb15c6886dacaea552}{00042}}\ TEST(Matrix2D\_Initialization,\ InitializedWithParametersProvidesCorrectMatrix)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00043}00043\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{comment}{//\ Arrange\ \&\ Act}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat(0.0f,\ 1.0f,\ 2.0f,\ 3.0f);}
@@ -53,7 +53,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ EXPECT\_FLOAT\_EQ(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(i),\ mat(i\ /\ rowSize,\ i\ \%\ rowSize));}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00050}00050\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00051}00051\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00052}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_aeb55996a7829d9785a517639fbf75fe3}{00052}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Initialization,\ InitializedWithTwo2DVectorsProvidesCorrectMatrix)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00052}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a98d21e6cbe6b3480135cac13aa3e42ad}{00052}}\ TEST(Matrix2D\_Initialization,\ InitializedWithTwo2DVectorsProvidesCorrectMatrix)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00053}00053\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00054}00054\ \ \ \ \ \textcolor{comment}{//\ Arrange\ \&\ Act}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00055}00055\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_vector2_d}{fgm::Vector2D}}\ col1(0.0f,\ 2.0f);}
@@ -66,7 +66,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ EXPECT\_FLOAT\_EQ(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(i),\ mat(i\ /\ rowSize,\ i\ \%\ rowSize));}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00063}00063\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00064}00064\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00065}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ac73ea6484e0dfc4d34bc124c83cc3992}{00065}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Initialization,\ CanMutateVectorAtIndex)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00065}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a9f3890d250a539f9379d0e22bb3340cf}{00065}}\ TEST(Matrix2D\_Initialization,\ CanMutateVectorAtIndex)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00066}00066\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00067}00067\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00068}00068\ \ \ \ \ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D<float>}}\ mat;}
@@ -83,7 +83,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00079}00079\ \ \ \ \ EXPECT\_FLOAT\_EQ(1.0f,\ mat(1,\ 1));}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00080}00080\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00081}00081\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00082}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a470ca7bc8ecb62092f882dac681e244d}{00082}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Initialization,\ CanMutateValueAtRowColumn)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00082}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a67c9ab88d4a5c9bc9cd17f3ebc076405}{00082}}\ TEST(Matrix2D\_Initialization,\ CanMutateValueAtRowColumn)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00083}00083\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00084}00084\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00085}00085\ \ \ \ \ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D<float>}}\ mat;}
@@ -97,7 +97,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ EXPECT\_FLOAT\_EQ(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(i),\ mat(i\ /\ rowSize,\ i\ \%\ rowSize));}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00094}00094\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00095}00095\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00096}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_adb4d74943521d150538975e0db1fcf92}{00096}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Access,\ CanBeAccessedAsAVectorAtIndex)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00096}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a70075fe40c77568c5cbaf832cb56fb94}{00096}}\ TEST(Matrix2D\_Access,\ CanBeAccessedAsAVectorAtIndex)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00097}00097\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00098}00098\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00099}00099\ \ \ \ \ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D<float>}}\ mat;}
@@ -110,7 +110,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00106}00106\ \ \ \ \ EXPECT\_FLOAT\_EQ(1.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector2_d_a48b6ff16588e7fe467c14a24049147e9}{y}});}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00107}00107\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00108}00108\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00109}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a030398f90495a2857a7877beb586c4f9}{00109}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Access,\ CanBeAccessedAsAValueAtRowColumn)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00109}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a197653d938e63e70cf5f74c5862c8697}{00109}}\ TEST(Matrix2D\_Access,\ CanBeAccessedAsAValueAtRowColumn)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00110}00110\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00111}00111\ \ \ \ \ \textcolor{comment}{//\ Arrange\ \&\ Act}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00112}00112\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat(0.0f,\ 1.0f,\ 2.0f,\ 3.0f);}
@@ -127,7 +127,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00123}00123\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00124}00124\ \textcolor{comment}{\ *********************************/}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00125}00125\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00126}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a19ff31c1e1df0d968487ecb77544facc}{00126}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Sum,\ SumOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00126}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a47af663fcf31d424c8c4af4f4fddaae5}{00126}}\ TEST(Matrix2D\_Sum,\ SumOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00127}00127\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00128}00128\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00129}00129\ \ \ \ \ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ a\ =\ \{\ 1.0f,\ 2.0f,\ 4.0f,\ 5.0f\ \};}
@@ -141,7 +141,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00137}00137\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_aa3ff8b8db5d53596130768834a2f7309}{EXPECT\_MAT\_EQ}}(c,\ res);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00138}00138\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00139}00139\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00140}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_af59855d5ddfd115478ae81b8953ca81c}{00140}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Sum,\ PlusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValues)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00140}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab9506b7fb035c65f7783ed61cfb51016}{00140}}\ TEST(Matrix2D\_Sum,\ PlusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValues)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00141}00141\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00142}00142\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00143}00143\ \ \ \ \ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ a\ =\ \{\ 1.0f,\ 2.0f,\ 4.0f,\ 5.0f\ \};}
@@ -155,7 +155,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00151}00151\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_aa3ff8b8db5d53596130768834a2f7309}{EXPECT\_MAT\_EQ}}(c,\ a);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00152}00152\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00153}00153\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00154}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a65aa63bc6e0aa19a4a67769f41854342}{00154}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Difference,\ DifferenceOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00154}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a06bdc931f539ff4937075f06ca24664b}{00154}}\ TEST(Matrix2D\_Difference,\ DifferenceOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00155}00155\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00156}00156\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00157}00157\ \ \ \ \ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ a\ =\ \{\ 1.0f,\ 2.0f,\ 4.0f,\ 5.0f\ \};}
@@ -169,7 +169,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00165}00165\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_aa3ff8b8db5d53596130768834a2f7309}{EXPECT\_MAT\_EQ}}(c,\ res);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00166}00166\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00167}00167\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00168}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ae437795951b41e6278db1657694f4860}{00168}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Difference,\ MinusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValues)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00168}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a95f10d39c9a5595e6981bbe07f475b9b}{00168}}\ TEST(Matrix2D\_Difference,\ MinusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCorrectValues)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00169}00169\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00170}00170\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00171}00171\ \ \ \ \ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ a\ =\ \{\ 1.0f,\ 2.0f,\ 4.0f,\ 5.0f\ \};}
@@ -183,7 +183,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00179}00179\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_aa3ff8b8db5d53596130768834a2f7309}{EXPECT\_MAT\_EQ}}(c,\ a);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00180}00180\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00181}00181\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00182}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_aea6cb4d6c063133fda5b43e107ab355e}{00182}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Product,\ MatrixTimesAIntegerScalarReturnsCorrectMatrix)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00182}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a3fc3a830d8b653a28b183b5848420e3f}{00182}}\ TEST(Matrix2D\_Product,\ MatrixTimesAIntegerScalarReturnsCorrectMatrix)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00183}00183\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00184}00184\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00185}00185\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ a\ =\ \{\ 1.0f,\ 2.0f,\ 4.0f,\ 5.0f\ \};}
@@ -197,7 +197,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00193}00193\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_aa3ff8b8db5d53596130768834a2f7309}{EXPECT\_MAT\_EQ}}(expected,\ actual);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00194}00194\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00195}00195\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00196}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a905344e460b4c2dfea305ff45e5302da}{00196}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Product,\ IntegerScalarTimesAMatrixReturnsCorrectMatrix)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00196}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ae00bd5b6c6caddc861293a38da7c6282}{00196}}\ TEST(Matrix2D\_Product,\ IntegerScalarTimesAMatrixReturnsCorrectMatrix)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00197}00197\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00198}00198\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00199}00199\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ a\ =\ \{\ 1.0f,\ 2.0f,\ 4.0f,\ 5.0f\ \};}
@@ -211,7 +211,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00207}00207\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_aa3ff8b8db5d53596130768834a2f7309}{EXPECT\_MAT\_EQ}}(expected,\ actual);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00208}00208\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00209}00209\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00210}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a6c9d46a36cf0586c068c82712bf58bb8}{00210}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Product,\ MatrixTimesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00210}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a5e1ee988701f7767486e80d8dc16aa5f}{00210}}\ TEST(Matrix2D\_Product,\ MatrixTimesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00211}00211\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00212}00212\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00213}00213\ \ \ \ \ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ a\ =\ \{\ 1.0f,\ 2.0f,\ 4.0f,\ 5.0f\ \};}
@@ -225,7 +225,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00221}00221\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_aa3ff8b8db5d53596130768834a2f7309}{EXPECT\_MAT\_EQ}}(a,\ b);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00222}00222\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00223}00223\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00224}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a1c3bff4a89242e671694d046111cbff0}{00224}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Product,\ MatrixTimesOneReturnANewMatrixWithOriginalMatrixValues)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00224}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_aa335522d247786c9c7ab4d25dbe4d0a9}{00224}}\ TEST(Matrix2D\_Product,\ MatrixTimesOneReturnANewMatrixWithOriginalMatrixValues)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00225}00225\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00226}00226\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00227}00227\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ a\ =\ \{\ 1.0f,\ 2.0f,\ 4.0f,\ 5.0f\ \};}
@@ -237,7 +237,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00233}00233\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_aa3ff8b8db5d53596130768834a2f7309}{EXPECT\_MAT\_EQ}}(a,\ b);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00234}00234\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00235}00235\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00236}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0d58f19f015985e084163d5cac8b9b5}{00236}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Product,\ MatrixTimesZeroScalarReturnsZeroMatrix)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00236}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a51342abc5a230fa48fedc5c46de2deb3}{00236}}\ TEST(Matrix2D\_Product,\ MatrixTimesZeroScalarReturnsZeroMatrix)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00237}00237\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00238}00238\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00239}00239\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ a\ =\ \{\ 1.0f,\ 2.0f,\ 4.0f,\ 5.0f\ \};}
@@ -249,7 +249,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00245}00245\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_a91002780874c238ed276bcdd46adc638}{EXPECT\_MAT\_ZERO}}(b);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00246}00246\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00247}00247\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00248}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a56d21277911e62b3aa1b1c9d57e90d4a}{00248}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Product,\ MatrixTimesAFloatScalarReturnsCorrectMatrix)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00248}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a4c87f3594ab113b698ef43f2c1bda5e2}{00248}}\ TEST(Matrix2D\_Product,\ MatrixTimesAFloatScalarReturnsCorrectMatrix)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00249}00249\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00250}00250\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00251}00251\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ a\ =\ \{\ 1.0f,\ 2.0f,\ 4.0f,\ 5.0f\ \};}
@@ -264,7 +264,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00260}00260\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_aa3ff8b8db5d53596130768834a2f7309}{EXPECT\_MAT\_EQ}}(expected,\ b);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00261}00261\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00262}00262\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00263}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a5699f565cfe1e55303d216beb1e55afd}{00263}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Product,\ MatrixTimesNegativeFloatScalarFlipsSigns)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00263}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a6c80b569576f67c5c002ebbac4ff12c5}{00263}}\ TEST(Matrix2D\_Product,\ MatrixTimesNegativeFloatScalarFlipsSigns)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00264}00264\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00265}00265\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00266}00266\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ a\ =\ \{\ 1.0f,\ -\/2.0f,\ -\/4.0f,\ 5.0f\ \};}
@@ -278,7 +278,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00274}00274\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_aa3ff8b8db5d53596130768834a2f7309}{EXPECT\_MAT\_EQ}}(expected,\ b);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00275}00275\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00276}00276\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00277}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_af617aac3039ac7ffa05de8a217984835}{00277}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Product,\ MatrixTimesVectorReturnsANewMatrixWithCorrectValues)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00277}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ade0b50157080adf9b12f35a46710f413}{00277}}\ TEST(Matrix2D\_Product,\ MatrixTimesVectorReturnsANewMatrixWithCorrectValues)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00278}00278\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00279}00279\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00280}00280\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat\ =\ \{\ 1.0f,\ 2.0f,\ 4.0f,\ 5.0f\ \};}
@@ -292,7 +292,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00288}00288\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_af086eefd4f5940a7963581d949339c8f}{testutils::EXPECT\_VEC\_EQ}}(expected,\ actual);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00289}00289\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00290}00290\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00291}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a8a7e465d18b3d8db72080def16704a87}{00291}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Product,\ IdentityMatrixTimesAVectorReturnsTheSameMatrix)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00291}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a22eab705f1a8dc43e0f860852e222aa2}{00291}}\ TEST(Matrix2D\_Product,\ IdentityMatrixTimesAVectorReturnsTheSameMatrix)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00292}00292\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00293}00293\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00294}00294\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D<float>}}\ mat;}
@@ -305,7 +305,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00301}00301\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_af086eefd4f5940a7963581d949339c8f}{testutils::EXPECT\_VEC\_EQ}}(vec,\ actual);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00302}00302\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00303}00303\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00304}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_aff6e5f0c5afc6e54d2dc63f946e00d57}{00304}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Product,\ VectorTimesAMatrixReturnsANewVectorWithCorrectValues)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00304}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_adf8b49269519a587014b101002716b3a}{00304}}\ TEST(Matrix2D\_Product,\ VectorTimesAMatrixReturnsANewVectorWithCorrectValues)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00305}00305\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00306}00306\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00307}00307\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat\ =\ \{\ 1.0f,\ 2.0f,\ 4.0f,\ 5.0f\ \};}
@@ -319,7 +319,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00315}00315\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_af086eefd4f5940a7963581d949339c8f}{testutils::EXPECT\_VEC\_EQ}}(expected,\ actual);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00316}00316\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00317}00317\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00318}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a539704b27896d714acaeb12addc37fc4}{00318}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Product,\ VectorTimesIdentityMatrixReturnsTheSameMatrix)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00318}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a61bc7ed62135fdfa7d18a0ef08ba203a}{00318}}\ TEST(Matrix2D\_Product,\ VectorTimesIdentityMatrixReturnsTheSameMatrix)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00319}00319\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00320}00320\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00321}00321\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D<float>}}\ mat;}
@@ -332,7 +332,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00328}00328\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_af086eefd4f5940a7963581d949339c8f}{testutils::EXPECT\_VEC\_EQ}}(vec,\ actual);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00329}00329\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00330}00330\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00331}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a67cc683494b316246aeda657d1044015}{00331}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Product,\ VectorTimesEqualMatrixReturnTheSameVectorWithNewValues)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00331}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a77586604b79e2cf7742a9a214502e98d}{00331}}\ TEST(Matrix2D\_Product,\ VectorTimesEqualMatrixReturnTheSameVectorWithNewValues)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00332}00332\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00333}00333\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00334}00334\ \ \ \ \ \doxymbox{\hyperlink{namespacefgm_ad1013de6db597b4a2906d9e5d5c3ad78}{fgm::vec2}}\ vec(2.0f,\ 1.0f);}
@@ -346,7 +346,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00342}00342\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_af086eefd4f5940a7963581d949339c8f}{testutils::EXPECT\_VEC\_EQ}}(expected,\ vec);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00343}00343\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00344}00344\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00345}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_afa989fdbcc28a433b7697db7d5825234}{00345}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Product,\ MatrixTimesMatrixGivesAnotherMatrixWithCorrectValues)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00345}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a39404b89d8dc3af79c6ded8176cbac83}{00345}}\ TEST(Matrix2D\_Product,\ MatrixTimesMatrixGivesAnotherMatrixWithCorrectValues)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00346}00346\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00347}00347\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00348}00348\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat1\ =\ \{\ 1.0f,\ 2.0f,\ 4.0f,\ 5.0f\ \};}
@@ -360,7 +360,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00356}00356\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_aa3ff8b8db5d53596130768834a2f7309}{EXPECT\_MAT\_EQ}}(expected,\ actual);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00357}00357\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00358}00358\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00359}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ad4c656ebeba4a8488260cbc3928c9c65}{00359}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Product,\ MatrixTimesIdentityMatrixReturnsSameMatrix)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00359}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a8c7529d71c9a0e6a4119553f748ec04a}{00359}}\ TEST(Matrix2D\_Product,\ MatrixTimesIdentityMatrixReturnsSameMatrix)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00360}00360\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00361}00361\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00362}00362\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat\ =\ \{\ 1.0f,\ 2.0f,\ 4.0f,\ 5.0f\ \};}
@@ -373,7 +373,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00369}00369\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_aa3ff8b8db5d53596130768834a2f7309}{EXPECT\_MAT\_EQ}}(mat,\ actual);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00370}00370\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00371}00371\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00372}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_af6dd3592386605467ee13d90025aa987}{00372}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Product,\ MatrixTimesEqualAnotherMatrixReturnsSameMatrixWithCorrectValues)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00372}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a1855ee9afe7410e18ea84bd84c3fc4aa}{00372}}\ TEST(Matrix2D\_Product,\ MatrixTimesEqualAnotherMatrixReturnsSameMatrixWithCorrectValues)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00373}00373\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00374}00374\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00375}00375\ \ \ \ \ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat1\ =\ \{\ 1.0f,\ 2.0f,\ 4.0f,\ 5.0f\ \};}
@@ -387,7 +387,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00383}00383\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_aa3ff8b8db5d53596130768834a2f7309}{EXPECT\_MAT\_EQ}}(expected,\ mat1);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00384}00384\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00385}00385\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00386}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_adbe9875d7c5df647a917bd9c557a48f0}{00386}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Product,\ Matrix2DProductIsAntiCommutative)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00386}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_afcea8d404ccc97f7d6c1ab2ff5108785}{00386}}\ TEST(Matrix2D\_Product,\ Matrix2DProductIsAntiCommutative)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00387}00387\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00388}00388\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00389}00389\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat1\ =\ \{\ 1.0f,\ 5.0f,\ 4.0f,\ 12.0f\ \};}
@@ -407,7 +407,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00403}00403\ \ \ \ \ EXPECT\_FALSE(commutative);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00404}00404\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00405}00405\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00406}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a7b732c3a15913686b3601aa32d020a4c}{00406}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Product,\ Matrix2DProductWithScalarMultiplesAreCommutative)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00406}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a40097b4db3b7ad127577721b51bb207b}{00406}}\ TEST(Matrix2D\_Product,\ Matrix2DProductWithScalarMultiplesAreCommutative)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00407}00407\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00408}00408\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00409}00409\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat1\ =\ \{\ 1.0f,\ 2.0f,\ 4.0f,\ 5.0f\ \};}
@@ -426,7 +426,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00422}00422\ \ \ \ \ EXPECT\_TRUE(commutative);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00423}00423\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00424}00424\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00425}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab97083f2ab4b210e32b04a82beee2103}{00425}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Division,\ MatrixDividedByAIntegerScalarReturnsCorrectMatrix)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00425}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_aad86ec51a6527529bc1e32ffd8c9fc28}{00425}}\ TEST(Matrix2D\_Division,\ MatrixDividedByAIntegerScalarReturnsCorrectMatrix)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00426}00426\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00427}00427\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00428}00428\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ a\ =\ \{\ 1.0f,\ 2.0f,\ -\/4.0f,\ 5.0f\ \};}
@@ -440,7 +440,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00436}00436\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_aa3ff8b8db5d53596130768834a2f7309}{EXPECT\_MAT\_EQ}}(expected,\ actual);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00437}00437\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00438}00438\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00439}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_aeae183b1383297041258da27f157b1b5}{00439}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Division,\ MatrixDividesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00439}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a112a9c5b659586248a5edb0c6104dde0}{00439}}\ TEST(Matrix2D\_Division,\ MatrixDividesEqualIntegerScalarIsTheSameMatrixWithCorrectValues)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00440}00440\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00441}00441\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00442}00442\ \ \ \ \ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ a\ =\ \{\ 1.0f,\ 2.0f,\ -\/4.0f,\ 5.0f\ \};}
@@ -454,7 +454,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00450}00450\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_aa3ff8b8db5d53596130768834a2f7309}{EXPECT\_MAT\_EQ}}(b,\ a);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00451}00451\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00452}00452\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00453}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a88abea88660ac29e8ad781ddb3626b24}{00453}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Division,\ MatrixDividedByOneReturnANewMatrixWithOriginalMatrixValues)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00453}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a87ec41c9016868f9432608bf5ca3ece3}{00453}}\ TEST(Matrix2D\_Division,\ MatrixDividedByOneReturnANewMatrixWithOriginalMatrixValues)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00454}00454\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00455}00455\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00456}00456\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ a\ =\ \{\ 1.0f,\ 2.0f,\ -\/4.0f,\ 5.0f\ \};}
@@ -467,7 +467,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00463}00463\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_aa3ff8b8db5d53596130768834a2f7309}{EXPECT\_MAT\_EQ}}(a,\ b);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00464}00464\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00465}00465\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00466}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a681d9f3c39e0da93643545b0aa61db5b}{00466}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Division,\ MatrixDividedByZeroScalarReturnsInfinityMatrix)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00466}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a226638ac8823cb7331e6300df47b9829}{00466}}\ TEST(Matrix2D\_Division,\ MatrixDividedByZeroScalarReturnsInfinityMatrix)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00467}00467\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00468}00468\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00469}00469\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ a\ =\ \{\ 1.0f,\ 2.0f,\ -\/4.0f,\ 5.0f\ \};}
@@ -479,7 +479,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00475}00475\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_a2b1747e615fc348df601bfc0de6a2e44}{EXPECT\_MAT\_INF}}(b);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00476}00476\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00477}00477\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00478}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_aca8cf56dfcef57d01e3c0c5bad39114f}{00478}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Division,\ MatrixDividedByAFloatScalarReturnsCorrectMatrix)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00478}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a8e0446e2659fd3520d2bea98f1bb75ac}{00478}}\ TEST(Matrix2D\_Division,\ MatrixDividedByAFloatScalarReturnsCorrectMatrix)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00479}00479\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00480}00480\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00481}00481\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ a\ =\ \{\ 1.0f,\ 2.0f,\ 4.0f,\ 5.0f\ \};}
@@ -495,7 +495,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00491}00491\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_aa3ff8b8db5d53596130768834a2f7309}{EXPECT\_MAT\_EQ}}(expected,\ actual);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00492}00492\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00493}00493\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00494}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a9ce100fda5c5e080854a8d6c4ffab858}{00494}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Division,\ MatrixDividedNegativeFloatScalarFlipsSigns)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00494}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a983a203f666645694587faf54cb83925}{00494}}\ TEST(Matrix2D\_Division,\ MatrixDividedNegativeFloatScalarFlipsSigns)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00495}00495\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00496}00496\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00497}00497\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ a\ =\ \{\ 1.0f,\ 2.0f,\ -\/4.0f,\ 5.0f\ \};}
@@ -516,7 +516,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00512}00512\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00513}00513\ \textcolor{comment}{\ ***********************/}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00514}00514\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00515}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a8fd4e167c999426802e24bd602bab07f}{00515}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Determinant,\ IdentityMatrixReturnsDeterminantOfOne)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00515}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab370e6299e11a42f514bf09806350f30}{00515}}\ TEST(Matrix2D\_Determinant,\ IdentityMatrixReturnsDeterminantOfOne)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00516}00516\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00517}00517\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00518}00518\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D<float>}}\ mat;}
@@ -529,7 +529,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00525}00525\ \ \ \ \ EXPECT\_FLOAT\_EQ(expectedDeterminant,\ actualDeterminant);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00526}00526\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00527}00527\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00528}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a67fc6df714d3ccb6ff20c3f34a7e1b84}{00528}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Determinant,\ DiagonalMatrixReturnsProductOfDiagonalEntriesAsDeterminant)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00528}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a2d4fa3c287c9251180a5dbb2aa8c6d15}{00528}}\ TEST(Matrix2D\_Determinant,\ DiagonalMatrixReturnsProductOfDiagonalEntriesAsDeterminant)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00529}00529\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00530}00530\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00531}00531\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat(2.0f,\ 0.0f,\ 0.0f,\ 3.0f);}
@@ -542,7 +542,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00538}00538\ \ \ \ \ EXPECT\_FLOAT\_EQ(expectedDeterminant,\ actualDeterminant);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00539}00539\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00540}00540\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00541}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a7f334608da5c678c26ac6f344aceca90}{00541}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Determinant,\ MatrixWithScalarMultipleColumnsReturnsDeterminantOfZero)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00541}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a22f59a22126ed94b047c9c9584344973}{00541}}\ TEST(Matrix2D\_Determinant,\ MatrixWithScalarMultipleColumnsReturnsDeterminantOfZero)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00542}00542\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00543}00543\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat(2.0f,\ 1.0f,\ 4.0f,\ 2.0f);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00544}00544\ }
@@ -555,7 +555,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00551}00551\ \ \ \ \ EXPECT\_FLOAT\_EQ(expectedDeterminant,\ actualDeterminant);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00552}00552\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00553}00553\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00554}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a3660b7f3f06f0b5f58c8930771c2ef83}{00554}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Determinant,\ MatrixWithScalarMultipleRowsReturnsDeterminantOfZero)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00554}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a899eeca6c8cf3e07ae1c6bb13dae304c}{00554}}\ TEST(Matrix2D\_Determinant,\ MatrixWithScalarMultipleRowsReturnsDeterminantOfZero)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00555}00555\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00556}00556\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat(2.0f,\ 4.0f,\ 4.0f,\ 8.0f);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00557}00557\ }
@@ -568,7 +568,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00564}00564\ \ \ \ \ EXPECT\_FLOAT\_EQ(expectedDeterminant,\ actualDeterminant);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00565}00565\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00566}00566\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00567}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a1aa6579cbc4f0d6c248fa53407e64078}{00567}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Determinant,\ IdentityMatrixWithSwappedRowsReturnsDeterminantOfNegativeOne)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00567}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a986098f039c3ea0db8bb87d749eac953}{00567}}\ TEST(Matrix2D\_Determinant,\ IdentityMatrixWithSwappedRowsReturnsDeterminantOfNegativeOne)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00568}00568\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00569}00569\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat(0.0f,\ 1.0f,\ 1.0f,\ 0.0f);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00570}00570\ }
@@ -581,7 +581,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00577}00577\ \ \ \ \ EXPECT\_FLOAT\_EQ(expectedDeterminant,\ actualDeterminant);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00578}00578\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00579}00579\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00580}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_adb16169c3949baa8c9f9505d9e5bf128}{00580}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Determinant,\ IdentityMatrixWithSwappedColumnsReturnsDeterminantOfNegativeOne)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00580}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_af566b4bb2aad1c356526e39dff1fd98a}{00580}}\ TEST(Matrix2D\_Determinant,\ IdentityMatrixWithSwappedColumnsReturnsDeterminantOfNegativeOne)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00581}00581\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00582}00582\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat(0.0f,\ 1.0f,\ 1.0f,\ 0.0f);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00583}00583\ }
@@ -594,7 +594,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00590}00590\ \ \ \ \ EXPECT\_FLOAT\_EQ(expectedDeterminant,\ actualDeterminant);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00591}00591\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00592}00592\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00593}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a7dfc11c98fc2f8f98de64c6f6a9ba87b}{00593}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Determinant,\ IdentityMatrixWithShearAppliedsReturnsDeterminantOfOne)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00593}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a782c8073e99073e65bb4f631ebd9d341}{00593}}\ TEST(Matrix2D\_Determinant,\ IdentityMatrixWithShearAppliedsReturnsDeterminantOfOne)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00594}00594\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00595}00595\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat(1.0f,\ 1.0f,\ 0.0f,\ 1.0f);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00596}00596\ }
@@ -607,7 +607,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00603}00603\ \ \ \ \ EXPECT\_FLOAT\_EQ(expectedDeterminant,\ actualDeterminant);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00604}00604\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00605}00605\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00606}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a7be097473fbc11d8af32367513cb002e}{00606}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Determinant,\ MatrixDeterminantReturnsCorrectValue)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00606}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a0285abcc189b9d17d826838d98dfa1b4}{00606}}\ TEST(Matrix2D\_Determinant,\ MatrixDeterminantReturnsCorrectValue)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00607}00607\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00608}00608\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat(1.0f,\ 2.0f,\ -\/5.0f,\ 4.0f);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00609}00609\ }
@@ -620,7 +620,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00616}00616\ \ \ \ \ EXPECT\_FLOAT\_EQ(expectedDeterminant,\ actualDeterminant);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00617}00617\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00618}00618\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00619}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab83de7cc868743762e6e44a369816fc3}{00619}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Determinant,\ MatrixDeterminantWithStaticWrapperReturnsCorrectValue)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00619}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_af980d31a742897034bd1e4fa5124435e}{00619}}\ TEST(Matrix2D\_Determinant,\ MatrixDeterminantWithStaticWrapperReturnsCorrectValue)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00620}00620\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00621}00621\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat(1.0f,\ 2.0f,\ -\/5.0f,\ 4.0f);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00622}00622\ }
@@ -633,7 +633,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00629}00629\ \ \ \ \ EXPECT\_FLOAT\_EQ(expectedDeterminant,\ actualDeterminant);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00630}00630\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00631}00631\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00632}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ad0375a9fab506ca08fbec935b44d63b6}{00632}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Determinant,\ DeterminantofTransposedMatrixIsEqualToDeterminantOfTheMatrix)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00632}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab825c5bc3e4085a375beb42b68cb0569}{00632}}\ TEST(Matrix2D\_Determinant,\ DeterminantofTransposedMatrixIsEqualToDeterminantOfTheMatrix)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00633}00633\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00634}00634\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ a(1.0f,\ 2.0f,\ 0.0f,\ 4.0f);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00635}00635\ }
@@ -645,7 +645,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00641}00641\ \ \ \ \ EXPECT\_FLOAT\_EQ(detA,\ detAT);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00642}00642\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00643}00643\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00644}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_aa317543f3aa4ce0785902e864d17522c}{00644}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Determinant,\ DeterminantOfProductOfMatricesIsSameAsProductOfDeterminantOfMatrix)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00644}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ae7e7f37956c2678ac56a123ff7191916}{00644}}\ TEST(Matrix2D\_Determinant,\ DeterminantOfProductOfMatricesIsSameAsProductOfDeterminantOfMatrix)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00645}00645\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00646}00646\ \ \ \ \ \textcolor{comment}{//\ det(A*B)\ =\ det(A)\ *\ det(B)}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00647}00647\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ a(1.0f,\ 2.0f,\ 0.0f,\ 4.0f);}
@@ -659,7 +659,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00655}00655\ \ \ \ \ EXPECT\_FLOAT\_EQ(determinantOfProduct,\ productOfDeterminant);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00656}00656\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00657}00657\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00658}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a0c986fe2a6efccd62078de378a983686}{00658}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Determinant,\ DeterminantOfAMatrixMultipledByScalarIsScalarPowNTimesTheDeterminantOfOriginalMatrix)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00658}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a1bb9af7328cb57d60af3e4962b9d2ce2}{00658}}\ TEST(Matrix2D\_Determinant,\ DeterminantOfAMatrixMultipledByScalarIsScalarPowNTimesTheDeterminantOfOriginalMatrix)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00659}00659\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00660}00660\ \ \ \ \ \textcolor{comment}{//\ det(t*A)\ =\ (t\string^n)det(A)}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00661}00661\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ a(1.0f,\ 2.0f,\ 0.0f,\ 4.0f);}
@@ -679,7 +679,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00675}00675\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00676}00676\ \textcolor{comment}{\ *********************/}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00677}00677\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00678}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a8476bab3d0257f3df22e1794fecba1b7}{00678}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Transpose,\ TransposeOfIdentityMatrixIsItself)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00678}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ada7b0c5104cf80fdf815bd3a39555986}{00678}}\ TEST(Matrix2D\_Transpose,\ TransposeOfIdentityMatrixIsItself)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00679}00679\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00680}00680\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00681}00681\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D<float>}}\ mat;}
@@ -691,7 +691,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00687}00687\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_aa3ff8b8db5d53596130768834a2f7309}{EXPECT\_MAT\_EQ}}(mat,\ actual);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00688}00688\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00689}00689\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00690}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_aa4887d3137c0b13bc08528a8ce9a0cc5}{00690}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Transpose,\ TransposeOfAMatrixReturnsMatrixWithRowsAndColumnsSwapped)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00690}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a7a9b1bbaeb6cf417602728fd40eac7a2}{00690}}\ TEST(Matrix2D\_Transpose,\ TransposeOfAMatrixReturnsMatrixWithRowsAndColumnsSwapped)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00691}00691\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00692}00692\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00693}00693\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat(1.0f,\ 2.0f,\ 0.0f,\ 4.0f);}
@@ -705,7 +705,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00701}00701\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_aa3ff8b8db5d53596130768834a2f7309}{EXPECT\_MAT\_EQ}}(expected,\ actual);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00702}00702\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00703}00703\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00704}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_aafb759de2eba43fb44a09514706c791b}{00704}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Transpose,\ TransposeOfAMatrixUsingStaticWrapperReturnsMatrixWithRowsAndColumnsSwapped)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00704}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a6890744763d07dc443e1d462ef75930d}{00704}}\ TEST(Matrix2D\_Transpose,\ TransposeOfAMatrixUsingStaticWrapperReturnsMatrixWithRowsAndColumnsSwapped)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00705}00705\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00706}00706\ \ \ \ \ \textcolor{comment}{//\ Arrange}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00707}00707\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat(1.0f,\ 2.0f,\ 0.0f,\ 4.0f);}
@@ -725,7 +725,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00721}00721\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00722}00722\ \textcolor{comment}{\ *******************/}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00723}00723\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00724}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a5621d3e796f4faf40448a7f02460feea}{00724}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Inverse,\ InverseReturnsAnotherMatrixWithCorrectValues)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00724}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a0027fc81511368da0f983bb37c8de57c}{00724}}\ TEST(Matrix2D\_Inverse,\ InverseReturnsAnotherMatrixWithCorrectValues)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00725}00725\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00726}00726\ \ \ \ \ \textcolor{comment}{//\ Given}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00727}00727\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat(2.0f,\ 1.0f,\ 5.0f,\ 3.0f);}
@@ -738,7 +738,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00734}00734\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_aa3ff8b8db5d53596130768834a2f7309}{EXPECT\_MAT\_EQ}}(expectedInverse,\ actualInverse);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00735}00735\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00736}00736\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00737}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a03c9429f97d49b6a08fdc4bcf921a040}{00737}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Inverse,\ StaticWrapperForInverseReturnsAnotherMatrixWithCorrectValues)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00737}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab5e49345e3f40195f25775189d487fdb}{00737}}\ TEST(Matrix2D\_Inverse,\ StaticWrapperForInverseReturnsAnotherMatrixWithCorrectValues)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00738}00738\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00739}00739\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat(2.0f,\ 1.0f,\ 5.0f,\ 3.0f);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00740}00740\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ expectedInverse(3.0f,\ -\/1.0f,\ -\/5.0f,\ 2.0f);}
@@ -750,7 +750,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00746}00746\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_aa3ff8b8db5d53596130768834a2f7309}{EXPECT\_MAT\_EQ}}(expectedInverse,\ actualInverse);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00747}00747\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00748}00748\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00749}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_acda6c981f27b3431830fe77c0fbecf8a}{00749}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Inverse,\ IdentityMatrixInverseReturnsAnotherIdentityMatrix)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00749}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a4b7a1135185857630e79358135d4b664}{00749}}\ TEST(Matrix2D\_Inverse,\ IdentityMatrixInverseReturnsAnotherIdentityMatrix)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00750}00750\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00751}00751\ \ \ \ \ \textcolor{comment}{//\ Given}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00752}00752\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D<float>}}\ identity;}
@@ -762,7 +762,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00758}00758\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_a9126a1165c9650f059be41e8edea775c}{EXPECT\_MAT\_IDENTITY}}(actualInverse);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00759}00759\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00760}00760\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00761}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a7cbcdf5efbb32ed04795706ddafa35b5}{00761}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Inverse,\ MatrixTimeInverseReturnsIdentityMatrix)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00761}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ad9ab3d80b033abdf931f51242293be63}{00761}}\ TEST(Matrix2D\_Inverse,\ MatrixTimeInverseReturnsIdentityMatrix)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00762}00762\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00763}00763\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat(1.0f,\ 2.0f,\ 3.0f,\ 1.0f);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00764}00764\ }
@@ -774,7 +774,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00770}00770\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_a9126a1165c9650f059be41e8edea775c}{EXPECT\_MAT\_IDENTITY}}(product);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00771}00771\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00772}00772\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00773}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ad71d184019f966ae4bd038f1c2900dbc}{00773}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Inverse,\ InverseTimesMatrixReturnsIdentityMatrix)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00773}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a46ce02da0932c038ef7e5739867131f2}{00773}}\ TEST(Matrix2D\_Inverse,\ InverseTimesMatrixReturnsIdentityMatrix)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00774}00774\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00775}00775\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat(1.0f,\ 2.0f,\ 3.0f,\ 1.0f);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00776}00776\ }
@@ -786,7 +786,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00782}00782\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_a9126a1165c9650f059be41e8edea775c}{EXPECT\_MAT\_IDENTITY}}(product);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00783}00783\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00784}00784\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00785}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a61b240c1e63171b8d000bb1eb7f82b29}{00785}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Inverse,\ SingularMatrixProducesIdentityMatrix)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00785}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_adc30bcd1af01539f651ea6690722e6f6}{00785}}\ TEST(Matrix2D\_Inverse,\ SingularMatrixProducesIdentityMatrix)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00786}00786\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00787}00787\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ singularMatrix(1.0f,\ 2.0f,\ 2.0f,\ 4.0f);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00788}00788\ }
@@ -797,7 +797,7 @@
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00793}00793\ \ \ \ \ \doxymbox{\hyperlink{namespacetestutils_1_1_matrix2_d_a9126a1165c9650f059be41e8edea775c}{EXPECT\_MAT\_IDENTITY}}(actualInverse);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00794}00794\ \}}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00795}00795\ }
-\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00796}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a11a713906a33b4536632df7ffc06a8b7}{00796}}\ \doxymbox{\hyperlink{_matrix2_d_tests_8cpp_ab0b75f4288d513b95c77081635c057fe}{TEST}}(Matrix2D\_Inverse,\ InversionOfRotationOnlyMatrixReturnsTranspose)}
+\DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00796}\doxymbox{\hyperlink{_matrix2_d_tests_8cpp_a186e8077ac02ee9bb5c9fdb669c6a6d8}{00796}}\ TEST(Matrix2D\_Inverse,\ InversionOfRotationOnlyMatrixReturnsTranspose)}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00797}00797\ \{}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00798}00798\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ mat(0.0f,\ -\/1.0f,\ 1.0f,\ 0.0f);}
 \DoxyCodeLine{\Hypertarget{_matrix2_d_tests_8cpp_source_l00799}00799\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_matrix2_d}{fgm::Matrix2D}}\ transpose(0.0f,\ 1.0f,\ -\/1.0f,\ 0.0f);}
