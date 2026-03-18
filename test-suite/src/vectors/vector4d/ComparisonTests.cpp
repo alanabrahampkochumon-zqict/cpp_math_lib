@@ -3,8 +3,9 @@
  * @author Alan Abraham P Kochumon
  * @date Created on: March 07, 2026
  *
- * @brief Verifies @ref fgm::Vector4D<bool> comparison operator (>, >=, <, <=) and their functional counterpart's (gt, gte, lt, lte) logic.
- * 
+ * @brief Verifies @ref fgm::Vector4D<bool> comparison operator (>, >=, <, <=) and their functional counterpart's (gt,
+ * gte, lt, lte) logic.
+ *
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */
 
@@ -44,6 +45,13 @@ class Vector4DComparison: public ::testing::Test
 TYPED_TEST_SUITE(Vector4DComparison, SupportedArithmeticTypes);
 
 
+
+
+/**
+ * @addtogroup FGM_Vec4_GT_Comp
+ * @{
+ */
+
 /**************************************
  *                                    *
  *         GREATER THAN TESTS         *
@@ -61,7 +69,6 @@ TYPED_TEST(Vector4DComparison, GreaterThan_ReturnsBooleanVectorWithElementsGreat
     EXPECT_VEC_EQ(this->expectedGT, mask);
 }
 
-
 /**
  * @test Verify that the @ref fgm::Vector4D greater-than operator performs a component-wise comparison and returns the
  *		  correct boolean mask.
@@ -73,10 +80,9 @@ TYPED_TEST(Vector4DComparison, GreaterThanOperator_ReturnsBooleanVectorWithEleme
     EXPECT_VEC_EQ(this->expectedGT, mask);
 }
 
-
 /**
- * @test Verify that the static greater-than (gt) wrapper of @ref fgm::Vector4D performs a component-wise comparison and returns the
- *		 correct boolean mask.
+ * @test Verify that the static greater-than (gt) wrapper of @ref fgm::Vector4D performs a component-wise comparison and
+ *returns the correct boolean mask.
  */
 TYPED_TEST(Vector4DComparison, StaticWrapper_GreaterThan_ReturnsBooleanVectorWithElementsGreaterThanAsTrue)
 {
@@ -84,7 +90,6 @@ TYPED_TEST(Vector4DComparison, StaticWrapper_GreaterThan_ReturnsBooleanVectorWit
 
     EXPECT_VEC_EQ(this->expectedGT, mask);
 }
-
 
 /**
  * @test Verify that the @ref fgm::Vector4D greater-than (gt) performs a component-wise comparison when handling
@@ -101,7 +106,6 @@ TEST(Vector4DComparison, InfinityVector_GreaterThan_ReturnsBooleanVectorWithCorr
     EXPECT_VEC_EQ(expected, mask);
 }
 
-
 /**
  * @test Verify that the @ref fgm::Vector4D greater-than (gt) performs a component-wise comparison when handling
  *		 NaN values.
@@ -116,7 +120,6 @@ TEST(Vector4DComparison, NaNVector_GreaterThan_ReturnsBooleanVectorWithCorrectVa
 
     EXPECT_VEC_EQ(expected, mask);
 }
-
 
 /**
  * @test Verify that the @ref fgm::Vector4D greater-than (gt) performs a component-wise comparison when handling
@@ -136,8 +139,15 @@ TEST(Vector4DComparison, MixedType_GreaterThan_ReturnsBooleanVectorWithCorrectVa
     EXPECT_VEC_EQ(expected, mask);
 }
 
+/** @} */
 
 
+
+
+/**
+ * @addtogroup FGM_Vec4_GTE_Comp
+ * @{
+ */
 
 /**************************************
  *                                    *
@@ -146,8 +156,8 @@ TEST(Vector4DComparison, MixedType_GreaterThan_ReturnsBooleanVectorWithCorrectVa
  **************************************/
 
 /**
- * @test Verify that the @ref fgm::Vector4D greater-than-or-equal (gte) performs a component-wise comparison and returns the
- *		 correct boolean mask.
+ * @test Verify that the @ref fgm::Vector4D greater-than-or-equal (gte) performs a component-wise comparison and returns
+ *the correct boolean mask.
  */
 TYPED_TEST(Vector4DComparison, GreaterThanOrEqual_ReturnsBooleanVectorWithElementsGreaterThanOrEqualAsTrue)
 {
@@ -156,10 +166,9 @@ TYPED_TEST(Vector4DComparison, GreaterThanOrEqual_ReturnsBooleanVectorWithElemen
     EXPECT_VEC_EQ(this->expectedGTE, mask);
 }
 
-
 /**
- * @test Verify that the @ref fgm::Vector4D greater-than-or-equal operator performs a component-wise comparison and returns the
- *		  correct boolean mask.
+ * @test Verify that the @ref fgm::Vector4D greater-than-or-equal operator performs a component-wise comparison and
+ *returns the correct boolean mask.
  */
 TYPED_TEST(Vector4DComparison, GreaterThanOrEqualOperator_ReturnsBooleanVectorWithElementsGreaterThanOrEqualAsTrue)
 {
@@ -168,10 +177,9 @@ TYPED_TEST(Vector4DComparison, GreaterThanOrEqualOperator_ReturnsBooleanVectorWi
     EXPECT_VEC_EQ(this->expectedGTE, mask);
 }
 
-
 /**
- * @test Verify that the static greater-than-or-equal (gte) wrapper of @ref fgm::Vector4D performs a component-wise comparison and
- *		 returns the correct boolean mask.
+ * @test Verify that the static greater-than-or-equal (gte) wrapper of @ref fgm::Vector4D performs a component-wise
+ *comparison and returns the correct boolean mask.
  */
 TYPED_TEST(Vector4DComparison,
            StaticWrapper_GreaterThanOrEqual_ReturnsBooleanVectorWithElementsGreaterThanOrEqualAsTrue)
@@ -181,10 +189,9 @@ TYPED_TEST(Vector4DComparison,
     EXPECT_VEC_EQ(this->expectedGTE, mask);
 }
 
-
 /**
- * @test Verify that the @ref fgm::Vector4D greater-than-or-equal (gte) performs a component-wise comparison when handling
- *		 infinite values.
+ * @test Verify that the @ref fgm::Vector4D greater-than-or-equal (gte) performs a component-wise comparison when
+ *handling infinite values.
  */
 TEST(Vector4DComparison, InfinityVector_GreaterThanOrEqual_ReturnsBooleanVectorWithCorrectValues)
 {
@@ -196,7 +203,6 @@ TEST(Vector4DComparison, InfinityVector_GreaterThanOrEqual_ReturnsBooleanVectorW
 
     EXPECT_VEC_EQ(expected, mask);
 }
-
 
 /**
  * @test Verify that the @ref fgm::Vector4D greater-than-or-equal (gte) performs a component-wise comparison when
@@ -214,8 +220,8 @@ TEST(Vector4DComparison, NanVector_GreaterThanOrEqual_ReturnsBooleanVectorWithCo
 }
 
 /**
- * @test Verify that the @ref fgm::Vector4D greater-than-or-equal (gte) performs a component-wise comparison when handling
- *		 vectors of different types.
+ * @test Verify that the @ref fgm::Vector4D greater-than-or-equal (gte) performs a component-wise comparison when
+ *handling vectors of different types.
  */
 TEST(Vector4DComparison, MixedType_GreaterThanOrEqual_ReturnsBooleanVectorWithCorrectValues)
 {
@@ -231,8 +237,15 @@ TEST(Vector4DComparison, MixedType_GreaterThanOrEqual_ReturnsBooleanVectorWithCo
     EXPECT_VEC_EQ(expected, mask);
 }
 
+/** @} */
 
 
+
+
+/**
+ * @addtogroup FGM_Vec4_LT_Comp
+ * @{
+ */
 
 /**************************************
  *                                    *
@@ -251,7 +264,6 @@ TYPED_TEST(Vector4DComparison, LessThan_ReturnsBooleanVectorWithElementsLessThan
     EXPECT_VEC_EQ(this->expectedLT, mask);
 }
 
-
 /**
  * @test Verify that the @ref fgm::Vector4D less-than operator performs a component-wise comparison and returns the
  *		  correct boolean mask.
@@ -263,7 +275,6 @@ TYPED_TEST(Vector4DComparison, LessThanOperator_ReturnsBooleanVectorWithElements
     EXPECT_VEC_EQ(this->expectedLT, mask);
 }
 
-
 /**
  * @test Verify that the static less-than (lt) wrapper of @ref fgm::Vector4D performs a component-wise comparison and
  *		 returns the correct boolean mask.
@@ -274,7 +285,6 @@ TYPED_TEST(Vector4DComparison, StaticWrapper_LessThan_ReturnsBooleanVectorWithEl
 
     EXPECT_VEC_EQ(this->expectedLT, mask);
 }
-
 
 /**
  * @test Verify that the @ref fgm::Vector4D less-than (lt) performs a component-wise comparison when handling
@@ -291,7 +301,6 @@ TEST(Vector4DComparison, InfinityVector_LessThan_ReturnsBooleanVectorWithCorrect
     EXPECT_VEC_EQ(expected, mask);
 }
 
-
 /**
  * @test Verify that the @ref fgm::Vector4D less-than (lt) performs a component-wise comparison when handling
  *		 NaN values.
@@ -306,7 +315,6 @@ TEST(Vector4DComparison, NanVector_LessThan_ReturnsBooleanVectorWithCorrectValue
 
     EXPECT_VEC_EQ(expected, mask);
 }
-
 
 /**
  * @test Verify that the @ref fgm::Vector4D less-than (lt) performs a component-wise comparison when
@@ -326,8 +334,15 @@ TEST(Vector4DComparison, MixedType_LessThan_ReturnsBooleanVectorWithCorrectValue
     EXPECT_VEC_EQ(expected, mask);
 }
 
+/** @} */
 
 
+
+
+/**
+ * @addtogroup FGM_Vec4_LTE_Comp
+ * @{
+ */
 
 /**************************************
  *                                    *
@@ -336,8 +351,8 @@ TEST(Vector4DComparison, MixedType_LessThan_ReturnsBooleanVectorWithCorrectValue
  **************************************/
 
 /**
- * @test Verify that the @ref fgm::Vector4D less-than-or-equal (lte) performs a component-wise comparison and returns the
- *		 correct boolean mask.
+ * @test Verify that the @ref fgm::Vector4D less-than-or-equal (lte) performs a component-wise comparison and returns
+ *the correct boolean mask.
  */
 TYPED_TEST(Vector4DComparison, LessThanOrEqual_ReturnsBooleanVectorWithElementsLessThanOrEqualAsTrue)
 {
@@ -346,10 +361,9 @@ TYPED_TEST(Vector4DComparison, LessThanOrEqual_ReturnsBooleanVectorWithElementsL
     EXPECT_VEC_EQ(this->expectedLTE, mask);
 }
 
-
 /**
- * @test Verify that the @ref fgm::Vector4D less-than-or-equal operator performs a component-wise comparison and returns the
- *		  correct boolean mask.
+ * @test Verify that the @ref fgm::Vector4D less-than-or-equal operator performs a component-wise comparison and returns
+ *the correct boolean mask.
  */
 TYPED_TEST(Vector4DComparison, LessThanOrEqualOperator_ReturnsBooleanVectorWithElementsLessThanOrEqualAsTrue)
 {
@@ -358,10 +372,9 @@ TYPED_TEST(Vector4DComparison, LessThanOrEqualOperator_ReturnsBooleanVectorWithE
     EXPECT_VEC_EQ(this->expectedLTE, mask);
 }
 
-
 /**
- * @test Verify that the static less-than-or-equal (lte) wrapper of @ref fgm::Vector4D performs a component-wise comparison and
- *		 returns the correct boolean mask.
+ * @test Verify that the static less-than-or-equal (lte) wrapper of @ref fgm::Vector4D performs a component-wise
+ *comparison and returns the correct boolean mask.
  */
 TYPED_TEST(Vector4DComparison, StaticWrapper_LessThanOrEqual_ReturnsBooleanVectorWithElementsLessThanOrEqualAsTrue)
 {
@@ -369,7 +382,6 @@ TYPED_TEST(Vector4DComparison, StaticWrapper_LessThanOrEqual_ReturnsBooleanVecto
 
     EXPECT_VEC_EQ(this->expectedLTE, mask);
 }
-
 
 /**
  * @test Verify that the @ref fgm::Vector4D less-than-or-equal (lte) performs a component-wise comparison when handling
@@ -386,7 +398,6 @@ TEST(Vector4DComparison, InfinityVector_LessThanOrEqual_ReturnsBooleanVectorWith
     EXPECT_VEC_EQ(expected, mask);
 }
 
-
 /**
  * @test Verify that the @ref fgm::Vector4D less-than-or-equal (lte) performs a component-wise comparison when handling
  *		 NaN values.
@@ -401,7 +412,6 @@ TEST(Vector4DComparison, NanVector_LessThanOrEqual_ReturnsBooleanVectorWithCorre
 
     EXPECT_VEC_EQ(expected, mask);
 }
-
 
 /**
  * @test Verify that the @ref fgm::Vector4D less-than-or-equal (lte) performs a component-wise comparison when
@@ -420,3 +430,5 @@ TEST(Vector4DComparison, MixedType_LessThanOrEqual_ReturnsBooleanVectorWithCorre
     // Then, the resulting elements are as expected
     EXPECT_VEC_EQ(expected, mask);
 }
+
+/** @} */

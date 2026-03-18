@@ -43,6 +43,7 @@
              *   @defgroup FGM_Vec4_Subtraction Subtraction
              *   @defgroup FGM_Vec4_Multiplication Scalar Multiplication
              *   @defgroup FGM_Vec4_Division Scalar Division
+             *   @defgroup FGM_Vec4_Bool_Bit Boolean Bitwise Operation
              *   @defgroup FGM_Vec4_GT_Comp Greater Than Comparison
              *   @defgroup FGM_Vec4_GTE_Comp Greater Than or Equal Comparison
              *   @defgroup FGM_Vec4_LT_Comp Less Than Comparison

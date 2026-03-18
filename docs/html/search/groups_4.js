@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['falcon_20game_20math_20library_20test_20suite_0',['Falcon Game Math Library Test Suite',['../group___f_g_m_test_suite.html',1,'']]],
-  ['formatted_20string_20representation_1',['Formatted String Representation',['../group___f_g_m___vec4___string___repr.html',1,'']]]
+  ['equal_20comparison_0',['Equal Comparison',['../group___f_g_m___vec4___g_t_e___comp.html',1,'Greater Than or Equal Comparison'],['../group___f_g_m___vec4___l_t_e___comp.html',1,'Less Than or Equal Comparison']]],
+  ['equality_1',['Component-wise and Masked Equality',['../group___f_g_m___vec4___equality.html',1,'']]]
 ];

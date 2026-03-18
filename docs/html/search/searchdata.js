@@ -9,7 +9,7 @@ var indexSectionsWithContent =
   6: "bdilmstuv",
   7: "o",
   8: "_acdefhmps",
-  9: "acdefgilmnoprstvw",
+  9: "abcdefgilmnoprstvw",
   10: "123bcdefghlmnprst",
   11: "amsvw"
 };

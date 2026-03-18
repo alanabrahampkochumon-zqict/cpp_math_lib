@@ -16,13 +16,13 @@ class \doxymbox{\hyperlink{class_vector4_d_dot_product}{Vector4\+DDot\+Product$<
 \item 
 \doxymbox{\hyperlink{_product_tests_8cpp_af2ae0656edefabcdf96aade192350f82}{TYPED\+\_\+\+TEST\+\_\+\+SUITE}} (\doxymbox{\hyperlink{class_vector4_d_dot_product}{Vector4\+DDot\+Product}}, \doxymbox{\hyperlink{_vector3_d_test_setup_8h_a419bc60d90bfcd4724a953b51402235e}{Supported\+Arithmetic\+Types}})
 \begin{DoxyCompactList}\small\item\em Test fixture for \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} dot project, parameterized by \doxylink{_vector3_d_test_setup_8h_a419bc60d90bfcd4724a953b51402235e}{Supported\+Arithmetic\+Types}. \end{DoxyCompactList}\item 
-\doxymbox{\hyperlink{_product_tests_8cpp_ac6892d7ed3c70faffc484cb40f492f0f}{TYPED\+\_\+\+TEST}} (\doxymbox{\hyperlink{class_vector4_d_dot_product}{Vector4\+DDot\+Product}}, Self\+Dot\+Product\+Returns\+Square\+Magnitude)
+void \doxymbox{\hyperlink{_product_tests_8cpp_a6365818c2ecff1a205344fbda9567bd9}{Vector4\+DDot\+Product\+\_\+\+Self\+Dot\+Product\+Returns\+Square\+Magnitude}} ()
 \item 
-\doxymbox{\hyperlink{_product_tests_8cpp_a9426a7ffd1dee3fb7e7f29359a530a45}{TYPED\+\_\+\+TEST}} (\doxymbox{\hyperlink{class_vector4_d_dot_product}{Vector4\+DDot\+Product}}, Orthogonal\+Dot\+Product\+Return\+Zero)
+void \doxymbox{\hyperlink{_product_tests_8cpp_a9dcbc7ae9fb013209a64e07340fa4d97}{Vector4\+DDot\+Product\+\_\+\+Orthogonal\+Dot\+Product\+Return\+Zero}} ()
 \item 
-\doxymbox{\hyperlink{_product_tests_8cpp_a9019737a5725cc56c058afee2b190121}{TYPED\+\_\+\+TEST}} (\doxymbox{\hyperlink{class_vector4_d_dot_product}{Vector4\+DDot\+Product}}, Non\+Orthogonal\+Dot\+Product\+Returns\+Non\+Zero\+Scalar)
+void \doxymbox{\hyperlink{_product_tests_8cpp_aa436dd759231daf72a9de66f38b55581}{Vector4\+DDot\+Product\+\_\+\+Non\+Orthogonal\+Dot\+Product\+Returns\+Non\+Zero\+Scalar}} ()
 \item 
-\doxymbox{\hyperlink{_product_tests_8cpp_a994c37da972c99e84324198a12e2cfbe}{TYPED\+\_\+\+TEST}} (\doxymbox{\hyperlink{class_vector4_d_dot_product}{Vector4\+DDot\+Product}}, Static\+Wrapper\+\_\+\+Non\+Orthogonal\+Dot\+Product\+Returns\+Non\+Zero\+Scalar)
+void \doxymbox{\hyperlink{_product_tests_8cpp_a256b4dd376ab96bfa500ffe679c8014a}{Vector4\+DDot\+Product\+\_\+\+Static\+Wrapper\+\_\+\+Non\+Orthogonal\+Dot\+Product\+Returns\+Non\+Zero\+Scalar}} ()
 \item 
 void \doxymbox{\hyperlink{_product_tests_8cpp_a4ce7ca6be0e057f649edb97cc08fd82c}{Vector4\+DDot\+Product\+\_\+\+Anti\+Parallel\+Dot\+Product\+Returns\+Negative\+Scalar}} ()
 \item 
@@ -53,54 +53,6 @@ Definition in file \doxymbox{\hyperlink{_product_tests_8cpp_source}{Product\+Tes
 \label{doc-func-members}
 \Hypertarget{_product_tests_8cpp_doc-func-members}
 \doxysubsection{Function Documentation}
-\Hypertarget{_product_tests_8cpp_a9019737a5725cc56c058afee2b190121}\index{ProductTests.cpp@{ProductTests.cpp}!TYPED\_TEST@{TYPED\_TEST}}
-\index{TYPED\_TEST@{TYPED\_TEST}!ProductTests.cpp@{ProductTests.cpp}}
-\doxysubsubsection{\texorpdfstring{TYPED\_TEST()}{TYPED\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
-{\footnotesize\ttfamily \label{_product_tests_8cpp_a9019737a5725cc56c058afee2b190121} 
-TYPED\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector4_d_dot_product}{Vector4\+DDot\+Product}}}]{}{, }\item[{Non\+Orthogonal\+Dot\+Product\+Returns\+Non\+Zero\+Scalar}]{}{}\end{DoxyParamCaption})}
-
-\begin{DoxyRefDesc}{Test}
-\item[\doxymbox{\hyperlink{test__test000121}{Test}}]Verify that the dot product of a \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} with a non-\/orthogonal vector returns a non-\/zero scalar. \end{DoxyRefDesc}
-
-
-Definition at line \doxymbox{\hyperlink{_product_tests_8cpp_source_l00089}{89}} of file \doxymbox{\hyperlink{_product_tests_8cpp_source}{Product\+Tests.\+cpp}}.
-
-\Hypertarget{_product_tests_8cpp_a9426a7ffd1dee3fb7e7f29359a530a45}\index{ProductTests.cpp@{ProductTests.cpp}!TYPED\_TEST@{TYPED\_TEST}}
-\index{TYPED\_TEST@{TYPED\_TEST}!ProductTests.cpp@{ProductTests.cpp}}
-\doxysubsubsection{\texorpdfstring{TYPED\_TEST()}{TYPED\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
-{\footnotesize\ttfamily \label{_product_tests_8cpp_a9426a7ffd1dee3fb7e7f29359a530a45} 
-TYPED\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector4_d_dot_product}{Vector4\+DDot\+Product}}}]{}{, }\item[{Orthogonal\+Dot\+Product\+Return\+Zero}]{}{}\end{DoxyParamCaption})}
-
-\begin{DoxyRefDesc}{Test}
-\item[\doxymbox{\hyperlink{test__test000120}{Test}}]Verify that the dot product of a \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} with an orthogonal vector returns zero. \end{DoxyRefDesc}
-
-
-Definition at line \doxymbox{\hyperlink{_product_tests_8cpp_source_l00075}{75}} of file \doxymbox{\hyperlink{_product_tests_8cpp_source}{Product\+Tests.\+cpp}}.
-
-\Hypertarget{_product_tests_8cpp_ac6892d7ed3c70faffc484cb40f492f0f}\index{ProductTests.cpp@{ProductTests.cpp}!TYPED\_TEST@{TYPED\_TEST}}
-\index{TYPED\_TEST@{TYPED\_TEST}!ProductTests.cpp@{ProductTests.cpp}}
-\doxysubsubsection{\texorpdfstring{TYPED\_TEST()}{TYPED\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
-{\footnotesize\ttfamily \label{_product_tests_8cpp_ac6892d7ed3c70faffc484cb40f492f0f} 
-TYPED\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector4_d_dot_product}{Vector4\+DDot\+Product}}}]{}{, }\item[{Self\+Dot\+Product\+Returns\+Square\+Magnitude}]{}{}\end{DoxyParamCaption})}
-
-\begin{DoxyRefDesc}{Test}
-\item[\doxymbox{\hyperlink{test__test000119}{Test}}]Verify that the dot product of a \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} with itself returns its squared magnitude. \end{DoxyRefDesc}
-
-
-Definition at line \doxymbox{\hyperlink{_product_tests_8cpp_source_l00060}{60}} of file \doxymbox{\hyperlink{_product_tests_8cpp_source}{Product\+Tests.\+cpp}}.
-
-\Hypertarget{_product_tests_8cpp_a994c37da972c99e84324198a12e2cfbe}\index{ProductTests.cpp@{ProductTests.cpp}!TYPED\_TEST@{TYPED\_TEST}}
-\index{TYPED\_TEST@{TYPED\_TEST}!ProductTests.cpp@{ProductTests.cpp}}
-\doxysubsubsection{\texorpdfstring{TYPED\_TEST()}{TYPED\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
-{\footnotesize\ttfamily \label{_product_tests_8cpp_a994c37da972c99e84324198a12e2cfbe} 
-TYPED\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector4_d_dot_product}{Vector4\+DDot\+Product}}}]{}{, }\item[{Static\+Wrapper\+\_\+\+Non\+Orthogonal\+Dot\+Product\+Returns\+Non\+Zero\+Scalar}]{}{}\end{DoxyParamCaption})}
-
-\begin{DoxyRefDesc}{Test}
-\item[\doxymbox{\hyperlink{test__test000122}{Test}}]Verify that the static dot product wrapper of \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} returns a non-\/zero scalar. \end{DoxyRefDesc}
-
-
-Definition at line \doxymbox{\hyperlink{_product_tests_8cpp_source_l00103}{103}} of file \doxymbox{\hyperlink{_product_tests_8cpp_source}{Product\+Tests.\+cpp}}.
-
 \Hypertarget{_product_tests_8cpp_af2ae0656edefabcdf96aade192350f82}\index{ProductTests.cpp@{ProductTests.cpp}!TYPED\_TEST\_SUITE@{TYPED\_TEST\_SUITE}}
 \index{TYPED\_TEST\_SUITE@{TYPED\_TEST\_SUITE}!ProductTests.cpp@{ProductTests.cpp}}
 \doxysubsubsection{\texorpdfstring{TYPED\_TEST\_SUITE()}{TYPED\_TEST\_SUITE()}}
@@ -134,4 +86,52 @@ void Vector4\+DDot\+Product\+\_\+\+Mixed\+Type\+Dot\+Product\+Promotes\+Type (\b
 
 
 Definition at line \doxymbox{\hyperlink{_product_tests_8cpp_source_l00134}{134}} of file \doxymbox{\hyperlink{_product_tests_8cpp_source}{Product\+Tests.\+cpp}}.
+
+\Hypertarget{_product_tests_8cpp_aa436dd759231daf72a9de66f38b55581}\index{ProductTests.cpp@{ProductTests.cpp}!Vector4DDotProduct\_NonOrthogonalDotProductReturnsNonZeroScalar@{Vector4DDotProduct\_NonOrthogonalDotProductReturnsNonZeroScalar}}
+\index{Vector4DDotProduct\_NonOrthogonalDotProductReturnsNonZeroScalar@{Vector4DDotProduct\_NonOrthogonalDotProductReturnsNonZeroScalar}!ProductTests.cpp@{ProductTests.cpp}}
+\doxysubsubsection{\texorpdfstring{Vector4DDotProduct\_NonOrthogonalDotProductReturnsNonZeroScalar()}{Vector4DDotProduct\_NonOrthogonalDotProductReturnsNonZeroScalar()}}
+{\footnotesize\ttfamily \label{_product_tests_8cpp_aa436dd759231daf72a9de66f38b55581} 
+void Vector4\+DDot\+Product\+\_\+\+Non\+Orthogonal\+Dot\+Product\+Returns\+Non\+Zero\+Scalar (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Test}
+\item[\doxymbox{\hyperlink{test__test000121}{Test}}]Verify that the dot product of a \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} with a non-\/orthogonal vector returns a non-\/zero scalar. \end{DoxyRefDesc}
+
+
+Definition at line \doxymbox{\hyperlink{_product_tests_8cpp_source_l00089}{89}} of file \doxymbox{\hyperlink{_product_tests_8cpp_source}{Product\+Tests.\+cpp}}.
+
+\Hypertarget{_product_tests_8cpp_a9dcbc7ae9fb013209a64e07340fa4d97}\index{ProductTests.cpp@{ProductTests.cpp}!Vector4DDotProduct\_OrthogonalDotProductReturnZero@{Vector4DDotProduct\_OrthogonalDotProductReturnZero}}
+\index{Vector4DDotProduct\_OrthogonalDotProductReturnZero@{Vector4DDotProduct\_OrthogonalDotProductReturnZero}!ProductTests.cpp@{ProductTests.cpp}}
+\doxysubsubsection{\texorpdfstring{Vector4DDotProduct\_OrthogonalDotProductReturnZero()}{Vector4DDotProduct\_OrthogonalDotProductReturnZero()}}
+{\footnotesize\ttfamily \label{_product_tests_8cpp_a9dcbc7ae9fb013209a64e07340fa4d97} 
+void Vector4\+DDot\+Product\+\_\+\+Orthogonal\+Dot\+Product\+Return\+Zero (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Test}
+\item[\doxymbox{\hyperlink{test__test000120}{Test}}]Verify that the dot product of a \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} with an orthogonal vector returns zero. \end{DoxyRefDesc}
+
+
+Definition at line \doxymbox{\hyperlink{_product_tests_8cpp_source_l00075}{75}} of file \doxymbox{\hyperlink{_product_tests_8cpp_source}{Product\+Tests.\+cpp}}.
+
+\Hypertarget{_product_tests_8cpp_a6365818c2ecff1a205344fbda9567bd9}\index{ProductTests.cpp@{ProductTests.cpp}!Vector4DDotProduct\_SelfDotProductReturnsSquareMagnitude@{Vector4DDotProduct\_SelfDotProductReturnsSquareMagnitude}}
+\index{Vector4DDotProduct\_SelfDotProductReturnsSquareMagnitude@{Vector4DDotProduct\_SelfDotProductReturnsSquareMagnitude}!ProductTests.cpp@{ProductTests.cpp}}
+\doxysubsubsection{\texorpdfstring{Vector4DDotProduct\_SelfDotProductReturnsSquareMagnitude()}{Vector4DDotProduct\_SelfDotProductReturnsSquareMagnitude()}}
+{\footnotesize\ttfamily \label{_product_tests_8cpp_a6365818c2ecff1a205344fbda9567bd9} 
+void Vector4\+DDot\+Product\+\_\+\+Self\+Dot\+Product\+Returns\+Square\+Magnitude (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Test}
+\item[\doxymbox{\hyperlink{test__test000119}{Test}}]Verify that the dot product of a \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} with itself returns its squared magnitude. \end{DoxyRefDesc}
+
+
+Definition at line \doxymbox{\hyperlink{_product_tests_8cpp_source_l00060}{60}} of file \doxymbox{\hyperlink{_product_tests_8cpp_source}{Product\+Tests.\+cpp}}.
+
+\Hypertarget{_product_tests_8cpp_a256b4dd376ab96bfa500ffe679c8014a}\index{ProductTests.cpp@{ProductTests.cpp}!Vector4DDotProduct\_StaticWrapper\_NonOrthogonalDotProductReturnsNonZeroScalar@{Vector4DDotProduct\_StaticWrapper\_NonOrthogonalDotProductReturnsNonZeroScalar}}
+\index{Vector4DDotProduct\_StaticWrapper\_NonOrthogonalDotProductReturnsNonZeroScalar@{Vector4DDotProduct\_StaticWrapper\_NonOrthogonalDotProductReturnsNonZeroScalar}!ProductTests.cpp@{ProductTests.cpp}}
+\doxysubsubsection{\texorpdfstring{Vector4DDotProduct\_StaticWrapper\_NonOrthogonalDotProductReturnsNonZeroScalar()}{Vector4DDotProduct\_StaticWrapper\_NonOrthogonalDotProductReturnsNonZeroScalar()}}
+{\footnotesize\ttfamily \label{_product_tests_8cpp_a256b4dd376ab96bfa500ffe679c8014a} 
+void Vector4\+DDot\+Product\+\_\+\+Static\+Wrapper\+\_\+\+Non\+Orthogonal\+Dot\+Product\+Returns\+Non\+Zero\+Scalar (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Test}
+\item[\doxymbox{\hyperlink{test__test000122}{Test}}]Verify that the static dot product wrapper of \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} returns a non-\/zero scalar. \end{DoxyRefDesc}
+
+
+Definition at line \doxymbox{\hyperlink{_product_tests_8cpp_source_l00103}{103}} of file \doxymbox{\hyperlink{_product_tests_8cpp_source}{Product\+Tests.\+cpp}}.
 

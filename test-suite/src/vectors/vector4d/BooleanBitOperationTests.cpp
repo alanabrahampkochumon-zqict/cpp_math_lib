@@ -42,6 +42,11 @@ class BooleanVectorBitOperations: public ::testing::Test
 };
 
 
+/**
+ * @addtogroup FGM_Vec4_Bool_Bit
+ * @{
+ */
+
 /**************************************
  *                                    *
  *                TESTS               *
@@ -82,3 +87,5 @@ TEST_F(BooleanVectorBitOperations, BitwiseNotReturnsInvertedVector)
 
     EXPECT_VEC_EQ(this->expectedNotAVector, mask);
 }
+
+/** @} */
