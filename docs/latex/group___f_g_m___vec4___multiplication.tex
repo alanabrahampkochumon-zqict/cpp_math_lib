@@ -1,2 +1,125 @@
 \doxysubsubsubsubsection{Scalar Multiplication }
 \hypertarget{group___f_g_m___vec4___multiplication}{}\label{group___f_g_m___vec4___multiplication}\index{Scalar Multiplication@{Scalar Multiplication}}
+\doxysubsubsubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{group___f_g_m___vec4___multiplication_ga5dc878b73d630c172ccf5377adcbc664}{Vector4\+DScalar\+Multiplication\+\_\+\+Multiplication\+By\+Zero\+Returns\+Zero\+Vector}} ()
+\item 
+void \doxymbox{\hyperlink{group___f_g_m___vec4___multiplication_gab29546f90e3d310075c15befb02d71d3}{Vector4\+DScalar\+Multiplication\+\_\+\+Multiplication\+By\+One\+Returns\+Original\+Vector}} ()
+\item 
+\doxymbox{\hyperlink{group___f_g_m___vec4___multiplication_ga59ef669451d653d4e2a7e1ef1e22118c}{TYPED\+\_\+\+TEST}} (\doxymbox{\hyperlink{class_vector4_d_scalar_multiplication}{Vector4\+DScalar\+Multiplication}}, Vector\+Times\+Scalar\+Returns\+Scaled\+Vector)
+\item 
+\doxymbox{\hyperlink{group___f_g_m___vec4___multiplication_ga786eb8c470f37f2757390f5596275ca9}{TYPED\+\_\+\+TEST}} (\doxymbox{\hyperlink{class_vector4_d_scalar_multiplication}{Vector4\+DScalar\+Multiplication}}, Scalar\+Times\+AVector\+Returns\+Scaled\+Vector)
+\item 
+\doxymbox{\hyperlink{group___f_g_m___vec4___multiplication_gab1e2144559a1bfdc3f25a39ebfc4d382}{TYPED\+\_\+\+TEST}} (\doxymbox{\hyperlink{class_vector4_d_scalar_multiplication}{Vector4\+DScalar\+Multiplication}}, Vector\+Times\+Equal\+Scalar\+Is\+The\+Same\+Vector\+Scaled)
+\item 
+\doxymbox{\hyperlink{group___f_g_m___vec4___multiplication_ga74b9ff4b8b8bc4cb9ef23913cc3eded7}{TYPED\+\_\+\+TEST}} (\doxymbox{\hyperlink{class_vector4_d_scalar_multiplication}{Vector4\+DScalar\+Multiplication}}, Mixed\+Type\+Scalar\+Multiplication\+Promotes\+Type)
+\item 
+void \doxymbox{\hyperlink{group___f_g_m___vec4___multiplication_ga6e7ade93e5ce3180feef5759d8ca8057}{Vector4\+DScalar\+Multiplication\+\_\+\+Mixed\+Type\+Scalar\+Multiplication\+Assignment\+Does\+Not\+Promote\+Type}} ()
+\item 
+void \doxymbox{\hyperlink{group___f_g_m___vec4___multiplication_ga5fda3cce6e4b472c132be97ffbe3ed68}{Vector4\+DScalar\+Multiplication\+\_\+\+Mixed\+Type\+Scalar\+Multiplication\+Assignment\+Ensures\+Minimal\+Precision\+Loss}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsubsection{Detailed Description}
+
+
+\label{doc-func-members}
+\Hypertarget{group___f_g_m___vec4___multiplication_doc-func-members}
+\doxysubsubsubsubsubsection{Function Documentation}
+\Hypertarget{group___f_g_m___vec4___multiplication_ga74b9ff4b8b8bc4cb9ef23913cc3eded7}\index{Scalar Multiplication@{Scalar Multiplication}!TYPED\_TEST@{TYPED\_TEST}}
+\index{TYPED\_TEST@{TYPED\_TEST}!Scalar Multiplication@{Scalar Multiplication}}
+\doxysubsubsubsubsubsubsection{\texorpdfstring{TYPED\_TEST()}{TYPED\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{group___f_g_m___vec4___multiplication_ga74b9ff4b8b8bc4cb9ef23913cc3eded7} 
+TYPED\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector4_d_scalar_multiplication}{Vector4\+DScalar\+Multiplication}}}]{}{, }\item[{Mixed\+Type\+Scalar\+Multiplication\+Promotes\+Type}]{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Test}
+\item[\doxymbox{\hyperlink{test__test000030}{Test}}]Verify that the binary multiplication operator performs automatic type promotion to the wider numeric type. \end{DoxyRefDesc}
+
+
+Definition at line \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source_l00305}{305}} of file \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source}{Arithmetic\+Operation\+Tests.\+cpp}}.
+
+\Hypertarget{group___f_g_m___vec4___multiplication_ga786eb8c470f37f2757390f5596275ca9}\index{Scalar Multiplication@{Scalar Multiplication}!TYPED\_TEST@{TYPED\_TEST}}
+\index{TYPED\_TEST@{TYPED\_TEST}!Scalar Multiplication@{Scalar Multiplication}}
+\doxysubsubsubsubsubsubsection{\texorpdfstring{TYPED\_TEST()}{TYPED\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{group___f_g_m___vec4___multiplication_ga786eb8c470f37f2757390f5596275ca9} 
+TYPED\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector4_d_scalar_multiplication}{Vector4\+DScalar\+Multiplication}}}]{}{, }\item[{Scalar\+Times\+AVector\+Returns\+Scaled\+Vector}]{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Test}
+\item[\doxymbox{\hyperlink{test__test000028}{Test}}]Verify that the binary multiplication operator (scalar \texorpdfstring{$\ast$}{*} vector) performs a component-\/wise (Hadamard) product and returns a new \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} instance. \end{DoxyRefDesc}
+
+
+Definition at line \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source_l00280}{280}} of file \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source}{Arithmetic\+Operation\+Tests.\+cpp}}.
+
+\Hypertarget{group___f_g_m___vec4___multiplication_gab1e2144559a1bfdc3f25a39ebfc4d382}\index{Scalar Multiplication@{Scalar Multiplication}!TYPED\_TEST@{TYPED\_TEST}}
+\index{TYPED\_TEST@{TYPED\_TEST}!Scalar Multiplication@{Scalar Multiplication}}
+\doxysubsubsubsubsubsubsection{\texorpdfstring{TYPED\_TEST()}{TYPED\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{group___f_g_m___vec4___multiplication_gab1e2144559a1bfdc3f25a39ebfc4d382} 
+TYPED\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector4_d_scalar_multiplication}{Vector4\+DScalar\+Multiplication}}}]{}{, }\item[{Vector\+Times\+Equal\+Scalar\+Is\+The\+Same\+Vector\+Scaled}]{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Test}
+\item[\doxymbox{\hyperlink{test__test000029}{Test}}]Verify that the compound multiplication assignment operator performs a component-\/wise (Hadamard) product and mutates the \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} in-\/place. \end{DoxyRefDesc}
+
+
+Definition at line \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source_l00294}{294}} of file \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source}{Arithmetic\+Operation\+Tests.\+cpp}}.
+
+\Hypertarget{group___f_g_m___vec4___multiplication_ga59ef669451d653d4e2a7e1ef1e22118c}\index{Scalar Multiplication@{Scalar Multiplication}!TYPED\_TEST@{TYPED\_TEST}}
+\index{TYPED\_TEST@{TYPED\_TEST}!Scalar Multiplication@{Scalar Multiplication}}
+\doxysubsubsubsubsubsubsection{\texorpdfstring{TYPED\_TEST()}{TYPED\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{group___f_g_m___vec4___multiplication_ga59ef669451d653d4e2a7e1ef1e22118c} 
+TYPED\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector4_d_scalar_multiplication}{Vector4\+DScalar\+Multiplication}}}]{}{, }\item[{Vector\+Times\+Scalar\+Returns\+Scaled\+Vector}]{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Test}
+\item[\doxymbox{\hyperlink{test__test000027}{Test}}]Verify that the binary multiplication operator (vector \texorpdfstring{$\ast$}{*} scalar) performs a component-\/wise (Hadamard) product and returns a new \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} instance. \end{DoxyRefDesc}
+
+
+Definition at line \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source_l00265}{265}} of file \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source}{Arithmetic\+Operation\+Tests.\+cpp}}.
+
+\Hypertarget{group___f_g_m___vec4___multiplication_ga6e7ade93e5ce3180feef5759d8ca8057}\index{Scalar Multiplication@{Scalar Multiplication}!Vector4DScalarMultiplication\_MixedTypeScalarMultiplicationAssignmentDoesNotPromoteType@{Vector4DScalarMultiplication\_MixedTypeScalarMultiplicationAssignmentDoesNotPromoteType}}
+\index{Vector4DScalarMultiplication\_MixedTypeScalarMultiplicationAssignmentDoesNotPromoteType@{Vector4DScalarMultiplication\_MixedTypeScalarMultiplicationAssignmentDoesNotPromoteType}!Scalar Multiplication@{Scalar Multiplication}}
+\doxysubsubsubsubsubsubsection{\texorpdfstring{Vector4DScalarMultiplication\_MixedTypeScalarMultiplicationAssignmentDoesNotPromoteType()}{Vector4DScalarMultiplication\_MixedTypeScalarMultiplicationAssignmentDoesNotPromoteType()}}
+{\footnotesize\ttfamily \label{group___f_g_m___vec4___multiplication_ga6e7ade93e5ce3180feef5759d8ca8057} 
+void Vector4\+DScalar\+Multiplication\+\_\+\+Mixed\+Type\+Scalar\+Multiplication\+Assignment\+Does\+Not\+Promote\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Test}
+\item[\doxymbox{\hyperlink{test__test000031}{Test}}]Verify that the compound multiplication assignment operator maintains the destination type and performs an implicit cast. \end{DoxyRefDesc}
+
+
+Definition at line \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source_l00318}{318}} of file \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source}{Arithmetic\+Operation\+Tests.\+cpp}}.
+
+\Hypertarget{group___f_g_m___vec4___multiplication_ga5fda3cce6e4b472c132be97ffbe3ed68}\index{Scalar Multiplication@{Scalar Multiplication}!Vector4DScalarMultiplication\_MixedTypeScalarMultiplicationAssignmentEnsuresMinimalPrecisionLoss@{Vector4DScalarMultiplication\_MixedTypeScalarMultiplicationAssignmentEnsuresMinimalPrecisionLoss}}
+\index{Vector4DScalarMultiplication\_MixedTypeScalarMultiplicationAssignmentEnsuresMinimalPrecisionLoss@{Vector4DScalarMultiplication\_MixedTypeScalarMultiplicationAssignmentEnsuresMinimalPrecisionLoss}!Scalar Multiplication@{Scalar Multiplication}}
+\doxysubsubsubsubsubsubsection{\texorpdfstring{Vector4DScalarMultiplication\_MixedTypeScalarMultiplicationAssignmentEnsuresMinimalPrecisionLoss()}{Vector4DScalarMultiplication\_MixedTypeScalarMultiplicationAssignmentEnsuresMinimalPrecisionLoss()}}
+{\footnotesize\ttfamily \label{group___f_g_m___vec4___multiplication_ga5fda3cce6e4b472c132be97ffbe3ed68} 
+void Vector4\+DScalar\+Multiplication\+\_\+\+Mixed\+Type\+Scalar\+Multiplication\+Assignment\+Ensures\+Minimal\+Precision\+Loss (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Test}
+\item[\doxymbox{\hyperlink{test__test000032}{Test}}]Verify that the compound multiplication operator for mixed types ensures minimal precision loss. \end{DoxyRefDesc}
+
+
+Definition at line \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source_l00328}{328}} of file \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source}{Arithmetic\+Operation\+Tests.\+cpp}}.
+
+\Hypertarget{group___f_g_m___vec4___multiplication_gab29546f90e3d310075c15befb02d71d3}\index{Scalar Multiplication@{Scalar Multiplication}!Vector4DScalarMultiplication\_MultiplicationByOneReturnsOriginalVector@{Vector4DScalarMultiplication\_MultiplicationByOneReturnsOriginalVector}}
+\index{Vector4DScalarMultiplication\_MultiplicationByOneReturnsOriginalVector@{Vector4DScalarMultiplication\_MultiplicationByOneReturnsOriginalVector}!Scalar Multiplication@{Scalar Multiplication}}
+\doxysubsubsubsubsubsubsection{\texorpdfstring{Vector4DScalarMultiplication\_MultiplicationByOneReturnsOriginalVector()}{Vector4DScalarMultiplication\_MultiplicationByOneReturnsOriginalVector()}}
+{\footnotesize\ttfamily \label{group___f_g_m___vec4___multiplication_gab29546f90e3d310075c15befb02d71d3} 
+void Vector4\+DScalar\+Multiplication\+\_\+\+Multiplication\+By\+One\+Returns\+Original\+Vector (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Test}
+\item[\doxymbox{\hyperlink{test__test000026}{Test}}]Verify that the binary multiplication of a \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} by one returns the original vector. \end{DoxyRefDesc}
+
+
+Definition at line \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source_l00252}{252}} of file \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source}{Arithmetic\+Operation\+Tests.\+cpp}}.
+
+\Hypertarget{group___f_g_m___vec4___multiplication_ga5dc878b73d630c172ccf5377adcbc664}\index{Scalar Multiplication@{Scalar Multiplication}!Vector4DScalarMultiplication\_MultiplicationByZeroReturnsZeroVector@{Vector4DScalarMultiplication\_MultiplicationByZeroReturnsZeroVector}}
+\index{Vector4DScalarMultiplication\_MultiplicationByZeroReturnsZeroVector@{Vector4DScalarMultiplication\_MultiplicationByZeroReturnsZeroVector}!Scalar Multiplication@{Scalar Multiplication}}
+\doxysubsubsubsubsubsubsection{\texorpdfstring{Vector4DScalarMultiplication\_MultiplicationByZeroReturnsZeroVector()}{Vector4DScalarMultiplication\_MultiplicationByZeroReturnsZeroVector()}}
+{\footnotesize\ttfamily \label{group___f_g_m___vec4___multiplication_ga5dc878b73d630c172ccf5377adcbc664} 
+void Vector4\+DScalar\+Multiplication\+\_\+\+Multiplication\+By\+Zero\+Returns\+Zero\+Vector (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Test}
+\item[\doxymbox{\hyperlink{test__test000025}{Test}}]Verify that the binary multiplication of a \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} by a zero scalar returns a zero-\/vector. \end{DoxyRefDesc}
+
+
+Definition at line \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source_l00242}{242}} of file \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source}{Arithmetic\+Operation\+Tests.\+cpp}}.
+

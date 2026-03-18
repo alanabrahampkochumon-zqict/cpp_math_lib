@@ -1,2 +1,111 @@
 \doxysubsubsubsubsection{Scalar Division }
 \hypertarget{group___f_g_m___vec4___division}{}\label{group___f_g_m___vec4___division}\index{Scalar Division@{Scalar Division}}
+\doxysubsubsubsubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{group___f_g_m___vec4___division_ga7bdc20178506089ee464d0b2227cce90}{TYPED\+\_\+\+TEST}} (\doxymbox{\hyperlink{class_vector4_d_scalar_division}{Vector4\+DScalar\+Division}}, Division\+By\+Zero\+Returns\+Infinity\+Vector)
+\item 
+\doxymbox{\hyperlink{group___f_g_m___vec4___division_ga4fb2fe66ba99f7c28565d56a8b1407f7}{TYPED\+\_\+\+TEST}} (\doxymbox{\hyperlink{class_vector4_d_scalar_division}{Vector4\+DScalar\+Division}}, Division\+By\+One\+Returns\+Original\+Vector)
+\item 
+\doxymbox{\hyperlink{group___f_g_m___vec4___division_ga82e78a8f0e499cea67dea007676c7a48}{TYPED\+\_\+\+TEST}} (\doxymbox{\hyperlink{class_vector4_d_scalar_division}{Vector4\+DScalar\+Division}}, Vector\+Divided\+By\+ANumber\+Returns\+AScaled\+Vector)
+\item 
+\doxymbox{\hyperlink{group___f_g_m___vec4___division_ga1babaaebd4abcd024c3092cf5a34b9b9}{TYPED\+\_\+\+TEST}} (\doxymbox{\hyperlink{class_vector4_d_scalar_division}{Vector4\+DScalar\+Division}}, Vector\+Divide\+Equals\+ANumber\+Is\+The\+Same\+Vector\+Scaled)
+\item 
+void \doxymbox{\hyperlink{group___f_g_m___vec4___division_ga1998720892d4508dadeb805f74ae6469}{Vector4\+DScalar\+Division\+\_\+\+Mixed\+Type\+Scalar\+Division\+Promotes\+Type}} ()
+\item 
+void \doxymbox{\hyperlink{group___f_g_m___vec4___division_ga65d6353b0510aad14587bba58fc1a34f}{Vector4\+DScalar\+Division\+\_\+\+Mixed\+Type\+Scalar\+Division\+Assignment\+Does\+Not\+Promote\+Type}} ()
+\item 
+void \doxymbox{\hyperlink{group___f_g_m___vec4___division_ga7a5758a23acd48130a6a550ab4933b9e}{Vector4\+DScalar\+Division\+\_\+\+Mixed\+Type\+Scalar\+Division\+Assignment\+Gives\+Result\+With\+Minimal\+Precision\+Loss}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsubsubsubsection{Detailed Description}
+
+
+\label{doc-func-members}
+\Hypertarget{group___f_g_m___vec4___division_doc-func-members}
+\doxysubsubsubsubsubsection{Function Documentation}
+\Hypertarget{group___f_g_m___vec4___division_ga4fb2fe66ba99f7c28565d56a8b1407f7}\index{Scalar Division@{Scalar Division}!TYPED\_TEST@{TYPED\_TEST}}
+\index{TYPED\_TEST@{TYPED\_TEST}!Scalar Division@{Scalar Division}}
+\doxysubsubsubsubsubsubsection{\texorpdfstring{TYPED\_TEST()}{TYPED\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{group___f_g_m___vec4___division_ga4fb2fe66ba99f7c28565d56a8b1407f7} 
+TYPED\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector4_d_scalar_division}{Vector4\+DScalar\+Division}}}]{}{, }\item[{Division\+By\+One\+Returns\+Original\+Vector}]{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Test}
+\item[\doxymbox{\hyperlink{test__test000034}{Test}}]Verify that the binary division of a \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} by one returns the original vector. \end{DoxyRefDesc}
+
+
+Definition at line \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source_l00368}{368}} of file \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source}{Arithmetic\+Operation\+Tests.\+cpp}}.
+
+\Hypertarget{group___f_g_m___vec4___division_ga7bdc20178506089ee464d0b2227cce90}\index{Scalar Division@{Scalar Division}!TYPED\_TEST@{TYPED\_TEST}}
+\index{TYPED\_TEST@{TYPED\_TEST}!Scalar Division@{Scalar Division}}
+\doxysubsubsubsubsubsubsection{\texorpdfstring{TYPED\_TEST()}{TYPED\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{group___f_g_m___vec4___division_ga7bdc20178506089ee464d0b2227cce90} 
+TYPED\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector4_d_scalar_division}{Vector4\+DScalar\+Division}}}]{}{, }\item[{Division\+By\+Zero\+Returns\+Infinity\+Vector}]{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Test}
+\item[\doxymbox{\hyperlink{test__test000033}{Test}}]Verify that the binary division of a \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} by a zero scalar returns an infinity-\/vector for floating-\/point types and triggers program termination for integral types. \end{DoxyRefDesc}
+
+
+Definition at line \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source_l00359}{359}} of file \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source}{Arithmetic\+Operation\+Tests.\+cpp}}.
+
+\Hypertarget{group___f_g_m___vec4___division_ga82e78a8f0e499cea67dea007676c7a48}\index{Scalar Division@{Scalar Division}!TYPED\_TEST@{TYPED\_TEST}}
+\index{TYPED\_TEST@{TYPED\_TEST}!Scalar Division@{Scalar Division}}
+\doxysubsubsubsubsubsubsection{\texorpdfstring{TYPED\_TEST()}{TYPED\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{group___f_g_m___vec4___division_ga82e78a8f0e499cea67dea007676c7a48} 
+TYPED\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector4_d_scalar_division}{Vector4\+DScalar\+Division}}}]{}{, }\item[{Vector\+Divided\+By\+ANumber\+Returns\+AScaled\+Vector}]{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Test}
+\item[\doxymbox{\hyperlink{test__test000035}{Test}}]Verify that the binary division operator (vector /\+ scalar) performs a component-\/wise divide and returns a new \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} instance. \end{DoxyRefDesc}
+
+
+Definition at line \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source_l00379}{379}} of file \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source}{Arithmetic\+Operation\+Tests.\+cpp}}.
+
+\Hypertarget{group___f_g_m___vec4___division_ga1babaaebd4abcd024c3092cf5a34b9b9}\index{Scalar Division@{Scalar Division}!TYPED\_TEST@{TYPED\_TEST}}
+\index{TYPED\_TEST@{TYPED\_TEST}!Scalar Division@{Scalar Division}}
+\doxysubsubsubsubsubsubsection{\texorpdfstring{TYPED\_TEST()}{TYPED\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{group___f_g_m___vec4___division_ga1babaaebd4abcd024c3092cf5a34b9b9} 
+TYPED\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_vector4_d_scalar_division}{Vector4\+DScalar\+Division}}}]{}{, }\item[{Vector\+Divide\+Equals\+ANumber\+Is\+The\+Same\+Vector\+Scaled}]{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Test}
+\item[\doxymbox{\hyperlink{test__test000036}{Test}}]Verify that the compound division assignment operator performs a component-\/wise divide and mutates the \doxylink{structfgm_1_1_vector4_d}{fgm::\+\+Vector4D} in-\/place. \end{DoxyRefDesc}
+
+
+Definition at line \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source_l00390}{390}} of file \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source}{Arithmetic\+Operation\+Tests.\+cpp}}.
+
+\Hypertarget{group___f_g_m___vec4___division_ga65d6353b0510aad14587bba58fc1a34f}\index{Scalar Division@{Scalar Division}!Vector4DScalarDivision\_MixedTypeScalarDivisionAssignmentDoesNotPromoteType@{Vector4DScalarDivision\_MixedTypeScalarDivisionAssignmentDoesNotPromoteType}}
+\index{Vector4DScalarDivision\_MixedTypeScalarDivisionAssignmentDoesNotPromoteType@{Vector4DScalarDivision\_MixedTypeScalarDivisionAssignmentDoesNotPromoteType}!Scalar Division@{Scalar Division}}
+\doxysubsubsubsubsubsubsection{\texorpdfstring{Vector4DScalarDivision\_MixedTypeScalarDivisionAssignmentDoesNotPromoteType()}{Vector4DScalarDivision\_MixedTypeScalarDivisionAssignmentDoesNotPromoteType()}}
+{\footnotesize\ttfamily \label{group___f_g_m___vec4___division_ga65d6353b0510aad14587bba58fc1a34f} 
+void Vector4\+DScalar\+Division\+\_\+\+Mixed\+Type\+Scalar\+Division\+Assignment\+Does\+Not\+Promote\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Test}
+\item[\doxymbox{\hyperlink{test__test000038}{Test}}]Verify that the compound division assignment operator maintains the destination type and performs an implicit cast. \end{DoxyRefDesc}
+
+
+Definition at line \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source_l00412}{412}} of file \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source}{Arithmetic\+Operation\+Tests.\+cpp}}.
+
+\Hypertarget{group___f_g_m___vec4___division_ga7a5758a23acd48130a6a550ab4933b9e}\index{Scalar Division@{Scalar Division}!Vector4DScalarDivision\_MixedTypeScalarDivisionAssignmentGivesResultWithMinimalPrecisionLoss@{Vector4DScalarDivision\_MixedTypeScalarDivisionAssignmentGivesResultWithMinimalPrecisionLoss}}
+\index{Vector4DScalarDivision\_MixedTypeScalarDivisionAssignmentGivesResultWithMinimalPrecisionLoss@{Vector4DScalarDivision\_MixedTypeScalarDivisionAssignmentGivesResultWithMinimalPrecisionLoss}!Scalar Division@{Scalar Division}}
+\doxysubsubsubsubsubsubsection{\texorpdfstring{Vector4DScalarDivision\_MixedTypeScalarDivisionAssignmentGivesResultWithMinimalPrecisionLoss()}{Vector4DScalarDivision\_MixedTypeScalarDivisionAssignmentGivesResultWithMinimalPrecisionLoss()}}
+{\footnotesize\ttfamily \label{group___f_g_m___vec4___division_ga7a5758a23acd48130a6a550ab4933b9e} 
+void Vector4\+DScalar\+Division\+\_\+\+Mixed\+Type\+Scalar\+Division\+Assignment\+Gives\+Result\+With\+Minimal\+Precision\+Loss (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Test}
+\item[\doxymbox{\hyperlink{test__test000039}{Test}}]Verify that the compound division operator for mixed types ensures minimal precision loss. \end{DoxyRefDesc}
+
+
+Definition at line \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source_l00423}{423}} of file \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source}{Arithmetic\+Operation\+Tests.\+cpp}}.
+
+\Hypertarget{group___f_g_m___vec4___division_ga1998720892d4508dadeb805f74ae6469}\index{Scalar Division@{Scalar Division}!Vector4DScalarDivision\_MixedTypeScalarDivisionPromotesType@{Vector4DScalarDivision\_MixedTypeScalarDivisionPromotesType}}
+\index{Vector4DScalarDivision\_MixedTypeScalarDivisionPromotesType@{Vector4DScalarDivision\_MixedTypeScalarDivisionPromotesType}!Scalar Division@{Scalar Division}}
+\doxysubsubsubsubsubsubsection{\texorpdfstring{Vector4DScalarDivision\_MixedTypeScalarDivisionPromotesType()}{Vector4DScalarDivision\_MixedTypeScalarDivisionPromotesType()}}
+{\footnotesize\ttfamily \label{group___f_g_m___vec4___division_ga1998720892d4508dadeb805f74ae6469} 
+void Vector4\+DScalar\+Division\+\_\+\+Mixed\+Type\+Scalar\+Division\+Promotes\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Test}
+\item[\doxymbox{\hyperlink{test__test000037}{Test}}]Verify that the binary division operator performs automatic type promotion to the wider numeric type. \end{DoxyRefDesc}
+
+
+Definition at line \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source_l00398}{398}} of file \doxymbox{\hyperlink{_arithmetic_operation_tests_8cpp_source}{Arithmetic\+Operation\+Tests.\+cpp}}.
+

@@ -1,12 +1,12 @@
 var group___f_g_m_vector4_d =
 [
     [ "Component Access", "group___f_g_m___vec4___access.html", "group___f_g_m___vec4___access" ],
-    [ "Component Mutation", "group___f_g_m___vec4___mutation.html", null ],
-    [ "Spatial Aliasing", "group___f_g_m___vec4___alias.html", null ],
-    [ "Addition", "group___f_g_m___vec4___addition.html", null ],
-    [ "Subtraction", "group___f_g_m___vec4___subtraction.html", null ],
-    [ "Scalar Multiplication", "group___f_g_m___vec4___multiplication.html", null ],
-    [ "Scalar Division", "group___f_g_m___vec4___division.html", null ],
+    [ "Component Mutation", "group___f_g_m___vec4___mutation.html", "group___f_g_m___vec4___mutation" ],
+    [ "Spatial Aliasing", "group___f_g_m___vec4___alias.html", "group___f_g_m___vec4___alias" ],
+    [ "Addition", "group___f_g_m___vec4___addition.html", "group___f_g_m___vec4___addition" ],
+    [ "Subtraction", "group___f_g_m___vec4___subtraction.html", "group___f_g_m___vec4___subtraction" ],
+    [ "Scalar Multiplication", "group___f_g_m___vec4___multiplication.html", "group___f_g_m___vec4___multiplication" ],
+    [ "Scalar Division", "group___f_g_m___vec4___division.html", "group___f_g_m___vec4___division" ],
     [ "Greater Than Comparison", "group___f_g_m___vec4___g_t___comp.html", null ],
     [ "Greater Than or Equal Comparison", "group___f_g_m___vec4___g_t_e___comp.html", null ],
     [ "Less Than Comparison", "group___f_g_m___vec4___l_t___comp.html", null ],

@@ -97,64 +97,60 @@ $(function(){initNavTree('_alias_tests_8cpp_source.html','',''); });
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="_vector4_d_test_setup_8h.html">Vector4DTestSetup.h</a>&quot;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span></div>
-<div class="foldopen" id="foldopen00016" data-start="{" data-end="}">
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="_alias_tests_8cpp.html#a28601b44441df93dee398b8df1d2605a">   16</a></span>TEST(Vector4DAlias, bVec4IsA4DBoolVector)</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>{</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::bVec4::value_type, bool&gt; &amp;&amp; <span class="stringliteral">&quot;bVec4 must contain boolean elements&quot;</span>);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::bVec4, fgm::Vector4D&lt;bool&gt;&gt; &amp;&amp; <span class="stringliteral">&quot;bVec4 must be an alias of Vector4D&lt;bool&gt;&quot;</span>);</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>}</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span></div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="group___f_g_m___vec4___alias.html#ga28601b44441df93dee398b8df1d2605a">   22</a></span>TEST(Vector4DAlias, bVec4IsA4DBoolVector)</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::bVec4::value_type, bool&gt; &amp;&amp; <span class="stringliteral">&quot;bVec4 must contain boolean elements&quot;</span>);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::bVec4, fgm::Vector4D&lt;bool&gt;&gt; &amp;&amp; <span class="stringliteral">&quot;bVec4 must be an alias of Vector4D&lt;bool&gt;&quot;</span>);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>}</div>
 </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span></div>
-<div class="foldopen" id="foldopen00024" data-start="{" data-end="}">
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="_alias_tests_8cpp.html#a29418d11dd5b9b8c0cfb94df27275df0">   24</a></span>TEST(Vector4DAlias, iVec4IsA4DIntVector)</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>{</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::iVec4::value_type, int&gt; &amp;&amp; <span class="stringliteral">&quot;iVec4 must contain int elements&quot;</span>);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::iVec4, fgm::Vector4D&lt;int&gt;&gt; &amp;&amp; <span class="stringliteral">&quot;iVec4 must be an alias of Vector4D&lt;int&gt;&quot;</span>);</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>}</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span></div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="}">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="group___f_g_m___vec4___alias.html#ga29418d11dd5b9b8c0cfb94df27275df0">   29</a></span>TEST(Vector4DAlias, iVec4IsA4DIntVector)</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>{</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::iVec4::value_type, int&gt; &amp;&amp; <span class="stringliteral">&quot;iVec4 must contain int elements&quot;</span>);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::iVec4, fgm::Vector4D&lt;int&gt;&gt; &amp;&amp; <span class="stringliteral">&quot;iVec4 must be an alias of Vector4D&lt;int&gt;&quot;</span>);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>}</div>
 </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span></div>
-<div class="foldopen" id="foldopen00032" data-start="{" data-end="}">
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="_alias_tests_8cpp.html#a09dcb1d13bac5d6bd68da6ace3b1ee22">   32</a></span>TEST(Vector4DAlias, uVec4IsA4DUnsignedIntVector)</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::uVec4::value_type, unsigned int&gt; &amp;&amp; <span class="stringliteral">&quot;uVec4 must contain unsigned int elements&quot;</span>);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::uVec4, fgm::Vector4D&lt;unsigned int&gt;&gt; &amp;&amp;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                  <span class="stringliteral">&quot;uVec4 must be an alias of Vector4D&lt;unsigned int&gt;&quot;</span>);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>}</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span></div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="}">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="group___f_g_m___vec4___alias.html#ga09dcb1d13bac5d6bd68da6ace3b1ee22">   36</a></span>TEST(Vector4DAlias, uVec4IsA4DUnsignedIntVector)</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>{</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::uVec4::value_type, unsigned int&gt; &amp;&amp; <span class="stringliteral">&quot;uVec4 must contain unsigned int elements&quot;</span>);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::uVec4, fgm::Vector4D&lt;unsigned int&gt;&gt; &amp;&amp;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                  <span class="stringliteral">&quot;uVec4 must be an alias of Vector4D&lt;unsigned int&gt;&quot;</span>);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>}</div>
 </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span></div>
-<div class="foldopen" id="foldopen00041" data-start="{" data-end="}">
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="_alias_tests_8cpp.html#a092bb36404ddf5b6686b629dc780e26c">   41</a></span>TEST(Vector4DAlias, vec4IsA4DFloatVector)</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::vec4::value_type, float&gt; &amp;&amp; <span class="stringliteral">&quot;vec4 must contain float elements&quot;</span>);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::vec4, fgm::Vector4D&lt;float&gt;&gt; &amp;&amp; <span class="stringliteral">&quot;vec4 must be an alias of Vector4D&lt;float&gt;&quot;</span>);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span></div>
+<div class="foldopen" id="foldopen00044" data-start="{" data-end="}">
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="group___f_g_m___vec4___alias.html#ga092bb36404ddf5b6686b629dc780e26c">   44</a></span>TEST(Vector4DAlias, vec4IsA4DFloatVector)</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>{</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::vec4::value_type, float&gt; &amp;&amp; <span class="stringliteral">&quot;vec4 must contain float elements&quot;</span>);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::vec4, fgm::Vector4D&lt;float&gt;&gt; &amp;&amp; <span class="stringliteral">&quot;vec4 must be an alias of Vector4D&lt;float&gt;&quot;</span>);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}</div>
 </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span></div>
-<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="_alias_tests_8cpp.html#a9d78ac901bc808372b0a9471607a32fd">   49</a></span>TEST(Vector4DAlias, lVec4IsA4DLongLongVector)</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>{</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::lVec4::value_type, long long&gt; &amp;&amp; <span class="stringliteral">&quot;lVec4 must contain long long elements&quot;</span>);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::lVec4, fgm::Vector4D&lt;long long&gt;&gt; &amp;&amp;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                  <span class="stringliteral">&quot;lVec4 must be an alias of Vector4D&lt;long long&gt;&quot;</span>);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span></div>
+<div class="foldopen" id="foldopen00051" data-start="{" data-end="}">
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="group___f_g_m___vec4___alias.html#ga9d78ac901bc808372b0a9471607a32fd">   51</a></span>TEST(Vector4DAlias, lVec4IsA4DLongLongVector)</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>{</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::lVec4::value_type, long long&gt; &amp;&amp; <span class="stringliteral">&quot;lVec4 must contain long long elements&quot;</span>);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::lVec4, fgm::Vector4D&lt;long long&gt;&gt; &amp;&amp;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                  <span class="stringliteral">&quot;lVec4 must be an alias of Vector4D&lt;long long&gt;&quot;</span>);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>}</div>
 </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span></div>
-<div class="foldopen" id="foldopen00058" data-start="{" data-end="}">
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="_alias_tests_8cpp.html#a91ab0c5b95623fdad74785285938d1f7">   58</a></span>TEST(Vector4DAlias, dVec4IsA4DDoubleVector)</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>{</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::dVec4::value_type, double&gt; &amp;&amp; <span class="stringliteral">&quot;dVec4 must contain double elements&quot;</span>);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::dVec4, fgm::Vector4D&lt;double&gt;&gt; &amp;&amp; <span class="stringliteral">&quot;dVec4 must be an alias of Vector4D&lt;double&gt;&quot;</span>);</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span></div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="}">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="group___f_g_m___vec4___alias.html#ga91ab0c5b95623fdad74785285938d1f7">   59</a></span>TEST(Vector4DAlias, dVec4IsA4DDoubleVector)</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>{</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::dVec4::value_type, double&gt; &amp;&amp; <span class="stringliteral">&quot;dVec4 must contain double elements&quot;</span>);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::dVec4, fgm::Vector4D&lt;double&gt;&gt; &amp;&amp; <span class="stringliteral">&quot;dVec4 must be an alias of Vector4D&lt;double&gt;&quot;</span>);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>}</div>
 </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span></div>
 <div class="foldopen" id="foldopen00066" data-start="{" data-end="}">
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="_alias_tests_8cpp.html#a249ac71ed3af8c8e6ba3a669c0115140">   66</a></span>TEST(Vector4DAlias, ulVec4IsA4DUnsignedLongLongVector)</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="group___f_g_m___vec4___alias.html#ga249ac71ed3af8c8e6ba3a669c0115140">   66</a></span>TEST(Vector4DAlias, ulVec4IsA4DUnsignedLongLongVector)</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>{</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keyword">static_assert</span>(std::is_same_v&lt;fgm::ulVec4::value_type, unsigned long long&gt; &amp;&amp;</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                  <span class="stringliteral">&quot;ulVec4 must contain unsigned long long elements&quot;</span>);</div>
@@ -162,6 +158,8 @@ $(function(){initNavTree('_alias_tests_8cpp_source.html','',''); });
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                  <span class="stringliteral">&quot;ulVec4 must be an alias of Vector4D&lt;unsigned long long&gt;&quot;</span>);</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>}</div>
 </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span></div>
 <div class="ttc" id="a_vector4_d_test_setup_8h_html"><div class="ttname"><a href="_vector4_d_test_setup_8h.html">Vector4DTestSetup.h</a></div><div class="ttdoc">Define test setups common to all Vector4D tests.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

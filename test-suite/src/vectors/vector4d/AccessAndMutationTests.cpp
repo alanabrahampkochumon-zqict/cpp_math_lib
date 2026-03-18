@@ -23,6 +23,7 @@
  * @{
  */
 
+
 /** @test Verify that @ref fgm::Vector4D components are accessible via named spatial aliases (x, y, z, w). */
 TEST(Vector4DAccess, AccessibleAsXYZW)
 {
@@ -148,5 +149,6 @@ TEST(Vector4DMutation, ElementsCanBeMutatedUsingIndex)
     EXPECT_FLOAT_EQ(6.0f, vec[2]);
     EXPECT_FLOAT_EQ(2.0f, vec[3]);
 }
+
 
 /** @} */

@@ -101,7 +101,10 @@ class Vector4DScalarDivision: public ::testing::Test
 TYPED_TEST_SUITE(Vector4DScalarDivision, SupportedArithmeticTypes);
 
 
-
+/**
+ * @addtogroup FGM_Vec4_Addition
+ * @{
+ */
 
 /**************************************
  *                                    *
@@ -120,7 +123,6 @@ TYPED_TEST(Vector4DAddition, PlusOperator_ReturnsVectorSum)
     EXPECT_VEC_EQ(this->expected, result);
 }
 
-
 /**
  * @test Verify that the compound addition assignment operator performs a component-wise sum and mutates the @ref
  *       fgm::Vector4D in-place.
@@ -132,7 +134,6 @@ TYPED_TEST(Vector4DAddition, PlusEqualsOperator_ReturnsSameVectorWithSum)
     EXPECT_VEC_EQ(this->expected, this->vecA);
 }
 
-
 /** @test Verify that the binary addition operator performs automatic type promotion to the wider numeric type. */
 TEST(Vector4DAddition, MixedTypeAdditionPromotesType)
 {
@@ -143,7 +144,6 @@ TEST(Vector4DAddition, MixedTypeAdditionPromotesType)
 
     static_assert(std::is_same_v<decltype(result)::value_type, double>);
 }
-
 
 /**
  * @test Verify that the compound addition assignment operator maintains the destination type and performs an implicit
@@ -159,8 +159,15 @@ TEST(Vector4DAddition, MixedTypeAdditionAssignmentDoesNotPromoteType)
     static_assert(std::is_same_v<decltype(vec1)::value_type, float>);
 }
 
+/** @} */
 
 
+
+
+/**
+ * @addtogroup FGM_Vec4_Subtraction
+ * @{
+ */
 
 /**************************************
  *                                    *
@@ -179,7 +186,6 @@ TYPED_TEST(Vector4DSubtraction, MinusOperator_ReturnsDifference)
     EXPECT_VEC_EQ(this->expected, result);
 }
 
-
 /**
  * @test Verify that the compound subtraction assignment operator performs a component-wise difference and mutates the
  * @ref fgm::Vector4D in-place.
@@ -190,7 +196,6 @@ TYPED_TEST(Vector4DSubtraction, MinusEqualsOperator_ReturnsSameVectorWithDiffere
 
     EXPECT_VEC_EQ(this->expected, this->vecA);
 }
-
 
 /** @test Verify that the binary subtraction operator performs automatic type promotion to the wider numeric type. */
 TEST(Vector4DSubtraction, MixedTypeSubtractionPromotesType)
@@ -217,8 +222,15 @@ TEST(Vector4DSubtraction, MixedTypeSubtractionAssignmentDoesNotPromoteType)
     static_assert(std::is_same_v<decltype(vec1)::value_type, float>);
 }
 
+/** @} */
 
 
+
+
+/**
+ * @addtogroup FGM_Vec4_Multiplication
+ * @{
+ */
 
 /**************************************
  *                                    *
@@ -236,7 +248,6 @@ TEST(Vector4DScalarMultiplication, MultiplicationByZeroReturnsZeroVector)
     EXPECT_VEC_ZERO(result);
 }
 
-
 /** @test Verify that the binary multiplication of a @ref fgm::Vector4D by one returns the original vector. */
 TEST(Vector4DScalarMultiplication, MultiplicationByOneReturnsOriginalVector)
 {
@@ -246,7 +257,6 @@ TEST(Vector4DScalarMultiplication, MultiplicationByOneReturnsOriginalVector)
 
     EXPECT_VEC_EQ(vec, result);
 }
-
 
 /**
  * @test Verify that the binary multiplication operator (vector * scalar) performs a component-wise (Hadamard) product
@@ -261,7 +271,6 @@ TYPED_TEST(Vector4DScalarMultiplication, VectorTimesScalarReturnsScaledVector)
     else
         EXPECT_VEC_EQ(this->expectedIntegral, result);
 }
-
 
 /**
  * @test Verify that the binary multiplication operator (scalar * vector) performs a component-wise (Hadamard) product
@@ -278,7 +287,6 @@ TYPED_TEST(Vector4DScalarMultiplication, ScalarTimesAVectorReturnsScaledVector)
         EXPECT_VEC_EQ(this->expectedIntegral, result);
 }
 
-
 /**
  * @test Verify that the compound multiplication assignment operator performs a component-wise (Hadamard) product
  *       and mutates the @ref fgm::Vector4D in-place.
@@ -293,7 +301,6 @@ TYPED_TEST(Vector4DScalarMultiplication, VectorTimesEqualScalarIsTheSameVectorSc
         EXPECT_VEC_EQ(this->expectedIntegral, this->vec);
 }
 
-
 /** @test Verify that the binary multiplication operator performs automatic type promotion to the wider numeric type. */
 TYPED_TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationPromotesType)
 {
@@ -303,7 +310,6 @@ TYPED_TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationPromotesTy
 
     static_assert(std::is_same_v<typename decltype(result)::value_type, double>);
 }
-
 
 /**
  * @test Verify that the compound multiplication assignment operator maintains the destination type and performs an
@@ -318,7 +324,6 @@ TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationAssignmentDoesNo
     static_assert(std::is_same_v<decltype(vec)::value_type, float>);
 }
 
-
 /** @test Verify that the compound multiplication operator for mixed types ensures minimal precision loss. */
 TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationAssignmentEnsuresMinimalPrecisionLoss)
 {
@@ -331,6 +336,15 @@ TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationAssignmentEnsure
     EXPECT_VEC_EQ(expected, vec);
 }
 
+/** @} */
+
+
+
+
+/**
+ * @addtogroup FGM_Vec4_Division
+ * @{
+ */
 
 /**************************************
  *                                    *
@@ -350,7 +364,6 @@ TYPED_TEST(Vector4DScalarDivision, DivisionByZeroReturnsInfinityVector)
         EXPECT_DEATH({ this->vec / 0; }, "Integral division by zero");
 }
 
-
 /** @test Verify that the binary division of a @ref fgm::Vector4D by one returns the original vector. */
 TYPED_TEST(Vector4DScalarDivision, DivisionByOneReturnsOriginalVector)
 {
@@ -358,7 +371,6 @@ TYPED_TEST(Vector4DScalarDivision, DivisionByOneReturnsOriginalVector)
 
     EXPECT_VEC_EQ(result, this->vec);
 }
-
 
 /**
  * @test Verify that the binary division operator (vector / scalar) performs a component-wise divide
@@ -371,7 +383,6 @@ TYPED_TEST(Vector4DScalarDivision, VectorDividedByANumberReturnsAScaledVector)
     EXPECT_VEC_EQ(this->expected, result);
 }
 
-
 /**
  * @test Verify that the compound division assignment operator performs a component-wise divide
  *       and mutates the @ref fgm::Vector4D in-place.
@@ -383,7 +394,6 @@ TYPED_TEST(Vector4DScalarDivision, VectorDivideEqualsANumberIsTheSameVectorScale
     EXPECT_VEC_EQ(this->expected, this->vec);
 }
 
-
 /** @test Verify that the binary division operator performs automatic type promotion to the wider numeric type. */
 TEST(Vector4DScalarDivision, MixedTypeScalarDivisionPromotesType)
 {
@@ -394,7 +404,6 @@ TEST(Vector4DScalarDivision, MixedTypeScalarDivisionPromotesType)
 
     static_assert(std::is_same_v<decltype(result)::value_type, double>);
 }
-
 
 /**
  * @test Verify that the compound division assignment operator maintains the destination type and performs an
@@ -410,7 +419,6 @@ TEST(Vector4DScalarDivision, MixedTypeScalarDivisionAssignmentDoesNotPromoteType
     static_assert(std::is_same_v<decltype(vec)::value_type, float>);
 }
 
-
 /** @test Verify that the compound division operator for mixed types ensures minimal precision loss. */
 TEST(Vector4DScalarDivision, MixedTypeScalarDivisionAssignmentGivesResultWithMinimalPrecisionLoss)
 {
@@ -422,3 +430,5 @@ TEST(Vector4DScalarDivision, MixedTypeScalarDivisionAssignmentGivesResultWithMin
 
     EXPECT_VEC_EQ(expected, vec);
 }
+
+/** @} */

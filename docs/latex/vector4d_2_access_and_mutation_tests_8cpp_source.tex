@@ -7,34 +7,34 @@
 \DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00011}00011\ }
 \DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_vector4_d_test_setup_8h}{Vector4DTestSetup.h}}"{}}}
 \DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00013}00013\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00018}00018\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00019}00019\ \textcolor{comment}{/**************************************}}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00020}00020\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00021}00021\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ ACCESS\ TESTS\ \ \ \ \ \ \ \ \ \ \ \ *}}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00022}00022\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00023}00023\ \textcolor{comment}{\ **************************************/}}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00024}00024\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00026}\doxymbox{\hyperlink{group___f_g_m___vec4___access_gaf9b19b8936062eecb39792dd3f286f24}{00026}}\ TEST(Vector4DAccess,\ AccessibleAsXYZW)}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00027}00027\ \{}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00028}00028\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_vector4_d}{fgm::Vector4D}}\ vec(3.0f,\ 1.0f,\ 6.0f,\ 2.0f);}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00029}00029\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00030}00030\ \ \ \ \ EXPECT\_FLOAT\_EQ(3.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a5b123e1cdf3d7c5888546b71afec4c25}{x}});}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00031}00031\ \ \ \ \ EXPECT\_FLOAT\_EQ(1.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a75ad7ea209aa513c25daee7908112c54}{y}});}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00032}00032\ \ \ \ \ EXPECT\_FLOAT\_EQ(6.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_ae5fd276e681e0499943fd40f530fcd47}{z}});}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00033}00033\ \ \ \ \ EXPECT\_FLOAT\_EQ(2.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_ad5362e4ee59aa8dda9630e3983786d76}{w}});}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00034}00034\ \}}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00035}00035\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00036}00036\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00038}\doxymbox{\hyperlink{group___f_g_m___vec4___access_ga1d4776b90945835ac95120f723607f9d}{00038}}\ TEST(Vector4DAccess,\ AccessibleAsSTPQ)}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00039}00039\ \{}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_vector4_d}{fgm::Vector4D}}\ vec(3.0f,\ 1.0f,\ 6.0f,\ 2.0f);}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00041}00041\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00042}00042\ \ \ \ \ EXPECT\_FLOAT\_EQ(3.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_ae2ea654678712d12d87ffeb1a9dd81a7}{s}});}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00043}00043\ \ \ \ \ EXPECT\_FLOAT\_EQ(1.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a387d8cc00b37c03f91da1d2c71aae414}{t}});}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00044}00044\ \ \ \ \ EXPECT\_FLOAT\_EQ(6.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a1960270523fa5cbe657d9f8e5029ee91}{p}});}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00045}00045\ \ \ \ \ EXPECT\_FLOAT\_EQ(2.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a4427fe34e2631b80ae2aecd958bf17ef}{q}});}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00046}00046\ \}}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00015}00015\ \textcolor{comment}{/**************************************}}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00016}00016\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00017}00017\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ ACCESS\ TESTS\ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00018}00018\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00019}00019\ \textcolor{comment}{\ **************************************/}}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00028}\doxymbox{\hyperlink{group___f_g_m___vec4___access_gaf9b19b8936062eecb39792dd3f286f24}{00028}}\ TEST(Vector4DAccess,\ AccessibleAsXYZW)}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00029}00029\ \{}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_vector4_d}{fgm::Vector4D}}\ vec(3.0f,\ 1.0f,\ 6.0f,\ 2.0f);}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00032}00032\ \ \ \ \ EXPECT\_FLOAT\_EQ(3.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a5b123e1cdf3d7c5888546b71afec4c25}{x}});}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00033}00033\ \ \ \ \ EXPECT\_FLOAT\_EQ(1.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a75ad7ea209aa513c25daee7908112c54}{y}});}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00034}00034\ \ \ \ \ EXPECT\_FLOAT\_EQ(6.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_ae5fd276e681e0499943fd40f530fcd47}{z}});}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00035}00035\ \ \ \ \ EXPECT\_FLOAT\_EQ(2.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_ad5362e4ee59aa8dda9630e3983786d76}{w}});}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00036}00036\ \}}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00039}\doxymbox{\hyperlink{group___f_g_m___vec4___access_ga1d4776b90945835ac95120f723607f9d}{00039}}\ TEST(Vector4DAccess,\ AccessibleAsSTPQ)}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00040}00040\ \{}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_vector4_d}{fgm::Vector4D}}\ vec(3.0f,\ 1.0f,\ 6.0f,\ 2.0f);}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00043}00043\ \ \ \ \ EXPECT\_FLOAT\_EQ(3.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_ae2ea654678712d12d87ffeb1a9dd81a7}{s}});}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00044}00044\ \ \ \ \ EXPECT\_FLOAT\_EQ(1.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a387d8cc00b37c03f91da1d2c71aae414}{t}});}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00045}00045\ \ \ \ \ EXPECT\_FLOAT\_EQ(6.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a1960270523fa5cbe657d9f8e5029ee91}{p}});}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00046}00046\ \ \ \ \ EXPECT\_FLOAT\_EQ(2.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a4427fe34e2631b80ae2aecd958bf17ef}{q}});}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00047}00047\ \}}
 \DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00048}00048\ }
 \DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00050}\doxymbox{\hyperlink{group___f_g_m___vec4___access_gabc2635e97434674a71f0a470cde0178d}{00050}}\ TEST(Vector4DAccess,\ AccessibleAsRGBA)}
 \DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00051}00051\ \{}
@@ -46,85 +46,89 @@
 \DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00057}00057\ \ \ \ \ EXPECT\_FLOAT\_EQ(2.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_aa0fd2e69319c8955c34c42e8ada7c610}{a}});}
 \DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00058}00058\ \}}
 \DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00059}00059\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00060}00060\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00062}\doxymbox{\hyperlink{group___f_g_m___vec4___access_gaa9c24a144611ff169cb8aeffabc13879}{00062}}\ TEST(Vector4DAccess,\ AccessibleAsArray)}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00063}00063\ \{}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00064}00064\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_vector4_d}{fgm::Vector4D}}\ vec(3.0f,\ 1.0f,\ 6.0f,\ 2.0f);}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00065}00065\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00066}00066\ \ \ \ \ EXPECT\_FLOAT\_EQ(3.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a4cf1534d33f414fe343a21f66ca7dd15}{elements}}[0]);}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00067}00067\ \ \ \ \ EXPECT\_FLOAT\_EQ(1.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a4cf1534d33f414fe343a21f66ca7dd15}{elements}}[1]);}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00068}00068\ \ \ \ \ EXPECT\_FLOAT\_EQ(6.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a4cf1534d33f414fe343a21f66ca7dd15}{elements}}[2]);}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00069}00069\ \ \ \ \ EXPECT\_FLOAT\_EQ(2.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a4cf1534d33f414fe343a21f66ca7dd15}{elements}}[3]);}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00070}00070\ \}}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00061}\doxymbox{\hyperlink{group___f_g_m___vec4___access_gaa9c24a144611ff169cb8aeffabc13879}{00061}}\ TEST(Vector4DAccess,\ AccessibleAsArray)}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00062}00062\ \{}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00063}00063\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structfgm_1_1_vector4_d}{fgm::Vector4D}}\ vec(3.0f,\ 1.0f,\ 6.0f,\ 2.0f);}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00065}00065\ \ \ \ \ EXPECT\_FLOAT\_EQ(3.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a4cf1534d33f414fe343a21f66ca7dd15}{elements}}[0]);}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00066}00066\ \ \ \ \ EXPECT\_FLOAT\_EQ(1.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a4cf1534d33f414fe343a21f66ca7dd15}{elements}}[1]);}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00067}00067\ \ \ \ \ EXPECT\_FLOAT\_EQ(6.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a4cf1534d33f414fe343a21f66ca7dd15}{elements}}[2]);}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00068}00068\ \ \ \ \ EXPECT\_FLOAT\_EQ(2.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a4cf1534d33f414fe343a21f66ca7dd15}{elements}}[3]);}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00069}00069\ \}}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00072}00072\ }
 \DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00073}00073\ }
 \DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00074}00074\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00075}00075\ \textcolor{comment}{/**************************************}}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00076}00076\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00077}00077\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ MUTATION\ TESTS\ \ \ \ \ \ \ \ \ \ \ *}}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00078}00078\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00079}00079\ \textcolor{comment}{\ **************************************/}}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00080}00080\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00082}\doxymbox{\hyperlink{vector4d_2_access_and_mutation_tests_8cpp_a19dec249204a949eae9b91080cb21d24}{00082}}\ TEST(Vector4DMutation,\ ElementsCanBeMutatedUsingXYZW)}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00083}00083\ \{}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00084}00084\ \ \ \ \ \doxymbox{\hyperlink{structfgm_1_1_vector4_d}{fgm::Vector4D<float>}}\ vec;}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00085}00085\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00086}00086\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a5b123e1cdf3d7c5888546b71afec4c25}{x}}\ =\ 3.0f;}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00087}00087\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a75ad7ea209aa513c25daee7908112c54}{y}}\ =\ 1.0f;}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00088}00088\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_ae5fd276e681e0499943fd40f530fcd47}{z}}\ =\ 6.0f;}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00089}00089\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_ad5362e4ee59aa8dda9630e3983786d76}{w}}\ =\ 2.0f;}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00090}00090\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00091}00091\ \ \ \ \ EXPECT\_FLOAT\_EQ(3.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a5b123e1cdf3d7c5888546b71afec4c25}{x}});}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00092}00092\ \ \ \ \ EXPECT\_FLOAT\_EQ(1.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a75ad7ea209aa513c25daee7908112c54}{y}});}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00093}00093\ \ \ \ \ EXPECT\_FLOAT\_EQ(6.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_ae5fd276e681e0499943fd40f530fcd47}{z}});}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00094}00094\ \ \ \ \ EXPECT\_FLOAT\_EQ(2.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_ad5362e4ee59aa8dda9630e3983786d76}{w}});}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00095}00095\ \}}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00076}00076\ \textcolor{comment}{/**************************************}}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00077}00077\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00078}00078\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ MUTATION\ TESTS\ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00079}00079\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00080}00080\ \textcolor{comment}{\ **************************************/}}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00088}\doxymbox{\hyperlink{group___f_g_m___vec4___mutation_ga19dec249204a949eae9b91080cb21d24}{00088}}\ TEST(Vector4DMutation,\ ElementsCanBeMutatedUsingXYZW)}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00089}00089\ \{}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00090}00090\ \ \ \ \ \doxymbox{\hyperlink{structfgm_1_1_vector4_d}{fgm::Vector4D<float>}}\ vec;}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00092}00092\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a5b123e1cdf3d7c5888546b71afec4c25}{x}}\ =\ 3.0f;}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00093}00093\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a75ad7ea209aa513c25daee7908112c54}{y}}\ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00094}00094\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_ae5fd276e681e0499943fd40f530fcd47}{z}}\ =\ 6.0f;}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00095}00095\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_ad5362e4ee59aa8dda9630e3983786d76}{w}}\ =\ 2.0f;}
 \DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00096}00096\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00097}00097\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00099}\doxymbox{\hyperlink{vector4d_2_access_and_mutation_tests_8cpp_aab414c5736d189c56f3d2a75f0bc992a}{00099}}\ TEST(Vector4DMutation,\ ElementsCanBeMutatedUsingSTPQ)}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00100}00100\ \{}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00101}00101\ \ \ \ \ \doxymbox{\hyperlink{structfgm_1_1_vector4_d}{fgm::Vector4D<float>}}\ vec;}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00097}00097\ \ \ \ \ EXPECT\_FLOAT\_EQ(3.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a5b123e1cdf3d7c5888546b71afec4c25}{x}});}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00098}00098\ \ \ \ \ EXPECT\_FLOAT\_EQ(1.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a75ad7ea209aa513c25daee7908112c54}{y}});}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00099}00099\ \ \ \ \ EXPECT\_FLOAT\_EQ(6.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_ae5fd276e681e0499943fd40f530fcd47}{z}});}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00100}00100\ \ \ \ \ EXPECT\_FLOAT\_EQ(2.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_ad5362e4ee59aa8dda9630e3983786d76}{w}});}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00101}00101\ \}}
 \DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00102}00102\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00103}00103\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_ae2ea654678712d12d87ffeb1a9dd81a7}{s}}\ =\ 3.0f;}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00104}00104\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a387d8cc00b37c03f91da1d2c71aae414}{t}}\ =\ 1.0f;}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00105}00105\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a1960270523fa5cbe657d9f8e5029ee91}{p}}\ =\ 6.0f;}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00106}00106\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a4427fe34e2631b80ae2aecd958bf17ef}{q}}\ =\ 2.0f;}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00107}00107\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00108}00108\ \ \ \ \ EXPECT\_FLOAT\_EQ(3.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_ae2ea654678712d12d87ffeb1a9dd81a7}{s}});}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00109}00109\ \ \ \ \ EXPECT\_FLOAT\_EQ(1.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a387d8cc00b37c03f91da1d2c71aae414}{t}});}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00110}00110\ \ \ \ \ EXPECT\_FLOAT\_EQ(6.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a1960270523fa5cbe657d9f8e5029ee91}{p}});}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00111}00111\ \ \ \ \ EXPECT\_FLOAT\_EQ(2.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a4427fe34e2631b80ae2aecd958bf17ef}{q}});}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00112}00112\ \}}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00105}\doxymbox{\hyperlink{group___f_g_m___vec4___mutation_gaab414c5736d189c56f3d2a75f0bc992a}{00105}}\ TEST(Vector4DMutation,\ ElementsCanBeMutatedUsingSTPQ)}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00106}00106\ \{}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00107}00107\ \ \ \ \ \doxymbox{\hyperlink{structfgm_1_1_vector4_d}{fgm::Vector4D<float>}}\ vec;}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00109}00109\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_ae2ea654678712d12d87ffeb1a9dd81a7}{s}}\ =\ 3.0f;}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00110}00110\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a387d8cc00b37c03f91da1d2c71aae414}{t}}\ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00111}00111\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a1960270523fa5cbe657d9f8e5029ee91}{p}}\ =\ 6.0f;}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00112}00112\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a4427fe34e2631b80ae2aecd958bf17ef}{q}}\ =\ 2.0f;}
 \DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00113}00113\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00114}00114\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00116}\doxymbox{\hyperlink{vector4d_2_access_and_mutation_tests_8cpp_a5393bc3973ccca0a991374144b92ffb0}{00116}}\ TEST(Vector4DMutation,\ ElementsCanBeMutatedUsingRGBA)}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00117}00117\ \{}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00118}00118\ \ \ \ \ \doxymbox{\hyperlink{structfgm_1_1_vector4_d}{fgm::Vector4D<float>}}\ vec;}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00114}00114\ \ \ \ \ EXPECT\_FLOAT\_EQ(3.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_ae2ea654678712d12d87ffeb1a9dd81a7}{s}});}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00115}00115\ \ \ \ \ EXPECT\_FLOAT\_EQ(1.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a387d8cc00b37c03f91da1d2c71aae414}{t}});}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00116}00116\ \ \ \ \ EXPECT\_FLOAT\_EQ(6.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a1960270523fa5cbe657d9f8e5029ee91}{p}});}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00117}00117\ \ \ \ \ EXPECT\_FLOAT\_EQ(2.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a4427fe34e2631b80ae2aecd958bf17ef}{q}});}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00118}00118\ \}}
 \DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00119}00119\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00120}00120\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_adc81716bd01a67f5f165bf8f6fed8f2d}{r}}\ =\ 3.0f;}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00121}00121\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a55ea955e968f1157296eda4624dd4b4c}{g}}\ =\ 1.0f;}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00122}00122\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a8e110ad972e491284385e99c15c6579f}{b}}\ =\ 6.0f;}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00123}00123\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_aa0fd2e69319c8955c34c42e8ada7c610}{a}}\ =\ 2.0f;}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00124}00124\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00125}00125\ \ \ \ \ EXPECT\_FLOAT\_EQ(3.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_adc81716bd01a67f5f165bf8f6fed8f2d}{r}});}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00126}00126\ \ \ \ \ EXPECT\_FLOAT\_EQ(1.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a55ea955e968f1157296eda4624dd4b4c}{g}});}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00127}00127\ \ \ \ \ EXPECT\_FLOAT\_EQ(6.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a8e110ad972e491284385e99c15c6579f}{b}});}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00128}00128\ \ \ \ \ EXPECT\_FLOAT\_EQ(2.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_aa0fd2e69319c8955c34c42e8ada7c610}{a}});}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00129}00129\ \}}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00122}\doxymbox{\hyperlink{group___f_g_m___vec4___mutation_ga5393bc3973ccca0a991374144b92ffb0}{00122}}\ TEST(Vector4DMutation,\ ElementsCanBeMutatedUsingRGBA)}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00123}00123\ \{}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00124}00124\ \ \ \ \ \doxymbox{\hyperlink{structfgm_1_1_vector4_d}{fgm::Vector4D<float>}}\ vec;}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00126}00126\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_adc81716bd01a67f5f165bf8f6fed8f2d}{r}}\ =\ 3.0f;}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00127}00127\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a55ea955e968f1157296eda4624dd4b4c}{g}}\ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00128}00128\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a8e110ad972e491284385e99c15c6579f}{b}}\ =\ 6.0f;}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00129}00129\ \ \ \ \ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_aa0fd2e69319c8955c34c42e8ada7c610}{a}}\ =\ 2.0f;}
 \DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00130}00130\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00132}\doxymbox{\hyperlink{vector4d_2_access_and_mutation_tests_8cpp_a0d0bf8d13ce647da62bdda46aa95ed96}{00132}}\ TEST(Vector4DMutation,\ ElementsCanBeMutatedUsingIndex)}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00133}00133\ \{}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00134}00134\ \ \ \ \ \doxymbox{\hyperlink{structfgm_1_1_vector4_d}{fgm::Vector4D<float>}}\ vec;}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00135}00135\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00136}00136\ \ \ \ \ vec[0]\ =\ 3.0f;}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00137}00137\ \ \ \ \ vec[1]\ =\ 1.0f;}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00138}00138\ \ \ \ \ vec[2]\ =\ 6.0f;}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00139}00139\ \ \ \ \ vec[3]\ =\ 2.0f;}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00140}00140\ }
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00141}00141\ \ \ \ \ EXPECT\_FLOAT\_EQ(3.0f,\ vec[0]);}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00142}00142\ \ \ \ \ EXPECT\_FLOAT\_EQ(1.0f,\ vec[1]);}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00143}00143\ \ \ \ \ EXPECT\_FLOAT\_EQ(6.0f,\ vec[2]);}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00144}00144\ \ \ \ \ EXPECT\_FLOAT\_EQ(2.0f,\ vec[3]);}
-\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00145}00145\ \}}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00131}00131\ \ \ \ \ EXPECT\_FLOAT\_EQ(3.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_adc81716bd01a67f5f165bf8f6fed8f2d}{r}});}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00132}00132\ \ \ \ \ EXPECT\_FLOAT\_EQ(1.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a55ea955e968f1157296eda4624dd4b4c}{g}});}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00133}00133\ \ \ \ \ EXPECT\_FLOAT\_EQ(6.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_a8e110ad972e491284385e99c15c6579f}{b}});}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00134}00134\ \ \ \ \ EXPECT\_FLOAT\_EQ(2.0f,\ vec.\doxymbox{\hyperlink{structfgm_1_1_vector4_d_aa0fd2e69319c8955c34c42e8ada7c610}{a}});}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00135}00135\ \}}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00138}\doxymbox{\hyperlink{group___f_g_m___vec4___mutation_ga0d0bf8d13ce647da62bdda46aa95ed96}{00138}}\ TEST(Vector4DMutation,\ ElementsCanBeMutatedUsingIndex)}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00139}00139\ \{}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00140}00140\ \ \ \ \ \doxymbox{\hyperlink{structfgm_1_1_vector4_d}{fgm::Vector4D<float>}}\ vec;}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00142}00142\ \ \ \ \ vec[0]\ =\ 3.0f;}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00143}00143\ \ \ \ \ vec[1]\ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00144}00144\ \ \ \ \ vec[2]\ =\ 6.0f;}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00145}00145\ \ \ \ \ vec[3]\ =\ 2.0f;}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00147}00147\ \ \ \ \ EXPECT\_FLOAT\_EQ(3.0f,\ vec[0]);}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00148}00148\ \ \ \ \ EXPECT\_FLOAT\_EQ(1.0f,\ vec[1]);}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00149}00149\ \ \ \ \ EXPECT\_FLOAT\_EQ(6.0f,\ vec[2]);}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00150}00150\ \ \ \ \ EXPECT\_FLOAT\_EQ(2.0f,\ vec[3]);}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00151}00151\ \}}
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{vector4d_2_access_and_mutation_tests_8cpp_source_l00153}00153\ }
 
 \end{DoxyCode}

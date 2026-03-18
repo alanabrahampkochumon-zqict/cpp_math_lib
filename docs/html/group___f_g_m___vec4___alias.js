@@ -1,4 +1,4 @@
-var _alias_tests_8cpp =
+var group___f_g_m___vec4___alias =
 [
     [ "Vector4DAlias_bVec4IsA4DBoolVector", "group___f_g_m___vec4___alias.html#ga28601b44441df93dee398b8df1d2605a", null ],
     [ "Vector4DAlias_dVec4IsA4DDoubleVector", "group___f_g_m___vec4___alias.html#ga91ab0c5b95623fdad74785285938d1f7", null ],
