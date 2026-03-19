@@ -44,7 +44,7 @@ TYPED_TEST_SUITE(Vector4DEquality, SupportedArithmeticTypes);
 
 
 /**
- * @addtogroup FGM_Vec4_Equality
+ * @addtogroup T_FGM_Vec4_Equality
  * @{
  */
 
@@ -238,7 +238,7 @@ TYPED_TEST(Vector4DEquality, StaticWrapper_EqualityReturnsCorrectBooleanMask)
 
 
 /**
- * @addtogroup FGM_Vec4_Inequality
+ * @addtogroup T_FGM_Vec4_Inequality
  * @{
  */
 

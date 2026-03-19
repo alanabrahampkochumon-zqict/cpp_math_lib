@@ -15,7 +15,7 @@ using testutils::EXPECT_VEC_CONTAINS;
 
 
 /**
- * @addtogroup FGM_Vec4_Type_Conv
+ * @addtogroup T_FGM_Vec4_Type_Conv
  * @{
  */
 

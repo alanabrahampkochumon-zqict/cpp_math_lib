@@ -48,7 +48,7 @@ TYPED_TEST_SUITE(Vector4DComparison, SupportedArithmeticTypes);
 
 
 /**
- * @addtogroup FGM_Vec4_GT_Comp
+ * @addtogroup T_FGM_Vec4_GT_Comp
  * @{
  */
 
@@ -145,7 +145,7 @@ TEST(Vector4DComparison, MixedType_GreaterThan_ReturnsBooleanVectorWithCorrectVa
 
 
 /**
- * @addtogroup FGM_Vec4_GTE_Comp
+ * @addtogroup T_FGM_Vec4_GTE_Comp
  * @{
  */
 
@@ -243,7 +243,7 @@ TEST(Vector4DComparison, MixedType_GreaterThanOrEqual_ReturnsBooleanVectorWithCo
 
 
 /**
- * @addtogroup FGM_Vec4_LT_Comp
+ * @addtogroup T_FGM_Vec4_LT_Comp
  * @{
  */
 
@@ -340,7 +340,7 @@ TEST(Vector4DComparison, MixedType_LessThan_ReturnsBooleanVectorWithCorrectValue
 
 
 /**
- * @addtogroup FGM_Vec4_LTE_Comp
+ * @addtogroup T_FGM_Vec4_LTE_Comp
  * @{
  */
 

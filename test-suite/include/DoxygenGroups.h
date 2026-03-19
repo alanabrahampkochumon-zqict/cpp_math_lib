@@ -32,32 +32,32 @@
          */
 
             /**
-             * @defgroup FGMVector4D Vector4D Test Suite
+             * @defgroup FGM_Vector4D_Tests Vector4D Test Suite
              * @brief Verification of 4D Euclidean vector operations.
              * @ingroup VectorTests
              * @{
-             *   @defgroup FGM_Vec4_Access Component Access
-             *   @defgroup FGM_Vec4_Mutation Component Mutation
-             *   @defgroup FGM_Vec4_Alias Spatial Aliasing
-             *   @defgroup FGM_Vec4_Addition Addition
-             *   @defgroup FGM_Vec4_Subtraction Subtraction
-             *   @defgroup FGM_Vec4_Multiplication Scalar Multiplication
-             *   @defgroup FGM_Vec4_Division Scalar Division
-             *   @defgroup FGM_Vec4_Bool_Bit Boolean Bitwise Operation
-             *   @defgroup FGM_Vec4_GT_Comp Greater Than Comparison
-             *   @defgroup FGM_Vec4_GTE_Comp Greater Than or Equal Comparison
-             *   @defgroup FGM_Vec4_LT_Comp Less Than Comparison
-             *   @defgroup FGM_Vec4_LTE_Comp Less Than or Equal Comparison
-             *   @defgroup FGM_Vec4_Equality Component-wise and Masked Equality
-             *   @defgroup FGM_Vec4_Inequality Component-wise and Masked Inequality
-             *   @defgroup FGM_Vec4_Init Initialization
-             *   @defgroup FGM_Vec4_Magnitude Scalar Length(Magnitude)
-             *   @defgroup FGM_Vec4_Normalize Vector Normalization
-             *   @defgroup FGM_Vec4_Dot Dot Product
-             *   @defgroup FGM_Vec4_Proj Vector Projection
-             *   @defgroup FGM_Vec4_Rej Vector Rejection
-             *   @defgroup FGM_Vec4_String_Repr Formatted String Representation
-             *   @defgroup FGM_Vec4_Type_Conv Conversion Constructor
+             *   @defgroup T_FGM_Vec4_Access Component Access
+             *   @defgroup T_FGM_Vec4_Mutation Component Mutation
+             *   @defgroup T_FGM_Vec4_Alias Spatial Aliasing
+             *   @defgroup T_FGM_Vec4_Addition Addition
+             *   @defgroup T_FGM_Vec4_Subtraction Subtraction
+             *   @defgroup T_FGM_Vec4_Multiplication Scalar Multiplication
+             *   @defgroup T_FGM_Vec4_Division Scalar Division
+             *   @defgroup T_FGM_Vec4_Bool_Bit Boolean Bitwise Operation
+             *   @defgroup T_FGM_Vec4_GT_Comp Greater Than Comparison
+             *   @defgroup T_FGM_Vec4_GTE_Comp Greater Than or Equal Comparison
+             *   @defgroup T_FGM_Vec4_LT_Comp Less Than Comparison
+             *   @defgroup T_FGM_Vec4_LTE_Comp Less Than or Equal Comparison
+             *   @defgroup T_FGM_Vec4_Equality Component-wise and Masked Equality
+             *   @defgroup T_FGM_Vec4_Inequality Component-wise and Masked Inequality
+             *   @defgroup T_FGM_Vec4_Init Initialization
+             *   @defgroup T_FGM_Vec4_Magnitude Scalar Length(Magnitude)
+             *   @defgroup T_FGM_Vec4_Normalize Vector Normalization
+             *   @defgroup T_FGM_Vec4_Dot Dot Product
+             *   @defgroup T_FGM_Vec4_Proj Vector Projection
+             *   @defgroup T_FGM_Vec4_Rej Vector Rejection
+             *   @defgroup T_FGM_Vec4_String_Repr Formatted String Representation
+             *   @defgroup T_FGM_Vec4_Type_Conv Conversion Constructor
              * @}
              */
 

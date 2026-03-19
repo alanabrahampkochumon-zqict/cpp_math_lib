@@ -102,7 +102,7 @@ TYPED_TEST_SUITE(Vector4DScalarDivision, SupportedArithmeticTypes);
 
 
 /**
- * @addtogroup FGM_Vec4_Addition
+ * @addtogroup T_FGM_Vec4_Addition
  * @{
  */
 
@@ -165,7 +165,7 @@ TEST(Vector4DAddition, MixedTypeAdditionAssignmentDoesNotPromoteType)
 
 
 /**
- * @addtogroup FGM_Vec4_Subtraction
+ * @addtogroup T_FGM_Vec4_Subtraction
  * @{
  */
 
@@ -228,7 +228,7 @@ TEST(Vector4DSubtraction, MixedTypeSubtractionAssignmentDoesNotPromoteType)
 
 
 /**
- * @addtogroup FGM_Vec4_Multiplication
+ * @addtogroup T_FGM_Vec4_Multiplication
  * @{
  */
 
@@ -342,7 +342,7 @@ TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationAssignmentEnsure
 
 
 /**
- * @addtogroup FGM_Vec4_Division
+ * @addtogroup T_FGM_Vec4_Division
  * @{
  */
 

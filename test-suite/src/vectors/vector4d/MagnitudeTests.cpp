@@ -90,7 +90,7 @@ TYPED_TEST_SUITE(Vector4DZeroNormalization, SupportedArithmeticTypes);
 
 
 /**
- * @addtogroup FGM_Vec4_Magnitude
+ * @addtogroup T_FGM_Vec4_Magnitude
  * @{
  */
 
@@ -171,7 +171,7 @@ TYPED_TEST(Vector4DUncleanMagnitude, StaticWrapper_NonUnitVectorReturnsCorrectMa
 
 
 /**
- * @addtogroup FGM_Vec4_Normalize
+ * @addtogroup T_FGM_Vec4_Normalize
  * @{
  */
 

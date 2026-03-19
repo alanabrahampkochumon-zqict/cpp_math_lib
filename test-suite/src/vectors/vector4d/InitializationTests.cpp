@@ -31,7 +31,7 @@ TYPED_TEST_SUITE(Vector4DInitialization, SupportedTypes);
 
 
 /**
- * @addtogroup FGM_Vec4_Init
+ * @addtogroup T_FGM_Vec4_Init
  * @{
  */
 

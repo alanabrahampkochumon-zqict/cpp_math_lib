@@ -66,7 +66,7 @@ TYPED_TEST_SUITE(Vector4DRejection, SupportedArithmeticTypes);
 
 
 /**
- * @addtogroup FGM_Vec4_Proj
+ * @addtogroup T_FGM_Vec4_Proj
  * @{
  */
 
@@ -242,7 +242,7 @@ TEST(Vector4DProjection, MixedTypeProjectionPromotesType)
 
 
 /**
- * @addtogroup FGM_Vec4_Rej
+ * @addtogroup T_FGM_Vec4_Rej
  * @{
  */
 

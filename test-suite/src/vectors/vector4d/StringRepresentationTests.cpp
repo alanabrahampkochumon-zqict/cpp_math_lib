@@ -32,7 +32,7 @@ class Vector4DStringRepresentationTests: public ::testing::Test
 
 
 /**
- * @addtogroup FGM_Vec4_String_Repr
+ * @addtogroup T_FGM_Vec4_String_Repr
  * @{
  */
 

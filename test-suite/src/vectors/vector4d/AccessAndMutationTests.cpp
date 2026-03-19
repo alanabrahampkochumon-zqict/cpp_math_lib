@@ -19,7 +19,7 @@
  **************************************/
 
 /**
- * @addtogroup FGM_Vec4_Access
+ * @addtogroup T_FGM_Vec4_Access
  * @{
  */
 
@@ -80,7 +80,7 @@ TEST(Vector4DAccess, AccessibleAsArray)
  **************************************/
 
 /**
- * @addtogroup FGM_Vec4_Mutation
+ * @addtogroup T_FGM_Vec4_Mutation
  * @{
  */
 

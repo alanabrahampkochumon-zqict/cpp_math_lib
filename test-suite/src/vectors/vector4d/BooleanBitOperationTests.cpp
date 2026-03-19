@@ -43,7 +43,7 @@ class BooleanVectorBitOperations: public ::testing::Test
 
 
 /**
- * @addtogroup FGM_Vec4_Bool_Bit
+ * @addtogroup T_FGM_Vec4_Bool_Bit
  * @{
  */
 
