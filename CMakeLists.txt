@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.25)
 project(CPPMathLib)
 
 
+# Clang Formatter
 find_program(CLANG_FORMATTER NAMES clang-format)
 
 if(CLANG_FORMATTER)
@@ -16,8 +17,23 @@ else()
     message(WARNING "clang-format not found")
 endif()
 
-
 option(ENABLE_STRICT "Enable ASan and Strict Warnings" OFF) # To turn on ASan, use cmake -D
+
+# Doxygen
+find_package(Doxygen)
+if (DOXYGEN_FOUND)
+    message(INFO "Doxygen found!")
+    doxygen_add_docs(
+        docs
+        ${CMAKE_CURRENT_SOURCE_DIR}
+        COMMENT "Generating documentation with doxygen..."
+        CONFIG_FILE ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile
+        ALL
+    )
+else()
+    message(WARN "Doxygen not found! Skipping documentation generation.")
+endif()
+
 
 # Turn on solution folders
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
