@@ -80,11 +80,22 @@ TEST_F(BooleanVectorBitOperations, CompoundBitwiseAND_PerformInPlaceConjunction)
  * @test Verify that the @ref fgm::Vector4D<bool> bitwise OR operator performs a component-wise logical disjunction
  *        and returns the correct boolean mask.
  */
-TEST_F(BooleanVectorBitOperations, BitwiseOrReturnsComponentwiseOr)
+TEST_F(BooleanVectorBitOperations, BitwiseOR_PerformComponentwiseDisjunction)
 {
     const auto mask = this->vecA | this->vecB;
 
     EXPECT_VEC_EQ(this->expectedOrVector, mask);
+}
+
+/**
+ * @test Verify that the @ref fgm::Vector4D<bool> compound bitwise OR operator performs a
+ *       component-wise logical disjunction in-place and updates the calling vector with the resulting mask.
+ */
+TEST_F(BooleanVectorBitOperations, CompoundBitwiseOR_PerformInPlaceDisjunction)
+{
+    this->vecA |= this->vecB;
+
+    EXPECT_VEC_EQ(this->expectedAndVector, this->vecA);
 }
 
 
@@ -92,7 +103,7 @@ TEST_F(BooleanVectorBitOperations, BitwiseOrReturnsComponentwiseOr)
  * @test Verify that the @ref fgm::Vector4D<bool> bitwise NOT operator performs a component-wise logical inversion
  *        and returns the correct boolean mask.
  */
-TEST_F(BooleanVectorBitOperations, BitwiseNotReturnsInvertedVector)
+TEST_F(BooleanVectorBitOperations, BitwiseNOT_PerformComponentwiseInversion)
 {
     const auto mask = !this->vecA;
 

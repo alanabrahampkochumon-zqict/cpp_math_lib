@@ -582,7 +582,7 @@ namespace fgm
          *
          * @param[in] rhs The vector to combine with.
          *
-         * @return A reference to this vector.
+         * @return A reference to this vector (*this).
          */
         constexpr Vector4D<bool>& operator&=(const Vector4D<bool>& rhs) noexcept;
 
@@ -599,6 +599,18 @@ namespace fgm
          */
         constexpr Vector4D<bool> operator|(const Vector4D<bool>& other) const noexcept
             requires std::is_same_v<T, bool>;
+
+        /**
+         * @brief Perform component-wise logical OR.
+         *        Compute the disjunction of each component pair in-place and update the calling vector.
+         *
+         * @note Only available for @ref bVec4 and vectors with `bool` value_type.
+         *
+         * @param[in] rhs The vector to combine with.
+         *
+         * @return A reference to this vector (*this).
+         */
+        constexpr Vector4D<bool>& operator|=(const Vector4D<bool>& rhs) noexcept;
 
 
         /**

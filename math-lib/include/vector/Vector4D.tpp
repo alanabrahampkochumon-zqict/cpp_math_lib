@@ -328,6 +328,15 @@ namespace fgm
         return Vector4D(x | other.x, y | other.y, z | other.z, w | other.w);
     }
 
+
+    template <Arithmetic T>
+    constexpr Vector4D<bool>& Vector4D<T>::operator|=(const Vector4D<bool>& rhs) noexcept
+    {
+        (*this) = (*this) & rhs;
+        return *this;
+    }
+
+
     template <Arithmetic T>
     constexpr Vector4D<bool> Vector4D<T>::operator!() const noexcept
         requires std::is_same_v<T, bool>
