@@ -23,8 +23,7 @@ using namespace testutils;
 
 template <typename T>
 class Vector3DInitialization: public ::testing::Test
-{
-};
+{};
 TYPED_TEST_SUITE(Vector3DInitialization, SupportedTypes);
 
 

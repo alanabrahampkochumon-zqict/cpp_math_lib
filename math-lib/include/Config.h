@@ -5,7 +5,7 @@
  * @date Created on: March 16, 2026
  *
  * @brief Global configuration for FGM library.
- * 
+ *
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */
 
@@ -29,7 +29,7 @@ namespace fgm
         /** @brief Defines the maximum reliable decimal precision for 64-bit floating point types. */
         static constexpr unsigned int DOUBLE_PRECISION = 15;
 
-        /** 
+        /**
          * @brief Toggles between standard logging precision and type-specific maximum precision.
          */
         static inline bool useFullPrecision = false;
@@ -41,7 +41,7 @@ namespace fgm
          *            CUSTOM EPSILON          *
          *                                    *
          **************************************/
-        
+
         /** @brief The smallest positive value such that 1.0 + EPSILON != 1.0 for 32-bit floats. */
         static constexpr double FLOAT_EPSILON = 1e-5;
 
@@ -51,5 +51,4 @@ namespace fgm
 
     /** @} */
 
-}
-
+} // namespace fgm

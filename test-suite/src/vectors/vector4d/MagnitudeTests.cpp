@@ -50,8 +50,8 @@ class Vector4DUncleanMagnitude: public ::testing::Test
         magnitude = fgm::Magnitude<T>(5.477225575051661);
     }
 };
-/** @brief Test fixture for @ref fgm::Vector4D magnitude, parameterized by SupportedArithmeticTypes, for testing high-precision
- * magnitude. */
+/** @brief Test fixture for @ref fgm::Vector4D magnitude, parameterized by SupportedArithmeticTypes, for testing
+ * high-precision magnitude. */
 TYPED_TEST_SUITE(Vector4DUncleanMagnitude, SupportedArithmeticTypes);
 
 
@@ -81,7 +81,10 @@ class Vector4DZeroNormalization: public ::testing::Test
     protected:
     fgm::Vector4D<T> vec;
 
-    void SetUp() override { vec = { T(0), T(0), T(0), T(0) }; }
+    void SetUp() override
+    {
+        vec = { T(0), T(0), T(0), T(0) };
+    }
 };
 /** @brief Test fixture for @ref fgm::Vector4D zero-vector normalization, parameterized by SupportedArithmeticTypes. */
 TYPED_TEST_SUITE(Vector4DZeroNormalization, SupportedArithmeticTypes);
@@ -125,7 +128,7 @@ TYPED_TEST(Vector4DMagnitude, NonUnitVectorReturnsCorrectMagnitude)
     EXPECT_MAG_EQ(this->magnitude, magnitude);
 }
 
-/** 
+/**
  * @test Verify that the @ref fgm::Vector4D magnitude calculation results in a floating-point type, regardless of the
  *       component type.
  */

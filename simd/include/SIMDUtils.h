@@ -5,7 +5,7 @@
  * @date Created on: March 07, 2026
  *
  * @brief SIMD utility functions.
- * 
+ *
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */
 

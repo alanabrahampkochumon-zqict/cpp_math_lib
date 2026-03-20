@@ -11,7 +11,7 @@
  * Define `ENABLE_FGM_SHADER_OPERATORS` to enable comparison operators (>, <, etc.).
  * Even if disabled, functional comparisons like `greaterThan()` remain available.
  * Define `FORCE_SCALAR` to turn off SIMD which is on by default on supported hardware.
- * 
+ *
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */
 

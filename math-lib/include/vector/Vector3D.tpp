@@ -5,7 +5,7 @@
  * @date Created on: January 19, 2026
  *
  * @brief `Vector3D` implementation.
- * 
+ *
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */
 
@@ -24,25 +24,21 @@ namespace fgm
 
     template <Arithmetic T>
     constexpr Vector3D<T>::Vector3D() noexcept: x(T(0)), y(T(0)), z(T(0))
-    {
-    }
+    {}
 
     template <Arithmetic T>
     constexpr Vector3D<T>::Vector3D(T v1, T v2, T v3) noexcept: x(v1), y(v2), z(v3)
-    {
-    }
+    {}
 
     template <Arithmetic T>
     constexpr Vector3D<T>::Vector3D(Vector2D<T> vec, T v) noexcept: x(vec.x), y(vec.y), z(v)
-    {
-    }
+    {}
 
     template <Arithmetic T>
     template <Arithmetic U>
     constexpr Vector3D<T>::Vector3D(const Vector3D<U>& other) noexcept
         : x(static_cast<T>(other.x)), y(static_cast<T>(other.y)), z(static_cast<T>(other.z))
-    {
-    }
+    {}
 
 
     /*************************************

@@ -252,16 +252,16 @@ namespace fgm
         // return Matrix3D(
         //	// First Row * Columns
         //	elements[0][0] * other(0, 0) + elements[1][0] * other(1, 0) + elements[2][0] * other(2, 0), elements[0][0] *
-        //other(0, 1) + elements[1][0] * other(1, 1) + elements[2][0] * other(2, 1), elements[0][0] * other(0, 2) +
-        //elements[1][0] * other(1, 2) + elements[2][0] * other(2, 2),
+        // other(0, 1) + elements[1][0] * other(1, 1) + elements[2][0] * other(2, 1), elements[0][0] * other(0, 2) +
+        // elements[1][0] * other(1, 2) + elements[2][0] * other(2, 2),
         //	// Second Row * Columns
         //	elements[0][1] * other(0, 0) + elements[1][1] * other(1, 0) + elements[2][1] * other(2, 0), elements[0][1] *
-        //other(0, 1) + elements[1][1] * other(1, 1) + elements[2][1] * other(2, 1), elements[0][1] * other(0, 2) +
-        //elements[1][1] * other(1, 2) + elements[2][1] * other(2, 2),
+        // other(0, 1) + elements[1][1] * other(1, 1) + elements[2][1] * other(2, 1), elements[0][1] * other(0, 2) +
+        // elements[1][1] * other(1, 2) + elements[2][1] * other(2, 2),
         //	// Third Row * Columns
         //	elements[0][2] * other(0, 0) + elements[1][2] * other(1, 0) + elements[2][2] * other(2, 0), elements[0][2] *
-        //other(0, 1) + elements[1][2] * other(1, 1) + elements[2][2] * other(2, 1), elements[0][2] * other(0, 2) +
-        //elements[1][2] * other(1, 2) + elements[2][2] * other(2, 2)
+        // other(0, 1) + elements[1][2] * other(1, 1) + elements[2][2] * other(2, 1), elements[0][2] * other(0, 2) +
+        // elements[1][2] * other(1, 2) + elements[2][2] * other(2, 2)
         //);
         using R = std::common_type_t<T, S>;
         return Matrix3D<R>(

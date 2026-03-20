@@ -4,7 +4,7 @@
  * @date Created on: March 07, 2026
  *
  * @brief Verifies @ref Vector4D<bool> projection and rejection logic.
- * 
+ *
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */
 
@@ -167,7 +167,7 @@ TYPED_TEST(Vector4DProjection, NonOrthogonalProjectionReturnsNonZeroVector)
     EXPECT_VEC_EQ(this->expectedProjection, actualProjection);
 }
 
-/** 
+/**
  * @test Verify that the @ref fgm::Vector4D static projection wrapper returns a non-zero vector when projecting
  *        non-orthogonal instances.
  */
@@ -201,7 +201,7 @@ TEST(Vector4DProjection, ProjectionOntoNormalizedVectorReturnsNonZeroVector)
 
 /**
  * @test Verify that projecting a @ref fgm::Vector4D onto a non-orthogonal @ref fgm::Vector4D pointing in the opposite
- *        direction returns a non-zero vector. 
+ *        direction returns a non-zero vector.
  */
 TEST(Vector4DProjection, ProjectionOntoVectorInOppositeDirectionReturnsNonZeroVectorInSameDirection)
 {
@@ -236,7 +236,6 @@ TEST(Vector4DProjection, MixedTypeProjectionPromotesType)
 }
 
 /** @} */
-
 
 
 
@@ -332,7 +331,7 @@ TEST(Vector4DRejection, RejectionFromWAxisReturnsVectorWithZeroWComponent)
     EXPECT_VEC_EQ(expectedRejection, actualRejection);
 }
 
-/** 
+/**
  * @test Verify that rejecting a @ref fgm::Vector4D from a target @ref fgm::Vector4D that is orthogonal returns the
  *       original vector.
  */
@@ -349,7 +348,7 @@ TEST(Vector4DRejection, OrthogonalRejectionReturnsOriginalVector)
     EXPECT_VEC_EQ(a, actualRejection);
 }
 
-/** 
+/**
  * @test Verify that rejecting a @ref fgm::Vector4D from a non-orthogonal @ref fgm::Vector4D returns a non-zero
  *       vector with perpendicular component.
  */

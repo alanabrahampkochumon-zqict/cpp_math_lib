@@ -22,8 +22,7 @@ using namespace testutils;
 
 template <typename T>
 class Vector4DInitialization: public ::testing::Test
-{
-};
+{};
 /** @brief Test fixture for @ref fgm::Vector4D initialization, parameterized by @ref SupportedTypes */
 TYPED_TEST_SUITE(Vector4DInitialization, SupportedTypes);
 

@@ -45,7 +45,7 @@ TEST(Matrix4D_Initialization, InitializedWithParametersProvidesCorrectMatrix)
 {
     // Given a matrix with arbitrary values passed in
     const fgm::Matrix4D mat(0.0f, 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f, 10.0f, 11.0f, 12.0f, 13.0f,
-                             14.0f, 15.0f);
+                            14.0f, 15.0f);
 
     // Then, it's elements reflect the correct values
     for (std::size_t i = 0; i < rows; ++i)
@@ -195,7 +195,7 @@ TEST(Matrix4D_Access, CanBeAccessedAsAValueAtRowColumn)
 {
     // Given a matrix initialized with arbitrary values
     const fgm::Matrix4D mat(0.0f, 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f, 10.0f, 11.0f, 12.0f, 13.0f,
-                             14.0f, 15.0f);
+                            14.0f, 15.0f);
 
     // Then, its elements can be accessed using (row, col)
     for (std::size_t i = 0; i < rows; ++i)
@@ -214,12 +214,12 @@ TEST(Matrix4D_Addition, SumOfTwoMatricesReturnsAnotherMatrixWithCorrectValues)
 {
     // Given two matrices with arbitrary values
     const fgm::Matrix4D a = { 1.0f, 2.0f,  3.0f, 5.0f, 4.0f,  5.0f,  6.0f,  2.0f,
-                               7.0f, -8.0f, 9.0f, 8.0f, 12.0f, -3.0f, -20.f, 2.0f };
+                              7.0f, -8.0f, 9.0f, 8.0f, 12.0f, -3.0f, -20.f, 2.0f };
     const fgm::Matrix4D b = { 3.0f, 2.0f,  255.0f, 55.0f, -8.0f, 24.0f, 6.0f,  -23.0f,
-                               7.0f, 16.0f, -98.0f, 11.0f, 1.0f,  55.0f, 11.0f, -316.0f };
+                              7.0f, 16.0f, -98.0f, 11.0f, 1.0f,  55.0f, 11.0f, -316.0f };
 
     const fgm::Matrix4D expected = { 4.0f,  4.0f, 258.0f, 60.0f, -4.0f, 29.0f, 12.0f, -21.0f,
-                                      14.0f, 8.0f, -89.0f, 19.0f, 13.0f, 52.0f, -9.0f, -314.0f };
+                                     14.0f, 8.0f, -89.0f, 19.0f, 13.0f, 52.0f, -9.0f, -314.0f };
 
     // When they are added together
     const fgm::Matrix4D result = a + b;
@@ -233,13 +233,13 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixReturnsSameMatrixWithCo
 
     // Given two matrices with arbitrary values
     fgm::Matrix4D a = { 1.0f, 2.0f,  3.0f, 5.0f, 4.0f,  5.0f,  6.0f,  2.0f,
-                         7.0f, -8.0f, 9.0f, 8.0f, 12.0f, -3.0f, -20.f, 2.0f };
+                        7.0f, -8.0f, 9.0f, 8.0f, 12.0f, -3.0f, -20.f, 2.0f };
 
     const fgm::Matrix4D b = { 3.0f, 2.0f,  255.0f, 55.0f, -8.0f, 24.0f, 6.0f,  -23.0f,
-                               7.0f, 16.0f, -98.0f, 11.0f, 1.0f,  55.0f, 11.0f, -316.0f };
+                              7.0f, 16.0f, -98.0f, 11.0f, 1.0f,  55.0f, 11.0f, -316.0f };
 
     const fgm::Matrix4D expected = { 4.0f,  4.0f, 258.0f, 60.0f, -4.0f, 29.0f, 12.0f, -21.0f,
-                                      14.0f, 8.0f, -89.0f, 19.0f, 13.0f, 52.0f, -9.0f, -314.0f };
+                                     14.0f, 8.0f, -89.0f, 19.0f, 13.0f, 52.0f, -9.0f, -314.0f };
 
     // When one matrix is added to the other(+=)
     a += b;
@@ -252,13 +252,13 @@ TEST(Matrix4D_Addition, SumOfTwoMatricesOfDifferentTypeReturnsAnotherMatrixWithT
 {
     // Given two matrices with arbitrary values and different types
     const fgm::Matrix4D a = { 1.0f, 2.0f,  3.0f, 5.0f, 4.0f,  5.0f,  6.0f,  2.0f,
-                               7.0f, -8.0f, 9.0f, 8.0f, 12.0f, -3.0f, -20.f, 2.0f };
+                              7.0f, -8.0f, 9.0f, 8.0f, 12.0f, -3.0f, -20.f, 2.0f };
 
     const fgm::Matrix4D b = { 3.0, 2.0,  255.0, 55.0, -8.0, 24.0, 6.0,  -23.0,
-                               7.0, 16.0, -98.0, 11.0, 1.0,  55.0, 11.0, -316.0 };
+                              7.0, 16.0, -98.0, 11.0, 1.0,  55.0, 11.0, -316.0 };
 
     const fgm::Matrix4D expected = { 4.0,  4.0, 258.0, 60.0, -4.0, 29.0, 12.0, -21.0,
-                                      14.0, 8.0, -89.0, 19.0, 13.0, 52.0, -9.0, -314.0 };
+                                     14.0, 8.0, -89.0, 19.0, 13.0, 52.0, -9.0, -314.0 };
 
     // When they are added together
     const auto result = a + b;
@@ -273,13 +273,13 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 {
     // Given two matrices with arbitrary values with different types
     fgm::Matrix4D a = { 1.0f, 2.0f,  3.0f, 5.0f, 4.0f,  5.0f,  6.0f,  2.0f,
-                         7.0f, -8.0f, 9.0f, 8.0f, 12.0f, -3.0f, -20.f, 2.0f };
+                        7.0f, -8.0f, 9.0f, 8.0f, 12.0f, -3.0f, -20.f, 2.0f };
 
     const fgm::Matrix4D b = { 3.0, 2.0,  255.0, 55.0, -8.0, 24.0, 6.0,  -23.0,
-                               7.0, 16.0, -98.0, 11.0, 1.0,  55.0, 11.0, -316.0 };
+                              7.0, 16.0, -98.0, 11.0, 1.0,  55.0, 11.0, -316.0 };
 
     const fgm::Matrix4D expected = { 4.0f,  4.0f, 258.0f, 60.0f, -4.0f, 29.0f, 12.0f, -21.0f,
-                                      14.0f, 8.0f, -89.0f, 19.0f, 13.0f, 52.0f, -9.0f, -314.0f };
+                                     14.0f, 8.0f, -89.0f, 19.0f, 13.0f, 52.0f, -9.0f, -314.0f };
 
     // When one matrix is added to the other(+=)
     a += b;
@@ -334,7 +334,7 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 //	// Assert
 //	static_assert(std::is_same_v<typename decltype(res)::value_type, double>, "Assertion Failed (Matrix4D): Float -
-//Double = Double"); 	EXPECT_MAT_EQ(c, res);
+// Double = Double"); 	EXPECT_MAT_EQ(c, res);
 // }
 //
 // TEST(Matrix4D_Addition, PlusEqualsMatrixWithMatrixOfAnotherTypeReturnsSameMatrixWithoutTypePromotion)
@@ -744,7 +744,7 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 //	// Assert
 //	static_assert(std::is_same_v<typename decltype(b)::value_type, double>, "Assertion Failed (Matrix4D): Float *
-//Double(Scalar) = Double"); 	EXPECT_MAT_EQ(expected, b);
+// Double(Scalar) = Double"); 	EXPECT_MAT_EQ(expected, b);
 // }
 //
 // TEST(Matrix4D_Product, MatrixTimesEqualDoubleScalarReturnsMatrixWithoutTypePromotion)
@@ -766,7 +766,7 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 //	// Assert
 //	static_assert(std::is_same_v<typename decltype(a)::value_type, float>, "Assertion Failed (Matrix4D): Float *
-//Double(Scalar) = Double"); 	EXPECT_MAT_EQ(expected, a);
+// Double(Scalar) = Double"); 	EXPECT_MAT_EQ(expected, a);
 // }
 //
 // TEST(Matrix4D_Product, DoubleVectorTimesAMatrixReturnsANewVectorWithPromotedType)
@@ -785,7 +785,7 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 //	// Assert
 //	static_assert(std::is_same_v<typename decltype(actual)::value_type, double>, "Assertion Failed (Matrix4D): Float *
-//Double(vec) = Double"); 	testutils::EXPECT_VEC_EQ(expected, actual);
+// Double(vec) = Double"); 	testutils::EXPECT_VEC_EQ(expected, actual);
 // }
 //
 // TEST(Matrix4D_Product, DoubleVectorTimesEqualAMatrixReturnsANewVectorWithPromotedType)
@@ -804,7 +804,7 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 //	// Assert
 //	static_assert(std::is_same_v<typename decltype(vec)::value_type, float>, "Assertion Failed (Matrix4D): Float(vec) *
-//Double = Float"); 	testutils::EXPECT_VEC_EQ(expected, vec);
+// Double = Float"); 	testutils::EXPECT_VEC_EQ(expected, vec);
 // }
 //
 // TEST(Matrix4D_Product, MatrixTimesMatrixGivesAnotherMatrixWithTypePromotion)
@@ -828,7 +828,7 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 //	// Assert
 //	static_assert(std::is_same_v<typename decltype(actual)::value_type, double>, "Assertion Failed (Matrix4D): Float *
-//Double = Double"); 	EXPECT_MAT_EQ(expected, actual);
+// Double = Double"); 	EXPECT_MAT_EQ(expected, actual);
 // }
 //
 // TEST(Matrix4D_Product, MatrixTimesEqualAnotherMatrixReturnsSameMatrixWithoutTypePromotion)
@@ -852,7 +852,7 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 //	// Assert
 //	static_assert(std::is_same_v<typename decltype(mat1)::value_type, float>, "Assertion Failed (Matrix4D): Float *=
-//Double = Float"); 	EXPECT_MAT_EQ(expected, mat1);
+// Double = Float"); 	EXPECT_MAT_EQ(expected, mat1);
 // }
 //
 //
@@ -986,7 +986,7 @@ TEST(Matrix4D_Addition, PlusEqualsMatrixWithAnotherMatrixOfDifferentTypeReturnsS
 //
 //	// Assert
 //	static_assert(std::is_same_v<typename decltype(actual)::value_type, double>, "Assertion Failed (Matrix4D): Float /
-//Double = Double"); 	EXPECT_MAT_EQ(expected, actual);
+// Double = Double"); 	EXPECT_MAT_EQ(expected, actual);
 // }
 //
 // TEST(Matrix4D_Division, MatrixDividesEqualDoubleScalarIsTheSameMatrixWithoutTypePromotion)

@@ -4,7 +4,7 @@
  * @date Created on: March 10, 2026
  *
  * @brief `RegisterType` tests.
- * 
+ *
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */
 
@@ -17,8 +17,9 @@
  *                                    *
  **************************************/
 
-template<typename T>
-class RegisterMapTest: public ::testing::Test{};
+template <typename T>
+class RegisterMapTest: public ::testing::Test
+{};
 TYPED_TEST_SUITE(RegisterMapTest, SupportedSIMDIntegralTypes);
 
 
@@ -63,4 +64,3 @@ TYPED_TEST(RegisterMapTest, IntegralsMapToCorrectSIMDIntrinsics)
     // Double with alignment of 64 correctly maps to __m512
     ::testing::StaticAssertTypeEq<typename falcon::simd::RegisterMap<TypeParam, 64>::type, __m512i>();
 }
-

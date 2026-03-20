@@ -8,7 +8,7 @@
  *        Provides specialized testing helpers and assertion wrappers for @ref Vector2D,
  *        @ref Vector3D, and @ref Vector4D to ensure numerical stability and
  *        geometric correctness across the fgm library.
- *      
+ *
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */
 

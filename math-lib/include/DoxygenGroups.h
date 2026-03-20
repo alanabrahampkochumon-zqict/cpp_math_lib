@@ -5,7 +5,7 @@
  * @date Created on: March 18, 2026
  *
  * @brief Definitions for doxygen groups used across fgm math library.
- * 
+ *
  * @copyright Copyright (c) 2026 Alan Abraham P Kochumon
  */
 

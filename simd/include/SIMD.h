@@ -152,9 +152,9 @@ namespace falcon::simd
         using type = __m512i;
     };
 
-    #if defined(MAX_ALIGNMENT) && MAX_ALIGNMENT > 0
-        const PackingParams packingParams = calculatePackedSize(TotalBytes, MAX_ALIGNMENT);
-    #endif
+#if defined(MAX_ALIGNMENT) && MAX_ALIGNMENT > 0
+    const PackingParams packingParams = calculatePackedSize(TotalBytes, MAX_ALIGNMENT);
+#endif
 
 
 

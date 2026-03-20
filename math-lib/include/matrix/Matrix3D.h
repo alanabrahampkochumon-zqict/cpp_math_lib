@@ -27,7 +27,7 @@ namespace fgm
         template <typename S,
                   typename = std::enable_if_t<std::is_arithmetic_v<S>, int>> // int added to solve compiler confusing
                                                                              // this with copy constructor
-                                                                             Matrix3D(const Matrix3D<S>& other);
+        Matrix3D(const Matrix3D<S>& other);
         // template <typename S, typename = std::enable_if_t<std::is_arithmetic_v<S>> // Added 'typename' and ', int'
         // Matrix3D(const Matrix3D<S>& other)
         //{

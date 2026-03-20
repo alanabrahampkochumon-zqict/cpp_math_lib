@@ -12,8 +12,7 @@ struct TestPackingParams
 };
 
 class PackedSizeCalculatorTests: public ::testing::TestWithParam<TestPackingParams>
-{
-};
+{};
 
 TEST_P(PackedSizeCalculatorTests, CalculatesCorrectSize)
 {

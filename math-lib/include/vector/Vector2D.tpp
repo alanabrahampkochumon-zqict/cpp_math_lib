@@ -15,19 +15,17 @@ namespace fgm
 
     template <Arithmetic T>
     constexpr Vector2D<T>::Vector2D() noexcept: x(T(0)), y(T(0))
-    {
-    }
+    {}
 
     template <Arithmetic T>
     constexpr Vector2D<T>::Vector2D(T v1, T v2) noexcept: x(v1), y(v2)
-    {
-    }
+    {}
 
     template <Arithmetic T>
     template <Arithmetic U>
-    constexpr Vector2D<T>::Vector2D(const Vector2D<U>& other) noexcept: x(static_cast<T>(other.x)), y(static_cast<T>(other.y))
-    {
-    }
+    constexpr Vector2D<T>::Vector2D(const Vector2D<U>& other) noexcept
+        : x(static_cast<T>(other.x)), y(static_cast<T>(other.y))
+    {}
 
 
     /*************************************
