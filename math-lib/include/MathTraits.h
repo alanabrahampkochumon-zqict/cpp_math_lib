@@ -82,7 +82,7 @@ namespace fgm
         { T::rows } -> std::same_as<const std::size_t&>;
         { T::columns } -> std::same_as<const std::size_t&>;
         { matrix(r, c) } -> std::convertible_to<typename T::value_type>;
-        { matrix[c] } -> Vector;
+        { matrix[c] };
     } && Arithmetic<typename T::value_type>;
 
 
