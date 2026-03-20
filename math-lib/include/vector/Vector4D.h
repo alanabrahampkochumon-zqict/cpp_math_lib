@@ -155,7 +155,7 @@ namespace fgm
          *
          * @return Reference to the vector component.
          */
-        T& operator[](std::size_t i);
+        constexpr T& operator[](std::size_t i) noexcept;
 
 
         /**
@@ -165,7 +165,7 @@ namespace fgm
          *
          * @return A const reference to the vector component.
          */
-        const T& operator[](std::size_t i) const;
+        constexpr const T& operator[](std::size_t i) const noexcept;
 
         /** @} */
 
@@ -198,10 +198,10 @@ namespace fgm
          * @return True if all components are equivalent within @p epsilon.
          */
         template <Arithmetic U>
-        bool allEq(const Vector4D<U>& other,
+        constexpr bool allEq(const Vector4D<U>& other,
                    double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>)
                        ? Config::DOUBLE_EPSILON
-                       : Config::FLOAT_EPSILON) const;
+                       : Config::FLOAT_EPSILON) const noexcept;
 
 
         /**
@@ -218,10 +218,10 @@ namespace fgm
          * @return True if all components are equivalent within @p epsilon.
          */
         template <Arithmetic U>
-        static bool allEq(const Vector4D& vecA, const Vector4D<U>& vecB,
+        constexpr static bool allEq(const Vector4D& vecA, const Vector4D<U>& vecB,
                           double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>)
                               ? Config::DOUBLE_EPSILON
-                              : Config::FLOAT_EPSILON);
+                              : Config::FLOAT_EPSILON) noexcept;
 
 
         /**
@@ -240,10 +240,10 @@ namespace fgm
          * @return True if any of the components are not equivalent within the default epsilon.
          */
         template <Arithmetic U>
-        bool allNeq(const Vector4D<U>& other,
+        constexpr bool allNeq(const Vector4D<U>& other,
                     double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>)
                         ? Config::DOUBLE_EPSILON
-                        : Config::FLOAT_EPSILON) const;
+                        : Config::FLOAT_EPSILON) const noexcept;
 
 
         /**
@@ -261,10 +261,10 @@ namespace fgm
          * @return True if any of the components are not equivalent within the default epsilon.
          */
         template <Arithmetic U>
-        static bool allNeq(const Vector4D& vecA, const Vector4D<U>& vecB,
+        constexpr static bool allNeq(const Vector4D& vecA, const Vector4D<U>& vecB,
                            double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>)
                                ? Config::DOUBLE_EPSILON
-                               : Config::FLOAT_EPSILON);
+                               : Config::FLOAT_EPSILON) noexcept;
 
 
         /**
@@ -279,7 +279,7 @@ namespace fgm
          * @return True if all components are equivalent within the default epsilon.
          */
         template <Arithmetic U>
-        bool operator==(const Vector4D<U>& other) const;
+        constexpr bool operator==(const Vector4D<U>& other) const noexcept;
 
 
         /**
@@ -294,7 +294,7 @@ namespace fgm
          * @return True if any of the components are not equivalent within the default epsilon.
          */
         template <Arithmetic U>
-        bool operator!=(const Vector4D<U>& other) const;
+        constexpr bool operator!=(const Vector4D<U>& other) const noexcept;
 
 
         /**
@@ -312,10 +312,10 @@ namespace fgm
          * @return A @ref Vector4D<bool> mask containing the results of each component comparison.
          */
         template <Arithmetic U>
-        Vector4D<bool> eq(const Vector4D<U>& other,
+        constexpr Vector4D<bool> eq(const Vector4D<U>& other,
                           double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>)
                               ? Config::DOUBLE_EPSILON
-                              : Config::FLOAT_EPSILON) const;
+                              : Config::FLOAT_EPSILON) const noexcept;
 
 
         /**
@@ -331,10 +331,10 @@ namespace fgm
          * @return A @ref Vector4D<bool> mask containing the results of each component comparison.
          */
         template <Arithmetic U>
-        static Vector4D<bool> eq(const Vector4D& vecA, const Vector4D<U>& vecB,
+        constexpr static Vector4D<bool> eq(const Vector4D& vecA, const Vector4D<U>& vecB,
                                  double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>)
                                      ? Config::DOUBLE_EPSILON
-                                     : Config::FLOAT_EPSILON);
+                                     : Config::FLOAT_EPSILON) noexcept;
 
 
         /**
@@ -351,10 +351,10 @@ namespace fgm
          * @return A @ref Vector4D<bool> mask containing the results of each component comparison.
          */
         template <Arithmetic U>
-        Vector4D<bool> neq(const Vector4D<U>& other,
+        constexpr Vector4D<bool> neq(const Vector4D<U>& other,
                            double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>)
                                ? Config::DOUBLE_EPSILON
-                               : Config::FLOAT_EPSILON) const;
+                               : Config::FLOAT_EPSILON) const noexcept;
 
 
         /**
@@ -370,10 +370,10 @@ namespace fgm
          * @return A @ref Vector4D<bool> mask containing the results of each component comparison.
          */
         template <Arithmetic U>
-        static Vector4D<bool> neq(const Vector4D& vecA, const Vector4D<U>& vecB,
+        constexpr static Vector4D<bool> neq(const Vector4D& vecA, const Vector4D<U>& vecB,
                                   double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>)
                                       ? Config::DOUBLE_EPSILON
-                                      : Config::FLOAT_EPSILON);
+                                      : Config::FLOAT_EPSILON) noexcept;
 
         /** @} */
 

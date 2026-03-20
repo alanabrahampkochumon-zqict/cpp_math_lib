@@ -62,13 +62,13 @@ namespace fgm
      *************************************/
 
     template <Arithmetic T>
-    T& Vector4D<T>::operator[](std::size_t i)
+    constexpr T& Vector4D<T>::operator[](std::size_t i) noexcept
     {
         return (&x)[i];
     }
 
     template <Arithmetic T>
-    const T& Vector4D<T>::operator[](std::size_t i) const
+    constexpr const T& Vector4D<T>::operator[](std::size_t i) const noexcept
     {
         return (&x)[i];
     }
@@ -84,7 +84,7 @@ namespace fgm
 
     template <Arithmetic T>
     template <Arithmetic U>
-    bool Vector4D<T>::allEq(const Vector4D<U>& other, double epsilon) const
+    constexpr bool Vector4D<T>::allEq(const Vector4D<U>& other, double epsilon) const noexcept
     {
 
         if constexpr (std::is_integral_v<T> && std::is_integral_v<U>)
@@ -99,7 +99,7 @@ namespace fgm
 
     template <Arithmetic T>
     template <Arithmetic U>
-    bool Vector4D<T>::allEq(const Vector4D& vecA, const Vector4D<U>& vecB, double epsilon)
+    constexpr bool Vector4D<T>::allEq(const Vector4D& vecA, const Vector4D<U>& vecB, double epsilon) noexcept
     {
         return vecA.allEq(vecB, epsilon);
     }
@@ -107,7 +107,7 @@ namespace fgm
 
     template <Arithmetic T>
     template <Arithmetic U>
-    bool Vector4D<T>::allNeq(const Vector4D<U>& other, double epsilon) const
+    constexpr bool Vector4D<T>::allNeq(const Vector4D<U>& other, double epsilon) const noexcept
     {
 
         if constexpr (std::is_integral_v<T> && std::is_integral_v<U>)
@@ -123,7 +123,7 @@ namespace fgm
 
     template <Arithmetic T>
     template <Arithmetic U>
-    bool Vector4D<T>::allNeq(const Vector4D& vecA, const Vector4D<U>& vecB, double epsilon)
+    constexpr bool Vector4D<T>::allNeq(const Vector4D& vecA, const Vector4D<U>& vecB, double epsilon) noexcept
     {
         return vecA.allNeq(vecB, epsilon);
     }
@@ -131,14 +131,14 @@ namespace fgm
 
     template <Arithmetic T>
     template <Arithmetic U>
-    bool Vector4D<T>::operator==(const Vector4D<U>& other) const
+    constexpr bool Vector4D<T>::operator==(const Vector4D<U>& other) const noexcept
     {
         return this->allEq(other);
     }
 
     template <Arithmetic T>
     template <Arithmetic U>
-    bool Vector4D<T>::operator!=(const Vector4D<U>& other) const
+    constexpr bool Vector4D<T>::operator!=(const Vector4D<U>& other) const noexcept
     {
         return this->allNeq(other);
     }
@@ -146,7 +146,7 @@ namespace fgm
 
     template <Arithmetic T>
     template <Arithmetic U>
-    Vector4D<bool> Vector4D<T>::eq(const Vector4D<U>& other, double epsilon) const
+    constexpr Vector4D<bool> Vector4D<T>::eq(const Vector4D<U>& other, double epsilon) const noexcept
     {
         if constexpr (std::is_integral_v<T> && std::is_integral_v<U>)
             return Vector4D(x == other.x, y == other.y, z == other.z, w == other.w);
@@ -160,7 +160,7 @@ namespace fgm
 
     template <Arithmetic T>
     template <Arithmetic U>
-    Vector4D<bool> Vector4D<T>::eq(const Vector4D& vecA, const Vector4D<U>& vecB, double epsilon)
+    constexpr Vector4D<bool> Vector4D<T>::eq(const Vector4D& vecA, const Vector4D<U>& vecB, double epsilon) noexcept
     {
         return vecA.eq(vecB, epsilon);
     }
@@ -168,7 +168,7 @@ namespace fgm
 
     template <Arithmetic T>
     template <Arithmetic U>
-    Vector4D<bool> Vector4D<T>::neq(const Vector4D<U>& other, double epsilon) const
+    constexpr Vector4D<bool> Vector4D<T>::neq(const Vector4D<U>& other, double epsilon) const noexcept
     {
         if constexpr (std::is_integral_v<T> && std::is_integral_v<U>)
             return Vector4D(x != other.x, y != other.y, z != other.z, w != other.w);
@@ -183,7 +183,7 @@ namespace fgm
 
     template <Arithmetic T>
     template <Arithmetic U>
-    Vector4D<bool> Vector4D<T>::neq(const Vector4D& vecA, const Vector4D<U>& vecB, double epsilon)
+    constexpr Vector4D<bool> Vector4D<T>::neq(const Vector4D& vecA, const Vector4D<U>& vecB, double epsilon) noexcept
     {
         return vecA.neq(vecB, epsilon);
     }
