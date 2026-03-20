@@ -54,7 +54,7 @@ include(CheckCXXSourceRuns)
 include(CheckCXXCompilerFlag)
 
 function(AddSIMDCompilerFlag Target)
-    message(STATUS "Running SIMD checks for ${CPU_NAME}")
+    message(CHECK_START "Running SIMD checks for ${CPU_NAME}")
 
     set(ProgramNames "SIMD_AVX512_PROG;SIMD_AVX2_PROG;SIMD_AVX_PROG;SIMD_SSE_PROG")
     set(Architectures "AVX-512;AVX2;AVX;SSE")
@@ -79,7 +79,7 @@ function(AddSIMDCompilerFlag Target)
         set(Program "${${ProgName}}")
 
         set(CMAKE_REQUIRED_FLAGS ${Flag})
-            message("Running checks for ${Arch}...")
+            message(STATUS "Running checks for ${Arch}...")
             check_cxx_source_runs("${Program}" HAS_${Arch})
         unset(CMAKE_REQUIRED_FLAGS)
 
@@ -87,12 +87,12 @@ function(AddSIMDCompilerFlag Target)
             target_compile_options(
                 ${Target} PRIVATE ${Flag}
             )
-            message(STATUS "${CPU_NAME} supports ${Arch}. Enabling ${Arch}...")
+            message(CHECK_PASS "${CPU_NAME} supports ${Arch}. Enabling ${Arch}...")
             set(SIMDSupported True)
             break()
         endif()
     endforeach()
     if(NOT(SIMDSupported))
-        message(WARN "${CPU_NAME} doesn't support SIMD instruction set")
+        message(CHECK_FAIL "${CPU_NAME} doesn't support SIMD instruction set")
     endif()
 endfunction(AddSIMDCompilerFlag)

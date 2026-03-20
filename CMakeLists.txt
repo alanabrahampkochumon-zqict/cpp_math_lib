@@ -40,7 +40,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 # Enables ASan for all the projects globally.
 if(ENABLE_STRICT)
-    message("Turning ASan on")
+    message(STATUS "Turning on Address Sanitizer")
     if(MSVC)
         add_compile_options(/fsanitize=address)
     else()
