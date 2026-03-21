@@ -87,108 +87,108 @@ namespace fgm
 
     template <Arithmetic T>
     template <Arithmetic U>
-    constexpr bool Vector4D<T>::allEq(const Vector4D<U>& other, double epsilon) const noexcept
+    constexpr bool Vector4D<T>::allEq(const Vector4D<U>& rhs, double epsilon) const noexcept
     {
 
         if constexpr (std::is_integral_v<T> && std::is_integral_v<U>)
-            return x == other.x && y == other.y && z == other.z && w == other.w;
+            return x == rhs.x && y == rhs.y && z == rhs.z && w == rhs.w;
         else
             /** @note Direct equality check is required to handle @ref INFINITY cases, as Inf - Inf results in NaN. */
-            return (x == other.x || std::abs(x - other.x) <= epsilon) &&
-                (y == other.y || std::abs(y - other.y) <= epsilon) &&
-                (z == other.z || std::abs(z - other.z) <= epsilon) &&
-                (w == other.w || std::abs(w - other.w) <= epsilon);
+            return (x == rhs.x || std::abs(x - rhs.x) <= epsilon) &&
+                (y == rhs.y || std::abs(y - rhs.y) <= epsilon) &&
+                (z == rhs.z || std::abs(z - rhs.z) <= epsilon) &&
+                (w == rhs.w || std::abs(w - rhs.w) <= epsilon);
     }
 
     template <Arithmetic T>
     template <Arithmetic U>
-    constexpr bool Vector4D<T>::allEq(const Vector4D& vecA, const Vector4D<U>& vecB, double epsilon) noexcept
+    constexpr bool Vector4D<T>::allEq(const Vector4D& lhs, const Vector4D<U>& rhs, double epsilon) noexcept
     {
-        return vecA.allEq(vecB, epsilon);
+        return lhs.allEq(rhs, epsilon);
     }
 
 
     template <Arithmetic T>
     template <Arithmetic U>
-    constexpr bool Vector4D<T>::allNeq(const Vector4D<U>& other, double epsilon) const noexcept
+    constexpr bool Vector4D<T>::allNeq(const Vector4D<U>& rhs, double epsilon) const noexcept
     {
 
         if constexpr (std::is_integral_v<T> && std::is_integral_v<U>)
-            return x != other.x || y != other.y || z != other.z || w != other.w;
+            return x != rhs.x || y != rhs.y || z != rhs.z || w != rhs.w;
         else
             /** @note Identity check and inverted logic handle NaN and INFINITY per IEEE 754. */
-            return (x != other.x && !(std::abs(x - other.x) <= epsilon)) ||
-                (y != other.y && !(std::abs(y - other.y) <= epsilon)) ||
-                (z != other.z && !(std::abs(z - other.z) <= epsilon)) ||
-                (w != other.w && !(std::abs(w - other.w) <= epsilon));
+            return (x != rhs.x && !(std::abs(x - rhs.x) <= epsilon)) ||
+                (y != rhs.y && !(std::abs(y - rhs.y) <= epsilon)) ||
+                (z != rhs.z && !(std::abs(z - rhs.z) <= epsilon)) ||
+                (w != rhs.w && !(std::abs(w - rhs.w) <= epsilon));
     }
 
 
     template <Arithmetic T>
     template <Arithmetic U>
-    constexpr bool Vector4D<T>::allNeq(const Vector4D& vecA, const Vector4D<U>& vecB, double epsilon) noexcept
+    constexpr bool Vector4D<T>::allNeq(const Vector4D& lhs, const Vector4D<U>& rhs, double epsilon) noexcept
     {
-        return vecA.allNeq(vecB, epsilon);
+        return lhs.allNeq(rhs, epsilon);
     }
 
 
     template <Arithmetic T>
     template <Arithmetic U>
-    constexpr bool Vector4D<T>::operator==(const Vector4D<U>& other) const noexcept
+    constexpr bool Vector4D<T>::operator==(const Vector4D<U>& rhs) const noexcept
     {
-        return this->allEq(other);
+        return this->allEq(rhs);
     }
 
     template <Arithmetic T>
     template <Arithmetic U>
-    constexpr bool Vector4D<T>::operator!=(const Vector4D<U>& other) const noexcept
+    constexpr bool Vector4D<T>::operator!=(const Vector4D<U>& rhs) const noexcept
     {
-        return this->allNeq(other);
+        return this->allNeq(rhs);
     }
 
 
     template <Arithmetic T>
     template <Arithmetic U>
-    constexpr Vector4D<bool> Vector4D<T>::eq(const Vector4D<U>& other, double epsilon) const noexcept
+    constexpr Vector4D<bool> Vector4D<T>::eq(const Vector4D<U>& rhs, double epsilon) const noexcept
     {
         if constexpr (std::is_integral_v<T> && std::is_integral_v<U>)
-            return Vector4D(x == other.x, y == other.y, z == other.z, w == other.w);
+            return Vector4D(x == rhs.x, y == rhs.y, z == rhs.z, w == rhs.w);
         else
             /** @note Direct equality check is required to handle @ref INFINITY cases, as Inf - Inf results in NaN. */
             return Vector4D(
-                (x == other.x || std::abs(x - other.x) <= epsilon), (y == other.y || std::abs(y - other.y) <= epsilon),
-                (z == other.z || std::abs(z - other.z) <= epsilon), (w == other.w || std::abs(w - other.w) <= epsilon));
+                (x == rhs.x || std::abs(x - rhs.x) <= epsilon), (y == rhs.y || std::abs(y - rhs.y) <= epsilon),
+                (z == rhs.z || std::abs(z - rhs.z) <= epsilon), (w == rhs.w || std::abs(w - rhs.w) <= epsilon));
     }
 
 
     template <Arithmetic T>
     template <Arithmetic U>
-    constexpr Vector4D<bool> Vector4D<T>::eq(const Vector4D& vecA, const Vector4D<U>& vecB, double epsilon) noexcept
+    constexpr Vector4D<bool> Vector4D<T>::eq(const Vector4D& lhs, const Vector4D<U>& rhs, double epsilon) noexcept
     {
-        return vecA.eq(vecB, epsilon);
+        return lhs.eq(rhs, epsilon);
     }
 
 
     template <Arithmetic T>
     template <Arithmetic U>
-    constexpr Vector4D<bool> Vector4D<T>::neq(const Vector4D<U>& other, double epsilon) const noexcept
+    constexpr Vector4D<bool> Vector4D<T>::neq(const Vector4D<U>& rhs, double epsilon) const noexcept
     {
         if constexpr (std::is_integral_v<T> && std::is_integral_v<U>)
-            return Vector4D(x != other.x, y != other.y, z != other.z, w != other.w);
+            return Vector4D(x != rhs.x, y != rhs.y, z != rhs.z, w != rhs.w);
         else
             /** @note Identity check and inverted logic handle NaN and INFINITY per IEEE 754. */
-            return Vector4D<bool>((x != other.x) && !(std::abs(x - other.x) <= epsilon),
-                                  (y != other.y) && !(std::abs(y - other.y) <= epsilon),
-                                  (z != other.z) && !(std::abs(z - other.z) <= epsilon),
-                                  (w != other.w) && !(std::abs(w - other.w) <= epsilon));
+            return Vector4D<bool>((x != rhs.x) && !(std::abs(x - rhs.x) <= epsilon),
+                                  (y != rhs.y) && !(std::abs(y - rhs.y) <= epsilon),
+                                  (z != rhs.z) && !(std::abs(z - rhs.z) <= epsilon),
+                                  (w != rhs.w) && !(std::abs(w - rhs.w) <= epsilon));
     }
 
 
     template <Arithmetic T>
     template <Arithmetic U>
-    constexpr Vector4D<bool> Vector4D<T>::neq(const Vector4D& vecA, const Vector4D<U>& vecB, double epsilon) noexcept
+    constexpr Vector4D<bool> Vector4D<T>::neq(const Vector4D& lhs, const Vector4D<U>& rhs, double epsilon) noexcept
     {
-        return vecA.neq(vecB, epsilon);
+        return lhs.neq(rhs, epsilon);
     }
 
 
@@ -202,73 +202,73 @@ namespace fgm
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr Vector4D<bool> Vector4D<T>::gt(const Vector4D<U>& other) const noexcept
+    constexpr Vector4D<bool> Vector4D<T>::gt(const Vector4D<U>& rhs) const noexcept
         requires StrictArithmetic<T>
     {
-        return Vector4D(x > other.x, y > other.y, z > other.z, w > other.w);
+        return Vector4D(x > rhs.x, y > rhs.y, z > rhs.z, w > rhs.w);
     }
 
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr Vector4D<bool> Vector4D<T>::gt(const Vector4D& vecA, const Vector4D<U>& vecB) noexcept
+    constexpr Vector4D<bool> Vector4D<T>::gt(const Vector4D& lhs, const Vector4D<U>& rhs) noexcept
         requires StrictArithmetic<T>
     {
-        return vecA.gt(vecB);
+        return lhs.gt(rhs);
     }
 
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr Vector4D<bool> Vector4D<T>::gte(const Vector4D<U>& other) const noexcept
+    constexpr Vector4D<bool> Vector4D<T>::gte(const Vector4D<U>& rhs) const noexcept
         requires StrictArithmetic<T>
     {
-        return Vector4D(x >= other.x, y >= other.y, z >= other.z, w >= other.w);
+        return Vector4D(x >= rhs.x, y >= rhs.y, z >= rhs.z, w >= rhs.w);
     }
 
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr Vector4D<bool> Vector4D<T>::gte(const Vector4D& vecA, const Vector4D<U>& vecB) noexcept
+    constexpr Vector4D<bool> Vector4D<T>::gte(const Vector4D& lhs, const Vector4D<U>& rhs) noexcept
         requires StrictArithmetic<T>
     {
-        return vecA.gte(vecB);
+        return lhs.gte(rhs);
     }
 
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr Vector4D<bool> Vector4D<T>::lt(const Vector4D<U>& other) const noexcept
+    constexpr Vector4D<bool> Vector4D<T>::lt(const Vector4D<U>& rhs) const noexcept
         requires StrictArithmetic<T>
     {
-        return Vector4D(x < other.x, y < other.y, z < other.z, w < other.w);
+        return Vector4D(x < rhs.x, y < rhs.y, z < rhs.z, w < rhs.w);
     }
 
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr Vector4D<bool> Vector4D<T>::lt(const Vector4D& vecA, const Vector4D<U>& vecB) noexcept
+    constexpr Vector4D<bool> Vector4D<T>::lt(const Vector4D& lhs, const Vector4D<U>& rhs) noexcept
         requires StrictArithmetic<T>
     {
-        return vecA.lt(vecB);
+        return lhs.lt(rhs);
     }
 
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr Vector4D<bool> Vector4D<T>::lte(const Vector4D<U>& other) const noexcept
+    constexpr Vector4D<bool> Vector4D<T>::lte(const Vector4D<U>& rhs) const noexcept
         requires StrictArithmetic<T>
     {
-        return Vector4D(x <= other.x, y <= other.y, z <= other.z, w <= other.w);
+        return Vector4D(x <= rhs.x, y <= rhs.y, z <= rhs.z, w <= rhs.w);
     }
 
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr Vector4D<bool> Vector4D<T>::lte(const Vector4D& vecA, const Vector4D<U>& vecB) noexcept
+    constexpr Vector4D<bool> Vector4D<T>::lte(const Vector4D& lhs, const Vector4D<U>& rhs) noexcept
         requires StrictArithmetic<T>
     {
-        return vecA.lte(vecB);
+        return lhs.lte(rhs);
     }
 
 
@@ -276,37 +276,37 @@ namespace fgm
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr Vector4D<bool> Vector4D<T>::operator>(const Vector4D<U>& other) const noexcept
+    constexpr Vector4D<bool> Vector4D<T>::operator>(const Vector4D<U>& rhs) const noexcept
         requires StrictArithmetic<T>
     {
-        return this->gt(other);
+        return this->gt(rhs);
     }
 
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr Vector4D<bool> Vector4D<T>::operator>=(const Vector4D<U>& other) const noexcept
+    constexpr Vector4D<bool> Vector4D<T>::operator>=(const Vector4D<U>& rhs) const noexcept
         requires StrictArithmetic<T>
     {
-        return this->gte(other);
+        return this->gte(rhs);
     }
 
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr Vector4D<bool> Vector4D<T>::operator<(const Vector4D<U>& other) const noexcept
+    constexpr Vector4D<bool> Vector4D<T>::operator<(const Vector4D<U>& rhs) const noexcept
         requires StrictArithmetic<T>
     {
-        return this->lt(other);
+        return this->lt(rhs);
     }
 
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr Vector4D<bool> Vector4D<T>::operator<=(const Vector4D<U>& other) const noexcept
+    constexpr Vector4D<bool> Vector4D<T>::operator<=(const Vector4D<U>& rhs) const noexcept
         requires StrictArithmetic<T>
     {
-        return this->lte(other);
+        return this->lte(rhs);
     }
 
 #endif
@@ -320,10 +320,10 @@ namespace fgm
      ***************************************/
 
     template <Arithmetic T>
-    constexpr Vector4D<bool> Vector4D<T>::operator&(const Vector4D<bool>& other) const noexcept
+    constexpr Vector4D<bool> Vector4D<T>::operator&(const Vector4D<bool>& rhs) const noexcept
         requires std::is_same_v<T, bool>
     {
-        return Vector4D(x & other.x, y & other.y, z & other.z, w & other.w);
+        return Vector4D(x & rhs.x, y & rhs.y, z & rhs.z, w & rhs.w);
     }
 
 
@@ -335,10 +335,10 @@ namespace fgm
 
 
     template <Arithmetic T>
-    constexpr Vector4D<bool> Vector4D<T>::operator|(const Vector4D<bool>& other) const noexcept
+    constexpr Vector4D<bool> Vector4D<T>::operator|(const Vector4D<bool>& rhs) const noexcept
         requires std::is_same_v<T, bool>
     {
-        return Vector4D(x | other.x, y | other.y, z | other.z, w | other.w);
+        return Vector4D(x | rhs.x, y | rhs.y, z | rhs.z, w | rhs.w);
     }
 
 
@@ -367,46 +367,46 @@ namespace fgm
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr auto Vector4D<T>::operator+(const Vector4D<U>& other) const noexcept -> Vector4D<std::common_type_t<T, U>>
+    constexpr auto Vector4D<T>::operator+(const Vector4D<U>& rhs) const noexcept -> Vector4D<std::common_type_t<T, U>>
         requires StrictArithmetic<T>
     {
         using R = std::common_type_t<T, U>;
-        return Vector4D<R>(x + other.x, y + other.y, z + other.z, w + other.w);
+        return Vector4D<R>(x + rhs.x, y + rhs.y, z + rhs.z, w + rhs.w);
     }
 
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr Vector4D<T>& Vector4D<T>::operator+=(const Vector4D<U>& other) noexcept
+    constexpr Vector4D<T>& Vector4D<T>::operator+=(const Vector4D<U>& rhs) noexcept
         requires StrictArithmetic<T>
     {
-        x += static_cast<T>(other.x);
-        y += static_cast<T>(other.y);
-        z += static_cast<T>(other.z);
-        w += static_cast<T>(other.w);
+        x += static_cast<T>(rhs.x);
+        y += static_cast<T>(rhs.y);
+        z += static_cast<T>(rhs.z);
+        w += static_cast<T>(rhs.w);
         return *this;
     }
 
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr auto Vector4D<T>::operator-(const Vector4D<U>& other) const noexcept -> Vector4D<std::common_type_t<T, U>>
+    constexpr auto Vector4D<T>::operator-(const Vector4D<U>& rhs) const noexcept -> Vector4D<std::common_type_t<T, U>>
         requires StrictArithmetic<T>
     {
         using R = std::common_type_t<T, U>;
-        return Vector4D<R>(x - other.x, y - other.y, z - other.z, w - other.w);
+        return Vector4D<R>(x - rhs.x, y - rhs.y, z - rhs.z, w - rhs.w);
     }
 
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr Vector4D<T>& Vector4D<T>::operator-=(const Vector4D<U>& other) noexcept
+    constexpr Vector4D<T>& Vector4D<T>::operator-=(const Vector4D<U>& rhs) noexcept
         requires StrictArithmetic<T>
     {
-        x -= static_cast<T>(other.x);
-        y -= static_cast<T>(other.y);
-        z -= static_cast<T>(other.z);
-        w -= static_cast<T>(other.w);
+        x -= static_cast<T>(rhs.x);
+        y -= static_cast<T>(rhs.y);
+        z -= static_cast<T>(rhs.z);
+        w -= static_cast<T>(rhs.w);
         return *this;
     }
 
@@ -501,19 +501,19 @@ namespace fgm
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr auto Vector4D<T>::dot(const Vector4D<U>& other) const noexcept -> std::common_type_t<T, U>
+    constexpr auto Vector4D<T>::dot(const Vector4D<U>& rhs) const noexcept -> std::common_type_t<T, U>
         requires StrictArithmetic<T>
     {
-        return x * other.x + y * other.y + z * other.z + w * other.w;
+        return x * rhs.x + y * rhs.y + z * rhs.z + w * rhs.w;
     }
 
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr auto Vector4D<T>::dot(const Vector4D& vecA, const Vector4D<U>& vecB) noexcept -> std::common_type_t<T, U>
+    constexpr auto Vector4D<T>::dot(const Vector4D& lhs, const Vector4D<U>& rhs) noexcept -> std::common_type_t<T, U>
         requires StrictArithmetic<T>
     {
-        return vecA.dot(vecB);
+        return lhs.dot(rhs);
     }
 
 

@@ -114,7 +114,7 @@ namespace fgm
 
 
         /**
-         * @brief Initialize @ref fgm::Vector4D with 1 @ref Vector3D and 1 T value.
+         * @brief Initialize @ref fgm::Vector4D with 1 @ref Vector3D and 1 @ref T value.
          *
          * @param[in] vec First three entries of @ref fgm::Vector4D.
          * @param[in] v   Last entry for @ref fgm::Vector4D.
@@ -192,14 +192,14 @@ namespace fgm
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref Arithmetic.
          *
-         * @param[in] other   The vector to compare against.
+         * @param[in] rhs     The vector to compare against.
          * @param[in] epsilon Maximum allowable difference for `std::floating_point` types.
          *                    Defaults to @ref DOUBLE_EPSILON or @ref FLOAT_EPSILON based on type promotion.
          *
          * @return True if all components are equivalent within @p epsilon.
          */
         template <Arithmetic U>
-        constexpr bool allEq(const Vector4D<U>& other,
+        constexpr bool allEq(const Vector4D<U>& rhs,
                              double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>)
                                  ? Config::DOUBLE_EPSILON
                                  : Config::FLOAT_EPSILON) const noexcept;
@@ -212,14 +212,14 @@ namespace fgm
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref Arithmetic.
          *
-         * @param[in] vecA    First vector to compare.
-         * @param[in] vecB    Second vector to compare against.
+         * @param[in] lhs    First vector to compare.
+         * @param[in] rhs    Second vector to compare against.
          * @param[in] epsilon Maximum allowable difference for `std::floating_point` types.
          *                    Defaults to @ref DOUBLE_EPSILON or @ref FLOAT_EPSILON based on type promotion.
          * @return True if all components are equivalent within @p epsilon.
          */
         template <Arithmetic U>
-        constexpr static bool allEq(const Vector4D& vecA, const Vector4D<U>& vecB,
+        constexpr static bool allEq(const Vector4D& lhs, const Vector4D<U>& rhs,
                                     double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>)
                                         ? Config::DOUBLE_EPSILON
                                         : Config::FLOAT_EPSILON) noexcept;
@@ -234,14 +234,14 @@ namespace fgm
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref Arithmetic.
          *
-         * @param[in] other   The vector to compare against.
+         * @param[in] rhs     The vector to compare against.
          * @param[in] epsilon Maximum allowable difference for `std::floating_point` types.
          *                    Defaults to @ref DOUBLE_EPSILON or @ref FLOAT_EPSILON based on type promotion.
          *
          * @return True if any of the components are not equivalent within the default epsilon.
          */
         template <Arithmetic U>
-        constexpr bool allNeq(const Vector4D<U>& other,
+        constexpr bool allNeq(const Vector4D<U>& rhs,
                               double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>)
                                   ? Config::DOUBLE_EPSILON
                                   : Config::FLOAT_EPSILON) const noexcept;
@@ -254,15 +254,15 @@ namespace fgm
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref Arithmetic.
          *
-         * @param[in] vecA    First vector to compare.
-         * @param[in] vecB    Second vector to compare against.
+         * @param[in] lhs     First vector to compare.
+         * @param[in] rhs     Second vector to compare against.
          * @param[in] epsilon Maximum allowable difference for `std::floating_point` types.
          *                    Defaults to @ref DOUBLE_EPSILON or @ref FLOAT_EPSILON based on type promotion.
          *
          * @return True if any of the components are not equivalent within the default epsilon.
          */
         template <Arithmetic U>
-        constexpr static bool allNeq(const Vector4D& vecA, const Vector4D<U>& vecB,
+        constexpr static bool allNeq(const Vector4D& lhs, const Vector4D<U>& rhs,
                                      double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>)
                                          ? Config::DOUBLE_EPSILON
                                          : Config::FLOAT_EPSILON) noexcept;
@@ -275,12 +275,12 @@ namespace fgm
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref Arithmetic.
          *
-         * @param[in] other The vector to compare against.
+         * @param[in] rhs The vector to compare against.
          *
          * @return True if all components are equivalent within the default epsilon.
          */
         template <Arithmetic U>
-        constexpr bool operator==(const Vector4D<U>& other) const noexcept;
+        constexpr bool operator==(const Vector4D<U>& rhs) const noexcept;
 
 
         /**
@@ -290,12 +290,12 @@ namespace fgm
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref Arithmetic.
          *
-         * @param[in] other The vector to compare against.
+         * @param[in] rhs The vector to compare against.
          *
          * @return True if any of the components are not equivalent within the default epsilon.
          */
         template <Arithmetic U>
-        constexpr bool operator!=(const Vector4D<U>& other) const noexcept;
+        constexpr bool operator!=(const Vector4D<U>& rhs) const noexcept;
 
 
         /**
@@ -306,14 +306,14 @@ namespace fgm
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref Arithmetic.
          *
-         * @param[in] other   The vector to compare against.
+         * @param[in] rhs   The vector to compare against.
          * @param[in] epsilon Maximum allowable difference for `std::floating_point` types.
          *                    Defaults to @ref DOUBLE_EPSILON or @ref FLOAT_EPSILON based on type promotion.
          *
          * @return A @ref Vector4D<bool> mask containing the results of each component comparison.
          */
         template <Arithmetic U>
-        constexpr Vector4D<bool> eq(const Vector4D<U>& other,
+        constexpr Vector4D<bool> eq(const Vector4D<U>& rhs,
                                     double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>)
                                         ? Config::DOUBLE_EPSILON
                                         : Config::FLOAT_EPSILON) const noexcept;
@@ -324,15 +324,15 @@ namespace fgm
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref Arithmetic.
          *
-         * @param[in] vecA    First vector to compare.
-         * @param[in] vecB    Second vector to compare against.
+         * @param[in] lhs     First vector to compare.
+         * @param[in] rhs     Second vector to compare against.
          * @param[in] epsilon Maximum allowable difference for `std::floating_point` types.
          *                    Defaults to @ref DOUBLE_EPSILON or @ref FLOAT_EPSILON based on type promotion.
          *
          * @return A @ref Vector4D<bool> mask containing the results of each component comparison.
          */
         template <Arithmetic U>
-        constexpr static Vector4D<bool> eq(const Vector4D& vecA, const Vector4D<U>& vecB,
+        constexpr static Vector4D<bool> eq(const Vector4D& lhs, const Vector4D<U>& rhs,
                                            double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>)
                                                ? Config::DOUBLE_EPSILON
                                                : Config::FLOAT_EPSILON) noexcept;
@@ -345,14 +345,15 @@ namespace fgm
          * @note To obtain a single scalar result, use @ref allNeq or @ref operator!=.
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref Arithmetic.
-         * @param[in] other   The vector to compare against.
+         *
+         * @param[in] rhs   The vector to compare against.
          * @param[in] epsilon Maximum allowable difference for `std::floating_point` types.
          *                    Defaults to @ref DOUBLE_EPSILON or @ref FLOAT_EPSILON based on type promotion.
          *
          * @return A @ref Vector4D<bool> mask containing the results of each component comparison.
          */
         template <Arithmetic U>
-        constexpr Vector4D<bool> neq(const Vector4D<U>& other,
+        constexpr Vector4D<bool> neq(const Vector4D<U>& rhs,
                                      double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>)
                                          ? Config::DOUBLE_EPSILON
                                          : Config::FLOAT_EPSILON) const noexcept;
@@ -363,15 +364,15 @@ namespace fgm
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref Arithmetic.
          *
-         * @param[in] vecA    First vector to compare.
-         * @param[in] vecB    Second vector to compare against.
+         * @param[in] lhs    First vector to compare.
+         * @param[in] rhs    Second vector to compare against.
          * @param[in] epsilon Maximum allowable difference for `std::floating_point` types.
          *                    Defaults to @ref DOUBLE_EPSILON or @ref FLOAT_EPSILON based on type promotion.
          *
          * @return A @ref Vector4D<bool> mask containing the results of each component comparison.
          */
         template <Arithmetic U>
-        constexpr static Vector4D<bool> neq(const Vector4D& vecA, const Vector4D<U>& vecB,
+        constexpr static Vector4D<bool> neq(const Vector4D& lhs, const Vector4D<U>& rhs,
                                             double epsilon = (std::is_same_v<T, double> || std::is_same_v<U, double>)
                                                 ? Config::DOUBLE_EPSILON
                                                 : Config::FLOAT_EPSILON) noexcept;
@@ -397,12 +398,12 @@ namespace fgm
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
-         * @param[in] other The vector to compare against.
+         * @param[in] rhs The vector to compare against.
          *
          * @return A @ref Vector4D<bool> mask containing the results of each component comparison.
          */
         template <StrictArithmetic U>
-        constexpr Vector4D<bool> gt(const Vector4D<U>& other) const noexcept
+        constexpr Vector4D<bool> gt(const Vector4D<U>& rhs) const noexcept
             requires StrictArithmetic<T>;
 
 
@@ -411,13 +412,13 @@ namespace fgm
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
-         * @param[in]  vecA First vector to compare.
-         * @param[in]  vecB Second vector to compare against.
+         * @param[in]  lhs First vector to compare.
+         * @param[in]  rhs Second vector to compare against.
          *
          * @return A @ref Vector4D<bool> mask containing the results of each component comparison.
          */
         template <StrictArithmetic U>
-        constexpr static Vector4D<bool> gt(const Vector4D& vecA, const Vector4D<U>& vecB) noexcept
+        constexpr static Vector4D<bool> gt(const Vector4D& lhs, const Vector4D<U>& rhs) noexcept
             requires StrictArithmetic<T>;
 
 
@@ -427,12 +428,12 @@ namespace fgm
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
-         * @param[in] other The vector to compare against.
+         * @param[in] rhs The vector to compare against.
          *
          * @return A @ref Vector4D<bool> mask containing the results of each component comparison.
          */
         template <StrictArithmetic U>
-        constexpr Vector4D<bool> gte(const Vector4D<U>& other) const noexcept
+        constexpr Vector4D<bool> gte(const Vector4D<U>& rhs) const noexcept
             requires StrictArithmetic<T>;
 
 
@@ -441,13 +442,13 @@ namespace fgm
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
-         * @param[in]  vecA First vector to compare.
-         * @param[in]  vecB Second vector to compare against.
+         * @param[in]  lhs First vector to compare.
+         * @param[in]  rhs Second vector to compare against.
          *
          * @return A @ref Vector4D<bool> mask containing the results of each component comparison.
          */
         template <StrictArithmetic U>
-        constexpr static Vector4D<bool> gte(const Vector4D& vecA, const Vector4D<U>& vecB) noexcept
+        constexpr static Vector4D<bool> gte(const Vector4D& lhs, const Vector4D<U>& rhs) noexcept
             requires StrictArithmetic<T>;
 
 
@@ -457,12 +458,12 @@ namespace fgm
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
-         * @param[in] other The vector to compare against.
+         * @param[in] rhs The vector to compare against.
          *
          * @return A @ref Vector4D<bool> mask containing the results of each component comparison.
          */
         template <StrictArithmetic U>
-        constexpr Vector4D<bool> lt(const Vector4D<U>& other) const noexcept
+        constexpr Vector4D<bool> lt(const Vector4D<U>& rhs) const noexcept
             requires StrictArithmetic<T>;
 
 
@@ -471,13 +472,13 @@ namespace fgm
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
-         * @param[in]  vecA First vector to compare.
-         * @param[in]  vecB Second vector to compare against.
+         * @param[in]  lhs First vector to compare.
+         * @param[in]  rhs Second vector to compare against.
          *
          * @return A @ref Vector4D<bool> mask containing the results of each component comparison.
          */
         template <StrictArithmetic U>
-        constexpr static Vector4D<bool> lt(const Vector4D& vecA, const Vector4D<U>& vecB) noexcept
+        constexpr static Vector4D<bool> lt(const Vector4D& lhs, const Vector4D<U>& rhs) noexcept
             requires StrictArithmetic<T>;
 
 
@@ -487,12 +488,12 @@ namespace fgm
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
-         * @param[in] other The vector to compare against.
+         * @param[in] rhs The vector to compare against.
          *
          * @return A @ref Vector4D<bool> mask containing the results of each component comparison.
          */
         template <StrictArithmetic U>
-        constexpr Vector4D<bool> lte(const Vector4D<U>& other) const noexcept
+        constexpr Vector4D<bool> lte(const Vector4D<U>& rhs) const noexcept
             requires StrictArithmetic<T>;
 
 
@@ -501,13 +502,13 @@ namespace fgm
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
-         * @param[in]  vecA First vector to compare.
-         * @param[in]  vecB Second vector to compare against.
+         * @param[in]  lhs First vector to compare.
+         * @param[in]  rhs Second vector to compare against.
          *
          * @return A @ref Vector4D<bool> mask containing the results of each component comparison.
          */
         template <StrictArithmetic U>
-        constexpr static Vector4D<bool> lte(const Vector4D& vecA, const Vector4D<U>& vecB) noexcept
+        constexpr static Vector4D<bool> lte(const Vector4D& lhs, const Vector4D<U>& rhs) noexcept
             requires StrictArithmetic<T>;
 
 
@@ -517,7 +518,7 @@ namespace fgm
          * @copydoc gt(const Vector4D<U>&) const
          */
         template <StrictArithmetic U>
-        constexpr Vector4D<bool> operator>(const Vector4D<U>& other) const noexcept
+        constexpr Vector4D<bool> operator>(const Vector4D<U>& rhs) const noexcept
             requires StrictArithmetic<T>;
 
 
@@ -525,7 +526,7 @@ namespace fgm
          * @copydoc gte(const Vector4D<U>&) const
          */
         template <StrictArithmetic U>
-        constexpr Vector4D<bool> operator>=(const Vector4D<U>& other) const noexcept
+        constexpr Vector4D<bool> operator>=(const Vector4D<U>& rhs) const noexcept
             requires StrictArithmetic<T>;
 
 
@@ -533,7 +534,7 @@ namespace fgm
          * @copydoc lt(const Vector4D<U>&) const
          */
         template <StrictArithmetic U>
-        constexpr Vector4D<bool> operator<(const Vector4D<U>& other) const noexcept
+        constexpr Vector4D<bool> operator<(const Vector4D<U>& rhs) const noexcept
             requires StrictArithmetic<T>;
 
 
@@ -541,7 +542,7 @@ namespace fgm
          * @copydoc lte(const Vector4D<U>&) const
          */
         template <StrictArithmetic U>
-        constexpr Vector4D<bool> operator<=(const Vector4D<U>& other) const noexcept
+        constexpr Vector4D<bool> operator<=(const Vector4D<U>& rhs) const noexcept
             requires StrictArithmetic<T>;
 #endif
 
@@ -566,11 +567,11 @@ namespace fgm
          *
          * @note Only available for @ref bVec4 and vectors with `bool` value_type.
          *
-         * @param[in] other The vector to combine with.
+         * @param[in] rhs The vector to combine with.
          *
          * @return A @ref Vector4D<bool> mask containing the results of component-wise AND.
          */
-        constexpr Vector4D<bool> operator&(const Vector4D<bool>& other) const noexcept
+        constexpr Vector4D<bool> operator&(const Vector4D<bool>& rhs) const noexcept
             requires std::is_same_v<T, bool>;
 
 
@@ -593,12 +594,13 @@ namespace fgm
          *
          * @note Only available for @ref bVec4 and vectors with `bool` value_type.
          *
-         * @param[in] other The vector to combine with.
+         * @param[in] rhs The vector to combine with.
          *
          * @return A @ref Vector4D<bool> mask containing the results of component-wise OR.
          */
-        constexpr Vector4D<bool> operator|(const Vector4D<bool>& other) const noexcept
+        constexpr Vector4D<bool> operator|(const Vector4D<bool>& rhs) const noexcept
             requires std::is_same_v<T, bool>;
+
 
         /**
          * @brief Perform component-wise logical OR.
@@ -648,29 +650,29 @@ namespace fgm
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
-         * @param[in] other The vector to add.
+         * @param[in] rhs The vector to add.
          *
          * @return A new @ref Vector4D containing the component-wise sum.
          */
         template <StrictArithmetic U>
-        constexpr auto operator+(const Vector4D<U>& other) const noexcept -> Vector4D<std::common_type_t<T, U>>
+        constexpr auto operator+(const Vector4D<U>& rhs) const noexcept -> Vector4D<std::common_type_t<T, U>>
             requires StrictArithmetic<T>;
 
 
         /**
          * @brief Add another vector to this vector component-wise.
-         *        Perform an in-place addition of @p other to the current instance.
+         *        Perform an in-place addition of @p rhs to the current instance.
          *
          * @note Operation is restricted to numeric types via @ref StrictArithmetic.
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
-         * @param[in] other The vector to add.
+         * @param[in] rhs The vector to add.
          *
          * @return A reference to this vector (*this).
          */
         template <StrictArithmetic U>
-        constexpr Vector4D& operator+=(const Vector4D<U>& other) noexcept
+        constexpr Vector4D& operator+=(const Vector4D<U>& rhs) noexcept
             requires StrictArithmetic<T>;
 
 
@@ -683,29 +685,29 @@ namespace fgm
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
-         * @param[in] other The vector to subtract.
+         * @param[in] rhs The vector to subtract.
          *
          * @return A new @ref Vector4D containing the component-wise difference.
          */
         template <StrictArithmetic U>
-        constexpr auto operator-(const Vector4D<U>& other) const noexcept -> Vector4D<std::common_type_t<T, U>>
+        constexpr auto operator-(const Vector4D<U>& rhs) const noexcept -> Vector4D<std::common_type_t<T, U>>
             requires StrictArithmetic<T>;
 
 
         /**
          * @brief Subtract another vector from this vector component-wise.
-         *        Perform an in-place substraction of @p other from the current instance.
+         *        Perform an in-place substraction of @p rhs from the current instance.
          *
          * @note Operation is restricted to numeric types via @ref StrictArithmetic.
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
-         * @param[in] other The vector to subtract.
+         * @param[in] rhs The vector to subtract.
          *
          * @return A reference to this vector (*this).
          */
         template <StrictArithmetic U>
-        constexpr Vector4D& operator-=(const Vector4D<U>& other) noexcept
+        constexpr Vector4D& operator-=(const Vector4D<U>& rhs) noexcept
             requires StrictArithmetic<T>;
 
 
@@ -806,28 +808,28 @@ namespace fgm
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
-         * @param[in] other The vector to compute the dot product with.
+         * @param[in] rhs The vector to compute the dot product with.
          *
          * @return The scalar dot product of the two vectors.
          */
         template <StrictArithmetic U>
-        constexpr auto dot(const Vector4D<U>& other) const noexcept -> std::common_type_t<T, U>
+        constexpr auto dot(const Vector4D<U>& rhs) const noexcept -> std::common_type_t<T, U>
             requires StrictArithmetic<T>;
 
 
         /**
          * @brief @copybrief dot(const Vector4D<U>&) const
-         * Static wrapper that compute \f$ \mathbf{vecA} \cdot \mathbf{vecB} \f$.
+         * Static wrapper that compute \f$ \mathbf{lhs} \cdot \mathbf{rhs} \f$.
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
-         * @param[in] vecA First vector to perform the dot product on.
-         * @param[in] vecB Second vector to perform the dot product on.
+         * @param[in] lhs First vector to perform the dot product on.
+         * @param[in] rhs Second vector to perform the dot product on.
          *
-         * @return The scalar dot product of @p vecA and @p vecB.
+         * @return The scalar dot product of @p lhs and @p rhs.
          */
         template <StrictArithmetic U>
-        constexpr static auto dot(const Vector4D& vecA, const Vector4D<U>& vecB) noexcept -> std::common_type_t<T, U>
+        constexpr static auto dot(const Vector4D& lhs, const Vector4D<U>& rhs) noexcept -> std::common_type_t<T, U>
             requires StrictArithmetic<T>;
 
         /** @} */
