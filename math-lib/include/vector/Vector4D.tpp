@@ -94,10 +94,8 @@ namespace fgm
             return x == rhs.x && y == rhs.y && z == rhs.z && w == rhs.w;
         else
             /** @note Direct equality check is required to handle @ref INFINITY cases, as Inf - Inf results in NaN. */
-            return (x == rhs.x || std::abs(x - rhs.x) <= epsilon) &&
-                (y == rhs.y || std::abs(y - rhs.y) <= epsilon) &&
-                (z == rhs.z || std::abs(z - rhs.z) <= epsilon) &&
-                (w == rhs.w || std::abs(w - rhs.w) <= epsilon);
+            return (x == rhs.x || std::abs(x - rhs.x) <= epsilon) && (y == rhs.y || std::abs(y - rhs.y) <= epsilon) &&
+                (z == rhs.z || std::abs(z - rhs.z) <= epsilon) && (w == rhs.w || std::abs(w - rhs.w) <= epsilon);
     }
 
     template <Arithmetic T>
@@ -119,8 +117,7 @@ namespace fgm
             /** @note Identity check and inverted logic handle NaN and INFINITY per IEEE 754. */
             return (x != rhs.x && !(std::abs(x - rhs.x) <= epsilon)) ||
                 (y != rhs.y && !(std::abs(y - rhs.y) <= epsilon)) ||
-                (z != rhs.z && !(std::abs(z - rhs.z) <= epsilon)) ||
-                (w != rhs.w && !(std::abs(w - rhs.w) <= epsilon));
+                (z != rhs.z && !(std::abs(z - rhs.z) <= epsilon)) || (w != rhs.w && !(std::abs(w - rhs.w) <= epsilon));
     }
 
 
@@ -177,10 +174,9 @@ namespace fgm
             return Vector4D(x != rhs.x, y != rhs.y, z != rhs.z, w != rhs.w);
         else
             /** @note Identity check and inverted logic handle NaN and INFINITY per IEEE 754. */
-            return Vector4D<bool>((x != rhs.x) && !(std::abs(x - rhs.x) <= epsilon),
-                                  (y != rhs.y) && !(std::abs(y - rhs.y) <= epsilon),
-                                  (z != rhs.z) && !(std::abs(z - rhs.z) <= epsilon),
-                                  (w != rhs.w) && !(std::abs(w - rhs.w) <= epsilon));
+            return Vector4D<bool>(
+                (x != rhs.x) && !(std::abs(x - rhs.x) <= epsilon), (y != rhs.y) && !(std::abs(y - rhs.y) <= epsilon),
+                (z != rhs.z) && !(std::abs(z - rhs.z) <= epsilon), (w != rhs.w) && !(std::abs(w - rhs.w) <= epsilon));
     }
 
 
@@ -259,7 +255,11 @@ namespace fgm
     constexpr Vector4D<bool> Vector4D<T>::lte(const Vector4D<U>& rhs) const noexcept
         requires StrictArithmetic<T>
     {
-        return Vector4D(x <= rhs.x, y <= rhs.y, z <= rhs.z, w <= rhs.w);
+        using R = Magnitude<std::common_type_t<T, U>>;
+        return Vector4D<bool>(static_cast<R>(x) <= static_cast<R>(rhs.x), 
+                              static_cast<R>(y) <= static_cast<R>(rhs.y), 
+                              static_cast<R>(z) <= static_cast<R>(rhs.z),
+                              static_cast<R>(w) <= static_cast<R>(rhs.w));
     }
 
 
@@ -422,8 +422,7 @@ namespace fgm
 
 
     template <StrictArithmetic T, StrictArithmetic S>
-    constexpr auto operator*(S scalar, const Vector4D<T>& vector) noexcept
-        ->Vector4D<std::common_type_t<T, S>>
+    constexpr auto operator*(S scalar, const Vector4D<T>& vector) noexcept -> Vector4D<std::common_type_t<T, S>>
         requires StrictArithmetic<T>
     {
         return vector * scalar;
@@ -587,7 +586,8 @@ namespace fgm
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr auto Vector4D<T>::project(const Vector4D<U>& onto, bool ontoNormalized) const -> Vector4D<std::common_type_t<T, U>>
+    constexpr auto Vector4D<T>::project(const Vector4D<U>& onto, bool ontoNormalized) const
+        -> Vector4D<std::common_type_t<T, U>>
         requires StrictArithmetic<T>
     {
         using R = std::common_type_t<T, U>;
@@ -618,7 +618,8 @@ namespace fgm
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr auto Vector4D<T>::reject(const Vector4D<U>& from, bool ontoNormalized) const -> Vector4D<std::common_type_t<T, U>>
+    constexpr auto Vector4D<T>::reject(const Vector4D<U>& from, bool ontoNormalized) const
+        -> Vector4D<std::common_type_t<T, U>>
         requires StrictArithmetic<T>
     {
         return *this - this->project(from, ontoNormalized);

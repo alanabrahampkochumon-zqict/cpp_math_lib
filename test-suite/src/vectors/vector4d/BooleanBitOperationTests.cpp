@@ -42,16 +42,11 @@ class BooleanVectorBitOperations: public ::testing::Test
 };
 
 
+
 /**
  * @addtogroup T_FGM_Vec4_Bool_Bit
  * @{
  */
-
-/**************************************
- *                                    *
- *                TESTS               *
- *                                    *
- **************************************/
 
 /**
  * @test Verify that the @ref fgm::Vector4D<bool> bitwise AND operator performs a component-wise logical conjunction
@@ -86,6 +81,7 @@ TEST_F(BooleanVectorBitOperations, BitwiseOR_PerformComponentwiseDisjunction)
 
     EXPECT_VEC_EQ(this->expectedOrVector, mask);
 }
+
 
 /**
  * @test Verify that the @ref fgm::Vector4D<bool> compound bitwise OR operator performs a

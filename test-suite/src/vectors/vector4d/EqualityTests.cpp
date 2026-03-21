@@ -42,7 +42,6 @@ TYPED_TEST_SUITE(Vector4DEquality, SupportedArithmeticTypes);
 
 
 
-
 /**
  * @addtogroup T_FGM_Vec4_Equality
  * @{
@@ -62,6 +61,7 @@ TYPED_TEST(Vector4DEquality, Equality_IdenticalVectorsReturnsTrue)
     EXPECT_TRUE(equality);
 }
 
+
 /** @test Verify @ref fgm::Vector4D::allEq returns false if any component differ. */
 TYPED_TEST(Vector4DEquality, Equality_DifferentVectorsReturnsFalse)
 {
@@ -69,6 +69,7 @@ TYPED_TEST(Vector4DEquality, Equality_DifferentVectorsReturnsFalse)
 
     EXPECT_FALSE(equality);
 }
+
 
 /** @test Verify static variant of @ref fgm::Vector4D::allEq for identical vectors. */
 TYPED_TEST(Vector4DEquality, StaticWrapper_Equality_IdenticalVectorsReturnsTrue)
@@ -78,6 +79,7 @@ TYPED_TEST(Vector4DEquality, StaticWrapper_Equality_IdenticalVectorsReturnsTrue)
     EXPECT_TRUE(equality);
 }
 
+
 /** @test Verify static variant of @ref fgm::Vector4D::allEq for different vectors. */
 TYPED_TEST(Vector4DEquality, StaticWrapper_Equality_DifferentVectorsReturnsFalse)
 {
@@ -86,38 +88,42 @@ TYPED_TEST(Vector4DEquality, StaticWrapper_Equality_DifferentVectorsReturnsFalse
     EXPECT_FALSE(equality);
 }
 
+
 /** @test Verify @ref fgm::Vector4D::allEq follows IEEE 754 for NaN comparisons. */
 TEST(Vector4DEquality, NanEqualityReturnsFalse)
 {
-    const fgm::Vector4D vecA = { NAN, NAN, NAN, NAN };
-    const fgm::Vector4D<double> vecB = { 1.0, -5.88874789, INFINITY, NAN };
+    constexpr fgm::Vector4D vecA = { NAN, NAN, NAN, NAN };
+    constexpr fgm::Vector4D<double> vecB = { 1.0, -5.88874789, INFINITY, NAN };
 
     const bool equality = vecA.allEq(vecB);
 
     EXPECT_FALSE(equality);
 }
+
 
 /** @test Verify @ref fgm::Vector4D::allEq follows IEEE 754 for INFINITY comparisons. */
 TEST(Vector4DEquality, InfinityEquality_IdenticalVectorsReturnsTrue)
 {
-    const fgm::Vector4D vecA = { INFINITY, -INFINITY, INFINITY, -INFINITY };
-    const fgm::Vector4D vecB = { INFINITY, -INFINITY, INFINITY, -INFINITY };
+    constexpr fgm::Vector4D vecA = { INFINITY, -INFINITY, INFINITY, -INFINITY };
+    constexpr fgm::Vector4D vecB = { INFINITY, -INFINITY, INFINITY, -INFINITY };
 
-    const bool equality = vecA.allEq(vecB);
+    constexpr bool equality = vecA.allEq(vecB);
 
     EXPECT_TRUE(equality);
 }
 
+
 /** @test Verify @ref fgm::Vector4D::allEq follows IEEE 754 for INFINITY comparisons. */
 TEST(Vector4DEquality, InfinityEquality_DifferentVectorsReturnsFalse)
 {
-    const fgm::Vector4D vecA = { INFINITY, INFINITY, INFINITY, -INFINITY };
-    const fgm::Vector4D vecB = { INFINITY, -INFINITY, INFINITY, INFINITY };
+    constexpr fgm::Vector4D vecA = { INFINITY, INFINITY, INFINITY, -INFINITY };
+    constexpr fgm::Vector4D vecB = { INFINITY, -INFINITY, INFINITY, INFINITY };
 
     const bool equality = vecA.allEq(vecB);
 
     EXPECT_FALSE(equality);
 }
+
 
 /** @test Verify @ref fgm::Vector4D equality operator returns true for identical vectors. */
 TYPED_TEST(Vector4DEquality, EqualityOperator_IdenticalVectorsReturnsTrue)
@@ -127,22 +133,24 @@ TYPED_TEST(Vector4DEquality, EqualityOperator_IdenticalVectorsReturnsTrue)
     EXPECT_TRUE(equality);
 }
 
+
 /** @test Verify @ref fgm::Vector4D::allEq works for different vector types with identical components. */
 TYPED_TEST(Vector4DEquality, MixedType_Equality_IdenticalVectorsReturnsTrue)
 {
-    const fgm::Vector4D vecA(1, 2, 3, 4);
-    const fgm::Vector4D vecB(1.0, 2.0, 3.0, 4.0);
+    constexpr fgm::Vector4D vecA(1, 2, 3, 4);
+    constexpr fgm::Vector4D vecB(1.0, 2.0, 3.0, 4.0);
 
-    const bool equality = vecA.allEq(vecB);
+    constexpr bool equality = vecA.allEq(vecB);
 
     EXPECT_TRUE(equality);
 }
 
+
 /** @test Verify @ref fgm::Vector4D::allEq works for different vector types with different components. */
 TYPED_TEST(Vector4DEquality, MixedType_Equality_DifferentVectorsReturnsFalse)
 {
-    const fgm::Vector4D vecA(5, 6, 7, 8);
-    const fgm::Vector4D vecB(1.0, 2.0, 3.0, 4.0);
+    constexpr fgm::Vector4D vecA(5, 6, 7, 8);
+    constexpr fgm::Vector4D vecB(1.0, 2.0, 3.0, 4.0);
 
     const bool equality = vecA.allEq(vecB);
 
