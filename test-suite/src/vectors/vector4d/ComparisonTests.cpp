@@ -330,7 +330,9 @@ TEST(Vector4DComparison, NanVector_LessThan_ReturnsBooleanVectorWithCorrectValue
 #if defined(_MSC_VER) && !defined(__clang__)
     // MSVC constant evaluator incorrectly returns true for NaN comparisons.
     // We fallback to 'const' (runtime) to verify the hardware/logic is correct.
+    // Resharper disable all
     const fgm::Vector4D<bool> mask = vec.lt(nanVec);
+    // Resharper restore all
 #else
     // Clang and GCC follow IEEE 754 strictly at compile-time.
     constexpr fgm::Vector4D<bool> mask = vec.lt(nanVec);
@@ -438,7 +440,9 @@ TEST(Vector4DComparison, NanVector_LessThanOrEqual_ReturnsBooleanVectorWithCorre
 #if defined(_MSC_VER) && !defined(__clang__)
     // MSVC constant evaluator incorrectly returns true for NaN comparisons.
     // We fallback to 'const' (runtime) to verify the hardware/logic is correct.
+    // Resharper disable all
     const fgm::Vector4D<bool> mask = vec.lte(nanVec);
+    // Resharper restore all
 #else
     // Clang and GCC follow IEEE 754 strictly at compile-time.
     constexpr fgm::Vector4D<bool> mask = vec.lte(nanVec);
