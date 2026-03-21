@@ -115,11 +115,11 @@ TYPED_TEST(Vector4DDotProduct, StaticWrapper_NonOrthogonalDotProductReturnsNonZe
 TEST(Vector4DDotProduct, AntiParallelDotProductReturnsNegativeScalar)
 {
     // Given two opposite vectors
-    const fgm::Vector4D vecA(-1.0, 0.0, 0.0, 0.0);
-    const fgm::Vector4D vecB(1.0, 0.0, 0.0, 0.0);
+    constexpr fgm::Vector4D vecA(-1.0, 0.0, 0.0, 0.0);
+    constexpr fgm::Vector4D vecB(1.0, 0.0, 0.0, 0.0);
 
     // When dot with each other
-    const double result = vecA.dot(vecB);
+    constexpr double result = vecA.dot(vecB);
 
     // Then, the dot product is -1
     EXPECT_DOUBLE_EQ(-1.0, result);
@@ -130,11 +130,11 @@ TEST(Vector4DDotProduct, AntiParallelDotProductReturnsNegativeScalar)
 TEST(Vector4DDotProduct, MixedTypeDotProductPromotesType)
 {
     // Given two vectors of different type
-    const fgm::Vector4D vecA(7, 13, 29, 41);
-    const fgm::Vector4D vecB(1.123456789, 2.123456789, 3.123456789, 4.123456789);
+    constexpr fgm::Vector4D vecA(7, 13, 29, 41);
+    constexpr fgm::Vector4D vecB(1.123456789, 2.123456789, 3.123456789, 4.123456789);
 
     // When dot with each other
-    const auto result = vecA.dot(vecB);
+    constexpr auto result = vecA.dot(vecB);
 
     // Then, the dot product is type promoted
     static_assert(std::is_same_v<decltype(result), const double>);

@@ -106,7 +106,7 @@ TYPED_TEST_SUITE(Vector4DZeroNormalization, SupportedArithmeticTypes);
 /** @test Verify that the magnitude of a zero @ref fgm::Vector4D returns exactly zero. */
 TEST(Vector4DMagnitude, ZeroVectorReturnsZero)
 {
-    const fgm::Vector4D vec(0.0f, 0.0f, 0.0f, 0.0f);
+    constexpr fgm::Vector4D vec(0.0f, 0.0f, 0.0f, 0.0f);
 
     EXPECT_FLOAT_EQ(0.0f, vec.mag());
 }
@@ -114,7 +114,7 @@ TEST(Vector4DMagnitude, ZeroVectorReturnsZero)
 /** @test Verify that the magnitude of a @ref fgm::Vector4D with multiple unit-component returns non-unit magnitude. */
 TEST(Vector4DMagnitude, OneComponentVectorReturnsNonUnitScalar)
 {
-    const fgm::Vector4D vec(1.0f, 1.0f, 1.0f, 1.0f);
+    constexpr fgm::Vector4D vec(1.0f, 1.0f, 1.0f, 1.0f);
 
     EXPECT_NE(1.0f, vec.mag());
 }
@@ -187,7 +187,7 @@ TYPED_TEST(Vector4DUncleanMagnitude, StaticWrapper_NonUnitVectorReturnsCorrectMa
 /** @test Verify that attempting to normalize a zero-magnitude @ref fgm::Vector4D results in program termination. */
 TEST(Vector4DNormalization, ZeroVectorWhenNormalizationCausesDeath)
 {
-    const fgm::Vector4D vec(0.0, 0.0, 0.0, 0.0);
+    constexpr fgm::Vector4D vec(0.0, 0.0, 0.0, 0.0);
 
     EXPECT_DEATH({ vec.normalize(); }, "Vector4D Normalization : Division by 0");
 }

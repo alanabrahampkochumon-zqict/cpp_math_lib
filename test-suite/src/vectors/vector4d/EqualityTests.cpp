@@ -203,38 +203,41 @@ TYPED_TEST(Vector4DEquality, EqualityReturnsCorrectBooleanMask)
 /** @test Verify @ref fgm::Vector4D::eq returns @ref fgm::Vector4D<bool> mask for different vectors. */
 TEST(Vector4DEquality, MixedType_EqualityReturnsCorrectBooleanMask)
 {
-    const fgm::Vector4D vecA = { 1, 2, 3, 4 };
-    const fgm::Vector4D vecB = { 1.0, 4.0, 0.0, 4.0 };
-    const fgm::Vector4D expectedMask = { true, false, false, true };
+    constexpr fgm::Vector4D vecA = { 1, 2, 3, 4 };
+    constexpr fgm::Vector4D vecB = { 1.0, 4.0, 0.0, 4.0 };
+    constexpr fgm::Vector4D expectedMask = { true, false, false, true };
 
     const fgm::Vector4D<bool> mask = vecA.eq(vecB);
 
     EXPECT_VEC_EQ(expectedMask, mask);
 }
 
+
 /** @test Verify @ref fgm::Vector4D::eq follows IEEE 754 for NaN comparisons. */
 TEST(Vector4DEquality, NanEqualityReturnsFalseBooleanMask)
 {
-    const fgm::Vector4D vecA = { NaN, NaN, NaN, NaN };
-    const fgm::Vector4D<double> vecB = { 1.0, -5.88874789, INF, NaN };
-    const fgm::Vector4D expectedMask = { false, false, false, false };
+    constexpr fgm::Vector4D vecA = { NaN, NaN, NaN, NaN };
+    constexpr fgm::Vector4D<double> vecB = { 1.0, -5.88874789, INF, NaN };
+    constexpr fgm::Vector4D expectedMask = { false, false, false, false };
 
     const fgm::Vector4D mask = vecA.eq(vecB);
 
     EXPECT_VEC_EQ(expectedMask, mask);
 }
 
+
 /** @test Verify @ref fgm::Vector4D::eq follows IEEE 754 for INFINITY comparisons. */
 TEST(Vector4DEquality, InfinityEqualityReturnsCorrectBooleanMask)
 {
-    const fgm::Vector4D vecA = { INF, -INF, INF, -INF };
-    const fgm::Vector4D<double> vecB = { INF, INF, 10e11, 10e11 };
-    const fgm::Vector4D expectedMask = { true, false, false, false };
+    constexpr fgm::Vector4D vecA = { INF, -INF, INF, -INF };
+    constexpr fgm::Vector4D<double> vecB = { INF, INF, 10e11, 10e11 };
+    constexpr fgm::Vector4D expectedMask = { true, false, false, false };
 
-    fgm::Vector4D mask = vecA.eq(vecB);
+    const fgm::Vector4D mask = vecA.eq(vecB);
 
     EXPECT_VEC_EQ(expectedMask, mask);
 }
+
 
 /** @test Verify static variant of @ref fgm::Vector4D::eq returns @ref fgm::Vector4D<bool> mask for different vectors.
  */
@@ -270,6 +273,7 @@ TYPED_TEST(Vector4DEquality, Inequality_IdenticalVectorsReturnsFalse)
     EXPECT_FALSE(equality);
 }
 
+
 /** @test Verify @ref fgm::Vector4D::allNeq returns true if any component differ. */
 TYPED_TEST(Vector4DEquality, Inequality_DifferentVectorsReturnsTrue)
 {
@@ -277,6 +281,7 @@ TYPED_TEST(Vector4DEquality, Inequality_DifferentVectorsReturnsTrue)
 
     EXPECT_TRUE(equality);
 }
+
 
 /** @test Verify static variant of @ref fgm::Vector4D::allNeq for identical vectors. */
 TYPED_TEST(Vector4DEquality, StaticWrapper_Inequality_IdenticalVectorsReturnsFalse)
@@ -286,6 +291,7 @@ TYPED_TEST(Vector4DEquality, StaticWrapper_Inequality_IdenticalVectorsReturnsFal
     EXPECT_FALSE(equality);
 }
 
+
 /** @test Verify static variant of @ref fgm::Vector4D::allNeq for different vectors. */
 TYPED_TEST(Vector4DEquality, StaticWrapper_Inequality_DifferentVectorsReturnsTrue)
 {
@@ -294,16 +300,18 @@ TYPED_TEST(Vector4DEquality, StaticWrapper_Inequality_DifferentVectorsReturnsTru
     EXPECT_TRUE(equality);
 }
 
+
 /** @test Verify @ref fgm::Vector4D::allNeq follows IEEE 754 for NaN comparisons. */
 TEST(Vector4DEquality, NanInequalityReturnsTrue)
 {
-    const fgm::Vector4D vecA = { NaN, NaN, NaN, NaN };
-    const fgm::Vector4D<double> vecB = { 1.0, -5.88874789, INF, NaN };
+    constexpr fgm::Vector4D vecA = { NaN, NaN, NaN, NaN };
+    constexpr fgm::Vector4D<double> vecB = { 1.0, -5.88874789, INF, NaN };
 
     const bool equality = vecA.allNeq(vecB);
 
     EXPECT_TRUE(equality);
 }
+
 
 /** @test Verify @ref fgm::Vector4D::allNeq follows IEEE 754 for INFINITY comparisons. */
 TEST(Vector4DEquality, InfinityInequality_IdenticalVectorsReturnsFalse)
@@ -316,6 +324,7 @@ TEST(Vector4DEquality, InfinityInequality_IdenticalVectorsReturnsFalse)
     EXPECT_FALSE(equality);
 }
 
+
 /** @test Verify @ref fgm::Vector4D::allNeq follows IEEE 754 for INFINITY comparisons. */
 TEST(Vector4DEquality, InfinityInequality_DifferentVectorsReturnsTrue)
 {
@@ -326,6 +335,7 @@ TEST(Vector4DEquality, InfinityInequality_DifferentVectorsReturnsTrue)
 
     EXPECT_TRUE(equality);
 }
+
 
 /** @test Verify @ref fgm::Vector4D::allNeq works for different vector types with identical components. */
 TYPED_TEST(Vector4DEquality, MixedType_Inequality_IdenticalVectorsReturnsFalse)
@@ -338,6 +348,7 @@ TYPED_TEST(Vector4DEquality, MixedType_Inequality_IdenticalVectorsReturnsFalse)
     EXPECT_FALSE(equality);
 }
 
+
 /** @test Verify @ref fgm::Vector4D::allNeq works for different vector types with different components. */
 TYPED_TEST(Vector4DEquality, MixedType_Inequality_DifferentVectorsReturnsTrue)
 {
@@ -349,6 +360,7 @@ TYPED_TEST(Vector4DEquality, MixedType_Inequality_DifferentVectorsReturnsTrue)
     EXPECT_TRUE(equality);
 }
 
+
 /** @test Verify @ref fgm::Vector4D inequality operator returns false for identical vectors. */
 TYPED_TEST(Vector4DEquality, InEqualityOperator_IdenticalVectorsReturnsFalse)
 {
@@ -357,6 +369,7 @@ TYPED_TEST(Vector4DEquality, InEqualityOperator_IdenticalVectorsReturnsFalse)
     EXPECT_FALSE(equality);
 }
 
+
 /** @test Verify @ref fgm::Vector4D inequality operator returns true for different vectors. */
 TYPED_TEST(Vector4DEquality, InEqualityOperator_DifferentVectorsReturnsTrue)
 {
@@ -364,6 +377,7 @@ TYPED_TEST(Vector4DEquality, InEqualityOperator_DifferentVectorsReturnsTrue)
 
     EXPECT_TRUE(equality);
 }
+
 
 /** @test Verify @ref fgm::Vector4D equality operator works for @ref fgm::Vector4D<bool> with identical components. */
 TEST(Vector4DEquality, InequalityOperator_IdenticalBooleanVectorsReturnsFalse)
@@ -376,6 +390,7 @@ TEST(Vector4DEquality, InequalityOperator_IdenticalBooleanVectorsReturnsFalse)
     EXPECT_FALSE(equality);
 }
 
+
 /** @test Verify @ref fgm::Vector4D equality operator works for @ref fgm::Vector4D<bool> with different components. */
 TEST(Vector4DEquality, InequalityOperator_DifferentBooleanVectorsReturnsTrue)
 {
@@ -387,6 +402,7 @@ TEST(Vector4DEquality, InequalityOperator_DifferentBooleanVectorsReturnsTrue)
     EXPECT_TRUE(equality);
 }
 
+
 /** @test Verify @ref fgm::Vector4D::neq returns @ref fgm::Vector4D<bool> mask for identical vectors. */
 TYPED_TEST(Vector4DEquality, InequalityReturnsCorrectBooleanMask)
 {
@@ -394,6 +410,7 @@ TYPED_TEST(Vector4DEquality, InequalityReturnsCorrectBooleanMask)
 
     EXPECT_VEC_EQ(this->inequalityMask, mask);
 }
+
 
 /** @test Verify @ref fgm::Vector4D::neq returns @ref fgm::Vector4D<bool> mask for different vectors. */
 TEST(Vector4DEquality, MixedType_InequalityReturnsCorrectBooleanMask)
@@ -407,6 +424,7 @@ TEST(Vector4DEquality, MixedType_InequalityReturnsCorrectBooleanMask)
     EXPECT_VEC_EQ(expectedMask, mask);
 }
 
+
 /** @test Verify @ref fgm::Vector4D::neq follows IEEE 754 for NaN comparisons. */
 TEST(Vector4DEquality, NanInequalityReturnsTrueBooleanMask)
 {
@@ -419,6 +437,7 @@ TEST(Vector4DEquality, NanInequalityReturnsTrueBooleanMask)
     EXPECT_VEC_EQ(expectedMask, mask);
 }
 
+
 /** @test Verify @ref fgm::Vector4D::neq follows IEEE 754 for INFINITY comparisons. */
 TEST(Vector4DEquality, InfinityInequalityReturnsCorrectBooleanMask)
 {
@@ -430,6 +449,7 @@ TEST(Vector4DEquality, InfinityInequalityReturnsCorrectBooleanMask)
 
     EXPECT_VEC_EQ(expectedMask, mask);
 }
+
 
 /**
  * @test Verify static variant of @ref fgm::Vector4D::neq returns @ref fgm::Vector4D<bool> mask for different vectors.
