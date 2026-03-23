@@ -93,7 +93,7 @@ namespace fgm
         if constexpr (std::is_integral_v<T> && std::is_integral_v<U>)
             return x == rhs.x && y == rhs.y && z == rhs.z && w == rhs.w;
         else
-            /** @note Direct equality check is required to handle @ref INFINITY cases, as Inf - Inf results in NaN. */
+            /** @note Direct equality check is required to handle @ref INFINITY cases, as Inf - Inf results in NAN_F. */
             return (x == rhs.x || std::abs(x - rhs.x) <= epsilon) && (y == rhs.y || std::abs(y - rhs.y) <= epsilon) &&
                 (z == rhs.z || std::abs(z - rhs.z) <= epsilon) && (w == rhs.w || std::abs(w - rhs.w) <= epsilon);
     }
@@ -114,7 +114,7 @@ namespace fgm
         if constexpr (std::is_integral_v<T> && std::is_integral_v<U>)
             return x != rhs.x || y != rhs.y || z != rhs.z || w != rhs.w;
         else
-            /** @note Identity check and inverted logic handle NaN and INFINITY per IEEE 754. */
+            /** @note Identity check and inverted logic handle NAN_F and INFINITY per IEEE 754. */
             return (x != rhs.x && !(std::abs(x - rhs.x) <= epsilon)) ||
                 (y != rhs.y && !(std::abs(y - rhs.y) <= epsilon)) ||
                 (z != rhs.z && !(std::abs(z - rhs.z) <= epsilon)) || (w != rhs.w && !(std::abs(w - rhs.w) <= epsilon));
@@ -151,7 +151,7 @@ namespace fgm
         if constexpr (std::is_integral_v<T> && std::is_integral_v<U>)
             return Vector4D(x == rhs.x, y == rhs.y, z == rhs.z, w == rhs.w);
         else
-            /** @note Direct equality check is required to handle @ref INFINITY cases, as Inf - Inf results in NaN. */
+            /** @note Direct equality check is required to handle @ref INFINITY cases, as Inf - Inf results in NAN_F. */
             return Vector4D(
                 (x == rhs.x || std::abs(x - rhs.x) <= epsilon), (y == rhs.y || std::abs(y - rhs.y) <= epsilon),
                 (z == rhs.z || std::abs(z - rhs.z) <= epsilon), (w == rhs.w || std::abs(w - rhs.w) <= epsilon));
@@ -173,7 +173,7 @@ namespace fgm
         if constexpr (std::is_integral_v<T> && std::is_integral_v<U>)
             return Vector4D(x != rhs.x, y != rhs.y, z != rhs.z, w != rhs.w);
         else
-            /** @note Identity check and inverted logic handle NaN and INFINITY per IEEE 754. */
+            /** @note Identity check and inverted logic handle NAN_F and INFINITY per IEEE 754. */
             return Vector4D<bool>(
                 (x != rhs.x) && !(std::abs(x - rhs.x) <= epsilon), (y != rhs.y) && !(std::abs(y - rhs.y) <= epsilon),
                 (z != rhs.z) && !(std::abs(z - rhs.z) <= epsilon), (w != rhs.w) && !(std::abs(w - rhs.w) <= epsilon));

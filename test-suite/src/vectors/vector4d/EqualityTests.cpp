@@ -14,7 +14,7 @@
 
 #include <common/Constants.h>
 
-constexpr auto NaN = fgm::constants::NaN;
+constexpr auto NAN_F = fgm::constants::NaN;
 constexpr auto INF = fgm::constants::INFINITY_F;
 
 using namespace testutils;
@@ -96,8 +96,8 @@ TYPED_TEST(Vector4DEquality, StaticWrapper_Equality_DifferentVectorsReturnsFalse
 /** @test Verify @ref fgm::Vector4D::allEq follows IEEE 754 for NaN comparisons. */
 TEST(Vector4DEquality, NanEqualityReturnsFalse)
 {
-    constexpr fgm::Vector4D vecA = { NaN, NaN, NaN, NaN };
-    const fgm::Vector4D<double> vecB = { 1.0f, -5.88874789f, INF, NaN };
+    constexpr fgm::Vector4D vecA = { NAN_F, NAN_F, NAN_F, NAN_F };
+    const fgm::Vector4D<double> vecB = { 1.0f, -5.88874789f, INF, NAN_F };
 
     const bool equality = vecA.allEq(vecB);
 
@@ -220,7 +220,7 @@ TEST(Vector4DEquality, MixedType_EqualityReturnsCorrectBooleanMask)
 /** @test Verify @ref fgm::Vector4D::eq follows IEEE 754 for NaN comparisons. */
 TEST(Vector4DEquality, NanEqualityReturnsFalseBooleanMask)
 {
-    constexpr fgm::Vector4D vecA = { NaN, NaN, NaN, NaN };
+    constexpr fgm::Vector4D vecA = { NAN_F, NAN_F, NAN_F, NAN_F };
     constexpr fgm::Vector4D vecB = { 1.0, -5.88874789, fgm::constants::INFINITY_D, fgm::constants::NaN_D };
     constexpr fgm::Vector4D expectedMask = { false, false, false, false };
 
@@ -307,8 +307,8 @@ TYPED_TEST(Vector4DEquality, StaticWrapper_Inequality_DifferentVectorsReturnsTru
 /** @test Verify @ref fgm::Vector4D::allNeq follows IEEE 754 for NaN comparisons. */
 TEST(Vector4DEquality, NanInequalityReturnsTrue)
 {
-    constexpr fgm::Vector4D vecA = { NaN, NaN, NaN, NaN };
-    constexpr fgm::Vector4D<double> vecB = { 1.0, -5.88874789, INF, NaN };
+    constexpr fgm::Vector4D vecA = { NAN_F, NAN_F, NAN_F, NAN_F };
+    constexpr fgm::Vector4D<double> vecB = { 1.0, -5.88874789, INF, NAN_F };
 
     const bool equality = vecA.allNeq(vecB);
 
@@ -431,8 +431,8 @@ TEST(Vector4DEquality, MixedType_InequalityReturnsCorrectBooleanMask)
 /** @test Verify @ref fgm::Vector4D::neq follows IEEE 754 for NaN comparisons. */
 TEST(Vector4DEquality, NanInequalityReturnsTrueBooleanMask)
 {
-    constexpr fgm::Vector4D vecA = { NaN, NaN, NaN, NaN };
-    constexpr fgm::Vector4D<double> vecB = { 1.0, -5.88874789, INF, NaN };
+    constexpr fgm::Vector4D vecA = { NAN_F, NAN_F, NAN_F, NAN_F };
+    constexpr fgm::Vector4D<double> vecB = { 1.0, -5.88874789, INF, NAN_F };
     constexpr fgm::Vector4D expectedMask = { true, true, true, true };
 
     const fgm::Vector4D mask = vecA.neq(vecB);

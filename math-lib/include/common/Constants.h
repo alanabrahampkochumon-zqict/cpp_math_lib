@@ -13,8 +13,6 @@
 #include <limits>
 
 
-
-
 /**
  * @addtogroup FGM_Math_Constants
  * @{

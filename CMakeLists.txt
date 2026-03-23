@@ -17,6 +17,9 @@ else()
     message(WARNING "clang-format not found")
 endif()
 
+option(DCMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_CXX_CLANG_TIDY "clang-tidy")
+
 option(ENABLE_STRICT "Enable ASan and Strict Warnings" OFF) # To turn on ASan, use cmake -D
 
 # Doxygen

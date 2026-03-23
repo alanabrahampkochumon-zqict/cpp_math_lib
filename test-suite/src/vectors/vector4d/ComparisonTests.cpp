@@ -16,7 +16,7 @@
 using namespace testutils;
 
 
-constexpr auto NaN = fgm::constants::NaN;
+constexpr auto NAN_F = fgm::constants::NaN;
 constexpr auto INF = fgm::constants::INFINITY_F;
 
 
@@ -30,14 +30,14 @@ template <typename T>
 class Vector4DComparison: public ::testing::Test
 {
     protected:
-    fgm::Vector4D<T> vecA;
+    fgm::Vector4D<T> m_VecA;
     fgm::Vector4D<T> vecB;
     fgm::bVec4 expectedGT, expectedGTE, expectedLT,
         expectedLTE; // GT-> Greater Than, GTE-> Greater Than or Equal, LT -> Less than, LTE -> Less than or equal
 
     void SetUp() override
     {
-        vecA = { T(1.1234568789), T(2.123458319), T(5.123412593891), T(123.123489172589) };
+        m_VecA = { T(1.1234568789), T(2.123458319), T(5.123412593891), T(123.123489172589) };
         vecB = { T(5.1234568789), T(1.123458319), T(8.123412593891), T(123.123489172589) };
         expectedGT = { false, true, false, false };
         expectedGTE = { false, true, false, true };
@@ -67,7 +67,7 @@ TYPED_TEST_SUITE(Vector4DComparison, SupportedArithmeticTypes);
  */
 TYPED_TEST(Vector4DComparison, GreaterThan_ReturnsBooleanVectorWithElementsGreaterThanAsTrue)
 {
-    const fgm::Vector4D<bool> mask = this->vecA.gt(this->vecB);
+    const fgm::Vector4D<bool> mask = this->m_VecA.gt(this->vecB);
 
     EXPECT_VEC_EQ(this->expectedGT, mask);
 }
@@ -79,7 +79,7 @@ TYPED_TEST(Vector4DComparison, GreaterThan_ReturnsBooleanVectorWithElementsGreat
  */
 TYPED_TEST(Vector4DComparison, GreaterThanOperator_ReturnsBooleanVectorWithElementsGreaterThanAsTrue)
 {
-    const fgm::Vector4D<bool> mask = this->vecA > this->vecB;
+    const fgm::Vector4D<bool> mask = this->m_VecA > this->vecB;
 
     EXPECT_VEC_EQ(this->expectedGT, mask);
 }
@@ -91,7 +91,7 @@ TYPED_TEST(Vector4DComparison, GreaterThanOperator_ReturnsBooleanVectorWithEleme
  */
 TYPED_TEST(Vector4DComparison, StaticWrapper_GreaterThan_ReturnsBooleanVectorWithElementsGreaterThanAsTrue)
 {
-    const fgm::Vector4D<bool> mask = fgm::Vector4D<TypeParam>::gt(this->vecA, this->vecB);
+    const fgm::Vector4D<bool> mask = fgm::Vector4D<TypeParam>::gt(this->m_VecA, this->vecB);
 
     EXPECT_VEC_EQ(this->expectedGT, mask);
 }
@@ -120,7 +120,7 @@ TEST(Vector4DComparison, InfinityVector_GreaterThan_ReturnsBooleanVectorWithCorr
 TEST(Vector4DComparison, NaNVector_GreaterThan_ReturnsBooleanVectorWithCorrectValues)
 {
     constexpr fgm::Vector4D vec(1.2f, 4.5f, 6.8f, 9.5f);
-    constexpr fgm::Vector4D infVec(NaN, NaN, -5.9f, NaN);
+    constexpr fgm::Vector4D infVec(NAN_F, NAN_F, -5.9f, NAN_F);
     constexpr fgm::Vector4D expected(false, false, true, false);
 
     constexpr fgm::Vector4D<bool> mask = vec.gt(infVec);
@@ -168,7 +168,7 @@ TEST(Vector4DComparison, MixedType_GreaterThan_ReturnsBooleanVectorWithCorrectVa
  */
 TYPED_TEST(Vector4DComparison, GreaterThanOrEqual_ReturnsBooleanVectorWithElementsGreaterThanOrEqualAsTrue)
 {
-    const fgm::Vector4D<bool> mask = this->vecA.gte(this->vecB);
+    const fgm::Vector4D<bool> mask = this->m_VecA.gte(this->vecB);
 
     EXPECT_VEC_EQ(this->expectedGTE, mask);
 }
@@ -180,7 +180,7 @@ TYPED_TEST(Vector4DComparison, GreaterThanOrEqual_ReturnsBooleanVectorWithElemen
  */
 TYPED_TEST(Vector4DComparison, GreaterThanOrEqualOperator_ReturnsBooleanVectorWithElementsGreaterThanOrEqualAsTrue)
 {
-    const fgm::Vector4D<bool> mask = this->vecA >= this->vecB;
+    const fgm::Vector4D<bool> mask = this->m_VecA >= this->vecB;
 
     EXPECT_VEC_EQ(this->expectedGTE, mask);
 }
@@ -193,7 +193,7 @@ TYPED_TEST(Vector4DComparison, GreaterThanOrEqualOperator_ReturnsBooleanVectorWi
 TYPED_TEST(Vector4DComparison,
            StaticWrapper_GreaterThanOrEqual_ReturnsBooleanVectorWithElementsGreaterThanOrEqualAsTrue)
 {
-    const fgm::Vector4D<bool> mask = fgm::Vector4D<TypeParam>::gte(this->vecA, this->vecB);
+    const fgm::Vector4D<bool> mask = fgm::Vector4D<TypeParam>::gte(this->m_VecA, this->vecB);
 
     EXPECT_VEC_EQ(this->expectedGTE, mask);
 }
@@ -222,7 +222,7 @@ TEST(Vector4DComparison, InfinityVector_GreaterThanOrEqual_ReturnsBooleanVectorW
 TEST(Vector4DComparison, NanVector_GreaterThanOrEqual_ReturnsBooleanVectorWithCorrectValues)
 {
     constexpr fgm::Vector4D vec(1.2, 4.5, 6.8, 9.5);
-    constexpr fgm::Vector4D infVec(NaN, NaN, -5.9f, NaN);
+    constexpr fgm::Vector4D infVec(NAN_F, NAN_F, -5.9f, NAN_F);
     constexpr fgm::Vector4D expected(false, false, true, false);
 
     constexpr fgm::Vector4D<bool> mask = vec.gte(infVec);
@@ -270,7 +270,7 @@ TEST(Vector4DComparison, MixedType_GreaterThanOrEqual_ReturnsBooleanVectorWithCo
  */
 TYPED_TEST(Vector4DComparison, LessThan_ReturnsBooleanVectorWithElementsLessThanAsTrue)
 {
-    const fgm::Vector4D<bool> mask = this->vecA.lt(this->vecB);
+    const fgm::Vector4D<bool> mask = this->m_VecA.lt(this->vecB);
 
     EXPECT_VEC_EQ(this->expectedLT, mask);
 }
@@ -282,7 +282,7 @@ TYPED_TEST(Vector4DComparison, LessThan_ReturnsBooleanVectorWithElementsLessThan
  */
 TYPED_TEST(Vector4DComparison, LessThanOperator_ReturnsBooleanVectorWithElementsLessThanAsTrue)
 {
-    const fgm::Vector4D<bool> mask = this->vecA < this->vecB;
+    const fgm::Vector4D<bool> mask = this->m_VecA < this->vecB;
 
     EXPECT_VEC_EQ(this->expectedLT, mask);
 }
@@ -294,7 +294,7 @@ TYPED_TEST(Vector4DComparison, LessThanOperator_ReturnsBooleanVectorWithElements
  */
 TYPED_TEST(Vector4DComparison, StaticWrapper_LessThan_ReturnsBooleanVectorWithElementsLessThanAsTrue)
 {
-    const fgm::Vector4D<bool> mask = fgm::Vector4D<TypeParam>::lt(this->vecA, this->vecB);
+    const fgm::Vector4D<bool> mask = fgm::Vector4D<TypeParam>::lt(this->m_VecA, this->vecB);
 
     EXPECT_VEC_EQ(this->expectedLT, mask);
 }
@@ -323,11 +323,11 @@ TEST(Vector4DComparison, InfinityVector_LessThan_ReturnsBooleanVectorWithCorrect
 TEST(Vector4DComparison, NanVector_LessThan_ReturnsBooleanVectorWithCorrectValues)
 {
     constexpr fgm::Vector4D vec(1.2f, 4.5f, 6.8f, 9.5f);
-    constexpr fgm::Vector4D nanVec(NaN, NaN, -5.9f, NaN);
+    constexpr fgm::Vector4D nanVec(NAN_F, NAN_F, -5.9f, NAN_F);
     constexpr fgm::Vector4D expected(false, false, false, false);
 
 #if defined(_MSC_VER) && !defined(__clang__)
-    // MSVC constant evaluator incorrectly returns true for NaN comparisons.
+    // MSVC constant evaluator incorrectly returns true for NAN_F comparisons.
     // We fallback to 'const' (runtime) to verify the hardware/logic is correct.
     // Resharper disable all
     const fgm::Vector4D<bool> mask = vec.lt(nanVec);
@@ -380,7 +380,7 @@ TEST(Vector4DComparison, MixedType_LessThan_ReturnsBooleanVectorWithCorrectValue
  */
 TYPED_TEST(Vector4DComparison, LessThanOrEqual_ReturnsBooleanVectorWithElementsLessThanOrEqualAsTrue)
 {
-    const fgm::Vector4D<bool> mask = this->vecA.lte(this->vecB);
+    const fgm::Vector4D<bool> mask = this->m_VecA.lte(this->vecB);
 
     EXPECT_VEC_EQ(this->expectedLTE, mask);
 }
@@ -392,7 +392,7 @@ TYPED_TEST(Vector4DComparison, LessThanOrEqual_ReturnsBooleanVectorWithElementsL
  */
 TYPED_TEST(Vector4DComparison, LessThanOrEqualOperator_ReturnsBooleanVectorWithElementsLessThanOrEqualAsTrue)
 {
-    const fgm::Vector4D<bool> mask = this->vecA <= this->vecB;
+    const fgm::Vector4D<bool> mask = this->m_VecA <= this->vecB;
 
     EXPECT_VEC_EQ(this->expectedLTE, mask);
 }
@@ -404,7 +404,7 @@ TYPED_TEST(Vector4DComparison, LessThanOrEqualOperator_ReturnsBooleanVectorWithE
  */
 TYPED_TEST(Vector4DComparison, StaticWrapper_LessThanOrEqual_ReturnsBooleanVectorWithElementsLessThanOrEqualAsTrue)
 {
-    const fgm::Vector4D<bool> mask = fgm::Vector4D<TypeParam>::lte(this->vecA, this->vecB);
+    const fgm::Vector4D<bool> mask = fgm::Vector4D<TypeParam>::lte(this->m_VecA, this->vecB);
 
     EXPECT_VEC_EQ(this->expectedLTE, mask);
 }
@@ -433,11 +433,11 @@ TEST(Vector4DComparison, InfinityVector_LessThanOrEqual_ReturnsBooleanVectorWith
 TEST(Vector4DComparison, NanVector_LessThanOrEqual_ReturnsBooleanVectorWithCorrectValues)
 {
     constexpr fgm::Vector4D vec(1.2f, 4.5f, 6.8f, 9.5f);
-    constexpr fgm::Vector4D nanVec(NaN, NaN, -5.9f, NaN);
+    constexpr fgm::Vector4D nanVec(NAN_F, NAN_F, -5.9f, NAN_F);
     constexpr fgm::Vector4D expected(false, false, false, false);
 
 #if defined(_MSC_VER) && !defined(__clang__)
-    // MSVC constant evaluator incorrectly returns true for NaN comparisons.
+    // MSVC constant evaluator incorrectly returns true for NAN_F comparisons.
     // We fallback to 'const' (runtime) to verify the hardware/logic is correct.
     // Resharper disable all
     const fgm::Vector4D<bool> mask = vec.lte(nanVec);
