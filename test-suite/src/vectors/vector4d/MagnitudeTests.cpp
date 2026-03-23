@@ -24,13 +24,13 @@ template <typename T>
 class Vector4DMagnitude: public ::testing::Test
 {
     protected:
-    fgm::Vector4D<T> vec;
-    fgm::Magnitude<T> magnitude;
+    fgm::Vector4D<T> _vec;
+    fgm::Magnitude<T> _expectedMagnitude;
 
     void SetUp() override
     {
-        vec = { T(1), T(2), T(2), T(4) };
-        magnitude = fgm::Magnitude<T>(5);
+        _vec = { T(1), T(2), T(2), T(4) };
+        _expectedMagnitude = fgm::Magnitude<T>(5);
     }
 };
 /** @brief Test fixture for @ref fgm::Vector4D magnitude, parameterized by SupportedArithmeticTypes. */
@@ -41,13 +41,13 @@ template <typename T>
 class Vector4DUncleanMagnitude: public ::testing::Test
 {
     protected:
-    fgm::Vector4D<T> vec;
-    fgm::Magnitude<T> magnitude;
+    fgm::Vector4D<T> _vec;
+    fgm::Magnitude<T> _expectedMagnitude;
 
     void SetUp() override
     {
-        vec = { T(1), T(2), T(3), T(4) };
-        magnitude = fgm::Magnitude<T>(5.477225575051661);
+        _vec = { T(1), T(2), T(3), T(4) };
+        _expectedMagnitude = fgm::Magnitude<T>(5.477225575051661);
     }
 };
 /** @brief Test fixture for @ref fgm::Vector4D magnitude, parameterized by SupportedArithmeticTypes, for testing
@@ -61,13 +61,13 @@ class Vector4DNormalization: public ::testing::Test
     using R = fgm::Magnitude<T>;
 
     protected:
-    fgm::Vector4D<T> vec;
-    fgm::Vector4D<R> expectedVector;
+    fgm::Vector4D<T> _vec;
+    fgm::Vector4D<R> _expectedUnitVec;
 
     void SetUp() override
     {
-        vec = { T(14), T(27), T(83), T(52) };
-        expectedVector = { static_cast<R>(0.13650905255670645), static_cast<R>(0.2632674585022196),
+        _vec = { T(14), T(27), T(83), T(52) };
+        _expectedUnitVec = { static_cast<R>(0.13650905255670645), static_cast<R>(0.2632674585022196),
                            static_cast<R>(0.8093036687290455), static_cast<R>(0.5070336237820525) };
     }
 };
@@ -79,11 +79,11 @@ template <typename T>
 class Vector4DZeroNormalization: public ::testing::Test
 {
     protected:
-    fgm::Vector4D<T> vec;
+    fgm::Vector4D<T> _vec;
 
     void SetUp() override
     {
-        vec = { T(0), T(0), T(0), T(0) };
+        _vec = { T(0), T(0), T(0), T(0) };
     }
 };
 /** @brief Test fixture for @ref fgm::Vector4D zero-vector normalization, parameterized by SupportedArithmeticTypes. */
@@ -122,10 +122,10 @@ TEST(Vector4DMagnitude, OneComponentVectorReturnsNonUnitScalar)
 /** @test Verify that the magnitude of a non-unit @ref fgm::Vector4D returns a non-unit magnitude. */
 TYPED_TEST(Vector4DMagnitude, NonUnitVectorReturnsCorrectMagnitude)
 {
-    const auto magnitude = this->vec.mag();
+    const auto magnitude = this->_vec.mag();
 
     static_assert(std::is_floating_point_v<decltype(magnitude)>);
-    EXPECT_MAG_EQ(this->magnitude, magnitude);
+    EXPECT_MAG_EQ(this->_expectedMagnitude, magnitude);
 }
 
 /**
@@ -134,16 +134,16 @@ TYPED_TEST(Vector4DMagnitude, NonUnitVectorReturnsCorrectMagnitude)
  */
 TYPED_TEST(Vector4DMagnitude, MagnitudeIsAlwaysTypedPromotedToFloatingPointType)
 {
-    [[maybe_unused]] const auto magnitude = this->vec.mag();
+    [[maybe_unused]] const auto magnitude = this->_vec.mag();
     static_assert(std::is_floating_point_v<decltype(magnitude)>);
 }
 
 /** @test Verify that the static magnitude wrapper of @ref fgm::Vector4D returns a non-unit magnitude. */
 TYPED_TEST(Vector4DMagnitude, StaticWrapper_NonUnitVectorReturnsCorrectMagnitude)
 {
-    const auto magnitude = fgm::Vector4D<TypeParam>::mag(this->vec);
+    const auto magnitude = fgm::Vector4D<TypeParam>::mag(this->_vec);
 
-    EXPECT_MAG_EQ(this->magnitude, magnitude);
+    EXPECT_MAG_EQ(this->_expectedMagnitude, magnitude);
 }
 
 /**
@@ -152,9 +152,9 @@ TYPED_TEST(Vector4DMagnitude, StaticWrapper_NonUnitVectorReturnsCorrectMagnitude
  */
 TYPED_TEST(Vector4DUncleanMagnitude, NonUnitVectorReturnsCorrectMagnitudeWithMinimalPrecisionLoss)
 {
-    const auto magnitude = this->vec.mag();
+    const auto magnitude = this->_vec.mag();
 
-    EXPECT_MAG_EQ(this->magnitude, magnitude);
+    EXPECT_MAG_EQ(this->_expectedMagnitude, magnitude);
 }
 
 /**
@@ -163,9 +163,9 @@ TYPED_TEST(Vector4DUncleanMagnitude, NonUnitVectorReturnsCorrectMagnitudeWithMin
  */
 TYPED_TEST(Vector4DUncleanMagnitude, StaticWrapper_NonUnitVectorReturnsCorrectMagnitudeWithMinimalPrecisionLoss)
 {
-    const auto magnitude = fgm::Vector4D<TypeParam>::mag(this->vec);
+    const auto magnitude = fgm::Vector4D<TypeParam>::mag(this->_vec);
 
-    EXPECT_MAG_EQ(this->magnitude, magnitude);
+    EXPECT_MAG_EQ(this->_expectedMagnitude, magnitude);
 }
 
 /** @} */
@@ -196,9 +196,9 @@ TEST(Vector4DNormalization, ZeroVectorWhenNormalizationCausesDeath)
 /** @test Verify that normalizing a @ref fgm::Vector4D returns a unit vector. */
 TYPED_TEST(Vector4DNormalization, NonZeroVectorNormalizationReturnsUnitVector)
 {
-    const fgm::Vector4D normalized = this->vec.normalize();
+    const fgm::Vector4D normalized = this->_vec.normalize();
 
-    EXPECT_VEC_EQ(this->expectedVector, normalized);
+    EXPECT_VEC_EQ(this->_expectedUnitVec, normalized);
 }
 
 
@@ -206,9 +206,9 @@ TYPED_TEST(Vector4DNormalization, NonZeroVectorNormalizationReturnsUnitVector)
 TYPED_TEST(Vector4DNormalization, StaticWrapper_NonZeroVectorNormalizationReturnsUnitVector)
 {
 
-    const fgm::Vector4D normalized = fgm::Vector4D<TypeParam>::normalize(this->vec);
+    const fgm::Vector4D normalized = fgm::Vector4D<TypeParam>::normalize(this->_vec);
 
-    EXPECT_VEC_EQ(this->expectedVector, normalized);
+    EXPECT_VEC_EQ(this->_expectedUnitVec, normalized);
 }
 
 
@@ -218,7 +218,7 @@ TYPED_TEST(Vector4DNormalization, StaticWrapper_NonZeroVectorNormalizationReturn
  */
 TYPED_TEST(Vector4DNormalization, NormalizedVectorIsAlwaysTypedPromotedToFloatingPointType)
 {
-    [[maybe_unused]] const auto normalized = this->vec.normalize();
+    [[maybe_unused]] const auto normalized = this->_vec.normalize();
     static_assert(std::is_floating_point_v<typename decltype(normalized)::value_type>);
 }
 
