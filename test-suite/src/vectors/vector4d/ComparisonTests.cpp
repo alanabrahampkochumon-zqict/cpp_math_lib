@@ -16,8 +16,8 @@
 using namespace testutils;
 
 
-constexpr auto NaN = fgm::Constants::NaN;
-constexpr auto INF = fgm::Constants::INFINITY_F;
+constexpr auto NaN = fgm::constants::NaN;
+constexpr auto INF = fgm::constants::INFINITY_F;
 
 
 /**************************************

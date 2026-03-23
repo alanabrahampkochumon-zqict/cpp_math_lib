@@ -14,8 +14,8 @@
 
 #include <common/Constants.h>
 
-constexpr auto NaN = fgm::Constants::NaN;
-constexpr auto INF = fgm::Constants::INFINITY_F;
+constexpr auto NaN = fgm::constants::NaN;
+constexpr auto INF = fgm::constants::INFINITY_F;
 
 using namespace testutils;
 
@@ -221,7 +221,7 @@ TEST(Vector4DEquality, MixedType_EqualityReturnsCorrectBooleanMask)
 TEST(Vector4DEquality, NanEqualityReturnsFalseBooleanMask)
 {
     constexpr fgm::Vector4D vecA = { NaN, NaN, NaN, NaN };
-    constexpr fgm::Vector4D vecB = { 1.0, -5.88874789, fgm::Constants::INFINITY_D, fgm::Constants::NaN_D };
+    constexpr fgm::Vector4D vecB = { 1.0, -5.88874789, fgm::constants::INFINITY_D, fgm::constants::NaN_D };
     constexpr fgm::Vector4D expectedMask = { false, false, false, false };
 
     const fgm::Vector4D mask = vecA.eq(vecB);
