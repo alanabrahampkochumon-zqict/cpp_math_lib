@@ -1156,6 +1156,15 @@ namespace fgm
         static constexpr Vector4D<T> infN = Vector4D<T>(T(-constants::INFINITY_D), T(-constants::INFINITY_D),
                                                        T(-constants::INFINITY_D), T(-constants::INFINITY_D));
 
+        /**
+         * @brief 4D-Vector with all NaN-components.
+         *
+         * @note Only available for `std::floating_point` types.
+         */
+        template <StrictArithmetic T>
+            requires std::floating_point<T>
+        static constexpr Vector4D<T> nan =
+            Vector4D<T>(T(constants::NaN_D), T(constants::NaN_D), T(constants::NaN_D), T(constants::NaN_D));
 
 
     } // namespace vec4d

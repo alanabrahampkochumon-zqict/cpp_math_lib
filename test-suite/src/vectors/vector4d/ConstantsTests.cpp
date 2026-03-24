@@ -78,4 +78,26 @@ TEST(Vector4DConstants, NegativeDoubleInf_ReturnsDoubleVectorWithNegativeInfinit
     EXPECT_VEC4_NEG_INF(inf);
 }
 
+
+/** @test Verifies that @ref fgm::Vector4D::infN<float> returns a 4D vector with NaN components. */
+TEST(Vector4DConstants, NaNFloatInf_ReturnsFloatVectorWithNaNComponents)
+{
+    constexpr auto nan = fgm::vec4d::nan<float>;
+    EXPECT_TRUE(std::isnan(nan.x));
+    EXPECT_TRUE(std::isnan(nan.y));
+    EXPECT_TRUE(std::isnan(nan.z));
+    EXPECT_TRUE(std::isnan(nan.w));
+}
+
+
+/** @test Verifies that @ref fgm::Vector4D::infN<double> returns a 4D vector with NaN components. */
+TEST(Vector4DConstants, NaNDoubleInf_ReturnsDoubleVectorWithNegativeInfinityComponents)
+{
+    constexpr auto nan = fgm::vec4d::nan<double>;
+    EXPECT_TRUE(std::isnan(nan.x));
+    EXPECT_TRUE(std::isnan(nan.y));
+    EXPECT_TRUE(std::isnan(nan.z));
+    EXPECT_TRUE(std::isnan(nan.w));
+}
+
 /** @} */
