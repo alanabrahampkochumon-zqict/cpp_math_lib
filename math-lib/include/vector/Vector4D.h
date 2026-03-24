@@ -41,7 +41,7 @@ namespace fgm
     {
 
         /**
-         * @addtogroup H_FGM_Vec4_Members
+         * @addtogroup FGM_Vec4_Members
          * @{
          */
 
@@ -80,7 +80,7 @@ namespace fgm
 
 
         /**
-         * @addtogroup H_FGM_Vec4_Init
+         * @addtogroup FGM_Vec4_Init
          * @{
          */
 
@@ -174,7 +174,7 @@ namespace fgm
 
 
         /**
-         * @addtogroup H_FGM_Vec4_Equality
+         * @addtogroup FGM_Vec4_Equality
          * @{
          */
 
@@ -383,7 +383,7 @@ namespace fgm
 
 
         /**
-         * @addtogroup H_FGM_Vec4_Comparison
+         * @addtogroup FGM_Vec4_Comparison
          * @{
          */
 
@@ -564,7 +564,7 @@ namespace fgm
 
 
         /**
-         * @addtogroup H_FGM_Vec4_Bitwise
+         * @addtogroup FGM_Vec4_Bitwise
          * @{
          */
 
@@ -644,7 +644,7 @@ namespace fgm
 
 
         /**
-         * @addtogroup H_FGM_Vec4_Arithmetic
+         * @addtogroup FGM_Vec4_Arithmetic
          * @{
          */
 
@@ -802,7 +802,7 @@ namespace fgm
 
 
         /**
-         * @addtogroup H_FGM_Vec4_Product
+         * @addtogroup FGM_Vec4_Product
          * @{
          */
 
@@ -850,7 +850,7 @@ namespace fgm
 
 
         /**
-         * @addtogroup H_FGM_Vec4_Mag
+         * @addtogroup FGM_Vec4_Mag
          * @{
          */
 
@@ -927,7 +927,7 @@ namespace fgm
 
 
         /**
-         * @addtogroup H_FGM_Vec4_Proj
+         * @addtogroup FGM_Vec4_Proj
          * @{
          */
 
@@ -1019,7 +1019,7 @@ namespace fgm
 
 
         /**
-         * @addtogroup H_FGM_Vec4_Log
+         * @addtogroup FGM_Vec4_Log
          * @{
          */
 
@@ -1045,6 +1045,8 @@ namespace fgm
         }
 
         /** @} */
+
+
     };
 
 
@@ -1056,7 +1058,7 @@ namespace fgm
      *************************************/
 
     /**
-     * @addtogroup H_FGM_Vec4_Arithmetic
+     * @addtogroup FGM_Vec4_Arithmetic
      * @{
      */
 
@@ -1089,7 +1091,7 @@ namespace fgm
      *************************************/
 
     /**
-     * @addtogroup H_FGM_Vec4_Alias
+     * @addtogroup FGM_Vec4_Alias
      * @{
      */
 
@@ -1101,7 +1103,27 @@ namespace fgm
     using dVec4 = Vector4D<double>;              ///< double vector
     using ulVec4 = Vector4D<unsigned long long>; ///< unsigned long long vector
 
+
+
     /** @} */
+    /**
+     * @addtogroup FGM_Vec4_Const
+     * @{
+     */
+
+    /*************************************
+     *                                   *
+     *            CONSTANTS              *
+     *                                   *
+     *************************************/
+    namespace vec4d
+    {
+        template <StrictArithmetic T>
+        static constexpr Vector4D<T> one = Vector4D<T>(T(1), T(1), T(1), T(1)); ///< 4D-Vector with all one-components.    
+    }
+
+    /** @} */
+
 
 } // namespace fgm
 

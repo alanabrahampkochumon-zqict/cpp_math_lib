@@ -39,6 +39,7 @@
              *   @defgroup T_FGM_Vec4_Access Component Access
              *   @defgroup T_FGM_Vec4_Mutation Component Mutation
              *   @defgroup T_FGM_Vec4_Alias Spatial Aliasing
+             *   @defgroup T_FGM_Vec4_Const Vector Constants
              *   @defgroup T_FGM_Vec4_Addition Addition
              *   @defgroup T_FGM_Vec4_Subtraction Subtraction
              *   @defgroup T_FGM_Vec4_Multiplication Scalar Multiplication

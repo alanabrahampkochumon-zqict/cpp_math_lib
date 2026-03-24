@@ -36,17 +36,18 @@
              * @brief 2-dimensional Euclidean vectors.
              * @ingroup FGM_Vectors
              * @{
-             *   @defgroup H_FGM_Vec2_Members Class Members
-             *   @defgroup H_FGM_Vec2_Init Accessors and Initializers
-             *   @defgroup H_FGM_Vec2_Arithmetic Arithmetic Operations
-             *   @defgroup H_FGM_Vec2_Bitwise Boolean Bitwise Operations
-             *   @defgroup H_FGM_Vec2_Equality Equality
-             *   @defgroup H_FGM_Vec2_Comparison Comparisons
-             *   @defgroup H_FGM_Vec2_Product Geometric Products
-             *   @defgroup H_FGM_Vec2_Mag Scalar Magnitude and Normalization
-             *   @defgroup H_FGM_Vec2_Proj Vector Projection and Rejection
-             *   @defgroup H_FGM_Vec2_Alias Spatial Alias
-             *   @defgroup H_FGM_Vec2_Log String Representation
+             *   @defgroup FGM_Vec2_Members Class Members
+             *   @defgroup FGM_Vec2_Init Accessors and Initializers
+             *   @defgroup FGM_Vec2_Arithmetic Arithmetic Operations
+             *   @defgroup FGM_Vec2_Bitwise Boolean Bitwise Operations
+             *   @defgroup FGM_Vec2_Equality Equality
+             *   @defgroup FGM_Vec2_Comparison Comparisons
+             *   @defgroup FGM_Vec2_Product Geometric Products
+             *   @defgroup FGM_Vec2_Mag Scalar Magnitude and Normalization
+             *   @defgroup FGM_Vec2_Proj Vector Projection and Rejection
+             *   @defgroup FGM_Vec2_Alias Spatial Alias
+             *   @defgroup FGM_Vec2_Log String Representation
+             *   @defgroup FGM_Vec2_Const Vector Constants
              * @}
              */
 
@@ -55,17 +56,18 @@
              * @brief 3-dimensional Euclidean vectors.
              * @ingroup FGM_Vectors
              * @{
-             *   @defgroup H_FGM_Vec3_Members Class Members
-             *   @defgroup H_FGM_Vec3_Init Accessors and Initializers
-             *   @defgroup H_FGM_Vec3_Arithmetic Arithmetic Operations
-             *   @defgroup H_FGM_Vec3_Bitwise Boolean Bitwise Operations
-             *   @defgroup H_FGM_Vec3_Equality Equality
-             *   @defgroup H_FGM_Vec3_Comparison Comparisons
-             *   @defgroup H_FGM_Vec3_Product Geometric Products
-             *   @defgroup H_FGM_Vec3_Mag Scalar Magnitude and Normalization
-             *   @defgroup H_FGM_Vec3_Proj Vector Projection and Rejection
-             *   @defgroup H_FGM_Vec3_Alias Spatial Alias
-             *   @defgroup H_FGM_Vec3_Log String Representation
+             *   @defgroup FGM_Vec3_Members Class Members
+             *   @defgroup FGM_Vec3_Init Accessors and Initializers
+             *   @defgroup FGM_Vec3_Arithmetic Arithmetic Operations
+             *   @defgroup FGM_Vec3_Bitwise Boolean Bitwise Operations
+             *   @defgroup FGM_Vec3_Equality Equality
+             *   @defgroup FGM_Vec3_Comparison Comparisons
+             *   @defgroup FGM_Vec3_Product Geometric Products
+             *   @defgroup FGM_Vec3_Mag Scalar Magnitude and Normalization
+             *   @defgroup FGM_Vec3_Proj Vector Projection and Rejection
+             *   @defgroup FGM_Vec3_Alias Spatial Alias
+             *   @defgroup FGM_Vec3_Log String Representation
+             *   @defgroup FGM_Vec3_Const Vector Constants
              * @}
              */
 
@@ -74,17 +76,18 @@
              * @brief 4-dimensional Euclidean vectors.
              * @ingroup FGM_Vectors
              * @{
-             *   @defgroup H_FGM_Vec4_Members Class Members
-             *   @defgroup H_FGM_Vec4_Init Accessors and Initializers
-             *   @defgroup H_FGM_Vec4_Arithmetic Arithmetic Operations
-             *   @defgroup H_FGM_Vec4_Bitwise Boolean Bitwise Operations
-             *   @defgroup H_FGM_Vec4_Equality Equality
-             *   @defgroup H_FGM_Vec4_Comparison Comparisons
-             *   @defgroup H_FGM_Vec4_Product Geometric Products
-             *   @defgroup H_FGM_Vec4_Mag Scalar Magnitude and Normalization
-             *   @defgroup H_FGM_Vec4_Proj Vector Projection and Rejection
-             *   @defgroup H_FGM_Vec4_Alias Spatial Alias
-             *   @defgroup H_FGM_Vec4_Log String Representation
+             *   @defgroup FGM_Vec4_Members Class Members
+             *   @defgroup FGM_Vec4_Init Accessors and Initializers
+             *   @defgroup FGM_Vec4_Arithmetic Arithmetic Operations
+             *   @defgroup FGM_Vec4_Bitwise Boolean Bitwise Operations
+             *   @defgroup FGM_Vec4_Equality Equality
+             *   @defgroup FGM_Vec4_Comparison Comparisons
+             *   @defgroup FGM_Vec4_Product Geometric Products
+             *   @defgroup FGM_Vec4_Mag Scalar Magnitude and Normalization
+             *   @defgroup FGM_Vec4_Proj Vector Projection and Rejection
+             *   @defgroup FGM_Vec4_Alias Spatial Alias
+             *   @defgroup FGM_Vec4_Log String Representation
+             *   @defgroup FGM_Vec4_Const Vector Constants
              * @}
              */
 
