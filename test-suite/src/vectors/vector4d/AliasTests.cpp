@@ -17,7 +17,7 @@
  * @{
  */
 
-/** @test Verify @ref fgm::bVec4 has bool value_type. */
+/** @test Verify @ref fgm::bVec4 has `bool` value_type. */
 TEST(Vector4DAlias, bVec4IsA4DBoolVector)
 {
     static_assert(std::is_same_v<fgm::bVec4::value_type, bool> && "bVec4 must contain boolean elements");
@@ -25,7 +25,7 @@ TEST(Vector4DAlias, bVec4IsA4DBoolVector)
 }
 
 
-/** @test Verify @ref fgm::iVec4 has int value_type. */
+/** @test Verify @ref fgm::iVec4 has `int` value_type. */
 TEST(Vector4DAlias, iVec4IsA4DIntVector)
 {
     static_assert(std::is_same_v<fgm::iVec4::value_type, int> && "iVec4 must contain int elements");
@@ -33,7 +33,7 @@ TEST(Vector4DAlias, iVec4IsA4DIntVector)
 }
 
 
-/** @test Verify @ref fgm::uVec4 has unsigned int value_type. */
+/** @test Verify @ref fgm::uVec4 has `unsigned int` value_type. */
 TEST(Vector4DAlias, uVec4IsA4DUnsignedIntVector)
 {
     static_assert(std::is_same_v<fgm::uVec4::value_type, unsigned int> && "uVec4 must contain unsigned int elements");
@@ -42,7 +42,7 @@ TEST(Vector4DAlias, uVec4IsA4DUnsignedIntVector)
 }
 
 
-/** @test Verify @ref fgm::vec4 has float value_type. */
+/** @test Verify @ref fgm::vec4 has `float` value_type. */
 TEST(Vector4DAlias, vec4IsA4DFloatVector)
 {
     static_assert(std::is_same_v<fgm::vec4::value_type, float> && "vec4 must contain float elements");
@@ -50,7 +50,7 @@ TEST(Vector4DAlias, vec4IsA4DFloatVector)
 }
 
 
-/** @test Verify @ref fgm::lVec4 has long long value_type. */
+/** @test Verify @ref fgm::lVec4 has `long long` value_type. */
 TEST(Vector4DAlias, lVec4IsA4DLongLongVector)
 {
     static_assert(std::is_same_v<fgm::lVec4::value_type, long long> && "lVec4 must contain long long elements");
@@ -59,7 +59,7 @@ TEST(Vector4DAlias, lVec4IsA4DLongLongVector)
 }
 
 
-/** @test Verify @ref fgm::dVec4 has double value_type. */
+/** @test Verify @ref fgm::dVec4 has `double` value_type. */
 TEST(Vector4DAlias, dVec4IsA4DDoubleVector)
 {
     static_assert(std::is_same_v<fgm::dVec4::value_type, double> && "dVec4 must contain double elements");
@@ -67,7 +67,7 @@ TEST(Vector4DAlias, dVec4IsA4DDoubleVector)
 }
 
 
-/** @test Verify @ref fgm::ulVec4 has unsigned long long value_type. */
+/** @test Verify @ref fgm::ulVec4 has `unsigned long long` value_type. */
 TEST(Vector4DAlias, ulVec4IsA4DUnsignedLongLongVector)
 {
     static_assert(std::is_same_v<fgm::ulVec4::value_type, unsigned long long> &&
