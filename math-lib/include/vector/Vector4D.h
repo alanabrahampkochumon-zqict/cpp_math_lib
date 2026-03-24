@@ -31,7 +31,7 @@
 #include <iomanip>
 #include <ostream>
 
-// TODO: Inf, -Inf, Nan, X, Y, Z, W, Safe Normalize, Safe Project, Safe Reject, custom abs function
+// TODO: Y, Z, W, Safe Normalize, Safe Project, Safe Reject, custom abs function, unary negate function.
 // TODO: Make non-safe functions for normalize, divide ops, project and reject noexcept
 
 namespace fgm
@@ -1117,54 +1117,62 @@ namespace fgm
      *************************************/
     namespace vec4d
     {
+
         /**
-         * @brief 4D-Vector with all one-components.
+         * @brief A 4D vector with all components set to one (1, 1, 1, 1).
          *
          * @note Only available for @ref fgm::StrictArithmetic types.
          */
         template <StrictArithmetic T>
-        static constexpr Vector4D<T> one = Vector4D<T>(T(1), T(1), T(1), T(1));
+        inline constexpr Vector4D<T> one = Vector4D<T>(T(1), T(1), T(1), T(1));
 
 
         /**
-         * @brief 4D-Vector with all zero-components.
+         * @brief A 4D vector with all components set to zero (0, 0, 0, 0).
          *
          * @note Only available for @ref fgm::StrictArithmetic types.
          */
         template <StrictArithmetic T>
-        static constexpr Vector4D<T> zero =
+        inline constexpr Vector4D<T> zero =
             Vector4D<T>(T(0), T(0), T(0), T(0)); ///< 4D-Vector with all zero-components.
 
+
         /**
-         * @brief 4D-Vector with all infinite-components (positive infinity).
+         * @brief A 4D vector with all components set to positive infinity.
          *
          * @note Only available for `std::floating_point` types.
          */
         template <StrictArithmetic T>
             requires std::floating_point<T>
-        static constexpr Vector4D<T> inf = Vector4D<T>(T(constants::INFINITY_D), T(constants::INFINITY_D),
+        inline constexpr Vector4D<T> inf = Vector4D<T>(T(constants::INFINITY_D), T(constants::INFINITY_D),
                                                        T(constants::INFINITY_D), T(constants::INFINITY_D));
 
 
         /**
-         * @brief 4D-Vector with all infinite-components (negative infinity).
+         * @brief A 4D vector with all components set to negative infinity.
          *
          * @note Only available for `std::floating_point` types.
          */
         template <StrictArithmetic T>
             requires std::floating_point<T>
-        static constexpr Vector4D<T> infN = Vector4D<T>(T(-constants::INFINITY_D), T(-constants::INFINITY_D),
-                                                       T(-constants::INFINITY_D), T(-constants::INFINITY_D));
+        inline constexpr Vector4D<T> infN = Vector4D<T>(T(-constants::INFINITY_D), T(-constants::INFINITY_D),
+                                                        T(-constants::INFINITY_D), T(-constants::INFINITY_D));
+
 
         /**
-         * @brief 4D-Vector with all NaN-components.
+         * @brief A 4D vector with all components set to Not-A-Number (NaN).
          *
          * @note Only available for `std::floating_point` types.
          */
         template <StrictArithmetic T>
             requires std::floating_point<T>
-        static constexpr Vector4D<T> nan =
+        inline constexpr Vector4D<T> nan =
             Vector4D<T>(T(constants::NaN_D), T(constants::NaN_D), T(constants::NaN_D), T(constants::NaN_D));
+
+
+        /** @brief A 4D unit vector aligned with the positive X-axis (1, 0, 0, 0). */
+        template <StrictArithmetic T>
+        inline constexpr Vector4D<T> x = Vector4D<T>(T(1), T(0), T(0), T(0));
 
 
     } // namespace vec4d

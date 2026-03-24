@@ -91,13 +91,23 @@ TEST(Vector4DConstants, NaNFloatInf_ReturnsFloatVectorWithNaNComponents)
 
 
 /** @test Verifies that @ref fgm::Vector4D::infN<double> returns a 4D vector with NaN components. */
-TEST(Vector4DConstants, NaNDoubleInf_ReturnsDoubleVectorWithNegativeInfinityComponents)
+TEST(Vector4DConstants, NaNDoubleInf_ReturnsDoubleVectorWithNaNComponents)
 {
     constexpr auto nan = fgm::vec4d::nan<double>;
     EXPECT_TRUE(std::isnan(nan.x));
     EXPECT_TRUE(std::isnan(nan.y));
     EXPECT_TRUE(std::isnan(nan.z));
     EXPECT_TRUE(std::isnan(nan.w));
+}
+
+
+/** @test Verifies that @ref fgm::Vector4D::x returns a unit vector aligned with x-axis. */
+TYPED_TEST(Vector4DConstants, X_ReturnsUnitVectorWithOnlyXComponent)
+{
+    constexpr TypeParam one = TypeParam(1);
+    constexpr TypeParam zero = TypeParam(0);
+    constexpr auto x = fgm::vec4d::x<TypeParam>;
+    EXPECT_VEC_CONTAINS(x, one, zero, zero, zero);
 }
 
 /** @} */
