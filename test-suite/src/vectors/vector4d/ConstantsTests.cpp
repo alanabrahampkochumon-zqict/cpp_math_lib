@@ -129,4 +129,12 @@ TYPED_TEST(Vector4DConstants, Z_ReturnsUnitVectorWithOnlyZComponent)
     EXPECT_VEC_CONTAINS(z, this->_zero, this->_zero, this->_one, this->_zero);
 }
 
+
+/** @test Verifies that @ref fgm::Vector4D::x returns a unit vector aligned with w-axis. */
+TYPED_TEST(Vector4DConstants, W_ReturnsUnitVectorWithOnlyWComponent)
+{
+    constexpr auto w = fgm::vec4d::w<TypeParam>;
+    EXPECT_VEC_CONTAINS(w, this->_zero, this->_zero, this->_zero, this->_one);
+}
+
 /** @} */
