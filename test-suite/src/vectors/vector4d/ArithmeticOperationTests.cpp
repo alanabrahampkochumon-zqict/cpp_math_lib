@@ -131,7 +131,7 @@ TYPED_TEST_SUITE(Vector4DInversion, SupportedArithmeticTypes);
  **************************************/
 
 /**
- * @test Verify that the binary addition operator performs a component-wise sum and returns a new @ref fgm::Vector4D
+ * @test Verify that @ref fgm::Vector4D binary addition operator performs a component-wise sum and returns a new @ref fgm::Vector4D
  *       instance.
  */
 TYPED_TEST(Vector4DAddition, PlusOperator_ReturnsVectorSum)
@@ -143,7 +143,7 @@ TYPED_TEST(Vector4DAddition, PlusOperator_ReturnsVectorSum)
 
 
 /**
- * @test Verify that the compound addition assignment operator performs a component-wise sum and mutates the @ref
+ * @test Verify that @ref fgm::Vector4D compound addition assignment operator performs a component-wise sum and mutates the @ref
  *       fgm::Vector4D in-place.
  */
 TYPED_TEST(Vector4DAddition, PlusEqualsOperator_ReturnsSameVectorWithSum)
@@ -154,7 +154,7 @@ TYPED_TEST(Vector4DAddition, PlusEqualsOperator_ReturnsSameVectorWithSum)
 }
 
 
-/** @test Verify that the binary addition operator performs automatic type promotion to the wider numeric type. */
+/** @test Verify that @ref fgm::Vector4D binary addition operator performs automatic type promotion to the wider numeric type. */
 TEST(Vector4DAddition, MixedTypeAdditionPromotesType)
 {
     constexpr fgm::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
@@ -167,7 +167,7 @@ TEST(Vector4DAddition, MixedTypeAdditionPromotesType)
 
 
 /**
- * @test Verify that the compound addition assignment operator maintains the destination type and performs an implicit
+ * @test Verify that @ref fgm::Vector4D compound addition assignment operator maintains the destination type and performs an implicit
  *       cast.
  */
 TEST(Vector4DAddition, MixedTypeAdditionAssignmentDoesNotPromoteType)
@@ -196,8 +196,8 @@ TEST(Vector4DAddition, MixedTypeAdditionAssignmentDoesNotPromoteType)
  **************************************/
 
 /**
- * @test Verify that the binary subtraction operator performs a component-wise difference and returns a new @ref
- * fgm::Vector4D instance.
+ * @test Verify that @ref fgm::Vector4D binary subtraction operator performs a component-wise difference and returns a new
+ *       @ref fgm::Vector4D instance.
  */
 TYPED_TEST(Vector4DSubtraction, MinusOperator_ReturnsDifference)
 {
@@ -208,8 +208,8 @@ TYPED_TEST(Vector4DSubtraction, MinusOperator_ReturnsDifference)
 
 
 /**
- * @test Verify that the compound subtraction assignment operator performs a component-wise difference and mutates the
- * @ref fgm::Vector4D in-place.
+ * @test Verify that @ref fgm::Vector4D compound subtraction assignment operator performs a component-wise difference and mutates the
+ *       @ref fgm::Vector4D in-place.
  */
 TYPED_TEST(Vector4DSubtraction, MinusEqualsOperator_ReturnsSameVectorWithDifference)
 {
@@ -219,7 +219,7 @@ TYPED_TEST(Vector4DSubtraction, MinusEqualsOperator_ReturnsSameVectorWithDiffere
 }
 
 
-/** @test Verify that the binary subtraction operator performs automatic type promotion to the wider numeric type. */
+/** @test Verify that @ref fgm::Vector4D binary subtraction operator performs automatic type promotion to the wider numeric type. */
 TEST(Vector4DSubtraction, MixedTypeSubtractionPromotesType)
 {
     constexpr fgm::Vector4D vec1(3.0f, 0.0f, -1.0f, 2.0f);
@@ -232,7 +232,7 @@ TEST(Vector4DSubtraction, MixedTypeSubtractionPromotesType)
 
 
 /**
- * @test Verify that the compound subtraction assignment operator maintains the destination type and performs an
+ * @test Verify that @ref fgm::Vector4D compound subtraction assignment operator maintains the destination type and performs an
  * implicit cast.
  */
 TEST(Vector4DSubtraction, MixedTypeSubtractionAssignmentDoesNotPromoteType)
@@ -260,7 +260,7 @@ TEST(Vector4DSubtraction, MixedTypeSubtractionAssignmentDoesNotPromoteType)
  *                                    *
  **************************************/
 
-/** @test Verify that the binary multiplication of a @ref fgm::Vector4D by a zero scalar returns a zero-vector. */
+/** @test Verify that @ref fgm::Vector4D binary multiplication of a @ref fgm::Vector4D by zero scalar returns a zero-vector. */
 TEST(Vector4DScalarMultiplication, MultiplicationByZeroReturnsZeroVector)
 {
     constexpr fgm::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
@@ -271,7 +271,7 @@ TEST(Vector4DScalarMultiplication, MultiplicationByZeroReturnsZeroVector)
 }
 
 
-/** @test Verify that the binary multiplication of a @ref fgm::Vector4D by one returns the original vector. */
+/** @test Verify that @ref fgm::Vector4D binary multiplication of a @ref fgm::Vector4D by one returns the original vector. */
 TEST(Vector4DScalarMultiplication, MultiplicationByOneReturnsOriginalVector)
 {
     constexpr fgm::Vector4D vec(3.0f, 1.0f, 6.0f, 2.0f);
@@ -283,8 +283,8 @@ TEST(Vector4DScalarMultiplication, MultiplicationByOneReturnsOriginalVector)
 
 
 /**
- * @test Verify that the binary multiplication operator (vector * scalar) performs a component-wise (Hadamard) product
- * and returns a new @ref fgm::Vector4D instance.
+ * @test Verify that @ref fgm::Vector4D binary multiplication operator (vector * scalar) performs a component-wise (Hadamard) product
+ *       and returns a new @ref fgm::Vector4D instance.
  */
 TYPED_TEST(Vector4DScalarMultiplication, VectorTimesScalarReturnsScaledVector)
 {
@@ -298,9 +298,8 @@ TYPED_TEST(Vector4DScalarMultiplication, VectorTimesScalarReturnsScaledVector)
 
 
 /**
- * @test Verify that the binary multiplication operator (scalar * vector) performs a component-wise (Hadamard) product
- * and returns a new
- *        @ref fgm::Vector4D instance.
+ * @test Verify that @ref fgm::Vector4D binary multiplication operator (scalar * vector) performs a component-wise (Hadamard) product
+ *       and returns a new @ref fgm::Vector4D instance.
  */
 TYPED_TEST(Vector4DScalarMultiplication, ScalarTimesAVectorReturnsScaledVector)
 {
@@ -314,7 +313,7 @@ TYPED_TEST(Vector4DScalarMultiplication, ScalarTimesAVectorReturnsScaledVector)
 
 
 /**
- * @test Verify that the compound multiplication assignment operator performs a component-wise (Hadamard) product
+ * @test Verify that @ref fgm::Vector4D compound multiplication assignment operator performs a component-wise (Hadamard) product
  *       and mutates the @ref fgm::Vector4D in-place.
  */
 TYPED_TEST(Vector4DScalarMultiplication, VectorTimesEqualScalarIsTheSameVectorScaled)
@@ -328,7 +327,7 @@ TYPED_TEST(Vector4DScalarMultiplication, VectorTimesEqualScalarIsTheSameVectorSc
 }
 
 
-/** @test Verify that the binary multiplication operator performs automatic type promotion to the wider numeric type. */
+/** @test Verify that @ref fgm::Vector4D binary multiplication operator performs automatic type promotion to the wider numeric type. */
 TYPED_TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationPromotesType)
 {
     constexpr double scalar = 2.123456789123456;
@@ -340,7 +339,7 @@ TYPED_TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationPromotesTy
 
 
 /**
- * @test Verify that the compound multiplication assignment operator maintains the destination type and performs an
+ * @test Verify that @ref fgm::Vector4D compound multiplication assignment operator maintains the destination type and performs an
  *       implicit cast.
  */
 TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationAssignmentDoesNotPromoteType)
@@ -353,7 +352,7 @@ TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationAssignmentDoesNo
 }
 
 
-/** @test Verify that the compound multiplication operator for mixed types ensures minimal precision loss. */
+/** @test Verify that @ref fgm::Vector4D compound multiplication operator for mixed types ensures minimal precision loss. */
 TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationAssignmentEnsuresMinimalPrecisionLoss)
 {
     fgm::Vector4D vec(3, 0, -1, 8);
@@ -381,7 +380,7 @@ TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationAssignmentEnsure
  **************************************/
 
 /**
- * @test Verify that the binary division of a @ref fgm::Vector4D by a zero scalar returns an infinity-vector for
+ * @test Verify that @ref fgm::Vector4D binary division of a @ref fgm::Vector4D by a zero scalar returns an infinity-vector for
  *       floating-point types and triggers program termination for integral types.
  */
 TYPED_TEST(Vector4DScalarDivision, DivisionByZeroReturnsInfinityVector)
@@ -393,7 +392,7 @@ TYPED_TEST(Vector4DScalarDivision, DivisionByZeroReturnsInfinityVector)
 }
 
 
-/** @test Verify that the binary division of a @ref fgm::Vector4D by one returns the original vector. */
+/** @test Verify that @ref fgm::Vector4D binary division of a @ref fgm::Vector4D by one returns the original vector. */
 TYPED_TEST(Vector4DScalarDivision, DivisionByOneReturnsOriginalVector)
 {
     const fgm::Vector4D result = this->_vec / 1;
@@ -403,7 +402,7 @@ TYPED_TEST(Vector4DScalarDivision, DivisionByOneReturnsOriginalVector)
 
 
 /**
- * @test Verify that the binary division operator (vector / scalar) performs a component-wise divide
+ * @test Verify that @ref fgm::Vector4D binary division operator (vector / scalar) performs a component-wise divide
  *       and returns a new @ref fgm::Vector4D instance.
  */
 TYPED_TEST(Vector4DScalarDivision, VectorDividedByANumberReturnsAScaledVector)
@@ -415,7 +414,7 @@ TYPED_TEST(Vector4DScalarDivision, VectorDividedByANumberReturnsAScaledVector)
 
 
 /**
- * @test Verify that the compound division assignment operator performs a component-wise divide
+ * @test Verify that @ref fgm::Vector4D compound division assignment operator performs a component-wise divide
  *       and mutates the @ref fgm::Vector4D in-place.
  */
 TYPED_TEST(Vector4DScalarDivision, VectorDivideEqualsANumberIsTheSameVectorScaled)
@@ -426,7 +425,7 @@ TYPED_TEST(Vector4DScalarDivision, VectorDivideEqualsANumberIsTheSameVectorScale
 }
 
 
-/** @test Verify that the binary division operator performs automatic type promotion to the wider numeric type. */
+/** @test Verify that @ref fgm::Vector4D binary division operator performs automatic type promotion to the wider numeric type. */
 TEST(Vector4DScalarDivision, MixedTypeScalarDivisionPromotesType)
 {
     constexpr fgm::Vector4D vec(15.0, 0.0, -5.0, 10.0);
@@ -439,7 +438,7 @@ TEST(Vector4DScalarDivision, MixedTypeScalarDivisionPromotesType)
 
 
 /**
- * @test Verify that the compound division assignment operator maintains the destination type and performs an
+ * @test Verify that @ref fgm::Vector4D compound division assignment operator maintains the destination type and performs an
  *       implicit cast.
  */
 TEST(Vector4DScalarDivision, MixedTypeScalarDivisionAssignmentDoesNotPromoteType)
@@ -453,7 +452,7 @@ TEST(Vector4DScalarDivision, MixedTypeScalarDivisionAssignmentDoesNotPromoteType
 }
 
 
-/** @test Verify that the compound division operator for mixed types ensures minimal precision loss. */
+/** @test Verify that @ref fgm::Vector4D compound division operator for mixed types ensures minimal precision loss. */
 TEST(Vector4DScalarDivision, MixedTypeScalarDivisionAssignmentGivesResultWithMinimalPrecisionLoss)
 {
     fgm::Vector4D vec(10, 25, -30, 2);
@@ -474,11 +473,12 @@ TEST(Vector4DScalarDivision, MixedTypeScalarDivisionAssignmentGivesResultWithMin
  * @{
  */
 
-/** @test Verify that the compound division operator for mixed types ensures minimal precision loss. */
+/** @test Verify that  @ref fgm::Vector4D unary minus operator inverts each component and returns a new @ref fgm::Vector4D. */
 TYPED_TEST(Vector4DInversion, InvertsTheSignOfComponents)
 {
     fgm::Vector4D inverted = -this->_vec;
     EXPECT_VEC_EQ(this->_expectedInvertedVec, inverted);
 }
+
 
 /** @} */
