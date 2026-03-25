@@ -733,7 +733,7 @@ namespace fgm
          *
          * @return A new @ref fgm::Vector4D with inverted components.
          */
-        constexpr Vector4D operator-() noexcept
+        constexpr Vector4D operator-() const noexcept
             requires StrictArithmetic<T>;
 
 
