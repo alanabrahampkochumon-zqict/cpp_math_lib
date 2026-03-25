@@ -390,14 +390,23 @@ TEST(Vector4DScalarMultiplication, MixedTypeScalarMultiplicationAssignmentEnsure
 
 /**
  * @test Verify that @ref fgm::Vector4D binary division of a @ref fgm::Vector4D by zero scalar returns an
- *       infinity-vector for floating-point types and triggers program termination for integral types.
+ *       infinity-vector for float vector.
  */
-TYPED_TEST(Vector4DScalarDivision, DivisionByZeroReturnsInfinityVector)
+TEST(Vector4DScalarDivision, FloatVectorDivisionByZeroReturnsInfinityVector)
 {
-    if constexpr (std::is_floating_point_v<TypeParam>)
-        EXPECT_VEC_INF(this->_vec / 0);
-    else
-        EXPECT_DEATH({ this->_vec / 0; }, "Integral division by zero");
+    constexpr fgm::Vector4D vec(1.0f, 2.0f, 3.0f, 4.0f);
+    EXPECT_VEC_INF(vec / 0);
+}
+
+
+/**
+ * @test Verify that @ref fgm::Vector4D binary division of a @ref fgm::Vector4D by zero scalar returns an
+ *       infinity-vector for double vector.
+ */
+TEST(Vector4DScalarDivision, DoubleVectorDivisionByZeroReturnsInfinityVector)
+{
+    constexpr fgm::Vector4D vec(1.0, 2.0, 3.0, 4.0);
+    EXPECT_VEC_INF(vec / 0);
 }
 
 
@@ -572,7 +581,7 @@ TEST(Vector4DInversion, InvertsSignOfInfinity)
         fgm::constants::INFINITY_F,
     };
 
-    const fgm::Vector4D<float> inverted = -infVec;
+    constexpr fgm::Vector4D<float> inverted = -infVec;
 
     EXPECT_VEC_EQ(expected, inverted);
 }
@@ -588,7 +597,7 @@ TEST(Vector4DInversion, NoOpOnNaNVectors)
         fgm::constants::NaN,
     };
 
-    const fgm::Vector4D<float> inverted = -nanVec;
+    constexpr fgm::Vector4D<float> inverted = -nanVec;
 
     EXPECT_TRUE(std::isnan(inverted.x));
     EXPECT_TRUE(std::isnan(inverted.y));

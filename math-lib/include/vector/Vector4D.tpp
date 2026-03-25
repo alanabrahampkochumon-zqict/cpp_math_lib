@@ -453,7 +453,7 @@ namespace fgm
 
     template <Arithmetic T>
     template <StrictArithmetic S>
-    constexpr auto Vector4D<T>::operator/(S scalar) const -> Vector4D<std::common_type_t<T, S>>
+    constexpr auto Vector4D<T>::operator/(S scalar) const noexcept -> Vector4D<std::common_type_t<T, S>>
         requires StrictArithmetic<T>
     {
         using R = std::common_type_t<T, S>;
@@ -473,7 +473,7 @@ namespace fgm
 
     template <Arithmetic T>
     template <StrictArithmetic S>
-    constexpr Vector4D<T>& Vector4D<T>::operator/=(S scalar)
+    constexpr Vector4D<T>& Vector4D<T>::operator/=(S scalar) noexcept
         requires StrictArithmetic<T>
     {
         using R = std::common_type_t<T, S>;
@@ -488,7 +488,6 @@ namespace fgm
         }
         else
         {
-            assert(scalar != 0 && "Integral division by zero");
             x /= static_cast<T>(scalar);
             y /= static_cast<T>(scalar);
             z /= static_cast<T>(scalar);

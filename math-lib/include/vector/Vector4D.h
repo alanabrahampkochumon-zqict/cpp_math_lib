@@ -789,7 +789,7 @@ namespace fgm
          * @return A new @ref Vector4D scaled by @p scalar.
          */
         template <StrictArithmetic S>
-        constexpr auto operator/(S scalar) const -> Vector4D<std::common_type_t<T, S>>
+        constexpr auto operator/(S scalar) const noexcept -> Vector4D<std::common_type_t<T, S>>
             requires StrictArithmetic<T>;
 
 
@@ -807,7 +807,7 @@ namespace fgm
          * @return A reference to this vector (*this).
          */
         template <StrictArithmetic S>
-        constexpr Vector4D& operator/=(S scalar)
+        constexpr Vector4D& operator/=(S scalar) noexcept
             requires StrictArithmetic<T>;
 
 
