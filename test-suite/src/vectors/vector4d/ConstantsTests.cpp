@@ -17,7 +17,12 @@ using namespace testutils;
 
 
 template <typename T>
-class Vector4DConstants: public ::testing::Test {};
+class Vector4DConstants: public ::testing::Test
+{
+protected:
+    T _one = T(1);
+    T _zero = T(0);
+};
 /** @brief Test fixture for @ref fgm::Vector4D constants, parameterized by @ref SupportedArithmeticTypes. */
 TYPED_TEST_SUITE(Vector4DConstants, SupportedArithmeticTypes);
 
@@ -104,10 +109,16 @@ TEST(Vector4DConstants, NaNDoubleInf_ReturnsDoubleVectorWithNaNComponents)
 /** @test Verifies that @ref fgm::Vector4D::x returns a unit vector aligned with x-axis. */
 TYPED_TEST(Vector4DConstants, X_ReturnsUnitVectorWithOnlyXComponent)
 {
-    constexpr TypeParam one = TypeParam(1);
-    constexpr TypeParam zero = TypeParam(0);
     constexpr auto x = fgm::vec4d::x<TypeParam>;
-    EXPECT_VEC_CONTAINS(x, one, zero, zero, zero);
+    EXPECT_VEC_CONTAINS(x, this->_one, this->_zero, this->_zero, this->_zero);
+}
+
+
+/** @test Verifies that @ref fgm::Vector4D::x returns a unit vector aligned with y-axis. */
+TYPED_TEST(Vector4DConstants, Y_ReturnsUnitVectorWithOnlyYComponent)
+{
+    constexpr auto y = fgm::vec4d::y<TypeParam>;
+    EXPECT_VEC_CONTAINS(y, this->_zero, this->_one, this->_zero, this->_zero);
 }
 
 /** @} */
