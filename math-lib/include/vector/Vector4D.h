@@ -32,7 +32,7 @@
 #include <ostream>
 
 // TODO: Safe Normalize, Safe Project, Safe Reject, custom abs function.
-// TODO: Make non-safe functions for normalize, divide ops, project and reject noexcept
+// TODO: Make non-safe functions for normalize, project and reject noexcept
 
 namespace fgm
 {
@@ -817,6 +817,7 @@ namespace fgm
          *
          * @note Promotes the result to the `std::common_type_t` of `T` and `S`.
          * @note Operation is restricted to numeric types via @ref fgm::StrictArithmetic.
+         * @note Returns a zero-vector if dividing by a floating point zero.
          *
          * @tparam S Numeric type of the scalar. Must satisfy @ref fgm::StrictArithmetic.
          *

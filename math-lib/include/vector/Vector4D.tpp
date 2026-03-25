@@ -503,9 +503,13 @@ namespace fgm
     constexpr auto Vector4D<T>::safeDiv(S scalar) const -> Vector4D<std::common_type_t<T, S>>
         requires StrictArithmetic<T>
     {
+        using R = std::common_type_t<T, S>;
         if constexpr (std::is_integral_v<T> && std::is_integral_v<S>)
             assert(scalar != 0 && "Integral division by zero");
-        
+        if constexpr (std::is_floating_point_v<R>)
+            if (std::abs(scalar) <= std::numeric_limits<S>::epsilon())
+                return fgm::vec4d::zero<R>;
+
         return (*this)/scalar;
     }
 

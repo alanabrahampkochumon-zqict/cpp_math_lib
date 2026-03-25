@@ -511,7 +511,7 @@ TYPED_TEST(Vector4DScalarDivision, SafeDivideByFloatZero_ReturnsInfinityVector)
 {
     const auto result = this->_vec.safeDiv(0.0f);
 
-    EXPECT_VEC_INF(result);
+    EXPECT_VEC_ZERO(result);
 }
 
 
@@ -543,7 +543,7 @@ TYPED_TEST(Vector4DScalarDivision, StaticWrapper_SafeDivideByFloatZero_ReturnsIn
 {
     const auto result = fgm::Vector4D<TypeParam>::safeDiv(this->_vec, 0.0f);
 
-    EXPECT_VEC_INF(result);
+    EXPECT_VEC_ZERO(result);
 }
 
 
