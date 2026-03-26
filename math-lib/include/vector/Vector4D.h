@@ -974,7 +974,7 @@ namespace fgm
          * @note To maintain precision, result components are promoted to their
          *       corresponding floating-point representation via @ref Magnitude.
          *
-         * @return A @ref fgm::Vector4D with a magnitude of 1.0, or a zero-vector if the original magnitude was below machine epsilon.
+         * @return A @ref fgm::Vector4D with a magnitude of 1.0, or a zero-vector if the original magnitude is below the epsilon threshold.
          */
         constexpr Vector4D<Magnitude<T>> safeNormalize() const
             requires StrictArithmetic<T>;

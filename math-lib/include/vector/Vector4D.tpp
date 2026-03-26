@@ -616,16 +616,8 @@ namespace fgm
         using R = Magnitude<T>;
         R magnitude = mag();
 
-        if constexpr (std::is_same_v<R, double>)
-        {
-            if (magnitude <= Config::DOUBLE_EPSILON)
-                return fgm::vec4d::zero<double>;
-        }
-        else
-        {
-            if (magnitude <= Config::FLOAT_EPSILON)
-                return fgm::vec4d::zero<float>;
-        }
+        if (magnitude <= Config::EPSILON<R>)
+            return fgm::vec4d::zero<R>;
 
         return *this / magnitude;
     }
