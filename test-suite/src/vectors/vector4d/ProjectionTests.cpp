@@ -242,6 +242,113 @@ TEST(Vector4DProjection, MixedTypeProjectionPromotesType)
     EXPECT_VEC_EQ(expectedProjection, actualProjection);
 }
 
+
+/**************************************
+ *                                    *
+ *        SAFE PROJECTION TESTS       *
+ *                                    *
+ **************************************/
+
+
+/**
+ * @test Verify that projecting a @ref fgm::Vector4D onto a non-orthogonal @ref fgm::Vector4D using
+ *       @ref fgm::Vector4D::safeProject returns a non-zero vector.
+ */
+TYPED_TEST(Vector4DProjection, SafeProject_NonOrthogonalProjectionReturnsNonZeroVector)
+{
+    const fgm::Vector4D actualProjection = this->_vec.safeProject(this->_ontoVec);
+
+    EXPECT_VEC_EQ(this->_expectedProjection, actualProjection);
+}
+
+
+/**
+ * @test Verify that projecting onto a non-orthogonal unit vector using @ref fgm::Vector4D::safeProject with the
+ *       @p ontoNormalized flag enabled returns a non-zero vector.
+ */
+TEST(Vector4DProjection, SafeProject_ProjectionOntoNormalizedVectorReturnsNonZeroVector)
+{
+    // Given an arbitrary vector and a normalized vector
+    constexpr fgm::Vector4D a(1.0f, 2.0f, 3.0f, 4.0f);
+    constexpr fgm::Vector4D b(1.0f, 0.0f, 0.0f, 0.0f);
+    constexpr fgm::Vector4D expectedProjection(1.0f, 0.0f, 0.0f, 0.0f);
+
+    // When the vector is projected onto the normalized vector
+    constexpr fgm::Vector4D actualProjection = a.safeProject(b, true);
+
+    // Then, the resultant vector has components that is parallel to the projected vector
+    EXPECT_FLOAT_EQ(expectedProjection.x, actualProjection.x);
+    EXPECT_FLOAT_EQ(expectedProjection.y, actualProjection.y);
+    EXPECT_FLOAT_EQ(expectedProjection.z, actualProjection.z);
+    EXPECT_FLOAT_EQ(expectedProjection.w, actualProjection.w);
+}
+
+
+/**
+ * @test Verify that projecting a @ref fgm::Vector4D onto a non-orthogonal @ref fgm::Vector4D pointing in the opposite
+ *       direction using @ref fgm::Vector4D::safeProject returns a non-zero vector.
+ */
+TEST(Vector4DProjection, SafeProject_ProjectionOntoVectorInOppositeDirectionReturnsNonZeroVectorInSameDirection)
+{
+    // Given an arbitrary vector and a vector in the opposite Direction
+    constexpr fgm::Vector4D a(4.0f, 4.0f, 4.0f, 4.0f);
+    constexpr fgm::Vector4D negativeZAxis(0.0f, 0.0f, -1.0f, 0.0f);
+    constexpr fgm::Vector4D expectedProjection(0.0f, 0.0f, 4.0f, 0.0f);
+
+    // When projected
+    constexpr fgm::Vector4D<float> actualProjection = a.safeProject(negativeZAxis);
+
+    // Then, the resultant vector is non-zero and in the same direction
+    EXPECT_VEC_EQ(expectedProjection, actualProjection);
+}
+
+
+/** @test Verify that projecting a @ref fgm::Vector4D onto a non-orthogonal @ref fgm::Vector4D of a different numeric
+ *        type using @ref fgm::Vector4D::safeProject returns a type-promoted vector. */
+TEST(Vector4DProjection, SafeProject_MixedTypeProjectionPromotesType)
+{
+    // Given two arbitrary vectors
+    constexpr fgm::Vector4D vec(7, 13, 29, 41);
+    constexpr fgm::Vector4D onto(2.0, 4.0, 4.0, 2.0);
+    constexpr fgm::Vector4D expectedProjection(13.2, 26.4, 26.4, 13.2);
+
+    // When projected onto another
+    constexpr fgm::Vector4D actualProjection = vec.safeProject(onto);
+
+    // Then, the resultant vector is type promoted
+    static_assert(std::is_same_v<decltype(actualProjection)::value_type, double>);
+    // and is the projection
+    EXPECT_VEC_EQ(expectedProjection, actualProjection);
+}
+
+
+/**
+ * @test Verify that projecting a @ref fgm::Vector4D onto the origin(0, 0, 0, 0) using @ref fgm::Vector4D::safeProject
+ *       returns a type-promoted vector.
+ */
+TYPED_TEST(Vector4DProjection, SafeProject_OntoOriginReturnsZeroVector)
+{
+    constexpr TypeParam zero = TypeParam(0);
+    constexpr fgm::Vector4D origin(zero, zero, zero, zero);
+
+    const fgm::Vector4D actualProjection = this->_vec.safeProject(origin);
+
+    EXPECT_VEC_ZERO( actualProjection);
+}
+
+
+///**
+// * @test Verify that the @ref fgm::Vector4D static projection wrapper returns a non-zero vector when projecting
+// *        non-orthogonal instances.
+// */
+// TYPED_TEST(Vector4DProjection, StaticWrapper_NonOrthogonalProjectionReturnsNonZeroVector)
+//{
+//    const fgm::Vector4D actualProjection = fgm::Vector4D<TypeParam>::project(this->_vec, this->_ontoVec);
+//
+//    EXPECT_VEC_EQ(this->_expectedProjection, actualProjection);
+//}
+
+
 /** @} */
 
 

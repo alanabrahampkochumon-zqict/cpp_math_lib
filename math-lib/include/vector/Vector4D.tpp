@@ -654,6 +654,24 @@ namespace fgm
     }
 
 
+    template <Arithmetic T>
+    template <StrictArithmetic U>
+    constexpr auto Vector4D<T>::safeProject(const Vector4D<U>& onto, const bool ontoNormalized) const noexcept
+        -> Vector4D<Magnitude<std::common_type_t<T, U>>>
+        requires StrictArithmetic<T>
+    {
+        using R = std::common_type_t<T, U>;
+        if (ontoNormalized)
+            return this->dot(onto) * onto;
+
+        /** @note Static cast ensures integral type dots don't lose much precision */
+        const auto ontoSquared = static_cast<Magnitude<R>>(onto.dot(onto));
+        
+        if (ontoSquared <= Config::EPSILON<decltype(ontoSquared)>)
+            return fgm::vec4d::zero<decltype(ontoSquared)>;
+
+        return this->dot(onto) / ontoSquared * onto; // a.dot(b) / b.dot(b) * b
+    }
 
 
     /*************************************

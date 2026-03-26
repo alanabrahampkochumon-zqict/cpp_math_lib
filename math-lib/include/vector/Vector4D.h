@@ -1040,6 +1040,24 @@ namespace fgm
             requires StrictArithmetic<T>;
 
 
+        /**
+         * @brief Safely project this vector onto another vector.
+         *        Compute the orthogonal projection: \f$ \text{proj}_{\mathbf{b}} \mathbf{a} = \frac{\mathbf{a} \cdot
+         *        \mathbf{b}}{\|\mathbf{b}\|^2} \mathbf{b} \f$.
+         *
+         * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
+         *
+         * @param[in] onto           The vector to project onto.
+         * @param[in] ontoNormalized Optimization flag. Set to `true` if @p onto is already a unit vector.
+         *
+         * @return The projected @ref Vector4D or a zero-vector if projected onto a zero-length vector..
+         */
+        template <StrictArithmetic U>
+        constexpr auto safeProject(const Vector4D<U>& onto, bool ontoNormalized = false) const noexcept
+            -> Vector4D<Magnitude<std::common_type_t<T, U>>>
+            requires StrictArithmetic<T>;
+
+
         /*************************************
          *                                   *
          *         VECTOR REJECTION          *
