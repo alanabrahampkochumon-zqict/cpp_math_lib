@@ -586,23 +586,15 @@ namespace fgm
      *************************************/
 
     template <Arithmetic T>
-    constexpr Vector4D<Magnitude<T>> Vector4D<T>::normalize() const
+    constexpr Vector4D<Magnitude<T>> Vector4D<T>::normalize() const noexcept
         requires StrictArithmetic<T>
     {
-        using R = Magnitude<T>;
-        R magnitude = mag();
-
-        if constexpr (std::is_same_v<R, double>)
-            assert(magnitude > Config::DOUBLE_EPSILON && "Vector4D Normalization : Division by 0");
-        else
-            assert(magnitude > Config::FLOAT_EPSILON && "Vector4D Normalization : Division by 0");
-
-        return *this / magnitude;
+        return *this / mag();
     }
 
 
     template <Arithmetic T>
-    constexpr Vector4D<Magnitude<T>> Vector4D<T>::normalize(const Vector4D& vec)
+    constexpr Vector4D<Magnitude<T>> Vector4D<T>::normalize(const Vector4D& vec) noexcept
         requires StrictArithmetic<T>
     {
         return vec.normalize();

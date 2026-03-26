@@ -948,7 +948,7 @@ namespace fgm
          *
          * @return A new @ref Vector4D with a magnitude of 1.0.
          */
-        constexpr Vector4D<Magnitude<T>> normalize() const
+        constexpr Vector4D<Magnitude<T>> normalize() const noexcept
             requires StrictArithmetic<T>;
 
 
@@ -962,7 +962,7 @@ namespace fgm
          * @param[in] vec The vector to normalize.
          * @return A new @ref Vector4D with a magnitude of 1.0.
          */
-        constexpr static Vector4D<Magnitude<T>> normalize(const Vector4D& vec)
+        constexpr static Vector4D<Magnitude<T>> normalize(const Vector4D& vec) noexcept
             requires StrictArithmetic<T>;
 
 
