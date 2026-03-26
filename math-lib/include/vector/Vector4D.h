@@ -31,7 +31,8 @@
 #include <iomanip>
 #include <ostream>
 
-// TODO: Safe Project, Safe Reject, TryDivide, TryNormalize, TryProject, TryReject custom abs function.
+// TODO: Safe Project (static), Safe Reject, TryDivide, TryNormalize, TryProject, TryReject custom abs function.
+// TODO: In Safe Project, use SQUARE_EPSILON
 // TODO: Make non-safe functions for normalize, project and reject noexcept
 
 namespace fgm
