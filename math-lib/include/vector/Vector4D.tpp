@@ -623,6 +623,13 @@ namespace fgm
     }
 
 
+    template <Arithmetic T>
+    constexpr Vector4D<Magnitude<T>> Vector4D<T>::safeNormalize(const Vector4D& vec) requires StrictArithmetic<T>
+    {
+        return vec.safeNormalize();
+    }
+
+
     /*************************************
      *                                   *
      *        VECTOR PROJECTION          *

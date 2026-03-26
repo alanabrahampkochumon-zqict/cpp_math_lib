@@ -978,6 +978,17 @@ namespace fgm
          */
         constexpr Vector4D<Magnitude<T>> safeNormalize() const
             requires StrictArithmetic<T>;
+        
+
+        /**
+         * @brief Static wrapper for safe normalization.
+         *
+         * @copydoc safeNormalize() const
+         *
+         * @param[in] vec The vector to be normalized.
+         */
+        constexpr static Vector4D<Magnitude<T>> safeNormalize(const Vector4D& vec)
+            requires StrictArithmetic<T>;
 
         /** @} */
 

@@ -216,7 +216,7 @@ TYPED_TEST(Vector4DNormalization, NormalizedVectorIsAlwaysTypedPromotedToFloatin
 /** @test Verify that normalizing a 4D vector using @ref fgm::Vector4D::safeNormalize returns a unit vector. */
 TYPED_TEST(Vector4DNormalization, SafeNormalize_NonZeroVectorReturnsUnitVector)
 {
-    const fgm::Vector4D normalized = this->_vec.normalize();
+    const fgm::Vector4D normalized = this->_vec.safeNormalize();
     EXPECT_VEC_EQ(this->_expectedUnitVec, normalized);
 }
 
@@ -225,7 +225,7 @@ TYPED_TEST(Vector4DNormalization, SafeNormalize_NonZeroVectorReturnsUnitVector)
  * @test Verify that attempting to normalize a zero-magnitude vector using @ref fgm::Vector4D::safeNormalize returns a
  *       zero-vector.
  */
-TEST(Vector4DNormalization, Normalize_ZeroVectorCausesDeath)
+TEST(Vector4DNormalization, SafeNormalize_ZeroVectorCausesDeath)
 {
     constexpr fgm::Vector4D vec(0.0, 0.0, 0.0, 0.0);
     EXPECT_VEC_ZERO(vec.safeNormalize());
@@ -239,6 +239,39 @@ TEST(Vector4DNormalization, Normalize_ZeroVectorCausesDeath)
 TYPED_TEST(Vector4DNormalization, SafeNormalize_NormalizedVectorIsAlwaysTypedPromotedToFloatingPointType)
 {
     [[maybe_unused]] const auto normalized = this->_vec.safeNormalize();
+    static_assert(std::is_floating_point_v<typename decltype(normalized)::value_type>);
+}
+
+
+/**
+ * @test Verify that normalizing a 4D vector using static variant of @ref fgm::Vector4D::safeNormalize variant returns a
+ *       unit vector.
+ */
+TYPED_TEST(Vector4DNormalization, StaticWrapper_SafeNormalize_NonZeroVectorReturnsUnitVector)
+{
+    const fgm::Vector4D normalized = fgm::Vector4D<TypeParam>::safeNormalize(this->_vec);
+    EXPECT_VEC_EQ(this->_expectedUnitVec, normalized);
+}
+
+
+/**
+ * @test Verify that attempting to normalize a zero-magnitude vector using static variant of
+ *       @ref fgm::Vector4D::safeNormalize returns a zero-vector.
+ */
+TEST(Vector4DNormalization, StaticWrapper_SafeNormalize_ZeroVectorCausesDeath)
+{
+    constexpr fgm::Vector4D vec(0.0, 0.0, 0.0, 0.0);
+    EXPECT_VEC_ZERO(fgm::Vector4D<double>::safeNormalize(vec));
+}
+
+
+/**
+ * @test Verify that the normalizing a 4D vector using static variant of @ref fgm::Vector4D::safeNormalize results in a
+ *       floating-point type, regardless of the component type.
+ */
+TYPED_TEST(Vector4DNormalization, StaticWrapper_SafeNormalize_NormalizedVectorIsAlwaysTypedPromotedToFloatingPointType)
+{
+    [[maybe_unused]] const auto normalized = fgm::Vector4D<TypeParam>::safeNormalize(this->_vec);
     static_assert(std::is_floating_point_v<typename decltype(normalized)::value_type>);
 }
 
