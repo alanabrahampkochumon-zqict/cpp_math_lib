@@ -34,7 +34,7 @@
 // TODO: Safe Project (static), Safe Reject, TryDivide, TryNormalize, TryProject, TryReject custom abs function.
 // TODO: In Safe Project, use SQUARE_EPSILON
 // TODO: Make non-safe functions for normalize, project and reject noexcept
-// TODO: Make all functions [[nodiscard]] 
+// TODO: Make all functions [[nodiscard]]
 
 namespace fgm
 {
@@ -1126,7 +1126,7 @@ namespace fgm
          * @return The perpendicular @ref Vector4D component.
          */
         template <StrictArithmetic U>
-        constexpr auto reject(const Vector4D<U>& from, bool ontoNormalized = false) const
+        constexpr auto reject(const Vector4D<U>& from, bool ontoNormalized = false) const noexcept
             -> Vector4D<std::common_type_t<T, U>>
             requires StrictArithmetic<T>;
 
@@ -1145,8 +1145,8 @@ namespace fgm
          * @return The perpendicular @ref Vector4D component.
          */
         template <StrictArithmetic U>
-        constexpr static auto reject(const Vector4D& vector, const Vector4D<U>& from, bool ontoNormalized = false)
-            -> Vector4D<std::common_type_t<T, U>>
+        constexpr static auto reject(const Vector4D& vector, const Vector4D<U>& from,
+                                     bool ontoNormalized = false) noexcept -> Vector4D<std::common_type_t<T, U>>
             requires StrictArithmetic<T>;
 
 
@@ -1182,8 +1182,8 @@ namespace fgm
          * @return The perpendicular @ref Vector4D component.
          */
         template <StrictArithmetic U>
-        constexpr static auto safeReject(const Vector4D& vec, const Vector4D<U>& from, bool ontoNormalized = false) noexcept
-            -> Vector4D<std::common_type_t<T, U>>
+        constexpr static auto safeReject(const Vector4D& vec, const Vector4D<U>& from,
+                                         bool ontoNormalized = false) noexcept -> Vector4D<std::common_type_t<T, U>>
             requires StrictArithmetic<T>;
 
         /** @} */

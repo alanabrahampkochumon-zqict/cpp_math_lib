@@ -692,7 +692,7 @@ namespace fgm
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr auto Vector4D<T>::reject(const Vector4D<U>& from, bool ontoNormalized) const
+    constexpr auto Vector4D<T>::reject(const Vector4D<U>& from, bool ontoNormalized) const noexcept
         -> Vector4D<std::common_type_t<T, U>>
         requires StrictArithmetic<T>
     {
@@ -702,7 +702,7 @@ namespace fgm
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr auto Vector4D<T>::reject(const Vector4D& vector, const Vector4D<U>& from, bool ontoNormalized)
+    constexpr auto Vector4D<T>::reject(const Vector4D& vector, const Vector4D<U>& from, bool ontoNormalized) noexcept
         -> Vector4D<std::common_type_t<T, U>>
         requires StrictArithmetic<T>
     {
