@@ -244,7 +244,7 @@ TYPED_TEST(Vector4DNormalization, SafeNormalize_NormalizedVectorIsAlwaysTypedPro
 
 
 /**
- * @test Verify that normalizing a 4D vector using static variant of @ref fgm::Vector4D::safeNormalize variant returns a
+ * @test Verify that normalizing a 4D vector using static variant of @ref fgm::Vector4D::safeNormalize returns a
  *       unit vector.
  */
 TYPED_TEST(Vector4DNormalization, StaticWrapper_SafeNormalize_NonZeroVectorReturnsUnitVector)

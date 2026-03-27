@@ -674,6 +674,15 @@ namespace fgm
     }
 
 
+    template <Arithmetic T>
+    template <StrictArithmetic U>
+    constexpr auto Vector4D<T>::safeProject(const Vector4D& vec, const Vector4D<U>& onto,
+        bool ontoNormalized) noexcept -> Vector4D<Magnitude<std::common_type_t<T, U>>> requires StrictArithmetic<T>
+    {
+        return vec.safeProject(onto, ontoNormalized);
+    }
+
+
     /*************************************
      *                                   *
      *         VECTOR REJECTION          *

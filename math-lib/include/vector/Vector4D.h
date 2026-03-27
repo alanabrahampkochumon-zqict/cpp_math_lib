@@ -1069,6 +1069,19 @@ namespace fgm
             -> Vector4D<Magnitude<std::common_type_t<T, U>>>
             requires StrictArithmetic<T>;
 
+        
+        /**
+         * @brief Static wrapper for safe projection.
+         *
+         * @copydoc safeProject() const
+         *
+         * @param[in] vec The vector to project.
+         */
+        template <StrictArithmetic U>
+        constexpr static auto safeProject(const Vector4D& vec, const Vector4D<U>& onto, bool ontoNormalized = false) noexcept
+            -> Vector4D<Magnitude<std::common_type_t<T, U>>>
+            requires StrictArithmetic<T>;
+
 
         /*************************************
          *                                   *
