@@ -1038,22 +1038,24 @@ namespace fgm
 
 
         /**
-         * @brief @copybrief project(const Vector4D<U>&, bool) const
-         * Static wrapper for orthogonal projection of @p vector onto @p onto.
+         * @brief Project a vector onto another vector.
+         *        Compute the orthogonal projection: \f$ \text{proj}_{\mathbf{b}} \mathbf{a} = \frac{\mathbf{a} \cdot
+         *        \mathbf{b}}{\|\mathbf{b}\|^2} \mathbf{b} \f$.
+         * @brief Static wrapper for orthogonal projection of @p vector onto @p onto.
          *
          * @note To maintain precision, result components are promoted to their
          *       corresponding floating-point representation via @ref Magnitude.
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
-         * @param[in] vector         The vector to be projected.
+         * @param[in] vec            The vector to project.
          * @param[in] onto           The vector to project onto.
          * @param[in] ontoNormalized Optimization flag. Set to `true` if @p onto is already a unit vector.
          *
          * @return The projected @ref Vector4D.
          */
         template <StrictArithmetic U>
-        constexpr static auto project(const Vector4D& vector, const Vector4D<U>& onto, bool ontoNormalized = false) noexcept
+        constexpr static auto project(const Vector4D& vec, const Vector4D<U>& onto, bool ontoNormalized = false) noexcept
             -> Vector4D<Magnitude<std::common_type_t<T, U>>>
             requires StrictArithmetic<T>;
 
@@ -1080,11 +1082,21 @@ namespace fgm
 
         
         /**
+         * @brief Safely project a vector onto another vector.
+         *        Compute the orthogonal projection: \f$ \text{proj}_{\mathbf{b}} \mathbf{a} = \frac{\mathbf{a} \cdot
+         *        \mathbf{b}}{\|\mathbf{b}\|^2} \mathbf{b} \f$.
          * @brief Static wrapper for safe projection.
          *
-         * @copydoc safeProject() const
+         * @note To maintain precision, result components are promoted to their
+         *       corresponding floating-point representation via @ref Magnitude.
          *
-         * @param[in] vec The vector to project.
+         * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
+         *
+         * @param[in] vec            The vector to project.
+         * @param[in] onto           The vector to project onto.
+         * @param[in] ontoNormalized Optimization flag. Set to `true` if @p onto is already a unit vector.
+         *
+         * @return The projected @ref Vector4D or a zero-vector if projected onto a zero-length vector.
          */
         template <StrictArithmetic U>
         constexpr static auto safeProject(const Vector4D& vec, const Vector4D<U>& onto, bool ontoNormalized = false) noexcept
