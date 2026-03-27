@@ -676,7 +676,7 @@ TYPED_TEST(Vector4DRejection, SafeReject_NonOrthogonalRejectionReturnsNonZeroVec
 
 /**
  * @test Verify that safely rejecting from an orthogonal unit vector using @ref fgm::Vector4D::safeReject with the
- *       @p ontoNormalized flag enabled returns a non-zero vector with perpendicular component.
+ *       @p fromNormalized flag enabled returns a non-zero vector with perpendicular component.
  */
 TEST(Vector4DRejection, SafeReject_FromNormalizedVectorReturnsNonZeroVector)
 {
@@ -770,7 +770,7 @@ TYPED_TEST(Vector4DRejection, StaticWrapper_SafeReject_NonOrthogonalRejectionRet
 
 /**
  * @test Verify that safely rejecting from an orthogonal unit vector using static variant of
- *       @ref fgm::Vector4D::safeReject with the @p ontoNormalized flag enabled returns a non-zero vector with
+ *       @ref fgm::Vector4D::safeReject with the @p fromNormalized flag enabled returns a non-zero vector with
  *       perpendicular component.
  */
 TEST(Vector4DRejection, StaticWrapper_SafeReject_FromNormalizedVectorReturnsNonZeroVector)

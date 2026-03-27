@@ -1121,12 +1121,12 @@ namespace fgm
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
          * @param[in] from           The vector to reject from.
-         * @param[in] ontoNormalized Optimization flag. Set to `true` if @p from is already a unit vector.
+         * @param[in] fromNormalized Optimization flag. Set to `true` if @p from is already a unit vector.
          *
          * @return The perpendicular @ref Vector4D component.
          */
         template <StrictArithmetic U>
-        constexpr auto reject(const Vector4D<U>& from, bool ontoNormalized = false) const noexcept
+        constexpr auto reject(const Vector4D<U>& from, bool fromNormalized = false) const noexcept
             -> Vector4D<std::common_type_t<T, U>>
             requires StrictArithmetic<T>;
 
@@ -1140,13 +1140,13 @@ namespace fgm
          *
          * @param[in] vector         The vector to be rejected.
          * @param[in] from           The vector to reject from.
-         * @param[in] ontoNormalized Optimization flag. Set to `true` if @p from is already a unit vector.
+         * @param[in] fromNormalized Optimization flag. Set to `true` if @p from is already a unit vector.
          *
          * @return The perpendicular @ref Vector4D component.
          */
         template <StrictArithmetic U>
         constexpr static auto reject(const Vector4D& vector, const Vector4D<U>& from,
-                                     bool ontoNormalized = false) noexcept -> Vector4D<std::common_type_t<T, U>>
+                                     bool fromNormalized = false) noexcept -> Vector4D<std::common_type_t<T, U>>
             requires StrictArithmetic<T>;
 
 
@@ -1158,12 +1158,12 @@ namespace fgm
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
          * @param[in] from           The vector to reject from.
-         * @param[in] ontoNormalized Optimization flag. Set to `true` if @p from is already a unit vector.
+         * @param[in] fromNormalized Optimization flag. Set to `true` if @p from is already a unit vector.
          *
          * @return The perpendicular @ref Vector4D component.
          */
         template <StrictArithmetic U>
-        constexpr auto safeReject(const Vector4D<U>& from, bool ontoNormalized = false) const noexcept
+        constexpr auto safeReject(const Vector4D<U>& from, bool fromNormalized = false) const noexcept
             -> Vector4D<std::common_type_t<T, U>>
             requires StrictArithmetic<T>;
 
@@ -1177,13 +1177,13 @@ namespace fgm
          *
          * @param[in] vec            The vector to reject.
          * @param[in] from           The vector to reject from.
-         * @param[in] ontoNormalized Optimization flag. Set to `true` if @p from is already a unit vector.
+         * @param[in] fromNormalized Optimization flag. Set to `true` if @p from is already a unit vector.
          *
          * @return The perpendicular @ref Vector4D component.
          */
         template <StrictArithmetic U>
         constexpr static auto safeReject(const Vector4D& vec, const Vector4D<U>& from,
-                                         bool ontoNormalized = false) noexcept -> Vector4D<std::common_type_t<T, U>>
+                                         bool fromNormalized = false) noexcept -> Vector4D<std::common_type_t<T, U>>
             requires StrictArithmetic<T>;
 
         /** @} */

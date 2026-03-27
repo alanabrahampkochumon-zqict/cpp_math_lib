@@ -692,41 +692,41 @@ namespace fgm
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr auto Vector4D<T>::reject(const Vector4D<U>& from, bool ontoNormalized) const noexcept
+    constexpr auto Vector4D<T>::reject(const Vector4D<U>& from, bool fromNormalized) const noexcept
         -> Vector4D<std::common_type_t<T, U>>
         requires StrictArithmetic<T>
     {
-        return *this - this->project(from, ontoNormalized);
+        return *this - this->project(from, fromNormalized);
     }
 
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr auto Vector4D<T>::reject(const Vector4D& vector, const Vector4D<U>& from, bool ontoNormalized) noexcept
+    constexpr auto Vector4D<T>::reject(const Vector4D& vector, const Vector4D<U>& from, bool fromNormalized) noexcept
         -> Vector4D<std::common_type_t<T, U>>
         requires StrictArithmetic<T>
     {
-        return vector.reject(from, ontoNormalized);
+        return vector.reject(from, fromNormalized);
     }
 
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr auto Vector4D<T>::safeReject(const Vector4D<U>& from, bool ontoNormalized) const noexcept
+    constexpr auto Vector4D<T>::safeReject(const Vector4D<U>& from, bool fromNormalized) const noexcept
         -> Vector4D<std::common_type_t<T, U>>
         requires StrictArithmetic<T>
     {
-        return *this - safeProject(from, ontoNormalized);
+        return *this - safeProject(from, fromNormalized);
     }
 
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr auto Vector4D<T>::safeReject(const Vector4D& vec, const Vector4D<U>& from, bool ontoNormalized) noexcept
+    constexpr auto Vector4D<T>::safeReject(const Vector4D& vec, const Vector4D<U>& from, bool fromNormalized) noexcept
         -> Vector4D<std::common_type_t<T, U>>
         requires StrictArithmetic<T>
     {
-        return vec.safeReject(from, ontoNormalized);
+        return vec.safeReject(from, fromNormalized);
     }
 
 } // namespace fgm
