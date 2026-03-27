@@ -833,9 +833,18 @@ namespace fgm
         /**
          * @brief Static wrapper for safe scalar division.
          *
-         * @copydoc safeDiv(S) const
+         * @copybrief safeDiv(S) const
+         *
+         * @note Operation is restricted to numeric types via @ref fgm::StrictArithmetic.
+         * @note Returns a zero-vector if dividing by a floating point zero.
+         *
+         * @tparam S Numeric type of the scalar. Must satisfy @ref fgm::StrictArithmetic.
          *
          * @param[in] vec The vector to be divided.
+         * @param[in] scalar The value to divide the vector components by.
+         *
+         * @return A new @ref Vector4D resulting from the division or a zero-vector if the @p scalar is below the
+         * epsilon threshold.
          */
         template <StrictArithmetic S>
         constexpr static auto safeDiv(const Vector4D& vec, S scalar) noexcept -> Vector4D<std::common_type_t<T, S>>
