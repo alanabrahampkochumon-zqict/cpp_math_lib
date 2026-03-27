@@ -12,6 +12,7 @@
 
 
 #include "Vector4D.h"
+#include "Vector4D.h"
 
 #include <cassert>
 #include <type_traits>
@@ -646,11 +647,11 @@ namespace fgm
 
     template <Arithmetic T>
     template <StrictArithmetic U>
-    constexpr auto Vector4D<T>::project(const Vector4D& vector, const Vector4D<U>& onto, bool ontoNormalized) noexcept
+    constexpr auto Vector4D<T>::project(const Vector4D& vec, const Vector4D<U>& onto, bool ontoNormalized) noexcept
         -> Vector4D<Magnitude<std::common_type_t<T, U>>>
         requires StrictArithmetic<T>
     {
-        return vector.project(onto, ontoNormalized);
+        return vec.project(onto, ontoNormalized);
     }
 
 
@@ -706,6 +707,16 @@ namespace fgm
         requires StrictArithmetic<T>
     {
         return vector.reject(from, ontoNormalized);
+    }
+
+
+    template <Arithmetic T>
+    template <StrictArithmetic U>
+    constexpr auto Vector4D<T>::safeReject(const Vector4D<U>& from, bool ontoNormalized) const noexcept
+        -> Vector4D<std::common_type_t<T, U>>
+        requires StrictArithmetic<T>
+    {
+        return *this - safeProject(from, ontoNormalized);
     }
 
 } // namespace fgm

@@ -34,6 +34,7 @@
 // TODO: Safe Project (static), Safe Reject, TryDivide, TryNormalize, TryProject, TryReject custom abs function.
 // TODO: In Safe Project, use SQUARE_EPSILON
 // TODO: Make non-safe functions for normalize, project and reject noexcept
+// TODO: Make all functions [[nodiscard]] 
 
 namespace fgm
 {
@@ -1055,7 +1056,8 @@ namespace fgm
          * @return The projected @ref Vector4D.
          */
         template <StrictArithmetic U>
-        constexpr static auto project(const Vector4D& vec, const Vector4D<U>& onto, bool ontoNormalized = false) noexcept
+        constexpr static auto project(const Vector4D& vec, const Vector4D<U>& onto,
+                                      bool ontoNormalized = false) noexcept
             -> Vector4D<Magnitude<std::common_type_t<T, U>>>
             requires StrictArithmetic<T>;
 
@@ -1080,7 +1082,7 @@ namespace fgm
             -> Vector4D<Magnitude<std::common_type_t<T, U>>>
             requires StrictArithmetic<T>;
 
-        
+
         /**
          * @brief Safely project a vector onto another vector.
          *        Compute the orthogonal projection: \f$ \text{proj}_{\mathbf{b}} \mathbf{a} = \frac{\mathbf{a} \cdot
@@ -1099,7 +1101,8 @@ namespace fgm
          * @return The projected @ref Vector4D or a zero-vector if projected onto a zero-length vector.
          */
         template <StrictArithmetic U>
-        constexpr static auto safeProject(const Vector4D& vec, const Vector4D<U>& onto, bool ontoNormalized = false) noexcept
+        constexpr static auto safeProject(const Vector4D& vec, const Vector4D<U>& onto,
+                                          bool ontoNormalized = false) noexcept
             -> Vector4D<Magnitude<std::common_type_t<T, U>>>
             requires StrictArithmetic<T>;
 
@@ -1118,7 +1121,7 @@ namespace fgm
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
          * @param[in] from           The vector to reject from.
-         * @param[in] ontoNormalized Optimization flag. Set to `true` if @p onto is already a unit vector.
+         * @param[in] ontoNormalized Optimization flag. Set to `true` if @p from is already a unit vector.
          *
          * @return The perpendicular @ref Vector4D component.
          */
@@ -1127,7 +1130,8 @@ namespace fgm
             -> Vector4D<std::common_type_t<T, U>>
             requires StrictArithmetic<T>;
 
-
+        // TODO: Update brief
+        // TODO: Update ontoNormalized to fromNormalized
         /**
          * @brief @copybrief reject(const Vector4D<U>&, bool) const
          * Static wrapper for computing the perpendicular component of @p vector relative to @p onto.
@@ -1136,12 +1140,30 @@ namespace fgm
          *
          * @param[in] vector         The vector to be rejected.
          * @param[in] from           The vector to reject from.
-         * @param[in] ontoNormalized Optimization flag. Set to `true` if @p onto is already a unit vector.
+         * @param[in] ontoNormalized Optimization flag. Set to `true` if @p from is already a unit vector.
          *
          * @return The perpendicular @ref Vector4D component.
          */
         template <StrictArithmetic U>
         constexpr static auto reject(const Vector4D& vector, const Vector4D<U>& from, bool ontoNormalized = false)
+            -> Vector4D<std::common_type_t<T, U>>
+            requires StrictArithmetic<T>;
+
+
+        /**
+         * @brief Safely compute rejection of this vector from another vector.
+         *        Compute the component of the vector perpendicular to @p onto:
+         *        \f$ \text{rej}_{\mathbf{b}} \mathbf{a} = \mathbf{a} - \text{proj}_{\mathbf{b}} \mathbf{a} \f$.
+         *
+         * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
+         *
+         * @param[in] from           The vector to reject from.
+         * @param[in] ontoNormalized Optimization flag. Set to `true` if @p from is already a unit vector.
+         *
+         * @return The perpendicular @ref Vector4D component.
+         */
+        template <StrictArithmetic U>
+        constexpr auto safeReject(const Vector4D<U>& from, bool ontoNormalized = false) const noexcept
             -> Vector4D<std::common_type_t<T, U>>
             requires StrictArithmetic<T>;
 
