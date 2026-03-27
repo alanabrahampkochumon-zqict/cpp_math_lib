@@ -31,10 +31,11 @@
 #include <iomanip>
 #include <ostream>
 
-// TODO: Safe Project (static), Safe Reject, TryDivide, TryNormalize, TryProject, TryReject custom abs function.
+// TODO: TryDivide, TryNormalize, TryProject, TryReject custom abs function.
 // TODO: In Safe Project, use SQUARE_EPSILON
 // TODO: Make non-safe functions for normalize, project and reject noexcept
 // TODO: Make all functions [[nodiscard]]
+// TODO: Update Test Doc guideline to use verbosity and @ref function_name only when there are variants like safeDiv, /, tryDiv etc.
 
 namespace fgm
 {
@@ -1130,8 +1131,7 @@ namespace fgm
             -> Vector4D<std::common_type_t<T, U>>
             requires StrictArithmetic<T>;
 
-        // TODO: Update brief
-        // TODO: Update ontoNormalized to fromNormalized
+
         /**
          * @brief @copybrief reject(const Vector4D<U>&, bool) const
          * Static wrapper for computing the perpendicular component of @p vector relative to @p onto.
