@@ -1116,6 +1116,9 @@ namespace fgm
          *        Compute the component of the vector perpendicular to @p onto:
          *        \f$ \text{rej}_{\mathbf{b}} \mathbf{a} = \mathbf{a} - \text{proj}_{\mathbf{b}} \mathbf{a} \f$.
          *
+         * @note To maintain precision, result components are promoted to their
+         *       corresponding floating-point representation via @ref Magnitude.
+         *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
          * @param[in] from           The vector to reject from.
@@ -1125,13 +1128,16 @@ namespace fgm
          */
         template <StrictArithmetic U>
         constexpr auto reject(const Vector4D<U>& from, bool fromNormalized = false) const noexcept
-            -> Vector4D<std::common_type_t<T, U>>
+            -> Vector4D<Magnitude<std::common_type_t<T, U>>>
             requires StrictArithmetic<T>;
 
 
         /**
          * @brief @copybrief reject(const Vector4D<U>&, bool) const
          * Static wrapper for computing the perpendicular component of @p vector relative to @p onto.
+         *
+         * @note To maintain precision, result components are promoted to their
+         *       corresponding floating-point representation via @ref Magnitude.
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
@@ -1143,7 +1149,8 @@ namespace fgm
          */
         template <StrictArithmetic U>
         constexpr static auto reject(const Vector4D& vector, const Vector4D<U>& from,
-                                     bool fromNormalized = false) noexcept -> Vector4D<std::common_type_t<T, U>>
+                                     bool fromNormalized = false) noexcept
+            -> Vector4D<Magnitude<std::common_type_t<T, U>>>
             requires StrictArithmetic<T>;
 
 
@@ -1151,6 +1158,9 @@ namespace fgm
          * @brief Safely compute rejection of this vector from another vector.
          *        Compute the component of the vector perpendicular to @p onto:
          *        \f$ \text{rej}_{\mathbf{b}} \mathbf{a} = \mathbf{a} - \text{proj}_{\mathbf{b}} \mathbf{a} \f$.
+         *
+         * @note To maintain precision, result components are promoted to their
+         *       corresponding floating-point representation via @ref Magnitude.
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
@@ -1161,7 +1171,7 @@ namespace fgm
          */
         template <StrictArithmetic U>
         constexpr auto safeReject(const Vector4D<U>& from, bool fromNormalized = false) const noexcept
-            -> Vector4D<std::common_type_t<T, U>>
+            -> Vector4D<Magnitude<std::common_type_t<T, U>>>
             requires StrictArithmetic<T>;
 
 
@@ -1169,6 +1179,9 @@ namespace fgm
          * @brief Safely compute rejection of a vector from another vector.
          *        Compute the component of the vector perpendicular to @p onto:
          *        \f$ \text{rej}_{\mathbf{b}} \mathbf{a} = \mathbf{a} - \text{proj}_{\mathbf{b}} \mathbf{a} \f$.
+         *
+         * @note To maintain precision, result components are promoted to their
+         *       corresponding floating-point representation via @ref Magnitude.
          *
          * @tparam U Numeric type of the RHS vector. Must satisfy @ref StrictArithmetic.
          *
@@ -1180,7 +1193,8 @@ namespace fgm
          */
         template <StrictArithmetic U>
         constexpr static auto safeReject(const Vector4D& vec, const Vector4D<U>& from,
-                                         bool fromNormalized = false) noexcept -> Vector4D<std::common_type_t<T, U>>
+                                         bool fromNormalized = false) noexcept
+            -> Vector4D<Magnitude<std::common_type_t<T, U>>>
             requires StrictArithmetic<T>;
 
         /** @} */

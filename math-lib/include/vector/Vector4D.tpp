@@ -624,6 +624,7 @@ namespace fgm
     }
 
 
+
     /*************************************
      *                                   *
      *        VECTOR PROJECTION          *
@@ -685,6 +686,7 @@ namespace fgm
     }
 
 
+
     /*************************************
      *                                   *
      *         VECTOR REJECTION          *
@@ -694,7 +696,7 @@ namespace fgm
     template <Arithmetic T>
     template <StrictArithmetic U>
     constexpr auto Vector4D<T>::reject(const Vector4D<U>& from, bool fromNormalized) const noexcept
-        -> Vector4D<std::common_type_t<T, U>>
+        -> Vector4D<Magnitude<std::common_type_t<T, U>>>
         requires StrictArithmetic<T>
     {
         return *this - this->project(from, fromNormalized);
@@ -704,7 +706,7 @@ namespace fgm
     template <Arithmetic T>
     template <StrictArithmetic U>
     constexpr auto Vector4D<T>::reject(const Vector4D& vector, const Vector4D<U>& from, bool fromNormalized) noexcept
-        -> Vector4D<std::common_type_t<T, U>>
+        -> Vector4D<Magnitude<std::common_type_t<T, U>>>
         requires StrictArithmetic<T>
     {
         return vector.reject(from, fromNormalized);
@@ -714,7 +716,7 @@ namespace fgm
     template <Arithmetic T>
     template <StrictArithmetic U>
     constexpr auto Vector4D<T>::safeReject(const Vector4D<U>& from, bool fromNormalized) const noexcept
-        -> Vector4D<std::common_type_t<T, U>>
+        -> Vector4D<Magnitude<std::common_type_t<T, U>>>
         requires StrictArithmetic<T>
     {
         return *this - safeProject(from, fromNormalized);
@@ -724,7 +726,7 @@ namespace fgm
     template <Arithmetic T>
     template <StrictArithmetic U>
     constexpr auto Vector4D<T>::safeReject(const Vector4D& vec, const Vector4D<U>& from, bool fromNormalized) noexcept
-        -> Vector4D<std::common_type_t<T, U>>
+        -> Vector4D<Magnitude<std::common_type_t<T, U>>>
         requires StrictArithmetic<T>
     {
         return vec.safeReject(from, fromNormalized);

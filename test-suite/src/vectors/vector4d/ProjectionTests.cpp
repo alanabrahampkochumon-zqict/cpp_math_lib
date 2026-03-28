@@ -225,6 +225,14 @@ TEST(Vector4DProjection, MixedTypeProjectionPromotesType)
 }
 
 
+/** @test Verify that projection using @ref fgm::Vector4D::project always return floating-point vector. */
+TYPED_TEST(Vector4DProjection, Project_AlwaysReturnFloatingPointVector)
+{
+    [[maybe_unused]] const fgm::Vector4D projection = this->_vec.project(this->_ontoVec);
+    static_assert(std::is_floating_point_v<typename decltype(projection)::value_type>);
+}
+
+
 /**
  * @test Verify that projection using static variant of @ref fgm::Vector4D::project
  *       always return floating-point vector.
@@ -232,14 +240,6 @@ TEST(Vector4DProjection, MixedTypeProjectionPromotesType)
 TYPED_TEST(Vector4DProjection, StaticWrapper_Project_AlwaysReturnFloatingPointVector)
 {
     [[maybe_unused]] const fgm::Vector4D projection = fgm::Vector4D<float>::project(this->_vec, this->_ontoVec);
-    static_assert(std::is_floating_point_v<typename decltype(projection)::value_type>);
-}
-
-
-/** @test Verify that projection using @ref fgm::Vector4D::project always return floating-point vector. */
-TYPED_TEST(Vector4DProjection, Project_AlwaysReturnFloatingPointVector)
-{
-    [[maybe_unused]] const fgm::Vector4D projection = this->_vec.project(this->_ontoVec);
     static_assert(std::is_floating_point_v<typename decltype(projection)::value_type>);
 }
 
@@ -428,6 +428,14 @@ TYPED_TEST(Vector4DProjection, StaticWrapper_SafeProject_OntoZeroVectorReturnsZe
 }
 
 
+/** @test Verify that projection using @ref fgm::Vector4D::safeProject always return floating-point vector. */
+TYPED_TEST(Vector4DProjection, SafeProject_AlwaysReturnFloatingPointVector)
+{
+    [[maybe_unused]] const fgm::Vector4D projection = this->_vec.safeProject(this->_ontoVec);
+    static_assert(std::is_floating_point_v<typename decltype(projection)::value_type>);
+}
+
+
 /**
  * @test Verify that projection using static variant of @ref fgm::Vector4D::safeProject
  *       always return floating-point vector.
@@ -437,14 +445,5 @@ TYPED_TEST(Vector4DProjection, StaticWrapper_SafeProject_AlwaysReturnFloatingPoi
     [[maybe_unused]] const fgm::Vector4D projection = fgm::Vector4D<float>::safeProject(this->_vec, this->_ontoVec);
     static_assert(std::is_floating_point_v<typename decltype(projection)::value_type>);
 }
-
-
-/** @test Verify that projection using @ref fgm::Vector4D::safeProject always return floating-point vector. */
-TYPED_TEST(Vector4DProjection, SafeProject_AlwaysReturnFloatingPointVector)
-{
-    [[maybe_unused]] const fgm::Vector4D projection = this->_vec.safeProject(this->_ontoVec);
-    static_assert(std::is_floating_point_v<typename decltype(projection)::value_type>);
-}
-
 
 /** @} */

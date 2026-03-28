@@ -232,6 +232,25 @@ TEST(Vector4DRejection, MixedTypeRejectionPromotesType)
 }
 
 
+/** @test Verify that rejection using @ref fgm::Vector4D::reject always return floating-point vector. */
+TYPED_TEST(Vector4DRejection, Reject_AlwaysReturnFloatingPointVector)
+{
+    [[maybe_unused]] const fgm::Vector4D rejection = this->_vec.reject(this->_fromVec);
+    static_assert(std::is_floating_point_v<typename decltype(rejection)::value_type>);
+}
+
+
+/**
+ * @test Verify that rejection using static variant of @ref fgm::Vector4D::reject
+ *       always return floating-point vector.
+ */
+TYPED_TEST(Vector4DRejection, StaticWrapper_Reject_AlwaysReturnFloatingPointVector)
+{
+    [[maybe_unused]] const fgm::Vector4D rejection = fgm::Vector4D<float>::reject(this->_vec, this->_fromVec);
+    static_assert(std::is_floating_point_v<typename decltype(rejection)::value_type>);
+}
+
+
 /**************************************
  *                                    *
  *       SAFE REJECTION TESTS         *
@@ -427,6 +446,25 @@ TYPED_TEST(Vector4DRejection, StaticWrapper_SafeReject_FromZeroVectorReturnsSame
     const fgm::Vector4D actualRejection = fgm::Vector4D<TypeParam>::safeReject(this->_vec, zeroVec);
 
     EXPECT_VEC_EQ(this->_vec, actualRejection);
+}
+
+
+/** @test Verify that rejection using @ref fgm::Vector4D::safeReject always return floating-point vector. */
+TYPED_TEST(Vector4DRejection, SafeReject_AlwaysReturnFloatingPointVector)
+{
+    [[maybe_unused]] const fgm::Vector4D rejection = this->_vec.safeReject(this->_fromVec);
+    static_assert(std::is_floating_point_v<typename decltype(rejection)::value_type>);
+}
+
+
+/**
+ * @test Verify that rejection using static variant of @ref fgm::Vector4D::safeReject
+ *       always return floating-point vector.
+ */
+TYPED_TEST(Vector4DRejection, StaticWrapper_SafeReject_AlwaysReturnFloatingPointVector)
+{
+    [[maybe_unused]] const fgm::Vector4D rejection = fgm::Vector4D<float>::safeReject(this->_vec, this->_fromVec);
+    static_assert(std::is_floating_point_v<typename decltype(rejection)::value_type>);
 }
 
 /** @} */
