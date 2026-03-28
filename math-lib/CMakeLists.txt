@@ -25,7 +25,7 @@ set(GeneralFiles "SimdTraits.h;DoxygenGroups.h")
 list(TRANSFORM GeneralFiles PREPEND ${IncludeDirectory})
 
 set(CommonDirectory "${IncludeDirectory}common/")
-set(CommonFiles "MathTraits.h;Config.h;Constants.h")
+set(CommonFiles "MathTraits.h;Config.h;Constants.h;OperationStatus.h")
 list(TRANSFORM CommonFiles PREPEND ${CommonDirectory})
 
 set(VectorDirectory "${IncludeDirectory}/vector/")
