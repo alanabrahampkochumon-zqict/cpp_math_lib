@@ -58,15 +58,13 @@
 - **Good:** `@return Magnitude of the @ref Vector3D.`
 - **Good:** `@return True if all components match exactly.`
 
----
-
 ## 3. Test Nomenclature (Google Test)
 
 ### Test Brief
 
 - **Style:** Single sentence describing the verification goal.
 - **Mood:** Mandatory Imperative (e.g., "Compute", "Perform", "Verify").
-- **Example:** `/** @brief Verify that @ref fgm::Vector4D normalization return a normal vector. */`
+- **Example:** `/** @brief Verify that vector normalization return a normal vector. */`
 
 ### Test Suite & Name
 
@@ -78,7 +76,9 @@
 
 ### Test Body Commenting
 
-- **Documentation**- Use @test to write a brief description of what the test are supposed to verify
+- **Documentation**- Use `@test` to write a brief description of what the test are supposed to verify.
+- **Language** - Keep language simple, preferably under 1 sentence.
+- **Constraints** - Don't use `@ref` unless testing more than 1 instance of the same procedure. For example, `normalize` vs `safeNormalize` vs `tryNormalize`.
 - **Structure:** Optionally use **Given / When / Then** blocks to separate setup, action, and assertion.
 
 ## Sample Documentation
