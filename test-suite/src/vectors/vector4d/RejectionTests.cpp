@@ -307,11 +307,11 @@ TEST(Vector4DRejection, SafeReject_MixedTypeRejectionPromotesType)
 {
     // Given two arbitrary vectors
     constexpr fgm::Vector4D vec(7, 13, 29, 41);
-    constexpr fgm::Vector4D onto(2.0, 4.0, 4.0, 2.0);
+    constexpr fgm::Vector4D from(2.0, 4.0, 4.0, 2.0);
     constexpr fgm::Vector4D expectedRejection(-6.2, -13.4, 2.6, 27.8);
 
     // When rejected from another
-    constexpr fgm::Vector4D actualRejection = vec.safeReject(onto);
+    constexpr fgm::Vector4D actualRejection = vec.safeReject(from);
 
     // Then, the resultant vector is type promoted
     static_assert(std::is_same_v<decltype(actualRejection)::value_type, double>);
@@ -402,11 +402,11 @@ TEST(Vector4DRejection, StaticWrapper_SafeReject_MixedTypeRejectionPromotesType)
 {
     // Given two arbitrary vectors
     constexpr fgm::Vector4D vec(7, 13, 29, 41);
-    constexpr fgm::Vector4D onto(2.0, 4.0, 4.0, 2.0);
+    constexpr fgm::Vector4D from(2.0, 4.0, 4.0, 2.0);
     constexpr fgm::Vector4D expectedRejection(-6.2, -13.4, 2.6, 27.8);
 
     // When rejected from another
-    constexpr fgm::Vector4D actualRejection = fgm::Vector4D<float>::safeReject(vec, onto);
+    constexpr fgm::Vector4D actualRejection = fgm::Vector4D<float>::safeReject(vec, from);
 
     // Then, the resultant vector is type promoted
     static_assert(std::is_same_v<decltype(actualRejection)::value_type, double>);
@@ -416,8 +416,8 @@ TEST(Vector4DRejection, StaticWrapper_SafeReject_MixedTypeRejectionPromotesType)
 
 
 /**
- * @test Verify that safely rejecting from a zero vector using static variant of @ref fgm::Vector4D::safeReject returns
- *       the same vector.
+ * @test Verify that safely rejecting from a zero length vector using static variant of @ref fgm::Vector4D::safeReject
+ *       returns the same vector.
  */
 TYPED_TEST(Vector4DRejection, StaticWrapper_SafeReject_FromZeroVectorReturnsSameVector)
 {

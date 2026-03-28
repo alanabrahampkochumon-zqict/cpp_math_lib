@@ -83,7 +83,7 @@ TEST(Vector4DProjection, ProjectionOntoXAxisReturnsVectorWithOnlyXComponent)
 
 
 /**
- * @test Verify that projecting a @ref fgm::Vector4D onto another @ref fgm::Vector4D containing only a y-component
+ * @test Verify that projecting onto a vector parallel to y-axis using @ref fgm::Vector4D::project
  *       returns a vector containing only a y-component.
  */
 TEST(Vector4DProjection, ProjectionOntoYAxisReturnsVectorWithOnlyYComponent)
@@ -102,7 +102,7 @@ TEST(Vector4DProjection, ProjectionOntoYAxisReturnsVectorWithOnlyYComponent)
 
 
 /**
- * @test Verify that projecting a @ref fgm::Vector4D onto another @ref fgm::Vector4D containing only a z-component
+ * @test Verify that projecting onto a vector parallel to z-axis using @ref fgm::Vector4D::project
  *       returns a vector containing only a z-component.
  */
 TEST(Vector4DProjection, ProjectionOntoZAxisReturnsVectorWithOnlyZComponent)
@@ -121,7 +121,7 @@ TEST(Vector4DProjection, ProjectionOntoZAxisReturnsVectorWithOnlyZComponent)
 
 
 /**
- * @test Verify that projecting a @ref fgm::Vector4D onto another @ref fgm::Vector4D containing only a w-component
+ * @test Verify that projecting onto a vector parallel to w-axis using @ref fgm::Vector4D::project
  *       returns a vector containing only a w-component.
  */
 TEST(Vector4DProjection, ProjectionOntoWAxisReturnsVectorWithOnlyWComponent)
@@ -140,8 +140,8 @@ TEST(Vector4DProjection, ProjectionOntoWAxisReturnsVectorWithOnlyWComponent)
 
 
 /**
- * @test Verify that projecting a @ref fgm::Vector4D onto a non-orthogonal @ref fgm::Vector4D returns a non-zero
- *       vector.
+ * @test Verify that projecting onto a non-orthogonal vector using @ref fgm::Vector4D::project
+ *       returns a non-zero vector.
  */
 TYPED_TEST(Vector4DProjection, NonOrthogonalProjectionReturnsNonZeroVector)
 {
@@ -152,8 +152,8 @@ TYPED_TEST(Vector4DProjection, NonOrthogonalProjectionReturnsNonZeroVector)
 
 
 /**
- * @test Verify that the @ref fgm::Vector4D static projection wrapper returns a non-zero vector when projecting
- *        non-orthogonal instances.
+ * @test Verify that projecting onto a non-orthogonal vector using static variant of @ref fgm::Vector4D::project
+ *       returns a non-zero vector.
  */
 TYPED_TEST(Vector4DProjection, StaticWrapper_NonOrthogonalProjectionReturnsNonZeroVector)
 {
@@ -164,8 +164,8 @@ TYPED_TEST(Vector4DProjection, StaticWrapper_NonOrthogonalProjectionReturnsNonZe
 
 
 /**
- * @test Verify that projecting onto a non-orthogonal unit vector with the @p ontoNormalized flag enabled returns a
- *        non-zero vector.
+ * @test Verify that projecting onto a non-orthogonal unit vector using @ref fgm::Vector4D::project with the
+ *       @p ontoNormalized flag enabled returns a non-zero vector.
  */
 TEST(Vector4DProjection, ProjectionOntoNormalizedVectorReturnsNonZeroVector)
 {
@@ -186,8 +186,8 @@ TEST(Vector4DProjection, ProjectionOntoNormalizedVectorReturnsNonZeroVector)
 
 
 /**
- * @test Verify that projecting a @ref fgm::Vector4D onto a non-orthogonal @ref fgm::Vector4D pointing in the opposite
- *       direction returns a non-zero vector.
+ * @test Verify that projecting onto a non-orthogonal vector pointing in the opposite direction
+ *       using @ref fgm::Vector4D::project returns a non-zero vector.
  */
 TEST(Vector4DProjection, ProjectionOntoVectorInOppositeDirectionReturnsNonZeroVectorInSameDirection)
 {
@@ -204,8 +204,10 @@ TEST(Vector4DProjection, ProjectionOntoVectorInOppositeDirectionReturnsNonZeroVe
 }
 
 
-/** @test Verify that projecting a @ref fgm::Vector4D onto a non-orthogonal @ref fgm::Vector4D of a different numeric
- *        type returns a type-promoted vector. */
+/**
+ * @test Verify that projecting onto a non-orthogonal vector of a different numeric type
+ *       using @ref fgm::Vector4D::project returns a type-promoted vector.
+ */
 TEST(Vector4DProjection, MixedTypeProjectionPromotesType)
 {
     // Given two arbitrary vectors
@@ -229,9 +231,10 @@ TEST(Vector4DProjection, MixedTypeProjectionPromotesType)
  *                                    *
  **************************************/
 
+
 /**
- * @test Verify that projecting a @ref fgm::Vector4D onto a non-orthogonal @ref fgm::Vector4D using
- *       @ref fgm::Vector4D::safeProject returns a non-zero vector.
+ * @test Verify that projecting onto an orthogonal vector using @ref fgm::Vector4D::safeProject
+ *       returns a zero vector.
  */
 TYPED_TEST(Vector4DProjection, SafeProject_NonOrthogonalProjectionReturnsNonZeroVector)
 {
@@ -264,8 +267,8 @@ TEST(Vector4DProjection, SafeProject_ProjectionOntoNormalizedVectorReturnsNonZer
 
 
 /**
- * @test Verify that projecting a @ref fgm::Vector4D onto a non-orthogonal @ref fgm::Vector4D pointing in the opposite
- *       direction using @ref fgm::Vector4D::safeProject returns a non-zero vector.
+ * @test Verify that projecting onto a non-orthogonal vector pointing in the opposite direction
+ *       using @ref fgm::Vector4D::safeProject returns a non-zero vector.
  */
 TEST(Vector4DProjection, SafeProject_OntoVectorInOppositeDirectionReturnsVectorInSameDirection)
 {
@@ -282,8 +285,10 @@ TEST(Vector4DProjection, SafeProject_OntoVectorInOppositeDirectionReturnsVectorI
 }
 
 
-/** @test Verify that projecting a @ref fgm::Vector4D onto a non-orthogonal @ref fgm::Vector4D of a different numeric
- *        type using @ref fgm::Vector4D::safeProject returns a type-promoted vector. */
+/**
+ * @test Verify that projecting onto a non-orthogonal vector of a different numeric type
+ *       using @ref fgm::Vector4D::safeProject returns a type-promoted vector.
+ */
 TEST(Vector4DProjection, SafeProject_MixedTypeProjectionPromotesType)
 {
     // Given two arbitrary vectors
@@ -302,8 +307,8 @@ TEST(Vector4DProjection, SafeProject_MixedTypeProjectionPromotesType)
 
 
 /**
- * @test Verify that projecting a @ref fgm::Vector4D onto a zero length vector using @ref fgm::Vector4D::safeProject
- *       returns a type-promoted vector.
+ * @test Verify that projecting onto a zero length vector using @ref fgm::Vector4D::safeProject
+ *       returns a zero vector.
  */
 TYPED_TEST(Vector4DProjection, SafeProject_OntoZeroReturnsZeroVector)
 {
@@ -316,8 +321,8 @@ TYPED_TEST(Vector4DProjection, SafeProject_OntoZeroReturnsZeroVector)
 }
 
 /**
- * @test Verify that projecting a @ref fgm::Vector4D onto a non-orthogonal @ref fgm::Vector4D using
- *       static variant of @ref fgm::Vector4D::safeProject returns a non-zero vector.
+ * @test Verify that projecting onto a non-orthogonal vector using static variant of @ref fgm::Vector4D::safeProject
+ *       returns a non-zero vector.
  */
 TYPED_TEST(Vector4DProjection, Static_Wrapper_SafeProject_NonOrthogonalProjectionReturnsNonZeroVector)
 {
