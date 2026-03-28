@@ -15,7 +15,6 @@
 using namespace testutils;
 
 
-
 /**************************************
  *                                    *
  *               SETUP                *
@@ -52,8 +51,10 @@ class Vector4DUncleanMagnitude: public ::testing::Test
         _expectedMagnitude = fgm::Magnitude<T>(5.477225575051661);
     }
 };
-/** @brief Test fixture for @ref fgm::Vector4D magnitude, parameterized by SupportedArithmeticTypes, for testing
- * high-precision magnitude. */
+/**
+ * @brief Test fixture for @ref fgm::Vector4D magnitude, parameterized by SupportedArithmeticTypes, for testing
+ *        high-precision magnitude.
+ */
 TYPED_TEST_SUITE(Vector4DUncleanMagnitude, SupportedArithmeticTypes);
 
 
@@ -63,7 +64,7 @@ TYPED_TEST_SUITE(Vector4DUncleanMagnitude, SupportedArithmeticTypes);
  * @{
  */
 
-/** @test Verify that the magnitude of a zero @ref fgm::Vector4D returns exactly zero. */
+/** @test Verify that taking the magnitude of a zero vector returns exactly zero. */
 TEST(Vector4DMagnitude, ZeroVectorReturnsZero)
 {
     constexpr fgm::Vector4D vec(0.0f, 0.0f, 0.0f, 0.0f);
@@ -71,7 +72,8 @@ TEST(Vector4DMagnitude, ZeroVectorReturnsZero)
     EXPECT_FLOAT_EQ(0.0f, vec.mag());
 }
 
-/** @test Verify that the magnitude of a @ref fgm::Vector4D with multiple unit-component returns non-unit magnitude. */
+
+/** @test Verify that taking the magnitude of a one vector returns non-unit scalar. */
 TEST(Vector4DMagnitude, OneComponentVectorReturnsNonUnitScalar)
 {
     constexpr fgm::Vector4D vec(1.0f, 1.0f, 1.0f, 1.0f);
@@ -79,7 +81,8 @@ TEST(Vector4DMagnitude, OneComponentVectorReturnsNonUnitScalar)
     EXPECT_NE(1.0f, vec.mag());
 }
 
-/** @test Verify that the magnitude of a non-unit @ref fgm::Vector4D returns a non-unit magnitude. */
+
+/** @test Verify that taking the magnitude of a non-unit vector returns non-unit scalar. */
 TYPED_TEST(Vector4DMagnitude, NonUnitVectorReturnsCorrectMagnitude)
 {
     const auto magnitude = this->_vec.mag();
@@ -88,17 +91,19 @@ TYPED_TEST(Vector4DMagnitude, NonUnitVectorReturnsCorrectMagnitude)
     EXPECT_MAG_EQ(this->_expectedMagnitude, magnitude);
 }
 
-/**
- * @test Verify that the @ref fgm::Vector4D magnitude calculation results in a floating-point type, regardless of the
- *       component type.
- */
+
+/** @test Verify that taking the magnitude always returns a floating-point scalar. */
 TYPED_TEST(Vector4DMagnitude, MagnitudeIsAlwaysTypedPromotedToFloatingPointType)
 {
     [[maybe_unused]] const auto magnitude = this->_vec.mag();
     static_assert(std::is_floating_point_v<decltype(magnitude)>);
 }
 
-/** @test Verify that the static magnitude wrapper of @ref fgm::Vector4D returns a non-unit magnitude. */
+
+/**
+ * @test Verify that taking the magnitude of a non-unit vector using static variant of @ref fgm::Vector4D::mag
+ *       returns non-unit scalar.
+ */
 TYPED_TEST(Vector4DMagnitude, StaticWrapper_NonUnitVectorReturnsCorrectMagnitude)
 {
     const auto magnitude = fgm::Vector4D<TypeParam>::mag(this->_vec);
@@ -106,10 +111,8 @@ TYPED_TEST(Vector4DMagnitude, StaticWrapper_NonUnitVectorReturnsCorrectMagnitude
     EXPECT_MAG_EQ(this->_expectedMagnitude, magnitude);
 }
 
-/**
- * @test Verify the numerical accuracy of @ref fgm::Vector4D magnitude calculations for non-unit vectors to ensure
- *        minimal precision loss.
- */
+
+/** @test Verify that the magnitude calculations for non-unit vectors ensure minimal precision loss. */
 TYPED_TEST(Vector4DUncleanMagnitude, NonUnitVectorReturnsCorrectMagnitudeWithMinimalPrecisionLoss)
 {
     const auto magnitude = this->_vec.mag();
@@ -117,9 +120,10 @@ TYPED_TEST(Vector4DUncleanMagnitude, NonUnitVectorReturnsCorrectMagnitudeWithMin
     EXPECT_MAG_EQ(this->_expectedMagnitude, magnitude);
 }
 
-/**
- * @test Verify the numerical accuracy of @ref fgm::Vector4D static magnitude wrapper for non-unit vectors ensure
- *        minimal precision loss.
+
+/** 
+ * @test Verify that the magnitude calculations for non-unit vectors using static variant of @ref fgm::Vector4D::mag
+ *       ensure minimal precision loss.
  */
 TYPED_TEST(Vector4DUncleanMagnitude, StaticWrapper_NonUnitVectorReturnsCorrectMagnitudeWithMinimalPrecisionLoss)
 {
