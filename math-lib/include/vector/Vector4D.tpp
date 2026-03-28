@@ -609,7 +609,7 @@ namespace fgm
         using R = Magnitude<T>;
         R magnitude = mag();
 
-        if (magnitude <= Config::EPSILON<R>)
+        if (magnitude <= Config::EPSILON_SQUARE<R>)
             return fgm::vec4d::zero<R>;
 
         return *this / magnitude;
@@ -661,14 +661,15 @@ namespace fgm
         requires StrictArithmetic<T>
     {
         using R = std::common_type_t<T, U>;
+        using MagType = Magnitude<R>;
         if (ontoNormalized)
             return this->dot(onto) * onto;
 
         /** @note Static cast ensures integral type dots don't lose much precision */
-        const auto ontoSquared = static_cast<Magnitude<R>>(onto.dot(onto));
+        const auto ontoSquared = static_cast<MagType>(onto.dot(onto));
 
-        if (ontoSquared <= Config::EPSILON<decltype(ontoSquared)>)
-            return fgm::vec4d::zero<decltype(ontoSquared)>;
+        if (ontoSquared <= Config::EPSILON_SQUARE<MagType>)
+            return fgm::vec4d::zero<MagType>;
 
         return this->dot(onto) / ontoSquared * onto; // a.dot(b) / b.dot(b) * b
     }
